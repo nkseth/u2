@@ -1,0 +1,101 @@
+.carouselItem {
+  width: 100%;
+  background-image: url(https://s3-alpha-sig.figma.com/img/e0c5/9b62/217c0cbfc4e549ecbe7e3ab7a44b35d5?Expires=1627257600&Signature=DHke0JQUYEYXnR7BIb-MbaeiqimeLV9vfTWHsRZx4B8h2D11wTd2GYipld9evt0KCFWvDhdPuKWzj81YvttmlT6QDMmUGUnRScS3ED57l684AUYODCDd8hUHgpZZ9jF6nNYMqBXTAUtBLN0oZS3m3ZhVR-IZeaCj2Byak5h7orOSvkcYYRp-9eJl3XItxfBmYDuSP6xmgIt~YFgVNlMyRkDNgJ~QsvADVqwADTg1xfIMQ4hW9ZdlZaSXrfDWY0aMdgqPFvxVb1TQczOBqr-ycP2AsnIUdab7YQrGfDm5K3VxRPfj5XJOOIADS3i0v6HEE-QB3g~YqbEOeSHVYqsC1g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 484px;
+  div {
+    width: 100%;
+    height: 100%;
+    background: #392d16e5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  color: #fff;
+  span {
+    font-family: DM Serif Display;
+    font-size: 92px;
+    font-weight: 400;
+    line-height: 92px;
+    letter-spacing: -1.5px;
+    text-align: center;
+  }
+  p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.0075em;
+    text-align: center;
+    width: 60%;
+    margin-top: 1rem;
+  }
+}
+
+.categoriesToBagSection {
+  display: grid;
+  gap: 3rem;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5rem;
+  .categoriesToBagHeader {
+    font-family: DM Serif Display;
+    font-size: 54px;
+    font-weight: 400;
+    line-height: 64px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 835px) {
+}
+@media screen and (max-width: 768px) {
+  .carouselItem {
+    span {
+      font-size: 62px;
+      line-height: 62px;
+      letter-spacing: -1.5px;
+    }
+    p {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.0075em;
+      width: 80%;
+    }
+  }
+
+  .categoriesToBagSection {
+    gap: 2rem;
+    .categoriesToBagHeader {
+      font-size: 44px;
+      line-height: 64px;
+    }
+  }
+}
+@media screen and (max-width: 550px) {
+  .carouselItem {
+    height: 205px;
+    span {
+      font-size: 30px;
+      line-height: 30px;
+      letter-spacing: -1.5px;
+    }
+    p {
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.0075em;
+      width: 90%;
+    }
+  }
+
+  .categoriesToBagSection {
+    gap: 0.5rem;
+    padding-bottom: 2rem;
+    .categoriesToBagHeader {
+      font-size: 20px;
+      line-height: 64px;
+    }
+  }
+}

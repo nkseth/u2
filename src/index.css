@@ -1,0 +1,84 @@
+:root {
+  --primary-color: #9d8e73;
+  --primary-color-dark: #6a5b40;
+
+  /* scroll bar styles for mozilla */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color-dark) var(--primary-color);
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+body {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* width: 100vw; */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+a {
+  text-decoration: none;
+  color: #3b3b3b;
+}
+
+input {
+  outline: none;
+}
+
+/* scroll-bar style */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5a4621;
+}
+
+/* MUI Global styles */
+.MuiInput-underline::after {
+  border-bottom: 1px solid #000 !important;
+}
+
+.MuiAccordionSummary-root {
+  /* padding: 0 !important; */
+}
+
+.MuiAccordionDetails-root {
+  /* padding: 0 !important; */
+}
+
+.MuiAccordionSummary-content {
+  /* margin: 0 !important; */
+}
+
+/* global pure-react-carousel style */
+.carousel__dot {
+  height: 2px;
+  width: 100%;
+  border: 0;
+  background: #e5e5e5 !important;
+}
+.carousel__dot--selected {
+  background-color: rgb(0, 0, 0) !important;
+}

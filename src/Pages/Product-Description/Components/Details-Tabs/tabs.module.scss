@@ -1,0 +1,83 @@
+.tabHeader {
+  font-family: DM Sans !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 20px !important;
+  text-transform: none !important;
+}
+
+.tabPanelOne {
+  display: grid;
+  gap: 20px;
+}
+
+.firstDiv {
+  display: grid;
+  gap: 10px;
+  > div {
+    display: flex;
+    gap: 1rem;
+    label {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+    }
+    span {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18px;
+      color: rgba(108, 108, 108, 1);
+    }
+  }
+}
+
+.secondDiv {
+  height: 131px;
+  width: 252px;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  > p:nth-child(1) {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    color: #fff;
+  }
+  > p:nth-child(2) {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    color: rgba(255, 255, 255, 1);
+  }
+  > p:nth-child(3) {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.1599999964237213px;
+    color: rgba(255, 255, 255, 1);
+  }
+  > p:nth-child(4) {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    color: rgba(220, 220, 220, 1);
+  }
+}
+
+.lastDiv {
+  > span:first-child {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.1599999964237213px;
+    color: rgba(108, 108, 108, 1);
+  }
+}

@@ -1,0 +1,150 @@
+.Measurement_Simulation {
+  display: grid;
+}
+
+.Measurement_Simulation_1 {
+  height: 400px;
+  background-color: lightslategray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(https://cdn.pixabay.com/photo/2019/06/22/18/31/love-4292211_960_720.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  div {
+    margin-left: 80px;
+    h1 {
+      font-family: DM Serif Display;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 72px;
+      line-height: 80px;
+      color: #ffffff;
+    }
+    p {
+      width: 60%;
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 30px;
+      color: #ffffff;
+    }
+  }
+}
+
+.Measurement_Simulation_2 {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 40px auto;
+  gap: 3rem;
+  img {
+    height: 350px;
+    width: 350px;
+    background-color: lightseagreen;
+    object-fit: cover;
+    border: 3px solid #6a5b40;
+  }
+  div {
+    h1 {
+      font-family: DM Serif Display;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 72px;
+      line-height: 80px;
+      color: #6a5b40;
+    }
+    p {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 30px;
+      color: #000000;
+    }
+  }
+}
+
+.Measurement_Simulation_3 {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 40px auto;
+  gap: 3rem;
+  img {
+    order: 2;
+    height: 350px;
+    width: 350px;
+    background-color: lightseagreen;
+    object-fit: cover;
+    border: 3px solid #6a5b40;
+  }
+  div {
+    order: 1;
+    h1 {
+      font-family: DM Serif Display;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 72px;
+      line-height: 80px;
+      color: #6a5b40;
+    }
+    p {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 30px;
+      color: #000000;
+    }
+  }
+}
+
+//Here Mobile View
+
+@media screen and (max-width: 768px) {
+  .Measurement_Simulation_1 {
+    div {
+      margin-left: 40px;
+      h1 {
+        font-family: DM Serif Display;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 35px;
+        line-height: 40px;
+        color: #ffffff;
+      }
+      p {
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 25px;
+      }
+    }
+  }
+  .Measurement_Simulation_2,
+  .Measurement_Simulation_3 {
+    display: grid;
+    gap: 1.5rem;
+    img {
+      order: 1;
+      width: 100%;
+    }
+    div {
+      order: 2;
+      h1 {
+        font-family: DM Serif Display;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        line-height: 34px;
+        color: #6a5b40;
+      }
+    }
+  }
+}

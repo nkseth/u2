@@ -1,0 +1,30 @@
+.container {
+  display: grid;
+  gap: 0.7rem;
+  > div:first-child {
+    cursor: pointer;
+    height: 138px;
+    // width: 164px;
+    border-radius: 5px;
+    border: 1px solid rgba(206, 199, 185, 1);
+    display: grid;
+    place-items: center;
+    > img {
+      height: 110px;
+    }
+  }
+  > div:last-child {
+    display: grid;
+    > span:first-child {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+    }
+    > span:last-child {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      color: var(--primary-color);
+    }
+  }
+}

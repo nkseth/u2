@@ -1,0 +1,46 @@
+.mainContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.container {
+  width: 175px;
+  border-radius: 9px;
+  border: 0.5px solid rgba(133, 114, 80, 1);
+  > img {
+    border-radius: 9px;
+    height: 100px;
+    width: 100%;
+  }
+  > div {
+    display: grid;
+    padding: 3px 8px;
+    > span:first-child {
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+    }
+
+    > span:last-child {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+      color: var(--primary-color);
+    }
+  }
+}
+
+@media screen and (max-width: 835px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .mainContainer {
+    gap: 0;
+  }
+}

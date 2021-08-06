@@ -1,0 +1,40 @@
+.EmailSent_Login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 35px;
+  overflow: auto;
+  gap: 0.75rem;
+  background: #ffffff;
+  h2 {
+    font-family: DM Serif Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 34px;
+    line-height: 48px;
+  }
+  p {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.16px;
+    color: #718096;
+    text-align: center;
+  }
+  a {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.16px;
+    color: #857250;
+  }
+}

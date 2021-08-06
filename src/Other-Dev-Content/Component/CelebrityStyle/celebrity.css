@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+.celebrityHeading{
+    font-style: italic !important;
+    font-weight: normal !important;
+    font-size: 54px !important;
+    line-height: 100% !important;
+    /* identical to box height, or 54px */
+
+    letter-spacing: -1.5px !important;
+
+    color: #000000 !important;
+}
+
+.celebrityHeading .celebrity{
+    font-family: 'DM Serif Display', serif !important;
+}
+
+.content {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    min-height: 56px;
+    width: 170px;
+}
+.span {
+    letter-spacing: 0.02px;
+}
+.subtitle {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.32px;
+    color: #3B3B3B;
+}
+.subtitle-1 {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.16px;
+    color: #0A0A0A;
+}
+.title {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    color: #0A0A0A;
+}
+
+.celebrityImages .celebrityImage{
+    height: 294px;
+    width: 243px;
+}
+
+.celebrityImages .slider-control-centerleft{
+    top: 39% !important;
+}
+
+.celebrityImages .slider-control-centerright{
+    top: 39% !important;
+}
+
+.celebrityImages {
+    align-items: flex-start;
+    display: flex;
+    height: 447px;
+    left: 100px;
+    min-width: 100%;
+    top: 799px;
+}
+
+.celebrityPrice {
+    align-items: flex-end;
+    /* background-color: var(--white); */
+    /*display: flex;*/
+    height: 61px;
+    justify-content: flex-end;
+    min-width: 182px;
+}
+
+.celebrityImages .heart{
+    position: relative;
+    top: 32px;
+    left: 207px;
+    z-index: 99 !important;
+    width: 28px;
+}
+
+.celebrityImages .offer{
+    color: #9D9D9D !important;
+}
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,700,500|Quicksand:700|DM+Serif+Display:400|Inter:700");
+* {
+    box-sizing: border-box;
+}

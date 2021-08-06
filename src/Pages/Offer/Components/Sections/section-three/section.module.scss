@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.header {
+  font-family: DM Serif Display;
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 64px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.carouselNavigationDiv {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  > a:first-child {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #ffffff;
+  }
+}
+
+.sliderBtnDiv {
+  display: flex;
+  gap: 1rem;
+  .sliderBtn {
+    background: none;
+    border: none;
+  }
+}
+
+.iconBtn {
+  border: 1px solid rgb(0, 0, 0) !important;
+  color: rgb(0, 0, 0) !important;
+}
+
+@media screen and (max-width: 550px) {
+  .header {
+    font-size: 20px;
+  }
+}

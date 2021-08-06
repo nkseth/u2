@@ -1,0 +1,44 @@
+.header {
+  text-align: center;
+  > p:first-child {
+    font-size: 54px;
+    font-weight: 400;
+    line-height: 64px;
+    span:first-child {
+      font-family: DM Serif Display;
+      font-style: italic;
+    }
+  }
+  > p:last-child {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+}
+
+.topOffersCardContainer {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 0;
+}
+
+@media screen and (max-width: 835px) {
+  .topOffersCardContainer {
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .header {
+    > p:first-child {
+      line-height: 35px !important;
+      font-size: 20px;
+      line-height: 64px;
+    }
+  }
+  .topOffersCardContainer {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}

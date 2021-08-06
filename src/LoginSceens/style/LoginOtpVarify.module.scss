@@ -1,0 +1,136 @@
+.LoginOtpVarify {
+  padding: 45px 35px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: #ffffff;
+}
+.LoginOtpVarify_Title {
+  display: grid;
+  h1 {
+    font-family: DM Serif Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 34px;
+    line-height: 48px;
+    color: #0a0a0a;
+  }
+  p {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #6c6c6c;
+  }
+}
+.LoginOtpVarify_Input {
+  display: grid;
+  gap: 0.8rem;
+  position: relative;
+  label {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.16px;
+    color: #0a0a0a;
+  }
+  input {
+    border: 1px solid #999;
+    outline-color: #857250;
+    outline-width: 1px;
+    padding: 0.6rem;
+    border-radius: 4px;
+  }
+  button {
+    position: absolute;
+    background: none;
+    outline: none;
+    border: none;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: 0.16px;
+    color: #1a5fc7;
+    right: 10px;
+    top: 40px;
+  }
+}
+
+.LoginOtpVarify_Text {
+  p {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.16px;
+    color: #0a0a0a;
+  }
+}
+
+.LoginOtpVarify_OTP {
+  margin: 20px 0;
+  div {
+    div {
+      input {
+        width: 4em !important;
+        padding: 0.5rem;
+        border: none;
+        border-bottom: 2px solid #857250;
+        color: #0a0a0a !important;
+        font-size: 16px !important;
+      }
+    }
+  }
+}
+.LoginOtpVarify_Button {
+  display: grid;
+  //   margin-top: 20px;
+  button {
+    background: #857250;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    text-transform: none;
+    padding: 0.6rem;
+    &:hover {
+      background: #857250;
+    }
+  }
+}
+
+.LoginOtpVarify_Bottom_Link_1,
+.LoginOtpVarify_Bottom_Link_2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  a {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.16px;
+    color: #718096;
+  }
+}
+.LoginOtpVarify_Bottom_Link_2 {
+  margin-top: 1rem;
+  justify-self: flex-end;
+}

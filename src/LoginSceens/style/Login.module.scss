@@ -1,0 +1,181 @@
+.Screen_Login {
+  padding: 35px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: #ffffff;
+}
+
+.Screen_Login_Link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  a {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #0a0a0a;
+    cursor: pointer;
+  }
+}
+
+.Screen_Login_Title {
+  display: grid;
+  h1 {
+    font-family: DM Serif Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 34px;
+    line-height: 48px;
+    color: #0a0a0a;
+  }
+  p {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #6c6c6c;
+  }
+}
+
+.Screen_Login_Input {
+  display: grid;
+  gap: 0.65rem;
+  label {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.16px;
+    color: #0a0a0a;
+  }
+  input {
+    border: 1px solid #6c6c6c7a;
+    outline-color: #857250;
+    outline-width: 1px;
+    padding: 0.6rem;
+    border-radius: 4px;
+  }
+  span {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    a {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.16px;
+      color: #da1919;
+    }
+  }
+}
+
+.Screen_Login_Button {
+  display: grid;
+  button {
+    background: #857250;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    text-transform: none;
+    padding: 0.6rem;
+    &:hover {
+      background: #857250;
+    }
+  }
+}
+.Screen_Login_Line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0.4rem;
+  span {
+    color: #0a0a0a;
+    position: relative;
+    padding: 0.4rem;
+    background: #fff;
+    &::before {
+      content: "";
+      background-color: #6c6c6c7a;
+      width: 150px;
+      top: 50%;
+      height: 2px;
+      position: absolute;
+      right: 38px;
+    }
+    &::after {
+      content: "";
+      background-color: #6c6c6c7a;
+      width: 150px;
+      top: 50%;
+      height: 2px;
+      position: absolute;
+      left: 38px;
+    }
+  }
+}
+.Screen_Login_Social {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  button {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #0a0a0a;
+    text-transform: none;
+    border: 1px solid #6c6c6c7a;
+    padding: 0.6rem;
+    &:hover {
+      background: #f1f1f1;
+    }
+    &:nth-of-type(2) {
+      background: #1e58d4;
+      color: #ffffff;
+    }
+    img {
+      margin-right: 0.3rem;
+      height: 16px;
+      width: 16px;
+    }
+  }
+}
+
+.Screen_Login_Bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  a {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.16px;
+    color: #718096;
+  }
+}

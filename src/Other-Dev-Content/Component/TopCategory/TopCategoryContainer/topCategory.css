@@ -1,0 +1,585 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+.icons {
+    align-items: flex-start;
+    background-color: var(--tobacco-brown);
+    border-radius: 20px;
+    display: flex;
+    height: 40px;
+    margin-left: 16px;
+    min-width: 40px;
+    padding: 7px;
+    position: relative;
+}
+.icons-1 {
+    align-items: flex-start;
+    border: 1px solid var(--shadow);
+    border-radius: 20px;
+    display: flex;
+    height: 40px;
+    min-width: 40px;
+    padding: 7px 6px;
+    position: relative;
+}
+.web-button {
+    align-items: flex-start;
+    display: flex;
+    height: 40px;
+    left: 1245px;
+    min-width: 96px;
+    position: absolute;
+    top: 721px;
+}
+.icons-2.icons-3 {
+    position: relative;
+}
+.icons-3 {
+    align-items: center;
+    display: flex;
+    height: 24px;
+    mix-blend-mode: normal;
+    padding: 0 8px;
+    width: 24px;
+}
+.vector {
+    height: 14px;
+    width: 8px;
+}
+.casual-wear {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 9px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.dress-materials {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-left: 1px;
+    margin-top: 9px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.ethnic-wear {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-left: 1px;
+    margin-top: 9px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.ethnic-wear-1 {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.flex-col {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    min-height: 119px;
+}
+.flex-col-1 {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    width: 182px;
+}
+.flex-col-2 {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    min-height: 355px;
+    width: 100%;
+}
+.flex-col-3 {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    min-height: 152px;
+}
+.flex-row {
+    align-items: center;
+    display: flex;
+    min-width: 171px;
+}
+.flex-row-1 {
+    align-items: flex-start;
+    display: flex;
+    height: 152px;
+    min-width: 222px;
+}
+.flex-row-2 {
+    align-items: center;
+    display: flex;
+    height: 119px;
+    min-width: 162px;
+}
+.formal-wear {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.group-642 {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    min-height: 323px;
+    /*width: 209px;*/
+}
+
+.group-651 a{
+    font-family: 'DM Sans';
+}
+.group-643 {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    min-height: 323px;
+    width: 100%;
+}
+.group-644 {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    min-height: 323px;
+    /*width: 189px;*/
+}
+.group-646 {
+    align-items: flex-start;
+    background-image: url(https://anima-uploads.s3.amazonaws.com/projects/60a8e4bb63b3840740d1ac98/releases/60abaa4eed779ba64954df21/img/mask-group@1x.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    width:33.33%;
+}
+.group-648 {
+    align-items: center;
+    background-image: url(https://anima-uploads.s3.amazonaws.com/projects/60a8e4bb63b3840740d1ac98/releases/60abaa4eed779ba64954df21/img/mask-group-1@1x.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    height: 554px;
+    background-repeat: no-repeat;
+    width:33.33%;
+}
+.group-649 {
+    align-items: flex-start;
+    background-image: url(https://anima-uploads.s3.amazonaws.com/projects/60a8e4bb63b3840740d1ac98/releases/60abaa4eed779ba64954df21/img/mask-group-2@1x.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    width:33.33%;
+}
+.group-651 {
+    align-items: flex-start;
+    display: flex;
+}
+.group-652 {
+    align-items: flex-start;
+    display: flex;
+    height: 355px;
+    left: 100px;
+    min-width: 100%;
+    top: 799px;
+}
+.group-653 {
+    align-items: flex-start;
+    display: flex;
+    width: 100%;
+}
+.hoodies {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-left: 1px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.hoodies-1 {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.jeans {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.jeans-chinos {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-left: 1px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.jump-suits {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 9px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.kids {
+    height: 53px;
+    letter-spacing: 0.26px;
+    line-height: 52.5px;
+    min-height: 53px;
+    min-width: 76px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.kurtas {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-left: 1px;
+    margin-top: 9px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.kurtas-suits {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.leggins-salwars {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-left: 1px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.line-30 {
+    height: 1px;
+    margin-bottom: 57.0px;
+    margin-left: 9px;
+    width: 77px;
+}
+.line-30-1 {
+    height: 1px;
+    margin-left: 18px;
+    margin-top: 9.0px;
+    width: 77px;
+}
+.line-30-2 {
+    height: 1px;
+    margin-left: 12px;
+    margin-top: 30.5px;
+    width: 77px;
+}
+.line-76 {
+    margin-top: 36px;
+    width: 100%;
+}
+.mask-group {
+    height: 294px;
+    width: 181px;
+}
+.mask-group-1 {
+    height: 294px;
+    width: 200px;
+}
+.men {
+    height: 53px;
+    letter-spacing: 0.26px;
+    line-height: 52.5px;
+    min-height: 53px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.name {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-left: 1px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.name-1 {
+    letter-spacing: 0.12px;
+    line-height: 24px;
+    min-height: 24px;
+    min-width: 139px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.name-2 {
+    letter-spacing: 0.12px;
+    line-height: 24px;
+    min-height: 24px;
+    min-width: 133px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.overlap-group {
+    height: 1253px;
+    position: relative;
+    width: 100%;
+    margin-top: 80px;
+}
+.overlap-group-1 {
+    align-items: flex-end;
+    background-color: var(--white);
+    display: flex;
+    height: 61px;
+    justify-content: flex-end;
+    min-width: 200px;
+    padding: 18px 27px;
+    width: 200px;
+}
+
+.links a{
+    color: #fff;
+}
+
+.links .women,.links .men,.links .kids{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 150%;
+    letter-spacing: 0.0075em;
+}
+
+.overlap-group-2 {
+    align-items: flex-end;
+    background-color: var(--white);
+    display: flex;
+    height: 61px;
+    justify-content: flex-end;
+    min-width: 182px;
+}
+.overlap-group1 {
+    align-items: flex-end;
+    background-image: url(https://anima-uploads.s3.amazonaws.com/projects/60a8e4bb63b3840740d1ac98/releases/60abaa4eed779ba64954df21/img/rectangle-97@1x.png);
+    background-size: 100% 100%;
+    display: flex;
+    height: 554px;
+    justify-content: flex-end;
+    padding: 10% 10%;
+}
+.overlap-group2 {
+    align-items: flex-end;
+    background-image: url(https://anima-uploads.s3.amazonaws.com/projects/60a8e4bb63b3840740d1ac98/releases/60abaa4eed779ba64954df21/img/rectangle-99@1x.png);
+    background-size: 100% 100%;
+    display: flex;
+    height: 554px;
+    width: 100%;
+    padding: 10% 10%;
+}
+.overlap-group3 {
+    align-items: flex-end;
+    background-image: url(https://anima-uploads.s3.amazonaws.com/projects/60a8e4bb63b3840740d1ac98/releases/60abaa4eed779ba64954df21/img/rectangle-98@1x.png);
+    background-size: 100% 100%;
+    display: flex;
+    height: 554px;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10% 10%;
+}
+.overlap-group8 {
+    align-items: flex-end;
+    background-color: var(--white);
+    display: flex;
+    height: 61px;
+    min-width: 182px;
+    padding: 18px 22px;
+}
+.preview {
+    margin-top: 111.0px;
+    min-height: 248px;
+    mix-blend-mode: normal;
+    /*width: 70%;*/
+    font-style: normal;
+    font-weight: normal;
+    font-size: 54px;
+    line-height: 128%;
+    /* or 69px */
+
+    letter-spacing: 1.6px;
+    font-family: 'DM Serif Display', serif;
+    color: #6A5B40;
+}
+.preview-1 {
+    letter-spacing: 1.60px;
+    mix-blend-mode: normal;
+    font-family: 'DM Serif Display', serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 54px;
+    line-height: 128%;
+    letter-spacing: 1.6px;
+    color: #000000;
+}
+.rectangle-107 {
+    background-color: #85725040;
+    height: 1026px;
+    left: 0;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 115px;
+    width: 100%;
+}
+.sarees {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.shirts {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.shorts {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-left: 1px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.shorts-skirts {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.sweatshirts {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 9px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.t-shirts {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.t-shirts-shorts {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-left: 1px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.text-1 {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.track-pants {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.trousers {
+    height: 27px;
+    letter-spacing: 0.14px;
+    line-height: 27px;
+    margin-top: 6px;
+    min-height: 27px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.women {
+    height: 53px;
+    letter-spacing: 0.26px;
+    line-height: 52.5px;
+    min-height: 53px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.x6-a5-b40 {
+    align-items: center;
+    display: flex;
+    height: 603px;
+    left: 105px;
+    width:100%;
+    mix-blend-mode: normal;
+    top: 0;
+    z-index: 99;
+
+}
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,700,500|Quicksand:700|DM+Serif+Display:400|Inter:700");
+* {
+    box-sizing: border-box;
+}
+.valign-text-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

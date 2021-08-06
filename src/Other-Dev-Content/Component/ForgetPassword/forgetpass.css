@@ -1,0 +1,29 @@
+.forget_form{
+    margin-bottom: 13px !important;
+    width: 100%;
+}
+
+.ant-col{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.ant-row{
+    margin-left: 0px !important;
+}
+
+.emailsection{
+    margin-top: 157px !important;
+
+}
+
+.skip{
+    font-family: 'DM Serif Display', serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    width: 100%;
+    color: #857250 !important;
+;
+}

@@ -1,0 +1,36 @@
+//Here Collabrate_With_US style
+.Collabrate_With_US {
+  height: 550px;
+  background: linear-gradient(#000000b5, #000000b5),
+    url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8dGVhbXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  place-content: center;
+  button {
+    height: 200px;
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #392d169a;
+    color: white;
+    font-family: "DM Serif Display";
+    text-transform: capitalize;
+    box-shadow: 0px 6px 10px #0000007d;
+    font-size: 3rem;
+    &:hover {
+      background: #614c26b5;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Collabrate_With_US {
+    height: 50vh;
+    button {
+      font-size: 2rem;
+    }
+  }
+}

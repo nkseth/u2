@@ -1,0 +1,260 @@
+.offer_divider {
+    height: 1px;
+    margin-top: 53px;
+    width: 100%;
+
+}
+.offer_flex-row {
+    align-items: center;
+    display: flex;
+    height: 64px;
+    min-width: 100%;
+    margin-top: 50px !important;
+}
+.offer_flex-row-1 {
+    align-items: center;
+    display: flex;
+    height: 40px;
+    margin-top: 12px;
+    min-width: 244px;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    /* or 125% */
+
+    letter-spacing: 0.32px;
+
+    /* Base / Black */
+
+    color: #0A0A0A;
+}
+.offer_flex-row-2 {
+    align-items: flex-end;
+    display: flex;
+    margin-top: 17px;
+    min-width: 244px;
+}
+.offer_flex-row-3 {
+    align-items: flex-start;
+    display: flex;
+    margin-left: 1px;
+    margin-top: 45px;
+    width: 100%;
+}
+.offer_group-97 {
+    align-items: flex-start;
+    display: flex;
+    height: 334px;
+    margin-right: 31px;
+    min-width: 290px;
+}
+.offer_group-970 {
+    align-items: flex-start;
+    display: flex;
+    height: 334px;
+    min-width: 290px;
+}
+.offer_group-974 {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.offer_icon {
+    align-items: flex-end;
+    display: flex;
+    height: 26px;
+    margin-left: 54px;
+    mix-blend-mode: normal;
+    padding: 12.6px 12.7px;
+    width: 26px;
+}
+.offer_icon-1 {
+    align-items: flex-end;
+    display: flex;
+    height: 26px;
+    margin-bottom: 4.0px;
+    margin-left: 84px;
+    mix-blend-mode: normal;
+    padding: 2.9px 1.5px;
+    width: 26px;
+}
+.offer_icon-2 {
+    align-items: flex-end;
+    display: flex;
+    height: 26px;
+    margin-left: 86px;
+    mix-blend-mode: normal;
+    padding: 2.9px 1.5px;
+    width: 26px;
+}
+.offer_icon-3 {
+    align-items: flex-end;
+    display: flex;
+    height: 26px;
+    margin-bottom: 4.0px;
+    margin-left: 93px;
+    mix-blend-mode: normal;
+    padding: 2.9px 1.5px;
+    width: 26px;
+}
+.offer_image {
+    height: 272px;
+    left: 44px;
+    position: absolute;
+    top: 0;
+    width: 48px;
+}
+.offer_kids-wear-brand {
+    letter-spacing: 0.32px;
+    line-height: 20px;
+    margin-bottom: 1px;
+    min-height: 20px;
+    min-width: 132px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.offer_overlap-group {
+    align-items: flex-end;
+    /*background-image: url(https://anima-uploads.s3.amazonaws.com/projects/60a8e4bb63b3840740d1ac98/releases/60abaa4eed779ba64954df21/img/image-1@2x.png);*/
+    background-size: 100% 100%;
+    display: flex;
+    height: 272px;
+    justify-content: flex-end;
+    min-width: 286px;
+    padding: 108.2px 44px;
+}
+.offer_overlap-group-1 {
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    min-height: 334px;
+    width: 286px;
+}
+
+.offer_overlap-group-4 {
+    height: 272px;
+    margin-left: 3.0px;
+    position: relative;
+    width: 139px;
+}
+.offer_overlap-group5 {
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-top: -0.12px;
+    min-height: 334px;
+    width: 286px;
+}
+.offer_overlay-text {
+    left: 0;
+    letter-spacing: 0;
+    line-height: 28px;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: center;
+    top: 136px;
+    white-space: nowrap;
+}
+.offer_overlay-text-1 {
+    letter-spacing: 0;
+    line-height: 28px;
+    min-height: 28px;
+    min-width: 182px;
+    mix-blend-mode: normal;
+    text-align: center;
+    white-space: nowrap;
+}
+.offer_overlay-text-2 {
+    font-family: 'DM Serif Display';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.ooffer_verlay-text-3 {
+    letter-spacing: 0;
+    line-height: 28px;
+    min-height: 28px;
+    min-width: 135px;
+    mix-blend-mode: normal;
+    text-align: center;
+    white-space: nowrap;
+}
+.offer_overlay-text-4 {
+    letter-spacing: 0;
+    line-height: 28px;
+    min-height: 28px;
+    min-width: 160px;
+    mix-blend-mode: normal;
+    text-align: center;
+    white-space: nowrap;
+}
+.offer_text- {
+    letter-spacing: 0.32px;
+    line-height: 20px;
+    min-height: 40px;
+    min-width: 134px;
+    mix-blend-mode: normal;
+}
+.offer_offertext-1{
+    margin-top: 20px !important;
+    font-family: 'DM Serif Display';
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 54px !important;
+    line-height: 64px !important;
+    color: #FFFFFF !important;
+}
+
+.offer_text-1 {
+    color: var(--white);
+    font-family: var(--font-family-dm_serif_display);
+    font-size: var(--font-size-xxxxl);
+    letter-spacing: 0;
+    line-height: 64px;
+    min-height: 64px;
+    min-width: 545px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.offer_text-4 {
+    letter-spacing: 0.32px;
+    line-height: 20px;
+    min-height: 40px;
+    min-width: 125px;
+    mix-blend-mode: normal;
+}
+.offer_text-5 {
+    letter-spacing: 0.32px;
+    line-height: 20px;
+    margin-bottom: 1.0px;
+    min-height: 20px;
+    min-width: 164px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.offer_vector {
+    height: 1px;
+    mix-blend-mode: normal;
+    width: 1px;
+}
+.offer_vector-1 {
+    height: 20px;
+    mix-blend-mode: normal;
+    width: 23px;
+}
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,700,500|Quicksand:700|DM+Serif+Display:400|Inter:700");
+* {
+    box-sizing: border-box;
+}

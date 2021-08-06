@@ -1,0 +1,149 @@
+.section {
+  display: flex;
+}
+
+.productDiv {
+  margin-top: 61px;
+  display: flex;
+  // flex: 1;
+  gap: 1rem;
+  > img:first-child {
+    height: 143px;
+    width: 132px;
+  }
+  > div {
+    width: 263px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .productHeader {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+
+    .productDescription {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+    }
+
+    .productQuantity {
+      > span:first-child {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px;
+        letter-spacing: 0.3199999928474426px;
+      }
+      > span:last-child {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 18px;
+      }
+    }
+
+    .price {
+      font-family: DM Serif Display;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 36px;
+    }
+  }
+}
+
+.productRatingDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.productRatingDiv,
+.productReviewDiv {
+  > span:first-child {
+    font-family: DM Serif Display;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+  }
+}
+
+.productReviewDiv {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  textarea {
+    resize: none;
+    height: 140px;
+    width: 682px;
+    border-radius: 0px;
+    border: 1px solid #cecece;
+    padding: 1rem;
+    outline: none;
+    font-family: DM Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.1599999964237213px;
+  }
+}
+
+.addImgDiv {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  > div:first-child {
+    input {
+      display: none;
+    }
+    display: grid;
+    place-items: center;
+    height: 80px;
+    width: 99px;
+    border-radius: 10px;
+    background: #e6e3dc;
+  }
+
+  > span:last-child {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+}
+
+.button {
+  height: 40px !important;
+  width: 164px !important;
+  border-radius: 5px;
+  font-family: DM Sans !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  background-color: #6a5b40 !important;
+  color: #fff !important;
+}
+
+@media screen and (max-width: 1095px) {
+  .productReviewDiv {
+    textarea {
+      width: 100%;
+    }
+  }
+}
+@media screen and (max-width: 835px) {
+}
+
+@media screen and (max-width: 550px) {
+  .productDiv {
+    > div {
+      width: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .productDiv {
+    margin-top: 25px;
+  }
+}

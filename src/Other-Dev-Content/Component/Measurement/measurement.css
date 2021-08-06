@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+}
+.container {
+  padding: 2rem;
+}
+.image-container {
+  background-image: url(https://anima-uploads.s3.amazonaws.com/projects/60a90dfbab541f9852965709/img/filter-bar@2x.png);
+  background-position: 50% 50%;
+  position: relative;
+  background-size: cover;
+  padding: 165px;
+  
+}
+
+.image-container .background{
+  margin: auto;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+.image-container .play{
+  margin: auto;
+  width: 20px;
+  height: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+
+}
+.section-2{
+  margin-top: 4rem;
+}
+.title{
+  font-size: 54px;
+  color:burlywood
+}
+.text{
+  font-size: 16px;
+  color: black;
+}
+.image-container-2{
+  background-image: url(https://anima-uploads.s3.amazonaws.com/projects/60a90dfbab541f9852965709/img/mask-group-1@2x.png);
+  background-position: 50% 50%;
+  position: relative;
+  background-size: cover;
+  padding: 165px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-container-2 .background{
+  margin: auto;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+.image-container-2 .play{
+  margin: auto;
+  width: 20px;
+  height: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+
+}

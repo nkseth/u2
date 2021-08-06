@@ -1,0 +1,29 @@
+.container {
+  position: relative;
+  // width: 100%;
+  padding: 0 112px;
+}
+
+@media screen and( max-width: 945px) {
+  .container {
+    padding: 0 56px;
+  }
+}
+
+@media screen and( max-width: 835px) {
+  .container {
+    padding: 0 56px;
+  }
+}
+
+@media screen and( max-width: 768px) {
+  .container {
+    padding: 0 30px;
+  }
+}
+
+@media screen and( max-width: 550px) {
+  .container {
+    padding: 1rem;
+  }
+}

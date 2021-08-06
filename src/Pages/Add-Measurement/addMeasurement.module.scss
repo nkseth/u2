@@ -1,0 +1,125 @@
+.modelImgSection {
+  padding: 0 131px;
+  div {
+    background: #e6e3dc38;
+    div:last-child {
+      display: grid;
+      place-items: center;
+    }
+  }
+}
+
+.lastSection {
+  padding: 0.5rem 131px;
+  background: #857250;
+  display: flex;
+  align-items: center;
+
+  .rdd {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+  .rdd > * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+}
+
+.lastSection > * {
+  width: 100%;
+}
+
+.btnsDiv {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.button {
+  height: 45px;
+  flex: 1 !important;
+  flex-shrink: 0.5;
+  width: 260px;
+  border-radius: 5px;
+  font-family: DM Sans !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  color: #6a5b40 !important;
+  background-color: #ffffff !important;
+}
+
+.zoomDiv {
+  display: flex;
+  justify-content: flex-end;
+  .innerZoomDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    div {
+      background-color: rgba($color: #ffffff, $alpha: 0.4);
+      display: flex !important;
+      gap: 1rem;
+      padding: 5px;
+      border-radius: 8px;
+    }
+    span {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 856px) {
+  .lastSection {
+    padding: 1rem 56px;
+  }
+  .modelImgSection {
+    padding: 0 56px;
+  }
+
+  .lastSection {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .rdd {
+    justify-content: center !important;
+  }
+
+  .rddIcons {
+    height: 30px;
+    width: 25px;
+  }
+
+  .innerZoomDiv {
+    padding: 1rem;
+    div {
+      background-color: var(--primary-color) !important;
+    }
+  }
+}
+
+@media screen and (max-width: 856px) {
+  .modelImgSection {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .btnsDiv {
+    flex-direction: column;
+    align-items: center;
+  }
+}

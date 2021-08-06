@@ -1,0 +1,90 @@
+//here Top_Designer Styles
+.Top_Designer_header {
+  color: #000;
+  font-style: italic;
+}
+.Top_Designer {
+  display: flex;
+  height: 400px;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  .Top_Designer_Items {
+    display: grid;
+    justify-content: center;
+    background: #fff;
+    box-shadow: 0px 5px 10px #00000041;
+    img {
+      height: 300px;
+      width: 250px;
+      object-fit: cover;
+    }
+    a {
+      font-family: "Quicksand";
+      font-size: 25px;
+      font-weight: 400;
+      color: #6a5b40;
+      text-align: center;
+      padding: 0.3rem;
+    }
+  }
+}
+
+//Here Static Styles For Carousel
+.Carousel_header {
+  font-family: DM Serif Display;
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 54px;
+  letter-spacing: -1.5px;
+  margin-bottom: 62px;
+  align-items: center;
+  gap: 1rem;
+}
+.NavigationContainer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  a:first-child {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #0059ff;
+  }
+}
+.Carousel_SliderButtonBox {
+  display: flex;
+  gap: 1rem;
+  .Carousel_SliderButtons {
+    background: none;
+    border: none;
+    .Carousel_iconBtn {
+      border: 1px solid rgb(0, 0, 0) !important;
+      color: rgb(0, 0, 0) !important;
+    }
+  }
+}
+
+//-----------------------//
+
+@media screen and (max-width: 786px) {
+  .Carousel_header {
+    text-align: center;
+    font-size: 44px;
+    line-height: 44px;
+  }
+  .Top_Designer {
+    .Top_Designer_Items {
+      a {
+        font-size: 24px;
+        font-weight: 400;
+      }
+    }
+  }
+}
+@media screen and (max-width: 425px) {
+  .Carousel_header {
+    text-align: center;
+    font-size: 32px;
+  }
+}

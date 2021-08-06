@@ -1,0 +1,353 @@
+.MyAddresses {
+  display: grid;
+  place-content: center;
+  height: 600px;
+  gap: 1rem;
+  div {
+    display: grid;
+    justify-content: center;
+    img {
+      height: 150px;
+      width: 150px;
+      background-color: #ccc;
+      object-fit: cover;
+    }
+    h2 {
+      font-family: DM Serif Display;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    p {
+      text-align: center;
+      color: #857250;
+      font-size: 13px;
+      width: 55%;
+      margin: 0.5rem auto;
+    }
+    button {
+      padding: 0.6rem 0.4rem;
+      background: #857250;
+      color: #fff;
+      border: none;
+      font-weight: 500;
+      border-radius: 4px;
+      width: 180px;
+      font-size: 12px;
+      text-transform: capitalize;
+    }
+  }
+}
+
+//Add New Address Style Start
+.AddNewAddress {
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 1rem;
+  .AddNewAddress_Top {
+    display: grid;
+    gap: 1rem;
+    label {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    button {
+      width: 250px;
+      border: none;
+      background: #6e5e42;
+      padding: 0.8rem;
+      color: #fff;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      text-transform: capitalize;
+      span {
+        font-size: 0.8rem;
+        margin-left: 0.4rem;
+      }
+      svg {
+        fill: #fff;
+        height: 17px;
+        width: 17px;
+      }
+    }
+  }
+  .AddNewAddress_Inputs {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    div {
+      display: grid;
+      gap: 0.8rem;
+      margin: 0.4rem 0;
+      label {
+        font-size: 16px;
+        font-weight: 700;
+      }
+      input,
+      select {
+        border: 1px solid #aaa;
+        padding: 0.6rem;
+        outline-color: #857250;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+  }
+  .AddNewAddress_textarea {
+    margin-top: 20px;
+    display: grid;
+    gap: 0.5rem;
+    label {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    textarea {
+      padding: 0.4rem;
+      font-family: DM Serif Display;
+      border-radius: 4px;
+      outline-color: #857250;
+      resize: none;
+      height: 200px;
+      width: auto;
+      border: 1px solid #aaa;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+  .AddNewAddress_Type {
+    margin-top: 20px;
+    display: grid;
+    gap: 0.5rem;
+    label {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .AddNewAddress_Type_checkbox {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      div {
+        display: flex;
+        align-items: center;
+        p {
+          margin-left: 0.3rem;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+        div {
+          color: #6a5b40;
+          svg {
+            fill: #6a5b40;
+          }
+        }
+      }
+    }
+  }
+  .AddNewAddress_Submit {
+    display: grid;
+    margin-top: 20px;
+    button {
+      border: none;
+      background: #6e5e42;
+      padding: 0.8rem;
+      color: #fff;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      text-transform: capitalize;
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+}
+//Add New Address Style End
+
+//
+
+//Here Address Card Style Start
+.MyAddresses_Cards {
+  // width: 80%;
+  margin-top: 20px;
+  .MyAddresses_Cards_Box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    .MyAddresses_Cards_Box_Button {
+      display: flex;
+      place-content: center;
+      border: 2px dotted #ccc;
+      height: auto;
+      padding: 0.5rem;
+      border-radius: 10px;
+      user-select: none;
+      div {
+        display: flex;
+        align-items: center;
+        span {
+          font-family: DM Serif Display;
+          font-size: 1.4rem;
+          font-weight: 400;
+          display: flex;
+          align-items: center;
+          svg {
+            height: 22px;
+            width: 22px;
+          }
+          &:nth-of-type(1) {
+            margin-left: 0.35rem;
+          }
+        }
+      }
+    }
+    .Old_Address_Card {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      border: 1px solid #ddd;
+      height: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      .Old_Address_Card_Top {
+        padding: 0.6rem 0.8rem;
+        display: grid;
+        align-items: center;
+        grid-template-columns: auto 1fr 1fr 1fr;
+        h2 {
+          margin-left: 0.4rem;
+          font-size: 16px;
+          font-weight: 700;
+        }
+        button {
+          border-radius: 20px;
+          width: 60px;
+          background: #6e5e42;
+          color: #fff;
+          padding: 0.4rem 0.2rem;
+          border: none;
+          font-size: 0.7rem;
+          text-transform: capitalize;
+
+          &:nth-of-type(1) {
+            background: #eee;
+            color: #111;
+            justify-self: end;
+            font-size: 12px;
+            font-weight: 700;
+          }
+          &:nth-last-of-type(1) {
+            justify-self: end;
+            font-size: 11px;
+            font-weight: 700;
+          }
+        }
+        .Old_Address_Card_Top_checkbox {
+          height: 20px;
+          width: 20px;
+          display: grid;
+          place-content: center;
+          span {
+            color: #6a5b40 !important;
+            span {
+              div {
+                color: #6a5b40 !important;
+                svg {
+                  fill: #6a5b40 !important;
+                }
+              }
+            }
+          }
+        }
+      }
+      .Old_Address_Card_Middle {
+        padding: 0.4rem 0.8rem;
+        p {
+          font-size: 14px;
+          font-weight: 700;
+          color: #6c6c6c;
+          &:nth-of-type(2) {
+            margin: 0.6rem 0;
+            font-size: 18px;
+            font-weight: 400;
+          }
+        }
+      }
+      .Old_Address_Card_Bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        button {
+          padding: 0.6rem;
+          background: transparent;
+          text-transform: capitalize;
+          border: none;
+          border-radius: 0px;
+          border-top: 1px solid #ddd;
+          font-size: 16px;
+          font-weight: 700;
+          &:nth-of-type(1) {
+            color: #111;
+            border-right: 1px solid #ddd;
+          }
+          &:nth-of-type(2) {
+            color: red;
+          }
+        }
+      }
+    }
+  }
+}
+//Here Address Card Style End
+
+// Here Responsive Design
+@media screen and (max-width: 768px) {
+  .MyAddresses {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .AddNewAddress {
+    width: 90%;
+    //TRBL
+    margin: 20px auto 1rem auto;
+    .AddNewAddress_Top {
+      display: grid;
+      gap: 1rem;
+      button {
+        width: 250px;
+      }
+    }
+    .AddNewAddress_Inputs {
+      grid-template-columns: 1fr;
+    }
+    .AddNewAddress_textarea {
+      label {
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+    }
+    .AddNewAddress_Type {
+      .AddNewAddress_Type_checkbox {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+    }
+    // .AddNewAddress_Submit {
+    //   button {
+    //   }
+    // }
+  }
+  .MyAddresses_Cards {
+    width: 80%;
+    margin: 20px auto 0 auto;
+    .MyAddresses_Cards_Box {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
+  }
+}

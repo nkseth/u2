@@ -1,0 +1,146 @@
+.section {
+  padding: 0 131px;
+  padding-bottom: 2rem;
+}
+
+.header {
+  margin-top: 1rem;
+  font-family: DM Serif Display;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 48px;
+  letter-spacing: 0.03em;
+  text-align: left;
+}
+
+.buttonDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.button {
+  height: 44px;
+  width: 164px;
+  border-radius: 5px !important;
+  font-size: 16px !important;
+  font-weight: 400;
+  line-height: 22px;
+  text-transform: none !important;
+  color: #0a0a0a !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+  border: 1px solid #cecece !important;
+}
+
+.buttonActive {
+  color: #ffffff !important;
+  background: #6a5b40 !important;
+}
+
+.btnDiv {
+  width: 100%;
+  padding: 0 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.nextButton {
+  height: 48px;
+  width: 100% !important;
+  border-radius: 5px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 20px !important;
+  background: #857250 !important;
+  text-transform: none !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.genderSelectorDiv {
+  height: 514px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.genderContainer {
+  display: flex;
+  gap: 10%;
+  margin-top: 10px;
+}
+
+.genderContainer > * {
+  width: 100%;
+}
+
+@media screen and (max-width: 1112px) {
+  .btnDiv {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 835px) {
+  .section {
+    padding: 0 56px;
+  }
+  .genderContainer {
+    gap: 10px;
+  }
+  .nextButton {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 0 100px !important;
+  }
+  .genderContainer {
+    flex-direction: column;
+  }
+
+  .genderSelectorDiv {
+    height: auto;
+    gap: 1.5rem;
+    padding: 2.5rem 0 1rem !important;
+  }
+
+  .header {
+    text-align: center;
+    margin-top: 80px;
+  }
+  .nextButton {
+    width: 425px !important;
+  }
+  .btnDiv {
+    margin-bottom: 3rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .section {
+    padding: 0 !important;
+  }
+  .header {
+    margin-top: 50px;
+    font-size: 20px;
+    line-height: 48px;
+    letter-spacing: 0.03em;
+  }
+
+  .genderSelectorDiv {
+    padding: 1rem !important;
+  }
+
+  .nextButton {
+    width: 100% !important;
+    height: 44px !important;
+  }
+  .genderContainer {
+    gap: 3rem;
+  }
+}

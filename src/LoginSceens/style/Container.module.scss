@@ -1,0 +1,74 @@
+.Close_Button {
+  position: absolute;
+  top: -8px;
+  right: -45px;
+  button {
+    height: 45px;
+    width: 45px;
+    svg {
+      fill: white;
+      height: 35px;
+      width: 35px;
+    }
+  }
+}
+
+//here Container
+.Container {
+  background: rgba(0, 0, 0, 0.4);
+  height: 100vh;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+}
+.Container_Box {
+  position: relative;
+  background: white;
+  width: 800px;
+  height: 580px;
+  background: #ffffff;
+  box-shadow: -6px -6px 10px rgba(0, 0, 0, 0.1), 6px 6px 4px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.Container_Image {
+  display: flex;
+  align-items: center;
+  img {
+    height: 580px;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Container_Box {
+    display: grid;
+    width: 90vw;
+    height: 95vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  .Container_Image {
+    display: none;
+  }
+  .Close_Button {
+    position: absolute;
+    top: -6px;
+    right: -5px;
+    button {
+      height: 45px;
+      width: 45px;
+      svg {
+        fill: rgb(0, 0, 0);
+        height: 25px;
+        width: 25px;
+      }
+    }
+  }
+}

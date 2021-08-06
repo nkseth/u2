@@ -1,0 +1,67 @@
+.container {
+  height: 105px;
+  width: 486px;
+  border-radius: 5px;
+
+  .upperDiv {
+    height: 72px;
+    border-radius: 5px 5px 0 0;
+    background: #857250;
+    color: #fff;
+    display: flex;
+    > div:first-child {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px;
+      border-right: 1px solid #cec7b9;
+      > span:first-child {
+        font-family: DM Serif Display;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 28px;
+      }
+      > span:last-child {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.1599999964237213px;
+      }
+    }
+    > div:last-child {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+  }
+
+  .lowerDiv {
+    padding: 10px 12px;
+    display: flex;
+    gap: 0.5rem;
+    border: 0.5px solid #cecece;
+    border-radius: 0 0 5px 5px;
+    > span:first-child {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+      color: #857250;
+    }
+    > span:last-child {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: #3b3b3b;
+    }
+  }
+}
+
+@media screen and (max-width: 835px) {
+  .container {
+    width: 100%;
+  }
+}

@@ -1,0 +1,87 @@
+.Measurement {
+  margin-top: 30px;
+  // width: 80%;
+  .Measurement_Box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0.5rem;
+    .Measurement_Item {
+      border-radius: 10px;
+      height: 140px;
+      background: #000000ad;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      div {
+        &:nth-child(1) {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          //TRBL
+          margin: 0.4rem 0 0.4rem 1rem;
+          color: #fff;
+          h2 {
+            font-family: DM Serif Display;
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: 0.03rem;
+          }
+          h3 {
+            font-family: "Quicksand";
+            font-size: 20px;
+            font-weight: 400;
+          }
+          p {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+          }
+        }
+        &:nth-child(2) {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-end;
+          button {
+            font-family: "Quicksand";
+            border: none;
+            background: transparent;
+            padding: 0.35rem 0.8rem;
+            border: 1px solid #fff;
+            color: #fff;
+            width: 100px;
+            height: 30px;
+            margin: 0.4rem 1rem 0.4rem 0;
+            // font-size: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            &:hover {
+              background: #fff;
+              color: black;
+            }
+            a {
+              text-decoration: none;
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Measurement {
+    margin-top: 30px;
+    width: auto;
+    .Measurement_Box {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 0.5rem;
+    }
+  }
+}

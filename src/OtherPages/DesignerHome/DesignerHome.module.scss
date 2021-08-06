@@ -1,0 +1,45 @@
+//Here Static Styles For Carousel
+.Carousel_header {
+  font-family: DM Serif Display;
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 54px;
+  letter-spacing: -1.5px;
+  margin-bottom: 62px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.NavigationContainer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  a:first-child {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #0059ff;
+  }
+}
+.Carousel_SliderButtonBox {
+  display: flex;
+  gap: 1rem;
+  .Carousel_SliderButtons {
+    background: none;
+    border: none;
+    .Carousel_iconBtn {
+      border: 1px solid rgb(0, 0, 0) !important;
+      color: rgb(0, 0, 0) !important;
+    }
+  }
+}
+
+//-----------------------//
+
+@media screen and (max-width: 786px) {
+  .Carousel_header {
+    text-align: center;
+    font-size: 44px;
+    line-height: 44px;
+  }
+}

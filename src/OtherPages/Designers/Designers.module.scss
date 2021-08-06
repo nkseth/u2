@@ -1,0 +1,78 @@
+.Designers {
+  font-family: DM Serif Display;
+  // margin-top: 30px;
+  .Designers_Items {
+    padding: 1rem 0.4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.3rem;
+    color: #f7f7f7;
+    .Designers_Box {
+      background: #333;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      height: auto;
+      border-radius: 14px;
+      padding: 1.5rem 0.5rem;
+      .Designers_Image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          background: #333;
+          height: 100px;
+          width: 100px;
+          border-radius: 100%;
+          object-fit: cover;
+          // border: 1px solid #444;
+        }
+      }
+      .Designers_Name {
+        text-align: center;
+        padding: 0.7rem;
+        h3 {
+          letter-spacing: 0.03rem;
+          font-size: 20px;
+          font-weight: 400;
+        }
+      }
+      .Designers_Bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        font-size: 14px;
+        text-align: center;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        div {
+          display: flex;
+          flex-direction: column;
+          span {
+            &:nth-of-type(1) {
+              font-weight: bold;
+              font-size: 16px;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Designers {
+    width: auto;
+    .Designers_Items {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .Designers {
+    .Designers_Items {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}

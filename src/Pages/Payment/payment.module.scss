@@ -1,0 +1,235 @@
+.container {
+  margin-top: 2rem;
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  .firstContainer {
+    width: 750px;
+    > div:first-child {
+      height: 60px;
+      padding: 1rem 1.7rem;
+      background: rgba(230, 227, 220, 1);
+      font-family: DM Serif Display;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 28px;
+      color: var(--primary-color);
+    }
+    > div:nth-child(2) {
+      border-bottom: 1px solid var(--primary-color);
+      border-left: 1px solid var(--primary-color);
+      border-right: 1px solid var(--primary-color);
+      padding: 1rem 1.5rem;
+      display: grid;
+      gap: 1rem;
+      .upiDiv {
+        > div:first-child {
+          display: flex;
+          align-items: center;
+          margin-left: -12px;
+          > p {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            > span:first-child {
+              font-family: DM Serif Display;
+              font-size: 20px;
+              font-weight: 400;
+              line-height: 28px;
+            }
+            > span:last-child {
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 22px;
+            }
+          }
+        }
+
+        > div:last-child {
+          padding-left: 30px;
+          > span:first-child {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 18px;
+          }
+          > div {
+            display: flex;
+            align-items: center;
+            > span:last-child {
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 22px;
+              color: rgba(108, 108, 108, 1);
+            }
+          }
+        }
+      }
+
+      .paymentCardDiv {
+        display: grid;
+        gap: 1rem;
+        > div:first-child {
+          display: flex;
+          align-items: center;
+          font-family: DM Serif Display;
+          font-size: 20px;
+          font-weight: 400;
+          line-height: 28px;
+          margin-left: -12px;
+        }
+        > div:nth-child(2) {
+          padding-left: 30px;
+          display: grid;
+          gap: 1rem;
+          > div:first-child {
+            display: grid;
+            gap: 0.8rem;
+            > div {
+              display: flex;
+              width: 100%;
+              gap: 2rem;
+            }
+
+            > div > * {
+              width: 100%;
+            }
+          }
+
+          .payBtnDiv {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0 1rem 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.payBtn {
+  width: 330px !important;
+  height: 48px !important;
+  border-radius: 5px !important;
+  text-transform: none !important;
+  color: #fff !important;
+  font-family: DM Sans !important;
+  font-weight: 700 !important;
+  line-height: 20px !important;
+  background-color: var(--primary-color-dark) !important;
+}
+
+.netbankingDiv,
+.paypalDiv,
+.giftCardsCouponsDiv {
+  display: flex;
+  align-items: center;
+  font-family: DM Serif Display;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.lastContainer {
+  width: 360px;
+
+  > div:first-child {
+    border: 1px solid rgba(206, 199, 185, 1);
+    padding: 1.4rem 1rem;
+    > div:first-child {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+
+    > div:nth-child(2) {
+      display: grid;
+      gap: 1rem;
+      padding: 1rem 0 0.7em 0;
+      .selectedProductPrices {
+        display: grid;
+        gap: 0.8rem;
+        > div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: rgba(157, 157, 157, 1);
+
+          > label {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 22px;
+          }
+          > span {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 18px;
+          }
+        }
+      }
+    }
+    .totalAmtDiv {
+      display: grid;
+      gap: 0.7rem;
+      > div:first-child {
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 835px) {
+  .container {
+    flex-direction: column;
+    .firstContainer {
+      width: 100%;
+    }
+  }
+  .lastContainer {
+    margin-bottom: 5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 550px) {
+  .firstContainer {
+    > div {
+      padding: 1rem !important;
+    }
+  }
+  .lastContainer {
+    width: 100%;
+  }
+  .paymentCardDiv {
+    > div:nth-child(2) {
+      padding-left: 0 !important;
+      > div:first-child {
+        > div {
+          flex-direction: column;
+          gap: 0.8rem !important;
+        }
+      }
+    }
+  }
+
+  .payBtnDiv {
+    .payBtn {
+      width: 100% !important;
+    }
+  }
+
+  .upiDiv {
+    > div:first-child {
+      > p {
+        > span:last-child {
+          font-size: 14px !important;
+        }
+      }
+    }
+  }
+}

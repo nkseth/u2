@@ -1,0 +1,55 @@
+.container {
+  height: 265px;
+  margin: 0 10px;
+  min-width: 262px;
+  max-width: 252px;
+  border-radius: 5px;
+  border: 1px solid #85725099;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  gap: 28px;
+  cursor: pointer;
+  img {
+    height: 162px;
+  }
+  div {
+    display: grid;
+    text-align: center;
+    .fitType {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+    .fitDescription {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+    }
+  }
+}
+
+@media screen and (max-width: 835px) {
+  .container {
+    height: 240px;
+    min-width: 185px;
+    img {
+      height: 150px;
+    }
+    div {
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    height: 250px;
+    min-width: 230px;
+    img {
+      height: 150px;
+    }
+    div {
+    }
+  }
+}

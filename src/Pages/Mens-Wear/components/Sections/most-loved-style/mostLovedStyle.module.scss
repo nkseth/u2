@@ -1,0 +1,25 @@
+.carouselNavigationDiv {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  > a:first-child {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #ffffff;
+  }
+}
+
+.sliderBtnDiv {
+  display: flex;
+  gap: 1rem;
+  .sliderBtn {
+    background: none;
+    border: none;
+  }
+}
+
+.iconBtn {
+  border: 1px solid rgb(0, 0, 0) !important;
+  color: rgb(0, 0, 0) !important;
+}

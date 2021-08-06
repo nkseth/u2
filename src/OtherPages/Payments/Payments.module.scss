@@ -1,0 +1,229 @@
+//Here Payment Card Style Start
+.Payments {
+  // width: 80%;
+  margin-top: 20px;
+  .Payments_Box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+//Saved Card
+.Old_Payment_Card {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+
+  //Card Top
+  .Old_Payment_Card_Top {
+    padding: 0.6rem 0.8rem;
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr 1fr;
+    h2 {
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+    }
+    button {
+      border-radius: 20px;
+      width: 60px;
+      background: #6e5e42;
+      color: #fff;
+      padding: 0.4rem 0.2rem;
+      border: none;
+      font-size: 0.7rem;
+      &:nth-of-type(1) {
+        background: #eee;
+        color: #111;
+        justify-self: end;
+      }
+      &:nth-last-of-type(1) {
+        justify-self: end;
+      }
+    }
+  }
+  //Card Middle
+  .Old_Payment_Card_Middle {
+    padding: 0.6rem 0.8rem;
+    display: grid;
+    gap: 1rem;
+    .Old_Payment_Card_Middle_Box {
+      display: flex;
+      justify-content: space-between;
+      div {
+        display: grid;
+        align-items: center;
+        img {
+          height: 15px;
+          width: auto;
+          object-fit: contain;
+          // background: #ccc;
+        }
+        p {
+          color: #857250;
+          font-size: 0.8rem;
+        }
+        h4 {
+          font-weight: 400;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+  //Card Bottom
+  .Old_Payment_Card_Bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    button {
+      border: none;
+      padding: 0.6rem;
+      background: transparent;
+      border-top: 1px solid #ddd;
+      border-radius: 0px;
+      text-transform: capitalize;
+      &:nth-of-type(1) {
+        color: #111;
+        border-right: 1px solid #ddd;
+      }
+      &:nth-of-type(2) {
+        color: red;
+      }
+    }
+  }
+}
+
+//Add New Card
+.Add_New_Payment_Card,
+.Payments_Add_New_Payment_Card {
+  display: flex;
+  place-content: center;
+  height: auto;
+  padding: 0.5rem;
+  border-radius: 10px;
+  user-select: none;
+  border: 2px dotted #aaa;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    span {
+      font-family: DM Serif Display;
+      font-size: 1.2rem;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      &:nth-of-type(1) {
+        margin-left: 0.35rem;
+      }
+    }
+  }
+}
+
+// Style For CheckBox
+.Old_Payment_Card_Top_checkbox {
+  display: flex;
+  align-items: center;
+  span {
+    color: #6a5b40 !important;
+    span {
+      div {
+        color: #6a5b40 !important;
+        svg {
+          fill: #6a5b40 !important;
+        }
+      }
+    }
+  }
+}
+//Here Address Card Style End
+
+//Here Address Card Edit Mode Style Start
+.EditPayments {
+  // width: 80%;
+  margin-top: 20px;
+  .EditPayments_Top {
+    display: flex;
+    align-items: center;
+    span {
+      display: flex;
+      align-items: center;
+      svg {
+        fill: #555;
+      }
+    }
+    h1 {
+      margin-left: 0.3rem;
+      font-weight: 400;
+      font-family: DM Serif Display;
+      color: #555;
+    }
+  }
+  .EditPayments_Inputs {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    div {
+      display: grid;
+      gap: 0.8rem;
+      margin: 0.4rem 0;
+      label {
+        color: #857250;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      input {
+        border: 1px solid #aaa;
+        padding: 0.6rem;
+        outline-color: #857250;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+  }
+  .EditPayments_Submit {
+    display: grid;
+    margin-top: 20px;
+    button {
+      border: none;
+      background: #6e5e42;
+      padding: 0.8rem;
+      color: #fff;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      text-transform: capitalize;
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+}
+//Here Address Card Edit Mode Style End
+
+@media screen and (max-width: 768px) {
+  .Payments {
+    // width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    .Payments_Box {
+      grid-template-columns: 1fr;
+    }
+  }
+  .EditPayments {
+    .EditPayments_Inputs {
+      grid-template-columns: 1fr;
+    }
+  }
+}

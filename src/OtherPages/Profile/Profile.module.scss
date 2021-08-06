@@ -1,0 +1,170 @@
+.Profile {
+  margin-top: 40px;
+  // width: 80%;
+
+  .Profile_Image {
+    display: grid;
+    justify-content: center;
+    padding: 0.8rem;
+    img {
+      height: 120px;
+      width: 120px;
+      border-radius: 100%;
+      background: #eee;
+      object-fit: cover;
+    }
+    a {
+      text-align: center;
+      text-decoration: none;
+      color: #857250;
+      padding: 0.2rem;
+    }
+  }
+  .Profile_Details {
+    display: grid;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    margin: 0 auto;
+    width: 70%;
+    font-family: Quicksand;
+    div {
+      padding: 0.2rem;
+      p {
+        color: #857250;
+        font-size: 18px;
+        font-weight: 700;
+        padding: 0.2rem 0;
+      }
+      h2 {
+        color: #333;
+        font-size: 20px;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+//Here ProfileEdit Style OKAY
+.ProfileEdit {
+  margin-top: 40px;
+  // width: 80%;
+  .ProfileEdit_Image {
+    display: grid;
+    justify-content: center;
+    padding: 0.8rem;
+
+    label {
+      display: grid;
+      place-content: center;
+      position: relative;
+      img {
+        height: 120px;
+        width: 120px;
+        border-radius: 100%;
+        background: #eee;
+        object-fit: cover;
+      }
+      #ProfileEdit_Label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        visibility: hidden;
+        font-weight: bold;
+      }
+      &:hover {
+        #ProfileEdit_Label {
+          visibility: visible;
+        }
+      }
+    }
+  }
+  .ProfileEdit_Details {
+    display: grid;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    justify-content: center;
+    div {
+      display: grid;
+      gap: 0.5rem;
+      label {
+        font-family: Quicksand;
+        color: #857250;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      input {
+        font-family: Quicksand;
+        outline: none;
+        padding: 0.6rem;
+        border-radius: 0;
+        border: 1px solid #555;
+        width: 280px;
+        font-size: 16px;
+        font-weight: 400;
+      }
+      button {
+        background: #857250;
+        color: #fff;
+        border: none;
+        padding: 0.6rem;
+        font-size: 20px;
+        font-weight: 700;
+        &:hover {
+          background: #4e432f;
+        }
+        &:active {
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .Profile {
+    width: auto;
+    margin: 0 auto;
+    .Profile_Image {
+      img {
+        height: 100px;
+        width: 100px;
+      }
+    }
+    .Profile_Details {
+      div {
+        p {
+          color: #857250;
+        }
+        h2 {
+          color: #333;
+        }
+      }
+    }
+  }
+  .ProfileEdit {
+    width: auto;
+    .ProfileEdit_Image {
+      display: grid;
+      justify-content: center;
+      padding: 0.8rem;
+      label {
+        display: grid;
+        img {
+          height: 100px;
+          width: 100px;
+        }
+      }
+    }
+    .ProfileEdit_Details {
+      div {
+        input {
+          outline: none;
+          padding: 0.6rem;
+          border-radius: 0;
+          border: 1px solid #555;
+          width: auto;
+        }
+      }
+    }
+  }
+}

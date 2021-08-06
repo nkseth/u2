@@ -1,0 +1,68 @@
+.content {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin-top: 18px;
+    min-height: 56px;
+    width: 173px;
+}
+.group-217 {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    min-height: 369px;
+    width: 263px;
+}
+.overlap-group {
+    align-items: flex-start;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: flex-end;
+    min-width: 263px;
+    padding: 10px;
+    position: relative;
+}
+.span {
+    letter-spacing: 0.02px;
+}
+.subtitle {
+    letter-spacing: 0.16px;
+    line-height: 18px;
+    margin-bottom: -2px;
+    margin-top: 4px;
+    min-height: 16px;
+    white-space: nowrap;
+}
+.subtitle-1 {
+    letter-spacing: 0.32px;
+    line-height: 16px;
+    min-height: 16px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.title {
+    letter-spacing: 0;
+    line-height: 20px;
+    margin-left: 1px;
+    min-height: 20px;
+    mix-blend-mode: normal;
+    white-space: nowrap;
+}
+.icon {
+    align-items: flex-end;
+    display: flex;
+    height: 24px;
+    mix-blend-mode: normal;
+    padding: 1.9px 0.5px;
+    width: 24px;
+}
+.vector_product {
+    height: 20px;
+    width: 23px;
+}
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,700,500|Quicksand:700|Inter:700|DM+Serif+Display:400");
+* {
+    box-sizing: border-box;
+}

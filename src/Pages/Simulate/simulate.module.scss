@@ -1,0 +1,57 @@
+.simulationSection {
+  padding: 0 131px;
+  height: calc(100vh - 211px);
+}
+
+.imgSection {
+  position: relative;
+  height: 100%;
+}
+
+.lastSection {
+  padding: 1rem 131px;
+  background: #857250;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 576px !important;
+  height: 45px;
+  width: 260px;
+  border-radius: 5px;
+  font-family: DM Sans !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  color: #6a5b40 !important;
+  background-color: #fff !important;
+}
+
+.cameraFocusImg {
+  position: absolute;
+  // width: 280px;
+  height: 69%;
+}
+
+@media screen and (max-width: 835px) {
+  .simulationSection {
+    padding: 0 56px;
+    height: calc(100vh - 175px);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .lastSection {
+    padding: 1rem;
+  }
+  .button {
+    flex: 1 !important;
+    min-width: 100% !important;
+  }
+  .simulationSection {
+    padding: 0 1rem;
+    height: calc(100vh - 154px);
+  }
+}

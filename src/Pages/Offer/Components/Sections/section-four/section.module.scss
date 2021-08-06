@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.header {
+  font-family: DM Serif Display;
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 64px;
+  text-align: center;
+  color: var(--primary-color-dark);
+}
+
+@media screen and (max-width: 550px) {
+  .header {
+    font-size: 20px;
+  }
+}

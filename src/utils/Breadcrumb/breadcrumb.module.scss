@@ -1,0 +1,21 @@
+.breadcrumb {
+  background-color: transparent;
+  display: flex;
+  padding-top: 1rem;
+  color: #9d8e73;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  span:last-child {
+    color: #6a5b40;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.3199999928474426px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .breadcrumb {
+    font-size: 12px;
+  }
+}

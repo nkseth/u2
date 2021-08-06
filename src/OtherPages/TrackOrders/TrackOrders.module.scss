@@ -1,0 +1,82 @@
+.TrackOrders {
+  margin-top: 20px;
+  display: grid;
+  .TrackOrders_Timeline {
+    align-items: center;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 80px auto 1fr;
+  }
+}
+.TrackOrders_Timeline_Time {
+  padding: 0.4rem;
+  p {
+    font-size: 11px;
+    &:nth-of-type(1) {
+      font-weight: 400;
+      color: #444;
+    }
+  }
+}
+.TrackOrders_Timeline_Dot {
+  display: grid;
+  padding: 0.4rem;
+  span {
+    height: 16px;
+    width: 16px;
+    border-radius: 100%;
+    background: #857250;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      height: 100px;
+      width: 2px;
+      background: #857250;
+      bottom: 0;
+      left: 50%;
+    }
+  }
+}
+.TrackOrders_Timeline_Dot_First {
+  span {
+    &::after {
+      content: "";
+      position: absolute;
+      height: 0 !important;
+      width: 2px;
+      background: #857250;
+      bottom: 0;
+      left: 50%;
+    }
+  }
+}
+
+.TrackOrders_Timeline_info {
+  padding: 0.4rem;
+  h4 {
+    font-size: 1rem;
+  }
+  p {
+    font-size: 14px;
+    color: #555;
+    font-weight: 400;
+  }
+  div {
+    padding: 0.4rem 0;
+    button {
+      background: #857250;
+      border: none;
+      border-radius: 20px;
+      padding: 0.4rem;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      outline: none;
+      text-transform: capitalize;
+      &:hover {
+        background: #574a34;
+      }
+    }
+  }
+}

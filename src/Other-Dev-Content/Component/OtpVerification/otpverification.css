@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:200');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+.otp .otp_form {
+    margin-bottom: 13px !important;
+    width: 100%!important;
+}
+
+.otp_form{
+    width: 100%!important;
+}
+
+.digit-group input {
+			width: 52px !important;
+		height: 50px !important;
+		/* background-color: lighten($BaseBG, 5%); */
+		line-height: 50px !important;
+		text-align: center !important;
+		font-size: 24px !important;
+		font-family: 'DM Sans', sans-serif !important;
+		font-weight: 200 !important;
+		margin: 0 2px !important;
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+}
+
+.digit-group input:focus {
+    border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+}
+
+.otpText{
+    font-family: 'DM Sans', sans-serif !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+}
+
+
+.splitter {
+    padding: 0 5px;
+    color: white;
+    font-size: 24px;
+}
+
+.prompt {
+	margin-bottom: 20px;
+	font-size: 20px;
+	color: white;
+}
+
+.changeMobile{
+    position: absolute;
+    top: 13%;
+    left: 84%;
+    color: blue;
+}

@@ -1,0 +1,139 @@
+$secondary-text: #9d9d9d;
+
+.firstContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+  .logo {
+    font-family: "Quicksand", sans-serif;
+    font-size: 45px;
+    font-weight: 700;
+    line-height: 68px;
+    letter-spacing: 0.0075em;
+  }
+  div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.secondContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+
+  .mainMenuContainer {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .menuItem {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: 0.0075em;
+    color: #9d8e73;
+    cursor: pointer;
+    &:hover {
+      color: #6a5b40;
+    }
+  }
+}
+
+.searchBarContainer {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  min-width: 292px;
+  border: 1px solid #cecece;
+  padding: 5px 10px;
+  gap: 0.5rem;
+  input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-family: DM Sans;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.1599999964237213px;
+    color: secondary-text;
+  }
+}
+
+.verticalDivider {
+  height: 2px;
+  background-color: #000;
+  transform: rotate(90deg);
+  min-width: 32px;
+}
+
+.accordion {
+  box-shadow: none !important;
+  margin: 0 !important;
+  border-radius: 5px 0 !important;
+}
+
+.accordionSummary {
+  background: #fffffff2 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 150px !important;
+}
+
+.accordionDetials {
+  background: #fffffff2 !important;
+  padding: 0 !important;
+}
+
+// .menuItem {
+//   font-family: DM Sans !important;
+//   font-size: 18px !important;
+//   font-weight: 500 !important;
+//   line-height: 27px !important;
+//   letter-spacing: 0.0075em !important;
+//   color: #9d8e73 !important;
+// }
+
+.subMenuItems {
+  display: grid;
+  gap: 0.5rem;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: 0.0075em;
+  color: #6c6c6c;
+}
+
+@media screen and (max-width: 768px) {
+  .firstContainer {
+    padding-bottom: 15px;
+    padding-top: 15px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .firstContainer {
+    .logo {
+      font-size: 31px;
+      font-weight: 700;
+      line-height: 47px;
+      letter-spacing: 0.0075em;
+    }
+  }
+
+  .hamMenuIcon {
+    height: 11.999752044677734px;
+    width: 20px;
+  }
+
+  .mobileViewSideIcons {
+    height: 20px;
+  }
+}

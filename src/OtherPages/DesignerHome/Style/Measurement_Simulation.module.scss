@@ -1,0 +1,49 @@
+//Here Measurement_Simulation style
+.Measurement_Simulation {
+  height: 500px;
+  background: mediumaquamarine;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1457131760772-7017c6180f05?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8aGFwcHl8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  div {
+    margin-left: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 50%;
+    h1 {
+      font-family: DM Serif Display;
+      font-size: 4rem;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -1.5px;
+      color: #fff;
+    }
+    button {
+      background: #fff;
+      text-transform: capitalize;
+      width: 160px;
+      &:hover {
+        background: #f1f1f1;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Measurement_Simulation {
+    justify-content: center;
+    div {
+      align-items: center;
+      margin: 0;
+      h1 {
+        font-size: 2.3rem;
+        text-align: center;
+      }
+    }
+  }
+}

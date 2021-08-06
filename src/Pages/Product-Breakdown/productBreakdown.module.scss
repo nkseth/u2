@@ -1,0 +1,307 @@
+@mixin btn {
+  height: 45px !important;
+  border-radius: 5px !important;
+  padding: 12px, 16px, 12px, 16px !important;
+  text-transform: none !important;
+  font-family: DM Sans !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 20px !important;
+}
+
+.container {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 210px);
+  min-height: calc(100vh - 210px);
+  border: 1px solid var(--primary-color);
+  display: flex;
+}
+
+.firstContainer,
+.lastContainer {
+  position: relative;
+  width: 50%;
+  height: inherit;
+  //   min-height: calc(100vh - 210px);
+  //   max-height: calc(100vh - 210px);
+}
+
+.firstContainer {
+  > div:first-child {
+    position: relative;
+    height: 83%;
+    width: 100%;
+    .productImgDiv {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 2.5rem;
+      > img {
+        position: relative;
+        height: 330px;
+        width: auto;
+      }
+    }
+  }
+
+  > div:last-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 85px;
+    max-height: 85px;
+    padding: 0 2rem;
+    border-top: 1px solid var(--primary-color);
+    > div:first-child {
+      font-family: DM Serif Display;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 28px;
+    }
+
+    .resetBtn {
+      @include btn();
+      background-color: var(--primary-color) !important;
+      color: #fff !important;
+      width: 150px !important;
+    }
+  }
+}
+
+.lastContainer {
+  position: relative;
+  display: flex;
+  background: rgb(255, 255, 255);
+  > .menuBar {
+    position: relative;
+    padding: 1rem 0.5rem;
+    height: 100%;
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    background: var(--primary-color);
+    > * {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      height: 88px;
+      width: 83px;
+      border-radius: 3px;
+      background-color: #fff;
+      span {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 14px;
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  > div:last-child {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    > div:first-child {
+      height: 70px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      font-family: DM Serif Display;
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 48px;
+      letter-spacing: 0.03em;
+      color: var(--primary-color);
+      border-bottom: 1px solid var(--primary-color);
+    }
+    > div:nth-child(2) {
+      flex: 1;
+      overflow-y: scroll;
+    }
+
+    > div:last-child {
+      border-top: 1px solid var(--primary-color);
+      min-height: 85px;
+      max-height: 85px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      .backBtn,
+      .nextBtn {
+        @include btn();
+        color: #fff !important;
+        width: 150px !important;
+      }
+      .backBtn {
+        background-color: var(--primary-color) !important;
+      }
+      .nextBtn {
+        background-color: var(--primary-color-dark) !important;
+      }
+    }
+  }
+}
+
+.activeMenu {
+  border: 5px solid var(--primary-color-dark);
+}
+
+@media screen and (max-width: 1150px) {
+  .container {
+    max-height: auto !important;
+    min-height: auto;
+  }
+  .firstContainer {
+    width: 100%;
+    .productImgDiv {
+      > img {
+        height: 360px !important;
+      }
+    }
+  }
+  .lastContainer {
+    display: none !important;
+  }
+  .menuBar_CustomView {
+    // flex-direction: row !important;
+    overflow-y: scroll;
+    width: 100%;
+    height: 117px;
+    display: flex;
+    justify-content: center;
+    background: var(--primary-color);
+    align-items: center;
+    gap: 2em;
+    > * {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      height: 88px;
+      width: 83px;
+      border-radius: 3px;
+      background-color: #fff;
+      span {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 14px;
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  .productSection_CustomView {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    > div:first-child {
+      margin-top: 2rem;
+      height: 70px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: DM Serif Display;
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 48px;
+      letter-spacing: 0.03em;
+      color: var(--primary-color);
+    }
+    > div:nth-child(2) {
+      flex: 1;
+    }
+
+    > div:last-child {
+      height: 85px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      .backBtn,
+      .nextBtn {
+        @include btn();
+        color: #fff !important;
+        width: 150px !important;
+      }
+      .backBtn {
+        background-color: var(--primary-color) !important;
+      }
+      .nextBtn {
+        background-color: var(--primary-color-dark) !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 835px) {
+  // .container {
+  //   flex-direction: column;
+  //   flex-wrap: wrap;
+  // }
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    margin: 0;
+  }
+  .menuBar_CustomView {
+    overflow-y: hidden;
+    // overflow-x: scroll;
+    justify-content: center;
+    gap: 1em;
+    padding: 0 0.5rem;
+  }
+
+  .productSection_CustomView {
+    > div:first-child {
+      margin-top: 0;
+    }
+    > div:last-child {
+      justify-content: space-between;
+      padding: 0;
+    }
+  }
+
+  .firstContainer {
+    width: 100%;
+    .productImgDiv {
+      > img {
+        height: 260px !important;
+      }
+    }
+
+    > div:last-child {
+      height: 85px;
+      padding: 0.5rem 1rem;
+      height: auto;
+      > div:first-child {
+        font-family: DM Serif Display;
+        font-size: 19px;
+        font-weight: 400;
+        line-height: 28px;
+      }
+
+      .resetBtn {
+        width: 119px !important;
+      }
+    }
+  }
+}

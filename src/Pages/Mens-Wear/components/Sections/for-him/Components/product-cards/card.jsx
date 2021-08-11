@@ -4,6 +4,8 @@ import styles from "./card.module.scss";
 //icon
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import Product from '../../../../../../../Images/image/Product.png'
+
 
 export default function ProductCard() {
   const [isAddToWishList, setAddToWishList] = useState(false);
@@ -12,7 +14,7 @@ export default function ProductCard() {
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
-        <img src={img} alt='product' />
+        <img src={Product} alt='product' />
         {isAddToWishList ? (
           <IconButton
             aria-label='product'

@@ -8,6 +8,7 @@ import Filter from "./Components/Sections/Filter/filter";
 import HeroSection from "./Components/Sections/HeroSection/heroSection";
 import styles from "./designer-product-page.module.scss";
 import ProductsSection from "./Components/Sections/Products/products";
+
 export default function DesignerProductPage() {
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:768px)");

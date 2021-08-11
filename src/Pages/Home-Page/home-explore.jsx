@@ -1,0 +1,118 @@
+import React from 'react';
+import { Typography, useMediaQuery, Grid } from "@material-ui/core";
+import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
+import CustomSection from "../../utils/Custom Section/section";
+import Container from '../../utils/Container/container';
+import Image from './../../Images/image/Filter-bar.png';
+import {makeStyles} from '@material-ui/core';
+import Up from './../../Images/image/Up.png';
+import Down from './../../Images/image/Down.png';
+import Line from './../../Images/image/Line.png';
+import Card from './Components/Card/home-explore/stylecard';
+import Man from './../../Images/image/ManStyle.png'
+import Woman from './../../Images/image/women.png'
+import Girl from './../../Images/image/Girl.png';
+import MoreVideos from './../Daily-Fashion-Tips/Components/celebrity-style/celebrityStyle'
+import MoreDesigner from './Components/Card/home-explore/trending-designers/designers'
+const useStyles = makeStyles({
+  quote:{
+    fontFamily:['DM Sans','Sans Serif'],
+    fontSize: "28px",
+    textAlign:"center",
+    fontWeight:"bold"
+  }
+})
+
+function HomeExplore(props) {
+    const tabViewPro = useMediaQuery("(max-width:835px)");
+    const tabView = useMediaQuery("(max-width:768px)");
+    const mobileView = useMediaQuery("(max-width:550px)");
+    const classes = useStyles();
+    return (
+      <Container bottomDivider footerOnAllView>
+      {!tabViewPro && (
+  <CustomSection>
+    <Breadcrumb
+      path='Home/'
+      activePath='Explore/'
+    />
+  </CustomSection>
+)}
+       {
+          !tabViewPro ? 
+          <div style={{ marginLeft:"7%", fontSize:"30px", marginTop:30, fontFamily:"DM Serif Display"}}>
+                <h1>Explore Your fashion</h1>
+                <div style={{margin:"40px auto"}}>
+                <img src={Image} width="90%"></img></div>
+            </div>
+            :
+            <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
+            <h1>Explore Your fashion</h1>
+            <div style={{margin:"20px auto"}}>
+                <img src={Image} width="95%"></img></div>
+        </div>
+      }
+      <div style={{textAlign:"center"}}>
+        <img src={Down}></img>
+        <div>
+        <img src={Line}></img></div>
+        <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
+            <h1>Quote of the day</h1>
+            <h4 style={{fontFamily:"DM Sans", fontWeight:400}}>You can have anythingif you dress like it</h4>
+            </div>
+            <div style={{margin:20}}>
+        <img src={Line}></img></div>
+      <img src={Up}></img>
+      </div>
+      <Grid
+          container
+          style={{ margin: "auto" , alignItems:"center", width:"90%"}}
+          spacing={mobileView ? 1 : tabView ? 3 : 2}
+          justify="space-between"         
+          >
+      <Grid item xs={12} sm={6} md={4}>
+            <Card image={Man} title="Men" />
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card image={Woman} title="Women" />
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card image={Girl} title="Kids" />
+          </Grid>
+          
+          </Grid>
+
+          {
+          !tabViewPro ? 
+          <div style={{ marginLeft:"10%", fontSize:"13px", fontWeight:400, marginTop:30, fontFamily:"DM Serif Display"}}>
+                <h1>Daily Fashion tips</h1>
+            </div>
+            :
+            <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
+            <h1>Daily Fashion tips</h1>
+        </div>
+      }
+      <MoreVideos></MoreVideos>
+      <MoreDesigner />
+      {
+          !tabViewPro ? 
+          <div style={{ marginLeft:"7%", fontSize:"20px", marginTop:30, fontFamily:"DM Serif Display"}}>
+                <h2>Insiders</h2>
+                <h6 style={{color: "#6C6C6C", fontFamily: "DM Sans"}}>Know more about design process</h6>
+                <div style={{margin:"40px auto"}}>
+                <img src={Image} width="90%"></img></div>
+            </div>
+            :
+            <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
+            <h2>Designers Choice</h2>
+            <h6 style={{color: "#6C6C6C", fontFamily: "DM Sans"}}>Know more about design process</h6>
+            <div style={{margin:"20px auto"}}>
+                <img src={Image} width="95%"></img></div>
+        </div>
+      }
+      
+       </Container>
+    );
+}
+
+export default HomeExplore;

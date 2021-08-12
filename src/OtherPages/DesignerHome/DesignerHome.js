@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../utils//axios.config.js';
 
 import DesignerWear from "./Components/DesignerWear";
 import TopCategory from "./Components/TopCategory";

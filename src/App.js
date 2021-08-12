@@ -24,6 +24,19 @@ import Offers from "./Pages/Offers/offers";
 import Orders from "./Pages/Orders/orders";
 import AllOrders from "./Pages/All-Orders/allOrders";
 
+
+import Polls from './Pages/Polls/polls';
+import FashionTips from "./Pages/Daily-Fashion-Tips/fashionTips";
+import StyleGuideMan from "./Pages/Style-Guide-Man/style-guide-man";
+import StyleGuide from "./Pages/Style-Guide-Man/style-guide";
+import DesignerProfile from "./Pages/Designer-Profile/designer-profile";
+import HomeExplore from './Pages/Home-Page/home-explore';
+import VisualSearch from "./Pages/Visual-Search/visual-search";
+import DesignersPage from './Pages/Designer-Profile/designer';
+import PollQuestion from './Pages/Polls/poll-question';
+import PollResult from './Pages/Polls/poll-result';
+import Product from './Pages/Designer-Profile/Components/product';
+
 //other-dev-pages
 // import { AboutPage, DesignersHomePage } from "./Other-Dev-Content/pages";
 //Created By Neeraj Codes All Pages Import Here
@@ -122,6 +135,18 @@ function App() {
           path="/measurement-and-simulation"
           component={MeasurementAndSimulation}
         />
+        {/* New pages */}
+        <Route path={"/home/polls"} component={Polls} />
+        <Route  path={"/daily-fashion-tips"} component={FashionTips} />
+        <Route exact path={"/style-guide"} component={StyleGuideMan} />
+        <Route exact  path={"/style-guide-man"} component={StyleGuide} />
+        <Route exact path={"/designer-profile-home"} component={DesignerProfile} />
+        <Route path={"/home/explore"} component={HomeExplore} />
+        <Route path={"/visual-search"} component={VisualSearch} />
+        <Route exact path={"/designer-page"} component={DesignersPage} />
+        <Route path={"/home/poll-question"} component={PollQuestion} />
+        <Route path={"/home/poll-result"} component={PollResult} />
+        <Route exact path={"/designer-page/product"} component={Product} />
       </Switch>
     </AnimatePresence>
   );

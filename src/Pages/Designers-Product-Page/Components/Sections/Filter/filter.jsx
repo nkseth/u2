@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import {
@@ -24,7 +24,16 @@ const CustomRadio = withStyles({
   checked: {},
 })((props) => <Radio color='default' {...props} />);
 
-export default function Filter() {
+export default function Filter(props) {
+  const{filterProduct,applyFilter}= props
+  const[isCategory,setIsCategory] = useState(false)
+  const[priceRange ,setPriceRange] = useState([])
+  const[colorFilter ,setColor] = useState([])
+  const[discountFilter ,setDiscount] = useState([])
+  const[fabricFilter ,setFabric] = useState([])
+  const[sizeFilter ,setSize] = useState([])
+  const[isLoading ,setIsLoading] = useState(true)
+
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const [selectedFilter, setSelectedFilter] = useState({
     categories: "All categories",
@@ -40,12 +49,30 @@ export default function Filter() {
     shopByOccasion: "New",
   });
 
+  const setFilters= async(props)=>{
+       setIsLoading(true)
+      const{price_range,color,discount,fabric,size} = props.filter 
+      await setPriceRange(price_range)
+      await setColor(color)
+      await setDiscount(discount)
+      await setFabric(fabric)
+      await setSize(size)
+      await setIsLoading(false)
+    }
+
   const handleFilterChange = (filterName, value) => {
     setSelectedFilter((prevState) => ({
       ...prevState,
       [filterName]: value,
     }));
   };
+
+  useEffect(async()=>{
+    if(props.filter){
+        await setFilters(props)
+    }
+  },[])
+  console.log(applyFilter)
   return (
     <div className={styles.container}>
       {!tabViewPro && (
@@ -57,6 +84,7 @@ export default function Filter() {
         </div>
       )}
 
+      {isCategory ?
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -68,21 +96,24 @@ export default function Filter() {
             <span>{selectedFilter.categories}</span>
           </div>
         </AccordionSummary>
-        <AccordionDetails className={styles.accordionDetials}>
-          <RadioGroup
-            aria-label='Categories'
-            onChange={(e) => handleFilterChange("price", e.target.value)}
-            value={selectedFilter.categories}
-          >
-            <FormControlLabel
-              value='All categories'
-              checked={selectedFilter.categories === "All categories"}
-              control={<CustomRadio />}
-              label={<p className={styles.radioBtnsLabels}>All categories</p>}
-            />
-          </RadioGroup>
-        </AccordionDetails>
+          <AccordionDetails className={styles.accordionDetials}>
+            <RadioGroup
+              aria-label='Categories'
+              onChange={(e) => filterProduct("price",e.target.value)}
+              value={selectedFilter.categories}
+            >
+
+                <FormControlLabel
+                  value='All categories'
+                  checked={selectedFilter.categories === "All categories"}
+                  control={<CustomRadio />}
+                  label={<p className={styles.radioBtnsLabels}>All categories</p>}
+                />
+
+            </RadioGroup>
+          </AccordionDetails>
       </Accordion>
+        :''}
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -91,45 +122,29 @@ export default function Filter() {
         >
           <div className={styles.accordionSummaryInnerDiv}>
             <span>Price</span>
-            <span>{selectedFilter.price}</span>
+            <span>{!isLoading ? priceRange.length > 0 ? priceRange[0].name:'':''}</span>
           </div>
         </AccordionSummary>
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
             aria-label='price'
-            onChange={(e) => handleFilterChange("price", e.target.value)}
+            onChange={(e) => filterProduct("price",e.target.value)}
             value={selectedFilter.price}
           >
+
+          {!isLoading ? priceRange.map((value,key)=>(
             <FormControlLabel
-              value='₹3000 to ₹6,000'
-              checked={selectedFilter.price === "₹3000 to ₹6,000"}
+              value={value.value}
+              checked={key === 0}
               control={<CustomRadio />}
               label={
                 <p className={styles.radioBtnsLabels}>
-                  ₹3000 to ₹6,000&nbsp;<span>(900)</span>
+                  {value.name}
                 </p>
               }
             />
-            <FormControlLabel
-              checked={selectedFilter.price === "₹10,000 to ₹15,000"}
-              value='₹10,000 to ₹15,000'
-              control={<CustomRadio />}
-              label={
-                <p className={styles.radioBtnsLabels}>
-                  ₹10,000 to ₹15,000&nbsp;<span>(300)</span>
-                </p>
-              }
-            />
-            <FormControlLabel
-              checked={selectedFilter.price === "₹20,000 to ₹30,000"}
-              value='₹20,000 to ₹30,000'
-              control={<CustomRadio />}
-              label={
-                <p className={styles.radioBtnsLabels}>
-                  ₹20,000 to ₹30,000&nbsp;<span>(100)</span>
-                </p>
-              }
-            />
+            )):<span>Loading...</span>}   
+
           </RadioGroup>
         </AccordionDetails>
       </Accordion>
@@ -147,14 +162,18 @@ export default function Filter() {
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
             aria-label='Item type'
-            onChange={(e) => handleFilterChange("itemType", e.target.value)}
+            onChange={(e) => filterProduct("itemType",e.target.value)}
             value={selectedFilter.itemType}
           >
             <FormControlLabel
-              value='All Items'
-              checked={selectedFilter.price === "₹3000 to ₹6,000"}
+              value='Readymade'
               control={<CustomRadio />}
-              label={<p className={styles.radioBtnsLabels}>All Items</p>}
+              label={<p className={styles.radioBtnsLabels}>Readymade</p>}
+            />
+            <FormControlLabel
+              value='Customise'
+              control={<CustomRadio />}
+              label={<p className={styles.radioBtnsLabels}>Customise</p>}
             />
           </RadioGroup>
         </AccordionDetails>
@@ -173,15 +192,16 @@ export default function Filter() {
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
             aria-label='Colour'
-            onChange={(e) => handleFilterChange("color", e.target.value)}
+            onChange={(e) => filterProduct("color",e.target.value)}
             value={selectedFilter.color}
           >
+          {!isLoading ? colorFilter.map((value,key)=>(
             <FormControlLabel
-              value='Brown'
-              checked={selectedFilter.color === "Brown"}
+              value={value.id}
               control={<CustomRadio />}
-              label={<p className={styles.radioBtnsLabels}>Brown</p>}
+              label={<p className={styles.radioBtnsLabels}>{value.value[0].toUpperCase()+ value.value.slice(1)}</p>}
             />
+          )):<span>Loading...</span>}  
           </RadioGroup>
         </AccordionDetails>
       </Accordion>
@@ -199,15 +219,16 @@ export default function Filter() {
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
             aria-label='Discount'
-            onChange={(e) => handleFilterChange("discount", e.target.value)}
+            onChange={(e) => filterProduct("discount",e.target.value)}
             value={selectedFilter.itemType}
           >
+          {!isLoading ? discountFilter.map((value,key)=>(
             <FormControlLabel
-              value='50%'
-              checked={selectedFilter.discount === "50%"}
+              value={value.discount}
               control={<CustomRadio />}
-              label={<p className={styles.radioBtnsLabels}>50%</p>}
+              label={<p className={styles.radioBtnsLabels}>{value.discount}%</p>}
             />
+          )):<span>Loading...</span>}  
           </RadioGroup>
         </AccordionDetails>
       </Accordion>
@@ -225,15 +246,16 @@ export default function Filter() {
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
             aria-label='Fabric'
-            onChange={(e) => handleFilterChange("fabric", e.target.value)}
+            onChange={(e) => filterProduct("fabric",e.target.value)}
             value={selectedFilter.fabric}
           >
+          {!isLoading ? fabricFilter.map((value,key)=>(
             <FormControlLabel
-              value='All categories'
-              checked={selectedFilter.fabric === "All categories"}
+              value={value.id}
               control={<CustomRadio />}
-              label={<p className={styles.radioBtnsLabels}>All categories</p>}
+              label={<p className={styles.radioBtnsLabels}>{value.value}</p>}
             />
+          )):<span>Loading...</span>}  
           </RadioGroup>
         </AccordionDetails>
       </Accordion>
@@ -251,15 +273,16 @@ export default function Filter() {
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
             aria-label='Size'
-            onChange={(e) => handleFilterChange("size", e.target.value)}
+            onChange={(e) => filterProduct("size",e.target.value)}
             value={selectedFilter.size}
           >
+          {!isLoading ? sizeFilter.map((value,key)=>(
             <FormControlLabel
-              value='M'
-              checked={selectedFilter.size === "M"}
+              value={value.id}
               control={<CustomRadio />}
-              label={<p className={styles.radioBtnsLabels}>M</p>}
+              label={<p className={styles.radioBtnsLabels}>{value.value}</p>}
             />
+          )):<span>Loading...</span>}  
           </RadioGroup>
         </AccordionDetails>
       </Accordion>

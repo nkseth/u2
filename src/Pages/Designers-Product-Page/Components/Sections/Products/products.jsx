@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   FormControl,
@@ -10,20 +10,33 @@ import {
   Button,
   Drawer,
 } from "@material-ui/core";
+
 import cx from "classnames";
 import ProductCard from "../../product-card/card";
 import Filter from "../Filter/filter";
 import styles from "./product.module.scss";
 
-export default function ProductsSection() {
+export default function ProductsSection(props) {
+
+  const[products,setProducts] = useState({})
+  const[isLoading,setIsLoading] = useState(true)
+
   const tabViewPro = useMediaQuery("(max-width:835px)");
-  const tabView = useMediaQuery("(max-width:768px)");
+  const tabView = useMediaQuery("(max-width:550px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   const [sortBy, setSortBy] = useState("");
   const [isFilterOpen, setFilterOpen] = useState(false);
+
+  const setValue=async(props)=>{
+    await setIsLoading(true)
+    await setProducts(props.products)
+    await setIsLoading(false)
+  }
+
   const handleSort = (e) => {
     setSortBy(e.target.value);
   };
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
@@ -35,6 +48,11 @@ export default function ProductsSection() {
 
     setFilterOpen(open);
   };
+
+  useEffect(async()=>{
+    await setValue(props)
+  },[])
+
   return (
     <>
       {tabViewPro && (
@@ -114,60 +132,29 @@ export default function ProductsSection() {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={3}>
-          <ProductCard />
-        </Grid>
-        {!tabView && (
-          <Grid item xs={6} sm={4} md={3} lg={3}>
-            <ProductCard />
-          </Grid>
-        )}
+          
+        {!tabView && 
+          <>
+            {!isLoading ? products.map((value,key)=>(
+              <Grid item xs={6} sm={4} md={3} lg={3}>
+                <ProductCard
+                  product={value}
+                 /> 
+              </Grid>
+            )):''}                
+          </>    
+
+        }
         {mobileView && (
-          <Grid item xs={6} sm={4} md={3} lg={3}>
-            <ProductCard />
-          </Grid>
+          <>
+            {!isLoading ? products.map((value,key)=>(
+              <Grid item xs={12} sm={4} md={3} lg={3}>
+                <ProductCard 
+                  product={value}
+                /> 
+              </Grid>
+            )):''}                
+          </>   
         )}
       </Grid>
     </>

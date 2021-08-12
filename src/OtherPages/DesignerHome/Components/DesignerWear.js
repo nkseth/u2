@@ -1,10 +1,18 @@
 import { Button } from "@material-ui/core";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
-import React from "react";
+import {React,useState,useEffect} from "react";
 import styles from "../Style/DesignerWear.module.scss";
-const DesignerWear = () => {
+
+const DesignerWear = (props) => {
+  const[slider,setSlider] = useState()
   const backgroundURL =
-    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=763&q=80";
+    !slider ? "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=763&q=80"
+    :slider.image 
+
+  useEffect(async ()=>{
+    await setSlider(props.slider)
+  },[])
+  
   return (
     <>
       <div className={`${styles.DesignerWear} DesignerWear`}>

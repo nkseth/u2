@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     que:{
         fontFamily:"DM Sans",
         fontWeight:"bold",
-        fontSize:"28px"
+        fontSize:"35px"
 
     },
     radio:{
@@ -45,6 +45,7 @@ function PollQuestion(props) {
     return (
         <div>
             <Header> </Header>
+            <div style={{margin:"auto", width:"90%", marginTop:0, }}> <Divider></Divider></div>
             <CustomSection>
           <Breadcrumb
             path='Home/Explore /'
@@ -53,8 +54,8 @@ function PollQuestion(props) {
         </CustomSection>
         {
           !tabViewPro ? 
-          <div style={{ marginLeft:"5%", fontSize:"20px", marginTop:30,marginRight:"5%", fontFamily:"DM Serif Display"}}>
-                <h1>Polls</h1>
+          <div style={{ marginLeft:"5%", fontSize:"28px", marginTop:30,marginRight:"5%", fontFamily:"DM Serif Display"}}>
+                <h1 style={{fontSize:"28px"}} >Polls</h1>
                 <div style={{margin:"40px auto"}}>
                 <Divider></Divider>
                 </div>

@@ -180,19 +180,19 @@ export default function Footer() {
               <Link className={styles.link}>About us</Link>
               <Link className={styles.link}>Contact us</Link>
               <Link className={styles.link}>FAQ</Link>
-              <Link className={styles.link}>Blog</Link>
+              <Link className={styles.link}>Explore</Link>
               <Link className={styles.link}>Careers</Link>
               <Link className={styles.link}>Sitemap</Link>
-              <Link className={styles.link}>Store Locator</Link>
             </div>
           </Grid>
           <Grid className={styles.gridItem} item xs={6} sm={4} md={2}>
             <span className={styles.linksHeader}>Buying Guide</span>
             <div className={styles.linksContainer}>
               <Link className={styles.link}>Gift Card</Link>
+              <div>
               <Link className={styles.link}>
                 Coupon Code &amp; Offers T&amp;C
-              </Link>
+              </Link></div>
               <Link className={styles.link}>Returns &amp; Exchanges</Link>
               <Link className={styles.link}>Shipping &amp; Delivery</Link>
               <Link className={styles.link}>Payment Options</Link>
@@ -207,7 +207,7 @@ export default function Footer() {
               <Link className={styles.link}>Men</Link>
               <Link className={styles.link}>Women</Link>
               <Link className={styles.link}>Kids</Link>
-              <Link className={styles.link}>Desiners</Link>
+              <Link className={styles.link}>Designers</Link>
               <Link className={styles.link}>Comtempory</Link>
               <Link className={styles.link}>Offers</Link>
             </div>

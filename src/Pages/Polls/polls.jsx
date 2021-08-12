@@ -12,15 +12,25 @@ function Polls(props) {
     return (
         <div>
             <Header> </Header>
-            <CustomSection>
+            <div style={{width:"85%",margin:"auto" }}>
+            <Divider></Divider></div>
+{! tabViewPro ?
+  <CustomSection>
           <Breadcrumb
             path='Home/Explore /'
             activePath='Polls'
           />
         </CustomSection>
+        : 
+        null
+
+}
+            
+        
+      
         {
           !tabViewPro ? 
-          <div style={{ marginLeft:"5%", fontSize:"20px", marginTop:30,marginRight:"5%", fontFamily:"DM Serif Display"}}>
+          <div style={{ marginLeft:"7%", fontSize:"20px", marginTop:30,marginRight:"7%", fontFamily:"DM Serif Display"}}>
                 <h1>Polls</h1>
                 <div style={{margin:"40px auto"}}>
                 <Divider></Divider>
@@ -28,7 +38,7 @@ function Polls(props) {
             </div>
             :
             <div style={{ marginLeft:"10%", marginTop:30,marginRight:20, fontFamily:"DM Serif Display"}}>
-            <h2>Polls</h2>
+            <h2 style={{fontSize:"28px"}}>Polls</h2>
             <div style={{margin:"20px auto"}}>
                 <Divider></Divider>
                 </div>
@@ -40,20 +50,20 @@ function Polls(props) {
           spacing={mobileView ? 1 : tabView ? 3 : 2}
           justify="space-between"         
           >
-      <Grid item xs={6} sm={4} md={3}>
+      <Grid item xs={12} sm={6} md={3}>
             <Card />
           </Grid>
-          <Grid item xs={6} sm={4} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <Card />
           </Grid>
-          <Grid item xs={6} sm={4} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <Card />
           </Grid>
           
-          <Grid item xs={6} sm={4} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <Card />
           </Grid>
-          <Grid item xs={6} sm={4} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <Card />
           </Grid>
           </Grid>

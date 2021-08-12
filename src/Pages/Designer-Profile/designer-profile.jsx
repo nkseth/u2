@@ -10,7 +10,7 @@ function DesignerProfile(props) {
     const tabView = useMediaQuery("(max-width:768px)");
     const mobileView = useMediaQuery("(max-width:550px)");
     return (
-        <div style={{width:"85%", margin:"0 auto"}}>
+        <div style={{width:"95%", margin:"0 auto"}}>
         <Container bottomDivider footerOnAllView>
            
              {!tabViewPro && (
@@ -22,7 +22,7 @@ function DesignerProfile(props) {
         </CustomSection>
       )}
        <div style={{fontSize: "30px", textAlign:"center", fontFamily:"DM Serif Display"}}>
-                <h1>Designer Profile</h1>
+                <h1 style={{fontSize:"54px",fontWeight:"400px"}}>Designer Profile</h1>
             </div>
        <Designers></Designers></Container></div>
     );

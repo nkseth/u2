@@ -18,7 +18,7 @@ function Products(props) {
           paddingTop: mobileView ? "30px" : "45px",
         }}
       >
-        <div className={styles.mainContainer}>
+        <div className={styles.mainContainer} style={{backgroundColor:"#ffffff"}}>
           
           <Grid
             container
@@ -28,24 +28,22 @@ function Products(props) {
             className={styles.secondSection}
           >
   
-            <Grid item xs={6} sm={4} md={4}>
+            <Grid item xs={6} sm={4} md={3}>
               <ProductCard />
             </Grid>
-            <Grid item xs={6} sm={4} md={4}>
+            <Grid item xs={6} sm={4} md={3}>
               <ProductCard />
             </Grid>
-            <Grid item xs={6} sm={4} md={4}>
+            <Grid item xs={6} sm={4} md={3}>
               <ProductCard />
             </Grid>
-            <Grid item xs={6} sm={4} md={4}>
+            <Grid item xs={6} sm={4} md={3}>
               <ProductCard />
             </Grid>
-            <Grid item xs={6} sm={4} md={4}>
+            <Grid item xs={6} sm={4} md={3}>
               <ProductCard />
             </Grid>
-            <Grid item xs={6} sm={4} md={4}>
-              <ProductCard />
-            </Grid>
+            
           </Grid>
           
         </div>

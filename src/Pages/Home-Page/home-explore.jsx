@@ -28,6 +28,7 @@ function HomeExplore(props) {
     const tabView = useMediaQuery("(max-width:768px)");
     const mobileView = useMediaQuery("(max-width:550px)");
     const classes = useStyles();
+    
     return (
       <Container bottomDivider footerOnAllView>
       {!tabViewPro && (
@@ -41,7 +42,7 @@ function HomeExplore(props) {
        {
           !tabViewPro ? 
           <div style={{ marginLeft:"7%", fontSize:"30px", marginTop:30, fontFamily:"DM Serif Display"}}>
-                <h1>Explore Your fashion</h1>
+                <h1 style={{fontSize:"54px",fontWeight:"400px"}}>Explore Your fashion</h1>
                 <div style={{margin:"40px auto"}}>
                 <img src={Image} width="90%"></img></div>
             </div>
@@ -57,7 +58,7 @@ function HomeExplore(props) {
         <div>
         <img src={Line}></img></div>
         <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
-            <h1>Quote of the day</h1>
+            <h1 style={{fontSize:"28px",fontWeight:"400px"}}>Quote of the day</h1>
             <h4 style={{fontFamily:"DM Sans", fontWeight:400}}>You can have anythingif you dress like it</h4>
             </div>
             <div style={{margin:20}}>
@@ -85,7 +86,7 @@ function HomeExplore(props) {
           {
           !tabViewPro ? 
           <div style={{ marginLeft:"10%", fontSize:"13px", fontWeight:400, marginTop:30, fontFamily:"DM Serif Display"}}>
-                <h1>Daily Fashion tips</h1>
+                <h1 style={{fontSize:"34px",fontWeight:"400px"}}>Daily Fashion tips</h1>
             </div>
             :
             <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
@@ -97,8 +98,8 @@ function HomeExplore(props) {
       {
           !tabViewPro ? 
           <div style={{ marginLeft:"7%", fontSize:"20px", marginTop:30, fontFamily:"DM Serif Display"}}>
-                <h2>Insiders</h2>
-                <h6 style={{color: "#6C6C6C", fontFamily: "DM Sans"}}>Know more about design process</h6>
+                <h2 style={{fontSize:"34px",fontWeight:"400px"}}>Insiders</h2>
+                <h6 style={{color: "#3B3B3B",fontSize:"16px", fontFamily: "DM Sans"}}>Know more about design process</h6>
                 <div style={{margin:"40px auto"}}>
                 <img src={Image} width="90%"></img></div>
             </div>

@@ -112,8 +112,9 @@ $first-section-width: 500px;
 
 .mainContainer {
   position: relative;
-  width: 100%;
-  display: flex;
+  width: 85%;
+  margin:auto;
+  display: block;
   gap: 16px;
   // background-color: var(--primary-color-dark);
 }

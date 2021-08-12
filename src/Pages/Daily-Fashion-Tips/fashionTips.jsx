@@ -24,7 +24,7 @@ export default function FashionTips(props) {
        {
           !tabViewPro ? 
           <div style={{ marginLeft:"9%", fontSize:"30px", marginTop:30, fontFamily:"DM Serif Display"}}>
-                <h1>Daily Fashion Tips</h1>
+                <h1 style={{fontSize:"54px"}}>Daily Fashion Tips</h1>
                 <div style={{margin:"40px auto"}}>
                 <img src={Image} width="90%"></img></div>
             </div>
@@ -38,9 +38,9 @@ export default function FashionTips(props) {
        {
           !tabViewPro ? 
           <div style={{ marginLeft:"10%", fontSize:"20px", marginTop:30, fontFamily:"DM Serif Display"}}>
-                <h1>10 Fashion Tips by top Designers</h1>
+                <h1 style={{fontSize:"34px",fontWeight:"400px"}}>10 Fashion Tips by top Designers</h1>
               
-                <p style={{fontFamily:"DM Sans", marginTop:20}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit at adipisci tempore rem doloribus nulla sequi nesciunt,
+                <p style={{fontFamily:"DM Sans", marginTop:20,fontSize:"16px",color: "#6C6C6C"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit at adipisci tempore rem doloribus nulla sequi nesciunt,
                    dolorum, nemo beatae exercitationem eligendi maiores animi officia quo amet aspernatur suscipit architecto!</p>
             </div>
             :
@@ -51,11 +51,11 @@ export default function FashionTips(props) {
         </div>
       }
        <div style={{ marginLeft:"10%",  marginTop:30, fontFamily:"DM Sans"}}>
-                <h4>Subtitle</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit at adipisci tempore rem doloribus nulla sequi nesciunt</p>
+                <h4 style={{fontSize:"14px"}}>Subtitle</h4>
+                <p style={{fontSize:"16px"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit at adipisci tempore rem doloribus nulla sequi nesciunt</p>
                 <img src={Image} width="90%"></img>
-                <h4 style={{marginTop:40, marginBottom:30}}>Subtitle</h4>
-                <p style={{ marginBottom:70}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum repellat temporibus fugit deleniti tempora necessitatibus 
+                <h4 style={{marginTop:40, marginBottom:30,fontSize:"14px"}}>Subtitle</h4>
+                <p style={{ marginBottom:70 ,fontSize:"16px"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum repellat temporibus fugit deleniti tempora necessitatibus 
                   ex consectetur exercitationem soluta ducimus, iure vero? Nostrum rem vel voluptas iure ipsum earum totam.</p>
                 <img src={Video} width="90%"></img>      
             </div>
@@ -69,8 +69,8 @@ export default function FashionTips(props) {
             </div>
             :
             <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
-            <h1>Other Popular Videos</h1>
-            <p style={{fontFamily:"DM Sans", marginTop:20}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit at adipisci tempore rem doloribus nulla sequi nesciunt,</p>
+            <h1 style={{fontSize:"34px"}}>Other Popular Videos</h1>
+            <p style={{fontFamily:"DM Sans", marginTop:20,fontSize:"16px",color: "#6C6C6C"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit at adipisci tempore rem doloribus nulla sequi nesciunt,</p>
         </div>
       }
       <MoreVideos></MoreVideos>

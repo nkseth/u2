@@ -12,6 +12,7 @@ function PollResult(props) {
     return (
         <div>
             <Header> </Header>
+            <div style={{margin:"auto", width:"90%"}}> <Divider></Divider></div>
             <CustomSection>
           <Breadcrumb
             path='Home/Explore /'
@@ -21,7 +22,7 @@ function PollResult(props) {
         {
           !tabViewPro ? 
           <div style={{ marginLeft:"5%", fontSize:"20px", marginTop:30,marginRight:"5%", fontFamily:"DM Serif Display"}}>
-                <h1>Polls</h1>
+                <h1 style={{fontSize:"28px"}}>Polls</h1>
                 <div style={{margin:"40px auto"}}>
                 <Divider></Divider>
                 </div>

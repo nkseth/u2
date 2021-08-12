@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import { Grid, Icon, useMediaQuery } from "@material-ui/core";
 import styles from './nav.module.scss';
-import image from '../../../Images/image/post.png';
-import review from '../../../Images/image/review.png'
+import PostCard from './post'
 import ProductCard from './product';
-import ReviewCard from './review'
+import ReviewCard from './review';
+import Divider from './../../../utils/Custom Divider/divider'
 
 function Navigation(props) {
     const customView = useMediaQuery("(max-width:1235px)");
@@ -15,31 +15,29 @@ function Navigation(props) {
     console.log(localStorage.getItem('designer'))
     const project =()=>{
       switch(activeNav){
-        case "product": return( <div><Grid
+        case "product": return( <div style={{marginTop:70,display:"block"}}><Grid
           container
           style={{ margin: "auto" , alignItems:"center", width:"90%"}}
           spacing={mobileView ? 1 : tabView ? 2 : 4}
           justify="space-between"
 
         >
-      <Grid item xs={6} sm={4} md={4}>
+      <Grid item xs={6} sm={3} md={3}>
             <ProductCard />
           </Grid>
-          <Grid item xs={6} sm={4} md={4}>
+          <Grid item xs={6} sm={3} md={3}>
             <ProductCard />
           </Grid>
-          <Grid item xs={6} sm={4} md={4}>
+          <Grid item xs={6} sm={3} md={3}>
             <ProductCard />
           </Grid>
-          <Grid item xs={6} sm={4} md={4}>
+          <Grid item xs={6} sm={3} md={3}>
             <ProductCard />
           </Grid>
-          <Grid item xs={6} sm={4} md={4}>
+          <Grid item xs={6} sm={3} md={3}>
             <ProductCard />
           </Grid>
-          <Grid item xs={6} sm={4} md={4}>
-            <ProductCard />
-          </Grid>
+          
           </Grid>
           <Grid></Grid></div>)
         case "about": return(<div style={{color:"#6C6C6C"}}><div style={{marginTop:30}}>Experience<span style={{marginLeft:50}}>3 Years</span></div>
@@ -47,7 +45,7 @@ function Navigation(props) {
         <div style={{marginTop:30}}>Last Delivery <span style={{marginLeft:42}}>3 Hours</span></div>
         </div>)  
 
-        case "review":return( <div><Grid
+        case "review":return( <div style={{backgroundColor:"#e5e5e5", margin:"auto", width:"85%", alignItems:"center"}}><Grid
           container
           style={{ margin: "auto" , alignItems:"center", width:"90%"}}
           spacing={mobileView ? 1 : tabView ? 2 : 4}
@@ -71,6 +69,34 @@ function Navigation(props) {
           </Grid>
           <Grid item xs={12} sm={12} md={12}>
             <ReviewCard />
+          </Grid>
+          </Grid>
+          <Grid></Grid></div>)
+
+          case "post" : return( <div style={{backgroundColor:"#e5e5e5", margin:"auto", width:"85%", alignItems:"center"}}><Grid
+          container
+          style={{ margin: "auto" , alignItems:"center", width:"90%"}}
+          spacing={mobileView ? 1 : tabView ? 2 : 4}
+          justify="space-between"
+
+        >
+      <Grid item xs={12} sm={12} md={12}>
+            <PostCard />
+          </Grid>
+          <Grid item xs={12} sm={12} md={12}>
+            <PostCard />
+          </Grid>
+          <Grid item xs={12} sm={12} md={12}>
+            <PostCard />
+          </Grid>
+          <Grid item xs={12} sm={12} md={12}>
+            <PostCard />
+          </Grid>
+          <Grid item xs={12} sm={12} md={12}>
+            <PostCard />
+          </Grid>
+          <Grid item xs={12} sm={12} md={12}>
+            <PostCard />
           </Grid>
           </Grid>
           <Grid></Grid></div>)
@@ -125,6 +151,7 @@ function Navigation(props) {
               </div>
             </nav>
           )}
+        
          
         </div>
         <Grid
@@ -174,7 +201,8 @@ function Navigation(props) {
             </Grid>
           )}
             </Grid>
-            <div>{project()}</div>
+    <Divider></Divider>
+            <div style={{width:"100%", display:"block", marginTop:50}}>{project()}</div>
             </div>
       
     );

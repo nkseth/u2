@@ -26,9 +26,9 @@ function StyleGuide(props) {
  <img src={Image} width="85%"></img></div>
        {
           !tabViewPro ? 
-          <div style={{ marginLeft:"10%", fontSize:"24px", marginTop:30, fontFamily:"DM Serif Display"}}>
+          <div style={{ marginLeft:"10%", fontSize:"34px", marginTop:30, fontFamily:"DM Serif Display"}}>
                 <h1>Title of style guide</h1>
-                <h5 style={{fontFamily:"DM Sans",marginTop:10}}>Description</h5>
+                <h5 style={{fontFamily:"DM Sans",fontWeight:"bold", fontSize:"16px",marginTop:10}}>Description</h5>
             </div>
             :
             <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
@@ -38,7 +38,7 @@ function StyleGuide(props) {
       }
        {
           !tabViewPro ? 
-          <div style={{ marginLeft:"10%", fontSize:"20px", marginTop:30, marginBottom:100, fontFamily:"DM Sans", color: "#6C6C6C"}}>
+          <div style={{ marginLeft:"10%", fontSize:"16px", marginTop:30, marginBottom:100, fontFamily:"DM Sans", color: "#6C6C6C"}}>
               
                 <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit at adipisci tempore rem doloribus nulla sequi nesciunt,
                    dolorum, nemo beatae exercitationem eligendi maiores animi officia quo amet aspernatur suscipit architecto! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit at adipisci tempore rem doloribus nulla sequi nesciunt,

@@ -15,7 +15,7 @@ function Designer() {
     const img1 =
     "https://www.figma.com/file/3feKLdzH2SEin23kTS0pjx/image/7a7d5a32e573cc2df649246fe05faa140574b308?fuid=763802552325253092";
     return (
-        <div style={{width:"85%", margin:"0 auto"}}>
+        <div style={{width:"100%", margin:"0 auto"}}>
         <Container bottomDivider footerOnAllView>
            
              {!tabViewPro && (

@@ -1,6 +1,6 @@
 import React from 'react';
 import Product from '../../../Images/image/Product.png';
-import styles from '../../Style-Guide-Man/Components/product.module.scss'
+import styles from './product.module.scss'
 
 function product(props) {
     return (

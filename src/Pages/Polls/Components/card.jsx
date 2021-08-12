@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Star} from '@material-ui/icons';
 
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 320,
@@ -32,14 +33,21 @@ const useStyles = makeStyles({
     backgroundColor:'#857250',
     width:'100%',
     height:"48px",
-    color:"white"
+    color:"white",
+    fontSize:"12px"
+    
   },
   time:{
     color:"red",
-    float:"right"
+    float:"right",
+    fontSize:"12px"
+  },
+  size:{
+    fontSize:"12px"
   },
   que:{
-    fontFamily:"DM Serif Display"
+    fontFamily:"DM Serif Display",
+    fontSize:"16px"
   }
 });
 
@@ -51,19 +59,19 @@ export default function SimpleCard() {
     <Card className={classes.root}>
       <CardContent>
        
-        <Typography variant="h5" component="h2" className= {classes.que}>
+        <Typography variant="h5" component="h2" className= {classes.que} style={{fontSize:"28px"}}>
          What is your favourite designer brand?
         </Typography>
-        <Typography display="inline" variant="body2" component="p">
+        <Typography display="inline" variant="body2" component="p" className={classes.size} style={{fontSize:"35px"}}>
      
         <br />
          45 votes
         </Typography>
-        <Typography display="inline" variant="body2" className={classes.time}>
+        <Typography display="inline" variant="body2" className={classes.time}  style={{fontSize:"35px"}}>
           25 min left        </Typography>
       </CardContent>
       <CardActions>
-        <Button className={classes.btn} size="small"><Star />500 Voucher</Button>
+        <Button className={classes.btn} size="small"  style={{fontSize:"16px"}}><Star />500 Voucher</Button>
       </CardActions>
     </Card>
   );

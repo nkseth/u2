@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import {React,useState,useEffect} from 'react';
 import { IconButton, useMediaQuery } from "@material-ui/core";
 import {
   CarouselProvider,
@@ -14,12 +15,28 @@ import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/HandMade_Clothes.module.scss";
 
-const HandMade_Clothes = () => {
+const HandMade_Clothes = (props) => {
+  const [handMade,setHandMade] = useState({})
+  const [isLoading,setIsloading] = useState(true)
+
   const customStyle = {
     paddingTop: "3rem",
     paddingBottom: "3rem",
     background: "#857250",
   };
+
+  const setValue = async(props)=>{
+    await setHandMade(props.handMade)
+    await setIsloading(false)
+  }
+
+  useEffect(async()=>{
+    await setValue(props)
+    if(!handMade){
+      await setIsloading(true)
+    }
+  })
+  const slide = !handMade ? 1 : handMade.length > 5 ? 2 : 1 ;
   return (
     <>
       <CustomSection style={customStyle}>
@@ -32,17 +49,33 @@ const HandMade_Clothes = () => {
 
         <CarouselProvider
           naturalSlideWidth={100}
-          totalSlides={2}
+          totalSlides={slide}
           infinite
           isIntrinsicHeight
         >
           <Slider>
-            <Slide index={0}>
-              <CarouselSlide />
-            </Slide>
-            <Slide index={1}>
-              <CarouselSlide />
-            </Slide>
+            {[1,2].map((value,key1)=>(
+              <Slide index={key1}>
+                <div className={styles.HandMade_Clothes}>
+                  {!isLoading ? handMade.map((value,key)=>(
+                    <>
+                      {key < 5 && key1 === 0 ? 
+                        <div className={styles.HandMade_Clothes_Items}>
+                          <img src={value.cover_image} alt="items" />
+                          <p>{value.name}</p>
+                        </div>
+                      :''}  
+                      {key > 4 && key1 === 1 ?
+                        <div className={styles.HandMade_Clothes_Items}>
+                          <img src={value.cover_image} alt="items" />
+                          <p>{value.name}</p>
+                        </div>
+                      :''}  
+                    </>  
+                  )):<span>Loading...</span>}  
+                </div>  
+              </Slide>
+            ))}  
           </Slider>
           <DotGroup style={{ display: "flex" }} />
           <div className={styles.NavigationContainer}>

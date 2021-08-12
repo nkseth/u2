@@ -70,7 +70,7 @@ const DesignerHome = () => {
     await setTrending(trending_categories)      
     await setSuitWear(suit_wear)      
     await setHandMade(hand_made_cloth)      
-    // console.log(hand_made_cloth)
+
   }
 
   const getThemeOptionsDesigner = async() =>{

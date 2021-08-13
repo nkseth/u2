@@ -1,0 +1,67 @@
+.container {
+    //   height: 360px;
+    //   width: 271px;
+    left: 501px;
+    top: 151.07861328125px;
+    border-radius: 10px;
+    background-color: #ffffff;
+  
+    .imgContainer {
+      position: relative;
+      width: 100%;
+      img {
+        width: 100%;
+        height: 300px;
+      }
+    }
+  
+    .icons {
+      position: absolute;
+      right: 0;
+    }
+  }
+  
+  .productDetails {
+    display: grid;
+    gap: 5px;
+    font-family: "DM Serif Display";
+    .productName {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 20px;
+      margin-top: 30px;
+    }
+    .productDesc {
+      font-size: 15px;
+      line-height: 16px;
+      //letter-spacing: 0.3199999928474426px;
+      color: #000000;
+      font-family: "DM Sans";
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .button1{
+        height: 48px !important;
+  width: 173px !important;
+  border-radius: 0 !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 20px !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+  background: #857250 !important;
+  border: 1px solid #000000 !important;
+  color: var(#ffffff) !important;
+
+    
+    }
+  }
+  
+  @media screen and (max-width: 550px) {
+    .imgContainer {
+      > img {
+        height: 210px !important;
+      }
+    }
+  }
+  

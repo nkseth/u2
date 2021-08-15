@@ -59,19 +59,19 @@ export default function SimpleCard() {
     <Card className={classes.root}>
       <CardContent>
        
-        <Typography variant="h5" component="h2" className= {classes.que} style={{fontSize:"28px"}}>
+        <Typography variant="h5" component="h2" className= {classes.que} >
          What is your favourite designer brand?
         </Typography>
-        <Typography display="inline" variant="body2" component="p" className={classes.size} style={{fontSize:"35px"}}>
+        <Typography display="inline" variant="body2" component="p" className={classes.size} >
      
         <br />
          45 votes
         </Typography>
-        <Typography display="inline" variant="body2" className={classes.time}  style={{fontSize:"35px"}}>
+        <Typography display="inline" variant="body2" className={classes.time}  >
           25 min left        </Typography>
       </CardContent>
       <CardActions>
-        <Button className={classes.btn} size="small"  style={{fontSize:"16px"}}><Star />500 Voucher</Button>
+        <Button className={classes.btn} size="small"  ><Star />500 Voucher</Button>
       </CardActions>
     </Card>
   );

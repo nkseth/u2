@@ -12,7 +12,7 @@ function PollResult(props) {
     return (
         <div>
             <Header> </Header>
-            <div style={{margin:"auto", width:"90%"}}> <Divider></Divider></div>
+            <div style={{margin:"auto", width:"85%"}}> <Divider></Divider></div>
             <CustomSection>
           <Breadcrumb
             path='Home/Explore /'
@@ -21,7 +21,7 @@ function PollResult(props) {
         </CustomSection>
         {
           !tabViewPro ? 
-          <div style={{ marginLeft:"5%", fontSize:"20px", marginTop:30,marginRight:"5%", fontFamily:"DM Serif Display"}}>
+          <div style={{ marginLeft:"9%", fontSize:"20px", marginTop:30,marginRight:"5%", fontFamily:"DM Serif Display"}}>
                 <h1 style={{fontSize:"28px"}}>Polls</h1>
                 <div style={{margin:"40px auto"}}>
                 <Divider></Divider>
@@ -37,7 +37,7 @@ function PollResult(props) {
       }
       <Grid
           container
-          style={{ margin: "auto" , alignItems:"center", width:"90%"}}
+          style={{ margin: "auto" , alignItems:"center", width:"85%"}}
           spacing={mobileView ? 1 : tabView ? 3 : 2}
           justify="space-between"         
           >

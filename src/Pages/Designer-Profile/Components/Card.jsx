@@ -12,7 +12,7 @@ export default function HeroCard({ header, tagline, backgroundImg }) {
       className={styles.container}
     >
       <div style={{display:"inline-block", }}>
-          <img style={{borderRadius:"100%", width:"20%", float:"left", marginLeft:30,marginTop:40 }} src={Image} width="100px" height="100px"></img>
+          <img style={{borderRadius:"50%", width:"20%", float:"left", marginLeft:30,marginTop:40 }} src={Image} width="100px" height="100px"></img>
           <br></br>
           <br></br>
           <br></br>
@@ -22,7 +22,7 @@ export default function HeroCard({ header, tagline, backgroundImg }) {
         <span style={{margin:10}}></span>
         <Button className={styles.btn}>Contact me</Button> 
           </span>
-        <span style={{marginTop:20, display:"block", marginLeft:250, color:"#ffffff"}}>
+        <span style={{marginTop:20, display:"block", marginLeft:280, color:"#ffffff"}}>
         <span style={{display:"block"}}>Expert in experience</span>
         <span>Lorem ipsum dolor sit.</span></span>
       </div>

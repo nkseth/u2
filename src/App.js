@@ -35,7 +35,7 @@ import VisualSearch from "./Pages/Visual-Search/visual-search";
 import DesignersPage from './Pages/Designer-Profile/designer';
 import PollQuestion from './Pages/Polls/poll-question';
 import PollResult from './Pages/Polls/poll-result';
-import Product from './Pages/Designer-Profile/Components/product';
+import DesignerPosts from "./Pages/Designer-Profile/designer-posts";
 
 //other-dev-pages
 // import { AboutPage, DesignersHomePage } from "./Other-Dev-Content/pages";
@@ -146,7 +146,7 @@ function App() {
         <Route exact path={"/designer-page"} component={DesignersPage} />
         <Route path={"/home/poll-question"} component={PollQuestion} />
         <Route path={"/home/poll-result"} component={PollResult} />
-        <Route exact path={"/designer-page/product"} component={Product} />
+        <Route path={"/designer-posts"} component={DesignerPosts} />
       </Switch>
     </AnimatePresence>
   );

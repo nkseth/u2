@@ -17,8 +17,9 @@ export default function ProductCard() {
         <span className={styles.productDesc}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
          pariatur aliquid non, nobis consequuntur sunt, soluta ex similique, dignissimos debitis nam rem voluptates
           blanditiis dolor delectus reiciendis ea omnis ut.</span>
-          <div style={{backgroundColor:"#857250",width: "140px",height: "38px",left: "14px",top:" 455px",color:"white", textAlign:"center"}}>
-        Read More</div>
+          {/* <div style={{backgroundColor:"#857250",width: "140px",height: "38px",top:" 5px",color:"white", textAlign:"center"}}>
+        Read More</div> */}
+        <Button style={{backgroundColor:"#857250",color:"white", width:165}}>Read More</Button>
       </div>
     </div>
   );

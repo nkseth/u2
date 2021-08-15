@@ -33,19 +33,25 @@ const useStyles = makeStyles({
     backgroundColor:'#857250',
    float:"right",
     color:"white",
+    fontSize:"12px"
 
 
   },
   time:{
     color:"red",
-    marginLeft:10
+    marginLeft:10,
+    fontSize:"12px"
   },
   que:{
-    fontFamily:"DM Serif Display"
+    fontFamily:"DM Serif Display",
+    fontSize:"28px"
   },
   box:{
     paddingTop:50
     
+  },
+  vote:{
+    fontSize:"12px"
   }
 
 });
@@ -61,8 +67,7 @@ export default function ResultCard() {
         <Typography variant="h5" component="h2" className= {classes.que}>
          What is your favourite designer brand?
         </Typography>
-        <Typography display="inline" variant="body2" component="p">
-     
+        <Typography style={{fontSize:"12px"}} display="inline" variant="body2" component="p">
         <br />
          45 votes
         </Typography>

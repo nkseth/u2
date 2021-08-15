@@ -15,20 +15,23 @@ const useStyles = makeStyles({
         fontFamily:"DM Sans",
         fontWeight:"bold",
         fontSize:"35px"
-
     },
-    radio:{
-        
+    radio:{      
 fontFamily: "DM Sans",
 fontweight: 500,
-fontSize: "25px",
+fontSize:"25px",
 color: "#6C6C6C"
     },
+    radioText:{
+      fontSize:"25px",
+    },
+
     btn:{
         backgroundColor:'#857250',
         height:"43px",
         color:"white",
-        marginTop:40
+        marginTop:40,
+        fontSize:"16px"
     }
 
 })
@@ -54,12 +57,12 @@ function PollQuestion(props) {
         </CustomSection>
         {
           !tabViewPro ? 
-          <div style={{ marginLeft:"5%", fontSize:"28px", marginTop:30,marginRight:"5%", fontFamily:"DM Serif Display"}}>
+          <div style={{ marginLeft:"7%", fontSize:"28px", marginTop:30,marginRight:"5%", fontFamily:"DM Serif Display"}}>
                 <h1 style={{fontSize:"28px"}} >Polls</h1>
                 <div style={{margin:"40px auto"}}>
                 <Divider></Divider>
                 </div>
-                <Typography className={classes.que}>What is your favourite designer brand?</Typography>
+                <Typography className={classes.que} >What is your favourite designer brand?</Typography>
             </div>
             :
             <div style={{ marginLeft:"10%", marginTop:30,marginRight:20, fontFamily:"DM Serif Display"}}>
@@ -67,24 +70,24 @@ function PollQuestion(props) {
             <div style={{margin:"20px auto"}}>
                 <Divider></Divider>
                 </div>
-                <Typography className={classes.que}>What is your favourite designer brand?</Typography>
+                <Typography className={classes.que} style={{fontSize:"25px"}}>What is your favourite designer brand?</Typography>
         </div>
       }
       <Grid
           container
-          style={{ margin: "auto" , alignItems:"center", width:"90%"}}
+          style={{ margin: "auto" , alignItems:"center", width:"85%"}}
           spacing={mobileView ? 1 : tabView ? 2 : 4}
           justify="space-between"
 
         >
       
      <FormControl component="fieldset">
-    
+     
       <RadioGroup aria-label="Designer" name="Designer1" value={value} onChange={handleChange}>
-        <FormControlLabel className={classes.radio} value="A.Jack & Jones" control={<Radio color="#857250" />} label="A.Jack & Jones" />
-        <FormControlLabel className={classes.radio} value="B.Arrow" control={<Radio  color="#857250"  />} label="B.Arrow" />
-        <FormControlLabel className={classes.radio} value="Raymond" control={<Radio  color="#857250"  />} label="Raymond" />
-        <FormControlLabel className={classes.radio} value="Gucci" control={<Radio  color="#857250"  />} label="Gucci" />
+        <FormControlLabel className={classes.radio} value="A.Jack & Jones" control={<Radio classes={{label:classes.radioText}} color="#857250" />} label={<span style={{fontSize:"25px"}}>A.Jack & Jones</span>}/>
+        <FormControlLabel className={classes.radio} value="B.Arrow" control={<Radio  color="#857250"  />} label={<span style={{fontSize:"25px"}}>B.Arrow</span>} />
+        <FormControlLabel className={classes.radio} value="Raymond" control={<Radio  color="#857250"  />} label={<span style={{fontSize:"25px"}}>Raymond</span>}  />
+        <FormControlLabel className={classes.radio} value="Gucci" control={<Radio  color="#857250"  />} label={<span style={{fontSize:"25px"}}>Gucci</span>}  />
       </RadioGroup>
       <Button className={classes.btn}>Submit</Button>
     </FormControl></Grid>

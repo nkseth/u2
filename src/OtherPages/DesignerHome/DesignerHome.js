@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../utils/axios.config.js';
 
 import DesignerWear from "./Components/DesignerWear";
 import TopCategory from "./Components/TopCategory";
@@ -70,7 +70,7 @@ const DesignerHome = () => {
     await setTrending(trending_categories)      
     await setSuitWear(suit_wear)      
     await setHandMade(hand_made_cloth)      
-    // console.log(hand_made_cloth)
+
   }
 
   const getThemeOptionsDesigner = async() =>{

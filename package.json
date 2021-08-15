@@ -1,7 +1,6 @@
 {
-  "name": "my-app",
+  "name": "U2",
   "version": "0.1.0",
-  "proxy": "https://almond-tropical-cloudberry.glitch.me/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",

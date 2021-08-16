@@ -9,11 +9,11 @@ const ForgotPasswordOtp = () => {
   return (
     <form className={styles.ForgotPasswordOtp}>
       <div className={styles.ForgotPasswordOtp_Title}>
-        <h1>OTP Varification</h1>
+        <h1>OTP Verification</h1>
         <p>
           Please enter the OTP sent to number +91987654321
           <b>
-            <Link>change</Link>
+            <Link style={{color:'#0000EE'}}>change</Link>
           </b>
         </p>
       </div>
@@ -21,12 +21,13 @@ const ForgotPasswordOtp = () => {
       <div className={styles.ForgotPasswordOtp_OTP}>
         <OtpInput
           containerStyle={{ display: "flex", justifyContent: "space-evenly" }}
-          inputStyle={{ color: "#0a0a0a", fontSize: "16px" }}
+          inputStyle={{ color: "#6c6c6c", fontSize: "16px" }}
           numInputs={4}
           errorStyle="error"
           onChange={(event) => console.log(event)}
           separator={<span>{"  "}</span>}
           isInputNum={true}
+          value={1234}
           name="otp"
         />
       </div>
@@ -37,7 +38,7 @@ const ForgotPasswordOtp = () => {
       </div>
       <div className={styles.ForgotPasswordOtp_Bottom}>
         <Link>
-          Didn't receive code? <b>Resend code</b>
+          Didn't receive code? <b style={{color:'#0000EE'}}>Resend code</b>
         </Link>
       </div>
     </form>

@@ -65,11 +65,11 @@
   div {
     div {
       input {
-        width: 4em !important;
+        width: 3.2em !important;
         padding: 0.5rem;
         border: none;
         border-bottom: 2px solid #857250;
-        color: #0a0a0a !important;
+        color: #6c6c6c !important;
         font-size: 16px !important;
       }
     }
@@ -102,6 +102,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+ 
   a {
     font-family: DM Sans;
     font-style: normal;
@@ -111,8 +112,13 @@
     letter-spacing: 0.16px;
     color: #718096;
   }
+  
 }
+
 .SignUpVarify_Bottom_Link_2 {
-  margin-top: 1rem;
+  margin-top: 6rem;
   justify-self: flex-end;
+}
+.Change_btn{
+  color:#0000EE !important
 }

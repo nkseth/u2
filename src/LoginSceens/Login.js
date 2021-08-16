@@ -3,11 +3,14 @@ import styles from "./style/Login.module.scss";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import GoogleIcon from "../Images/login/google.svg";
+import {useMediaQuery} from '@material-ui/core'
 import FacebookIcon from "../Images/login/facebook.svg";
+import { useTheme } from '@material-ui/core/styles';
 import useLogin from "./useLogin";
 const Login = () => {
   const { login_Mode_Handler, loginMode } = useLogin();
-
+  const theme=useTheme()
+  const match=useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <form onSubmit={(e) => e.preventDefault()} className={styles.Screen_Login}>
       <div className={styles.Screen_Login_Link}>
@@ -37,7 +40,7 @@ const Login = () => {
         <input type="password" placeholder="password" />
         <span>
           <Link onClick={() => login_Mode_Handler("ForgotPasswordOtp")}>
-            Forgot Password
+            Forgot password
           </Link>
         </span>
       </div>
@@ -49,9 +52,12 @@ const Login = () => {
       <div className={styles.Screen_Login_Line}>
         <span>OR</span>
       </div>
-      <div className={styles.Screen_Login_Button}>
+      {
+        match?null:<div className={styles.Screen_Login_Button}>
         <Button>Login with Mobile Number</Button>
       </div>
+      }
+      
       <div className={styles.Screen_Login_Social}>
         <Button>
           <img src={GoogleIcon} alt="GoogleIcon" />

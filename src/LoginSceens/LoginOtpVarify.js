@@ -18,7 +18,7 @@ const LoginOtpVarify = () => {
       <div className={styles.LoginOtpVarify_Input}>
         <label>Mobile Number</label>
         <input type="text" placeholder="+91987654321" />
-        <button>change</button>
+        <button className={styles.Btn_color}>change</button>
       </div>
       <div className={styles.LoginOtpVarify_Button}>
         <Button onClick={login_Model_Hide}>Send OTP</Button>
@@ -29,7 +29,7 @@ const LoginOtpVarify = () => {
       <div className={styles.LoginOtpVarify_OTP}>
         <OtpInput
           containerStyle={{ display: "flex", justifyContent: "space-evenly" }}
-          inputStyle={{ color: "#0a0a0a", fontSize: "16px" }}
+          inputStyle={{ color: "#6c6c6c", fontSize: "16px" }}
           numInputs={4}
           errorStyle="error"
           onChange={(event) => console.log(event)}
@@ -43,7 +43,7 @@ const LoginOtpVarify = () => {
       </div>
       <div className={styles.LoginOtpVarify_Bottom_Link_1}>
         <Link>
-          Didn't receive code? <b>Resend code</b>
+          Didn't receive code? <b style={{color:'#0000EE'}}>Resend code</b>
         </Link>
       </div>
     </form>

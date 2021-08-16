@@ -96,7 +96,7 @@ const DesignerHome = () => {
   return (
     <>
       <Container footerOnAllView>
-      {!isLoading ?
+     
         <>
           <DesignerWear slider={slider}/>
           <TopCategory />
@@ -108,7 +108,7 @@ const DesignerHome = () => {
           <SuitWear suitWear={suitWear} />
           <HandMade_Clothes handMade = {handMade}/>
         </>  
-        :'loading...'}
+        
         
         <Talk_With_Stylish />
         <Measurement_Simulation />

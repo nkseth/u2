@@ -24,17 +24,16 @@ import Offers from "./Pages/Offers/offers";
 import Orders from "./Pages/Orders/orders";
 import AllOrders from "./Pages/All-Orders/allOrders";
 
-
-import Polls from './Pages/Polls/polls';
+import Polls from "./Pages/Polls/polls";
 import FashionTips from "./Pages/Daily-Fashion-Tips/fashionTips";
 import StyleGuideMan from "./Pages/Style-Guide-Man/style-guide-man";
 import StyleGuide from "./Pages/Style-Guide-Man/style-guide";
 import DesignerProfile from "./Pages/Designer-Profile/designer-profile";
-import HomeExplore from './Pages/Home-Page/home-explore';
+import HomeExplore from "./Pages/Home-Page/home-explore";
 import VisualSearch from "./Pages/Visual-Search/visual-search";
-import DesignersPage from './Pages/Designer-Profile/designer';
-import PollQuestion from './Pages/Polls/poll-question';
-import PollResult from './Pages/Polls/poll-result';
+import DesignersPage from "./Pages/Designer-Profile/designer";
+import PollQuestion from "./Pages/Polls/poll-question";
+import PollResult from "./Pages/Polls/poll-result";
 import DesignerPosts from "./Pages/Designer-Profile/designer-posts";
 
 //other-dev-pages
@@ -66,7 +65,7 @@ import Designers from "./OtherPages/Designers/Designers";
 function App() {
   const { isLoginModel } = useLogin();
   return (
-    <AnimatePresence exitBeforeEnter>
+    <>
       {/*All Other Screen on This Path ./LoginSceens/ */}
       {isLoginModel ? <Page_Login /> : null}
       <Switch>
@@ -137,10 +136,14 @@ function App() {
         />
         {/* New pages */}
         <Route path={"/home/polls"} component={Polls} />
-        <Route  path={"/daily-fashion-tips"} component={FashionTips} />
+        <Route path={"/daily-fashion-tips"} component={FashionTips} />
         <Route exact path={"/style-guide"} component={StyleGuideMan} />
-        <Route exact  path={"/style-guide-man"} component={StyleGuide} />
-        <Route exact path={"/designer-profile-home"} component={DesignerProfile} />
+        <Route exact path={"/style-guide-man"} component={StyleGuide} />
+        <Route
+          exact
+          path={"/designer-profile-home"}
+          component={DesignerProfile}
+        />
         <Route path={"/home/explore"} component={HomeExplore} />
         <Route path={"/visual-search"} component={VisualSearch} />
         <Route exact path={"/designer-page"} component={DesignersPage} />
@@ -148,7 +151,7 @@ function App() {
         <Route path={"/home/poll-result"} component={PollResult} />
         <Route path={"/designer-posts"} component={DesignerPosts} />
       </Switch>
-    </AnimatePresence>
+    </>
   );
 }
 

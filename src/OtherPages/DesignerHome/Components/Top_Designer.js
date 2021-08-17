@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import {useState,useEffect } from 'react';
 import { IconButton, useMediaQuery } from "@material-ui/core";
 import {
   CarouselProvider,
@@ -15,41 +14,12 @@ import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/Top_Designer.module.scss";
 
-const Top_Designer = (props) => {
-
-  const[designer,setDesigner] = useState({})
-  const[isLoading,setIsLoading] = useState(true)
-  const[showSlide,setShowSlide] = useState(0)
-  var count = 0
-
+const Top_Designer = () => {
   const customStyle = {
     paddingTop: "3rem",
     paddingBottom: "3rem",
     background: "#fff",
   };
-
-  const setValue = async(props) =>{
-    await setIsLoading(true) 
-    await setDesigner(props.designer)
-  }
-
-  const updateState = (slid)=>{
-    if(slid === 4){
-      count = 1  
-    }
-  }
-
-  useEffect(async()=>{
-     await setValue(props) 
-    await setIsLoading(false) 
-     if(!designer){
-      await setIsLoading(true) 
-     }
-  },[])
-
-  const slide = 2
-  
-  const imageSrc = "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
   return (
     <>
       <CustomSection style={customStyle}>
@@ -67,28 +37,12 @@ const Top_Designer = (props) => {
           isIntrinsicHeight
         >
           <Slider>
-            {[1,2].map((value,key1)=>(
-              <Slide index={key1}>
-                <div className={styles.Top_Designer}>
-                  {!isLoading ? designer.map((value,key)=>(
-                    <>
-                      {key < 5 && key1 === 0 ?
-                        <div className={styles.Top_Designer_Items}>
-                          <img src={value.cover_image} alt="items" />
-                          <Link to="designers-profile">{value.name}</Link>
-                        </div>
-                        :''}
-                      {key > 4 && key1 === 1 ?
-                        <div className={styles.Top_Designer_Items}>
-                          <img src={value.cover_image} alt="items" />
-                          <Link to="designers-profile">{value.name}</Link>
-                        </div>
-                        :''} 
-                    </>                    
-                  )):<span>Loading...</span>}  
-                </div>
-              </Slide>
-            ))}  
+            <Slide index={0}>
+              <CarouselSlide />
+            </Slide>
+            <Slide index={1}>
+              <CarouselSlide />
+            </Slide>
           </Slider>
           <DotGroup style={{ display: "flex" }} />
           <div className={styles.NavigationContainer}>
@@ -126,7 +80,23 @@ const CarouselSlide = () => {
         <div className={styles.Top_Designer_Items}>
           <img src={imageSrc} alt="items" />
           <Link to="designers-profile">Text Here</Link>
-        </div>
+        </div>{" "}
+        <div className={styles.Top_Designer_Items}>
+          <img src={imageSrc} alt="items" />
+          <Link to="designers-profile">Text Here</Link>
+        </div>{" "}
+        {media ? null : (
+          <>
+            <div className={styles.Top_Designer_Items}>
+              <img src={imageSrc} alt="items" />
+              <Link to="designers-profile">Text Here</Link>
+            </div>{" "}
+            <div className={styles.Top_Designer_Items}>
+              <img src={imageSrc} alt="items" />
+              <Link to="designers-profile">Text Here</Link>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

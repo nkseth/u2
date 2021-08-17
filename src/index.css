@@ -77,8 +77,18 @@ input {
   height: 2px;
   width: 100%;
   border: 0;
-  background: #e5e5e5 !important;
+  background: #737373 !important;
 }
 .carousel__dot--selected {
-  background-color: rgb(0, 0, 0) !important;
+  background-color: #fff !important;
+}
+
+.top_designer .carousel__dot--selected {
+  background-color: #CECECE !important;
+}
+.hande_made_clothes .carousel__dot--selected {
+  background-color: #CECECE !important;
+}
+.customer_review_content .carousel__dot--selected {
+  background-color: #CECECE !important;
 }

@@ -70,8 +70,9 @@
 
   .detailThree {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
     > span:first-child {
       font-size: 12px;
       font-weight: 700;
@@ -79,7 +80,7 @@
       letter-spacing: 0.3199999928474426px;
       color: #6a5b40;
     }
-
+ 
     a {
       font-size: 12px;
       font-weight: 700;

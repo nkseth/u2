@@ -3,7 +3,7 @@ import React from "react";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/TopCategory.module.scss";
 const TopCategory = () => {
-  const baseStyle = { padding: "3rem", background: " #e9e9e9" };
+  const baseStyle = {  };
   return (
     <div style={baseStyle}>
       <div className={styles.TopCategory}>
@@ -31,7 +31,7 @@ const CategoryItems = () => {
           <div className={styles.TopCategory_Items_Layer_text}>
             <h2>
               Hello
-              <CustomDivider style={{ height: "1px", background: "#fff" }} />
+              <CustomDivider style={{ height: "1px", background: "#fff" , marginleft: "-5px"}} />
             </h2>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio

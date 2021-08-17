@@ -16,12 +16,11 @@ import styles from "../Style/HandMade_Clothes.module.scss";
 
 const HandMade_Clothes = () => {
   const customStyle = {
-    paddingTop: "3rem",
-    paddingBottom: "3rem",
+    padding: "5rem 3rem",
     background: "#857250",
   };
   return (
-    <>
+    <div className="hande_made_clothes">
       <CustomSection style={customStyle}>
         <div
           className={`${styles.Carousel_header} ${styles.HandMade_Clothes_header}`}
@@ -44,7 +43,7 @@ const HandMade_Clothes = () => {
               <CarouselSlide />
             </Slide>
           </Slider>
-          <DotGroup style={{ display: "flex" }} />
+          <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
           <div className={styles.NavigationContainer}>
             <Link style={{ color: "#fff" }} to="/">
               SEE All
@@ -64,7 +63,7 @@ const HandMade_Clothes = () => {
           </div>
         </CarouselProvider>
       </CustomSection>
-    </>
+    </div>
   );
 };
 

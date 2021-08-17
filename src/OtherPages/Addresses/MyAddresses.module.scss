@@ -194,7 +194,7 @@
     color: #6A5B40;
         span {
           font-family: DM Serif Display;
-          font-size: 1.4rem;
+          font-size: 20px;
           font-weight: 400;
           display: flex;
           align-items: center;
@@ -312,6 +312,12 @@
   .MyAddresses {
     width: 80%;
     margin: 0 auto;
+   
+  }
+  .MyAddresses_Cards{
+    .Old_Address_Card{
+      height: 238px !important;
+    }
   }
   .AddNewAddress {
     width: 90%;

@@ -15,13 +15,13 @@ import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/Top_Designer.module.scss";
 
 const Top_Designer = () => {
+
   const customStyle = {
-    paddingTop: "3rem",
-    paddingBottom: "3rem",
+   padding: "5rem 3rem",
     background: "#fff",
   };
   return (
-    <>
+    <div className="top_designer">
       <CustomSection style={customStyle}>
         <div
           className={`${styles.Carousel_header} ${styles.Top_Designer_header}`}
@@ -44,9 +44,9 @@ const Top_Designer = () => {
               <CarouselSlide />
             </Slide>
           </Slider>
-          <DotGroup style={{ display: "flex" }} />
+          <DotGroup style={{ display: "flex" , marginTop: "1rem" }} />
           <div className={styles.NavigationContainer}>
-            <Link to="designers-profile" style={{ color: "#2196F3" }}>
+            <Link to="designers-profile" style={{ color: "#0A0A0A" }}>
               SEE All
             </Link>
             <div className={styles.Carousel_SliderButtonBox}>
@@ -64,7 +64,7 @@ const Top_Designer = () => {
           </div>
         </CarouselProvider>
       </CustomSection>
-    </>
+    </div>
   );
 };
 

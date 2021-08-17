@@ -29,13 +29,18 @@ export default function PastOrdersCard() {
           </div>
           <div>₹559</div>
           <div className={styles.detailThree}>
-            <span>Order Detail</span>
+            
             {!mobileView && (
               <Button startIcon={<StarIcon />} className={styles.rateBtn}>
                 Rate &amp; Review Product
               </Button>
             )}
+            <div>            
+              <span style={{color:'#6a5b40'}}>Order Detail</span>
+              </div>
+
           </div>
+          
           {mobileView && (
             <div style={{ display: "grid", gap: "1rem" }}>
               <div

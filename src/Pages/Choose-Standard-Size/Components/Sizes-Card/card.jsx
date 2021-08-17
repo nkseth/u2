@@ -13,10 +13,10 @@ export default function SizesCard({ fitImg, fitType, fitDescription }) {
         transition: { duration: 0.4 },
       }}
       style={{
-        transform: isClicked ? "scale(1.2,1.1)" : "scale(1,1)",
+        transform: isClicked ? "scale(1.2)" : "scale(1.1)",
         transition: "transform 0.4s ease-in-out",
       }}
-      onClick={() => setClicked(true)}
+      onClick={() => setClicked(!isClicked)}
     >
       <img src={fitImg} alt='fit' />
       <div>

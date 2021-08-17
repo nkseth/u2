@@ -16,12 +16,11 @@ import styles from "../Style/Customer_Review.module.scss";
 import ReactStars from "react-rating-stars-component";
 const Customer_Review = () => {
   const customStyle = {
-    paddingTop: "3rem",
-    paddingBottom: "3rem",
+    padding: "5rem 3rem",
     background: "#fff",
   };
   return (
-    <>
+    <div className="customer_review_content">
       <CustomSection style={customStyle}>
         <div
           className={`${styles.Carousel_header} ${styles.Customer_Review_header}`}
@@ -46,7 +45,7 @@ const Customer_Review = () => {
           </Slider>
           <DotGroup style={{ display: "flex" }} />
           <div className={styles.NavigationContainer}>
-            <Link style={{ color: "#2196f3" }} to="/">
+            <Link style={{ color: "#0A0A0A" }} to="/">
               SEE All
             </Link>
             <div className={styles.Carousel_SliderButtonBox}>
@@ -64,7 +63,7 @@ const Customer_Review = () => {
           </div>
         </CarouselProvider>
       </CustomSection>
-    </>
+    </div>
   );
 };
 

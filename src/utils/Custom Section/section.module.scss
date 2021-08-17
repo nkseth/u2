@@ -1,7 +1,7 @@
 .container {
   position: relative;
   // width: 100%;
-  padding: 0 112px;
+  padding: 0 50px;
 }
 
 @media screen and( max-width: 945px) {
@@ -18,7 +18,7 @@
 
 @media screen and( max-width: 768px) {
   .container {
-    padding: 0 30px;
+    padding: 7px 8px !important;
   }
 }
 

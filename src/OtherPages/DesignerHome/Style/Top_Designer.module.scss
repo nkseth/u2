@@ -1,7 +1,7 @@
 //here Top_Designer Styles
 .Top_Designer_header {
   color: #000;
-  font-style: italic;
+ 
 }
 .Top_Designer {
   display: flex;
@@ -12,20 +12,20 @@
   .Top_Designer_Items {
     display: grid;
     justify-content: center;
-    background: #fff;
-    box-shadow: 0px 5px 10px #00000041;
+   
     img {
-      height: 300px;
-      width: 250px;
+      height: 330px;
+      width: 100%;
       object-fit: cover;
+      border: 7px solid #9D8E73;
     }
     a {
-      font-family: "Quicksand";
-      font-size: 25px;
+      font-size: 19px;
       font-weight: 400;
-      color: #6a5b40;
       text-align: center;
-      padding: 0.3rem;
+      padding: 20px 0px;
+      color: black;
+      font-weight: 500;
     }
   }
 }
@@ -70,14 +70,15 @@
 @media screen and (max-width: 786px) {
   .Carousel_header {
     text-align: center;
-    font-size: 44px;
+    font-size: 54px;
+    font-weight: 400;
     line-height: 44px;
   }
   .Top_Designer {
     .Top_Designer_Items {
       a {
-        font-size: 24px;
-        font-weight: 400;
+        font-size: 25px;
+        font-weight: 700;
       }
     }
   }

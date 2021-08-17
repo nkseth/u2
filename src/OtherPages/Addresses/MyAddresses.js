@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./MyAddresses.module.scss";
-import { Button, Radio } from "@material-ui/core";
+import { Button, Radio, useMediaQuery, useTheme } from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { useHistory } from "react-router-dom";
 const MyAddresses = () => {
@@ -69,6 +69,7 @@ const MyAddresses_Cards = () => {
 
 const Add_New_Address_Card = () => {
   const { push } = useHistory();
+
   return (
     <Button
       onClick={() => push("/addNewaddress")}
@@ -85,6 +86,8 @@ const Add_New_Address_Card = () => {
 };
 
 const Old_Address_Card = ({ CardName, Mobile, Address }) => {
+  const Theme = useTheme();
+  const match = useMediaQuery(Theme.breakpoints.down("sm"));
   return (
     <div className={styles.Old_Address_Card}>
       <div className={styles.Old_Address_Card_Top}>
@@ -106,10 +109,17 @@ const Old_Address_Card = ({ CardName, Mobile, Address }) => {
           {Mobile}
         </p>
       </div>
-      <div className={styles.Old_Address_Card_Bottom}>
-        <Button>Edit</Button>
-        <Button>Delete</Button>
-      </div>
+      {match ? (
+        <div className={styles.Old_Address_Card_Bottom}>
+          <Button>Edit</Button>
+          <Button>Delete</Button>
+        </div>
+      ) : (
+        <div className={styles.Old_Address_Card_Bottom}>
+          <Button>Edit</Button>
+          <Button>Delete</Button>
+        </div>
+      )}
     </div>
   );
 };

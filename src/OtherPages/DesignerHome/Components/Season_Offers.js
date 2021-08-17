@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/Season_Offers.module.scss";
 const Season_Offers = () => {
-  const baseStyle = { width: "90%", margin: "3rem auto" };
+  const baseStyle = { padding: "5rem 3rem" };
   // offer
   const { push } = useHistory();
   const Handler = () => {
@@ -13,8 +13,8 @@ const Season_Offers = () => {
   return (
     <div style={baseStyle}>
       <div className={` ${styles.Season_Offers_header}`}>
-        Season Offers
-        <CustomDivider style={{ height: "2px", background: "#857250" }} />
+      Top Offers of the Season 
+        <CustomDivider style={{ height: "1px", background: "#857250" }} />
       </div>
       <div className={styles.Season_Offers}>
         <div className={styles.Season_Offers_Item1}>

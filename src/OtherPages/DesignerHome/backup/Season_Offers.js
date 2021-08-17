@@ -30,7 +30,7 @@ const Season_Offers = (props) => {
     <div style={baseStyle}>
       <div className={` ${styles.Season_Offers_header}`}>
         Season Offers
-        <CustomDivider style={{ height: "2px", background: "#857250" }} />
+        <CustomDivider style={{ height: "1px", background: "#857250" }} />
       </div>
       <div className={styles.Season_Offers}>
         {!isLoading ? groupTwo.map((value,key)=>(

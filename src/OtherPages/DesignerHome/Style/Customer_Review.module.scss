@@ -8,6 +8,7 @@
   gap: 1rem;
   align-items: center;
   justify-content: space-evenly;
+
   .Customer_Review_Items {
     display: flex;
     flex-direction: column;
@@ -15,15 +16,16 @@
     align-items: center;
     background: #fff;
     border: 2px solid #8572508c;
-    height: 350px;
-    width: 280px;
+    height: 370px;
+    width: 100%;
     position: relative;
+    padding: 0 3rem;
     box-shadow: 0px 5px 10px #85725048;
     h4 {
       margin-top: 0.75rem;
       text-align: center;
       // font-size: 28px;
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 400;
     }
     span {
@@ -42,8 +44,8 @@
     p {
       text-align: center;
       padding: 0.3rem;
-      // font-size: 16px;
-      font-size: 13px;
+      font-size: 16px;
+      // font-size: 13px;
       font-weight: 400;
     }
   }
@@ -55,7 +57,7 @@
   font-weight: 400;
   line-height: 54px;
   letter-spacing: -1.5px;
-  margin-bottom: 62px;
+  margin-bottom: 0px;
 }
 .NavigationContainer {
   margin-top: 1rem;
@@ -86,7 +88,8 @@
 @media screen and (max-width: 786px) {
   .Carousel_header {
     text-align: center;
-    font-size: 44px;
+    font-size: 54px;
     line-height: 44px;
+    font-weight: 400;
   }
 }

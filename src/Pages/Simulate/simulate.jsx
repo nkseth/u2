@@ -12,8 +12,9 @@ export default function Simulate() {
   const history = useHistory();
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
-  const img =
-    "https://s3-alpha-sig.figma.com/img/ab15/ade4/24d142b81e7197b510277e429c7e20ad?Expires=1627257600&Signature=HQi-cbxYjiCrsKpSBS~JGtlykUCZU11~AbTTibpi0LUnXjK2O9OalcSIX6DVxBRCt691JpsOE3AEAGBqif1WqsMn95pE63V1HrW4yQG326ewVviLu7ExzvK-kLuOBu3igMIqnWcB77HM21hKg5eWoC8cJuY2sV5D1a3uinV3fB~uk6FTtoHr~adsgMMGoGtVKuSoIEDZEK-6fcoE7gfCtU-II2bDgcVfQ-tBz8bP5vjQ8zam~8T7oGcg5Z924wAHoqs~HfRYf7DB44mxPFB~o8mm6HCfAgpuV0tAo-oGWpfjxKV7ZLDm~wfKM9ydnv2LvvYSzFPhP9b6~3vGvCgC7A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
+  const img="https://images.pexels.com/photos/7137411/pexels-photo-7137411.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  // const img =
+  //   "https://s3-alpha-sig.figma.com/img/ab15/ade4/24d142b81e7197b510277e429c7e20ad?Expires=1627257600&Signature=HQi-cbxYjiCrsKpSBS~JGtlykUCZU11~AbTTibpi0LUnXjK2O9OalcSIX6DVxBRCt691JpsOE3AEAGBqif1WqsMn95pE63V1HrW4yQG326ewVviLu7ExzvK-kLuOBu3igMIqnWcB77HM21hKg5eWoC8cJuY2sV5D1a3uinV3fB~uk6FTtoHr~adsgMMGoGtVKuSoIEDZEK-6fcoE7gfCtU-II2bDgcVfQ-tBz8bP5vjQ8zam~8T7oGcg5Z924wAHoqs~HfRYf7DB44mxPFB~o8mm6HCfAgpuV0tAo-oGWpfjxKV7ZLDm~wfKM9ydnv2LvvYSzFPhP9b6~3vGvCgC7A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
   return (
     <Container bottomDivider footerOnTabMob>
       <section>

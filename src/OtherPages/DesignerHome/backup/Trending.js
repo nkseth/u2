@@ -28,7 +28,7 @@ const Trending = (props) => {
     <div style={baseStyle}>
       <div className={`${styles.Trending_header}`}>
         Trending
-        <CustomDivider style={{ height: "2px", background: "#857250" }} />
+        <CustomDivider style={{ height: "1px", background: "#857250" }} />
       </div>
       <div className={styles.Trending}>
         {!isLoading  ? trending.map((value,key)=>(

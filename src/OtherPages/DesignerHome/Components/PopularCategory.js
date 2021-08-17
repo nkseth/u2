@@ -4,14 +4,14 @@ import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/PopularCategory.module.scss";
 //TRBL
 const PopularCategory = () => {
-  const baseStyle = { width: "90%", margin: "1rem auto 3rem auto" };
+  const baseStyle = {  padding: "5rem 3rem" };
 
   return (
     <>
       <div style={baseStyle}>
         <div className={`${styles.PopularCategory_header}`}>
           Popular Category
-          <CustomDivider style={{ height: "2px", background: "#857250" }} />
+          <CustomDivider style={{ height: "1px", background: "#857250" }} />
         </div>
         <div className={`${styles.Category} Category`}>
           <div className={`${styles.Category_item1} Category_item1`}>

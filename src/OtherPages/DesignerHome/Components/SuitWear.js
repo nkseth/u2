@@ -16,9 +16,8 @@ import styles from "../Style/SuitWear.module.scss";
 
 const SuitWear = () => {
   const customStyle = {
-    paddingTop: "3rem",
-    paddingBottom: "3rem",
-    background: "#857250",
+    padding: "5rem 4rem",
+    background: "#938368",
   };
   return (
     <>
@@ -41,7 +40,7 @@ const SuitWear = () => {
               <CarouselSlide />
             </Slide>
           </Slider>
-          <DotGroup style={{ display: "flex" }} />
+          <DotGroup style={{ display: "flex" , marginTop: "1rem" }} />
           <div className={styles.NavigationContainer}>
             <Link style={{ color: "#fff" }} to="designers-product-page">
               SEE All

@@ -14,7 +14,7 @@ const Talk_With_Stylish = () => {
           similique perferendis architecto pariatur quo, libero illo eos
           consectetur debitis ea sunt inventore.
         </p>
-        <Button onClick={() => push("talk-with-stylish")}>Learn More</Button>
+        <Button onClick={() => push("talk-with-stylish")}>chat</Button>
       </div>
     </div>
   );

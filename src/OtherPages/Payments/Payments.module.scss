@@ -153,6 +153,7 @@
   .EditPayments_Top {
     display: flex;
     align-items: center;
+    margin-left: -15px;
     span {
       display: flex;
       align-items: center;
@@ -165,7 +166,7 @@
       font-weight: 400;
       font-family: DM Serif Display;
       color: black;
-      border-bottom: 1px solid;
+      
       font-size: 28px;
     }
   }
@@ -226,6 +227,9 @@
   .EditPayments {
     .EditPayments_Inputs {
       grid-template-columns: 1fr;
+    }
+    .EditPayments_Top{
+      margin-left: -15px;
     }
   }
 }

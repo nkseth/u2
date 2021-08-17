@@ -6,14 +6,14 @@ import styles from "../Style/Trending.module.scss";
 const Trending = () => {
   const imageSrc =
     "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  const baseStyle = { padding: "3rem", background: " #e9e9e9" };
+  const baseStyle = { padding: "5rem 3rem", background: "  #F3F1EE" };
 
   const { push } = useLocation();
   return (
     <div style={baseStyle}>
       <div className={`${styles.Trending_header}`}>
         Trending
-        <CustomDivider style={{ height: "2px", background: "#857250" }} />
+        <CustomDivider style={{ height: "1px", background: "#857250" }} />
       </div>
       <div className={styles.Trending}>
         <div className={styles.Trending_Items}>

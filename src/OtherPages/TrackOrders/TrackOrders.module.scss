@@ -11,9 +11,9 @@
 .TrackOrders_Timeline_Time {
   padding: 0.4rem;
   p {
-    font-size: 11px;
+    font-size: 12px;
     &:nth-of-type(1) {
-      font-weight: 400;
+      font-weight: 500;
       color: #444;
     }
   }
@@ -80,3 +80,26 @@
     }
   }
 }
+@media screen and (max-width: 550px) {
+  .TrackOrders_Timeline_Time{
+    p{
+      font-size: 10px;  
+      font-weight: 500;
+    }
+  }
+  .TrackOrders_Timeline_info{
+    h4{
+      font-size: 14px;
+      font-weight: 700;
+    }
+    p{
+      font-size: 10px;
+      font-weight: 500;
+    }
+    button{
+      font-size: 9px !important;
+      font-weight: 700 !important;
+    }
+  }
+}
+

@@ -39,9 +39,11 @@
   font-weight: 700 !important;
   line-height: 16px !important;
   background-color: #fff !important;
-  color: var(--primary-color-dark);
+  color: #6A5B40 !important;
 }
-
+.button:after{
+  background-color: #fff !important;
+}
 @media screen and (max-width: 835px) {
   .container {
   }

@@ -94,7 +94,7 @@ export default function OrderSummary() {
             <div>
               <div></div>
             </div>
-            <div>Order conformation email will be send to your email id</div>
+            <div>Order confirmation email will be send to your email id</div>
           </div>
           <div className={styles.lastContainer}>
             <div>

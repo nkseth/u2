@@ -12,21 +12,24 @@ import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
-import styles from "../Style/SuitWear.module.scss";
-
-const SuitWear = () => {
+import styles from "../Style/Customer_Review.module.scss";
+import ReactStars from "react-rating-stars-component";
+const Customer_Review = () => {
   const customStyle = {
     paddingTop: "3rem",
     paddingBottom: "3rem",
-    background: "#857250",
+    background: "#fff",
   };
   return (
     <>
       <CustomSection style={customStyle}>
-        <div className={`${styles.SuitWear_header}`}>
-          Suit Wear{" "}
+        <div
+          className={`${styles.Carousel_header} ${styles.Customer_Review_header}`}
+        >
+          Customer Review{" "}
           <CustomDivider style={{ height: "2px", background: "#fff" }} />
         </div>
+
         <CarouselProvider
           naturalSlideWidth={100}
           totalSlides={2}
@@ -43,7 +46,7 @@ const SuitWear = () => {
           </Slider>
           <DotGroup style={{ display: "flex" }} />
           <div className={styles.NavigationContainer}>
-            <Link style={{ color: "#fff" }} to="designers-product-page">
+            <Link style={{ color: "#2196f3" }} to="/">
               SEE All
             </Link>
             <div className={styles.Carousel_SliderButtonBox}>
@@ -65,34 +68,45 @@ const SuitWear = () => {
   );
 };
 
-export default SuitWear;
+export default Customer_Review;
 
 const CarouselSlide = () => {
   const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
+    "https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__340.jpg";
   const media = useMediaQuery(`(max-width:768px)`);
   return (
     <>
-      <div className={styles.SuitWear}>
-        <div className={styles.SuitWear_Items}>
+      <div className={styles.Customer_Review}>
+        <div className={styles.Customer_Review_Items}>
+          <span>Date</span>
           <img src={imageSrc} alt="items" />
-          <Link to="designers-product-page">Wear</Link>
-        </div>{" "}
-        <div className={styles.SuitWear_Items}>
+          <h4>Name</h4>
+          <ReactStars size={30} activeColor="#ffd700" />
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+            nobis eos cupiditate voluptates.
+          </p>
+        </div>
+        <div className={styles.Customer_Review_Items}>
+          <span>Date</span>
           <img src={imageSrc} alt="items" />
-          <Link to="designers-product-page">Wear</Link>
-        </div>{" "}
+          <h4>Name</h4>
+          <ReactStars size={30} activeColor="#ffd700" />
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+            nobis eos cupiditate voluptates.
+          </p>
+        </div>
         {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={imageSrc} alt="items" />
-              <Link to="designers-product-page">Wear</Link>
-            </div>{" "}
-            <div className={styles.SuitWear_Items}>
-              <img src={imageSrc} alt="items" />
-              <Link to="designers-product-page">Wear</Link>
-            </div>
-          </>
+          <div className={styles.Customer_Review_Items}>
+            <span>Date</span>
+            <img src={imageSrc} alt="items" />
+            <h4>Name</h4>
+            <ReactStars size={30} activeColor="#ffd700" />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+            </p>
+          </div>
         )}
       </div>
     </>

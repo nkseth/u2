@@ -14,8 +14,8 @@ function Products(props) {
       <CustomSection
         style={{
           backgroundColor: "#ffffff",
-          paddingBottom: mobileView ? "40px" : "84px",
-          paddingTop: mobileView ? "30px" : "45px",
+          paddingBottom: mobileView ? "40px" : "40px",
+          paddingTop: mobileView ? "30px" : "5px",
         }}
       >
         <div className={styles.mainContainer} style={{backgroundColor:"#ffffff"}}>

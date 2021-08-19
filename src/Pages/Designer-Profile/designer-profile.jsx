@@ -22,7 +22,10 @@ function DesignerProfile(props) {
           mobileView ?
           <div style={{fontSize: "30px", textAlign:"center",margin:"auto", fontFamily:"DM Serif Display", width:"85%"}}>
                 <h1 style={{fontSize:"35px",fontWeight:"400px"}}>Designer Profile</h1>
-                <Button style={{color:"white", background:"#857250", float:"right",marginLeft:300}}>Filter</Button>
+                <div style={{float:"right"}}>
+                  <Button style={{color:"white", background:"#857250" ,marginLeft:300}}>Filter</Button>
+                </div>
+                
                 <Designers></Designers>
             </div>
             :

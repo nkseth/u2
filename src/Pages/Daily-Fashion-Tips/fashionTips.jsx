@@ -29,7 +29,7 @@ export default function FashionTips(props) {
             </div>
             :
             <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
-            <h1 style={{fontSize:"30px"}}>Daily Fashion Tips</h1>
+            <h1 style={{fontSize:"35px"}}>Daily Fashion Tips</h1>
             <div style={{margin:"20px auto"}}>
                 <img src={Image} width="95%"></img></div>
         </div>

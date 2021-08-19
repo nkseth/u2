@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import { Box, Container, Icon } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
+
 const useStyles = makeStyles({
   root: {
     minWidth: 300,
@@ -44,7 +45,7 @@ const useStyles = makeStyles({
   },
   que:{
     fontFamily:"DM Serif Display",
-    fontSize:"28px"
+    fontSize: "28px",
   },
   box:{
     paddingTop:50
@@ -76,18 +77,18 @@ export default function ResultCard() {
           <Button className={classes.btn} size="small"><Star size="small" />500 Voucher</Button>
       
           <Box width="100%" className={classes.box}>
-      <Box width="25%" boxSizing bgcolor="grey.300"  p={1} my={0.5}>Width 25%
+      <Box width="30%" boxSizing bgcolor="grey.300"  p={1} my={0.5}>Width 25%
        </Box>
   
      
-      <Box width="25%" boxSizing bgcolor="grey.300" p={1} my={0.5}>Width 25%
+      <Box width="30%" boxSizing bgcolor="grey.300" p={1} my={0.5}>Width 25%
        </Box>
     
      
-      <Box width="25%" boxSizing bgcolor="grey.300"  p={1} my={0.5}>Width 25%
+      <Box width="30%" boxSizing bgcolor="grey.300"  p={1} my={0.5}>Width 25%
        </Box>
     
-      <Box width="25%" boxSizing bgcolor="grey.300" p={1} my={0.5}>Width 25%
+      <Box width="30%" boxSizing bgcolor="grey.300" p={1} my={0.5}>Width 25%
        </Box>
       </Box>
       </CardContent>

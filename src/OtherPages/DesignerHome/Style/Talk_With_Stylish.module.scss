@@ -45,7 +45,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .Talk_With_Stylish {
     div {
       margin-right: 0;

@@ -65,11 +65,23 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .Season_Offers_header {
     font-size: 50px;
     font-weight: 400;
    
+  }
+  .Season_Offers_Item1{
+    height: 500px;
+  }
+  .Season_Offers_Item2{
+    height: 350px;
+  }
+  .Season_Offers_Item3{
+    height: 250px;
+  }
+  .seasonsoffer {
+    padding: 3rem 2rem 40rem 2rem !important;
   }
   .Season_Offers {
     display: flex;

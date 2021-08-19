@@ -59,7 +59,13 @@
   gap: 4rem;
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .Trending_Button {
+    padding-top: 3rem;
+  }
+  .trending_content {
+    padding: 5rem 2rem !important;
+  }
   .Trending_header {
     font-size: 54px;
     font-weight: 400;

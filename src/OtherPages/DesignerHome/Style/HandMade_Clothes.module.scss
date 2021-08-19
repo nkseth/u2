@@ -68,7 +68,10 @@
 
 //-----------------------//
 
-@media screen and (max-width: 786px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .handmadeclothes {
+    padding: 3rem 2rem !important;
+  }
   .Carousel_header {
     text-align: center;
     font-size: 54px;

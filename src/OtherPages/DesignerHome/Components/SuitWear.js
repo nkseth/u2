@@ -75,7 +75,7 @@ const CarouselSlide = () => {
     "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
   const media = useMediaQuery(`(max-width:768px)`);
   return (
-    <>
+    <div className>
       <div className={styles.SuitWear}>
         <div className={styles.SuitWear_Items}>
           <img src={p1} alt="items" />
@@ -94,6 +94,6 @@ const CarouselSlide = () => {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 };

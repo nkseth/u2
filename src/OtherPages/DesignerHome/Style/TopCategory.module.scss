@@ -79,60 +79,46 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .TopCategory {
+    margin-top: 9rem;
+    grid-template-columns: repeat(3, 1fr);
+    padding-left: 0;
+    padding-right: 0;
+    .TopCategory_Items {
+      img {
+        height: 540px;
+      }
+      p {
+        padding-right: 1rem !important;
+      }
+    }
+
+  }
+  .hidden_web {
+    display: block !important;
+  }
+  .TopCategory .TopCategory_Items:nth-of-type(1) {
+    display: none !important;
+  }
+  .top_category_title {
+    padding-left: 2rem;
+    display: block !important;
+    color: #6A5B40;
+    text-align: left;
+    padding-top: 3rem;
+    font-family: DM Serif Display;
+    font-size: 54px;
+    font-weight: 400;
+    line-height: 54px;
+    letter-spacing: -1.5px;
+  }
   
   .TopCategory_header {
 
     font-size: 2rem;
   }
-  .TopCategory {
-    height: auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.3rem;
-    margin-top: 0;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-    background-color: #fff;
-    .TopCategory_Items {
-      margin-top: 0;
-      img {
-        height: 350px;
-        width: 100%;
-        object-fit: cover;
-      }
-      h1 {
-        line-height: 60px;
-        width: 100%;
-        padding-top: 0rem;
-        font-size: 54px;
-        font-weight: 400;
-      }
-      .TopCategory_Items_Layer {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: flex-end;
-        .TopCategory_Items_Layer_text {
-          h2 {
-            font-family: DM Serif Display;
-            font-size: 35px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 45px;
-            letter-spacing: 1.600000023841858px;
-            text-align: left;
-          }
-          p {
-            font-size: 18px;
-            padding-right: 1rem;
-            font-weight: 500;
-          }
-        }
-      }
-    }
-  }
+  
 }
 .top_category_title {
   display: none;

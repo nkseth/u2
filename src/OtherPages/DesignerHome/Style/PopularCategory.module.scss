@@ -72,21 +72,28 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   //Here Category
   .popularcategory_content {
-    padding: 3rem 1rem !important;
+    padding: 3rem 2rem !important;
   }
   .PopularCategory_header {
-    font-size: 30px;
+    font-size: 54px;
     font-weight: 400;
+    grid-gap: 1rem;
     gap: 1rem;
-    margin-bottom: 20px;
-    
+    margin-bottom: 45px;
   }
   .Category {
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(1, 1fr);
+    // grid-template-columns: repeat(4, 1fr);
+    // grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+        "one one two two"
+        "one one two two"
+        "three three four four"
+        "three three four four"
+        "five five six six";
+    grid-template-rows: repeat(4, 100px);
     gap: 8px;
     div {
       a {
@@ -98,22 +105,28 @@
       }
     }
     .Category_item1 {
-      grid-area: auto; 
+      height: 205px;
+      grid-area: one;
     }
     .Category_item2 {
-      grid-area: auto;
+      height: 205px;
+      grid-area: two;
     }
     .Category_item3 {
-      grid-area:auto;
+      height: 205px;
+      grid-area:three;
     }
     .Category_item4 {
-      grid-area: auto;
+      height: 205px;
+      grid-area: four;
     }
     .Category_item5 {
-      grid-area: auto;
+      height: 205px;
+      grid-area: five;
     }
     .Category_item6 {
-      grid-area: auto;
+      height: 205px;
+      grid-area: six;
     }
   }
 }

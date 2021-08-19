@@ -21,7 +21,7 @@ const Customer_Review = () => {
   };
   return (
     <div className="customer_review_content">
-      <CustomSection style={customStyle}>
+      <CustomSection class={styles.customerreview} style={customStyle}>
         <div
           className={`${styles.Carousel_header} ${styles.Customer_Review_header}`}
         >

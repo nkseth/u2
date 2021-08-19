@@ -13,16 +13,20 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/Top_Designer.module.scss";
+import d1 from '../Images/d1.png'
+import d2 from '../Images/d2.png'
+import d3 from '../Images/d3.png'
+import d4 from '../Images/d4.png'
 
 const Top_Designer = () => {
 
-  const customStyle = {
+  const baseStyle = {
    padding: "5rem 3rem",
     background: "#fff",
   };
   return (
     <div className="top_designer">
-      <CustomSection style={customStyle}>
+      <CustomSection class={styles.topdesigner} style={baseStyle}>
         <div
           className={`${styles.Carousel_header} ${styles.Top_Designer_header}`}
         >
@@ -78,21 +82,21 @@ const CarouselSlide = () => {
     <>
       <div className={styles.Top_Designer}>
         <div className={styles.Top_Designer_Items}>
-          <img src={imageSrc} alt="items" />
+          <img src={d1} alt="items" />
           <Link to="designers-profile">Text Here</Link>
         </div>{" "}
         <div className={styles.Top_Designer_Items}>
-          <img src={imageSrc} alt="items" />
+          <img src={d2} alt="items" />
           <Link to="designers-profile">Text Here</Link>
         </div>{" "}
         {media ? null : (
           <>
             <div className={styles.Top_Designer_Items}>
-              <img src={imageSrc} alt="items" />
+              <img src={d3} alt="items" />
               <Link to="designers-profile">Text Here</Link>
             </div>{" "}
             <div className={styles.Top_Designer_Items}>
-              <img src={imageSrc} alt="items" />
+              <img src={d4} alt="items" />
               <Link to="designers-profile">Text Here</Link>
             </div>
           </>

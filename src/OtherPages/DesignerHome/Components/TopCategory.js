@@ -2,13 +2,15 @@ import { Button } from "@material-ui/core";
 import React from "react";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/TopCategory.module.scss";
+import Img1 from '../Images/img1.png'
 const TopCategory = () => {
   const baseStyle = {  };
   return (
     <div style={baseStyle}>
+      <h1 className={styles.top_category_title}>Top Category 2021</h1>
       <div className={styles.TopCategory}>
         <div className={styles.TopCategory_Items}>
-          <h1>Top Category 2021</h1>
+          <h1 class="hidden_mobile">Top Category 2021</h1>
         </div>
         <CategoryItems />
         <CategoryItems />
@@ -26,7 +28,7 @@ const CategoryItems = () => {
   return (
     <>
       <div className={styles.TopCategory_Items}>
-        <img src={imageSrc} alt="items" />
+        <img src={Img1} alt="items" />
         <div className={styles.TopCategory_Items_Layer}>
           <div className={styles.TopCategory_Items_Layer_text}>
             <h2>

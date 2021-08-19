@@ -13,15 +13,19 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/SuitWear.module.scss";
+import p1 from "../Images/p5.png";
+import p2 from "../Images/p2.png";
+import p3 from "../Images/p3.png";
+import p4 from "../Images/p4.png";
 
 const SuitWear = () => {
   const customStyle = {
-    padding: "5rem 4rem",
+    padding: "5rem 3rem",
     background: "#938368",
   };
   return (
-    <>
-      <CustomSection style={customStyle}>
+    <div>
+      <CustomSection class={styles.suitwear_content} style={customStyle}>
         <div className={`${styles.SuitWear_header}`}>
           Suit Wear{" "}
           <CustomDivider style={{ height: "2px", background: "#fff" }} />
@@ -40,7 +44,7 @@ const SuitWear = () => {
               <CarouselSlide />
             </Slide>
           </Slider>
-          <DotGroup style={{ display: "flex" , marginTop: "1rem" }} />
+          <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
           <div className={styles.NavigationContainer}>
             <Link style={{ color: "#fff" }} to="designers-product-page">
               SEE All
@@ -60,7 +64,7 @@ const SuitWear = () => {
           </div>
         </CarouselProvider>
       </CustomSection>
-    </>
+    </div>
   );
 };
 
@@ -74,23 +78,19 @@ const CarouselSlide = () => {
     <>
       <div className={styles.SuitWear}>
         <div className={styles.SuitWear_Items}>
-          <img src={imageSrc} alt="items" />
+          <img src={p1} alt="items" />
           <Link to="designers-product-page">Wear</Link>
         </div>{" "}
         <div className={styles.SuitWear_Items}>
-          <img src={imageSrc} alt="items" />
+          <img src={p2} alt="items" />
           <Link to="designers-product-page">Wear</Link>
         </div>{" "}
         {media ? null : (
           <>
             <div className={styles.SuitWear_Items}>
-              <img src={imageSrc} alt="items" />
+              <img src={p3} alt="items" />
               <Link to="designers-product-page">Wear</Link>
             </div>{" "}
-            <div className={styles.SuitWear_Items}>
-              <img src={imageSrc} alt="items" />
-              <Link to="designers-product-page">Wear</Link>
-            </div>
           </>
         )}
       </div>

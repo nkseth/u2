@@ -4,7 +4,7 @@
 }
 .HandMade_Clothes {
   display: flex;
-  height: 400px;
+  height: 520px;
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
@@ -12,10 +12,10 @@
     display: grid;
     justify-content: center;
     background: #fff;
-    width: 300px;
+    width: 100%;
     box-shadow: 0px 5px 10px #00000041;
     img {
-      height: 300px;
+      height: 100%;
       width: 100%;
       object-fit: cover;
     }
@@ -78,6 +78,32 @@
   .HandMade_Clothes {
     .HandMade_Clothes_Items {
       width: 100%;
+    }
+  }
+}
+
+
+@media screen and (max-width: 450px){
+  .HandMade_Clothes_header {
+    font-size: 35px;
+  }
+  
+  .handmadeclothes {
+    padding: 3rem 1rem !important;
+  }
+  .HandMade_Clothes {
+   
+    height: 400px;
+    
+    .HandMade_Clothes_Items {
+
+      img {
+        height: 250px;
+        
+      }
+      p {
+        
+      }
     }
   }
 }

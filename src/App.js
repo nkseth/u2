@@ -128,7 +128,6 @@ function App() {
         {/* Without Side Bar */}
         <Route path={"/designers-profile"} component={Designers_Profile_Page} />
         <Route path={"/talk-with-stylish"} component={Expert_Chat_Page} />
-
         {/* New 18 Screen Added here  */}
         <Route
           path="/measurement-and-simulation"

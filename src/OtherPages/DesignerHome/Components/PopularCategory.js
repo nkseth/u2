@@ -2,20 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/PopularCategory.module.scss";
+import p1 from "../Images/c1.png";
 //TRBL
 const PopularCategory = () => {
-  const baseStyle = {  padding: "5rem 3rem" };
+  const baseStyle = { padding: "5rem 3rem" };
 
   return (
     <>
-      <div style={baseStyle}>
+      <div className={styles.popularcategory_content} style={baseStyle}>
         <div className={`${styles.PopularCategory_header}`}>
           Popular Category
           <CustomDivider style={{ height: "1px", background: "#857250" }} />
         </div>
         <div className={`${styles.Category} Category`}>
           <div className={`${styles.Category_item1} Category_item1`}>
-            <Link to="designers-product-page">Wear</Link>
+            <Link to="designers-product-page">
+              
+              Wear</Link>
           </div>
           <div className={`${styles.Category_item2} Category_item2`}>
             <Link to="designers-product-page">Wear</Link>{" "}

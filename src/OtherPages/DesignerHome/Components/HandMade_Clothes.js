@@ -13,6 +13,9 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/HandMade_Clothes.module.scss";
+import h1 from '../Images/h1.png'
+import h2 from '../Images/h2.png'
+import h3 from '../Images/h3.png'
 
 const HandMade_Clothes = () => {
   const customStyle = {
@@ -21,7 +24,7 @@ const HandMade_Clothes = () => {
   };
   return (
     <div className="hande_made_clothes">
-      <CustomSection style={customStyle}>
+      <CustomSection class={styles.handmadeclothes} style={customStyle}>
         <div
           className={`${styles.Carousel_header} ${styles.HandMade_Clothes_header}`}
         >
@@ -77,21 +80,21 @@ const CarouselSlide = () => {
     <>
       <div className={styles.HandMade_Clothes}>
         <div className={styles.HandMade_Clothes_Items}>
-          <img src={imageSrc} alt="items" />
+          <img src={h1} alt="items" />
           <p>Text Here</p>
         </div>{" "}
         <div className={styles.HandMade_Clothes_Items}>
-          <img src={imageSrc} alt="items" />
+          <img src={h2} alt="items" />
           <p>Text Here</p>
         </div>{" "}
         {media ? null : (
           <>
             <div className={styles.HandMade_Clothes_Items}>
-              <img src={imageSrc} alt="items" />
+              <img src={h3} alt="items" />
               <p>Text Here</p>
             </div>{" "}
             <div className={styles.HandMade_Clothes_Items}>
-              <img src={imageSrc} alt="items" />
+              <img src={h1} alt="items" />
               <p>Text Here</p>
             </div>
           </>

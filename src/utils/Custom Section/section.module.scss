@@ -18,7 +18,7 @@
 
 @media screen and( max-width: 768px) {
   .container {
-    padding: 7px 8px !important;
+    padding: 7px 8px;
   }
 }
 
@@ -26,4 +26,7 @@
   .container {
     padding: 1rem;
   }
+}
+body {
+  overflow-x: hidden;
 }

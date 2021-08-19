@@ -17,7 +17,8 @@
     img {
       height: 300px;
       width: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: top;
     }
     a {
       font-size: 16px;
@@ -71,12 +72,30 @@
   }
 }
 @media screen and (max-width: 420px) {
+  .trending_content{
+    padding: 2rem 1rem !important;
+  }
+  
   .Trending_header {
-    font-size: 1.8rem;
+    font-size: 20px;
+    gap: 1rem;
+    margin-bottom: 20px;
   }
   .Trending {
     height: auto;
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 2fr);
+    .Trending_Items {
+      img {
+        height: 160px;
+        
+      }
+    }
+  }
+  .Trending_Button {
+    
+    button {
+      margin-top: 20px;
+    }
   }
 }

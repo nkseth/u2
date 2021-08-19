@@ -93,3 +93,13 @@
     font-weight: 400;
   }
 }
+
+@media screen and (max-width: 450px){
+  .Carousel_header {
+    font-size: 35px;
+  }
+  .customerreview {
+    padding: 3rem 1rem !important;
+  }
+  
+}

@@ -10,10 +10,24 @@
   align-items: center;
   gap: 1rem;
 }
+.Season_Offers_Item1{
+  background-image: url('../Images//ss1.png');
+  background-size: cover;
+}
+.Season_Offers_Item2{
+  background-image: url('../Images//ss2.png');
+  background-size: cover;
+}
+.Season_Offers_Item3{
+  background-size: cover;
+  background-image: url('../Images//ss3.png');
+}
 .Season_Offers {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  // grid-template-columns: repeat(2, 1fr);
+  // grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  height: 550px;
   gap: 4px;
 
   // height: 500px;
@@ -53,8 +67,9 @@
 
 @media screen and (max-width: 768px) {
   .Season_Offers_header {
-    font-size: 54px;
+    font-size: 50px;
     font-weight: 400;
+   
   }
   .Season_Offers {
     display: flex;
@@ -68,5 +83,16 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 420px){
+  .Season_Offers_header {
+    font-size: 35px;
+    font-weight: 400;
+    line-height: 40px;
+  }
+  .seasonsoffer {
+    padding: 3rem 1rem 9rem 1rem !important;
   }
 }

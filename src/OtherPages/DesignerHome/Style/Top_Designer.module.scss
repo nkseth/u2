@@ -16,7 +16,7 @@
     img {
       height: 330px;
       width: 100%;
-      object-fit: cover;
+      object-fit: contain;
       border: 7px solid #9D8E73;
     }
     a {
@@ -64,7 +64,9 @@
     }
   }
 }
-
+.topdesigner{
+  padding: 12rem 1rem;
+}
 //-----------------------//
 
 @media screen and (max-width: 786px) {
@@ -83,7 +85,10 @@
     }
   }
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 420px) {
+  .topdesigner {
+    padding: 3rem 1rem !important;
+  }
   .Carousel_header {
     text-align: center;
     font-size: 32px;

@@ -9,22 +9,62 @@
   display: grid;
   place-content: center;
   button {
-    height: 200px;
-    width: 60vw;
+    height: 45px;
+    width: 170px;
+    font-size: 14px;
+    margin: 0 auto;
+    color: #857250;
+    background-color: #fff;
+    font-weight: 500;
     display: flex;
-
     justify-content: center;
     align-items: center;
-    background: #392d169a;
-    color: white;
     font-family: "DM Serif Display";
     text-transform: capitalize;
-    box-shadow: 0px 6px 10px #0000007d;
-    font-size: 54px;
+    // box-shadow: 0px 6px 10px #0000007d;
     &:hover {
-      background: #614c26b5;
-    }
+         background: #614c26b5;
+         color: #fff;
+      }
   }
+  h2 {
+    color: #fff;
+    font-size: 54px;
+    text-align: center;
+    font-family: "DM Serif Display";
+    padding-bottom: 20px;
+  }
+  p {
+    color: #fff;
+    font-family: Quicksand;
+    font-size: 16px;
+    margin-bottom: 20px !important;
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  // button {
+  //   height: 200px;
+  //   width: 60vw;
+  //   display: flex;
+
+  //   justify-content: center;
+  //   align-items: center;
+  //   background: #392d169a;
+  //   color: white;
+  //   font-family: "DM Serif Display";
+  //   text-transform: capitalize;
+  //   box-shadow: 0px 6px 10px #0000007d;
+  //   font-size: 54px;
+  //   &:hover {
+  //     background: #614c26b5;
+  //   }
+  // }
+}
+
+.collabrate_bg{
+  background: #392d169a;
+    padding: 3rem 7rem;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -34,6 +74,20 @@
       font-size: 54px;
       font-weight: 400;
       width: 70vw;
+    }
+  }
+}
+
+
+@media screen and (max-width: 420px){
+  .collabrate_bg{
+    
+      padding: 3rem 7rem;
+  }
+  .Collabrate_With_US  {
+    h2 {
+      font-size: 35px;
+      padding-bottom: 10px;
     }
   }
 }

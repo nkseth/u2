@@ -20,7 +20,7 @@ function DesignerProfile(props) {
         </CustomSection>
         {
           mobileView ?
-          <div style={{fontSize: "30px", textAlign:"center",margin:"auto", fontFamily:"DM Serif Display", width:"85%"}}>
+          <div style={{fontSize: "30px", textAlign:"center",margin:"auto", fontFamily:"DM Serif Display", width:"100%"}}>
                 <h1 style={{fontSize:"35px",fontWeight:"400px"}}>Designer Profile</h1>
                 <div style={{float:"right"}}>
                   <Button style={{color:"white", background:"#857250" ,marginLeft:300}}>Filter</Button>
@@ -31,7 +31,7 @@ function DesignerProfile(props) {
             :
             
             <div style={{fontSize: "30px", textAlign:"center",margin:"auto", fontFamily:"DM Serif Display", width:"85%"}}>
-              <div style={{display:"inline-block"}} > 
+              <div style={{display:"inline-block",width:'100%'}} > 
                 <h1 style={{fontSize:"54px",fontWeight:"400px",textAlign:"center",marginRight:100}}>Designer Profile</h1>
                 <Button style={{color:"white", background:"#857250",float:"right",marginLeft:"40%" }}>Filter</Button></div>
  <Designers ></Designers>

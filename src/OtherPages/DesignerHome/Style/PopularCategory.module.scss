@@ -130,3 +130,52 @@
     }
   }
 }
+@media screen and (max-width: 420px) {
+  .popularcategory_content {
+    padding: 3rem 1rem !important;
+  }
+  .PopularCategory_header {
+    font-size: 35px;
+    margin-bottom: 20px;
+    gap: 1rem;
+    
+  }
+  .Category {
+    grid-template-columns: repeat(1, 1fr);
+     grid-template-rows: repeat(1, 1fr);
+   
+    div {
+      a {
+        color: #fff;
+        padding: 0.4rem;
+        font-size: 28px;
+        font-family: "Quicksand";
+        font-weight: 400;
+      }
+    }
+    .Category_item1 {
+      height: 205px;
+      grid-area:inherit ;
+    }
+    .Category_item2 {
+      height: 205px;
+      grid-area:inherit ;
+    }
+    .Category_item3 {
+      height: 205px;
+      grid-area:inherit;
+    }
+    .Category_item4 {
+      height: 205px;
+      grid-area:inherit;
+    }
+    .Category_item5 {
+      height: 205px;
+      grid-area:inherit ;
+    }
+    .Category_item6 {
+      height: 205px;
+      grid-area:inherit ;
+    }
+  }
+}

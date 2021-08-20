@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IconButton, useMediaQuery } from "@material-ui/core";
+import { IconButton, useMediaQuery,useTheme } from "@material-ui/core";
 import {
   CarouselProvider,
   Slider,
@@ -17,6 +17,7 @@ import d1 from '../Images/d1.png'
 import d2 from '../Images/d2.png'
 import d3 from '../Images/d3.png'
 import d4 from '../Images/d4.png'
+import { useState } from "react";
 
 const Top_Designer = () => {
 
@@ -24,6 +25,10 @@ const Top_Designer = () => {
    padding: "5rem 3rem",
     background: "#fff",
   };
+  const [visible,setvisible]=useState(4)
+  const theme=useTheme()
+  const match=useMediaQuery(theme.breakpoints.down('xs'))
+  const iPade=useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <div className="top_designer">
       <CustomSection class={styles.topdesigner} style={baseStyle}>
@@ -35,18 +40,28 @@ const Top_Designer = () => {
         </div>
 
         <CarouselProvider
-          naturalSlideWidth={100}
-          totalSlides={2}
-          infinite
-          isIntrinsicHeight
+           visibleSlides={match?1:iPade?2:visible}
+           totalSlides={5}
+           infinite
+           isIntrinsicHeight
         >
           <Slider>
             <Slide index={0}>
               <CarouselSlide />
             </Slide>
             <Slide index={1}>
-              <CarouselSlide />
+              <CarouselSlide2 />
             </Slide>
+            <Slide index={2}>
+              <CarouselSlide3 />
+            </Slide>
+            <Slide index={3}>
+              <CarouselSlide4 />
+            </Slide>
+            <Slide index={4}>
+              <CarouselSlide5 />
+            </Slide>
+            
           </Slider>
           <DotGroup style={{ display: "flex" , marginTop: "1rem" }} />
           <div className={styles.NavigationContainer}>
@@ -83,25 +98,69 @@ const CarouselSlide = () => {
       <div className={styles.Top_Designer}>
         <div className={styles.Top_Designer_Items}>
           <img src={d1} alt="items" />
-          <Link to="designers-profile">Text Here</Link>
+          <Link to="designers-profile">1</Link>
         </div>{" "}
+       </div>
+    </>
+  );
+};
+const CarouselSlide2 = () => {
+  const media = useMediaQuery(`(max-width:768px)`);
+  const imageSrc =
+    "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
+  return (
+    <>
+      <div className={styles.Top_Designer}>
+        <div className={styles.Top_Designer_Items}>
+          <img src={d4} alt="items" />
+          <Link to="designers-profile">2</Link>
+        </div>{" "}
+       </div>
+    </>
+  );
+};
+const CarouselSlide3 = () => {
+  const media = useMediaQuery(`(max-width:768px)`);
+  const imageSrc =
+    "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
+  return (
+    <>
+      <div className={styles.Top_Designer}>
         <div className={styles.Top_Designer_Items}>
           <img src={d2} alt="items" />
-          <Link to="designers-profile">Text Here</Link>
+          <Link to="designers-profile">3</Link>
         </div>{" "}
-        {media ? null : (
-          <>
-            <div className={styles.Top_Designer_Items}>
-              <img src={d3} alt="items" />
-              <Link to="designers-profile">Text Here</Link>
-            </div>{" "}
-            <div className={styles.Top_Designer_Items}>
-              <img src={d4} alt="items" />
-              <Link to="designers-profile">Text Here</Link>
-            </div>
-          </>
-        )}
-      </div>
+       </div>
+    </>
+  );
+};
+const CarouselSlide4 = () => {
+  const media = useMediaQuery(`(max-width:768px)`);
+  const imageSrc =
+    "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
+  return (
+    <>
+      <div className={styles.Top_Designer}>
+        <div className={styles.Top_Designer_Items}>
+          <img src={d3} alt="items" />
+          <Link to="designers-profile">4</Link>
+        </div>{" "}
+       </div>
+    </>
+  );
+};
+const CarouselSlide5 = () => {
+  const media = useMediaQuery(`(max-width:768px)`);
+  const imageSrc =
+    "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
+  return (
+    <>
+      <div className={styles.Top_Designer}>
+        <div className={styles.Top_Designer_Items}>
+          <img src={d4} alt="items" />
+          <Link to="designers-profile">5</Link>
+        </div>{" "}
+       </div>
     </>
   );
 };

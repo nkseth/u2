@@ -85,6 +85,7 @@ export default function MensWear() {
         <MUICarousel
           animation="slide"
           indicators={tabView}
+          className={styles.menswear_categories}
           navButtonsAlwaysVisible={true}
           autoPlay={false}
           navButtonsAlwaysInvisible={tabView}

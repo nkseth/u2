@@ -19,9 +19,10 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
 export default function SectionFive() {
   return (
-    <CustomSection style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
+    <CustomSection style={{ paddingTop: "5rem", paddingBottom: "7rem" }}>
       <div className={styles.header}>Buy 1 and Get 1</div>
       <CarouselProvider
+      className="buy_get_slidee"
         naturalSlideWidth={100}
         totalSlides={2}
         infinite

@@ -1,12 +1,13 @@
 $brand-img-height-width: 50px;
 .container {
   // height: 463px;
-  width: 288px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   background: #fff;
   border: 5px solid #fff;
   margin-bottom: 50px;
+  
   .imgContainer {
     position: relative;
     height: 300px;
@@ -21,7 +22,7 @@ $brand-img-height-width: 50px;
   }
 }
 .trends {
-  color: rgba(59, 59, 59, 1);
+  color: #000;
   display: flex;
   flex-direction: column;
   justify-content: center;

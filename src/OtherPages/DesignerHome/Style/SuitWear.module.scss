@@ -19,6 +19,7 @@
   justify-content: space-between;
   height: 400px;
   .SuitWear_Items {
+    margin: 0 7px;
     display: grid;
     justify-content: center;
     background: #fff;
@@ -26,8 +27,7 @@
     img {
       height: 300px;
       width: 100%;
-      
-      object-fit: contain;
+      object-fit: cover;
     }
     a {
       font-size: 16px;
@@ -95,5 +95,8 @@
     gap: 1rem;
     font-weight: 400;
   }
+  // img {
+  //   width: 346px !important;
+  // }
   
 }

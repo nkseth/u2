@@ -28,6 +28,7 @@ export default function CelebrityStyleSection() {
         naturalSlideWidth={100}
         totalSlides={2}
         infinite
+        className="celebrity_style_slider"
         isIntrinsicHeight
       >
         <Slider>

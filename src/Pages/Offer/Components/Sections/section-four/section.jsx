@@ -9,10 +9,11 @@ export default function SectionFour() {
   const mobileView = useMediaQuery("(max-width:550px)");
   return (
     <CustomSection
+    class={styles.flat_section_four}
       style={{
         backgroundColor: "rgba(230, 227, 220, 0.25)",
-        paddingTop: "3rem",
-        paddingBottom: "3rem",
+        paddingTop: "5rem",
+        paddingBottom: "7rem",
       }}
     >
       <div className={styles.container}>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IconButton, useMediaQuery } from "@material-ui/core";
+import { IconButton, useMediaQuery,useTheme } from "@material-ui/core";
 import {
   CarouselProvider,
   Slider,
@@ -14,11 +14,16 @@ import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/Customer_Review.module.scss";
 import ReactStars from "react-rating-stars-component";
+import { useState } from "react";
 const Customer_Review = () => {
   const customStyle = {
     padding: "5rem 3rem",
     background: "#fff",
   };
+  const [visible,setvisible]=useState(4)
+  const theme=useTheme()
+  const match=useMediaQuery(theme.breakpoints.down('xs'))
+  const iPade=useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <div className="customer_review_content">
       <CustomSection class={styles.customerreview} style={customStyle}>
@@ -30,8 +35,8 @@ const Customer_Review = () => {
         </div>
 
         <CarouselProvider
-          naturalSlideWidth={100}
-          totalSlides={2}
+          visibleSlides={match?1:iPade?2:visible}
+          totalSlides={5}
           infinite
           isIntrinsicHeight
         >
@@ -40,7 +45,16 @@ const Customer_Review = () => {
               <CarouselSlide />
             </Slide>
             <Slide index={1}>
-              <CarouselSlide />
+              <CarouselSlide2 />
+            </Slide>
+            <Slide index={2}>
+              <CarouselSlide3 />
+            </Slide>
+            <Slide index={3}>
+              <CarouselSlide4 />
+            </Slide>
+            <Slide index={4}>
+              <CarouselSlide5 />
             </Slide>
           </Slider>
           <DotGroup style={{ display: "flex" }} />
@@ -86,6 +100,18 @@ const CarouselSlide = () => {
             nobis eos cupiditate voluptates.
           </p>
         </div>
+      </div>
+    </>
+  );
+};
+
+const CarouselSlide2 = () => {
+  const imageSrc =
+    "https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__340.jpg";
+  const media = useMediaQuery(`(max-width:768px)`);
+  return (
+    <>
+      <div className={styles.Customer_Review}>
         <div className={styles.Customer_Review_Items}>
           <span>Date</span>
           <img src={imageSrc} alt="items" />
@@ -96,17 +122,72 @@ const CarouselSlide = () => {
             nobis eos cupiditate voluptates.
           </p>
         </div>
-        {media ? null : (
-          <div className={styles.Customer_Review_Items}>
-            <span>Date</span>
-            <img src={imageSrc} alt="items" />
-            <h4>Name</h4>
-            <ReactStars size={30} activeColor="#ffd700" />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-            </p>
-          </div>
-        )}
+      </div>
+    </>
+  );
+};
+
+const CarouselSlide3 = () => {
+  const imageSrc =
+    "https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__340.jpg";
+  const media = useMediaQuery(`(max-width:768px)`);
+  return (
+    <>
+      <div className={styles.Customer_Review}>
+        <div className={styles.Customer_Review_Items}>
+          <span>Date</span>
+          <img src={imageSrc} alt="items" />
+          <h4>Name</h4>
+          <ReactStars size={30} activeColor="#ffd700" />
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+            nobis eos cupiditate voluptates.
+          </p>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const CarouselSlide4 = () => {
+  const imageSrc =
+    "https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__340.jpg";
+  const media = useMediaQuery(`(max-width:768px)`);
+  return (
+    <>
+      <div className={styles.Customer_Review}>
+        <div className={styles.Customer_Review_Items}>
+          <span>Date</span>
+          <img src={imageSrc} alt="items" />
+          <h4>Name</h4>
+          <ReactStars size={30} activeColor="#ffd700" />
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+            nobis eos cupiditate voluptates.
+          </p>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const CarouselSlide5 = () => {
+  const imageSrc =
+    "https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__340.jpg";
+  const media = useMediaQuery(`(max-width:768px)`);
+  return (
+    <>
+      <div className={styles.Customer_Review}>
+        <div className={styles.Customer_Review_Items}>
+          <span>Date</span>
+          <img src={imageSrc} alt="items" />
+          <h4>Name</h4>
+          <ReactStars size={30} activeColor="#ffd700" />
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+            nobis eos cupiditate voluptates.
+          </p>
+        </div>
       </div>
     </>
   );

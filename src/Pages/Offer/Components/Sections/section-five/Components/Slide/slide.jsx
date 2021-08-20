@@ -11,17 +11,19 @@ export default function DesignerSlide() {
   const mobileView = useMediaQuery("(max-width:550px)");
   return (
     <div
+    className=""
       style={{
         display: "flex",
         justifyContent: "space-between",
         gap: "1rem",
-        padding: "2rem 0",
+        padding: "4rem 0",
+        
       }}
     >
       {!tabViewPro && !matchesLg && (
-        <>
-          <DesignersCard />
-        </>
+        <div>
+          <DesignersCard/>
+        </div>
       )}
       {matchesLg && !tabViewPro && (
         <>

@@ -7,7 +7,7 @@ import ss1 from '../Images/ss1.png'
 import ss2 from '../Images/ss2.png'
 import ss3 from '../Images/ss3.png'
 const Season_Offers = () => {
-  const baseStyle = { padding: "5rem 3rem" };
+  const baseStyle = { padding: "5rem 3rem 9rem 3rem" };
   // offer
   const { push } = useHistory();
   const Handler = () => {

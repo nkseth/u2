@@ -1,7 +1,7 @@
 //Here Collabrate_With_US style
 .Collabrate_With_US {
   height: 550px;
-  background: linear-gradient(#000000b5, #000000b5),
+  background-image:
     url("../Images//bg.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -62,18 +62,18 @@
   // }
 }
 
-.collabrate_bg{
-  background: #392d169a;
-    padding: 3rem 7rem;
+.collabrate_bgg{
+  background: #392d169a !important;
+  padding: 3rem 7rem !important;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .Collabrate_With_US {
     height: 50vh;
     button {
-      font-size: 54px;
+      font-size: 14px;
       font-weight: 400;
-      width: 70vw;
+      width: 180px;
     }
   }
 }

@@ -22,10 +22,11 @@ export default function SectionThree() {
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   return (
-    <CustomSection
+    <CustomSection 
+    class={styles.offer_section_three}
       style={{
-        paddingTop: "3rem",
-        paddingBottom: "3rem",
+        paddingTop: "5rem",
+        paddingBottom: "5rem",
         backgroundColor: "#9d8e73",
       }}
     >

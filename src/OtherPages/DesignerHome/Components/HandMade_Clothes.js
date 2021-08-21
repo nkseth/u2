@@ -56,6 +56,9 @@ const HandMade_Clothes = () => {
             <Slide index={3}>
               <CarouselSlide4 />
             </Slide>
+            <Slide index={4}>
+              <CarouselSlide5 />
+            </Slide>
           </Slider>
           <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
           <div className={styles.NavigationContainer}>
@@ -138,6 +141,21 @@ const CarouselSlide4 = () => {
         <div className={styles.HandMade_Clothes_Items}>
           <img src={h1} alt="items" />
           <p>4</p>
+        </div>{" "}
+      </div>
+    </>
+  );
+};
+const CarouselSlide5 = () => {
+  const media = useMediaQuery(`(max-width:768px)`);
+  const imageSrc =
+    "https://images.unsplash.com/photo-1541888627857-37d0cd590eca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
+  return (
+    <>
+      <div className={styles.HandMade_Clothes}>
+        <div className={styles.HandMade_Clothes_Items}>
+          <img src={h1} alt="items" />
+          <p>5</p>
         </div>{" "}
       </div>
     </>

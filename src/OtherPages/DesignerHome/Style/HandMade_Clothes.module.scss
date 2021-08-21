@@ -4,8 +4,9 @@
 }
 .HandMade_Clothes {
   display: flex;
-  height: 400px;
+  height: 495px;
   gap: 1rem;
+  margin: 0 5px;
   align-items: center;
   justify-content: space-between;
   .HandMade_Clothes_Items {
@@ -37,7 +38,7 @@
   font-weight: 400;
   line-height: 54px;
   letter-spacing: -1.5px;
-  margin-bottom: 15px;
+  margin-bottom: 45px;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -89,6 +90,7 @@
 @media screen and (max-width: 450px){
   .HandMade_Clothes_header {
     font-size: 35px;
+    margin-bottom: 10px;
   }
   
   .handmadeclothes {
@@ -96,7 +98,7 @@
   }
   .HandMade_Clothes {
    
-    height: 400px;
+    height: 340px;
     
     .HandMade_Clothes_Items {
 

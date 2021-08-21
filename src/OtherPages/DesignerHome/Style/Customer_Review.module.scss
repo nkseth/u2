@@ -4,10 +4,12 @@
 }
 .Customer_Review {
   display: flex;
-  height: 450px;
+  height: 430px;
+  grid-gap: 1rem;
   gap: 1rem;
   align-items: center;
   justify-content: space-evenly;
+  margin: 0 5px;
 
   .Customer_Review_Items {
     display: flex;
@@ -57,7 +59,7 @@
   font-weight: 400;
   line-height: 54px;
   letter-spacing: -1.5px;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
 }
 .NavigationContainer {
   margin-top: 1rem;
@@ -100,6 +102,7 @@
 @media screen and (max-width: 450px){
   .Carousel_header {
     font-size: 35px;
+    margin-bottom: 0px;
   }
   .customerreview {
     padding: 3rem 1rem !important;

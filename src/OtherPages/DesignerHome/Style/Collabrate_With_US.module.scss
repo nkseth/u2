@@ -3,6 +3,7 @@
   height: 550px;
   background-image:
     url("../Images//bg.png");
+    padding: 0 2rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -64,7 +65,7 @@
 
 .collabrate_bgg{
   background: #392d169a !important;
-  padding: 3rem 7rem !important;
+  padding: 3rem 2rem !important;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -88,6 +89,13 @@
     h2 {
       font-size: 35px;
       padding-bottom: 10px;
+      line-height: 33px;
+    }
+    p{
+      margin-bottom: 35px !important;
+      width: 95%;
+      text-align: center;
+      margin: 0 auto;
     }
   }
 }

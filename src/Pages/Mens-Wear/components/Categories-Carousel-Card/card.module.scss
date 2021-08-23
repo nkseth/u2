@@ -50,5 +50,37 @@
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 420px) {
+  .container {
+    .innerContainer {
+      div {
+        .header {
+          font-size: 30px;
+        }
+        .ShopNowBtn{
+          max-width: 220px !important;
+          min-width: 135px !important;
+          font-size: 13px !important;
+        }
+      }
+    }
+  }
+}
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px)  {
+    .container {
+      .innerContainer {
+        div {
+         
+          .ShopNowBtn {
+            height: 55px !important;
+            max-width: 220px !important;
+            font-size: 30px !important;
+            min-width: 235px !important;
+          }
+        }
+      }
+    }
 }

@@ -45,7 +45,12 @@
 @media screen and (max-width: 550px) {
   .header {
     font-size: 20px;
+    margin-bottom: -30px;
     line-height: 20px;
     letter-spacing: 0.5px;
+  }
+  .offers_buy_and_get {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
   }
 }

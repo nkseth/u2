@@ -24,9 +24,9 @@
       padding-top: 3rem;
     }
     img {
-      height: 601px;
+      height: 720px;
       width: 100%;
-      object-fit: contain;
+      object-fit: unset;
       object-position: right;
       box-shadow: 0px 5px 10px #00000041;
     }
@@ -34,7 +34,7 @@
       position: absolute;
       height: 100%;
       width: 100%;
-      background: linear-gradient(270deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+      // background: linear-gradient(270deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
       display: flex;
       align-items: flex-end;
       .TopCategory_Items_Layer_text {

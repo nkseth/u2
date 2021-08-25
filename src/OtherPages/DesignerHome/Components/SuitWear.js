@@ -13,7 +13,7 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/SuitWear.module.scss";
-import p1 from "../Images/p5.png";
+import p1 from "../Images/111.png";
 import p2 from "../Images/p2.png";
 import p3 from "../Images/p3.png";
 import p4 from "../Images/p4.png";
@@ -56,6 +56,12 @@ const SuitWear = () => {
             </Slide>
             <Slide index={4}>
               <CarouselSlide5 />
+            </Slide>
+            <Slide index={5}>
+              <CarouselSlide6 />
+            </Slide>
+            <Slide index={6}>
+              <CarouselSlide7 />
             </Slide>
             
               
@@ -121,7 +127,7 @@ const CarouselSlide2 = () => {
       <div className={styles.SuitWear}>
        
         <div className={styles.SuitWear_Items}>
-          <img src={p2} alt="items" />
+          <img src={p1} alt="items" />
           <Link to="designers-product-page">2</Link>
         </div>{" "}
         
@@ -148,7 +154,7 @@ const CarouselSlide3 = () => {
       <div className={styles.SuitWear}>
        
         <div className={styles.SuitWear_Items}>
-          <img src={p2} alt="items" />
+          <img src={p1} alt="items" />
           <Link to="designers-product-page">3</Link>
         </div>{" "}
         
@@ -173,7 +179,7 @@ const CarouselSlide4 = () => {
       <div className={styles.SuitWear}>
        
         <div className={styles.SuitWear_Items}>
-          <img src={p2} alt="items" />
+          <img src={p1} alt="items" />
           <Link to="designers-product-page">4</Link>
         </div>{" "}
         
@@ -198,7 +204,57 @@ const CarouselSlide5 = () => {
       <div className={styles.SuitWear}>
        
         <div className={styles.SuitWear_Items}>
-          <img src={p2} alt="items" />
+          <img src={p1} alt="items" />
+          <Link to="designers-product-page">5</Link>
+        </div>{" "}
+        
+        {/* {media ? null : (
+          <>
+            <div className={styles.SuitWear_Items}>
+              <img src={p3} alt="items" />
+              <Link to="designers-product-page">Wearwww</Link>
+            </div>{" "}
+          </>
+        )} */}
+      </div>
+    </div>
+  );
+};
+const CarouselSlide6 = () => {
+  const imageSrc =
+    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
+  const media = useMediaQuery(`(max-width:768px)`);
+  return (
+    <div className>
+      <div className={styles.SuitWear}>
+       
+        <div className={styles.SuitWear_Items}>
+          <img src={p1} alt="items" />
+          <Link to="designers-product-page">5</Link>
+        </div>{" "}
+        
+        {/* {media ? null : (
+          <>
+            <div className={styles.SuitWear_Items}>
+              <img src={p3} alt="items" />
+              <Link to="designers-product-page">Wearwww</Link>
+            </div>{" "}
+          </>
+        )} */}
+      </div>
+    </div>
+  );
+};
+const CarouselSlide7 = () => {
+  const imageSrc =
+    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
+  const media = useMediaQuery(`(max-width:768px)`);
+  return (
+    <div className>
+      <div className={styles.SuitWear}>
+       
+        <div className={styles.SuitWear_Items}>
+          <img src={p1} alt="items" />
           <Link to="designers-product-page">5</Link>
         </div>{" "}
         

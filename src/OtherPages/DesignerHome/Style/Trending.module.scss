@@ -5,7 +5,7 @@
 }
 .Trending {
   display: flex;
-  height: 400px;
+  // height: 400px;
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
@@ -103,6 +103,18 @@
     
     button {
       margin-top: 20px;
+    }
+  }
+}
+
+@media only screen   
+and (min-width: 1250px)  
+and (max-width: 1600px) {
+  .Trending {
+    .Trending_Items {
+      img {
+        height: 240px;
+      }
     }
   }
 }

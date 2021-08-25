@@ -37,6 +37,10 @@ const Trending = () => {
           <img src={c4} alt="items" />
           <Link to="designers-product-page">Wear</Link>
         </div>
+        <div className={styles.Trending_Items}>
+          <img src={c4} alt="items" />
+          <Link to="designers-product-page">Wear</Link>
+        </div>
       </div>
       <div className={`${styles.Trending_Button}`}>
         <Button onClick={() => push("designers-product-page")}>View all</Button>

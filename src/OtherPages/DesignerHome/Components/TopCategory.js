@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import React from "react";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/TopCategory.module.scss";
-import Img1 from '../Images/img1.png'
+import Img1 from '../Images/img.png'
 const TopCategory = () => {
   const baseStyle = {  };
   return (

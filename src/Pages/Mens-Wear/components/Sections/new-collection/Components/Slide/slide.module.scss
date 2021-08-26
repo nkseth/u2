@@ -2,7 +2,8 @@
   position: relative;
   display: flex;
   > img:first-child {
-    width: 400px;
+    width: 350px;
+    margin-left: 1em;
   }
   > img:last-child {
     height: 300px;
@@ -44,21 +45,22 @@
 .button:after{
   background-color: #fff !important;
 }
-@media screen and (max-width: 835px) {
-  .container {
-  }
+@media screen and (max-width: 1000px) {
+
   .header {
-    font-size: 65px;
+    font-size: 55px;
     line-height: 72px;
     letter-spacing: -1.5px;
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 685px) {
   .container {
     flex-direction: column;
     > img:first-child {
       height: 500px;
+      margin-left: auto;
+      margin-right: auto;
     }
     > div {
       padding: 1rem 0;
@@ -66,5 +68,9 @@
   }
   .header {
     text-align: center;
+  }
+  .button{
+    margin-left: auto!important;
+    margin-right: auto!important;
   }
 }

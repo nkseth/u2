@@ -1,16 +1,15 @@
 import React from "react";
 import { Button, useMediaQuery } from "@material-ui/core";
 import styles from "./slide.module.scss";
+import image from "./Images/carouselMan.png"
 
 export default function Slide(props) {
-  const tabView = useMediaQuery("(max-width:768px)");
-  const tabViewPro = useMediaQuery("(max-width:835px)");
+  const tabView = useMediaQuery("(max-width:800px)");
+  const tabViewPro = useMediaQuery("(max-width:910px)");
   const mobileView = useMediaQuery("(max-width:550px)");
-  const img =
-    "https://images.pexels.com/photos/6389803/pexels-photo-6389803.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
   return (
     <div className={styles.container}>
-      <img src={img} alt='product' />
+      <img src={image} alt='product' />
       <div>
         <span className={styles.header}>
           New Collection <br /> 50%off
@@ -31,7 +30,7 @@ export default function Slide(props) {
 
         {!tabViewPro && <div>{props.children}</div>}
       </div>
-      {!tabViewPro && <img src={img} alt='product' />}
+      {!tabViewPro && <img src={image} alt='product' />}
     </div>
   );
 }

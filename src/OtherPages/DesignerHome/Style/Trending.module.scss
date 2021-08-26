@@ -3,6 +3,7 @@
   color: #000;
   // font-style: italic;
 }
+
 .Trending {
   display: flex;
   // height: 400px;
@@ -18,7 +19,7 @@
       height: 360px;
       width: 100%;
       object-fit: cover;
-      object-position: top;
+      object-position: center;
     }
     a {
       font-size: 16px;
@@ -60,7 +61,7 @@
   gap: 4rem;
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (min-device-width: 420px) and (max-device-width: 1024px) {
   .Trending_Button {
     padding-top: 3rem;
   }

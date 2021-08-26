@@ -190,9 +190,9 @@ export default function Footer() {
             <div className={styles.linksContainer}>
               <Link className={styles.link}>Gift Card</Link>
               <div>
-              <Link className={styles.link}>
-                Coupon Code &amp; Offers <div>T&amp;C</div>
-              </Link></div>
+                <Link className={styles.link}>
+                  Coupon Code &amp; Offers <div>T&amp;C</div>
+                </Link></div>
               <Link className={styles.link}>Returns &amp; Exchanges</Link>
               <Link className={styles.link}>Shipping &amp; Delivery</Link>
               <Link className={styles.link}>Payment Options</Link>

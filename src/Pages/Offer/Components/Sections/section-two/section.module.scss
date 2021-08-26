@@ -20,11 +20,61 @@
 .imgContainer {
   height: 600px;
   width: 100%;
-  background-color: grey;
   display: grid;
   place-content: center;
   justify-items: center;
+  position: relative;
 }
+       
+.imgBox{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 9;
+  background: rgba(0, 0, 0, 0.349);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  img{
+    width: 100%;
+  }
+}
+.AbsoluteBgContainer1{
+position: absolute;
+width: 50%;
+background-size: cover;
+height: 100%;
+left: 0;
+background-image: url("./images//half-50.png");
+background-position: top;
+
+}
+
+.AbsoluteBgBox{
+  position: absolute;
+  width: 50%;
+height: 100%;
+right: 0;
+}
+
+.AbsoluteBgContainer2{
+  height: 60%;
+  background-position: top;
+  background-size: cover;
+  background-image: url("./images//right-60.png");
+
+
+}
+  .AbsoluteBgContainer3{
+    height: 40%;
+    background-position: left;
+    background-size: cover;
+    background-image: url("./images//right-40.png");
+
+
+}
+
+
 
 .btn {
   height: 48px !important;

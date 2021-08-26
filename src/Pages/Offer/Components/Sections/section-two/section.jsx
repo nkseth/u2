@@ -11,10 +11,18 @@ export default function SectionTwo() {
       <div className={styles.container}>
         <span className={styles.header}>Top Offers of the Season</span>
         <div className={styles.imgContainer}>
-          <img src={fiftyOff} alt='Extra 50% off' />
-          <Link to='/designers-product-page'>
-            <Button className={styles.btn}>Shop Now</Button>
-          </Link>
+          <div className={styles.AbsoluteBgContainer1} ></div>
+          <div className={styles.AbsoluteBgBox} >
+            <div className={styles.AbsoluteBgContainer2} ></div>
+            <div className={styles.AbsoluteBgContainer3} ></div>
+          </div>
+          <div className={styles.imgBox}>
+
+            <img src={fiftyOff} alt='Extra 50% off' />
+            <Link to='/designers-product-page'>
+              <Button className={styles.btn}>Shop Now</Button>
+            </Link>
+          </div>
         </div>
       </div>
     </CustomSection>

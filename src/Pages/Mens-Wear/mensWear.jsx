@@ -10,6 +10,10 @@ import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
 import { Link } from "react-router-dom";
 import styles from "./mensWear.module.scss";
 //Carousel Images
+import shirt from "./Images/shirt.png"
+import Tshirt from "./Images/T-shirt.png"
+import blazer from "./Images/blazer.png"
+
 
 //Sections
 import ForHimSection from "./components/Sections/for-him/forHim";
@@ -110,7 +114,7 @@ export default function MensWear() {
                 md={3}
                 style={{ display: "flex", justifyContent: "center" }}
               >
-                <CategoriesToBagCard />
+                <CategoriesToBagCard image={blazer} title='Shirt' />
               </Grid>
             )}
             {!mobileView && (
@@ -119,7 +123,7 @@ export default function MensWear() {
                 md={customView ? 4 : 3}
                 style={{ display: "flex", justifyContent: "center" }}
               >
-                <CategoriesToBagCard />
+                <CategoriesToBagCard image={shirt} title='Shirt' />
               </Grid>
             )}
 
@@ -129,7 +133,7 @@ export default function MensWear() {
               md={mobileView ? 12 : customView ? 4 : 3}
               style={{ display: "flex", justifyContent: "center" }}
             >
-              <CategoriesToBagCard />
+              <CategoriesToBagCard image={Tshirt} title='Shirt' />
             </Grid>
           </Grid>
           <Grid
@@ -144,7 +148,7 @@ export default function MensWear() {
                 md={3}
                 style={{ display: "flex", justifyContent: "center" }}
               >
-                <CategoriesToBagCard />
+                <CategoriesToBagCard image={shirt} title='Shirt' />
               </Grid>
             )}
             {!mobileView && (
@@ -153,7 +157,7 @@ export default function MensWear() {
                 md={customView ? 4 : 3}
                 style={{ display: "flex", justifyContent: "center" }}
               >
-                <CategoriesToBagCard />
+                <CategoriesToBagCard image={blazer} title='Blazer' />
               </Grid>
             )}
 
@@ -163,7 +167,7 @@ export default function MensWear() {
               md={mobileView ? 12 : customView ? 4 : 3}
               style={{ display: "flex", justifyContent: "center" }}
             >
-              <CategoriesToBagCard />
+              <CategoriesToBagCard image={Tshirt} title='T-Shirt' />
             </Grid>
           </Grid>
         </MUICarousel>

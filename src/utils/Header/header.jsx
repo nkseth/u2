@@ -199,14 +199,14 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave("newArrivals")}
               className={cx(styles.menuItem, styles.menuItem_newArrivals)}
             >
-              <Link style={{color:"#0a0a0a"}} to="/designers-product-page">New arrivals</Link>
+              <Link style={{ color: "#0a0a0a" }} to="/designers-product-page">New arrivals</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("men")}
               onMouseLeave={() => handleMouseLeave("men")}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
-              <Link style={{color:"#0a0a0a"}} to="/mens-wear">Men</Link>
+              <Link style={{ color: "#0a0a0a" }} to="/mens-wear">Men</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("women")}
@@ -214,21 +214,21 @@ export default function Header() {
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
               {" "}
-              <Link style={{color:"#0a0a0a"}} to="/mens-wear"> Women</Link>
+              <Link style={{ color: "#0a0a0a" }} to="/mens-wear"> Women</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("kids")}
               onMouseLeave={() => handleMouseLeave("kids")}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
-              <Link style={{color:"#0a0a0a"}} to="/mens-wear"> Kids</Link>
+              <Link style={{ color: "#0a0a0a" }} to="/mens-wear"> Kids</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("designers")}
               onMouseLeave={() => handleMouseLeave("designers")}
               className={cx(styles.menuItem, styles.menuItem_designers)}
             >
-              <Link style={{color:"#0a0a0a"}} to="designers">Designers</Link>
+              <Link style={{ color: "#0a0a0a" }} to="designers">Designers</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("contemporary")}
@@ -242,7 +242,7 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave("offers")}
               className={cx(styles.menuItem, styles.menuItem_offers)}
             >
-              <Link style={{color:"#0a0a0a"}} to="offers">Offers</Link>
+              <Link style={{ color: "#0a0a0a" }} to="offers">Offers</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("more")}
@@ -268,8 +268,8 @@ export default function Header() {
           display: mouseEnter.newArrivals
             ? "block"
             : mouseLeave.newArrivals
-            ? "none"
-            : "",
+              ? "none"
+              : "",
         }}
       ></div>
       <SwipeableDrawer
@@ -280,8 +280,8 @@ export default function Header() {
         transitionDuration={600}
       >
         {location.pathname === "/orders" ||
-        location.pathname === "/offers" ||
-        location.pathname === "/all-orders" ? (
+          location.pathname === "/offers" ||
+          location.pathname === "/all-orders" ? (
           <div className={styles.sideNavbarDiv}>
             <SideNavbar />
           </div>

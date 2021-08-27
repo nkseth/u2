@@ -76,7 +76,7 @@
   .Trending {
     height: auto;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 2fr);
   }
 }
 @media screen and (max-width: 420px) {
@@ -92,7 +92,7 @@
   .Trending {
     height: auto;
     display: grid;
-    grid-template-columns: repeat(2, 2fr);
+    grid-template-columns: repeat(2, 1fr);
     .Trending_Items {
       img {
         height: 160px;

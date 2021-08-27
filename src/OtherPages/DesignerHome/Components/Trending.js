@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, useMediaQuery } from "@material-ui/core";
 import { Crop32Rounded, Crop32Sharp } from "@material-ui/icons";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -14,6 +14,8 @@ const Trending = () => {
   const baseStyle = { padding: "5rem 3rem", background: "  #F3F1EE" };
 
   const { push } = useLocation();
+  const mobileView = useMediaQuery("(max-width:1024px)");
+
   return (
     <div className={styles.trending_content} style={baseStyle}>
       <div className={`${styles.Trending_header}`}>
@@ -38,9 +40,17 @@ const Trending = () => {
           <Link to="designers-product-page">Wear</Link>
         </div>
         <div className={styles.Trending_Items}>
-          <img src={c4} alt="items" />
+          <img src={c2} alt="items" />
           <Link to="designers-product-page">Wear</Link>
         </div>
+        {mobileView ?
+          <div className={styles.Trending_Items}>
+            <img src={c1} alt="items" />
+            <Link to="designers-product-page">Wear</Link>
+          </div>
+          :
+          <></>
+        }
       </div>
       <div className={`${styles.Trending_Button}`}>
         <Button onClick={() => push("designers-product-page")}>View all</Button>

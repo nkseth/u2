@@ -18,8 +18,9 @@ import styles from "./product.module.scss";
 
 export default function ProductsSection(props) {
 
-  const[products,setProducts] = useState({})
-  const[isLoading,setIsLoading] = useState(true)
+
+  const [isLoading, setIsLoading] = useState(true)
+  const [products, setProducts] = useState(true)
 
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:550px)");
@@ -27,7 +28,7 @@ export default function ProductsSection(props) {
   const [sortBy, setSortBy] = useState("");
   const [isFilterOpen, setFilterOpen] = useState(false);
 
-  const setValue=async(props)=>{
+  const setValue = async (props) => {
     await setIsLoading(true)
     await setProducts(props.products)
     await setIsLoading(false)
@@ -49,9 +50,9 @@ export default function ProductsSection(props) {
     setFilterOpen(open);
   };
 
-  useEffect(async()=>{
+  useEffect(async () => {
     await setValue(props)
-  },[])
+  }, [])
 
   return (
     <>
@@ -132,29 +133,29 @@ export default function ProductsSection(props) {
             </Select>
           </FormControl>
         </Grid>
-          
-        {!tabView && 
+
+        {!tabView &&
           <>
-            {!isLoading ? products.map((value,key)=>(
+            {!isLoading ? products.map((value, key) => (
               <Grid item xs={6} sm={4} md={3} lg={3}>
                 <ProductCard
                   product={value}
-                 /> 
+                />
               </Grid>
-            )):''}                
-          </>    
+            )) : ''}
+          </>
 
         }
         {mobileView && (
           <>
-            {!isLoading ? products.map((value,key)=>(
+            {!isLoading ? products.map((value, key) => (
               <Grid item xs={12} sm={4} md={3} lg={3}>
-                <ProductCard 
+                <ProductCard
                   product={value}
-                /> 
+                />
               </Grid>
-            )):''}                
-          </>   
+            )) : ''}
+          </>
         )}
       </Grid>
     </>

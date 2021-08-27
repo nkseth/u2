@@ -74,8 +74,7 @@ function App() {
         <Route path="/mens-wear" component={MensWear} />
         <Route path="/offers" component={Offer} />
         <Route
-          path="/designers-product-page"
-          component={DesignersProductPage}
+          path="/designers-product-page" component={DesignersProductPage}
         />
         <Route path="/product-description" component={ProductDescription} />
         <Route path="/product-breakdown" component={ProductBreakdown} />

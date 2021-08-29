@@ -1,10 +1,10 @@
 import Axios from "axios";
 
-const axios = Axios.create({
+ const common_axios = Axios.create({
   baseURL: "http://3.108.240.44/api",
 });
 
-axios.interceptors.request.use(
+common_axios.interceptors.request.use(
   async (config) => {
     const token1 = await localStorage.getItem("token");
     const token = JSON.parse(token1);
@@ -24,4 +24,4 @@ axios.interceptors.request.use(
   }
 );
 
-export default axios;
+export default common_axios;

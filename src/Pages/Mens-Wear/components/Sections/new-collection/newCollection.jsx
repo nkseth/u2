@@ -15,16 +15,19 @@ import styles from "./newCollection.module.scss";
 //icons
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+//BackGroud Image
+import bg from "../../../Images/bg.png"
+
+
 
 export default function NewCollectionSection() {
   return (
     <CustomSection
       style={{
         backgroundColor: "#9d8e73",
-        backgroundImage:
-          "url(https://cdn.pixabay.com/photo/2017/08/01/01/33/beanie-2562646__340.jpg)",
+        backgroundImage: bg,
         backgroundSize: "cover",
-        backgroundRepeat: "repeat",
+        backgroundRepeat: "no-repeat",
         paddingTop: "4rem",
       }}
     >

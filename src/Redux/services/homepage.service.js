@@ -1,32 +1,32 @@
-import axios from "../../utils/axios.config";
+import common_axios from "../../utils/axios.config";
 
 class HomepageDataService {
   getAll() {
-    return axios.get("/category-subgrps");
+    return common_axios.get("/category-subgrps");
   }
 
   get(id) {
-    return axios.get(`/categories/${id}`);
+    return common_axios.get(`/categories/${id}`);
   }
 
   create(data) {
-    return axios.post("/categories", data);
+    return common_axios.post("/categories", data);
   }
 
   update(id, data) {
-    return axios.put(`/categories/${id}`, data);
+    return common_axios.put(`/categories/${id}`, data);
   }
 
   delete(id) {
-    return axios.delete(`/categories/${id}`);
+    return common_axios.delete(`/categories/${id}`);
   }
 
   deleteAll() {
-    return axios.delete(`/categories`);
+    return common_axios.delete(`/categories`);
   }
 
   findByTitle(title) {
-    return axios.get(`/categories?title=${title}`);
+    return common_axios.get(`/categories?title=${title}`);
   }
 }
 

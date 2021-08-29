@@ -4,14 +4,47 @@ import OtpInput from "react-otp-input";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import useLogin from "./useLogin";
+import { useSelector, useDispatch } from "react-redux";
+import common_axios from "../utils/axios.config";
+import { setUserData } from "../Redux/actions/homepage";
 
 /**
  * 
 OtpInput not work properly
  */
 const SignUpVarify = () => {
+
   const { login_Model_Hide } = useLogin();
-  const [text,setText]=useState()
+  const dispatch = useDispatch()
+  const [text, setText] = useState('')
+  const { name, password, email } = useSelector(state => state.root.login.signup_creds)
+
+  const getStarted = async () => {
+    if (text.length !== 4) {
+      alert('Enter a valid OTP');
+      return;
+    }
+
+    const { data } = await common_axios.post('/otp_varify', {
+      email,
+      password,
+      name,
+      otp: text
+    });
+
+    console.log(data)
+
+    if(data){
+      if(data.success){
+        localStorage.setItem('user', JSON.stringify(data.data))
+        localStorage.setItem('token', JSON.stringify(data.data.api_token))
+        dispatch(setUserData(data.data))
+        login_Model_Hide()
+      }
+    }
+  }
+
+
   return (
     <form className={styles.SignUpVarify}>
       <div className={styles.SignUpVarify_Input}>
@@ -28,19 +61,19 @@ const SignUpVarify = () => {
           inputStyle={{ color: "#6c6c6c", fontSize: "16px" }}
           numInputs={4}
           errorStyle="error"
-          onChange={(event) => console.log(event)}
+          onChange={(event) => setText(event.target.value)}
           separator={<span>{"  "}</span>}
           isInputNum={true}
-          value={1234}
+          value={text}
           name="otp"
         />
       </div>
       <div className={styles.SignUpVarify_Button}>
-        <Button onClick={login_Model_Hide}>Get Started</Button>
+        <Button onClick={getStarted}>Get Started</Button>
       </div>
       <div className={styles.SignUpVarify_Bottom_Link_1}>
         <Link>
-          Didn't receive code? <b style={{color:'#0000EE'}}>Resend code</b>
+          Didn't receive code? <b style={{ color: '#0000EE' }}>Resend code</b>
         </Link>
       </div>
       <div className={styles.SignUpVarify_Bottom_Link_2}>

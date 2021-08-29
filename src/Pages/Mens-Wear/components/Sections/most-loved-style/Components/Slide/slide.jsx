@@ -28,10 +28,10 @@ export default function DesignerSlide() {
           <div className={styles.header}>
             <p>
               <span>
-                Most <br />
-                Loved{" "}
+                Most 
+                Loved Style
               </span>
-              <span>Style</span>
+              <span></span>
             </p>
           </div>
         )}

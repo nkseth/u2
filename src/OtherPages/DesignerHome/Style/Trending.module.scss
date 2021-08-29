@@ -3,9 +3,10 @@
   color: #000;
   // font-style: italic;
 }
+
 .Trending {
   display: flex;
-  height: 400px;
+  // height: 400px;
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
@@ -18,7 +19,7 @@
       height: 360px;
       width: 100%;
       object-fit: cover;
-      object-position: top;
+      object-position: center;
     }
     a {
       font-size: 16px;
@@ -60,7 +61,7 @@
   gap: 4rem;
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (min-device-width: 420px) and (max-device-width: 1024px) {
   .Trending_Button {
     padding-top: 3rem;
   }
@@ -75,7 +76,7 @@
   .Trending {
     height: auto;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 2fr);
   }
 }
 @media screen and (max-width: 420px) {
@@ -91,7 +92,7 @@
   .Trending {
     height: auto;
     display: grid;
-    grid-template-columns: repeat(2, 2fr);
+    grid-template-columns: repeat(2, 1fr);
     .Trending_Items {
       img {
         height: 160px;
@@ -103,6 +104,18 @@
     
     button {
       margin-top: 20px;
+    }
+  }
+}
+
+@media only screen   
+and (min-width: 1250px)  
+and (max-width: 1600px) {
+  .Trending {
+    .Trending_Items {
+      img {
+        height: 240px;
+      }
     }
   }
 }

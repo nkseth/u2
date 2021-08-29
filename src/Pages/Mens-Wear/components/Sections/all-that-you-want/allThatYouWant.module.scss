@@ -42,3 +42,16 @@
     gap: 2rem;
   }
 }
+
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px){
+  .header {
+    text-align: center;
+    > p:first-child {
+      font-size: 54px;
+    }
+  }
+      
+}

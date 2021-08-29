@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IconButton, useMediaQuery,useTheme } from "@material-ui/core";
+import { IconButton, useMediaQuery, useTheme } from "@material-ui/core";
 import {
   CarouselProvider,
   Slider,
@@ -17,17 +17,27 @@ import p1 from "../Images/111.png";
 import p2 from "../Images/p2.png";
 import p3 from "../Images/p3.png";
 import p4 from "../Images/p4.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { suitWears } from "../../../Redux/actions/designerHomePage";
 
 const SuitWear = () => {
+  const dispatch = useDispatch();
   const customStyle = {
     padding: "5rem 3rem",
     background: "#938368",
   };
-  const [visible,setvisible]=useState(4)
-  const theme=useTheme()
-  const match=useMediaQuery(theme.breakpoints.down('xs'))
-  const iPade=useMediaQuery(theme.breakpoints.down('sm'))
+
+  const { suitWearItems } = useSelector((state) => state.root.suitWears);
+
+  const [visible, setvisible] = useState(4);
+  const theme = useTheme();
+  const match = useMediaQuery(theme.breakpoints.down("xs"));
+  const iPade = useMediaQuery(theme.breakpoints.down("sm"));
+  useEffect(() => {
+    dispatch(suitWears());
+  }, []);
+
   return (
     <div>
       <CustomSection class={styles.suitwear_content} style={customStyle}>
@@ -36,13 +46,28 @@ const SuitWear = () => {
           <CustomDivider style={{ height: "2px", background: "#fff" }} />
         </div>
         <CarouselProvider
-          visibleSlides={match?1:iPade?2:visible}
+          visibleSlides={match ? 1 : iPade ? 2 : visible}
           totalSlides={5}
           infinite
           isIntrinsicHeight
         >
           <Slider>
-            <Slide index={0}>
+            {suitWearItems.map(
+              ({ id, cover_image, feature_image, name }, i) => (
+                <Slide index={i} key={id}>
+                  <div className>
+                    <div className={styles.SuitWear}>
+                      <div className={styles.SuitWear_Items}>
+                        <img src={feature_image} alt={id} />
+                        <Link to="designers-product-page">{name}</Link>
+                      </div>
+                    </div>
+                  </div>
+                </Slide>
+              )
+            )}
+
+            {/* <Slide index={0}>
               <CarouselSlide1 />
             </Slide>
             <Slide index={1}>
@@ -62,9 +87,7 @@ const SuitWear = () => {
             </Slide>
             <Slide index={6}>
               <CarouselSlide7 />
-            </Slide>
-            
-              
+            </Slide> */}
           </Slider>
           <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
           <div className={styles.NavigationContainer}>
@@ -92,181 +115,166 @@ const SuitWear = () => {
 
 export default SuitWear;
 
-const CarouselSlide1 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-        <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
-          <Link to="designers-product-page">1</Link>
-        </div>{" "}
-        
-       
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};
+// const CarouselSlide1 = () => {
+//   const imageSrc =
+//     "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
+//   const media = useMediaQuery(`(max-width:768px)`);
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+//         <div className={styles.SuitWear_Items}>
+//           <img src={p1} alt="items" />
+//           <Link to="designers-product-page">1</Link>
+//         </div>{" "}
+//         {/* {media ? null : (
+//           <>
+//             <div className={styles.SuitWear_Items}>
+//               <img src={p3} alt="items" />
+//               <Link to="designers-product-page">Wearwww</Link>
+//             </div>{" "}
+//           </>
+//         )} */}
+//       </div>
+//     </div>
+//   );
+// };
 
-const CarouselSlide2 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-       
-        <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
-          <Link to="designers-product-page">2</Link>
-        </div>{" "}
-        
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};
+// const CarouselSlide2 = () => {
+//   const imageSrc =
+//     "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
+//   const media = useMediaQuery(`(max-width:768px)`);
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+//         <div className={styles.SuitWear_Items}>
+//           <img src={p1} alt="items" />
+//           <Link to="designers-product-page">2</Link>
+//         </div>{" "}
+//         {/* {media ? null : (
+//           <>
+//             <div className={styles.SuitWear_Items}>
+//               <img src={p3} alt="items" />
+//               <Link to="designers-product-page">Wearwww</Link>
+//             </div>{" "}
+//           </>
+//         )} */}
+//       </div>
+//     </div>
+//   );
+// };
 
-
-const CarouselSlide3 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-       
-        <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
-          <Link to="designers-product-page">3</Link>
-        </div>{" "}
-        
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};
-const CarouselSlide4 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-       
-        <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
-          <Link to="designers-product-page">4</Link>
-        </div>{" "}
-        
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};
-const CarouselSlide5 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-       
-        <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
-          <Link to="designers-product-page">5</Link>
-        </div>{" "}
-        
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};
-const CarouselSlide6 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-       
-        <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
-          <Link to="designers-product-page">5</Link>
-        </div>{" "}
-        
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};
-const CarouselSlide7 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-       
-        <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
-          <Link to="designers-product-page">5</Link>
-        </div>{" "}
-        
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};
+// const CarouselSlide3 = () => {
+//   const imageSrc =
+//     "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
+//   const media = useMediaQuery(`(max-width:768px)`);
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+//         <div className={styles.SuitWear_Items}>
+//           <img src={p1} alt="items" />
+//           <Link to="designers-product-page">3</Link>
+//         </div>{" "}
+//         {/* {media ? null : (
+//           <>
+//             <div className={styles.SuitWear_Items}>
+//               <img src={p3} alt="items" />
+//               <Link to="designers-product-page">Wearwww</Link>
+//             </div>{" "}
+//           </>
+//         )} */}
+//       </div>
+//     </div>
+//   );
+// };
+// const CarouselSlide4 = () => {
+//   const imageSrc =
+//     "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
+//   const media = useMediaQuery(`(max-width:768px)`);
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+//         <div className={styles.SuitWear_Items}>
+//           <img src={p1} alt="items" />
+//           <Link to="designers-product-page">4</Link>
+//         </div>{" "}
+//         {/* {media ? null : (
+//           <>
+//             <div className={styles.SuitWear_Items}>
+//               <img src={p3} alt="items" />
+//               <Link to="designers-product-page">Wearwww</Link>
+//             </div>{" "}
+//           </>
+//         )} */}
+//       </div>
+//     </div>
+//   );
+// };
+// const CarouselSlide5 = () => {
+//   const imageSrc =
+//     "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
+//   const media = useMediaQuery(`(max-width:768px)`);
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+//         <div className={styles.SuitWear_Items}>
+//           <img src={p1} alt="items" />
+//           <Link to="designers-product-page">5</Link>
+//         </div>{" "}
+//         {/* {media ? null : (
+//           <>
+//             <div className={styles.SuitWear_Items}>
+//               <img src={p3} alt="items" />
+//               <Link to="designers-product-page">Wearwww</Link>
+//             </div>{" "}
+//           </>
+//         )} */}
+//       </div>
+//     </div>
+//   );
+// };
+// const CarouselSlide6 = () => {
+//   const imageSrc =
+//     "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
+//   const media = useMediaQuery(`(max-width:768px)`);
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+//         <div className={styles.SuitWear_Items}>
+//           <img src={p1} alt="items" />
+//           <Link to="designers-product-page">5</Link>
+//         </div>{" "}
+//         {/* {media ? null : (
+//           <>
+//             <div className={styles.SuitWear_Items}>
+//               <img src={p3} alt="items" />
+//               <Link to="designers-product-page">Wearwww</Link>
+//             </div>{" "}
+//           </>
+//         )} */}
+//       </div>
+//     </div>
+//   );
+// };
+// const CarouselSlide7 = () => {
+//   const imageSrc =
+//     "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
+//   const media = useMediaQuery(`(max-width:768px)`);
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+//         <div className={styles.SuitWear_Items}>
+//           <img src={p1} alt="items" />
+//           <Link to="designers-product-page">5</Link>
+//         </div>{" "}
+//         {/* {media ? null : (
+//           <>
+//             <div className={styles.SuitWear_Items}>
+//               <img src={p3} alt="items" />
+//               <Link to="designers-product-page">Wearwww</Link>
+//             </div>{" "}
+//           </>
+//         )} */}
+//       </div>
+//     </div>
+//   );
+// };

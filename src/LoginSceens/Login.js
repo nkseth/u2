@@ -27,38 +27,38 @@ const Login = () => {
 
   const login_handler = async () => {
 
+login_Mode_Handler("LoginOtpVarify");
+    // if (email.length == 0) {
+    //   alert("Enter a valid email")
+    //   setError({ type: 'email', value: "Enter a valid email" })
+    //   return;
+    // }
 
-    if (email.length == 0) {
-      alert("Enter a valid email")
-      setError({ type: 'email', value: "Enter a valid email" })
-      return;
-    }
+    // if (password.length < 6) {
+    //   alert("Enter a valid password")
+    //   setError({ type: 'password', value: "Enter a valid password" })
+    //   return;
+    // }
 
-    if (password.length < 6) {
-      alert("Enter a valid password")
-      setError({ type: 'password', value: "Enter a valid password" })
-      return;
-    }
+    // setLoading(true)
 
-    setLoading(true)
+    // try {
+    //   const { data } = await common_axios.post('/auth/login', {
+    //     email,
+    //     password
+    //   })
 
-    try {
-      const { data } = await common_axios.post('/auth/login', {
-        email,
-        password
-      })
+    //   console.log(data)
 
-      console.log(data)
-
-      if (data) {
-        if (data.success) {
-          login_Mode_Handler("LoginOtpVarify");
-        }
-      }
-    } catch (e) {
-      alert('Invalid Email or Password')
-      console.log(e)
-    }
+    //   if (data) {
+    //     if (data.success) {
+    //       login_Mode_Handler("LoginOtpVarify");
+    //     }
+    //   }
+    // } catch (e) {
+    //   alert('Invalid Email or Password')
+    //   console.log(e)
+    // }
   }
 
 

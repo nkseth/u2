@@ -4,8 +4,9 @@ import OtpInput from "react-otp-input";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import useLogin from "./useLogin";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import common_axios from "../utils/axios.config";
+import { setUserData } from "../Redux/actions/homepage";
 
 /**
  * 
@@ -14,6 +15,7 @@ OtpInput not work properly
 const SignUpVarify = () => {
 
   const { login_Model_Hide } = useLogin();
+  const dispatch = useDispatch()
   const [text, setText] = useState('')
   const { name, password, email } = useSelector(state => state.root.login.signup_creds)
 
@@ -34,6 +36,9 @@ const SignUpVarify = () => {
 
     if(data){
       if(data.success){
+        localStorage.setItem('user', JSON.stringify(data.data))
+        localStorage.setItem('token', JSON.stringify(data.data.api_token))
+        dispatch(setUserData(data.data))
         login_Model_Hide()
       }
     }

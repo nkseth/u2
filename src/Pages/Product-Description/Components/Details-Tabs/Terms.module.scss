@@ -1,0 +1,45 @@
+.container{
+    padding: 1em;
+    border-radius: 6px;
+    background-color: #F1EFEB;
+    font-family: DM Sans;
+    h1{
+        color: #857250;
+        font-weight: 700;
+        font-size: 20px;
+    }
+    ul{
+        padding: 1em;
+        list-style: none;
+        .li{
+            font-size: 15px;
+            line-height: 20px;
+            margin-bottom: 0.8em;
+            margin-top: 0.8em;
+            color: #3B3B3B;
+            font-weight: 400;
+
+            }
+            .li::before {
+                content: "\2022"; color: #6A5B40;
+                display: inline-block;
+                font-weight: bold;
+                margin-right: 0.5em
+            }
+    }
+}
+
+.vectorli{
+    list-style-image: url("./new.svg");
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 0.8em;
+    margin-top: 0.8em;
+    color: #3B3B3B;
+    font-weight: 400;
+}
+
+.button{
+    background-color: #6A5B40!important;
+    font-weight: bold!important;
+}

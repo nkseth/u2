@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 //Pages
@@ -23,7 +23,7 @@ import Payment from "./Pages/Payment/payment";
 import Offers from "./Pages/Offers/offers";
 import Orders from "./Pages/Orders/orders";
 import AllOrders from "./Pages/All-Orders/allOrders";
-
+import { useDispatch } from "react-redux";
 import Polls from "./Pages/Polls/polls";
 import FashionTips from "./Pages/Daily-Fashion-Tips/fashionTips";
 import StyleGuideMan from "./Pages/Style-Guide-Man/style-guide-man";
@@ -57,12 +57,25 @@ import { Page_Login } from "./LoginSceens/LoginSignUp";
 import useLogin from "./LoginSceens/useLogin";
 import MeasurementAndSimulation from "./OtherPages/MeasurementAndSimulation/MeasurementAndSimulation";
 import Designers from "./OtherPages/Designers/Designers";
+import { setUserData } from "./Redux/actions/homepage";
 
 //Start From Here
 
 function App() {
 
   const { isLoginModel } = useLogin();
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+   const data = localStorage.getItem('user')
+   
+   if(data){
+     dispatch(setUserData(JSON.parse(data)))
+   }
+
+  },[])
+
+
   return (
 
     <>
@@ -74,8 +87,7 @@ function App() {
         <Route path="/mens-wear" component={MensWear} />
         <Route path="/offers" component={Offer} />
         <Route
-          path="/designers-product-page/:category"
-          component={DesignersProductPage}
+          path="/designers-product-page" component={DesignersProductPage}
         />
         <Route path="/product-description" component={ProductDescription} />
         <Route path="/product-breakdown" component={ProductBreakdown} />

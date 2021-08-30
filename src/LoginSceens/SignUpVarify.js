@@ -25,22 +25,24 @@ const SignUpVarify = () => {
       return;
     }
 
-    const { data } = await common_axios.post('/otp_varify', {
-      email,
-      password,
-      name,
-      otp: text
-    });
-
-    console.log(data)
-
-    if(data){
-      if(data.success){
-        localStorage.setItem('user', JSON.stringify(data.data))
-        localStorage.setItem('token', JSON.stringify(data.data.api_token))
-        dispatch(setUserData(data.data))
-        login_Model_Hide()
+    try{
+      const { data } = await common_axios.post('/otp_varify', {
+        email,
+        password,
+        name,
+        otp: text
+      });
+  
+      console.log(data)
+  
+      if(data){
+          localStorage.setItem('user', JSON.stringify(data.data))
+          localStorage.setItem('token', JSON.stringify(data.data.api_token))
+          dispatch(setUserData(data.data))
+          login_Model_Hide()
       }
+    } catch (e){
+      alert('Invalid OTP')
     }
   }
 

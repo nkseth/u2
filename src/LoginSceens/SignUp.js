@@ -63,11 +63,11 @@ const SignUp = () => {
       setLoading(false)
 
       if(data){
-        if(data.success){
-          login_Mode_Handler("SignUpVarify")
-        }
+        login_Mode_Handler("SignUpVarify")
       }
     } catch (e){
+      setError('Email or Phone number already exists.')
+      alert('Email or Phone number already exists.')
       console.log(e)
     }
   }

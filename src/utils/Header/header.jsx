@@ -14,7 +14,7 @@ import {
   AccordionDetails,
 } from "@material-ui/core";
 import cx from "classnames";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import CustomSection from "../Custom Section/section";
 import SideNavbar from "../Side-Navbar/sideNavbar";
 import styles from "./header.module.scss";
@@ -31,6 +31,8 @@ import { useDispatch, useSelector } from "react-redux";
 import useLogin from "../../LoginSceens/useLogin";
 
 export default function Header() {
+
+  const history = useHistory()
   const location = useLocation();
   const [currency, setCurrency] = useState("INR");
   const [mouseEnter, setMouseEnter] = useState({
@@ -82,7 +84,7 @@ export default function Header() {
 
   const profileFnc = () => {
     if(Object.keys(user_data).length != 0){
-      console.log('hii')
+      history.push('/profile')
     } else {
       login_Model_Show()
     }

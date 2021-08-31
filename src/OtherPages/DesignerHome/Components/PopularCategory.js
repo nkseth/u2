@@ -10,7 +10,7 @@ const PopularCategory = () => {
   const dispatch = useDispatch();
   const baseStyle = { padding: "5rem 3rem" };
   const { categories } = useSelector((state) => state.root.popularCategory);
-  console.log(categories);
+
   useEffect(() => {
     dispatch(popularCategories());
   }, []);

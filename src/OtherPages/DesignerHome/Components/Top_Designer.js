@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IconButton, useMediaQuery,useTheme } from "@material-ui/core";
+import { IconButton, useMediaQuery, useTheme } from "@material-ui/core";
 import {
   CarouselProvider,
   Slider,
@@ -13,22 +13,28 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/Top_Designer.module.scss";
-import d1 from '../Images/d1.png'
-import d2 from '../Images/d2.png'
-import d3 from '../Images/d3.png'
-import d4 from '../Images/d4.png'
-import { useState } from "react";
+import d1 from "../Images/d1.png";
+import d2 from "../Images/d2.png";
+import d3 from "../Images/d3.png";
+import d4 from "../Images/d4.png";
+import { useEffect, useState } from "react";
+import { topDesigner } from "../../../Redux/actions/designerHomePage";
+import { useDispatch } from "react-redux";
 
 const Top_Designer = () => {
-
+  const dispatch = useDispatch();
   const baseStyle = {
-   padding: "5rem 3rem",
+    padding: "5rem 3rem",
     background: "#fff",
   };
-  const [visible,setvisible]=useState(4)
-  const theme=useTheme()
-  const match=useMediaQuery(theme.breakpoints.down('xs'))
-  const iPade=useMediaQuery(theme.breakpoints.down('sm'))
+  const [visible, setvisible] = useState(4);
+  const theme = useTheme();
+  const match = useMediaQuery(theme.breakpoints.down("xs"));
+  const iPade = useMediaQuery(theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    dispatch(topDesigner());
+  }, []);
   return (
     <div className="top_designer">
       <CustomSection class={styles.topdesigner} style={baseStyle}>
@@ -40,10 +46,10 @@ const Top_Designer = () => {
         </div>
 
         <CarouselProvider
-           visibleSlides={match?1:iPade?2:visible}
-           totalSlides={5}
-           infinite
-           isIntrinsicHeight
+          visibleSlides={match ? 1 : iPade ? 2 : visible}
+          totalSlides={5}
+          infinite
+          isIntrinsicHeight
         >
           <Slider>
             <Slide index={0}>
@@ -61,9 +67,8 @@ const Top_Designer = () => {
             <Slide index={4}>
               <CarouselSlide5 />
             </Slide>
-            
           </Slider>
-          <DotGroup style={{ display: "flex" , marginTop: "1rem" }} />
+          <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
           <div className={styles.NavigationContainer}>
             <Link to="designers-profile" style={{ color: "#0A0A0A" }}>
               SEE All
@@ -100,7 +105,7 @@ const CarouselSlide = () => {
           <img src={d1} alt="items" />
           <Link to="designers-profile">1</Link>
         </div>{" "}
-       </div>
+      </div>
     </>
   );
 };
@@ -115,7 +120,7 @@ const CarouselSlide2 = () => {
           <img src={d4} alt="items" />
           <Link to="designers-profile">2</Link>
         </div>{" "}
-       </div>
+      </div>
     </>
   );
 };
@@ -130,7 +135,7 @@ const CarouselSlide3 = () => {
           <img src={d2} alt="items" />
           <Link to="designers-profile">3</Link>
         </div>{" "}
-       </div>
+      </div>
     </>
   );
 };
@@ -145,7 +150,7 @@ const CarouselSlide4 = () => {
           <img src={d3} alt="items" />
           <Link to="designers-profile">4</Link>
         </div>{" "}
-       </div>
+      </div>
     </>
   );
 };
@@ -160,7 +165,7 @@ const CarouselSlide5 = () => {
           <img src={d4} alt="items" />
           <Link to="designers-profile">5</Link>
         </div>{" "}
-       </div>
+      </div>
     </>
   );
 };

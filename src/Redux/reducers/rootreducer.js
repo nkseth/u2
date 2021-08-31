@@ -5,6 +5,9 @@ import {
   topCategoryReducer,
   popularCategoryReducer,
   suitWearReducer,
+  topDesignerReducer,
+  topSeasonOffersReducer,
+  handMadeClothesReducer,
 } from "./designHomePageReducer";
 import trendingReducer from "./trendingReducer";
 
@@ -15,6 +18,9 @@ const rootreducer = combineReducers({
   topCategory: topCategoryReducer,
   popularCategory: popularCategoryReducer,
   suitWears: suitWearReducer,
+  topDesigner: topDesignerReducer,
+  topSeasonOffers: topSeasonOffersReducer,
+  handMadeClothes: handMadeClothesReducer,
 });
 
 export default rootreducer;

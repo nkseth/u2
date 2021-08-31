@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IconButton, useMediaQuery,useTheme } from "@material-ui/core";
+import { IconButton, useMediaQuery, useTheme } from "@material-ui/core";
 import {
   CarouselProvider,
   Slider,
@@ -13,20 +13,29 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/HandMade_Clothes.module.scss";
-import h1 from '../Images/h1.png'
-import h2 from '../Images/h2.png'
-import h3 from '../Images/h3.png'
-import { useState } from "react";
+import h1 from "../Images/h1.png";
+import h2 from "../Images/h2.png";
+import h3 from "../Images/h3.png";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { handMadeClothes } from "../../../Redux/actions/designerHomePage";
 
 const HandMade_Clothes = () => {
+  const dispatch = useDispatch();
   const customStyle = {
     padding: "5rem 3rem",
     background: "#857250",
   };
-  const [visible,setvisible]=useState(4)
-  const theme=useTheme()
-  const match=useMediaQuery(theme.breakpoints.down('xs'))
-  const iPade=useMediaQuery(theme.breakpoints.down('sm'))
+  const { clothes } = useSelector((state) => state.root.handMadeClothes);
+  console.log(clothes);
+  const [visible, setvisible] = useState(4);
+  const theme = useTheme();
+  const match = useMediaQuery(theme.breakpoints.down("xs"));
+  const iPade = useMediaQuery(theme.breakpoints.down("sm"));
+  useEffect(() => {
+    dispatch(handMadeClothes());
+  }, []);
+
   return (
     <div className="hande_made_clothes">
       <CustomSection class={styles.handmadeclothes} style={customStyle}>
@@ -38,13 +47,23 @@ const HandMade_Clothes = () => {
         </div>
 
         <CarouselProvider
-            visibleSlides={match?1:iPade?2:visible}
-            totalSlides={5}
-            infinite
-            isIntrinsicHeight
+          visibleSlides={match ? 1 : iPade ? 2 : visible}
+          totalSlides={5}
+          infinite
+          isIntrinsicHeight
         >
           <Slider>
-            <Slide index={0}>
+            {clothes.map(({ id, cover_image, name }, i) => (
+              <Slide index={i} key={id}>
+                <div className={styles.HandMade_Clothes}>
+                  <div className={styles.HandMade_Clothes_Items}>
+                    <img src={cover_image} alt={name} />
+                    <p>{name}</p>
+                  </div>
+                </div>
+              </Slide>
+            ))}
+            {/* <Slide index={0}>
               <CarouselSlide />
             </Slide>
             <Slide index={1}>
@@ -58,7 +77,7 @@ const HandMade_Clothes = () => {
             </Slide>
             <Slide index={4}>
               <CarouselSlide5 />
-            </Slide>
+            </Slide> */}
           </Slider>
           <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
           <div className={styles.NavigationContainer}>

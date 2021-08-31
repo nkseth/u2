@@ -41,10 +41,17 @@ const TopCategory = () => {
     "Sweatshirts",
     "Jeans",
   ];
-  console.log(categories);
+
   useEffect(() => {
     dispatch(topCategories({ slug: "womens-fashion" }));
   }, []);
+
+  const filteredCategories = categories.filter(
+    ({ slug }) =>
+      slug.toLowerCase() === "mens-fashion" ||
+      slug.toLowerCase() === "womens-fashion" ||
+      slug.toLowerCase() === "kids-fashion"
+  );
 
   const baseStyle = {};
   return (
@@ -54,7 +61,7 @@ const TopCategory = () => {
         <div className={styles.TopCategory_Items}>
           <h1 class="hidden_mobile">Top Category 2021</h1>
         </div>
-        {categories?.map(({ id, name, description, cover_image }) => (
+        {filteredCategories?.map(({ id, name, description, cover_image }) => (
           <CategoryItems
             key={id}
             heading={name}

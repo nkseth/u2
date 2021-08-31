@@ -12,7 +12,7 @@ export default function Container(props) {
   return (
     <div style={props.style}>
       <Header />
-      {props.bottomDivider && (
+      {/* {props.bottomDivider && (
         <div
           style={{
             padding: tabView
@@ -25,7 +25,7 @@ export default function Container(props) {
         >
           <CustomDivider />
         </div>
-      )}
+      )} */}
       {props.children}
       {props.footerOnAllView && <Footer />}
       {props.footerOnTabMob && tabView && !props.footerOnAllView && <Footer />}

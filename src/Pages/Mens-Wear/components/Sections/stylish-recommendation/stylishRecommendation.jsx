@@ -51,10 +51,10 @@ export default function StylishRecommendationSection() {
               </div>
             </div>
             <div className={styles.secondCon}>
-              <div>
+              {/* <div>
                 <StylishCard image={stylish3} />
 
-              </div>
+              </div> */}
               <div>
                 <StylishCard image={stylish4} />
 

@@ -68,7 +68,7 @@ export default function SectionThree() {
 
             </Slide>
           </Slider>
-          <DotGroup style={{ display: "flex" }} />
+          <DotGroup style={{ display: "flex", color: "#fff" }} />
           <div className={styles.carouselNavigationDiv}>
             <Link to='/'>SEE All</Link>
             <div className={styles.sliderBtnDiv}>

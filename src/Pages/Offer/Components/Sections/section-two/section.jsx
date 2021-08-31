@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 
 export default function SectionTwo() {
   return (
-    <CustomSection class={styles.offer_section_two} style={{ paddingTop: "4rem", paddingBottom: "7rem" }}>
+    <CustomSection className={styles.offer_section_two} style={{ paddingTop: "4rem", paddingBottom: "7rem" }}>
       <div className={styles.container}>
         <span className={styles.header}>Top Offers of the Season</span>
         <div className={styles.imgContainer}>

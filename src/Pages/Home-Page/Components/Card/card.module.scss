@@ -55,7 +55,7 @@
   .container {
     height: calc(100vh - 77px);
     .header {
-      font-size: 35px;
+      font-size: 35px!important;
       line-height: 50px;
     }
 
@@ -66,3 +66,23 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+
+  .header{
+    font-size: 52px!important;
+  }
+  .container{
+    height:550px;
+  }
+  
+}
+@media screen and (max-width: 1000px) {
+
+  .header{
+    font-size: 62px!important;
+  }
+  .container{
+    height:550px;
+  }
+  
+}

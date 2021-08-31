@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IconButton, useMediaQuery,useTheme } from "@material-ui/core";
+import { IconButton, useMediaQuery, useTheme } from "@material-ui/core";
 import {
   CarouselProvider,
   Slider,
@@ -13,10 +13,8 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/SuitWear.module.scss";
-import p1 from "../Images/111.png";
-import p2 from "../Images/p2.png";
-import p3 from "../Images/p3.png";
-import p4 from "../Images/p4.png";
+import c1 from "../Images/111.png";
+import c2 from "../Images/c2.jpg";
 import { useState } from "react";
 
 const SuitWear = () => {
@@ -24,10 +22,10 @@ const SuitWear = () => {
     padding: "5rem 3rem",
     background: "#938368",
   };
-  const [visible,setvisible]=useState(4)
-  const theme=useTheme()
-  const match=useMediaQuery(theme.breakpoints.down('xs'))
-  const iPade=useMediaQuery(theme.breakpoints.down('sm'))
+  const [visible, setvisible] = useState(4)
+  const theme = useTheme()
+  const match = useMediaQuery(theme.breakpoints.down('xs'))
+  const iPade = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <div>
       <CustomSection class={styles.suitwear_content} style={customStyle}>
@@ -36,7 +34,7 @@ const SuitWear = () => {
           <CustomDivider style={{ height: "2px", background: "#fff" }} />
         </div>
         <CarouselProvider
-          visibleSlides={match?1:iPade?2:visible}
+          visibleSlides={match ? 1 : iPade ? 2 : visible}
           totalSlides={5}
           infinite
           isIntrinsicHeight
@@ -63,10 +61,10 @@ const SuitWear = () => {
             <Slide index={6}>
               <CarouselSlide7 />
             </Slide>
-            
-              
+
+
           </Slider>
-          <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
+          <DotGroup style={{ display: "flex", marginTop: "2rem" }} />
           <div className={styles.NavigationContainer}>
             <Link style={{ color: "#fff" }} to="designers-product-page">
               SEE All
@@ -97,14 +95,14 @@ const CarouselSlide1 = () => {
     "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
   const media = useMediaQuery(`(max-width:768px)`);
   return (
-    <div className>
+    <div style={{ width: "100%" }} >
       <div className={styles.SuitWear}>
         <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
-          <Link to="designers-product-page">1</Link>
+          <img src={c2} alt="items" />
+          <Link to="designers-product-page">Party Wear</Link>
         </div>{" "}
-        
-       
+
+
         {/* {media ? null : (
           <>
             <div className={styles.SuitWear_Items}>
@@ -125,12 +123,12 @@ const CarouselSlide2 = () => {
   return (
     <div className>
       <div className={styles.SuitWear}>
-       
+
         <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
+          <img src={c1} alt="items" />
           <Link to="designers-product-page">2</Link>
         </div>{" "}
-        
+
         {/* {media ? null : (
           <>
             <div className={styles.SuitWear_Items}>
@@ -152,12 +150,12 @@ const CarouselSlide3 = () => {
   return (
     <div className>
       <div className={styles.SuitWear}>
-       
+
         <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
+          <img src={c2} alt="items" />
           <Link to="designers-product-page">3</Link>
         </div>{" "}
-        
+
         {/* {media ? null : (
           <>
             <div className={styles.SuitWear_Items}>
@@ -177,12 +175,12 @@ const CarouselSlide4 = () => {
   return (
     <div className>
       <div className={styles.SuitWear}>
-       
+
         <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
+          <img src={c1} alt="items" />
           <Link to="designers-product-page">4</Link>
         </div>{" "}
-        
+
         {/* {media ? null : (
           <>
             <div className={styles.SuitWear_Items}>
@@ -202,12 +200,12 @@ const CarouselSlide5 = () => {
   return (
     <div className>
       <div className={styles.SuitWear}>
-       
+
         <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
+          <img src={c2} alt="items" />
           <Link to="designers-product-page">5</Link>
         </div>{" "}
-        
+
         {/* {media ? null : (
           <>
             <div className={styles.SuitWear_Items}>
@@ -227,12 +225,12 @@ const CarouselSlide6 = () => {
   return (
     <div className>
       <div className={styles.SuitWear}>
-       
+
         <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
+          <img src={c1} alt="items" />
           <Link to="designers-product-page">5</Link>
         </div>{" "}
-        
+
         {/* {media ? null : (
           <>
             <div className={styles.SuitWear_Items}>
@@ -252,12 +250,12 @@ const CarouselSlide7 = () => {
   return (
     <div className>
       <div className={styles.SuitWear}>
-       
+
         <div className={styles.SuitWear_Items}>
-          <img src={p1} alt="items" />
+          <img src={c2} alt="items" />
           <Link to="designers-product-page">5</Link>
         </div>{" "}
-        
+
         {/* {media ? null : (
           <>
             <div className={styles.SuitWear_Items}>

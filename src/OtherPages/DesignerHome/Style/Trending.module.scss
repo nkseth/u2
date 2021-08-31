@@ -61,7 +61,46 @@
   gap: 4rem;
 }
 
-@media only screen and (min-device-width: 420px) and (max-device-width: 1024px) {
+@media only screen and (min-device-width: 580px) and (max-device-width: 768px) {
+
+
+  .Trending {
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+
+
+    .Trending_Items {
+      img {
+        height: 250px;
+        
+      }
+    }
+
+  }
+
+}
+
+
+@media only screen and (min-device-width: 420px) and (max-device-width: 580px) {
+  .Trending {
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+
+
+    .Trending_Items {
+      img {
+        height: 200px;
+        
+      }
+    }
+
+  }
+}
+
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .Trending_Button {
     padding-top: 3rem;
   }
@@ -77,6 +116,7 @@
     height: auto;
     display: grid;
     grid-template-columns: repeat(2, 2fr);
+  
   }
 }
 @media screen and (max-width: 420px) {

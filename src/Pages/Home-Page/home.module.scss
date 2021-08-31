@@ -1,11 +1,19 @@
 .gridContainer {
   min-height: calc(100vh - 129px) !important;
+  width: 100%;
+  display: flex;
 }
 
 @media screen and (max-width: 835px) {
 }
 
 @media screen and (max-width: 768px) {
+  .gridContainer {
+    min-height: calc(100vh - 129px) !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width: 550px) {

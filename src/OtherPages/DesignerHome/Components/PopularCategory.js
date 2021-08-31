@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/PopularCategory.module.scss";
 import overlay from "../Images/p1.png";
-//TRBL
+//TRBL 
 const PopularCategory = () => {
   const baseStyle = { padding: "5rem 3rem" };
 

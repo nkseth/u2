@@ -13,10 +13,12 @@
   p {
     color: #fff;
     > span:first-child {
-      font-family: DM Serif Display;
-      font-style: italic;
+      font-style: italic!important;
+      font-family: DM Serif Display !important;
     }
     > span:last-child {
+      font-family: DM Sans  !important;
+
     }
   }
 }
@@ -35,9 +37,14 @@
   .header {
     height: auto;
     width: 100%;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 23px;
     gap: 1rem;
     margin-bottom: 30px;
+    p{
+      width: 100%;
+      text-align: center  ;
+
+    }
   }
 }

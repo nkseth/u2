@@ -29,7 +29,16 @@
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 786px) {
+  .header {
+    text-align: center;
+    > p:first-child {
+      font-size: 44px;
+    }
+  }
+
+}
+  @media screen and (max-width: 550px) {
   .header {
     > p:first-child {
       line-height: 35px !important;

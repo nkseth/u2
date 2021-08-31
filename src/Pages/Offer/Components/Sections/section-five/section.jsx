@@ -36,7 +36,7 @@ export default function SectionFive() {
         infinite
         isIntrinsicHeight
       >
-        <Slider>
+        <Slider >
           <Slide index={0}>
             <CarouselSlide img1={img5} img2={img6} img3={img7} img4={img8} title1={'Wrogn'} title2={'Benstokes'} title3={'Wrogn'} title4={'Benstokes'} />
 
@@ -45,7 +45,7 @@ export default function SectionFive() {
             <CarouselSlide img1={img1} img2={img2} img3={img3} img4={img4} title1={'Wrogn'} title2={'Benstokes'} title3={'Wrogn'} title4={'Benstokes'} />
           </Slide>
         </Slider>
-        <DotGroup style={{ display: "flex" }} />
+        <DotGroup style={{ display: "flex", backgroundColor: "#000" }} />
         <div className={styles.carouselNavigationDiv}>
           <Link to='/'>SEE All</Link>
           <div className={styles.sliderBtnDiv}>

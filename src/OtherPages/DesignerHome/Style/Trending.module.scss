@@ -119,7 +119,12 @@
   
   }
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 768px) {
+  .Trending_header {
+    margin-top:-40px;
+  }
+}
+  @media screen and (max-width: 420px) {
   .trending_content{
     padding: 2rem 1rem !important;
   }

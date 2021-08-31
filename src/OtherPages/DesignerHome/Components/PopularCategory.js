@@ -11,7 +11,7 @@ const PopularCategory = () => {
     <>
       <div className={styles.popularcategory_content} style={baseStyle}>
         <div className={`${styles.PopularCategory_header}`}>
-          Popular Category
+          Popular Categories
           <CustomDivider style={{ height: "1px", background: "#857250" }} />
         </div>
         <div className={`${styles.Category} Category`}>

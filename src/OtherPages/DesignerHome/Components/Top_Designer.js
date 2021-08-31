@@ -114,7 +114,7 @@ const CarouselSlide2 = () => {
       <div className={styles.Top_Designer}>
         <div className={styles.Top_Designer_Items}>
           <img src={d4} alt="items" />
-          <Link to="designers-profile">Designer Name</Link>
+          <Link to="designers-profile">Designer's Name</Link>
         </div>{" "}
       </div>
     </>

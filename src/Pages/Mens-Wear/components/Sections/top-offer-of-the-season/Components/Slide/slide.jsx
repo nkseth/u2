@@ -11,7 +11,7 @@ export default function DesignerSlide({ image1, image2, image3, image4, title })
     <div
       style={{
         display: "flex",
-        justifyContent: mobileView ? "space-evenly" : "space-evenly",
+        justifyContent: mobileView ? "space-evenly" : "space-between",
         gap: mobileView ? "0.5rem" : "0rem",
         marginBottom: "3rem",
       }}

@@ -136,10 +136,10 @@ function GRIDLAPTOP({ tabView, customView, customView2 }) {
       fullHeightHover={false}
       navButtonsProps={{
         style: {
-          backgroundColor: "#6C6C6C",
-          color: "#fff",
-          height: "40px",
-          width: "40px",
+          backgroundColor: "transparent",
+          color: "#000",
+          height: "100px",
+          width: "10px",
           marginTop: "0em"
 
         },

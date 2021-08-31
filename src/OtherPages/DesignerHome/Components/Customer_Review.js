@@ -24,6 +24,8 @@ const Customer_Review = () => {
   const theme = useTheme()
   const match = useMediaQuery(theme.breakpoints.down('xs'))
   const iPade = useMediaQuery(theme.breakpoints.down('sm'))
+  const mobileView = useMediaQuery("(max-width:1024px)");
+
   return (
     <div className="customer_review_content">
       <CustomSection class={styles.customerreview} style={customStyle}>
@@ -32,7 +34,12 @@ const Customer_Review = () => {
           style={{ display: "flex", alignItems: "center" }}
         >
           Customer's Review{" "}
-          <CustomDivider style={{ height: "1px", background: "#6A5B40", marginLeft: 10 }} />
+          {
+            mobileView ?
+              <></>
+              :
+              <CustomDivider style={{ height: "1px", background: "#6A5B40", marginLeft: 10 }} />
+          }
         </div>
 
         <CarouselProvider

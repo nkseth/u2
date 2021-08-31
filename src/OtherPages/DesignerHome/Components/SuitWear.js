@@ -19,7 +19,7 @@ import { useState } from "react";
 
 const SuitWear = () => {
   const customStyle = {
-    padding: "5rem 3rem",
+    padding: "3rem 3rem",
     background: "#938368",
   };
   const [visible, setvisible] = useState(4)
@@ -91,9 +91,8 @@ const SuitWear = () => {
 export default SuitWear;
 
 const CarouselSlide1 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
+
+
   return (
     <div style={{ width: "100%" }} >
       <div className={styles.SuitWear}>
@@ -102,24 +101,14 @@ const CarouselSlide1 = () => {
           <Link to="designers-product-page">Party Wear</Link>
         </div>{" "}
 
-
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
       </div>
     </div>
   );
 };
 
 const CarouselSlide2 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
+
+
   return (
     <div className>
       <div className={styles.SuitWear}>
@@ -144,9 +133,8 @@ const CarouselSlide2 = () => {
 
 
 const CarouselSlide3 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
+
+
   return (
     <div className>
       <div className={styles.SuitWear}>
@@ -169,9 +157,8 @@ const CarouselSlide3 = () => {
   );
 };
 const CarouselSlide4 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
+
+
   return (
     <div className>
       <div className={styles.SuitWear}>
@@ -194,9 +181,8 @@ const CarouselSlide4 = () => {
   );
 };
 const CarouselSlide5 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
+
+
   return (
     <div className>
       <div className={styles.SuitWear}>
@@ -219,9 +205,8 @@ const CarouselSlide5 = () => {
   );
 };
 const CarouselSlide6 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
+
+
   return (
     <div className>
       <div className={styles.SuitWear}>
@@ -244,9 +229,8 @@ const CarouselSlide6 = () => {
   );
 };
 const CarouselSlide7 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
+
+
   return (
     <div className>
       <div className={styles.SuitWear}>

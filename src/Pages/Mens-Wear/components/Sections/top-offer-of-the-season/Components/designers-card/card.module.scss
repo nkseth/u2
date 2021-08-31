@@ -60,8 +60,9 @@
 }
   @media screen and (max-width: 835px) {
   .container{
-    width: 370px!important;
-  
+    width: 700px !important;
+    width: 100%;
+    height: 100%!important;
   .imgContainer {
 
     img {
@@ -99,8 +100,8 @@
 
   .container{
     width: 40%;
-    max-width: 230px;
-    height: 270px;
+    max-width: 210px;
+    // height: 270px;
   .imgContainer {
 
     img {
@@ -113,7 +114,7 @@
 
   .container{
     width: 40%;
-    max-width: 245px;
+    max-width: 230px;
     height: 270px;
   .imgContainer {
 

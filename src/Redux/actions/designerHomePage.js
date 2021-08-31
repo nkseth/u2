@@ -9,13 +9,13 @@ import {
   GET_TOP_TRENDING,
 } from "./types";
 
-export const topTrending = (params) => async (dispatch) => {
+export const topTrending = () => async (dispatch) => {
   try {
-    const { data } = await DesignerHomePageDataService.getTrending(params);
+    const { data } = await DesignerHomePageDataService.getTrending();
 
     dispatch({
       type: GET_TOP_TRENDING,
-      payload: data,
+      payload: data.trending_categories,
     });
   } catch (err) {
     console.log(err);
@@ -54,7 +54,6 @@ export const popularCategories = () => async (dispatch) => {
 export const topDesigner = () => async (dispatch) => {
   try {
     const { data } = await DesignerHomePageDataService.topDesigner();
-    console.log(data);
     dispatch({ type: GET_TOP_DESIGNERS, payload: data.top_designer });
   } catch (err) {
     return Promise.reject(err);
@@ -64,8 +63,7 @@ export const topDesigner = () => async (dispatch) => {
 export const topSeasonOffers = () => async (dispatch) => {
   try {
     const { data } = await DesignerHomePageDataService.topSeasonOffers();
-    console.log(data);
-    dispatch({ type: GET_TOP_SEASON_OFFERS, payload: data });
+    dispatch({ type: GET_TOP_SEASON_OFFERS, payload: data.designer_group_2 });
   } catch (err) {
     return Promise.reject(err);
   }

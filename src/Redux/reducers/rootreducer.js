@@ -8,8 +8,8 @@ import {
   topDesignerReducer,
   topSeasonOffersReducer,
   handMadeClothesReducer,
+  trendingReducer,
 } from "./designHomePageReducer";
-import trendingReducer from "./trendingReducer";
 
 const rootreducer = combineReducers({
   login: loginreducer,

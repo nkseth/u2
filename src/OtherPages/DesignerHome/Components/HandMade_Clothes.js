@@ -27,7 +27,7 @@ const HandMade_Clothes = () => {
     background: "#857250",
   };
   const { clothes } = useSelector((state) => state.root.handMadeClothes);
-  console.log(clothes);
+
   const [visible, setvisible] = useState(4);
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down("xs"));

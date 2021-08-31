@@ -19,7 +19,7 @@ import d3 from "../Images/d3.png";
 import d4 from "../Images/d4.png";
 import { useEffect, useState } from "react";
 import { topDesigner } from "../../../Redux/actions/designerHomePage";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Top_Designer = () => {
   const dispatch = useDispatch();
@@ -31,6 +31,7 @@ const Top_Designer = () => {
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down("xs"));
   const iPade = useMediaQuery(theme.breakpoints.down("sm"));
+  const { designers } = useSelector((state) => state.root.topDesigner);
 
   useEffect(() => {
     dispatch(topDesigner());
@@ -52,7 +53,17 @@ const Top_Designer = () => {
           isIntrinsicHeight
         >
           <Slider>
-            <Slide index={0}>
+            {designers.map(({ id, name, cover_image }, i) => (
+              <Slide index={i} key={id}>
+                <div className={styles.Top_Designer}>
+                  <div className={styles.Top_Designer_Items}>
+                    <img src={cover_image} alt={name} />
+                    <Link to="designers-profile">{name}</Link>
+                  </div>
+                </div>
+              </Slide>
+            ))}
+            {/* <Slide index={0}>
               <CarouselSlide />
             </Slide>
             <Slide index={1}>
@@ -66,7 +77,7 @@ const Top_Designer = () => {
             </Slide>
             <Slide index={4}>
               <CarouselSlide5 />
-            </Slide>
+            </Slide> */}
           </Slider>
           <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
           <div className={styles.NavigationContainer}>

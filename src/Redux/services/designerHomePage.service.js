@@ -7,8 +7,12 @@ class DesignerHomePageDataService {
     return axios.get("/category-subgrps", slug);
   }
 
-  getTrending(params) {
-    return axios.post(`/themeOption`, params);
+  getTrending() {
+    return axios.post(`/themeOption`, {
+      dashboard_type: "designer_home",
+      content_type: "all",
+      group_name: "trending_categories",
+    });
   }
 
   popularCategory() {
@@ -24,22 +28,15 @@ class DesignerHomePageDataService {
   }
 
   topDesigner() {
-    return axios.post(`/themeOption/`, {
-      dashboard_type: "designer_home",
-      content_type: "womens-fashion",
-      group_name: "top_designer",
-    });
+    return axios.post(`/themeOptionDesigner`);
   }
 
   topSeasonOffers() {
-    return axios.get("/banners/designer_home/designer_group_2", {
-      "1st": "designer_home",
-      "2and": "designer_group_2",
-    });
+    return axios.get("/banners/designer_home/designer_group_2");
   }
 
   handMadeClothes() {
-    return axios.post(`/themeOption/`, {
+    return axios.post(`/themeOption`, {
       dashboard_type: "designer_home",
       content_type: "mens-fashion",
       group_name: "hand_made_cloth",

@@ -5,7 +5,20 @@ import {
   GET_TOP_CATEGORY,
   GET_TOP_DESIGNERS,
   GET_TOP_SEASON_OFFERS,
+  GET_TOP_TRENDING,
 } from "../actions/types";
+
+export const trendingReducer = (initialState = { items: [] }, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case GET_TOP_TRENDING:
+      return { ...initialState, items: payload };
+
+    default:
+      return initialState;
+  }
+};
 
 export const topCategoryReducer = (
   initialState = { categories: [] },

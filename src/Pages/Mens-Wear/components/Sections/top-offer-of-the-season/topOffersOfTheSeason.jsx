@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { IconButton } from "@material-ui/core";
 import {
@@ -17,15 +17,8 @@ import styles from "./topOffersOfTheSeason.module.scss";
 //icons
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import { useDispatch } from "react-redux";
-import { topSeasonOffers } from "../../../../../Redux/actions/designerHomePage";
 
 export default function TopOffersOfTheSeasonSection() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(topSeasonOffers());
-  }, []);
-
   return (
     <CustomSection
       style={{

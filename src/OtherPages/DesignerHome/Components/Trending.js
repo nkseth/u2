@@ -9,7 +9,7 @@ import c2 from "../Images/c2.png";
 import c3 from "../Images/c3.png";
 import c4 from "../Images/c4.png";
 import { topTrending } from "../../../Redux/actions/designerHomePage";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const Trending = () => {
   const dispatch = useDispatch();
   const imageSrc =
@@ -20,14 +20,10 @@ const Trending = () => {
   const { push } = useHistory();
   const mobileView = useMediaQuery("(max-width:1024px)");
 
+  const { items } = useSelector((state) => state.root.trending);
+
   useEffect(() => {
-    dispatch(
-      topTrending({
-        dashboard_type: "designer_home",
-        content_type: "womens-fashion",
-        group_name: "suit_wear",
-      })
-    );
+    dispatch(topTrending());
   }, []);
 
   return (
@@ -37,7 +33,13 @@ const Trending = () => {
         <CustomDivider style={{ height: "1px", background: "#857250" }} />
       </div>
       <div className={styles.Trending}>
-        <div className={styles.Trending_Items}>
+        {items.map(({ name, cover_image }) => (
+          <div className={styles.Trending_Items}>
+            <img src={cover_image} alt={name} />
+            <Link to="designers-product-page">{name}</Link>
+          </div>
+        ))}
+        {/* <div className={styles.Trending_Items}>
           <img src={c1} alt="items" />
           <Link to="designers-product-page">Wear</Link>
         </div>
@@ -56,12 +58,14 @@ const Trending = () => {
         <div className={styles.Trending_Items}>
           <img src={c2} alt="items" />
           <Link to="designers-product-page">Wear</Link>
-        </div>
+        </div> */}
         {mobileView ? (
-          <div className={styles.Trending_Items}>
-            <img src={c1} alt="items" />
-            <Link to="designers-product-page">Wear</Link>
-          </div>
+          items.map(({ name, cover_image }) => (
+            <div className={styles.Trending_Items}>
+              <img src={cover_image} alt={name} />
+              <Link to="designers-product-page">{name}</Link>
+            </div>
+          ))
         ) : (
           <></>
         )}

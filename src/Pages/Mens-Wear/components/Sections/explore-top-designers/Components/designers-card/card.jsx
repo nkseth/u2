@@ -5,14 +5,14 @@ import styles from "./card.module.scss";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
-export default function DesignersCard() {
+export default function DesignersCard({ image }) {
   const [isAddToWishList, setAddToWishList] = useState(false);
   const img =
     "https://images.pexels.com/photos/7137411/pexels-photo-7137411.png?auto=compress&cs=tinysrgb&dpr=2&w=500";
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
-        <img src={img} alt='product' />
+        <img src={image} alt='product' />
         {isAddToWishList ? (
           <IconButton
             aria-label='product'

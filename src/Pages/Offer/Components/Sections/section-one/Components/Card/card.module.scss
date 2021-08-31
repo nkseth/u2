@@ -57,7 +57,7 @@
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 570px) {
   .container {
     height: 342px;
     div {
@@ -69,11 +69,23 @@
     }
   }
 }
-@media only screen and (min-device-width: 550px) and (max-device-width: 768px) {
+@media only screen and (min-device-width: 570px) and (max-device-width: 768px) {
   .container {
   height: 400px;
+  div {
+    padding: 0 1rem;
   }
-}
+  }
+  
+  .header{
+    font-size: 62px!important;
+    line-height: 62px!important;
+    width: 120%;
+    text-align: left!important;
+  }
+
+  }
+
 
 
 

@@ -1,13 +1,15 @@
 .container {
-  //   height: 360px;
-  //   width: 271px;
-
+display: flex;
+flex-direction: column;
+justify-content: center;
+width: 100%!important;
+max-width: 300px;
   .imgContainer {
     position: relative;
     width: 100%;
     img {
-      height: 295px;
-      width: 263px;
+      height: 100%;
+      width: 100%;
       object-fit: cover;
     }
   }
@@ -47,19 +49,20 @@
 @media screen and (max-width: 835px) {
   .imgContainer {
     img {
-      height: 300px !important;
-      width: 100% !important;
+      height: 100%!important;
+      // width: 250px !important;
     }
   }
 }
 
 @media screen and (max-width: 550px) {
   .container {
-    width: 100%;
+    width: 100%!important;
+    max-width: 300px;
   }
   .imgContainer {
     img {
-      height: 210px !important;
+      height: 100% !important;
       width: 100% !important;
     }
   }

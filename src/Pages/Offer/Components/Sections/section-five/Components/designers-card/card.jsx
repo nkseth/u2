@@ -41,7 +41,7 @@ export default function ProductCard({ img, title }) {
         </span>
         <p className={styles.productPrice}>
           <span>₹554 </span>
-          <span>₹1499 63% OFF</span>
+          <span>₹1499 <span style={{ color: "#9D8E73" }} >63% OFF</span></span>
         </p>
       </div>
     </div>

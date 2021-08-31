@@ -74,6 +74,11 @@ $brand-img-height-width: 50px;
       height: 315px;
     }
   }
+  .trends{
+    span{
+      font-size: 14px!important;
+    }
+  }
 }
 @media screen and (max-width: 550px) {
   .container {

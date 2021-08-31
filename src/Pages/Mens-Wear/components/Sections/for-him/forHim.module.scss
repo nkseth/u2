@@ -22,11 +22,15 @@ $first-section-width: 500px;
     width: 100% !important;
     height: 602.87px;
     object-fit: cover;
+    object-position: top;
   }
 }
 
 .secondSection {
   width: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navBar {
@@ -84,7 +88,7 @@ $first-section-width: 500px;
   height: 48px !important;
   width: 173px !important;
   border-radius: 0 !important;
-  font-size: 16px !important;
+  font-size: 11px !important;
   font-weight: 700 !important;
   line-height: 20px !important;
   text-transform: none !important;
@@ -92,6 +96,8 @@ $first-section-width: 500px;
   background: #ffffff !important;
   border: 1px solid #000000 !important;
   color: var(--primary-color-dark) !important;
+  margin-top: 3em!important;
+  margin-bottom: 1em!important;
 }
 
 .activeNav {
@@ -121,14 +127,18 @@ $first-section-width: 500px;
     width: 100%;
     img {
       height: 430px;
+      margin-bottom: 1em;
     }
     p {
       margin: 0;
     }
   }
   .mainContainer {
+    gap: 0px!important;
     flex-direction: column;
+
   }
+
 }
 
 @media screen and (max-width: 835px) {
@@ -141,7 +151,12 @@ $first-section-width: 500px;
 
   .viewAllBtn {
     font-size: 11px !important;
+    margin-top: 3em!important;
   }
+  .mainContainer {
+    gap: 0px!important;
+  }
+
 }
 
 @media screen and (max-width: 550px) {
@@ -158,10 +173,30 @@ $first-section-width: 500px;
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     span {
       font-size: 16px;
       line-height: 28px;
       letter-spacing: 0.02em;
     }
   }
+}
+
+@media screen and (max-width:950px) {
+
+
+  .mainContainer {
+    gap: 0px;
+  }
+
+
+}
+@media screen and (max-width:768px) {
+
+
+  .mainContainer {
+    gap: 0px;
+  }
+
+
 }

@@ -9,6 +9,14 @@ import {
   ButtonNext,
   DotGroup,
 } from "pure-react-carousel";
+//Images 
+import cs1 from "./Images/cs1.jpg"
+import cs2 from "./Images/cs2.jpg"
+import cs3 from "./Images/cs3.jpg"
+import cs4 from "./Images/cs4.jpg"
+
+
+
 import "pure-react-carousel/dist/react-carousel.es.css";
 import CustomSection from "../../../../../utils/Custom Section/section";
 import CarouselSlide from "./Components/Slide/slide";
@@ -32,11 +40,11 @@ export default function CelebrityStyleSection() {
         isIntrinsicHeight
       >
         <Slider>
-          <Slide index={0}>
-            <CarouselSlide />
+          <Slide index={0} style={{ marginLeft: "0.2em" }} >
+            <CarouselSlide image1={cs4} image2={cs2} image3={cs3} image4={cs1} />
           </Slide>
-          <Slide index={1}>
-            <CarouselSlide />
+          <Slide index={1} style={{ marginLeft: "0.2em" }} >
+            <CarouselSlide image1={cs4} image2={cs2} image3={cs3} image4={cs1} />
           </Slide>
         </Slider>
         <DotGroup style={{ display: "flex" }} />

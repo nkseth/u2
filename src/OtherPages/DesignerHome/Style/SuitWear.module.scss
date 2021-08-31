@@ -14,10 +14,12 @@
 }
 .SuitWear {
   display: flex;
-  gap: 1rem;
+  gap: 1em;
   align-items: center;
-  justify-content: space-between;
-  height: 400px;
+  justify-content: space-evenly;
+  height: 290px;
+  width: 290px;
+  margin-bottom: 2em;
   .SuitWear_Items {
     margin: 0 7px;
     display: grid;
@@ -28,6 +30,7 @@
       height: 300px;
       width: 100%;
       object-fit: cover;
+      object-position: top!important;
     }
     a {
       font-size: 16px;

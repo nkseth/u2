@@ -60,9 +60,7 @@
 }
   @media screen and (max-width: 835px) {
   .container{
-    width: 700px !important;
-    width: 100%;
-    height: 100%!important;
+    width: 200px !important;
   .imgContainer {
 
     img {
@@ -73,9 +71,56 @@
 }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 700px) {
   .container{
-    width: 290px!important;
+    width: 190px !important;
+  .imgContainer {
+
+    img {
+      // height: 280px !important;
+      width: 100%;
+    }
+    span{
+      font-size: 20px;
+    }
+  }
+} 
+}
+
+@media screen and (max-width: 640px) {
+  .container{
+    width: 170px !important;
+  .imgContainer {
+
+    img {
+      // height: 280px !important;
+      width: 100%;
+    }
+    span{
+      font-size: 20px;
+    }
+  }
+} 
+}
+@media screen and (max-width: 585px) {
+  .container{
+    width: 150px !important;
+  .imgContainer {
+
+    img {
+      // height: 280px !important;
+      width: 100%;
+    }
+    span{
+      font-size: 20px;
+    }
+  }
+} 
+}
+
+  @media screen and (max-width: 550px) {
+  .container{
+    width: 210px!important;
   .imgContainer {
     > span {
       font-size: 20px !important;
@@ -94,6 +139,26 @@
   }
 }
 
+@media screen and (max-width: 475px) {
+  .container{
+    width: 170px!important;
+  .imgContainer {
+    > span {
+      font-size: 20px !important;
+    }
+    img {
+      // height: 210px !important;
+      width: 100%;
+    }
+  }
+}
+  .clothTypes {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.3199999928474426px;
+    padding: 0.5rem;
+  }
+}
 
 
 @media screen and (max-width: 1150px) {
@@ -123,4 +188,26 @@
     }
   }
 }
+}
+
+
+@media screen and (max-width: 400px) {
+  .container{
+    width: 610px!important;
+  .imgContainer {
+    > span {
+      font-size: 20px !important;
+    }
+    img {
+      // height: 210px !important;
+      width: 100%;
+    }
+  }
+}
+  .clothTypes {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.3199999928474426px;
+    padding: 0.5rem;
+  }
 }

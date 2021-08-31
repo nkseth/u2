@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const axios = Axios.create({
-  baseURL: "https://almond-tropical-cloudberry.glitch.me/",
+  baseURL: "http://3.108.240.44/api",
 });
 
 axios.interceptors.request.use(

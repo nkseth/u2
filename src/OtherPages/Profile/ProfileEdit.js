@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Profile.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+
+
 const ProfileEdit = () => {
+
+  const { user_data } = useSelector(state => state.root.main)
+
+  const [ name, setName ] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone_no, setPhoneNo] = useState('')
+
+  useEffect(()=> {
+    setName(user_data.name)
+    setEmail(user_data.email)
+    setPhoneNo(user_data.phone_no)
+  },[])
+
   const profileImg =
     "https://cdn.pixabay.com/photo/2017/08/06/15/13/woman-2593366__340.jpg";
   return (
@@ -16,7 +32,7 @@ const ProfileEdit = () => {
         <div>
           <label>Username</label>
           <input
-            defaultValue="Steve Jobs"
+            defaultValue={name}
             type="text"
             placeholder="Enter your username..."
             required
@@ -25,7 +41,7 @@ const ProfileEdit = () => {
         <div>
           <label>Email ID</label>
           <input
-            defaultValue="stevejobs@gmail.com"
+            defaultValue={email}
             type="email"
             placeholder="Enter your email..."
             required
@@ -34,7 +50,7 @@ const ProfileEdit = () => {
         <div>
           <label>Phone number</label>
           <input
-            defaultValue="+919876543210"
+            defaultValue={phone_no}
             type="text"
             maxLength={"10"}
             required

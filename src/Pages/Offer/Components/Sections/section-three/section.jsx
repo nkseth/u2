@@ -16,6 +16,27 @@ import styles from "./section.module.scss";
 //icons
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+//images
+import img1 from "../section-three/Components/Slide/Images/card1.png"
+import img2 from "../section-three/Components/Slide/Images/card6.png"
+import img3 from "../section-three/Components/Slide/Images/card14.png"
+import img4 from "../section-three/Components/Slide/Images/card8.png"
+import img5 from "../section-three/Components/Slide/Images/card9.png"
+import img6 from "../section-three/Components/Slide/Images/card3.png"
+import img7 from "../section-three/Components/Slide/Images/card5.png"
+import img8 from "../section-three/Components/Slide/Images/card13.png"
+//Brand Images
+import brand1 from "../section-three/Components/Slide/Images/logo/logo1.png"
+import brand2 from "../section-three/Components/Slide/Images/logo/logo2.png"
+import brand3 from "../section-three/Components/Slide/Images/logo/logo3.png"
+import brand4 from "../section-three/Components/Slide/Images/logo/logo4.png"
+import brand5 from "../section-three/Components/Slide/Images/logo/logo5.png"
+import brand6 from "../section-three/Components/Slide/Images/logo/logo6.png"
+import brand7 from "../section-three/Components/Slide/Images/logo/logo7.png"
+import brand8 from "../section-three/Components/Slide/Images/logo/logo8.png"
+
+
+
 
 export default function SectionThree() {
   const tabView = useMediaQuery("(max-width:768px)");
@@ -23,9 +44,10 @@ export default function SectionThree() {
   const mobileView = useMediaQuery("(max-width:550px)");
   return (
     <CustomSection
+      class={styles.offer_section_three}
       style={{
-        paddingTop: "3rem",
-        paddingBottom: "3rem",
+        paddingTop: "5rem",
+        paddingBottom: "5rem",
         backgroundColor: "#9d8e73",
       }}
     >
@@ -39,13 +61,14 @@ export default function SectionThree() {
         >
           <Slider>
             <Slide index={0}>
-              <CarouselSlide />
+              <CarouselSlide img1={img1} img2={img2} img3={img3} img4={img4} brand1={brand1} brand2={brand2} brand3={brand3} brand4={brand4} />
             </Slide>
-            <Slide index={1}>
-              <CarouselSlide />
+            <Slide index={1} style={{ marginLeft: 10 }}>
+              <CarouselSlide img1={img5} img2={img6} img3={img7} img4={img8} brand1={brand5} brand2={brand6} brand3={brand7} brand4={brand8} />
+
             </Slide>
           </Slider>
-          <DotGroup style={{ display: "flex" }} />
+          <DotGroup style={{ display: "flex", color: "#fff" }} />
           <div className={styles.carouselNavigationDiv}>
             <Link to='/'>SEE All</Link>
             <div className={styles.sliderBtnDiv}>

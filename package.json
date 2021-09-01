@@ -1,6 +1,6 @@
 {
   "name": "U2",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
@@ -24,8 +24,10 @@
     "react-animated-css": "^1.2.1",
     "react-bootstrap": "^1.6.1",
     "react-circular-progressbar": "^2.0.4",
+    "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
     "react-image-gallery": "^1.2.4",
+    "react-laag": "^2.0.3",
     "react-material-ui-carousel": "^2.2.6",
     "react-multi-carousel": "^2.6.3",
     "react-number-format": "^4.6.4",
@@ -83,5 +85,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://3.108.240.44/api"
 }

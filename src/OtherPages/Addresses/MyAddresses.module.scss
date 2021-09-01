@@ -48,8 +48,8 @@
     display: grid;
     gap: 1rem;
     label {
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 25px;
+      font-weight: 400;
     }
     button {
       width: 250px;
@@ -84,8 +84,8 @@
       gap: 0.8rem;
       margin: 0.4rem 0;
       label {
-        font-size: 16px;
-        font-weight: 700;
+        font-size: 14px;
+        font-weight: 400;
       }
       input,
       select {
@@ -103,8 +103,8 @@
     display: grid;
     gap: 0.5rem;
     label {
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 400;
     }
     textarea {
       padding: 0.4rem;
@@ -190,9 +190,11 @@
       div {
         display: flex;
         align-items: center;
+        font-size: 16px;
+    color: #6A5B40;
         span {
           font-family: DM Serif Display;
-          font-size: 1.4rem;
+          font-size: 20px;
           font-weight: 400;
           display: flex;
           align-items: center;
@@ -288,10 +290,11 @@
           border: none;
           border-radius: 0px;
           border-top: 1px solid #ddd;
+          color: #6c6c6c;
           font-size: 16px;
           font-weight: 700;
           &:nth-of-type(1) {
-            color: #111;
+            color: #6e5e42;
             border-right: 1px solid #ddd;
           }
           &:nth-of-type(2) {
@@ -309,6 +312,12 @@
   .MyAddresses {
     width: 80%;
     margin: 0 auto;
+   
+  }
+  .MyAddresses_Cards{
+    .Old_Address_Card{
+      height: 238px !important;
+    }
   }
   .AddNewAddress {
     width: 90%;

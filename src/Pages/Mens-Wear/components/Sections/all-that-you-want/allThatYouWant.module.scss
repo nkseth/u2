@@ -29,7 +29,16 @@
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 786px) {
+  .header {
+    text-align: center;
+    > p:first-child {
+      font-size: 44px;
+    }
+  }
+
+}
+  @media screen and (max-width: 550px) {
   .header {
     > p:first-child {
       line-height: 35px !important;
@@ -41,4 +50,17 @@
     flex-direction: column;
     gap: 2rem;
   }
+}
+
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px){
+  .header {
+    text-align: center;
+    > p:first-child {
+      font-size: 54px;
+    }
+  }
+      
 }

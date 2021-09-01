@@ -1,7 +1,7 @@
 .container {
   position: relative;
   // width: 100%;
-  padding: 0 112px;
+  padding: 0 3rem;
 }
 
 @media screen and( max-width: 945px) {
@@ -18,7 +18,7 @@
 
 @media screen and( max-width: 768px) {
   .container {
-    padding: 0 30px;
+    padding: 7px 24px;
   }
 }
 
@@ -26,4 +26,7 @@
   .container {
     padding: 1rem;
   }
+}
+body {
+  overflow-x: hidden;
 }

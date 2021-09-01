@@ -15,11 +15,13 @@ import cx from "classnames";
 import ProductCard from "../../product-card/card";
 import Filter from "../Filter/filter";
 import styles from "./product.module.scss";
+import Breadcrumb from "../../../../../utils/Breadcrumb/breadcrumb";
 
 export default function ProductsSection(props) {
 
-  const[products,setProducts] = useState({})
-  const[isLoading,setIsLoading] = useState(true)
+
+  const [isLoading, setIsLoading] = useState(true)
+  const [products, setProducts] = useState(true)
 
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:550px)");
@@ -27,7 +29,7 @@ export default function ProductsSection(props) {
   const [sortBy, setSortBy] = useState("");
   const [isFilterOpen, setFilterOpen] = useState(false);
 
-  const setValue=async(props)=>{
+  const setValue = async (props) => {
     await setIsLoading(true)
     await setProducts(props.products)
     await setIsLoading(false)
@@ -49,9 +51,9 @@ export default function ProductsSection(props) {
     setFilterOpen(open);
   };
 
-  useEffect(async()=>{
+  useEffect(async () => {
     await setValue(props)
-  },[])
+  }, [])
 
   return (
     <>
@@ -63,6 +65,7 @@ export default function ProductsSection(props) {
           onOpen={toggleDrawer("left", true)}
           transitionDuration={600}
         >
+
           <Filter />
         </Drawer>
       )}
@@ -85,7 +88,9 @@ export default function ProductsSection(props) {
           }}
         >
           {tabViewPro && (
+
             <div className={styles.filterDiv}>
+
               <ButtonGroup variant='contained' color='default' aria-label=''>
                 <Button
                   onClick={() => setFilterOpen(true)}
@@ -105,7 +110,7 @@ export default function ProductsSection(props) {
             variant='outlined'
             style={{ minWidth: "130px" }}
           >
-            <InputLabel style={{ fontWeight: "700" }}>Sort by</InputLabel>
+            <InputLabel color={"secondary"} style={{ fontWeight: "700", color: "#6A5B40" }}>Sort by</InputLabel>
             <Select
               value={sortBy}
               onChange={(e) => handleSort(e)}
@@ -132,30 +137,42 @@ export default function ProductsSection(props) {
             </Select>
           </FormControl>
         </Grid>
-          
-        {!tabView && 
+
+        {tabView &&
           <>
-            {!isLoading ? products.map((value,key)=>(
+            {!isLoading ? products.map((value, key) => (
               <Grid item xs={6} sm={4} md={3} lg={3}>
                 <ProductCard
                   product={value}
-                 /> 
+                />
               </Grid>
-            )):''}                
-          </>    
+            )) : ''}
+          </>
 
         }
-        {mobileView && (
+        {!tabView &&
           <>
-            {!isLoading ? products.map((value,key)=>(
-              <Grid item xs={12} sm={4} md={3} lg={3}>
-                <ProductCard 
+            {!isLoading ? products.map((value, key) => (
+              <Grid item xs={6} sm={4} md={3} lg={3}>
+                <ProductCard
                   product={value}
-                /> 
+                />
               </Grid>
-            )):''}                
-          </>   
-        )}
+            )) : ''}
+          </>
+
+        }
+        {/* {!mobileView && (
+          <>
+            {!isLoading ? products.map((value, key) => (
+              <Grid item xs={12} sm={4} md={3} lg={3}>
+                <ProductCard
+                  product={value}
+                />
+              </Grid>
+            )) : ''}
+          </>
+        )} */}
       </Grid>
     </>
   );

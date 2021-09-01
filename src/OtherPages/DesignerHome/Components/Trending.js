@@ -1,45 +1,76 @@
-import { Button } from "@material-ui/core";
-import {React,useState,useEffect} from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Button, useMediaQuery } from "@material-ui/core";
+import { Crop32Rounded, Crop32Sharp } from "@material-ui/icons";
+import React, { useEffect } from "react";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/Trending.module.scss";
-const Trending = (props) => {
+import { topTrending } from "../../../Redux/actions/designerHomePage";
+import { useDispatch, useSelector } from "react-redux";
 
-  const[trending , setTrending] = useState()
-  const[isLoading , setIsLoading] = useState(true)
+const Trending = () => {
+  const dispatch = useDispatch();
   const imageSrc =
     "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  const baseStyle = { padding: "3rem", background: " #e9e9e9" };
+  const baseStyle = { padding: "5rem 3rem", background: "  #F3F1EE" };
 
-  const { push } = useLocation();
+  // const { push } = useLocation();
+  const { push } = useHistory();
+  const mobileView = useMediaQuery("(max-width:1024px)");
 
-  const setTrendingValue = async(props) =>{
-    await  setIsLoading(true)
-    await setTrending(props.trending)
-    await  setIsLoading(false)
-  }
+  const { items } = useSelector((state) => state.root.trending);
 
-  useEffect(async()=>{
-    await setTrendingValue(props)
-
-  },[])
+  useEffect(() => {
+    dispatch(topTrending());
+  }, []);
 
   return (
-    <div style={baseStyle}>
-      <div className={`${styles.Trending_header}`}>
+    <div className={styles.trending_content} style={baseStyle}>
+      <div className={`${styles.Trending_header}`} style={{ color: "#1A202C" }}  >
         Trending
-        <CustomDivider style={{ height: "2px", background: "#857250" }} />
+        <CustomDivider style={{ height: "1px", background: "#857250" }} />
       </div>
       <div className={styles.Trending}>
-        {!isLoading  ? trending.map((value,key)=>(
+        {items.map(({ name, cover_image }) => (
           <div className={styles.Trending_Items}>
-            <img src={value.cover_image} alt="items" />
-            <Link to={"designers-product-page/"+value.name}>{value.name}</Link>
+            <img src={cover_image} alt={name} />
+            <Link to="designers-product-page">{name}</Link>
           </div>
-        )):<span>Loading...</span>}
+        ))}
+        {/* <div className={styles.Trending_Items}>
+          <img src={c1} alt="items" />
+          <Link to="designers-product-page">Wear</Link>
+        </div>
+        <div className={styles.Trending_Items}>
+          <img src={c2} alt="items" />
+          <Link to="designers-product-page">Wear</Link>
+        </div>
+        <div className={styles.Trending_Items}>
+          <img src={c3} alt="items" />
+          <Link to="designers-product-page">Wear</Link>
+        </div>
+        <div className={styles.Trending_Items}>
+          <img src={c4} alt="items" />
+          <Link to="designers-product-page">Wear</Link>
+        </div>
+        <div className={styles.Trending_Items}>
+          <img src={c2} alt="items" />
+          <Link to="designers-product-page">Wear</Link>
+        </div> */}
+        {mobileView ? (
+          items.map(({ name, cover_image }) => (
+            <div className={styles.Trending_Items}>
+              <img src={cover_image} alt={name} />
+              <Link to="designers-product-page">{name}</Link>
+            </div>
+          ))
+        ) : (
+          <></>
+        )}
       </div>
       <div className={`${styles.Trending_Button}`}>
-        <Button onClick={() => push("designers-product-page")}>View all</Button>
+        <Button onClick={() => push("/designers-product-page")}>
+          View all
+        </Button>
       </div>
     </div>
   );

@@ -8,9 +8,9 @@ const ResetPassword = () => {
   return (
     <form className={styles.ResetPassword}>
       <div className={styles.ResetPassword_Title}>
-        <h1>Reset Password</h1>
+        <h1 style={{marginBottom:'1rem'}}>Reset Password</h1>
         <p>
-          Enter your ragistered email we'll send you a password reset link to
+          Enter your registered email we'll send you a password reset link to
           it.
         </p>
       </div>

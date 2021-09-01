@@ -7,7 +7,6 @@
   color: var(--primary-color-dark);
   text-align: center;
 }
-
 .carouselNavigationDiv {
   margin-top: 1rem;
   display: flex;
@@ -23,6 +22,7 @@
 .sliderBtnDiv {
   display: flex;
   gap: 1rem;
+  color:#000 !important;
   .sliderBtn {
     background: none;
     border: none;
@@ -45,8 +45,19 @@
 
 @media screen and (max-width: 550px) {
   .header {
-    font-size: 20px;
+    font-size: 25px!important;
+    margin-bottom: -30px;
     line-height: 20px;
     letter-spacing: 0.5px;
+  }
+  .offers_buy_and_get {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .header {
+  font-size: 44px;
+  
   }
 }

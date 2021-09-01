@@ -14,7 +14,7 @@ import {
   AccordionDetails,
 } from "@material-ui/core";
 import cx from "classnames";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import CustomSection from "../Custom Section/section";
 import SideNavbar from "../Side-Navbar/sideNavbar";
 import styles from "./header.module.scss";
@@ -27,12 +27,16 @@ import HamMenuIcon from "../../Images/icons/hamMenu.svg";
 import SearchDarkIcon from "../../Images/icons/searchDark.svg";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { LOGIN_MODEL } from "../../Redux/reducers/loginreducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useLogin from "../../LoginSceens/useLogin";
+import { useCookies } from 'react-cookie';
 
 export default function Header() {
+
+  const history = useHistory()
   const location = useLocation();
   const [currency, setCurrency] = useState("INR");
+  const [cookies, setCookie] = useCookies(['user']);
   const [mouseEnter, setMouseEnter] = useState({
     newArrivals: false,
     men: false,
@@ -53,6 +57,8 @@ export default function Header() {
     offers: true,
     more: true,
   });
+
+  const { user_data } = useSelector(state => state.root.main)
 
   const handleMouseEnter = (value) => {
     setMouseEnter({
@@ -78,6 +84,14 @@ export default function Header() {
     }, 200);
   };
 
+  const profileFnc = () => {
+    if(Object.keys(cookies).length != 0){
+      history.push('/profile')
+    } else {
+      login_Model_Show()
+    }
+  }
+
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
 
@@ -97,7 +111,7 @@ export default function Header() {
   //Here I use Redux For Show Login Model
   const { login_Model_Show } = useLogin();
   return (
-    <CustomSection style={{ padding: mobileView && "0 1rem" }}>
+    <div style={{ padding: mobileView ? "0 1em" : "0 3em", width: mobileView ? "100%" : "100%", marginLeft: "auto", marginRight: "auto" }} className={styles.headerShadow} >
       <div className={styles.firstContainer}>
         <div
           style={{
@@ -175,7 +189,7 @@ export default function Header() {
             </FormControl>
             <IconButton aria-label="my account">
               <div
-                onClick={login_Model_Show}
+                onClick={profileFnc}
                 // to="/profile"
                 style={{ display: "grid", placeContent: "center" }}
               >
@@ -199,14 +213,14 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave("newArrivals")}
               className={cx(styles.menuItem, styles.menuItem_newArrivals)}
             >
-              <Link to="/designers-product-page">New arrivals</Link>
+              <Link style={{ color: "#9D8E73" }} to="/designers-product-page">New arrivals</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("men")}
               onMouseLeave={() => handleMouseLeave("men")}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
-              <Link to="/mens-wear">Men</Link>
+              <Link style={{ color: "#9D8E73" }} to="/mens-wear">Men</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("women")}
@@ -214,21 +228,21 @@ export default function Header() {
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
               {" "}
-              <Link to="/mens-wear"> Women</Link>
+              <Link style={{ color: "#9D8E73" }} to="/mens-wear"> Women</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("kids")}
               onMouseLeave={() => handleMouseLeave("kids")}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
-              <Link to="/mens-wear"> Kids</Link>
+              <Link style={{ color: "#9D8E73" }} to="/mens-wear"> Kids</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("designers")}
               onMouseLeave={() => handleMouseLeave("designers")}
               className={cx(styles.menuItem, styles.menuItem_designers)}
             >
-              <Link to="designers">Designers</Link>
+              <Link style={{ color: "#9D8E73" }} to="designers">Designers</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("contemporary")}
@@ -242,7 +256,7 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave("offers")}
               className={cx(styles.menuItem, styles.menuItem_offers)}
             >
-              <Link to="offers">Offers</Link>
+              <Link style={{ color: "#9D8E73" }} to="offers">Offers</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("more")}
@@ -268,8 +282,8 @@ export default function Header() {
           display: mouseEnter.newArrivals
             ? "block"
             : mouseLeave.newArrivals
-            ? "none"
-            : "",
+              ? "none"
+              : "",
         }}
       ></div>
       <SwipeableDrawer
@@ -280,8 +294,8 @@ export default function Header() {
         transitionDuration={600}
       >
         {location.pathname === "/orders" ||
-        location.pathname === "/offers" ||
-        location.pathname === "/all-orders" ? (
+          location.pathname === "/offers" ||
+          location.pathname === "/all-orders" ? (
           <div className={styles.sideNavbarDiv}>
             <SideNavbar />
           </div>
@@ -310,7 +324,7 @@ export default function Header() {
                   </MenuItem>
                 </Select>
               </FormControl>
-              <IconButton onClick={login_Model_Show} aria-label="my account">
+              <IconButton onClick={profileFnc} aria-label="my account">
                 <img src={PersonIcon} alt="my account" />
               </IconButton>
               <IconButton aria-label="favorites">
@@ -423,6 +437,6 @@ export default function Header() {
           </List>
         )}
       </SwipeableDrawer>
-    </CustomSection>
+    </div>
   );
 }

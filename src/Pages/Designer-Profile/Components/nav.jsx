@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Grid, Icon, useMediaQuery } from "@material-ui/core";
 import styles from './nav.module.scss';
-import PostCard from './post'
+import PostCard from './photos'
 import ProductCard from './product';
 import ReviewCard from './review';
 import Divider from './../../../utils/Custom Divider/divider'
@@ -45,7 +45,7 @@ function Navigation(props) {
         <div style={{marginTop:30}}>Last Delivery <span style={{marginLeft:42}}>3 Hours</span></div>
         </div>)  
 
-        case "review":return( <div style={{backgroundColor:"#e5e5e5", margin:"auto", width:"85%", alignItems:"center"}}><Grid
+        case "review":return( <div style={{backgroundColor:"#ffffff", margin:"auto", width:"85%", alignItems:"center"}}><Grid
           container
           style={{ margin: "auto" , alignItems:"center", width:"90%"}}
           spacing={mobileView ? 1 : tabView ? 2 : 4}
@@ -73,29 +73,29 @@ function Navigation(props) {
           </Grid>
           <Grid></Grid></div>)
 
-          case "post" : return( <div style={{backgroundColor:"#e5e5e5", margin:"auto", width:"85%", alignItems:"center"}}><Grid
+          case "post" : return( <div style={{backgroundColor:"#ffffff", margin:"auto", width:"85%", alignItems:"center"}}><Grid
           container
           style={{ margin: "auto" , alignItems:"center", width:"90%"}}
           spacing={mobileView ? 1 : tabView ? 2 : 4}
           justify="space-between"
 
         >
-      <Grid item xs={12} sm={12} md={12}>
+      <Grid item xs={6} sm={4} md={4}>
             <PostCard />
           </Grid>
-          <Grid item xs={12} sm={12} md={12}>
+          <Grid item xs={6} sm={4} md={4}>
             <PostCard />
           </Grid>
-          <Grid item xs={12} sm={12} md={12}>
+          <Grid item xs={6} sm={4} md={4}>
             <PostCard />
           </Grid>
-          <Grid item xs={12} sm={12} md={12}>
+          <Grid item xs={6} sm={4} md={4}>
             <PostCard />
           </Grid>
-          <Grid item xs={12} sm={12} md={12}>
+          <Grid item xs={6} sm={4} md={4}>
             <PostCard />
           </Grid>
-          <Grid item xs={12} sm={12} md={12}>
+          <Grid item xs={6} sm={4} md={4}>
             <PostCard />
           </Grid>
           </Grid>

@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://images.unsplash.com/photo-1457131760772-7017c6180f05?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8aGFwcHl8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+    url("../Images//m1.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,13 +19,14 @@
       font-family: DM Serif Display;
       font-size: 4rem;
       font-weight: 400;
-      line-height: 1.4;
+      line-height: 75px;
       letter-spacing: -1.5px;
       color: #fff;
     }
     button {
       background: #fff;
       text-transform: capitalize;
+      margin-top: 15px;
       width: 160px;
       &:hover {
         background: #f1f1f1;
@@ -34,16 +35,51 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+
+.buttons{
+  width: 165px;
+  height: 50px;
+  font-weight: 700;
+  font-family: DM Sans;
+  font-size: 14px;
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .Measurement_Simulation {
     justify-content: center;
     div {
       align-items: center;
       margin: 0;
       h1 {
-        font-size: 2.3rem;
+        font-size: 64px;
         text-align: center;
+        font-weight: 400;
       }
     }
   }
+}
+
+@media screen and (max-width: 450px){
+  .Measurement_Simulation {
+    height: 360px;
+    position: relative;
+    div {
+      margin-left: 1em;
+      h1 {
+        font-size: 28px;
+        width: 100%;
+        text-align: left;
+        line-height: 40px;
+      }
+    }
+  }
+}
+@media screen and (max-width:768px){
+  .Measurement_Simulation{
+    div{
+      h1{
+        text-align: left!important;
+      }
+    }
+  }
+
 }

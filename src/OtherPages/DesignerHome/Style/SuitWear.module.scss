@@ -7,18 +7,21 @@
   font-weight: 400;
   line-height: 54px;
   letter-spacing: -1.5px;
-  margin-bottom: 62px;
+  margin-bottom: 35px;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 4rem;
 }
 .SuitWear {
   display: flex;
-  gap: 1rem;
+  gap: 1em;
   align-items: center;
-  justify-content: space-between;
-  height: 400px;
+  justify-content: space-evenly;
+  height: 290px;
+  width: 290px;
+  margin-bottom: 2em;
   .SuitWear_Items {
+    margin: 0 7px;
     display: grid;
     justify-content: center;
     background: #fff;
@@ -27,13 +30,15 @@
       height: 300px;
       width: 100%;
       object-fit: cover;
+      object-position: top!important;
     }
     a {
-      font-size: 25px;
+      font-size: 16px;
       font-weight: 400;
-      color: #6a5b40;
       text-align: center;
-      padding: 0.3rem;
+      padding: 15px 0px;
+      color: black;
+      font-weight: 500;
     }
   }
 }
@@ -58,15 +63,22 @@
     .Carousel_iconBtn {
       border: 1px solid rgb(0, 0, 0) !important;
       color: rgb(0, 0, 0) !important;
+     
     }
   }
 }
 
+
 //-----------------------//
 
-@media screen and (max-width: 786px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .suitwear_content{
+    padding: 3rem 2rem !important;
+  }
   .SuitWear_header {
-    font-size: 32px;
+    font-size: 54px;
+    gap: 1rem;
+    font-weight: 400;
   }
 
   .Carousel_header {
@@ -74,4 +86,21 @@
     font-size: 44px;
     line-height: 44px;
   }
+}
+
+
+@media screen and (max-width: 450px){
+  .suitwear_content {
+    padding: 3rem 1rem !important;
+  }
+  .SuitWear_header {
+    font-size: 35px;
+    gap: 1rem;
+    margin-bottom: 5px;
+    font-weight: 400;
+  }
+  // img {
+  //   width: 346px !important;
+  // }
+  
 }

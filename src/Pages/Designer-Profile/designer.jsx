@@ -18,29 +18,16 @@ function Designer() {
         <div style={{width:"100%", margin:"0 auto"}}>
         <Container bottomDivider footerOnAllView>
            
-             {!tabViewPro && (
+           
         <CustomSection>
           <Breadcrumb
             path='Home/Explore/'
             activePath='Designers Profile'
           />
         </CustomSection>
-      )}
+     
        <Card backgroundImg={img1} header={"Designer Name"}></Card>
-       {/* {
-          !tabViewPro ? 
-          <div style={{ marginLeft:"3%", fontSize:"30px", marginTop:30, fontFamily:"DM Serif Display"}}>
-               
-         
-                <img src={Image} width="100%"></img>
-            </div>
-            :
-            <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
-           
-            <div style={{margin:"20px auto"}}>
-                <img src={Image} width="95%"></img></div>
-        </div>
-      } */}
+       
       <div style={{marginTop:"40px"}}>
       <Nav></Nav></div>
      

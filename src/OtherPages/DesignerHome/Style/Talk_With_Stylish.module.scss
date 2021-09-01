@@ -6,7 +6,7 @@
   justify-content: flex-end;
   align-items: center;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://images.unsplash.com/photo-1472415825778-0e0a7f363a64?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjd8fG9mZmVyc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+    url('../Images//t1.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -27,34 +27,91 @@
     p {
       width: 80%;
       color: #fff;
-      font-size: 0.9rem;
+      font-size: 16px;
+
     }
     button {
+      margin-top: 15px;
       background: #fff;
       text-transform: capitalize;
       width: 160px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 10px;
       &:hover {
         background: #f1f1f1;
       }
     }
   }
 }
+@media only screen and (max-width: 768px) {
 
-@media screen and (max-width: 768px) {
+
   .Talk_With_Stylish {
     div {
       margin-right: 0;
       justify-content: center;
       align-items: center;
       width: auto;
-      h1 {
-        font-size: 40px;
-        text-align: center;
+      button {
+        font-size: 16px;
       }
       p {
         width: 75%;
-        font-size: 0.8rem;
+        font-size: 16px;
         text-align: center;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .Talk_With_Stylish {
+    div {
+      margin-right: 0;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      button {
+        font-size: 16px;
+      }
+      h1 {
+        font-size: 60px;
+        text-align: center;
+        font-weight: 400;
+      }
+      p {
+        width: 75%;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 420px){
+  .Talk_With_Stylish {
+    div {
+      margin-right: 0;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      button {
+        font-size: 16px;
+      }
+      h1 {
+        font-size: 35px;
+        text-align: center;
+        font-weight: 400;
+      }
+      p {
+        width: 75%;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 400;
       }
     }
   }

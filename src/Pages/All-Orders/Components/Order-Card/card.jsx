@@ -14,14 +14,21 @@ export default function OrdersCard() {
       <div className={styles.cardContainer}>
         <img src={img} alt='product' />
         <div className={styles.detailsDiv}>
+        <div className={styles.detailTwo} >
+            <span>Quantity:</span>
+            <span>01</span>
+          </div>
           <div className={styles.detailOne}>
+            
             <div>
               <span>10 Current Fashion Trends You’ll Be Wearing in 2021</span>
               <span>Solid Straight Kurta</span>
             </div>
+            
             <div>₹559</div>
           </div>
           {mobileView && (
+            
             <div
               style={{
                 fontFamily: "DM Serif Display",
@@ -33,17 +40,16 @@ export default function OrdersCard() {
               ₹559
             </div>
           )}
-          <div className={styles.detailTwo}>
-            <span>Quantity:</span>
-            <span>01</span>
+          
+          <div className={styles.detailThree}>
+            {/* <span>Order Detail</span> */}
+            <span></span>
+            <Link>Cancel Order</Link>
           </div>
           <Button className={styles.trackBtn} variant='contained'>
             Track Order
           </Button>
-          <div className={styles.detailThree}>
-            <span>Order Detail</span>
-            <Link>Cancel Order</Link>
-          </div>
+          
         </div>
       </div>
     </div>

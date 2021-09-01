@@ -14,8 +14,9 @@ import CustomDivider from "../../utils/Custom Divider/divider";
 
 export default function CustomisedProductDetails() {
   const mobileView = useMediaQuery("(max-width:550px)");
-  const productImg =
-    "https://s3-alpha-sig.figma.com/img/89fa/f19b/c3cd31cb5eb8a5a08d5ade5fb9858d69?Expires=1626652800&Signature=e8GRqKfMXi4SZdZWESTweT84cBe94nwdaPThmv4ORax7OjW7YCRzQTGWtANeNehKi7QC8vcsQBxWVzvFvyQGbwxOctiiPRthjDeprkWNX5tTBzNHLdmkfF7YtnMnolabANoM7q97tTA4elsV5A2oyW9Oid22xRphsU7pNZRMTtSY8IEqKMnSypQ5caJ732B5Rw5hJpFj4z-g1jeNevxs26FflFKUxx~uxo7~Wtudel1sifHcU6YHF8CFIEsYbupdy4kHEINRsiNkIslucvOvBoDYTkkUdIDkUt0pzicId0ZV5efGdj4OZXHGS7jMpMED2cYxnVxxVzAvB8kDoZqE6Q__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
+  const productImg="https://images.pexels.com/photos/7137411/pexels-photo-7137411.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
+ // const productImg =
+   // "https://s3-alpha-sig.figma.com/img/89fa/f19b/c3cd31cb5eb8a5a08d5ade5fb9858d69?Expires=1626652800&Signature=e8GRqKfMXi4SZdZWESTweT84cBe94nwdaPThmv4ORax7OjW7YCRzQTGWtANeNehKi7QC8vcsQBxWVzvFvyQGbwxOctiiPRthjDeprkWNX5tTBzNHLdmkfF7YtnMnolabANoM7q97tTA4elsV5A2oyW9Oid22xRphsU7pNZRMTtSY8IEqKMnSypQ5caJ732B5Rw5hJpFj4z-g1jeNevxs26FflFKUxx~uxo7~Wtudel1sifHcU6YHF8CFIEsYbupdy4kHEINRsiNkIslucvOvBoDYTkkUdIDkUt0pzicId0ZV5efGdj4OZXHGS7jMpMED2cYxnVxxVzAvB8kDoZqE6Q__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection>

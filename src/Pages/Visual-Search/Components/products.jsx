@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CustomSection from '../../../utils/Custom Section/section';
 import ProductCard from '../../Mens-Wear/components/Sections/for-him/Components/product-cards/card';
 import styles from '../../Mens-Wear/components/Sections/for-him/forHim.module.scss';
-import { Grid, Button, useMediaQuery } from "@material-ui/core";
+import { Grid, useMediaQuery } from "@material-ui/core";
 
 function Products(props) {
     const customView = useMediaQuery("(max-width:1235px)");
@@ -13,9 +13,9 @@ function Products(props) {
     return (
       <CustomSection
         style={{
-          backgroundColor: "rgba(230, 227, 220, 0.21)",
-          paddingBottom: mobileView ? "40px" : "84px",
-          paddingTop: mobileView ? "30px" : "45px",
+          backgroundColor: "#ffffff",
+          paddingBottom: mobileView ? "40px" : "40px",
+          paddingTop: mobileView ? "30px" : "5px",
         }}
       >
         <div className={styles.mainContainer} style={{backgroundColor:"#ffffff"}}>

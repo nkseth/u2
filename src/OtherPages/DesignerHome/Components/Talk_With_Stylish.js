@@ -7,14 +7,14 @@ const Talk_With_Stylish = () => {
   return (
     <div className={styles.Talk_With_Stylish}>
       <div>
-        <h1>Talk With Stylish</h1>
-        <p>
+        <h1>Talk With Stylist</h1>
+        <p style={{ fontSize: "16px" }} >
           Lorem ipspushum dolor sit amet consectetur adipisicing elit. Maxime
           obcaecati nihil repellendus, ab ducimus dolorum eaque accusantium
           similique perferendis architecto pariatur quo, libero illo eos
           consectetur debitis ea sunt inventore.
         </p>
-        <Button onClick={() => push("talk-with-stylish")}>Learn More</Button>
+        <Button onClick={() => push("talk-with-stylish")} style={{ background: "#fff", fontSize: "11px", color: "#857250" }} >chat</Button>
       </div>
     </div>
   );

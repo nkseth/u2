@@ -4,12 +4,12 @@
   font-weight: 400;
   line-height: 54px;
   letter-spacing: -1.5px;
+  color:#0a0a0a;
   span:first-child {
     font-family: DM Serif Display;
     font-style: italic;
   }
-  span:last-child {
-  }
+
 }
 
 .carouselNavigationDiv {
@@ -37,6 +37,7 @@
   border: 1px solid rgb(0, 0, 0) !important;
   color: rgb(0, 0, 0) !important;
 }
+
 
 @media screen and (max-width: 835px) {
   .header {

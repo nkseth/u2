@@ -23,9 +23,10 @@ export default function ProductBreakdown() {
   const mobileView = useMediaQuery("(max-width:550px)");
   const customView = useMediaQuery("(max-width:1150px)");
   const [selectedeMenu, setSelectedMenu] = useState("Products");
-  const productImg =
-    "https://s3-alpha-sig.figma.com/img/89e8/8789/476ec43da9b91055ee18a4af557fa95d?Expires=1627862400&Signature=eav9Es6jsEd1InVML5VNfF0WXgAMbskGlg4~p-0TEhRaNrY2yW5vOfqU4Bv~Ksxyg27rN0hcMkByDhdpUacOAS7P92uugeRu3A1r6Esb~5hmf0G7IXPOz2PLHw643piNyqI~gSBtZs-o-F0dPXkTFCCZgrh7qXlgj~Pm87bdWm210YjdqwYv2EzFHvpTBbaXHX-Bb4EUhlAA-wG-80wwiv9xJHtGPGfHJwZeXnAFduk8rtpnpOKHPf-ZgP58eQBRy~ulBRfqcIpEaj1RyUVHkihKVHtu9l2pwn1D-yB89wl-ceMqPDOhlgDS7~IFhT9SJT90hWLNz-9xhHF0ckTyGw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
-  return (
+  // const productImg =
+  //   "https://s3-alpha-sig.figma.com/img/89e8/8789/476ec43da9b91055ee18a4af557fa95d?Expires=1627862400&Signature=eav9Es6jsEd1InVML5VNfF0WXgAMbskGlg4~p-0TEhRaNrY2yW5vOfqU4Bv~Ksxyg27rN0hcMkByDhdpUacOAS7P92uugeRu3A1r6Esb~5hmf0G7IXPOz2PLHw643piNyqI~gSBtZs-o-F0dPXkTFCCZgrh7qXlgj~Pm87bdWm210YjdqwYv2EzFHvpTBbaXHX-Bb4EUhlAA-wG-80wwiv9xJHtGPGfHJwZeXnAFduk8rtpnpOKHPf-ZgP58eQBRy~ulBRfqcIpEaj1RyUVHkihKVHtu9l2pwn1D-yB89wl-ceMqPDOhlgDS7~IFhT9SJT90hWLNz-9xhHF0ckTyGw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
+  const productImg="https://images.pexels.com/photos/7137411/pexels-photo-7137411.png?auto=compress&cs=tinysrgb&dpr=2&w=700"
+    return (
     <Container bottomDivider footerOnTabMob>
       {mobileView && (
         <CustomSection style={{ padding: mobileView && "0 1rem 1rem" }}>

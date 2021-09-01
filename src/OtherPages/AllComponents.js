@@ -64,7 +64,7 @@ export const Page_Payments = () => {
 };
 export const Page_EditPayments = () => {
   return (
-    <Layout title={"Add New Payments Card"}>
+    <Layout title={"Saved Cards"}>
       <EditPayments />
     </Layout>
   );

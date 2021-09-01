@@ -7,17 +7,41 @@
   font-size: 16px !important;
   font-weight: 700 !important;
   line-height: 20px !important;
+  @media screen and (max-width:550px) {
+  font-size: 13px !important;
+  }
 }
-
+.FormControlLabel{
+  max-width: 330px;
+  height: 5em;
+}
+.FormControlLabelS{
+  max-width: 300px;
+}
 .container {
   width: 100%;
   position: relative;
   display: flex;
 }
-
+.ChoicesBtnsLabels{
+  padding: 0.5em 0em 0.5em 0em;
+  font-weight: bolder;
+}
 .firstContainer,
 .lastContainer {
   width: 50%;
+}
+.ProductSelector{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  justify-content: center;
+  align-items: flex-start;
+  height: 3em; /* Sets the div height to 2x line-height (3 times text size) */
+  width: 100%; /* Use whatever width you want */
+  white-space: normal; /* Wrap lines of text */
+  text-overflow: ellipsis; /* Ellipses (cross-browser) */
+  -o-text-overflow: ellipsis; /* Ellipses (cross-browser) */
 }
 
 .firstContainer {
@@ -52,7 +76,7 @@
         height: 48px;
         width: 360px;
         border-radius: 5px;
-        border: 1px solid rgba(106, 91, 64, 1);
+        border: 1px solid #6a5b40;
         font-family: DM Sans;
         font-size: 14px;
         font-weight: 400;
@@ -112,6 +136,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex-wrap: wrap;
     > span:first-child {
       font-family: DM Serif Display;
       font-size: 34px;
@@ -134,6 +159,42 @@
       }
     }
   }
+
+.priceTab {
+  display: flex;
+  align-items: center;
+  // flex-direction: column;
+  justify-content: space-between;
+  margin-left: 1em;
+  flex-wrap: wrap;
+  > span:first-child {
+    font-family: DM Serif Display;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 48px;
+    color: rgba(10, 10, 10, 1);
+    margin-right: 0.4em;
+  }
+  > p:last-child {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.1599999964237213px;
+    > span:first-child {
+      text-decoration: line-through;
+      color: grey;
+    }
+
+    > span:last-child {
+      color: var(--primary-color);
+    }
+  }
+}
+
+
+.radioBtnsLabels{
+  font-size: 14px!important;
+}
 
   .alert {
     display: flex;
@@ -191,14 +252,20 @@
 
   .selectColor {
     margin-top: 0.5rem;
-    // flex-direction: column;
-    // gap: 0.3rem;
     > div:first-child {
       font-size: 16px;
       font-weight: 700;
       line-height: 20px;
       color: #000;
     }
+  }
+  .ProductSelectorHelpBtn{
+    margin-left: 1em;
+    padding: 0.5em 0.5em ;
+    color: #6a5b40;
+    // position: absolute;
+    right: 0;
+    // transform: translateX(-50%);
   }
 
   .btnDiv {
@@ -258,12 +325,24 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (min-width: 834px) and (max-width:1044px) {
+
+.priceTab{
+  margin-left: 10em!important;
+}
+.FormControlLabelS{
+}
+
+}
+  @media screen and (max-width: 768px) {
   .container {
     padding: 0 30px;
   }
   .btnDiv {
     width: 100% !important;
+  }
+  .priceTab{
+    margin-left: 1em!important;
   }
 }
 
@@ -287,5 +366,60 @@
 
   .sizeDiv {
     width: 100% !important;
+  }
+  .priceTab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 1em;
+    flex-wrap: wrap;
+    > span:first-child {
+      font-family: DM Serif Display;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 48px;
+      color: rgba(10, 10, 10, 1);
+      margin-right: 0.4em;
+    }
+    > p:last-child {
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 0.1599999964237213px;
+      > span:first-child {
+        text-decoration: line-through;
+        color: grey;
+      }
+  
+      > span:last-child {
+        color: var(--primary-color);
+      }
+    }
+  }
+  .price{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    > span:first-child {
+      font-family: DM Serif Display;
+      font-size: 20px!important;
+      font-weight: 400;
+      line-height: 48px;
+      color: rgba(10, 10, 10, 1);
+    }
+    > p:last-child {
+      font-size: 10px!important;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 0.1599999964237213px;
+      > span:first-child {
+        text-decoration: line-through;
+        color: grey;
+      }
+  
+      > span:last-child {
+        color: var(--primary-color);
+      }
+    }
   }
 }

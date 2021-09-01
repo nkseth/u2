@@ -18,13 +18,13 @@ const EditPayments = () => {
         onSubmit={() => console.log("Submit Click")}
       >
         <div className={styles.EditPayments_Inputs}>
-          <Inputs label="Card Number *" placeholder="xxxx xxxx xxxx xxxx" />
-          <Inputs label="Name on card *" placeholder="eg. Robert Fork" />
-          <Inputs label="Validity *" placeholder="MM/YY" />
-          <Inputs label="CVV *" placeholder="369" />
+          <Inputs label={<div style={{display:'flex'}}><label>Card Number</label><span style={{marginLeft:'-10px',color:'red'}}>*</span></div>} placeholder="xxxx xxxx xxxx xxxx" />
+          <Inputs label={<div style={{display:'flex'}}><label>Name on card</label><span style={{marginLeft:'-10px',color:'red'}}>*</span></div>}  placeholder="eg. Robert Fork" />
+          <Inputs label={<div style={{display:'flex'}}><label>Validity</label><span style={{marginLeft:'-10px',color:'red'}}>*</span></div>}  placeholder="MM/YY" />
+          <Inputs label= {<div style={{display:'flex'}}><label>CVV</label><span style={{marginLeft:'-10px',color:'red'}}>*</span></div>}  placeholder="369" />
         </div>
         <div className={styles.EditPayments_Submit}>
-          <Button type="submit">Save and deliver here</Button>
+          <Button type="submit">Save</Button>
         </div>
       </form>
     </div>

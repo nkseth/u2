@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMediaQuery } from "@material-ui/core";
+import { Button, useMediaQuery } from "@material-ui/core";
 import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
 import CustomSection from "../../utils/Custom Section/section";
 import Designers from '../../OtherPages/Designers/Designers';
@@ -10,21 +10,38 @@ function DesignerProfile(props) {
     const tabView = useMediaQuery("(max-width:768px)");
     const mobileView = useMediaQuery("(max-width:550px)");
     return (
-        <div style={{width:"95%", margin:"0 auto"}}>
+        <div >
         <Container bottomDivider footerOnAllView>
-           
-             {!tabViewPro && (
         <CustomSection>
           <Breadcrumb
             path='Home/Explore/'
             activePath='Designers Profile'
           />
         </CustomSection>
-      )}
-       <div style={{fontSize: "30px", textAlign:"center", fontFamily:"DM Serif Display"}}>
-                <h1 style={{fontSize:"54px",fontWeight:"400px"}}>Designer Profile</h1>
+        {
+          mobileView ?
+          <div style={{fontSize: "30px", textAlign:"center",margin:"auto", fontFamily:"DM Serif Display", width:"100%"}}>
+                <h1 style={{fontSize:"35px",fontWeight:"400px"}}>Designer Profile</h1>
+                <div style={{float:"right"}}>
+                  <Button style={{color:"white", background:"#857250" ,marginLeft:300}}>Filter</Button>
+                </div>
+                
+                <Designers></Designers>
             </div>
-       <Designers></Designers></Container></div>
+            :
+            
+            <div style={{fontSize: "30px", textAlign:"center",margin:"auto", fontFamily:"DM Serif Display", width:"85%"}}>
+              <div style={{display:"inline-block",width:'100%'}} > 
+                <h1 style={{fontSize:"54px",fontWeight:"400px",textAlign:"center",marginRight:100}}>Designer Profile</h1>
+                <Button style={{color:"white", background:"#857250",float:"right",marginLeft:"40%" }}>Filter</Button></div>
+ <Designers ></Designers>
+               
+            </div>
+
+        }
+     
+       
+      </Container></div>
     );
     
 }

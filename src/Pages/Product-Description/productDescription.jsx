@@ -3,13 +3,18 @@ import { Link, useHistory } from "react-router-dom";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
   Button,
+  IconButton,
   Radio,
   InputBase,
   Select,
   MenuItem,
   FormControlLabel,
   useMediaQuery,
+  Tooltip,
+  Fab,
+  Typography
 } from "@material-ui/core";
+import Tooltipss from "./Tooltipss"
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss";
 import CustomSection from "../../utils/Custom Section/section";
@@ -24,6 +29,13 @@ import measuringTapeIcon from "../../Images/icons/mesuringTape.svg";
 import { ReactComponent as SimulationIcon } from "../../Images/icons/simulate.svg";
 import { ReactComponent as ScissorsIcon } from "../../Images/icons/scissors.svg";
 import { ReactComponent as BagIcon } from "../../Images/icons/bag-primary.svg";
+import HelpIcon from '@material-ui/icons/Help';
+import Terms from "./Components/Details-Tabs/Terms";
+import Img from "./suit.png"
+import { w } from "keyboard-key";
+import SelectSize from "./Components/SelectSize/SelectSize";
+
+
 
 const CustomRadio = withStyles({
   root: {
@@ -72,28 +84,58 @@ const useStyles = makeStyles((theme) => ({
 
 const images = [
   {
-    original: "https://picsum.photos/id/1018/1000/600/",
-    thumbnail: "https://picsum.photos/id/1018/250/150/",
+    original: Img,
+    thumbnail: Img,
   },
   {
-    original: "https://picsum.photos/id/1015/1000/600/",
-    thumbnail: "https://picsum.photos/id/1015/250/150/",
+    original: Img,
+    thumbnail: Img,
   },
   {
-    original: "https://picsum.photos/id/1019/1000/600/",
-    thumbnail: "https://picsum.photos/id/1019/250/150/",
+    original: Img,
+    thumbnail: Img,
+  },
+  {
+    original: Img,
+    thumbnail: Img,
   },
 ];
+const HtmlTooltip = withStyles((theme) => ({
+  tooltip: {
+    // placement: "right-start",
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
+    width: 200,
+    // height: 100,
+    fontSize: theme.typography.pxToRem(10),
+    border: '1px solid #dadde9',
+  },
+}))(Tooltip);
+
+
+
 
 export default function ProductDescription() {
+
+
   const history = useHistory();
   const customView = useMediaQuery("(max-width:1044px)");
   const tabView = useMediaQuery("(max-width:768px)");
+  const tabViewPro = useMediaQuery("(min-width:768px) and (max-width:1044px");
   const mobileView = useMediaQuery("(max-width:550px)");
+  const PriceView = useMediaQuery("(min-width:834px) and (max-width:1044px");
+
   const [selectedColor, setSelectedColor] = useState("Brown");
+  const [ProductType, setProductType] = useState("custom");
+  const [ProductDrop, setProductDrop] = useState(false);
+  const price = ProductType === 'custom' ? '15,000' : "10,000"
+  const PriceOff = ProductType === 'custom' ? '17,000' : "11,500"
+  const Off = ProductType === 'custom' ? '13%' : "15%"
+
+
   return (
     <Container bottomDivider footerOnTabMob>
-      <CustomSection>
+      <CustomSection style={{ marginTop: 10, marginBottom: 10 }} >
         <Breadcrumb
           path='Home / Men / Suit /'
           activePath='Allen Solly'
@@ -102,67 +144,242 @@ export default function ProductDescription() {
       </CustomSection>
       <div className={styles.container}>
         <div className={styles.firstContainer}>
-          <ImageGallery
-            items={images}
-            showNav={false}
-            thumbnailPosition={
-              mobileView ? "bottom" : customView ? "right" : "left"
-            }
-            showFullscreenButton={false}
-            useBrowserFullscreen={false}
-            showPlayButton={false}
-          />
-          <div className={styles.deliveryDiv}>
-            <div>
-              <span>Delivery option</span>
-              <img src={deliveryTruckIcon} alt='deliver truck' />:
-            </div>
-            <div>
-              <label>Enter pincode*</label>
-              <input type='text' name='pincode/zipcode' />
-            </div>
-            <span>Please enter the pincode to check delivery time </span>
-            <Button
-              variant='contained'
-              color='default'
-              className={styles.checkBtn}
-              onClick={() => history.push("/product-breakdown")}
-            >
-              Check
-            </Button>
+          <div style={{ width: "100%" }} >
+            <ImageGallery
+              items={images}
+              showNav={false}
+              thumbnailPosition={
+                mobileView ? "bottom" : customView ? "right" : "left"
+              }
+              showFullscreenButton={false}
+              useBrowserFullscreen={false}
+              showPlayButton={false}
+            />
           </div>
+          {
+            !mobileView && !tabView && !customView ?
+              <div className={styles.deliveryDiv}>
+                <div>
+                  <span>Delivery option</span>
+                  <img src={deliveryTruckIcon} alt='deliver truck' />:
+                </div>
+                <div>
+                  <label>Enter pincode*</label>
+                  <input type='text' name='pincode/zipcode' />
+                </div>
+                <span>Please enter the pincode to check delivery time </span>
+                <Button
+                  variant='contained'
+                  color='default'
+                  className={styles.checkBtn}
+                  onClick={() => history.push("/product-breakdown")}
+                >
+                  Check
+                </Button>
+              </div>
+              :
+              <></>
+
+          }
         </div>
         <div className={styles.lastContainer}>
+          {/*tab view */}
           {customView && !mobileView && (
             <div
               style={{
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "space-between",
-                alignItems: "flex-end",
+                alignItems: "flex-start",
+                width: "100%",
+                maxWidth: "700px"
               }}
             >
-              <div className={styles.productDetails}>
-                <span>Allen Solly</span>
-                <span>Men Cream coloured Suit</span>
+              <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
+                <div className={styles.productDetails}>
+                  <span>Allen Solly</span>
+                  <span>Men Cream coloured Suit</span>
+                </div>
+                <div className={styles.alert}>
+                  <img src={clockIcon} alt='clock' />
+                  <span style={{ fontSize: 14, marginLeft: -10, marginRight: 0 }} >Hurry up! Only 5 left in stock</span>
+                  <div >50:00</div>
+                </div>
               </div>
-              <div className={styles.price}>
-                <span>₹10,000</span>
-                <p>
-                  <span>₹11,500</span> <span>15% OFF</span>
-                </p>
+              <div className={styles.selectProduct}>
+                <div style={{ marginTop: 20, fontWeight: "bolder", marginBottom: -20 }} >Product Type</div>
+                <br />
+                <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
+                  <Select
+                    style={{ width: "35%" }}
+                    input={<BootstrapInput />}
+                    value={ProductType}
+                    onOpen={() => setProductDrop(true)}
+                    onClose={() => setProductDrop(false)}
+                    onChange={(e) => setProductType(e.target.value)}
+                  >
+
+                    {ProductType === 'ready made' ?
+                      <MenuItem value={"ready made"}>
+                        <FormControlLabel
+                          className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                          checked={ProductType === "ready made"}
+                          control={<CustomRadio />}
+                          label={
+                            <div className={styles.ProductSelector}>
+                              <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
+                              {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
+                            </div>}
+                        />
+                      </MenuItem>
+                      :
+                      <></>
+                    }
+                    <MenuItem value={"custom"}>
+                      <FormControlLabel
+                        className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                        checked={ProductType === "custom"}
+                        control={<CustomRadio />}
+
+                        label={<div className={styles.ProductSelector}>
+                          <p className={styles.ChoicesBtnsLabels}>Customised</p>
+                          {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphic er text commonly used in the graphic</h6> : <></>}
+                        </div>}
+                      />
+                    </MenuItem>
+                    {ProductType === 'custom' ?
+
+                      <MenuItem value={"ready made"}>
+                        <FormControlLabel
+                          className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                          checked={ProductType === "ready made"}
+                          control={<CustomRadio />}
+                          label={
+                            <div className={styles.ProductSelector}>
+                              <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
+                              {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
+                            </div>}
+                        />
+                      </MenuItem>
+                      :
+                      <></>
+                    }
+                  </Select>
+                  <HtmlTooltip
+                    // className={styles.ProductSelectorHelpBtn}
+                    style={{ color: "#6a5b40" }}
+                    title={
+                      <React.Fragment>
+                        <h3 style={{ padding: 10 }}>Lorem ipsum is place used in the graphic er text commonly used in the graphic</h3>
+                      </React.Fragment>
+                    }
+                    placement={'right'}
+                    arrow
+                  >
+                    <IconButton><HelpIcon /></IconButton>
+                  </HtmlTooltip>
+                  {/* <IconButton className={styles.ProductSelectorHelpBtn} aria-label="add to shopping cart" size={'medium'} ><HelpIcon color="#6a5b40" /></IconButton> */}
+                  <div className={styles.priceTab}>
+                    <span>₹{price}</span>
+                    <br />
+                    <p>
+                      <span>₹{PriceOff}</span> <span>{Off}</span>
+                    </p>
+                  </div>
+                </div>
+                {ProductType === 'ready made' ? <SelectSize /> : <></>}
+
+
               </div>
             </div>
           )}
+          {/* desktop view */}
           {!customView && (
             <>
               <div className={styles.productDetails}>
                 <span>Allen Solly</span>
                 <span>Men Cream coloured Suit</span>
               </div>
+              {/* ========================================== */}
+              <div className={styles.selectProduct}>
+                <div style={{ fontWeight: "bolder", marginTop: 15 }} >Product Type</div>
+                <br />
+                <div style={{ width: "100%", display: "flex", alignItems: "center", position: "relative" }}>
+                  <Select
+                    input={<BootstrapInput />}
+                    value={ProductType}
+                    onOpen={() => setProductDrop(true)}
+                    onClose={() => setProductDrop(false)}
+                    onChange={(e) => setProductType(e.target.value)}
+                  >
+
+                    {ProductType === 'ready made' ?
+                      <MenuItem value={"ready made"}>
+                        <FormControlLabel
+                          className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                          checked={ProductType === "ready made"}
+                          control={<CustomRadio />}
+                          label={
+                            <div className={styles.ProductSelector}>
+                              <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
+                              {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
+                            </div>}
+                        />
+                      </MenuItem>
+                      :
+                      <></>
+                    }
+                    <MenuItem value={"custom"}>
+                      <FormControlLabel
+                        className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                        checked={ProductType === "custom"}
+                        control={<CustomRadio />}
+
+                        label={<div className={styles.ProductSelector}>
+                          <p className={styles.ChoicesBtnsLabels}>Customised</p>
+                          {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphic er text commonly used in the graphic</h6> : <></>}
+                        </div>}
+                      />
+                    </MenuItem>
+                    {ProductType === 'custom' ?
+
+                      <MenuItem value={"ready made"}>
+                        <FormControlLabel
+                          className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                          checked={ProductType === "ready made"}
+                          control={<CustomRadio />}
+                          label={
+                            <div className={styles.ProductSelector}>
+                              <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
+                              {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
+                            </div>}
+                        />
+                      </MenuItem>
+                      :
+                      <></>
+                    }
+                  </Select>
+                  <HtmlTooltip
+                    className={styles.ProductSelectorHelpBtn}
+                    title={
+                      <React.Fragment>
+                        <h3 style={{ padding: 10 }}>Lorem ipsum is placeholder text  used in the graphic er text commonly used in the graphic</h3>
+                      </React.Fragment>
+                    }
+                    placement={'right'}
+                    arrow
+                  >
+                    <IconButton><HelpIcon /></IconButton>
+                  </HtmlTooltip>
+                  {/* <IconButton className={styles.ProductSelectorHelpBtn} aria-label="add to shopping cart" size={'medium'} ><HelpIcon color="#6a5b40" /></IconButton> */}
+                </div>
+              </div>
+              {/* ========================================== */}
+
               <div className={styles.price}>
-                <span>₹10,000</span>
+                <span>₹{price}</span>
                 <p>
-                  <span>₹11,500</span> <span>15% OFF</span>
+                  <span>₹{PriceOff}</span> <span>{Off}</span>
                 </p>
               </div>
             </>
@@ -173,10 +390,84 @@ export default function ProductDescription() {
                 <span>Allen Solly</span>
                 <span>Men Cream coloured Suit</span>
               </div>
+              <div className={styles.selectProduct}>
+                <div style={{ marginTop: 10, marginBottom: -10, fontWeight: "bolder" }} >Product Type</div>
+                <br />
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Select
+                    style={{ width: "80%" }}
+                    input={<BootstrapInput />}
+                    value={ProductType}
+                    onOpen={() => setProductDrop(true)}
+                    onClose={() => setProductDrop(false)}
+                    onChange={(e) => setProductType(e.target.value)}
+                  >
+
+                    {ProductType === 'ready made' ?
+                      <MenuItem value={"ready made"}>
+                        <FormControlLabel
+                          className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                          checked={ProductType === "ready made"}
+                          control={<CustomRadio />}
+                          label={
+                            <div className={styles.ProductSelector}>
+                              <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
+                              {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
+                            </div>}
+                        />
+                      </MenuItem>
+                      :
+                      <></>
+                    }
+                    <MenuItem value={"custom"}>
+                      <FormControlLabel
+                        className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                        checked={ProductType === "custom"}
+                        control={<CustomRadio />}
+
+                        label={<div className={styles.ProductSelector}>
+                          <p className={styles.ChoicesBtnsLabels}>Customised</p>
+                          {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphic er text commonly used in the graphic</h6> : <></>}
+                        </div>}
+                      />
+                    </MenuItem>
+                    {ProductType === 'custom' ?
+
+                      <MenuItem value={"ready made"}>
+                        <FormControlLabel
+                          className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                          checked={ProductType === "ready made"}
+                          control={<CustomRadio />}
+                          label={
+                            <div className={styles.ProductSelector}>
+                              <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
+                              {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
+                            </div>}
+                        />
+                      </MenuItem>
+                      :
+                      <></>
+                    }
+                  </Select>
+                  <HtmlTooltip
+                    className={styles.ProductSelectorHelpBtn}
+                    style={{ marginLeft: 5 }}
+                    title={
+                      <React.Fragment>
+                        <h3 style={{ padding: 10 }}>Lorem ipsum is plaer text commonly used in the graphic er text commonly used in the graphic</h3>
+                      </React.Fragment>
+                    }
+                    placement={'bottom'}
+                    arrow
+                  >
+                    <IconButton  ><HelpIcon /></IconButton>
+                  </HtmlTooltip>
+                </div>
+              </div>
               <div className={styles.price}>
-                <span>₹10,000</span>
+                <span>₹{price}</span>
                 <p>
-                  <span>₹11,500</span> <span>15% OFF</span>
+                  <span>₹{PriceOff}</span> <span>{Off}</span>
                 </p>
               </div>
             </>
@@ -189,16 +480,7 @@ export default function ProductDescription() {
                 alignItems: "center",
               }}
             >
-              <div className={styles.sizeDiv}>
-                <img src={measuringTapeIcon} alt='' />
-                <span>Not sure which size to buy?</span>
-                <Link to='/'>Try size finder</Link>
-              </div>
-              <div className={styles.alert}>
-                <img src={clockIcon} alt='clock' />
-                <span>Hurry up! Only 5 left in stock</span>
-                <div>50:00</div>
-              </div>
+
             </div>
           )}
 
@@ -209,11 +491,8 @@ export default function ProductDescription() {
                 <span>Hurry up! Only 5 left in stock</span>
                 <div>50:00</div>
               </div>
-              <div className={styles.sizeDiv}>
-                <img src={measuringTapeIcon} alt='' />
-                <span>Not sure which size to buy?</span>
-                <Link to='/'>Try size finder</Link>
-              </div>
+
+              {ProductType === 'ready made' ? <SelectSize /> : <></>}
             </div>
           )}
 
@@ -223,18 +502,23 @@ export default function ProductDescription() {
                 <img src={clockIcon} alt='clock' />
                 <span>Hurry up! Only 5 left in stock</span>
                 <div>50:00</div>
+
               </div>
-              <div className={styles.sizeDiv}>
+              {ProductType === 'ready made' ? <SelectSize /> : <></>}
+
+
+              {/* <div className={styles.sizeDiv}>
                 <img src={measuringTapeIcon} alt='' />
                 <span>Not sure which size to buy?</span>
                 <Link to='/'>Try size finder</Link>
-              </div>
+              </div> */}
             </div>
           )}
           <div className={styles.selectColor}>
             <div>Select colour</div>
             <br />
             <Select
+              style={mobileView ? { width: "90%" } : { width: "40%" }}
               input={<BootstrapInput />}
               value={selectedColor}
               onChange={(e) => setSelectedColor(e.target.value)}
@@ -243,7 +527,7 @@ export default function ProductDescription() {
                 <FormControlLabel
                   checked={selectedColor === "Brown"}
                   control={<CustomRadio />}
-                  label={<p className={styles.radioBtnsLabels}>Brown</p>}
+                  label={<p className={styles.radioBtnsLabels} >Brown</p>}
                 />
               </MenuItem>
               <MenuItem value={"Red"}>
@@ -263,7 +547,7 @@ export default function ProductDescription() {
             </Select>
           </div>
           <div className={styles.btnDiv}>
-            <Button
+            {/* <Button
               variant='contained'
               color='default'
               startIcon={<SimulationIcon />}
@@ -271,19 +555,20 @@ export default function ProductDescription() {
               className={styles.simulationBtn}
             >
               Simulation
-            </Button>
-            <div>
+            </Button> */}
+            <div style={{ marginBottom: "2em" }} >
               <Button
                 variant='contained'
                 color='default'
-                startIcon={<ScissorsIcon />}
+                // startIcon={<ScissorsIcon />}
                 fullWidth
                 className={styles.customiseBtn}
               >
-                Customise
+                Buy Now
               </Button>
               <Button
-                variant='contained'
+
+                variant='outlined'
                 color='default'
                 startIcon={<BagIcon />}
                 fullWidth
@@ -294,7 +579,63 @@ export default function ProductDescription() {
             </div>
           </div>
           <div>
-            <DetailTabs />
+          </div>
+          {
+            tabView || mobileView ?
+              <div className={styles.container} style={mobileView ? { marginLeft: -10 } : { marginLeft: -30 }} >
+                <div className={styles.firstContainer}>
+                  <div className={styles.deliveryDiv}>
+                    <div>
+                      <span>Delivery option</span>
+                      <img src={deliveryTruckIcon} alt='deliver truck' />:
+                    </div>
+                    <div>
+                      <label>Enter pincode*</label>
+                      <input type='text' name='pincode/zipcode' />
+                    </div>
+                    <span>Please enter the pincode to check delivery time </span>
+                    <Button
+                      variant='contained'
+                      color='default'
+                      className={styles.checkBtn}
+                      onClick={() => history.push("/product-breakdown")}
+                    >
+                      Check
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              :
+              tabViewPro ?
+                <div className={styles.container} style={{ marginLeft: -50 }} >
+                  <div className={styles.firstContainer}>
+                    <div className={styles.deliveryDiv}>
+                      <div>
+                        <span>Delivery option</span>
+                        <img src={deliveryTruckIcon} alt='deliver truck' />:
+                      </div>
+                      <div>
+                        <label>Enter pincode*</label>
+                        <input type='text' name='pincode/zipcode' />
+                      </div>
+                      <span>Please enter the pincode to check delivery time </span>
+                      <Button
+                        variant='contained'
+                        color='default'
+                        className={styles.checkBtn}
+                        onClick={() => history.push("/product-breakdown")}
+                      >
+                        Check
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+                :
+                <></>
+
+          }
+          <div>
+            <DetailTabs type={ProductType} />
           </div>
         </div>
       </div>

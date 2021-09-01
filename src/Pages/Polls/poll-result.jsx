@@ -12,7 +12,7 @@ function PollResult(props) {
     return (
         <div>
             <Header> </Header>
-            <div style={{margin:"auto", width:"90%"}}> <Divider></Divider></div>
+            <div style={{margin:"auto", width: !tabView?"85%":"100%"}}> <Divider></Divider></div>
             <CustomSection>
           <Breadcrumb
             path='Home/Explore /'
@@ -21,15 +21,15 @@ function PollResult(props) {
         </CustomSection>
         {
           !tabViewPro ? 
-          <div style={{ marginLeft:"5%", fontSize:"20px", marginTop:30,marginRight:"5%", fontFamily:"DM Serif Display"}}>
-                <h1 style={{fontSize:"28px"}}>Polls</h1>
-                <div style={{margin:"40px auto"}}>
+          <div style={{ marginLeft:"9%", fontSize:"20px", marginTop:30,marginRight:"5%", fontFamily:"DM Serif Display"}}>
+                <h1 style={{fontSize:"28px"}}>Polls Result</h1>
+                <div style={{margin:"40px auto" , marginTop:"20px"}}>
                 <Divider></Divider>
                 </div>
             </div>
             :
-            <div style={{ marginLeft:"10%", marginTop:30,marginRight:20, fontFamily:"DM Serif Display"}}>
-            <h2>Polls</h2>
+            <div style={{ marginLeft:"10%",marginRight:20, fontFamily:"DM Serif Display"}}>
+            <h2 style={{fontSize:"28px"}}>Polls Result</h2>
             <div style={{margin:"20px auto"}}>
                 <Divider></Divider>
                 </div>
@@ -37,7 +37,7 @@ function PollResult(props) {
       }
       <Grid
           container
-          style={{ margin: "auto" , alignItems:"center", width:"90%"}}
+          style={{ margin: "auto" , alignItems:"center", width:"85%"}}
           spacing={mobileView ? 1 : tabView ? 3 : 2}
           justify="space-between"         
           >

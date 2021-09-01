@@ -11,41 +11,41 @@ function StyleGuide(props) {
     const mobileView = useMediaQuery("(max-width:550px)");
     return (
         <Container bottomDivider footerOnAllView>
-             {!tabViewPro && (
+           
         <CustomSection>
           <Breadcrumb
             path='Home/Explore/'
             activePath='Style Guide Man'
           />
         </CustomSection>
-      )}
+
        {/* <div style={{margin:"auto", width:"85%", }}>
         <Divider></Divider>
       </div> */}
       <div style={{textAlign:"center", marginTop:40}}>
- <img src={Image} width="85%"></img></div>
+ <img src={Image} width="83%"></img></div>
        {
           !tabViewPro ? 
-          <div style={{ marginLeft:"10%", fontSize:"34px", marginTop:30, fontFamily:"DM Serif Display"}}>
-                <h1>Title of style guide</h1>
+          <div style={{ marginLeft:"9%",  marginTop:30, fontFamily:"DM Serif Display"}}>
+                <h1 style={{fontSize:"34px"}}>Title of style guide</h1>
                 <h5 style={{fontFamily:"DM Sans",fontWeight:"bold", fontSize:"16px",marginTop:10}}>Description</h5>
             </div>
             :
-            <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
-            <h1>Title of style guide</h1>
-            <h5 style={{fontFamily:"DM Sans", marginTop:10}}>Description</h5>
+            <div style={{ marginLeft:"9%", marginTop:30, fontFamily:"DM Serif Display", fontSize:"34px"}}>
+            <h1 style={{fontSize:"34px"}}>Title of style guide</h1>
+            <h5 style={{fontFamily:"DM Sans", marginTop:10,fontSize:"16px",}}>Description</h5>
         </div>
       }
        {
           !tabViewPro ? 
-          <div style={{ marginLeft:"10%", fontSize:"16px", marginTop:30, marginBottom:100, fontFamily:"DM Sans", color: "#6C6C6C"}}>
+          <div style={{ marginLeft:"9%",width:"83%", fontSize:"16px", marginTop:30, marginBottom:100, fontFamily:"DM Sans", color: "#6C6C6C"}}>
               
                 <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit at adipisci tempore rem doloribus nulla sequi nesciunt,
                    dolorum, nemo beatae exercitationem eligendi maiores animi officia quo amet aspernatur suscipit architecto! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit at adipisci tempore rem doloribus nulla sequi nesciunt,
                    dolorum, nemo beatae exercitationem eligendi maiores animi officia quo amet aspernatur suscipit architecto!</p>
             </div>
             :
-            <div style={{ marginLeft:"10%", marginTop:30, marginBottom:100, fontFamily:"DM Sans", color: "#6C6C6C"}}>
+            <div style={{ marginLeft:"9%", marginTop:30, marginBottom:100, fontFamily:"DM Sans", color: "#6C6C6C"}}>
             
             <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit at adipisci tempore rem doloribus nulla sequi nesciunt,
                    dolorum, nemo beatae exercitationem eligendi maiores animi officia quo amet aspernatur suscipit architecto! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit at adipisci tempore rem doloribus nulla sequi nesciunt,

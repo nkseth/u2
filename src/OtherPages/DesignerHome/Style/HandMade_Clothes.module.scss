@@ -4,24 +4,29 @@
 }
 .HandMade_Clothes {
   display: flex;
-  height: 400px;
   gap: 1rem;
+  margin: 0 5px;
   align-items: center;
   justify-content: space-between;
   .HandMade_Clothes_Items {
     display: grid;
     justify-content: center;
     background: #fff;
-    width: 300px;
+    width: 100%;
     box-shadow: 0px 5px 10px #00000041;
     img {
-      height: 300px;
+      height: 100%;
       width: 100%;
       object-fit: cover;
+      object-position: center;
     }
     p {
+      font-size: 16px;
+      
       text-align: center;
-      padding: 0.3rem;
+      padding: 15px 0px;
+      color: black;
+      font-weight: 500;
     }
   }
 }
@@ -33,7 +38,7 @@
   font-weight: 400;
   line-height: 54px;
   letter-spacing: -1.5px;
-  margin-bottom: 62px;
+  margin-bottom: 45px;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -64,10 +69,47 @@
 
 //-----------------------//
 
-@media screen and (max-width: 786px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .handmadeclothes {
+    padding: 3rem 2rem !important;
+  }
   .Carousel_header {
     text-align: center;
-    font-size: 32px;
+    font-size: 54px;
+    font-weight: 400;
+    margin-bottom: 0;
     line-height: 44px;
+  }
+  .HandMade_Clothes {
+    .HandMade_Clothes_Items {
+      width: 100%;
+    }
+  }
+}
+
+
+@media screen and (max-width: 450px){
+  .HandMade_Clothes_header {
+    font-size: 35px;
+    margin-bottom: 10px;
+  }
+  
+  .handmadeclothes {
+    padding: 3rem 1rem !important;
+  }
+  .HandMade_Clothes {
+   
+    height: 340px;
+    
+    .HandMade_Clothes_Items {
+
+      img {
+        height: 250px;
+        
+      }
+      p {
+        
+      }
+    }
   }
 }

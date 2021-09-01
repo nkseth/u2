@@ -28,7 +28,7 @@ export default function ProductCard() {
       </div>
       <Link to="product-description" className={styles.productDetails}>
         <span className={styles.productName}>Name</span>
-        <Button clasName={classes.btn}>Follow</Button>
+        <Button style={{background:"#857250", color:"white",borderRadius: "100px"}} clasName={classes.btn}>Follow</Button>
       </Link>
     </div>
   );

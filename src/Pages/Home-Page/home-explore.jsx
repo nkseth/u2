@@ -12,8 +12,13 @@ import Card from './Components/Card/home-explore/stylecard';
 import Man from './../../Images/image/ManStyle.png'
 import Woman from './../../Images/image/women.png'
 import Girl from './../../Images/image/Girl.png';
-import MoreVideos from './../Daily-Fashion-Tips/Components/celebrity-style/celebrityStyle'
-import MoreDesigner from './Components/Card/home-explore/trending-designers/designers'
+import MoreDesigner from './Components/Card/home-explore/trending-designers/designers';
+import Videos from '../Daily-Fashion-Tips/Components/celebrity-style/celebrityStyle';
+import Selection from './Components/Card/home-explore/designer-selection/design-selection';
+import AuthenticIndian from './Components/Card/home-explore/authentic-brands/authentic';
+import ForeignBrands from './Components/Card/home-explore/forign-brands/foreign'
+import DesignerOnBoard from './Components/Card/home-explore/desidners-onboard/designersOnboard';
+import EventSlide from './Components/Card/home-explore/events/slide';
 const useStyles = makeStyles({
   quote:{
     fontFamily:['DM Sans','Sans Serif'],
@@ -41,7 +46,7 @@ function HomeExplore(props) {
 )}
        {
           !tabViewPro ? 
-          <div style={{ marginLeft:"7%", fontSize:"30px", marginTop:30, fontFamily:"DM Serif Display"}}>
+          <div style={{ marginLeft:"8%", fontSize:"30px", marginTop:30, fontFamily:"DM Serif Display"}}>
                 <h1 style={{fontSize:"54px",fontWeight:"400px"}}>Explore Your fashion</h1>
                 <div style={{margin:"40px auto"}}>
                 <img src={Image} width="90%"></img></div>
@@ -87,13 +92,16 @@ function HomeExplore(props) {
           !tabViewPro ? 
           <div style={{ marginLeft:"10%", fontSize:"13px", fontWeight:400, marginTop:30, fontFamily:"DM Serif Display"}}>
                 <h1 style={{fontSize:"34px",fontWeight:"400px"}}>Daily Fashion tips</h1>
+            
             </div>
             :
             <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
             <h1>Daily Fashion tips</h1>
+           
         </div>
       }
-      <MoreVideos></MoreVideos>
+       <Videos></Videos>
+     
       <MoreDesigner />
       {
           !tabViewPro ? 
@@ -111,6 +119,42 @@ function HomeExplore(props) {
                 <img src={Image} width="95%"></img></div>
         </div>
       }
+       
+       {
+          !tabViewPro ? 
+          <div style={{ marginLeft:"10%", fontSize:"13px", fontWeight:400, marginTop:30, fontFamily:"DM Serif Display"}}>
+                <h1 style={{fontSize:"34px",fontWeight:"400px"}}>Designer's Selection</h1>
+            
+            
+            </div>
+            :
+            <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
+            <h1>Designer's Selection</h1>
+        
+            <h5 style={{fontFamily:"DM Sans",fontSize:"16px", color:"#6c6c6c"}}>Know More about design process</h5>
+        </div>
+      }
+       <Selection />
+          <AuthenticIndian />
+          <ForeignBrands />
+          <DesignerOnBoard />
+       {
+          !tabViewPro ? 
+          <div style={{ marginLeft:"10%", fontSize:"13px", fontWeight:400, marginTop:30, fontFamily:"DM Serif Display"}}>
+                <h2 style={{fontSize:"34px",fontWeight:"400px"}}>Events/Shows</h2>
+                <EventSlide />
+            
+            
+            </div>
+            :
+            <div style={{ marginLeft:"10%", marginTop:30, fontFamily:"DM Serif Display"}}>
+            <h2>Events/Shows</h2>
+            <EventSlide />
+            <h5 style={{fontFamily:"DM Sans",fontSize:"16px", color:"#6c6c6c"}}>Know More about design process</h5>
+        </div>
+      }
+    
+         
       
        </Container>
     );

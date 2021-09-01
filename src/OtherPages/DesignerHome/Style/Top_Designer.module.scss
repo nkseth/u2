@@ -1,7 +1,7 @@
 //here Top_Designer Styles
 .Top_Designer_header {
   color: #000;
-  font-style: italic;
+ 
 }
 .Top_Designer {
   display: flex;
@@ -12,20 +12,21 @@
   .Top_Designer_Items {
     display: grid;
     justify-content: center;
-    background: #fff;
-    box-shadow: 0px 5px 10px #00000041;
+    margin: 0 5px;
     img {
-      height: 300px;
-      width: 250px;
+      height: 330px;
+      width: 100%;
       object-fit: cover;
+      object-position: top;
+      border: 7px solid #9D8E73;
     }
     a {
-      font-family: "Quicksand";
       font-size: 25px;
       font-weight: 400;
-      color: #6a5b40;
       text-align: center;
-      padding: 0.3rem;
+      padding: 20px 0px;
+      color: black;
+      font-weight: 500;
     }
   }
 }
@@ -34,7 +35,8 @@
 .Carousel_header {
   font-family: DM Serif Display;
   font-size: 54px;
-  font-weight: 400;
+  font-style: italic;
+  font-weight: 200;
   line-height: 54px;
   letter-spacing: -1.5px;
   margin-bottom: 62px;
@@ -64,27 +66,45 @@
     }
   }
 }
-
+.topdesigner{
+  padding: 12rem 1rem;
+}
 //-----------------------//
 
-@media screen and (max-width: 786px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .topdesigner {
+    padding: 3rem 2rem !important;
+  }
   .Carousel_header {
-    text-align: center;
-    font-size: 44px;
+    text-align: left;
+    font-size: 54px;
+    font-weight: 400;
     line-height: 44px;
   }
   .Top_Designer {
     .Top_Designer_Items {
       a {
-        font-size: 24px;
-        font-weight: 400;
+        font-size: 16px;
+        font-weight: 700;
       }
     }
   }
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 420px) {
+  .topdesigner {
+    padding: 3rem 1rem !important;
+  }
   .Carousel_header {
-    text-align: center;
-    font-size: 32px;
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  .Top_Designer {
+    .Top_Designer_Items {
+      a {
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
   }
 }

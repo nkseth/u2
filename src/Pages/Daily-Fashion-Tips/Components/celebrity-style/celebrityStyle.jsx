@@ -26,7 +26,7 @@ export default function CelebrityStyleSection() {
         infinite
         isIntrinsicHeight
       >
-        <Slider >
+        <Slider style={{color:"#857250"}} >
           <Slide style={{color:"#857250"}} index={0}>
             <CarouselSlide />
           </Slide>
@@ -34,7 +34,7 @@ export default function CelebrityStyleSection() {
             <CarouselSlide />
           </Slide>
         </Slider>
-        <DotGroup style={{ display: "flex" }} />
+        <DotGroup style={{ display: "flex",color:"#857250" }} />
         <div className={styles.carouselNavigationDiv}>
           <Link to="/product-description" style={{color:"#857250"}}>See All</Link>
           <div className={styles.sliderBtnDiv}>

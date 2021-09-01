@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { IconButton } from "@material-ui/core";
+import { IconButton, useMediaQuery } from "@material-ui/core";
 import {
   CarouselProvider,
   Slider,
@@ -17,8 +17,18 @@ import styles from "./topOffersOfTheSeason.module.scss";
 //icons
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+//images
+import TOP1 from "./Images/TOP1.jpg"
+import TOP2 from "./Images/TOP2.jpg"
+import TOP3 from "./Images/TOP3.jpg"
+import TOP4 from "./Images/TOP4.jpg"
+
 
 export default function TopOffersOfTheSeasonSection() {
+  const mobileView = useMediaQuery("(max-width:550px)");
+  const tabView = useMediaQuery("(max-width:768px)");
+  const tabViewPro = useMediaQuery("(max-width:835px)");
+  const CustomView = useMediaQuery("(max-width:1050px)");
   return (
     <CustomSection
       style={{
@@ -33,17 +43,36 @@ export default function TopOffersOfTheSeasonSection() {
       </div>
       <CarouselProvider
         naturalSlideWidth={100}
-        totalSlides={2}
+        totalSlides={mobileView ? 6 : 2}
         infinite
         isIntrinsicHeight
       >
         <Slider>
-          <Slide index={0}>
-            <CarouselSlide />
+          <Slide index={0} style={{ marginRight: "1em" }} >
+            <CarouselSlide image1={TOP1} image2={TOP2} image3={TOP3} image4={TOP4} title={'Mens Wear'} />
           </Slide>
-          <Slide index={1}>
-            <CarouselSlide />
+          <Slide index={1} style={{ marginRight: "1em" }}  >
+            <CarouselSlide image1={TOP1} image2={TOP2} image3={TOP3} image4={TOP4} title={'Mens Wear'} />
           </Slide>
+          {mobileView ?
+            <>
+              <Slide index={2} style={{ marginRight: "1em" }} >
+                <CarouselSlide image1={TOP1} image2={TOP2} image3={TOP1} image4={TOP4} title={'kurtas , Shirts'} />
+              </Slide>
+              <Slide index={3} style={{ marginRight: "1em" }}  >
+                <CarouselSlide image1={TOP1} image2={TOP2} image3={TOP2} image4={TOP4} title={'Sweashirts'} />
+              </Slide>
+              <Slide index={4} style={{ marginRight: "1em" }} >
+                <CarouselSlide image1={TOP1} image2={TOP2} image3={TOP3} image4={TOP4} title={'Mens Wear'} />
+              </Slide>
+              <Slide index={5} style={{ marginRight: "1em" }}  >
+                <CarouselSlide image1={TOP1} image2={TOP2} image3={TOP4} image4={TOP4} title={'TShirts and Jeans'} />
+              </Slide>
+            </>
+            :
+            <></>
+
+          }
         </Slider>
         <DotGroup style={{ display: "flex" }} />
         <div className={styles.carouselNavigationDiv}>

@@ -20,8 +20,9 @@ export default function AddMeasurement() {
   const tabViewPro = useMediaQuery("(max-width:1024px)");
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
-  const img =
-    "https://s3-alpha-sig.figma.com/img/a86d/7e94/db43f37e2d10b9c407c724b0631387bb?Expires=1627257600&Signature=FtcP6W48HqPgfbhmYPPALKmRyQ9XG987WU~FXilypjyltP~UU59d5QJXB5E1-HTREdUM0dZ14we2et9ZRcYoD5t6AT5exMmEUhH1nCG8LtAKyFRU9j5pB0~UM93~L9FKgc1UV9QDTDb~UCu6~EVV2jO95MBSOIvlwZD4CxGmU~LwAIgbwn3~R-xW3Swg85BoZxOlqlEj-VvnJo34pNhM442IpKBD2HYz58uioY3oddte5pve51ihyw7bUtqSbw0cxQg~EpBtkRWsPLVyo~P45IEWI8pQOe~EgQmEQ7Tf71GKRV8U3PmxmAyBe6rfP69epZYY6141nEPPHlqcmr74NQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
+  const img="https://images.pexels.com/photos/7137411/pexels-photo-7137411.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  // const img =
+  //   "https://s3-alpha-sig.figma.com/img/a86d/7e94/db43f37e2d10b9c407c724b0631387bb?Expires=1627257600&Signature=FtcP6W48HqPgfbhmYPPALKmRyQ9XG987WU~FXilypjyltP~UU59d5QJXB5E1-HTREdUM0dZ14we2et9ZRcYoD5t6AT5exMmEUhH1nCG8LtAKyFRU9j5pB0~UM93~L9FKgc1UV9QDTDb~UCu6~EVV2jO95MBSOIvlwZD4CxGmU~LwAIgbwn3~R-xW3Swg85BoZxOlqlEj-VvnJo34pNhM442IpKBD2HYz58uioY3oddte5pve51ihyw7bUtqSbw0cxQg~EpBtkRWsPLVyo~P45IEWI8pQOe~EgQmEQ7Tf71GKRV8U3PmxmAyBe6rfP69epZYY6141nEPPHlqcmr74NQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
   return (
     <Container bottomDivider footerOnTabMob>
       <section className={styles.modelImgSection}>
@@ -30,6 +31,7 @@ export default function AddMeasurement() {
             <Breadcrumb
               path='Home / Men / Measurements/'
               activePath=' Simulation'
+              style={{marginBottom:'1rem'}}
             />
           )}
           {tabViewPro && (

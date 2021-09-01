@@ -1,10 +1,10 @@
 import Axios from "axios";
 
-const axios = Axios.create({
-  baseURL: "https://almond-tropical-cloudberry.glitch.me/",
+ const common_axios = Axios.create({
+  baseURL: "http://3.108.240.44/api",
 });
 
-axios.interceptors.request.use(
+common_axios.interceptors.request.use(
   async (config) => {
     const token1 = await localStorage.getItem("token");
     const token = JSON.parse(token1);
@@ -13,6 +13,7 @@ axios.interceptors.request.use(
       config.headers.common = {
         "Content-Type": "application/json",
         Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
         Authorization: "Bearer " + token,
       };
     }
@@ -23,4 +24,4 @@ axios.interceptors.request.use(
   }
 );
 
-export default axios;
+export default common_axios;

@@ -55,13 +55,34 @@
   .container {
     height: calc(100vh - 77px);
     .header {
-      font-size: 55px;
-      line-height: 60px;
+      font-size: 35px!important;
+      line-height: 50px;
     }
 
     p {
-      font-size: 15px;
+      font-size: 16px;
       line-height: 23px;
     }
   }
+}
+
+@media screen and (max-width: 768px) {
+
+  .header{
+    font-size: 72px!important;
+  }
+  .container{
+    height:550px;
+  }
+  
+}
+@media screen and (max-width: 1000px) {
+
+  .header{
+    font-size: 72px!important;
+  }
+  .container{
+    height:550px;
+  }
+  
 }

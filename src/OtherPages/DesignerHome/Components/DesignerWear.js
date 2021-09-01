@@ -20,7 +20,7 @@ const DesignerWear = () => {
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam nisi
           minus dolore sit reprehenderit, dolor vero vitae iste rem minima?
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam nisi
-          minus dolore sit reprehenderit, dolor vero vitae iste rem minima?
+          minus dolore sit reprehenderit, dolor vero vitae iste rem?
         </p>
         <style>
           {`

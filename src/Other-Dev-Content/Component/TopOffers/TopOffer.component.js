@@ -28,7 +28,7 @@ class TopOffer extends PureComponent{
         return (
 
                     <div className="offer_flex-row-3">
-                        {sliderData.map((value,index)=>
+                        {sliderData?.map((value,index)=>
                             <div className="offer_group-97">
                                 <div className="offer_overlap-group-1">
                                     <div className="offer_overlap-group" style={{borderRadius:'5px',backgroundImage:`url(${value.image})`}}>

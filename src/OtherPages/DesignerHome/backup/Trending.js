@@ -30,7 +30,7 @@ const Trending = (props) => {
       </div>
       <div className={styles.Trending}>
         {!isLoading ? (
-          trending.map((value, key) => (
+          trending?.map((value, key) => (
             <div className={styles.Trending_Items}>
               <img src={value.cover_image} alt="items" />
               <Link to={"designers-product-page/" + value.name}>

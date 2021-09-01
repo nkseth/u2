@@ -36,6 +36,11 @@ const Top_Designer = () => {
   useEffect(() => {
     dispatch(topDesigner());
   }, []);
+
+  if(!designers){
+    return null;
+  }
+
   return (
     <div className="top_designer">
       <CustomSection class={styles.topdesigner} style={baseStyle}>
@@ -49,12 +54,12 @@ const Top_Designer = () => {
 
         <CarouselProvider
           visibleSlides={match ? 1 : iPade ? 2 : visible}
-          totalSlides={designers.length}
+          totalSlides={designers?.length}
           infinite
           isIntrinsicHeight
         >
           <Slider>
-            {designers.map(({ id, name, cover_image }, i) => (
+            {designers?.map(({ id, name, cover_image }, i) => (
               <Slide index={i} key={id}>
                 <div className={styles.Top_Designer}>
                   <div className={styles.Top_Designer_Items}>

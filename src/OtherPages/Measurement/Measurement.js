@@ -6,7 +6,7 @@ const Measurement = () => {
   return (
     <div className={styles.Measurement}>
       <div className={styles.Measurement_Box}>
-        {backgroundURL.map((data, index) => {
+        {backgroundURL?.map((data, index) => {
           return (
             <MeasurementItems
               key={index}

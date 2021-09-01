@@ -40,6 +40,10 @@ const SuitWear = () => {
     dispatch(suitWears());
   }, []);
 
+  if(!suitWearItems){
+    return null;
+  }
+
   return (
     <div>
       <CustomSection class={styles.suitwear_content} style={customStyle}>
@@ -49,12 +53,12 @@ const SuitWear = () => {
         </div>
         <CarouselProvider
           visibleSlides={match ? 1 : iPade ? 2 : visible}
-          totalSlides={suitWearItems.length}
+          totalSlides={suitWearItems?.length}
           infinite
           isIntrinsicHeight
         >
           <Slider>
-            {suitWearItems.map(
+            {suitWearItems?.map(
               (item, i) => (
                 <Slide index={i} key={item.id.toString()}>
                   <div className>

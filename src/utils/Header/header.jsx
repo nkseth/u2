@@ -85,7 +85,7 @@ export default function Header() {
   };
 
   const profileFnc = () => {
-    if(Object.keys(cookies).length != 0){
+    if(Object.keys(cookies)?.length != 0){
       history.push('/profile')
     } else {
       login_Model_Show()

@@ -38,6 +38,11 @@ const HandMade_Clothes = () => {
   const MobileView = useMediaQuery("(max-width:550px)");
   const match = useMediaQuery(theme.breakpoints.down('xs'))
   const iPade = useMediaQuery(theme.breakpoints.down('sm'))
+
+  if(!clothes){
+    return null;
+  }
+
   return (
     <div className="hande_made_clothes">
       <CustomSection class={styles.handmadeclothes} style={customStyle}>
@@ -55,12 +60,12 @@ const HandMade_Clothes = () => {
         <CarouselProvider
           style={customView ? { marginBottom: 0, marginTop: 0 } : BigView ? { marginBottom: 0, marginTop: 0 } : { marginBottom: 0, marginTop: 0 }}
           visibleSlides={match ? 1 : iPade ? 2 : visible}
-          totalSlides={clothes.length}
+          totalSlides={clothes?.length}
           infinite
           isIntrinsicHeight
         >
           <Slider>
-            {clothes.map(({ id, cover_image, name }, i) => (
+            {clothes?.map(({ id, cover_image, name }, i) => (
               <Slide index={i} key={id}>
                 <div className={styles.HandMade_Clothes}>
                   <div className={styles.HandMade_Clothes_Items}>

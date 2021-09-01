@@ -38,7 +38,7 @@ const SuitWear = (props) => {
     }
   },[])
   
-  const slide = !suitWear ? suitWear.length > 5 ? 2 : 1  : 1;
+  const slide = !suitWear ? suitWear?.length > 5 ? 2 : 1  : 1;
   return (
     <>
       <CustomSection style={customStyle}>

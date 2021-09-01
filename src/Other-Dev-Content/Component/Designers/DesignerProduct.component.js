@@ -38,7 +38,7 @@ class DesignerProductComponent extends PureComponent {
                             <div id="example-collapse-text">
                                 <Radio.Group  value={2}>
                                     <Space direction="vertical">
-                                        {category.map((value,index)=>
+                                        {category?.map((value,index)=>
                                             <Checkbox value={1}>{value.label}</Checkbox>
                                         )}
                                     </Space>
@@ -77,7 +77,7 @@ class DesignerProductComponent extends PureComponent {
                            <div id="example-collapse-text">
                                <Radio.Group  value={2}>
                                    <Space direction="vertical">
-                                       {itemType.map((value,index)=>
+                                       {itemType?.map((value,index)=>
                                            <Checkbox value={1}>{value.label}</Checkbox>
                                        )}
                                    </Space>
@@ -116,7 +116,7 @@ class DesignerProductComponent extends PureComponent {
                             <div id="example-collapse-text">
                                 <Radio.Group  value={2}>
                                     <Space direction="vertical">
-                                        {color.map((value,index)=>
+                                        {color?.map((value,index)=>
                                             <Checkbox value={1}>{value.label}</Checkbox>
                                         )}
                                     </Space>
@@ -155,7 +155,7 @@ class DesignerProductComponent extends PureComponent {
                             <div id="example-collapse-text">
                                 <Radio.Group  value={2}>
                                     <Space direction="vertical">
-                                        {discount.map((value,index)=>
+                                        {discount?.map((value,index)=>
                                             <Checkbox value={1}>{value.label}</Checkbox>
                                         )}
                                     </Space>
@@ -194,7 +194,7 @@ class DesignerProductComponent extends PureComponent {
                             <div id="example-collapse-text">
                                 <Radio.Group  value={2}>
                                     <Space direction="vertical">
-                                        {fabric.map((value,index)=>
+                                        {fabric?.map((value,index)=>
                                             <Checkbox value={1}>{value.label}</Checkbox>
                                         )}
                                     </Space>
@@ -233,7 +233,7 @@ class DesignerProductComponent extends PureComponent {
                             <div id="example-collapse-text">
                                 <Radio.Group  value={2}>
                                     <Space direction="vertical">
-                                        {size.map((value,index)=>
+                                        {size?.map((value,index)=>
                                             <Checkbox value={1}>{value.label}</Checkbox>
                                         )}
                                     </Space>
@@ -272,7 +272,7 @@ class DesignerProductComponent extends PureComponent {
                             <div id="example-collapse-text">
                                 <Radio.Group  value={2}>
                                     <Space direction="vertical">
-                                        {sleevLength.map((value,index)=>
+                                        {sleevLength?.map((value,index)=>
                                             <Checkbox value={1}>{value.label}</Checkbox>
                                         )}
                                     </Space>
@@ -311,7 +311,7 @@ class DesignerProductComponent extends PureComponent {
                             <div id="example-collapse-text">
                                 <Radio.Group  value={2}>
                                     <Space direction="vertical">
-                                        {length.map((value,index)=>
+                                        {length?.map((value,index)=>
                                             <Checkbox value={1}>{value.label}</Checkbox>
                                         )}
                                     </Space>
@@ -350,7 +350,7 @@ class DesignerProductComponent extends PureComponent {
                             <div id="example-collapse-text">
                                 <Radio.Group  value={2}>
                                     <Space direction="vertical">
-                                        {design.map((value,index)=>
+                                        {design?.map((value,index)=>
                                             <Checkbox value={1}>{value.label}</Checkbox>
                                         )}
                                     </Space>
@@ -389,7 +389,7 @@ class DesignerProductComponent extends PureComponent {
                                 <div id="example-collapse-text">
                                     <Radio.Group  value={2}>
                                         <Space direction="vertical">
-                                            {shopBy.map((value,index)=>
+                                            {shopBy?.map((value,index)=>
                                                 <Checkbox value={1}>{value.label}</Checkbox>
                                             )}
                                         </Space>

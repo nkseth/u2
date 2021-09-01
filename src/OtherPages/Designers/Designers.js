@@ -4,7 +4,7 @@ const Designers = () => {
   return (
     <div className={styles.Designers}>
       <div className={styles.Designers_Items}>
-        {Images.map((data, index) => {
+        {Images?.map((data, index) => {
           return (
             <Designers_Box
               key={index}

@@ -48,12 +48,16 @@ const TopCategory = () => {
     dispatch(topCategories({ slug: "womens-fashion" }));
   }, []);
 
-  const filteredCategories = categories.filter(
+  const filteredCategories = categories?.filter(
     ({ slug }) =>
       slug.toLowerCase() === "mens-fashion" ||
       slug.toLowerCase() === "womens-fashion" ||
       slug.toLowerCase() === "kids-fashion"
   );
+
+  if(!filteredCategories){
+    return null;
+  }
 
   const baseStyle = {};
   return (
@@ -103,7 +107,7 @@ const CategoryItems = ({ heading, details, image, categories, slug }) => {
               />
             </h2>
               {/* {details} */}
-              {categories.map((item) => (
+              {categories?.map((item) => (
                 <Link key={item.id.toString()} to={{ pathname:'/designers-product-page', state:{data: item, name: heading} }}>
                   <p>
                   {item.name}

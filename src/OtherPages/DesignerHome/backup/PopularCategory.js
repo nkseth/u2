@@ -29,7 +29,7 @@ const PopularCategory = (props) => {
           <CustomDivider style={{ height: "1px", background: "#857250" }} />
         </div>
         <div className={`${styles.Category} Category`}>
-          {!isLoading ? groupOne.map((value,key)=>(
+          {!isLoading ? groupOne?.map((value,key)=>(
             <>
               <div style={{backgroundImage:`linear-gradient(transparent, #000) , url(${value.image})`}}  
                 className={'Category_item Category_item'+(key+1) }>

@@ -26,7 +26,7 @@ const SignUpVarify = () => {
   },[phone_no])
 
   const getStarted = async () => {
-    if (text.length !== 4) {
+    if (text?.length !== 4) {
       alert('Enter a valid OTP');
       return;
     }

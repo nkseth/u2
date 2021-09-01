@@ -3,9 +3,6 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/Season_Offers.module.scss";
-import ss1 from "../Images/ss1.png";
-import ss2 from "../Images/ss2.png";
-import ss3 from "../Images/ss3.png";
 import { useDispatch, useSelector } from "react-redux";
 import { topSeasonOffers } from "../../../Redux/actions/designerHomePage";
 const Season_Offers = () => {
@@ -21,6 +18,13 @@ const Season_Offers = () => {
   useEffect(() => {
     dispatch(topSeasonOffers());
   }, []);
+
+  console.log(offers , 'kkhk')
+
+  if(!offers || !offers[0]){
+    return null;
+  }
+
   return (
     <div className={styles.seasonsoffer} style={baseStyle}>
       <div className={` ${styles.Season_Offers_header}`}>

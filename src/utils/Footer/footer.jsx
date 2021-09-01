@@ -369,10 +369,10 @@ export default function Footer() {
           )}
 
           <Grid item md={12} className={styles.searchTagContainer}>
-            {popularSearches.map((item) => (
+            {popularSearches?.map((item) => (
               <Link to={item.redirect}>{item.title}&nbsp;|&nbsp;</Link>
             ))}
-            {popularSearches.map((item) => (
+            {popularSearches?.map((item) => (
               <Link to={item.redirect}>{item.title}&nbsp;|&nbsp;</Link>
             ))}
           </Grid>

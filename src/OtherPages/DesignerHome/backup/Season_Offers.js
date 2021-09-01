@@ -33,7 +33,7 @@ const Season_Offers = (props) => {
         <CustomDivider style={{ height: "1px", background: "#857250" }} />
       </div>
       <div className={styles.Season_Offers}>
-        {!isLoading ? groupTwo.map((value,key)=>(
+        {!isLoading ? groupTwo?.map((value,key)=>(
           <div 
             style={{backgroundImage:`linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${value.image})`}} 
             className={`Season_Offers_Item Season_Offers_Item${key+1}`}>

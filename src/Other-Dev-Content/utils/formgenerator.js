@@ -46,7 +46,7 @@ const friendOptions = [
 ]
 
 export const generateForm = (formField,errors) => {
-  return formField.map((values, index) => {
+  return formField?.map((values, index) => {
     switch (values.type) {
       case 'text':
         return (

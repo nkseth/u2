@@ -21,7 +21,7 @@ const LoginOtpVarify = () => {
   const { name, password, email } = useSelector(state => state.root.login.login_creds)
 
   const getStarted = async () => {
-    if (text.length !== 4) {
+    if (text?.length !== 4) {
       alert('Enter a valid OTP');
       return;
     }

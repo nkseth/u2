@@ -70,7 +70,7 @@ const Top_Designer = (props) => {
             {[1,2].map((value,key1)=>(
               <Slide index={key1}>
                 <div className={styles.Top_Designer}>
-                  {!isLoading ? designer.map((value,key)=>(
+                  {!isLoading ? designer?.map((value,key)=>(
                     <>
                       {key < 5 && key1 === 0 ?
                         <div className={styles.Top_Designer_Items}>

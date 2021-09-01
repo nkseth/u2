@@ -38,7 +38,7 @@ export default function ProductSection() {
   return (
     <div className={styles.container}>
       <Grid container spacing={2} style={{ width: "100%", margin: 0 }}>
-        {products.map((item) => (
+        {products?.map((item) => (
           <Grid item xs={6} sm={3} md={customView ? 3 : 6}>
             <ProductCard type={item.type} price={item.price} img={item.img} />
           </Grid>

@@ -12,7 +12,7 @@ class TopCategorySliderComponent extends PureComponent{
                     autoplay={true}
                     cellSpacing={400}
                 >
-                {sliderData.map((value,index)=>
+                {sliderData?.map((value,index)=>
                     <div className="flex-col-2">
 
                         <img

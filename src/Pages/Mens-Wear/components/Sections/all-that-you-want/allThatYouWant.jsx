@@ -45,7 +45,7 @@ export default function AllThatYouWantSection() {
         <p>Under a budget &amp; Top offers</p>
       </div>
       <div className={styles.topOffersCardContainer}>
-        {arr.map((item) => (
+        {arr?.map((item) => (
           <TopOffersCard title={item.title} image={item.image} description={item.description} />
         ))}
       </div>

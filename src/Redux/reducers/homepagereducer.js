@@ -19,7 +19,7 @@ import {
         return payload;
   
       case UPDATE_CATEGORIES:
-        return categories.map((categories) => {
+        return categories?.map((categories) => {
           if (categories.id === payload.id) {
             return {
               ...categories,
@@ -31,7 +31,7 @@ import {
         });
   
       case DELETE_CATEGORIES:
-        return categories.filter(({ id }) => id !== payload.id);
+        return categories?.filter(({ id }) => id !== payload.id);
   
       case DELETE_ALL_CATEGORIES:
         return [];

@@ -27,13 +27,13 @@ const Login = () => {
 
   const login_handler = async () => {
 
-    if (email.length == 0) {
+    if (email?.length == 0) {
       alert("Enter a valid email")
       setError({ type: 'email', value: "Enter a valid email" })
       return;
     }
 
-    if (password.length < 6) {
+    if (password?.length < 6) {
       alert("Enter a valid password")
       setError({ type: 'password', value: "Enter a valid password" })
       return;

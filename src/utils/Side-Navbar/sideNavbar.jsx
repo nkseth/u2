@@ -61,7 +61,7 @@ export default function SideNavbar() {
         </IconButton>
       </div>
       <div className={styles.navItemsDiv}>
-        {navItems.map((item) => (
+        {navItems?.map((item) => (
           <div className={styles.navItem}>
             <img src={item.icon} alt={item.name} />
             <Link to={item.path}>{item.name}</Link>

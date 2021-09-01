@@ -29,7 +29,7 @@ class ProductComponent extends PureComponent {
     productList() {
         const{product} = this.props
         var data = []
-        product.map((value,index)=>{
+        product?.map((value,index)=>{
             data.push(this.renderProduct(value))
         })
         return data

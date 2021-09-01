@@ -20,7 +20,7 @@ class CelebrityStyleComponent extends PureComponent{
                             cellSpacing={600}
                             // autoplayReverse={true}
                         >
-                            {sliderData.map((value,index)=>
+                            {sliderData?.map((value,index)=>
                                 <div className="flex-col-2">
                                     <a >
                                         <img

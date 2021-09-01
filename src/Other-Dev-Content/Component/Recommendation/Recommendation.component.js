@@ -23,7 +23,7 @@ class RecommendationComponent extends PureComponent {
                 <>
                     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 
-                        {sliderData.map((value,index)=>
+                        {sliderData?.map((value,index)=>
                             <Col span={8} className='CardColumn'>
                                 <div className={`recomm_all-that-you-want recomm_all-that-you-want-1`}>
                                     <div className="recomm_overlap-group">

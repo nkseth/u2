@@ -74,7 +74,8 @@ export default function Filter(props) {
       await setFilters(props)
     }
   }, [])
-  console.log(applyFilter)
+
+  
   return (
     <div className={styles.container}>
       {!tabViewPro && (
@@ -127,7 +128,7 @@ export default function Filter(props) {
         >
           <div className={styles.accordionSummaryInnerDiv}>
             <span>Price</span>
-            <span>{!isLoading ? priceRange.length > 0 ? priceRange[0].name : '' : ''}</span>
+            <span>{!isLoading ? priceRange?.length > 0 ? priceRange[0].name : '' : ''}</span>
           </div>
         </AccordionSummary>
         <AccordionDetails className={styles.accordionDetials}>
@@ -137,7 +138,7 @@ export default function Filter(props) {
             value={selectedFilter.price}
           >
 
-            {!isLoading ? priceRange.map((value, key) => (
+            {!isLoading ? priceRange?.map((value, key) => (
               <FormControlLabel
                 value={value.value}
                 checked={key === 0}
@@ -200,7 +201,7 @@ export default function Filter(props) {
             onChange={(e) => filterProduct("color", e.target.value)}
             value={selectedFilter.color}
           >
-            {!isLoading ? colorFilter.map((value, key) => (
+            {!isLoading ? colorFilter?.map((value, key) => (
               <FormControlLabel
                 value={value.id}
                 control={<CustomRadio />}
@@ -227,7 +228,7 @@ export default function Filter(props) {
             onChange={(e) => filterProduct("discount", e.target.value)}
             value={selectedFilter.itemType}
           >
-            {!isLoading ? discountFilter.map((value, key) => (
+            {!isLoading ? discountFilter?.map((value, key) => (
               <FormControlLabel
                 value={value.discount}
                 control={<CustomRadio />}
@@ -254,7 +255,7 @@ export default function Filter(props) {
             onChange={(e) => filterProduct("fabric", e.target.value)}
             value={selectedFilter.fabric}
           >
-            {!isLoading ? fabricFilter.map((value, key) => (
+            {!isLoading ? fabricFilter?.((value, key) => (
               <FormControlLabel
                 value={value.id}
                 control={<CustomRadio />}
@@ -281,7 +282,7 @@ export default function Filter(props) {
             onChange={(e) => filterProduct("size", e.target.value)}
             value={selectedFilter.size}
           >
-            {!isLoading ? sizeFilter.map((value, key) => (
+            {!isLoading ? sizeFilter?.map((value, key) => (
               <FormControlLabel
                 value={value.id}
                 control={<CustomRadio />}

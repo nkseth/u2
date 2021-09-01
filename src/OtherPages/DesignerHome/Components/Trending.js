@@ -20,24 +20,24 @@ const Trending = () => {
   const { items } = useSelector((state) => state.root.trending);
 
   useEffect(async () => {
-    dispatch(topTrending());
+     dispatch(topTrending());
   }, []);
 
-
-  return (
-    <div className={styles.trending_content} style={baseStyle}>
-      <div className={`${styles.Trending_header}`} style={{ color: "#1A202C" }}  >
-        Trending
-        <CustomDivider style={{ height: "1px", background: "#857250" }} />
-      </div>
-      <div className={styles.Trending}>
-        {items.map((item) => (
-          <div className={styles.Trending_Items}>
-            <img src={item.cover_image} alt={item.name} />
-            <Link to="designers-product-page" to={{ pathname:'/designers-product-page', state:{data: item, name: 'Category'} }}>{item.name}</Link>
-          </div>
-        ))}
-        {/* <div className={styles.Trending_Items}>
+  if (items) {
+    return (
+      <div className={styles.trending_content} style={baseStyle}>
+        <div className={`${styles.Trending_header}`} style={{ color: "#1A202C" }}  >
+          Trending
+          <CustomDivider style={{ height: "1px", background: "#857250" }} />
+        </div>
+        <div className={styles.Trending}>
+          {items?.map((item) => (
+            <div key={item.name} className={styles.Trending_Items}>
+              <img src={item.cover_image} alt={item.name} />
+              <Link to="designers-product-page" to={{ pathname: '/designers-product-page', state: { data: item, name: 'Category' } }}>{item.name}</Link>
+            </div>
+          ))}
+          {/* <div className={styles.Trending_Items}>
           <img src={c1} alt="items" />
           <Link to="designers-product-page">Wear</Link>
         </div>
@@ -57,24 +57,27 @@ const Trending = () => {
           <img src={c2} alt="items" />
           <Link to="designers-product-page">Wear</Link>
         </div> */}
-        {mobileView ? (
-          items.map(({ name, cover_image }) => (
-            <div className={styles.Trending_Items}>
-              <img src={cover_image} alt={name} />
-              <Link to="designers-product-page">{name}</Link>
-            </div>
-          ))
-        ) : (
-          <></>
-        )}
+          {mobileView ? (
+            items?.map(({ name, cover_image }) => (
+              <div key={name} className={styles.Trending_Items}>
+                <img src={cover_image} alt={name} />
+                <Link to="designers-product-page">{name}</Link>
+              </div>
+            ))
+          ) : (
+            <></>
+          )}
+        </div>
+        <div className={`${styles.Trending_Button}`}>
+          <Button onClick={() => push("/designers-product-page")}>
+            View all
+          </Button>
+        </div>
       </div>
-      <div className={`${styles.Trending_Button}`}>
-        <Button onClick={() => push("/designers-product-page")}>
-          View all
-        </Button>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    return null;
+  }
 };
 
 export default Trending;

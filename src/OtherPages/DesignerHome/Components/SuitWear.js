@@ -49,7 +49,7 @@ const SuitWear = () => {
         </div>
         <CarouselProvider
           visibleSlides={match ? 1 : iPade ? 2 : visible}
-          totalSlides={5}
+          totalSlides={suitWearItems.length}
           infinite
           isIntrinsicHeight
         >

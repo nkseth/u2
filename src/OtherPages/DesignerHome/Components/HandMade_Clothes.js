@@ -53,9 +53,9 @@ const HandMade_Clothes = () => {
         </div>
 
         <CarouselProvider
-          style={customView ? { marginBottom: 0, marginTop: 0 } : BigView ? { marginBottom: -50, marginTop: -80 } : { marginBottom: -50, marginTop: -80 }}
+          style={customView ? { marginBottom: 0, marginTop: 0 } : BigView ? { marginBottom: 0, marginTop: 0 } : { marginBottom: 0, marginTop: 0 }}
           visibleSlides={match ? 1 : iPade ? 2 : visible}
-          totalSlides={5}
+          totalSlides={clothes.length}
           infinite
           isIntrinsicHeight
         >

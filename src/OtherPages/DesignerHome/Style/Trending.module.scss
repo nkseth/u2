@@ -37,6 +37,7 @@
   align-items: center;
   padding: 1rem;
   margin-top: 2rem;
+  margin-bottom: -2em;
   button {
     background: #857250;
     text-transform: capitalize;
@@ -63,7 +64,9 @@
 
 @media only screen and (min-device-width: 580px) and (max-device-width: 768px) {
 
-
+  .trending_content{
+    margin-top: 0em;
+  }
   .Trending {
     height: auto;
     display: grid;
@@ -83,6 +86,9 @@
 
 
 @media only screen and (min-device-width: 420px) and (max-device-width: 580px) {
+  .trending_content{
+    margin-top: 0em;
+  }
   .Trending {
     height: auto;
     display: grid;
@@ -101,6 +107,9 @@
 
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .trending_content{
+    margin-top: -5em;
+  }
   .Trending_Button {
     padding-top: 3rem;
   }
@@ -124,7 +133,12 @@
     margin-top:-40px;
   }
 }
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 550px) {
+    .Trending_Button{
+
+    }
+  }
+    @media screen and (max-width: 420px) {
   .trending_content{
     padding: 2rem 1rem !important;
   }
@@ -148,7 +162,8 @@
   .Trending_Button {
     
     button {
-      margin-top: 20px;
+      margin-top: 0px;
+      margin-bottom: 1.3rem;
     }
   }
 }

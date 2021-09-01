@@ -49,7 +49,7 @@ const Top_Designer = () => {
 
         <CarouselProvider
           visibleSlides={match ? 1 : iPade ? 2 : visible}
-          totalSlides={5}
+          totalSlides={designers.length}
           infinite
           isIntrinsicHeight
         >

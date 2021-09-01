@@ -17,9 +17,9 @@
     h1 {
       color: #6a5b40;
       font-family: DM Serif Display;
-      font-size: 51px;
+      font-size: 54px!important;
       font-weight: 400;
-      line-height: 62px;
+      line-height:54px;
       width: 30%;
       padding-top: 10rem;
     }
@@ -29,6 +29,9 @@
       object-fit: cover;
       object-position: top;
       box-shadow: 0px 5px 10px #00000041;
+    }
+    .main{
+      margin-bottom: -2em!important;
     }
     .TopCategory_Items_Layer {
       position: absolute;
@@ -110,7 +113,7 @@
     text-align: left;
     padding-top: 3rem;
     font-family: DM Serif Display;
-    font-size: 54px;
+    font-size: 54px!important;
     font-weight: 400;
     line-height: 54px;
     letter-spacing: -1.5px;
@@ -127,6 +130,9 @@
 }
 
 @media screen and (max-width: 750px) {
+  .main{
+    margin-top: -2em;
+  }
   .hidden_web {
     display: block !important;
   }
@@ -162,6 +168,9 @@
     padding-bottom: 2rem;
     padding-left: 0px;
     overflow-x: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     .TopCategory_Items {
       width: 350px;
 
@@ -180,9 +189,11 @@
     }
   }
   .TopCategory_Items_Layer_text{
+    padding: 5em!important;
     h2{
       font-size:35px;
       font-weight: 700;
+      
     }
   }
 }
@@ -211,6 +222,10 @@
     justify-content: center;
     display: flex;
     align-items: center;
+   
+  }
+  .TopCategory_Items_Layer_text{
+    padding: 3em!important;
    
   }
   .TopCategory_header {

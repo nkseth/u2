@@ -30,10 +30,11 @@ export default function ProductsSection(props) {
   const [isFilterOpen, setFilterOpen] = useState(false);
 
   const setValue = async (props) => {
-    await setIsLoading(true)
-    await setProducts(props.products)
-    await setIsLoading(false)
+    setIsLoading(true)
+    setProducts(props.products)
+    setIsLoading(false)
   }
+
 
   const handleSort = (e) => {
     setSortBy(e.target.value);
@@ -51,9 +52,9 @@ export default function ProductsSection(props) {
     setFilterOpen(open);
   };
 
-  useEffect(async () => {
-    await setValue(props)
-  }, [])
+  useEffect(() => {
+   setValue(props)
+  }, [props])
 
   return (
     <>
@@ -140,9 +141,10 @@ export default function ProductsSection(props) {
 
         {tabView &&
           <>
-            {!isLoading ? products.map((value, key) => (
+            {!isLoading ? products.map((value, index) => (
               <Grid item xs={6} sm={4} md={3} lg={3}>
                 <ProductCard
+                  key={index.id?.toString()}
                   product={value}
                 />
               </Grid>

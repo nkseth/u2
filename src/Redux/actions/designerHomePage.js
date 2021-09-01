@@ -12,7 +12,7 @@ import {
 export const topTrending = () => async (dispatch) => {
   try {
     const { data } = await DesignerHomePageDataService.getTrending();
-
+    
     dispatch({
       type: GET_TOP_TRENDING,
       payload: data.trending_categories,
@@ -26,7 +26,6 @@ export const topTrending = () => async (dispatch) => {
 export const topCategories = (params) => async (dispatch) => {
   try {
     const { data } = await DesignerHomePageDataService.topCategories(params);
-    // console.log(data.data);
     dispatch({ type: GET_TOP_CATEGORY, payload: data.data });
   } catch (err) {
     return Promise.reject(err);

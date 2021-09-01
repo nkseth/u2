@@ -19,9 +19,10 @@ const Trending = () => {
 
   const { items } = useSelector((state) => state.root.trending);
 
-  useEffect(() => {
+  useEffect(async () => {
     dispatch(topTrending());
   }, []);
+
 
   return (
     <div className={styles.trending_content} style={baseStyle}>
@@ -30,10 +31,10 @@ const Trending = () => {
         <CustomDivider style={{ height: "1px", background: "#857250" }} />
       </div>
       <div className={styles.Trending}>
-        {items.map(({ name, cover_image }) => (
+        {items.map((item) => (
           <div className={styles.Trending_Items}>
-            <img src={cover_image} alt={name} />
-            <Link to="designers-product-page">{name}</Link>
+            <img src={item.cover_image} alt={item.name} />
+            <Link to="designers-product-page" to={{ pathname:'/designers-product-page', state:{data: item, name: 'Category'} }}>{item.name}</Link>
           </div>
         ))}
         {/* <div className={styles.Trending_Items}>

@@ -7,7 +7,7 @@ import useLogin from "./useLogin";
 import { useSelector, useDispatch } from "react-redux";
 import common_axios from "../utils/axios.config";
 import { setUserData } from "../Redux/actions/homepage";
-
+import { useCookies } from 'react-cookie';
 /*
 OtpInput not work properly
  */
@@ -17,6 +17,7 @@ const LoginOtpVarify = () => {
 
   const { login_Model_Hide } = useLogin();
   const [text, setText] = useState('')
+  const [cookies, setCookie] = useCookies(['user']);
   const { name, password, email } = useSelector(state => state.root.login.login_creds)
 
   const getStarted = async () => {
@@ -26,18 +27,20 @@ const LoginOtpVarify = () => {
     }
 
 
-    try{
+    try {
       const { data } = await common_axios.post('/auth/otp_varify', {
         email,
         password,
         otp: text
       });
-  
-      if(data){
-          localStorage.setItem('user', JSON.stringify(data.data))
-          localStorage.setItem('token', JSON.stringify(data.data.api_token))
-          dispatch(setUserData(data.data))
-          login_Model_Hide()
+
+      console.log(data)
+
+      if (data.data) {
+        setCookie('data', data.data, { path: '/' })
+        localStorage.setItem('token', JSON.stringify(data.data.api_token))
+        dispatch(setUserData(data.data))
+        login_Model_Hide()
       }
     } catch (e) {
       console.log(e)
@@ -50,14 +53,14 @@ const LoginOtpVarify = () => {
       <div className={styles.LoginOtpVarify_Title}>
         <h1>Welcome Back!</h1>
       </div>
-      <div className={styles.LoginOtpVarify_Input}>
+      {/* <div className={styles.LoginOtpVarify_Input}>
         <label>Mobile Number</label>
         <input type="text" placeholder="+91987654321" />
         <button className={styles.Btn_color}>change</button>
       </div>
       <div className={styles.LoginOtpVarify_Button}>
         <Button onClick={login_Model_Hide}>Send OTP</Button>
-      </div>
+      </div> */}
       <div className={styles.LoginOtpVarify_Text}>
         <p>Please enter the OTP sent to the mobile number</p>
       </div>
@@ -79,7 +82,7 @@ const LoginOtpVarify = () => {
       </div>
       <div className={styles.LoginOtpVarify_Bottom_Link_1}>
         <Link>
-          Didn't receive code? <b style={{color:'#0000EE'}}>Resend code</b>
+          Didn't receive code? <b style={{ color: '#0000EE' }}>Resend code</b>
         </Link>
       </div>
     </form>

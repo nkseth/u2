@@ -7,16 +7,20 @@ import * as serviceWorker from "./serviceWorker";
 import reportWebVitals from "./reportWebVitals";
 import store from "./Redux/store";
 import { Provider } from "react-redux";
+import { CookiesProvider } from 'react-cookie';
+
 
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </Router>
-  </Provider>,
+  <CookiesProvider>
+    <Provider store={store}>
+      <Router>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </Router>
+    </Provider>
+  </CookiesProvider>,
   document.getElementById("root")
 );
 

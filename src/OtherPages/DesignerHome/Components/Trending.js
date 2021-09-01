@@ -1,7 +1,6 @@
 import { Button, useMediaQuery } from "@material-ui/core";
-import { Crop32Rounded, Crop32Sharp } from "@material-ui/icons";
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/Trending.module.scss";
 import c1 from '../Images/c1.png'
@@ -13,8 +12,16 @@ const Trending = () => {
     "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
   const baseStyle = { padding: "5rem 3rem", background: "  #F3F1EE" };
 
-  const { push } = useLocation();
+  const location = useHistorys();
   const mobileView = useMediaQuery("(max-width:1024px)");
+
+  useEffect(()=>{
+    fetch_data()
+  },[]);
+
+  const fetch_data = async () => {
+    
+  }
 
   return (
     <div className={styles.trending_content} style={baseStyle}>
@@ -53,7 +60,7 @@ const Trending = () => {
         }
       </div>
       <div className={`${styles.Trending_Button}`}>
-        <Button onClick={() => push("designers-product-page")}>View all</Button>
+        <Button onClick={() => location.push("designers-product-page")}>View all</Button>
       </div>
     </div>
   );

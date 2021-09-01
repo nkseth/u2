@@ -1,17 +1,42 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/TopCategory.module.scss";
 import Img1 from '../Images/img.png'
+import common_axios from "../../../utils/axios.config";
+import { Link } from "react-router-dom";
 
 
 
 const TopCategory = () => {
 
-  const MenDescription = ['Shirts', 'Hoodies', 'Jeans & Chinos', 'T-shirts & Shorts', 'Jackets & Sweatshirts', ' Kurtas', 'Casual Wear', ' Formal Wear']
-  const WomenDescription = ['Kurtas & Suits', 'Ethinic Wear', ' Kurtas & Tops', 'Leggins & Salwars', 'Sarees', 'Dress Materials', 'Jump Suits', 'Shorts & Skirts']
-  const KidsDescription = ['Track pants', 'T-Shirts', 'Shorts', 'Hoodies', 'Trousers', 'Ethnic Wear', 'Sweatshirts', 'Jeans']
+  const [mens_data, set_mens_data] = useState([])
+  const [womens_data, set_womens_data] = useState([])
+  const [kids_data, set_kids_data] = useState([])
 
+  useEffect(()=>{
+   fetch_cat()
+  },[])
+
+  const fetch_cat = async () => {
+     const { data: mens } = await common_axios.get('/category-subgrps/mens-fashion')
+     const { data: kids } = await common_axios.get('/category-subgrps/kids-fashion')
+     const { data: womens } = await common_axios.get('/category-subgrps/womens-fashion')
+
+     if(mens.data){
+        set_mens_data(mens.data)
+     }
+
+     if(womens.data){
+      set_womens_data(womens.data)
+     }
+
+     if(kids.data){
+       set_kids_data(kids.data)
+     }
+  }
+
+  console.log(mens_data)
 
   const baseStyle = {};
   return (
@@ -21,9 +46,9 @@ const TopCategory = () => {
         <div className={styles.TopCategory_Items}>
           <h1 class="hidden_mobile">Top Category 2021</h1>
         </div>
-        <CategoryItems heading={"Men"} details={MenDescription} />
-        <CategoryItems heading={"Women"} details={WomenDescription} />
-        <CategoryItems heading={"Kids"} details={KidsDescription} />
+        <CategoryItems heading={"Men"} details={mens_data} />
+        <CategoryItems heading={"Women"} details={womens_data} />
+        <CategoryItems heading={"Kids"} details={kids_data} />
       </div>
     </div>
   );
@@ -38,26 +63,25 @@ const CategoryItems = ({ heading, details }) => {
   return (
     <>
       <div className={styles.TopCategory_Items}>
-        <img src={Img1} alt="items" />
+        <img src={details[0]?.cover_image || Img1} alt="items" />
         <div className={styles.TopCategory_Items_Layer}>
           <div className={styles.TopCategory_Items_Layer_text}>
             <h2>
               {heading}
               <CustomDivider style={{ height: "1px", background: "#fff", marginleft: "-5px" }} />
             </h2>
-            <p>
+            <Link>
               {
-                details.map(function (index, name) {
+                details[0]?.categories?.map(function (item) {
                   return (
                     <>
-                      {details[name]}
-                      <br />
+                      <p>{item.name}</p>
                     </>
                   )
                 })
 
               }
-            </p>
+            </Link>
           </div>
         </div>
       </div>

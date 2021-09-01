@@ -29,12 +29,14 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { LOGIN_MODEL } from "../../Redux/reducers/loginreducer";
 import { useDispatch, useSelector } from "react-redux";
 import useLogin from "../../LoginSceens/useLogin";
+import { useCookies } from 'react-cookie';
 
 export default function Header() {
 
   const history = useHistory()
   const location = useLocation();
   const [currency, setCurrency] = useState("INR");
+  const [cookies, setCookie] = useCookies(['user']);
   const [mouseEnter, setMouseEnter] = useState({
     newArrivals: false,
     men: false,
@@ -83,7 +85,7 @@ export default function Header() {
   };
 
   const profileFnc = () => {
-    if(Object.keys(user_data).length != 0){
+    if(Object.keys(cookies).length != 0){
       history.push('/profile')
     } else {
       login_Model_Show()

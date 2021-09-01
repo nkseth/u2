@@ -117,8 +117,8 @@ const Login = () => {
         </Button>
       </div>
       <div className={styles.Screen_Login_Bottom}>
-        <Link>
-          Already have an account?<b>Login</b>
+        <Link onClick={()=> login_Mode_Handler("SignUp")}>
+          New user?<b>Sign Up</b>
         </Link>
       </div>
     </form>

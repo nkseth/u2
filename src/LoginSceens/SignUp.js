@@ -8,7 +8,6 @@ import useLogin from "./useLogin";
 import common_axios from "../utils/axios.config";
 import { useSelector, useDispatch } from "react-redux";
 import { setSignupCreds } from "../Redux/actions/homepage";
-
 ///
 
 ///
@@ -32,19 +31,19 @@ const SignUp = () => {
       return;
     }
 
-    if (signup_creds.name && email_regex.test(signup_creds.email) === false) {
+    if (signup_creds.email && email_regex.test(signup_creds.email) === false) {
       alert('Invalid Email')
       setError({ type: 'email', value: "Invalid Email" })
       return;
     }
 
-    if (signup_creds.name && signup_creds.phone_no?.length !== 10) {
+    if (signup_creds.phone_no && signup_creds.phone_no?.length !== 10) {
       alert('Invalid Phone Number')
       setError({ type: 'phone_no', value: "Invalid Phone Number" })
       return;
     }
 
-    if ( signup_creds.name && signup_creds.password?.length < 6) {
+    if ( signup_creds.password && signup_creds.password?.length < 6) {
       alert('Invalid Password')
       setError({ type: 'password', value: "Invalid Password" })
       return;
@@ -122,7 +121,7 @@ const SignUp = () => {
         </Button>
       </div>
       <div className={styles.SignUp_Bottom}>
-        <Link>
+        <Link onClick={()=> login_Mode_Handler("Login")}>
           Already have an account?<b>Login</b>
         </Link>
       </div>

@@ -58,6 +58,7 @@ import useLogin from "./LoginSceens/useLogin";
 import MeasurementAndSimulation from "./OtherPages/MeasurementAndSimulation/MeasurementAndSimulation";
 import Designers from "./OtherPages/Designers/Designers";
 import { setUserData } from "./Redux/actions/homepage";
+import { useCookies } from 'react-cookie';
 
 //Start From Here
 
@@ -65,13 +66,11 @@ function App() {
 
   const { isLoginModel } = useLogin();
   const dispatch = useDispatch();
+  const [cookies, setCookie] = useCookies(['user']);
 
   useEffect(()=>{
-   const data = localStorage.getItem('user')
-   
-   if(data){
-     dispatch(setUserData(JSON.parse(data)))
-   }
+     
+     dispatch(setUserData(cookies.data))
 
   },[])
 

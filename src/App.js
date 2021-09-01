@@ -16,7 +16,6 @@ import MyMeasurements from "./Pages/My-Measurements/myMeasurements";
 import ChooseStandardSize from "./Pages/Choose-Standard-Size/chooseSize";
 import AddMeasurementGender from "./Pages/Add-Measurement-Gender/gender";
 import AddMeasurementBasicDetails from "./Pages/Add-Measurement-Basic-Details/basicDetails";
-import AddMeasurementBodyMeasurement from "./Pages/Add-Measurement-body-measurement/bodyMeasurement";
 import Measurement from "./Pages/Measurement/measurement";
 import OrderSummary from "./Pages/Order-Summary/orderSummary";
 import DeliveryAddress from "./Pages/Delivery Address/deliveryAddress";
@@ -60,6 +59,8 @@ import MeasurementAndSimulation from "./OtherPages/MeasurementAndSimulation/Meas
 import Designers from "./OtherPages/Designers/Designers";
 import { StylesProvider } from "@material-ui/core";
 import styles from "./App.module.scss"
+import AddManMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentMan";
+import AddWomanMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentWoman";
 //Start From Here
 
 function App() {
@@ -99,9 +100,14 @@ function App() {
           path="/add-measurement-basic-details"
           component={AddMeasurementBasicDetails}
         />
+
         <Route
-          path="/add-measurement-body-measurement"
-          component={AddMeasurementBodyMeasurement}
+          path="/add-measurement-body-measurement-man"
+          component={AddManMeasurement}
+        />
+        <Route
+          path="/add-measurement-body-measurement-woman"
+          component={AddWomanMeasurement}
         />
         <Route path="/viewmeasurement" component={Measurement} />
         <Route path="/order-summary" component={OrderSummary} />

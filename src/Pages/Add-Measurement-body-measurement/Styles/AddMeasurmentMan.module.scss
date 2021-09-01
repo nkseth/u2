@@ -1,0 +1,276 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+.SVGDiv{
+    width: 100%;
+    height: 100vh;
+    margin-top: 5em;
+    position: relative;
+    min-width: 200px;
+    max-width:450px;
+    overflow:hidden ;
+
+}
+.AccordionDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4em;
+    max-width: 400px;
+}
+.upperImage{
+    width: 100%;
+    height: 90%;
+    filter: drop-shadow(0px 0px 5px rgba(34, 34, 34, 0.555));
+    margin-top: 2em;
+    transition: all 1s;
+    
+}
+.lowerImage{
+    width: 100%;
+    height: 90%;
+    filter: drop-shadow(0px 0px 5px rgba(34, 34, 34, 0.555));
+    margin-top: 2em;
+    transition: all 1s;
+}
+
+.AddMeadurementsH1{
+    font-family: DM Sans;
+font-size: 22px;
+font-style: normal;
+font-weight: 700;
+line-height: 20px;
+letter-spacing: 0px;
+text-align: left;
+width: 90%;
+padding: 1em;
+max-width: 450px;
+
+}
+
+
+// Button divs
+
+.TabsButtonDiv{
+display: flex;
+width: 95%;
+max-width: 450px;
+border-radius: 5px;
+height: 50px;
+}
+
+//Button Divs
+
+//Buttons
+
+.TabsButtonActive2{
+    width: 50%;
+    background-color: #857250 !important;
+    font-family: DM Sans !important;
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    height: 50px!important;
+    color: #fff!important;
+    border: 2px solid #857250!important;
+
+    padding: 0!important;
+    border-radius: 0px 5px 5px 0px  !important;
+
+}
+
+.TabsButtonActive1{
+    width: 50%;
+    background-color: #857250 !important;
+    font-family: DM Sans !important;
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    height: 50px!important;
+    color: #fff!important;
+    border: 2px solid #857250!important;
+
+    padding: 0!important;
+    border-radius: 5px 0px 0px 5px  !important;
+
+}
+.TabsButton1{
+    width: 50%;
+    height: 50px!important;
+    background-color: #ffffff !important;
+    color: #857250 !important;
+font-family: DM Sans !important;
+font-size: 16px !important;
+font-style: normal !important;
+font-weight: 700 !important;
+line-height: 20px !important;
+letter-spacing: 0px !important;
+text-align: center !important;
+padding: 0!important;
+border: 2px solid #857250!important;
+border-radius: 5px 0px 0px 5px  !important;
+
+}
+.TabsButton2{
+    width: 50%;
+    height: 50px!important;
+    background-color: #ffffff !important;
+    color: #857250 !important;
+font-family: DM Sans !important;
+font-size: 16px !important;
+font-style: normal !important;
+font-weight: 700 !important;
+line-height: 20px !important;
+letter-spacing: 0px !important;
+text-align: center !important;
+padding: 0!important;
+border: 2px solid #857250!important;
+border-radius: 0px 5px 5px 0px  !important;
+
+}
+
+
+// Image Sets
+
+@mixin Img{
+    height: 100%;  
+    box-sizing: border-box;
+    width: 100%;
+    transition: all 1s;
+
+}
+
+.Neck{
+    @include Img();
+        transform: scale(3) translateY(10em) ;
+}
+.Shoulder{
+    @include Img();
+        transform: scale(3) translateY(10em) ;
+}
+.Chest{
+    @include Img();
+        transform: scale(3) translateY(8em) ;
+}
+.Arm{
+    @include Img();
+        transform: scale(3) translateY(10em) ;
+}
+
+.Waist{
+    @include Img();
+        transform: scale(3) translateY(4em) ;
+}
+.Wrist{
+    @include Img();
+        transform: scale(4) translateY(1em) translateX(-5em) ;
+}
+
+.Hip{
+    @include Img();
+        transform: scale(3) translateY(0em) ;
+}
+.Thigh{
+    @include Img();
+        transform: scale(3) translateY(-3em) ;
+}
+.Ankle{
+    @include Img();
+        transform: scale(3) translateY(-10em) ;
+}
+
+
+.Sleeve{
+    @include Img();
+        transform: scale(2) translateY(5em) translateX(-3em) ;
+}
+.Calf{
+    @include Img();
+        transform: scale(2) translateY(-10em) ;
+}
+.Inseam{
+    @include Img();
+        transform: scale(2) translateY(-5em) translateX(5em) ;
+}
+.FullLength{
+    @include Img();
+        transform: scale(2) translateY(-6em) ;
+}
+.FloatingMeasure{
+    position: absolute;
+    width: 100%;
+    border-radius: 10px;
+    bottom: -30%;
+    display: none;
+    max-width: 400px;
+}
+
+.submitBtn{
+    height: 48px !important;
+    width: 290px !important;
+    border-radius: 5px !important;
+    text-transform: none !important;
+    color: #fff !important;
+    background: #857250 !important;
+    box-shadow: none !important;
+    border: 1px solid #857250 !important;
+    font-family: DM Sans !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 20px !important;
+    margin-top: 5em!important;
+    margin-bottom: 3em!important;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    display: none!important;
+}
+// Image Sets
+
+.TabsButtonDivTop{
+    display: none;
+}
+
+@media screen and (max-width:900px) {
+    .container{
+       align-items: center;
+    }
+    .AccordionDiv{
+       width: 50%;
+    }
+    .SVGDiv{
+        width: 50%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .container{
+       align-items: center;
+       flex-direction: column;
+    }
+    .AccordionDiv{
+        display: none;
+    }
+    .SVGDiv{
+        width: 100%;
+    margin-top: 0em;
+    }
+    .TabsButtonDivTop{
+        display: flex;
+        width: 90%;
+        max-width: 400px;
+        // margin-top: -5em;
+    }
+    .submitBtn{
+        display: flex!important;
+    }
+.FloatingMeasure{
+display: block;
+}
+
+}

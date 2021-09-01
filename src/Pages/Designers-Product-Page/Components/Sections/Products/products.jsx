@@ -73,7 +73,7 @@ export default function ProductsSection(props) {
       <Grid
         container
         style={{ width: "100%", margin: 0 }}
-        justify='center'
+        justifyContent='flex-start'
         spacing={mobileView ? 1 : 3}
       >
         <Grid

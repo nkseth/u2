@@ -55,13 +55,13 @@ const SuitWear = () => {
         >
           <Slider>
             {suitWearItems.map(
-              ({ id, cover_image, feature_image, name }, i) => (
-                <Slide index={i} key={id}>
+              (item, i) => (
+                <Slide index={i} key={item.id.toString()}>
                   <div className>
                     <div className={styles.SuitWear}>
                       <div className={styles.SuitWear_Items}>
-                        <img src={feature_image} alt={id} />
-                        <Link to="designers-product-page">{name}</Link>
+                        <img src={item.feature_image} alt={item.id} />
+                        <Link to={{ pathname:'/designers-product-page', state:{data: item, name: 'Suit Wear'} }}>{item.name}</Link>
                       </div>
                     </div>
                   </div>

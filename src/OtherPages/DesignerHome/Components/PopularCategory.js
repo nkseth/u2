@@ -16,6 +16,7 @@ const PopularCategory = () => {
     dispatch(popularCategories());
   }, []);
 
+
   return (
     <>
       <div className={styles.popularcategory_content} style={baseStyle}>

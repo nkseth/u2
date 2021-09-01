@@ -1,21 +1,55 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import axios from '../../utils/axios.config.js';
 import React from "react";
+=======
+import React, { useEffect, useState } from "react";
+>>>>>>> cae477f8be1c3b63d3ee4479fd043b026274ff87
 import { Button, Grid, useMediaQuery } from "@material-ui/core";
 import Container from "../../utils/Container/container";
 import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
 import Filter from "./Components/Sections/Filter/filter";
 import styles from "./designer-product-page.module.scss";
 import ProductsSection from "./Components/Sections/Products/products";
+<<<<<<< HEAD
+=======
+import { useLocation } from "react-router-dom";
+
+
+//images 
+
+>>>>>>> cae477f8be1c3b63d3ee4479fd043b026274ff87
 import AllenSolly from "./Components/Sections/Products/Images/AllenSolly.png"
 import PeterEngland from "./Components/Sections/Products/Images/PeterEngland.png"
 import BeneKleed from "./Components/Sections/Products/Images/BeneKleed.png"
+import common_axios from "../../utils/axios.config";
 
 
 function DesignerProductPage() {
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
+  const location = useLocation()
+
+  const { data: val, name } = location.state;
+
+  const [product, setProduct] = useState([])
+
+  useEffect(()=>{
+      fetch_products()
+  },[val])
+
+
+  const fetch_products = async () => {
+    const { data } = await common_axios.post(`/product_by_category`,{
+      slug:val.slug
+    })
+
+    if(data.product){
+      console.log(data)
+      setProduct(data.product)
+    }
+  }
 
 
   return (
@@ -35,8 +69,8 @@ function DesignerProductPage() {
             {!tabViewPro && (
               <div style={{ width: "200%", marginLeft: 15 }} >
                 <Breadcrumb
-                  path='Designers Home / Men /'
-                  activePath='Designer Profile'
+                  path={`Designers Home / ${name} /`}
+                  activePath={val.name}
                 />
               </div>
 
@@ -59,7 +93,7 @@ function DesignerProductPage() {
               </div>
 
             )}
-            <ProductsSection products={productData} />
+            <ProductsSection products={product} />
           </div>
         </div>
       </div>

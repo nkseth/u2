@@ -23,9 +23,9 @@ export default function ProductCard(props) {
 
 
   return (
-    <div className={styles.container}>
+    <div key={props.key} className={styles.container}>
       <div className={styles.imgContainer}>
-        <img src={product.image} alt='product' />
+        <img src={product.feature_image} alt='product' />
         {isAddToWishList ? (
           <IconButton
             aria-label='product'
@@ -49,11 +49,11 @@ export default function ProductCard(props) {
         )}
       </div>
       <div className={styles.productDetails}>
-        <span className={styles.productName}>{product.Name}</span>
+        <span className={styles.productName}>{product.title}</span>
         <span className={styles.productDesc}>{product.description}</span>
         <p className={styles.productPrice}>
-          <span>{product.price} </span>
-          <span>{product.currency_symbol}{product.price} {product.off}</span>
+          {!product.has_offer ? <span>{product.price} </span> : <span>{product.offer_price} </span>}
+          {product.has_offer ? <span>{product.currency_symbol}{parseFloat(product.raw_price).toFixed(2)} {product.discount}</span> : null}
         </p>
       </div>
     </div>

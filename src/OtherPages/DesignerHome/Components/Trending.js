@@ -25,7 +25,7 @@ const Trending = () => {
 
   return (
     <div className={styles.trending_content} style={baseStyle}>
-      <div className={`${styles.Trending_header}`}>
+      <div className={`${styles.Trending_header}`} style={{ color: "#1A202C" }}  >
         Trending
         <CustomDivider style={{ height: "1px", background: "#857250" }} />
       </div>

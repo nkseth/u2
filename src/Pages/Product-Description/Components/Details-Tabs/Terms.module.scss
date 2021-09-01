@@ -3,6 +3,9 @@
     border-radius: 6px;
     background-color: #F1EFEB;
     font-family: DM Sans;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     h1{
         color: #857250;
         font-weight: 700;
@@ -10,9 +13,9 @@
     }
     ul{
         padding: 1em;
-        list-style: none;
+        // list-style: none;
         .li{
-            font-size: 15px;
+            font-size: 14px;
             line-height: 20px;
             margin-bottom: 0.8em;
             margin-top: 0.8em;
@@ -20,18 +23,21 @@
             font-weight: 400;
 
             }
-            .li::before {
-                content: "\2022"; color: #6A5B40;
-                display: inline-block;
-                font-weight: bold;
-                margin-right: 0.5em
+            .readli{
+                font-size: 18px;
+                line-height: 20px;
+                margin-bottom: 0.8em;
+                margin-top: 0.8em;
+                color: #3B3B3B;
+                font-weight: 400;
             }
+            
     }
 }
 
 .vectorli{
     list-style-image: url("./new.svg");
-    font-size: 15px;
+    font-size: 14px;
     line-height: 20px;
     margin-bottom: 0.8em;
     margin-top: 0.8em;
@@ -43,3 +49,28 @@
     background-color: #6A5B40!important;
     font-weight: bold!important;
 }
+
+@media  screen and (max-width:600px)   {
+
+.button{
+    font-size: 10px!important;
+    text-align: left!important;
+}
+
+.li{
+    font-size: 14px!important;
+    font-weight: 700!important;
+}
+.vectorli{
+    font-size: 12px!important;
+    font-weight: 900!important;
+}
+.readli{
+    font-size: 12px!important;
+    font-weight: 900!important;
+}
+.container{
+padding:0.5em ;
+}
+}
+

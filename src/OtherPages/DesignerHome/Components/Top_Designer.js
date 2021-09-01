@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IconButton, useMediaQuery,useTheme } from "@material-ui/core";
+import { IconButton, useMediaQuery, useTheme } from "@material-ui/core";
 import {
   CarouselProvider,
   Slider,
@@ -22,28 +22,29 @@ import { useState } from "react";
 const Top_Designer = () => {
 
   const baseStyle = {
-   padding: "5rem 3rem",
+    padding: "5rem 3rem",
     background: "#fff",
   };
-  const [visible,setvisible]=useState(4)
-  const theme=useTheme()
-  const match=useMediaQuery(theme.breakpoints.down('xs'))
-  const iPade=useMediaQuery(theme.breakpoints.down('sm'))
+  const [visible, setvisible] = useState(4)
+  const theme = useTheme()
+  const match = useMediaQuery(theme.breakpoints.down('xs'))
+  const iPade = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <div className="top_designer">
       <CustomSection class={styles.topdesigner} style={baseStyle}>
         <div
           className={`${styles.Carousel_header} ${styles.Top_Designer_header}`}
+
         >
-          Explore Top Designer{" "}
+          Explore Top Designer
           <CustomDivider style={{ height: "2px", background: "#fff" }} />
         </div>
 
         <CarouselProvider
-           visibleSlides={match?1:iPade?2:visible}
-           totalSlides={5}
-           infinite
-           isIntrinsicHeight
+          visibleSlides={match ? 1 : iPade ? 2 : visible}
+          totalSlides={5}
+          infinite
+          isIntrinsicHeight
         >
           <Slider>
             <Slide index={0}>
@@ -61,9 +62,9 @@ const Top_Designer = () => {
             <Slide index={4}>
               <CarouselSlide5 />
             </Slide>
-            
+
           </Slider>
-          <DotGroup style={{ display: "flex" , marginTop: "1rem" }} />
+          <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
           <div className={styles.NavigationContainer}>
             <Link to="designers-profile" style={{ color: "#0A0A0A" }}>
               SEE All
@@ -98,9 +99,9 @@ const CarouselSlide = () => {
       <div className={styles.Top_Designer}>
         <div className={styles.Top_Designer_Items}>
           <img src={d1} alt="items" />
-          <Link to="designers-profile">1</Link>
-        </div>{" "}
-       </div>
+          <Link to="designers-profile">Designer Name</Link>
+        </div>
+      </div>
     </>
   );
 };
@@ -113,9 +114,9 @@ const CarouselSlide2 = () => {
       <div className={styles.Top_Designer}>
         <div className={styles.Top_Designer_Items}>
           <img src={d4} alt="items" />
-          <Link to="designers-profile">2</Link>
+          <Link to="designers-profile">Designer's Name</Link>
         </div>{" "}
-       </div>
+      </div>
     </>
   );
 };
@@ -128,9 +129,9 @@ const CarouselSlide3 = () => {
       <div className={styles.Top_Designer}>
         <div className={styles.Top_Designer_Items}>
           <img src={d2} alt="items" />
-          <Link to="designers-profile">3</Link>
+          <Link to="designers-profile">Designer Name</Link>
         </div>{" "}
-       </div>
+      </div>
     </>
   );
 };
@@ -143,9 +144,9 @@ const CarouselSlide4 = () => {
       <div className={styles.Top_Designer}>
         <div className={styles.Top_Designer_Items}>
           <img src={d3} alt="items" />
-          <Link to="designers-profile">4</Link>
+          <Link to="designers-profile">Designer Name</Link>
         </div>{" "}
-       </div>
+      </div>
     </>
   );
 };
@@ -158,9 +159,9 @@ const CarouselSlide5 = () => {
       <div className={styles.Top_Designer}>
         <div className={styles.Top_Designer_Items}>
           <img src={d4} alt="items" />
-          <Link to="designers-profile">5</Link>
+          <Link to="designers-profile">Designer Name</Link>
         </div>{" "}
-       </div>
+      </div>
     </>
   );
 };

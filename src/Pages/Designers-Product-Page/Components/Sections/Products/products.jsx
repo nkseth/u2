@@ -15,6 +15,7 @@ import cx from "classnames";
 import ProductCard from "../../product-card/card";
 import Filter from "../Filter/filter";
 import styles from "./product.module.scss";
+import Breadcrumb from "../../../../../utils/Breadcrumb/breadcrumb";
 
 export default function ProductsSection(props) {
 
@@ -64,6 +65,7 @@ export default function ProductsSection(props) {
           onOpen={toggleDrawer("left", true)}
           transitionDuration={600}
         >
+
           <Filter />
         </Drawer>
       )}
@@ -86,7 +88,9 @@ export default function ProductsSection(props) {
           }}
         >
           {tabViewPro && (
+
             <div className={styles.filterDiv}>
+
               <ButtonGroup variant='contained' color='default' aria-label=''>
                 <Button
                   onClick={() => setFilterOpen(true)}
@@ -106,7 +110,7 @@ export default function ProductsSection(props) {
             variant='outlined'
             style={{ minWidth: "130px" }}
           >
-            <InputLabel style={{ fontWeight: "700" }}>Sort by</InputLabel>
+            <InputLabel color={"secondary"} style={{ fontWeight: "700", color: "#6A5B40" }}>Sort by</InputLabel>
             <Select
               value={sortBy}
               onChange={(e) => handleSort(e)}
@@ -134,6 +138,18 @@ export default function ProductsSection(props) {
           </FormControl>
         </Grid>
 
+        {tabView &&
+          <>
+            {!isLoading ? products.map((value, key) => (
+              <Grid item xs={6} sm={4} md={3} lg={3}>
+                <ProductCard
+                  product={value}
+                />
+              </Grid>
+            )) : ''}
+          </>
+
+        }
         {!tabView &&
           <>
             {!isLoading ? products.map((value, key) => (
@@ -146,7 +162,7 @@ export default function ProductsSection(props) {
           </>
 
         }
-        {mobileView && (
+        {/* {!mobileView && (
           <>
             {!isLoading ? products.map((value, key) => (
               <Grid item xs={12} sm={4} md={3} lg={3}>
@@ -156,7 +172,7 @@ export default function ProductsSection(props) {
               </Grid>
             )) : ''}
           </>
-        )}
+        )} */}
       </Grid>
     </>
   );

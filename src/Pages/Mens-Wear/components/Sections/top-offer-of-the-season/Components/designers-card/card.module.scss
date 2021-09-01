@@ -1,18 +1,18 @@
 .container {
-  display: grid;
+  // display: grid;
   border-radius: 5px;
+  height: 320px;
+  width: 305px;
   .imgContainer {
     position: relative;
     display: grid;
     place-items: center;
-    // height: 250px;
-    // width: 290px;
-    // min-width: 200;
-    // max-width: 290px;
+
     img {
       border-radius: 5px 5px 0 0;
       height: 250px;
       object-fit: cover;
+      object-position: top;
     }
     span {
       position: absolute;
@@ -43,31 +43,83 @@
   letter-spacing: 0.3199999928474426px;
 }
 
-@media screen and (max-width: 835px) {
+@media screen and (max-width: 1350px) {
+
+  .container{
+    width: 45%;
+    max-width: 250px;
+  
   .imgContainer {
-    // width: 100% !important;
-    // min-width: 100% !important;
-    // max-width: 100% !important;
+
     img {
       height: 280px !important;
     }
   }
 }
 
+}
+  @media screen and (max-width: 835px) {
+  .container{
+    width: 370px!important;
+  
+  .imgContainer {
+
+    img {
+      // height: 280px !important;
+      width: 100%;
+    }
+  }
+}
+}
+
 @media screen and (max-width: 550px) {
+  .container{
+    width: 290px!important;
   .imgContainer {
     > span {
       font-size: 20px !important;
     }
     img {
-      height: 210px !important;
+      // height: 210px !important;
       width: 100%;
     }
   }
+}
   .clothTypes {
     font-size: 12px;
     line-height: 16px;
     letter-spacing: 0.3199999928474426px;
     padding: 0.5rem;
   }
+}
+
+
+
+@media screen and (max-width: 1150px) {
+
+  .container{
+    width: 40%;
+    max-width: 230px;
+    height: 270px;
+  .imgContainer {
+
+    img {
+      height: 230px !important;
+    }
+  }
+}
+}
+@media screen and (max-width: 1050px) {
+
+  .container{
+    width: 40%;
+    max-width: 245px;
+    height: 270px;
+  .imgContainer {
+
+    img {
+      height: 230px !important;
+    }
+  }
+}
 }

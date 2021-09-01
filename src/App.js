@@ -156,6 +156,19 @@ function App() {
         <Route path={"/home/poll-question"} component={PollQuestion} />
         <Route path={"/home/poll-result"} component={PollResult} />
         <Route path={"/designer-posts"} component={DesignerPosts} />
+
+        {/* New Urls */}
+        <Route path={"/home/polls"} component={Polls} />
+        <Route path={"/daily-fashion-tips"} component={FashionTips} />
+        <Route exact path={"/style-guide"} component={StyleGuideMan} />
+        <Route exact path={"/style-guide-man"} component={StyleGuide} />
+        <Route exact path={"/designer-profile-home"} component={DesignerProfile} />
+        <Route path={"/home/explore"} component={HomeExplore} />
+        <Route path={"/visual-search"} component={VisualSearch} />
+        <Route exact path={"/designer-page"} component={DesignersPage} />
+        <Route path={"/home/poll-question"} component={PollQuestion} />
+        <Route path={"/home/poll-result"} component={PollResult} />
+        {/* <Route exact path={"/designer-page/product"} component={Product} /> */}
       </Switch>
     </>
   );

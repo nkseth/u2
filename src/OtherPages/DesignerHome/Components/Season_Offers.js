@@ -16,26 +16,26 @@ const Season_Offers = () => {
   return (
     <div className={styles.seasonsoffer} style={baseStyle}>
       <div className={` ${styles.Season_Offers_header}`}>
-      Top Offers of the Season 
+        Top Offers of the Season
         <CustomDivider style={{ height: "1px", background: "#857250" }} />
       </div>
       <div className={styles.Season_Offers}>
         <div className={styles.Season_Offers_Item1} >
           <div>
             <h2>Buy 1 Get 1 One</h2>
-            <Button onClick={Handler}>Button</Button>
+            <Button onClick={Handler} className={styles.buttons} >Button</Button>
           </div>
         </div>
         <div className={styles.Season_Offers_Item2}>
           <div>
             <h2>50% Flat cashback on this product</h2>
-            <Button onClick={Handler}>Button</Button>
+            <Button onClick={Handler} className={styles.buttons} >Button</Button>
           </div>
         </div>
         <div className={styles.Season_Offers_Item3}>
           <div>
             <h2>100% free via purchase </h2>
-            <Button onClick={Handler}>Button</Button>
+            <Button onClick={Handler} className={styles.buttons} >Button</Button>
           </div>
         </div>
       </div>

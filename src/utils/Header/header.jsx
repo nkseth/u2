@@ -111,7 +111,7 @@ export default function Header() {
   //Here I use Redux For Show Login Model
   const { login_Model_Show } = useLogin();
   return (
-    <CustomSection style={{ padding: mobileView && "0 1rem" }}>
+    <div style={{ padding: mobileView ? "0 1em" : "0 3em", width: mobileView ? "100%" : "100%", marginLeft: "auto", marginRight: "auto" }} className={styles.headerShadow} >
       <div className={styles.firstContainer}>
         <div
           style={{
@@ -213,14 +213,14 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave("newArrivals")}
               className={cx(styles.menuItem, styles.menuItem_newArrivals)}
             >
-              <Link style={{ color: "#0a0a0a" }} to="/designers-product-page">New arrivals</Link>
+              <Link style={{ color: "#9D8E73" }} to="/designers-product-page">New arrivals</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("men")}
               onMouseLeave={() => handleMouseLeave("men")}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
-              <Link style={{ color: "#0a0a0a" }} to="/mens-wear">Men</Link>
+              <Link style={{ color: "#9D8E73" }} to="/mens-wear">Men</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("women")}
@@ -228,21 +228,21 @@ export default function Header() {
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
               {" "}
-              <Link style={{ color: "#0a0a0a" }} to="/mens-wear"> Women</Link>
+              <Link style={{ color: "#9D8E73" }} to="/mens-wear"> Women</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("kids")}
               onMouseLeave={() => handleMouseLeave("kids")}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
-              <Link style={{ color: "#0a0a0a" }} to="/mens-wear"> Kids</Link>
+              <Link style={{ color: "#9D8E73" }} to="/mens-wear"> Kids</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("designers")}
               onMouseLeave={() => handleMouseLeave("designers")}
               className={cx(styles.menuItem, styles.menuItem_designers)}
             >
-              <Link style={{ color: "#0a0a0a" }} to="designers">Designers</Link>
+              <Link style={{ color: "#9D8E73" }} to="designers">Designers</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("contemporary")}
@@ -256,7 +256,7 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave("offers")}
               className={cx(styles.menuItem, styles.menuItem_offers)}
             >
-              <Link style={{ color: "#0a0a0a" }} to="offers">Offers</Link>
+              <Link style={{ color: "#9D8E73" }} to="offers">Offers</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("more")}
@@ -437,6 +437,6 @@ export default function Header() {
           </List>
         )}
       </SwipeableDrawer>
-    </CustomSection>
+    </div>
   );
 }

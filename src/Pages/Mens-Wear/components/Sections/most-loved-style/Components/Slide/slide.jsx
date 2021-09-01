@@ -2,6 +2,11 @@ import React from "react";
 import { useMediaQuery } from "@material-ui/core";
 import DesignersCard from "../designers-card/card";
 import styles from "./slide.module.scss";
+//Images
+import S1 from "../Images/Style1.jpg"
+import S2 from "../Images/Style2.jpg"
+import S3 from "../Images/Style3.jpg"
+
 
 export default function DesignerSlide() {
   const tabView = useMediaQuery("(max-width:768px)");
@@ -12,8 +17,10 @@ export default function DesignerSlide() {
       {mobileView && (
         <div className={styles.header}>
           <p>
-            <span>Most Loved</span>&nbsp;
-            <span>Style</span>
+            <span className={styles.italic}  >
+              Most Loved
+            </span>
+            <span> Style</span>
           </p>
         </div>
       )}
@@ -27,18 +34,17 @@ export default function DesignerSlide() {
         {!mobileView && (
           <div className={styles.header}>
             <p>
-              <span>
-                Most 
-                Loved Style
+              <span className={styles.italic}  >
+                Most <br /> Loved
               </span>
-              <span></span>
+              <span> Style</span>
             </p>
           </div>
         )}
 
-        {!tabViewPro && <DesignersCard />}
-        <DesignersCard />
-        <DesignersCard />
+        {!tabViewPro && <DesignersCard image={S1} />}
+        <DesignersCard image={S2} />
+        <DesignersCard image={S3} />
       </div>
     </>
   );

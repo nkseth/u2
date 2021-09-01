@@ -47,12 +47,15 @@
     }
   }
 }
+.DesignerWear_Button{
+  color: #6a5b40!important;;
+}
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .DesignerWear {
     margin-bottom: 0;
     h1 {
-      font-size: 94px;
+      font-size: 92px;
       line-height: 1.3;
     }
     p {
@@ -68,6 +71,20 @@
     margin-bottom: 0;
     h1 {
       font-size: 35px;
+      line-height: 50px;
+      
+    }
+    p {
+      font-size: 16px;
+      line-height: 1.45;
+    }
+  }
+}
+@media screen and (max-width: 550px) {
+  .DesignerWear {
+    margin-bottom: 0;
+    h1 {
+      font-size: 45px;
       line-height: 50px;
       
     }

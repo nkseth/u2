@@ -7,6 +7,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import styles from "./tabs.module.scss";
+import Terms from "./Terms";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DetailTabs() {
+export default function DetailTabs({ type }) {
   const tabView = useMediaQuery("(max-width:768px)");
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -59,12 +60,18 @@ export default function DetailTabs() {
   return (
     <div className={classes.root}>
       <Tabs
-        variant={tabView && "fullWidth"}
+        variant={tabView && "scrollable"}
         value={value}
         onChange={handleChange}
+        classes={styles.tabHeaderContainer}
         TabIndicatorProps={{ style: { background: "#000", height: "3px" } }}
         aria-label='simple tabs example'
       >
+        <Tab
+          className={styles.tabHeader}
+          label='Things to know'
+          {...a11yProps(1)}
+        />
         <Tab
           className={styles.tabHeader}
           label='Description'
@@ -73,7 +80,7 @@ export default function DetailTabs() {
         <Tab className={styles.tabHeader} label='Shipping' {...a11yProps(1)} />
         <Tab className={styles.tabHeader} label='Reviews' {...a11yProps(2)} />
       </Tabs>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={1}>
         <div className={styles.tabPanelOne}>
           <div className={styles.firstDiv}>
             <div>
@@ -116,6 +123,9 @@ export default function DetailTabs() {
             </p>
           </div>
         </div>
+      </TabPanel>
+      <TabPanel value={value} index={0}>
+        <Terms type={type} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two

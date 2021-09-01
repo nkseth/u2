@@ -106,8 +106,16 @@
   
 }
 
-@media screen and (max-width: 550px){
+@media screen and (max-width: 769px){
+  .SuitWear_header{
+    margin-top: 0em;
+    margin-bottom: 0.7em;
+  }
+}
+  @media screen and (max-width: 550px){
 
 .SuitWear_header{
-  margin-top: -0.5em;
-}}
+  margin-bottom: 0.5em;
+}
+
+}

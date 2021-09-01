@@ -23,6 +23,8 @@ const HandMade_Clothes = () => {
   const customStyle = {
     padding: "5rem 3rem",
     background: "#857250",
+    marginTop: "3em",
+    marginBottom: "3em",
   };
   const [visible, setvisible] = useState(4)
   const theme = useTheme()

@@ -89,7 +89,7 @@ export default function MensWear() {
         <span className={styles.categoriesToBagHeader}>Categories to Bag</span>
 
 
-        <GRIDLAPTOP tabView={tabView} customView={customView} customView2={customView2} />
+        <GRIDLAPTOP mobileView={mobileView} tabView={tabView} customView={customView} customView2={customView2} />
 
 
 
@@ -123,7 +123,7 @@ function GRID({ name, image, classname }) {
 
 
 
-function GRIDLAPTOP({ tabView, customView, customView2 }) {
+function GRIDLAPTOP({ mobileView, tabView, customView, customView2 }) {
   return (
     <MUICarousel
       animation="slide"
@@ -132,7 +132,7 @@ function GRIDLAPTOP({ tabView, customView, customView2 }) {
       className={styles.menswear_categories}
       navButtonsAlwaysVisible={true}
       autoPlay={false}
-      navButtonsAlwaysInvisible={tabView}
+      navButtonsAlwaysInvisible={mobileView}
       fullHeightHover={false}
       navButtonsProps={{
         style: {

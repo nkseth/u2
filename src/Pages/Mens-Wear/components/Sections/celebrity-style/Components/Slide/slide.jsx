@@ -34,9 +34,15 @@ export default function DesignerSlide({ image1, image2, image3, image4 }) {
       }
       {
         mobileView ?
-          <></>
+          <>
+            <DesignersCard image={image1} />
+
+          </>
           :
-          <DesignersCard image={image1} />
+          <>
+            <DesignersCard image={image1} />
+            <DesignersCard image={image1} />
+          </>
       }
     </div>
   );

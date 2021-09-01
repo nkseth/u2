@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 //Pages
+import Container from '@material-ui/core/Container';
 import Home from "./Pages/Home-Page/home";
 import MensWear from "./Pages/Mens-Wear/mensWear";
 import Offer from "./Pages/Offer/offer";
@@ -57,7 +58,8 @@ import { Page_Login } from "./LoginSceens/LoginSignUp";
 import useLogin from "./LoginSceens/useLogin";
 import MeasurementAndSimulation from "./OtherPages/MeasurementAndSimulation/MeasurementAndSimulation";
 import Designers from "./OtherPages/Designers/Designers";
-
+import { StylesProvider } from "@material-ui/core";
+import styles from "./App.module.scss"
 //Start From Here
 
 function App() {
@@ -65,7 +67,7 @@ function App() {
   const { isLoginModel } = useLogin();
   return (
 
-    <>
+    <div className={styles.container}  >
       {/*All Other Screen on This Path ./LoginSceens/ */}
       {isLoginModel ? <Page_Login /> : null}
       <Switch>
@@ -158,7 +160,7 @@ function App() {
         <Route path={"/home/poll-result"} component={PollResult} />
         {/* <Route exact path={"/designer-page/product"} component={Product} /> */}
       </Switch>
-    </>
+    </div>
   );
 }
 

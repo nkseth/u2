@@ -152,6 +152,7 @@ $first-section-width: 500px;
   .viewAllBtn {
     font-size: 11px !important;
     margin-top: 3em!important;
+    margin-bottom: -3em!important;
   }
   .mainContainer {
     gap: 0px!important;
@@ -179,6 +180,10 @@ $first-section-width: 500px;
       line-height: 28px;
       letter-spacing: 0.02em;
     }
+  }
+  .viewAllBtn{
+    margin-bottom:  1em!important;
+    margin-top: -0.3em!important;
   }
 }
 

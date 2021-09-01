@@ -14,13 +14,13 @@ export default function DesignerSlide({ img1, img2, img3, img4, brand1, brand2, 
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: tabView ? "space-around" : "space-between",
           gap: mobileView ? ".5rem" : "1rem",
         }}
       >
         {!tabView && <DesignersCard img={img1} brandImg={brand1} />}
         {!mobileView && <DesignersCard img={img2} brandImg={brand2} />}
-        <DesignersCard img={img3} brandImg={brand3} />
+        {tabView || !mobileView ? <></> : <DesignersCard img={img3} brandImg={brand3} />}
         <DesignersCard img={img4} brandImg={brand4} />
       </div>
     </>

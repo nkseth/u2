@@ -19,7 +19,7 @@ import { useState } from "react";
 
 const SuitWear = () => {
   const customStyle = {
-    padding: "3rem 3rem",
+    padding: "5rem 3rem 4rem  3rem",
     background: "#938368",
   };
   const [visible, setvisible] = useState(4)

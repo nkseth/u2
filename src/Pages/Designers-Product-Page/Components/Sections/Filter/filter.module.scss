@@ -23,13 +23,15 @@
   }
 
   > span:last-child {
+    a{
     font-size: 14px;
-    font-family: DM Serif ;
+    font-family: DM Sans !important;
     font-weight: 400;
     line-height: 18px;
     letter-spacing: 0.1599999964237213px;
-    color: var(--primary-color);
+    color: #857250!important;
     cursor: pointer;
+    }
   }
 }
 
@@ -89,4 +91,21 @@
   span {
     color: grey;
   }
+}
+
+@media screen  and (max-width:768px) {
+  .header {
+    >span:last-child {
+      a{
+      font-size: 14px!important;
+      font-family: DM Sans !important;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 0.1599999964237213px;
+      color: #857250!important;
+      cursor: pointer;
+      }
+    }
+  }
+  
 }

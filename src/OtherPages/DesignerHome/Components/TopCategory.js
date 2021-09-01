@@ -16,11 +16,11 @@ const TopCategory = () => {
 
   const baseStyle = {};
   return (
-    <div style={baseStyle}>
-      <h1 className={styles.top_category_title}>Top Category 2021</h1>
+    <div className={styles.main}>
+      <h1 className={styles.top_category_title}>Top Categories 2021</h1>
       <div className={styles.TopCategory}>
         <div className={styles.TopCategory_Items}>
-          <h1 className="hidden_mobile">Top Category 2021</h1>
+          <h1 className="hidden_mobile">Top Categories 2021</h1>
         </div>
         <CategoryItems heading={"Men"} details={MenDescription} img={Img1} />
         <CategoryItems heading={"Women"} details={WomenDescription} img={Img2} />

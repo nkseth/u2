@@ -33,7 +33,7 @@ const Customer_Review = () => {
           className={`${styles.Carousel_header} ${styles.Customer_Review_header}`}
           style={{ display: "flex", alignItems: "center" }}
         >
-          Customer's Review{" "}
+          Customer's Reviews{" "}
           {
             mobileView ?
               <></>

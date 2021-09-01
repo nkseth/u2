@@ -25,7 +25,7 @@ import brand8 from "../section-three/Components/Slide/Images/logo/logo8.png"
 
 
 export default function SectionFour() {
-  const tabView = useMediaQuery("(max-width:768px)");
+  const tabView = useMediaQuery("(max-width:770px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   const AdDCard = useMediaQuery("(max-width:960px)");
   return (
@@ -79,9 +79,7 @@ export default function SectionFour() {
             <></>}
 
           {tabView && mobileView && (
-            <Grid item xs={6} sm={4} md={3}>
-              <DiscountCard img={img4} brandImg={brand4} />
-            </Grid>
+            <></>
           )}
         </Grid>
       </div>

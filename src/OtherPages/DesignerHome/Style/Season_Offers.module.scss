@@ -5,11 +5,13 @@
   font-weight: 400;
   line-height: 54px;
   letter-spacing: -1.5px;
-  margin-bottom: 62px;
+  margin-bottom: 42px;
+  margin-top: -0.7em;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
+
 .Season_Offers_Item1{
   background-image: url('../Images//ss1.png');
   background-size: cover;
@@ -78,6 +80,7 @@
 }
 
 @media only screen and (min-device-width: 420px) and (max-device-width: 1024px) {
+
   .Season_Offers_header {
     font-size: 54px;
     font-weight: 400;
@@ -98,7 +101,7 @@
 
   }
   .seasonsoffer {
-    padding: 3rem 2rem 40rem 2rem !important;
+    padding-bottom:15em !important;
   }
   .Season_Offers {
     display: flex;
@@ -115,7 +118,8 @@
   }
 }
 
-@media screen and (max-width: 420px){
+
+  @media screen and (max-width: 420px){
   .Season_Offers_header {
     font-size: 35px;
     margin-bottom: 35px;

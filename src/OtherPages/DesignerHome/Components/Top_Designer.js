@@ -36,7 +36,7 @@ const Top_Designer = () => {
           className={`${styles.Carousel_header} ${styles.Top_Designer_header}`}
 
         >
-          Explore Top Designer
+          Explore Top Designers
           <CustomDivider style={{ height: "2px", background: "#fff" }} />
         </div>
 

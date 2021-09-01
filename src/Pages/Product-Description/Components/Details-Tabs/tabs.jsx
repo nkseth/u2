@@ -1,7 +1,7 @@
 import React from "react";
 import { useMediaQuery } from "@material-ui/core";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
@@ -42,11 +42,110 @@ function a11yProps(index) {
   };
 }
 
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     backgroundColor: theme.palette.background.paper,
+//   },
+// }));
+
+
+
+
+
+
+const AntTabs = withStyles({
+  root: {
+    borderBottom: '1px solid #857250',
+  },
+  indicator: {
+    backgroundColor: '#857250',
+  },
+})(Tabs);
+
+const AntTab = withStyles((theme) => ({
+  root: {
+    textTransform: 'none',
+    minWidth: 72,
+    fontWeight: theme.typography.fontWeightRegular,
+    marginRight: theme.spacing(4),
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:hover': {
+      color: '#857250',
+      opacity: 1,
+    },
+    '&$selected': {
+      color: '#857250',
+      fontWeight: theme.typography.fontWeightMedium,
+    },
+    '&:focus': {
+      color: '#857250',
+    },
+  },
+  selected: {},
+}))((props) => <Tab disableRipple {...props} />);
+
+const StyledTabs = withStyles({
+  indicator: {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    '& > span': {
+      maxWidth: 40,
+      width: '100%',
+      backgroundColor: '#857250',
+    },
+  },
+})((props) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
+
+const StyledTab = withStyles((theme) => ({
+  root: {
+    textTransform: 'none',
+    color: '#fff',
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(15),
+    marginRight: theme.spacing(1),
+    '&:focus': {
+      opacity: 1,
+    },
+  },
+}))((props) => <Tab disableRipple {...props} />);
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+    flexGrow: 1,
+  },
+  padding: {
+    padding: theme.spacing(3),
+  },
+  demo1: {
+    backgroundColor: '#857250',
+  },
+  demo2: {
+    backgroundColor: '#857250',
   },
 }));
+
+
+
+
+
+
+
+
+
+
+
 
 export default function DetailTabs({ type }) {
   const tabView = useMediaQuery("(max-width:768px)");
@@ -57,29 +156,35 @@ export default function DetailTabs({ type }) {
     setValue(newValue);
   };
 
+
+
+
+
+
+
   return (
     <div className={classes.root}>
-      <Tabs
+      <AntTabs
         variant={tabView && "scrollable"}
         value={value}
         onChange={handleChange}
         classes={styles.tabHeaderContainer}
-        TabIndicatorProps={{ style: { background: "#000", height: "3px" } }}
+        TabIndicatorProps={{ style: { background: "#857250", height: "3px", } }}
         aria-label='simple tabs example'
       >
-        <Tab
+        <AntTab
           className={styles.tabHeader}
           label='Things to know'
           {...a11yProps(1)}
         />
-        <Tab
+        <AntTab
           className={styles.tabHeader}
           label='Description'
           {...a11yProps(0)}
         />
-        <Tab className={styles.tabHeader} label='Shipping' {...a11yProps(1)} />
-        <Tab className={styles.tabHeader} label='Reviews' {...a11yProps(2)} />
-      </Tabs>
+        <AntTab className={styles.tabHeader} label='Shipping' {...a11yProps(1)} />
+        <AntTab className={styles.tabHeader} label='Reviews' {...a11yProps(2)} />
+      </AntTabs>
       <TabPanel value={value} index={1}>
         <div className={styles.tabPanelOne}>
           <div className={styles.firstDiv}>

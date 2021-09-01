@@ -518,7 +518,7 @@ export default function ProductDescription() {
             <div>Select colour</div>
             <br />
             <Select
-              style={mobileView ? { width: "90%" } : { width: "40%" }}
+              style={mobileView ? { width: "100%" } : { width: "90%" }}
               input={<BootstrapInput />}
               value={selectedColor}
               onChange={(e) => setSelectedColor(e.target.value)}

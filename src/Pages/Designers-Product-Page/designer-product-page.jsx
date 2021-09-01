@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from '../../utils/axios.config.js';
-import { Grid, useMediaQuery } from "@material-ui/core";
 import React from "react";
 import { Button, Grid, useMediaQuery } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import Container from "../../utils/Container/container";
 import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
-import CustomSection from "../../utils/Custom Section/section";
 import Filter from "./Components/Sections/Filter/filter";
-import HeroSection from "./Components/Sections/HeroSection/heroSection";
 import styles from "./designer-product-page.module.scss";
 import ProductsSection from "./Components/Sections/Products/products";
 import AllenSolly from "./Components/Sections/Products/Images/AllenSolly.png"
@@ -16,7 +12,7 @@ import PeterEngland from "./Components/Sections/Products/Images/PeterEngland.png
 import BeneKleed from "./Components/Sections/Products/Images/BeneKleed.png"
 
 
-export default function DesignerProductPage() {
+function DesignerProductPage() {
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");

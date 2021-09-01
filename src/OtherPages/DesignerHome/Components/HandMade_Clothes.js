@@ -15,7 +15,6 @@ import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/HandMade_Clothes.module.scss";
 import h1 from "../Images/h1.png";
 import h2 from "../Images/h2.png";
-import h3 from "../Images/h3.png";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handMadeClothes } from "../../../Redux/actions/designerHomePage";
@@ -29,13 +28,17 @@ const HandMade_Clothes = () => {
   const { clothes } = useSelector((state) => state.root.handMadeClothes);
 
   const [visible, setvisible] = useState(4);
-  const theme = useTheme();
-  const match = useMediaQuery(theme.breakpoints.down("xs"));
-  const iPade = useMediaQuery(theme.breakpoints.down("sm"));
   useEffect(() => {
     dispatch(handMadeClothes());
   }, []);
 
+  const [visible, setvisible] = useState(4)
+  const theme = useTheme()
+  const customView = useMediaQuery("(max-width:960px)");
+  const BigView = useMediaQuery("(min-width:960px)");
+  const MobileView = useMediaQuery("(max-width:550px)");
+  const match = useMediaQuery(theme.breakpoints.down('xs'))
+  const iPade = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <div className="hande_made_clothes">
       <CustomSection class={styles.handmadeclothes} style={customStyle}>
@@ -43,10 +46,15 @@ const HandMade_Clothes = () => {
           className={`${styles.Carousel_header} ${styles.HandMade_Clothes_header}`}
         >
           Hand Made Clothes
-          <CustomDivider style={{ height: "2px", background: "#fff" }} />
+          {MobileView ?
+            <></>
+            :
+            <CustomDivider style={{ height: "2px", background: "#fff" }} />
+          }
         </div>
 
         <CarouselProvider
+          style={customView ? { marginBottom: 0, marginTop: 0 } : BigView ? { marginBottom: -50, marginTop: -80 } : { marginBottom: -50, marginTop: -80 }}
           visibleSlides={match ? 1 : iPade ? 2 : visible}
           totalSlides={5}
           infinite
@@ -114,7 +122,7 @@ const CarouselSlide = () => {
       <div className={styles.HandMade_Clothes}>
         <div className={styles.HandMade_Clothes_Items}>
           <img src={h1} alt="items" />
-          <p>1</p>
+          <p>Celebrity Style</p>
         </div>{" "}
       </div>
     </>
@@ -128,8 +136,8 @@ const CarouselSlide2 = () => {
     <>
       <div className={styles.HandMade_Clothes}>
         <div className={styles.HandMade_Clothes_Items}>
-          <img src={h1} alt="items" />
-          <p>2</p>
+          <img src={h2} alt="items" />
+          <p>Casual wear</p>
         </div>{" "}
       </div>
     </>
@@ -143,8 +151,8 @@ const CarouselSlide3 = () => {
     <>
       <div className={styles.HandMade_Clothes}>
         <div className={styles.HandMade_Clothes_Items}>
-          <img src={h1} alt="items" />
-          <p>3</p>
+          <img src={h2} alt="items" />
+          <p>Indian ethnic wear</p>
         </div>{" "}
       </div>
     </>
@@ -159,7 +167,7 @@ const CarouselSlide4 = () => {
       <div className={styles.HandMade_Clothes}>
         <div className={styles.HandMade_Clothes_Items}>
           <img src={h1} alt="items" />
-          <p>4</p>
+          <p>Indian ethnic wear</p>
         </div>{" "}
       </div>
     </>
@@ -173,8 +181,8 @@ const CarouselSlide5 = () => {
     <>
       <div className={styles.HandMade_Clothes}>
         <div className={styles.HandMade_Clothes_Items}>
-          <img src={h1} alt="items" />
-          <p>5</p>
+          <img src={h2} alt="items" />
+          <p>Indian ethnic wear</p>
         </div>{" "}
       </div>
     </>

@@ -6,14 +6,14 @@ import { Link } from "react-router-dom";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
-export default function ProductCard() {
+export default function ProductCard({ image }) {
   const [isAddToWishList, setAddToWishList] = useState(false);
   const img =
     "https://cdn.pixabay.com/photo/2017/08/07/12/49/people-2603521__340.jpg";
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
-        <img src={img} alt="product" />
+        <img src={image} alt="product" />
         {isAddToWishList ? (
           <IconButton
             aria-label="product"

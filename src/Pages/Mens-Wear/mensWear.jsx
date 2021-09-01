@@ -29,7 +29,8 @@ export default function MensWear() {
   const mobileView = useMediaQuery("(max-width:550px)");
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
-  const customView = useMediaQuery("(max-width:1445px)");
+  const customView = useMediaQuery("(max-width:1125px)");
+  const customView2 = useMediaQuery("(max-width:910px)");
   const carouselImg1 =
     "https://s3-alpha-sig.figma.com/img/e0c5/9b62/217c0cbfc4e549ecbe7e3ab7a44b35d5?Expires=1624838400&Signature=Yai9GrJIDlLK7UButwnyGeLNxiSq1IIxZw3tyTYKgH8hPWe10x11ufrNjyBi-5qLEJ3En3i4C00LefmV689~1AmFKVdOHUIOrH1XscxiCYGvyNthgYLWZ-QEmOMxgWRRiHjoY6wKH4DPtfI7C68b5E5uThyQXMDArHjEO4PWoeuIRcEwqno0dyApj7FKNA6737rqbCUJGo5ytbo6woCTA3DM83Aiy91tD3YYla3mTXiwqCJKZ3-qNcYhRdbZGqCY1Ttk8TrMYlUJE3F~eSOdoXeiHOqB-nYW~4vapTQOYLnywaSbeBtZfWVFV4PMCNfdb4oHt~kMy6bHlai998w17g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
   return (
@@ -86,91 +87,12 @@ export default function MensWear() {
       </CustomSection>
       <section className={styles.categoriesToBagSection}>
         <span className={styles.categoriesToBagHeader}>Categories to Bag</span>
-        <MUICarousel
-          animation="slide"
-          indicators={tabView}
-          className={styles.menswear_categories}
-          navButtonsAlwaysVisible={true}
-          autoPlay={false}
-          navButtonsAlwaysInvisible={tabView}
-          fullHeightHover={false}
-          navButtonsProps={{
-            style: {
-              backgroundColor: "#6C6C6C",
-              height: "40px",
-              width: "40px",
-            },
-          }}
-        >
-          <Grid
-            container
-            style={{ width: "100%", margin: "0" }}
-            justify="center"
-            spacing={2}
-          >
-            {!customView && (
-              <Grid
-                item
-                md={3}
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                <CategoriesToBagCard image={blazer} title='Shirt' />
-              </Grid>
-            )}
-            {!mobileView && (
-              <Grid
-                item
-                md={customView ? 4 : 3}
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                <CategoriesToBagCard image={shirt} title='Shirt' />
-              </Grid>
-            )}
 
-            <Grid
-              item
-              xs={mobileView && 12}
-              md={mobileView ? 12 : customView ? 4 : 3}
-              style={{ display: "flex", justifyContent: "center" }}
-            >
-              <CategoriesToBagCard image={Tshirt} title='Shirt' />
-            </Grid>
-          </Grid>
-          <Grid
-            container
-            style={{ width: "100%", margin: "0" }}
-            justify="center"
-            spacing={2}
-          >
-            {!customView && (
-              <Grid
-                item
-                md={3}
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                <CategoriesToBagCard image={shirt} title='Shirt' />
-              </Grid>
-            )}
-            {!mobileView && (
-              <Grid
-                item
-                md={customView ? 4 : 3}
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                <CategoriesToBagCard image={blazer} title='Blazer' />
-              </Grid>
-            )}
 
-            <Grid
-              item
-              xs={mobileView && 12}
-              md={mobileView ? 12 : customView ? 4 : 3}
-              style={{ display: "flex", justifyContent: "center" }}
-            >
-              <CategoriesToBagCard image={Tshirt} title='T-Shirt' />
-            </Grid>
-          </Grid>
-        </MUICarousel>
+        <GRIDLAPTOP tabView={tabView} customView={customView} customView2={customView2} />
+
+
+
       </section>
       <ForHimSection />
       <NewCollectionSection />
@@ -183,3 +105,93 @@ export default function MensWear() {
     </Container>
   );
 }
+
+
+
+function GRID({ name, image, classname }) {
+  return (
+    <Grid
+      item
+      md={3}
+      style={{ display: "flex", justifyContent: "center", marginLeft: "1em", marginRight: "1em" }}
+    >
+      <CategoriesToBagCard image={image} title={name} />
+    </Grid>
+  )
+}
+
+
+
+
+function GRIDLAPTOP({ tabView, customView, customView2 }) {
+  return (
+    <MUICarousel
+      animation="slide"
+      autoPlay={true}
+      indicators={false}
+      className={styles.menswear_categories}
+      navButtonsAlwaysVisible={true}
+      autoPlay={false}
+      navButtonsAlwaysInvisible={tabView}
+      fullHeightHover={false}
+      navButtonsProps={{
+        style: {
+          backgroundColor: "#6C6C6C",
+          color: "#fff",
+          height: "40px",
+          width: "40px",
+          marginTop: "0em"
+
+        },
+      }}
+    >
+      <Grid
+        container
+        style={{ width: "100%", margin: "0" }}
+        justifyContent={!customView ? 'center' : 'space-evenly'}
+        wrap={'nowrap'}
+        spacing={2}
+      >
+        {
+          !customView2 ?
+            <GRID name='Shirt' image={shirt} />
+            :
+            <></>
+        }
+        <GRID name='T Shirt' image={Tshirt} />
+        {!customView ?
+          <>
+            <GRID name='Blazer' image={blazer} />
+          </>
+          :
+          <></>
+        }
+      </Grid>
+
+      <Grid
+        container
+        style={{ width: "100%", margin: "0" }}
+        justifyContent={!customView ? 'center' : 'space-evenly'}
+        wrap={'nowrap'}
+        spacing={2}
+      >
+        {
+          !customView2 ?
+            <GRID name='Shirt' image={shirt} />
+            :
+            <></>
+        }
+        <GRID name='T Shirt' image={Tshirt} />
+        {!customView ?
+          <>
+            <GRID name='Blazer' image={blazer} />
+          </>
+          :
+          <></>
+        }
+      </Grid>
+    </MUICarousel>
+
+  )
+}
+

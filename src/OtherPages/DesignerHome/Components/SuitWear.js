@@ -20,6 +20,8 @@ import p4 from "../Images/p4.png";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { suitWears } from "../../../Redux/actions/designerHomePage";
+import c1 from "../Images/111.png";
+import c2 from "../Images/c2.jpg";
 
 const SuitWear = () => {
   const dispatch = useDispatch();
@@ -89,7 +91,7 @@ const SuitWear = () => {
               <CarouselSlide7 />
             </Slide> */}
           </Slider>
-          <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
+          <DotGroup style={{ display: "flex", marginTop: "2rem" }} />
           <div className={styles.NavigationContainer}>
             <Link style={{ color: "#fff" }} to="designers-product-page">
               SEE All

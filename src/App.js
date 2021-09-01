@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 //Pages
@@ -23,7 +23,7 @@ import Payment from "./Pages/Payment/payment";
 import Offers from "./Pages/Offers/offers";
 import Orders from "./Pages/Orders/orders";
 import AllOrders from "./Pages/All-Orders/allOrders";
-
+import { useDispatch } from "react-redux";
 import Polls from "./Pages/Polls/polls";
 import FashionTips from "./Pages/Daily-Fashion-Tips/fashionTips";
 import StyleGuideMan from "./Pages/Style-Guide-Man/style-guide-man";
@@ -57,12 +57,24 @@ import { Page_Login } from "./LoginSceens/LoginSignUp";
 import useLogin from "./LoginSceens/useLogin";
 import MeasurementAndSimulation from "./OtherPages/MeasurementAndSimulation/MeasurementAndSimulation";
 import Designers from "./OtherPages/Designers/Designers";
+import { setUserData } from "./Redux/actions/homepage";
+import { useCookies } from 'react-cookie';
 
 //Start From Here
 
 function App() {
 
   const { isLoginModel } = useLogin();
+  const dispatch = useDispatch();
+  const [cookies, setCookie] = useCookies(['user']);
+
+  useEffect(()=>{
+     
+     dispatch(setUserData(cookies.data))
+
+  },[])
+
+
   return (
 
     <>
@@ -144,6 +156,19 @@ function App() {
         <Route path={"/home/poll-question"} component={PollQuestion} />
         <Route path={"/home/poll-result"} component={PollResult} />
         <Route path={"/designer-posts"} component={DesignerPosts} />
+
+        {/* New Urls */}
+        <Route path={"/home/polls"} component={Polls} />
+        <Route path={"/daily-fashion-tips"} component={FashionTips} />
+        <Route exact path={"/style-guide"} component={StyleGuideMan} />
+        <Route exact path={"/style-guide-man"} component={StyleGuide} />
+        <Route exact path={"/designer-profile-home"} component={DesignerProfile} />
+        <Route path={"/home/explore"} component={HomeExplore} />
+        <Route path={"/visual-search"} component={VisualSearch} />
+        <Route exact path={"/designer-page"} component={DesignersPage} />
+        <Route path={"/home/poll-question"} component={PollQuestion} />
+        <Route path={"/home/poll-result"} component={PollResult} />
+        {/* <Route exact path={"/designer-page/product"} component={Product} /> */}
       </Switch>
     </>
   );

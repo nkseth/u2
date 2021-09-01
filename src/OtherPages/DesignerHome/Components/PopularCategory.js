@@ -6,6 +6,7 @@ import overlay from "../Images/p1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { popularCategories } from "../../../Redux/actions/designerHomePage";
 //TRBL
+//TRBL 
 const PopularCategory = () => {
   const dispatch = useDispatch();
   const baseStyle = { padding: "5rem 3rem" };
@@ -19,7 +20,7 @@ const PopularCategory = () => {
     <>
       <div className={styles.popularcategory_content} style={baseStyle}>
         <div className={`${styles.PopularCategory_header}`}>
-          Popular Category
+          Popular Categories
           <CustomDivider style={{ height: "1px", background: "#857250" }} />
         </div>
         <div className={`${styles.Category} Category`}>

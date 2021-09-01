@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 export default function HeroCard({ header, tagline, backgroundImg }) {
   return (
     <div
-      style={{ backgroundImage: `url(${backgroundImg})` }}
+      style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center" }}
       className={styles.container}
     >
       <div>

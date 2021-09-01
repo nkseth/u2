@@ -44,6 +44,27 @@
     }
   }
 }
+@media only screen and (max-width: 768px) {
+
+
+  .Talk_With_Stylish {
+    div {
+      margin-right: 0;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      button {
+        font-size: 16px;
+      }
+      p {
+        width: 75%;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 400;
+      }
+    }
+  }
+}
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .Talk_With_Stylish {

@@ -72,13 +72,13 @@ const Season_Offers = () => {
         {/* <div className={styles.Season_Offers_Item2}>
           <div>
             <h2>50% Flat cashback on this product</h2>
-            <Button onClick={Handler}>Button</Button>
+            <Button onClick={Handler} className={styles.buttons} >Button</Button>
           </div>
         </div>
         <div className={styles.Season_Offers_Item3}>
           <div>
             <h2>100% free via purchase </h2>
-            <Button onClick={Handler}>Button</Button>
+            <Button onClick={Handler} className={styles.buttons} >Button</Button>
           </div>
         </div> */}
       </div>

@@ -1,8 +1,16 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Grid, Button, useMediaQuery } from "@material-ui/core";
 import ProductCard from "./Components/product-cards/card";
 import CustomSection from "../../../../../utils/Custom Section/section";
 import styles from "./forHim.module.scss";
+//Images
+import Main from "./Components/Images/Main.jpg"
+import Card1 from "./Components/Images/Card1.jpg"
+import Card2 from "./Components/Images/Card2.jpg"
+import Card3 from "./Components/Images/Card3.jpg"
+
+
+
 
 export default function ForHimSection() {
   const customView = useMediaQuery("(max-width:1235px)");
@@ -21,7 +29,7 @@ export default function ForHimSection() {
       <div className={styles.mainContainer}>
         <div className={styles.forHimFirstSection}>
           <p>
-            <span>
+            <span style={{ color: "#000" }} >
               <i>#For</i>
             </span>
             &nbsp;Him
@@ -82,7 +90,7 @@ export default function ForHimSection() {
             </nav>
           )}
           <img
-            src="https://cdn.pixabay.com/photo/2015/03/26/09/41/tie-690084__340.jpg"
+            src={Main}
             alt="for him"
           />
         </div>
@@ -145,23 +153,23 @@ export default function ForHimSection() {
             </Grid>
           )}
 
-          <Grid item xs={6} sm={4} md={4}>
-            <ProductCard />
+          <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
+            <ProductCard image={Card1} />
           </Grid>
-          <Grid item xs={6} sm={4} md={4}>
-            <ProductCard />
+          <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
+            <ProductCard image={Card2} />
           </Grid>
-          <Grid item xs={6} sm={4} md={4}>
-            <ProductCard />
+          <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
+            <ProductCard image={Card3} />
           </Grid>
-          <Grid item xs={6} sm={4} md={4}>
-            <ProductCard />
+          <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
+            <ProductCard image={Card1} />
           </Grid>
-          <Grid item xs={6} sm={4} md={4}>
-            <ProductCard />
+          <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
+            <ProductCard image={Card2} />
           </Grid>
-          <Grid item xs={6} sm={4} md={4}>
-            <ProductCard />
+          <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
+            <ProductCard image={Card3} />
           </Grid>
         </Grid>
         {customView && (

@@ -27,6 +27,7 @@ import brand8 from "../section-three/Components/Slide/Images/logo/logo8.png"
 export default function SectionFour() {
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
+  const AdDCard = useMediaQuery("(max-width:960px)");
   return (
     <CustomSection
       class={styles.flat_section_four}
@@ -60,13 +61,24 @@ export default function SectionFour() {
           <Grid item xs={6} sm={4} md={3}>
             <DiscountCard img={img7} brandImg={brand7} />
           </Grid>
+          {AdDCard ?
+            <Grid item xs={6} sm={4} md={3}>
+              <DiscountCard img={img2} brandImg={brand3} />
+            </Grid>
+            : <></>}
           {!mobileView && (
             <Grid item xs={6} sm={4} md={3}>
               <DiscountCard img={img8} brandImg={brand8} />
             </Grid>
           )}
+          {mobileView ?
+            <Grid item xs={6} sm={4} md={3}>
+              <DiscountCard img={img8} brandImg={brand8} />
+            </Grid>
+            :
+            <></>}
 
-          {tabView && (
+          {tabView && mobileView && (
             <Grid item xs={6} sm={4} md={3}>
               <DiscountCard img={img4} brandImg={brand4} />
             </Grid>

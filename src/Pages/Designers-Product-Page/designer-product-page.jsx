@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, useMediaQuery } from "@material-ui/core";
+import { Button, Grid, useMediaQuery } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Container from "../../utils/Container/container";
 import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
@@ -25,27 +25,52 @@ export default function DesignerProductPage() {
 
   return (
     <Container bottomDivider footerOnAllView>
-      {!tabViewPro && (
-        <CustomSection>
+      {/* {!tabViewPro && (
+        <CustomSection style={{ background: "grey" }} >
           <Breadcrumb
             path='Designers Home / Men /'
             activePath='Designer Profile'
           />
         </CustomSection>
-      )}
+      )} */}
 
       <div className={styles.container}>
         {!tabViewPro && (
-          <div className={styles.firstSection}>
-            <Filter />
+          <div className={styles.FilterBreadDiv}>
+            {!tabViewPro && (
+              <div style={{ width: "200%", marginLeft: 15 }} >
+                <Breadcrumb
+                  path='Designers Home / Men /'
+                  activePath='Designer Profile'
+                />
+              </div>
+
+            )}
+            <div className={styles.firstSection}>
+
+              <Filter />
+            </div>
           </div>
         )}
 
         <div className={styles.secondSection}>
-          {/* <HeroSection /> */}
           <div style={{ padding: "1rem 1rem 5rem" }}>
+            {tabViewPro && (
+              <div className={styles.upperbread} >
+                <Breadcrumb
+                  path='Designers Home / Men /'
+                  activePath='Designer Profile'
+                />
+              </div>
+
+            )}
             <ProductsSection products={productData} />
           </div>
+        </div>
+      </div>
+      <div className={styles.LoadMoreBtnContainer}>
+        <div className={styles.LoadMoreBtnDiv}>
+          <Button className={styles.LoadMoreBtn} >Load More</Button>
         </div>
       </div>
     </Container>

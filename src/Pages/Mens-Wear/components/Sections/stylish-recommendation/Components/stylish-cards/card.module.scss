@@ -45,18 +45,7 @@
   opacity: 1;
 }
 
-.container .content .text {
-  //   height: 0;
-  //   opacity: 1;
-  //   transition-delay: 0s;
-  //   transition-duration: 0.4s;
-}
 
-// .container .content:hover .text {
-//   opacity: 1;
-//   transform: translateY(150px);
-//   -webkit-transform: translateY(150px);
-// }
 
 .shopNowBtn {
   font-family: Inter !important;
@@ -65,7 +54,7 @@
   height: 48px !important;
   width: 173px !important;
   border-radius: 5 !important;
-  font-size: 16px !important;
+  font-size: 11px !important;
   font-weight: 700 !important;
   line-height: 20px !important;
   text-transform: none !important;
@@ -74,3 +63,24 @@
   border: 1px solid #ffffff !important;
   color: #fff !important;
 }
+
+@media screen and (max-width: 768px) {
+.text{
+  font-size: 25px!important;
+}
+.shopNowBtn{
+  font-size: 12px!important;
+}
+}
+
+@media screen and (max-width: 550px) {
+.container{
+  height: 200px;
+  img{
+    object-fit: cover;
+    object-position: top;
+  }
+}
+  }
+  
+  

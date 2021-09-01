@@ -3,7 +3,6 @@ export const RETRIEVE_CATEGORIES = "RETRIEVE_CATEGORIES";
 export const UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
 export const DELETE_CATEGORIES = "DELETE_CATEGORIES";
 export const DELETE_ALL_CATEGORIES = "DELETE_ALL_CATEGORIES";
-<<<<<<< HEAD
 
 //designer-home-page
 export const GET_TOP_CATEGORY = "GET_TOP_CATEGORY";
@@ -13,8 +12,6 @@ export const GET_SUIT_WEAR = "GET_SUIT_WEAR";
 export const GET_TOP_DESIGNERS = "GET_TOP_DESIGNERS";
 export const GET_TOP_SEASON_OFFERS = "GET_TOP_SEASON_OFFERS";
 export const GET_HAND_MADE_CLOTHES = "GET_HAND_MADE_CLOTHES";
-=======
 export const SIGNUP_CREDS = "SIGNUP_CREDS";
 export const LOGIN_CREDS = "LOGIN_CREDS";
 export const USER_DATA = "USER_DATA";
->>>>>>> 9840c20e5582f9a06dd5df4e07eb8fbdecec64a6

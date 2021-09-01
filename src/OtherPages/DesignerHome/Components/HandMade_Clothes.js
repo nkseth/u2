@@ -32,7 +32,6 @@ const HandMade_Clothes = () => {
     dispatch(handMadeClothes());
   }, []);
 
-  const [visible, setvisible] = useState(4)
   const theme = useTheme()
   const customView = useMediaQuery("(max-width:960px)");
   const BigView = useMediaQuery("(min-width:960px)");

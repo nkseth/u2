@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IconButton } from "@material-ui/core";
 import styles from "./card.module.scss";
+import { Link } from "react-router-dom";
 //icon
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -10,6 +11,7 @@ export default function ProductCard(props) {
   const [isAddToWishList, setAddToWishList] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState({});
+
 
   const setValue = async () => {
     await setIsLoading(true)
@@ -49,7 +51,7 @@ export default function ProductCard(props) {
         )}
       </div>
       <div className={styles.productDetails}>
-        <span className={styles.productName}>{product.title}</span>
+        <Link to={{ pathname:'/product-description', state:{data: product} }}><span className={styles.productName}>{product.title}</span></Link>
         <span className={styles.productDesc}>{product.description}</span>
         <p className={styles.productPrice}>
           {!product.has_offer ? <span>{product.price} </span> : <span>{product.offer_price} </span>}

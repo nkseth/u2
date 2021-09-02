@@ -78,8 +78,8 @@ function DesignerProductPage() {
             {tabViewPro && (
               <div className={styles.upperbread} >
                 <Breadcrumb
-                  path='Designers Home / Men /'
-                  activePath='Designer Profile'
+                  path={`Designers Home / ${name} /`}
+                  activePath={val.name}
                 />
               </div>
 

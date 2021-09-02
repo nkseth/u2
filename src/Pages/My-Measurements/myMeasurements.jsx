@@ -49,7 +49,10 @@ export default function MyMeasurements() {
                 styles.button,
                 activeBtn === "self" ? styles.buttonActive : ""
               )}
-              onClick={() => setActiveBtn("self")}
+              onClick={() => {
+                setActiveBtn("self")
+                history.push("/add-measurement-gender");
+              }}
               variant='contained'
               color='default'
             >

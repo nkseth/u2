@@ -18,7 +18,7 @@ const PopularCategory = () => {
 
   console.log(categories)
 
-  if (categories[0]) {
+  if (categories) {
     return (
       <>
         <div className={styles.popularcategory_content} style={baseStyle}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
@@ -34,7 +34,8 @@ import Terms from "./Components/Details-Tabs/Terms";
 import Img from "./suit.png"
 import { w } from "keyboard-key";
 import SelectSize from "./Components/SelectSize/SelectSize";
-
+import { useLocation } from "react-router-dom";
+import common_axios from "../../utils/axios.config";
 
 
 const CustomRadio = withStyles({
@@ -44,7 +45,7 @@ const CustomRadio = withStyles({
       color: "#857250",
     },
   },
-  checked: {},
+  checked: { },
 })((props) => <Radio color='default' {...props} />);
 
 const BootstrapInput = withStyles((theme) => ({
@@ -119,6 +120,7 @@ export default function ProductDescription() {
 
 
   const history = useHistory();
+  const location = useLocation()
   const customView = useMediaQuery("(max-width:1044px)");
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(min-width:768px) and (max-width:1044px");
@@ -130,7 +132,26 @@ export default function ProductDescription() {
   const [ProductDrop, setProductDrop] = useState(false);
   const price = ProductType === 'custom' ? '15,000' : "10,000"
   const PriceOff = ProductType === 'custom' ? '17,000' : "11,500"
-  const Off = ProductType === 'custom' ? '13%' : "15%"
+  const Off = ProductType === 'custom' ? '13%' : "15%";
+
+  const { data: val } = location.state;
+  const [product, setProduct] = useState({ });
+
+  useEffect(() => {
+    fetch_data()
+  }, [])
+
+  const fetch_data = async () => {
+    try {
+      const { data } = await common_axios.get(`/productDetail/${val.slug}`);
+      console.log(data)
+      if (data.data) {
+        setProduct(data.data)
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
 
   return (
@@ -197,14 +218,14 @@ export default function ProductDescription() {
             >
               <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
                 <div className={styles.productDetails}>
-                  <span>Allen Solly</span>
-                  <span>Men Cream coloured Suit</span>
+                  <span>{product.brand}</span>
+                  <span>{product.title}</span>
                 </div>
-                <div className={styles.alert}>
+                {product.stock_quantity < 10 ? <div className={styles.alert}>
                   <img src={clockIcon} alt='clock' />
                   <span style={{ fontSize: 14, marginLeft: -10, marginRight: 0 }} >Hurry up! Only 5 left in stock</span>
-                  <div >50:00</div>
-                </div>
+                  <div >58:00</div>
+                </div> : null}
               </div>
               <div className={styles.selectProduct}>
                 <div style={{ marginTop: 20, fontWeight: "bolder", marginBottom: -20 }} >Product Type</div>
@@ -297,8 +318,8 @@ export default function ProductDescription() {
           {!customView && (
             <>
               <div className={styles.productDetails}>
-                <span>Allen Solly</span>
-                <span>Men Cream coloured Suit</span>
+                <span>{product.brand}</span>
+                <span>{product.title}</span>
               </div>
               {/* ========================================== */}
               <div className={styles.selectProduct}>
@@ -486,11 +507,12 @@ export default function ProductDescription() {
 
           {!customView && (
             <div>
-              <div className={styles.alert}>
-                <img src={clockIcon} alt='clock' />
-                <span>Hurry up! Only 5 left in stock</span>
-                <div>50:00</div>
-              </div>
+             {product.stock_quantity < 10 ?
+                <div className={styles.alert}>
+                  <img src={clockIcon} alt='clock' />
+                  <span>Hurry up! Only {product.stock_quantity} left in stock</span>
+                  <div>50:00</div>
+                </div> : null}
 
               {ProductType === 'ready made' ? <SelectSize /> : <></>}
             </div>
@@ -498,12 +520,12 @@ export default function ProductDescription() {
 
           {mobileView && (
             <div>
-              <div className={styles.alert}>
-                <img src={clockIcon} alt='clock' />
-                <span>Hurry up! Only 5 left in stock</span>
-                <div>50:00</div>
-
-              </div>
+              {product.stock_quantity < 10 ?
+                <div className={styles.alert}>
+                  <img src={clockIcon} alt='clock' />
+                  <span>Hurry up! Only {product.stock_quantity} left in stock</span>
+                  <div>50:00</div>
+                </div> : null}
               {ProductType === 'ready made' ? <SelectSize /> : <></>}
 
 

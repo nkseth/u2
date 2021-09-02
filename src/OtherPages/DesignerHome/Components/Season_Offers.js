@@ -21,7 +21,7 @@ const Season_Offers = () => {
 
   console.log(offers , 'kkhk')
 
-  if(!offers || !offers[0]){
+  if(!offers){
     return null;
   }
 

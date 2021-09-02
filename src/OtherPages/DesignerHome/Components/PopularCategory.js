@@ -3,12 +3,9 @@ import { Link } from "react-router-dom";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/PopularCategory.module.scss";
 import overlay from "../Images/p1.png";
-<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
 import { popularCategories } from "../../../Redux/actions/designerHomePage";
 //TRBL
-=======
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
 //TRBL 
 const PopularCategory = () => {
   const dispatch = useDispatch();

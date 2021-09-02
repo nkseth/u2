@@ -25,21 +25,16 @@ import styles from "./productDescription.module.scss";
 //icons
 import deliveryTruckIcon from "../../Images/icons/deliveryTruck.svg";
 import clockIcon from "../../Images/icons/clock.svg";
-import measuringTapeIcon from "../../Images/icons/mesuringTape.svg";
-import { ReactComponent as SimulationIcon } from "../../Images/icons/simulate.svg";
-import { ReactComponent as ScissorsIcon } from "../../Images/icons/scissors.svg";
 import { ReactComponent as BagIcon } from "../../Images/icons/bag-primary.svg";
 import HelpIcon from '@material-ui/icons/Help';
 import Terms from "./Components/Details-Tabs/Terms";
 import Img from "./suit.png"
 import { w } from "keyboard-key";
 import SelectSize from "./Components/SelectSize/SelectSize";
-<<<<<<< HEAD
 import { useLocation } from "react-router-dom";
 import common_axios from "../../utils/axios.config";
-=======
-
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
+import { useCookies } from 'react-cookie';
+import useLogin from "../../LoginSceens/useLogin";
 
 
 const CustomRadio = withStyles({
@@ -87,34 +82,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const images = [
-  {
-    original: Img,
-    thumbnail: Img,
-<<<<<<< HEAD
-  },
-  {
-    original: Img,
-    thumbnail: Img,
-=======
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
-  },
-  {
-    original: Img,
-    thumbnail: Img,
-  },
-  {
-    original: Img,
-    thumbnail: Img,
-<<<<<<< HEAD
-=======
-  },
-  {
-    original: Img,
-    thumbnail: Img,
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
-  },
-];
 const HtmlTooltip = withStyles((theme) => ({
   tooltip: {
     // placement: "right-start",
@@ -146,11 +113,14 @@ export default function ProductDescription() {
   const [ProductDrop, setProductDrop] = useState(false);
   const price = ProductType === 'custom' ? '15,000' : "10,000"
   const PriceOff = ProductType === 'custom' ? '17,000' : "11,500"
-<<<<<<< HEAD
   const Off = ProductType === 'custom' ? '13%' : "15%";
 
   const { data: val } = location.state;
   const [product, setProduct] = useState({ });
+  const [images, setImages] = useState([])
+  const [cookies, setCookie] = useCookies(['user']);
+
+  const { login_Model_Show } = useLogin();
 
   useEffect(() => {
     fetch_data()
@@ -162,14 +132,45 @@ export default function ProductDescription() {
       console.log(data)
       if (data.data) {
         setProduct(data.data)
+        const img = []
+        data.data?.images?.forEach((item) => {
+          img.push({ thumbnail: item.path, original: item.path })
+        })
+        setImages(img)
       }
     } catch (e) {
       console.log(e)
     }
   }
-=======
-  const Off = ProductType === 'custom' ? '13%' : "15%"
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
+
+  console.log(cookies)
+
+  const buy_now_handler = () => {
+    if (cookies.data) {
+
+
+    } else {
+      login_Model_Show()
+    }
+  }
+
+  const add_bag_handler = async () => {
+    if (cookies.data) {
+      try{
+        const { data } = await common_axios.post('/addToCart',{
+          slug: val.slug
+        })
+
+        if(data){
+          console.log('done')
+        }
+      } catch (e){
+        console.log(e)
+      }
+    } else {
+      login_Model_Show()
+    }
+  }
 
 
   return (
@@ -242,13 +243,8 @@ export default function ProductDescription() {
                 {product.stock_quantity < 10 ? <div className={styles.alert}>
                   <img src={clockIcon} alt='clock' />
                   <span style={{ fontSize: 14, marginLeft: -10, marginRight: 0 }} >Hurry up! Only 5 left in stock</span>
-<<<<<<< HEAD
                   <div >58:00</div>
                 </div> : null}
-=======
-                  <div >50:00</div>
-                </div>
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
               </div>
               <div className={styles.selectProduct}>
                 <div style={{ marginTop: 20, fontWeight: "bolder", marginBottom: -20 }} >Product Type</div>
@@ -324,11 +320,11 @@ export default function ProductDescription() {
                   </HtmlTooltip>
                   {/* <IconButton className={styles.ProductSelectorHelpBtn} aria-label="add to shopping cart" size={'medium'} ><HelpIcon color="#6a5b40" /></IconButton> */}
                   <div className={styles.priceTab}>
-                    <span>₹{price}</span>
+                    <span>{product.has_offer ? product.offer_price : product.price}</span>
                     <br />
-                    <p>
-                      <span>₹{PriceOff}</span> <span>{Off}</span>
-                    </p>
+                    {product.has_offer ? <p>
+                      <span>₹{product.price}</span> <span>{product.discount}</span>
+                    </p> : null}
                   </div>
                 </div>
                 {ProductType === 'ready made' ? <SelectSize /> : <></>}
@@ -421,18 +417,19 @@ export default function ProductDescription() {
               {/* ========================================== */}
 
               <div className={styles.price}>
-                <span>₹{price}</span>
-                <p>
-                  <span>₹{PriceOff}</span> <span>{Off}</span>
-                </p>
+                <span>{product.has_offer ? product.offer_price : product.price}</span>
+                <br />
+                {product.has_offer ? <p>
+                  <span>₹{product.price}</span> <span>{product.discount}</span>
+                </p> : null}
               </div>
             </>
           )}
           {mobileView && (
             <>
               <div className={styles.productDetails}>
-                <span>Allen Solly</span>
-                <span>Men Cream coloured Suit</span>
+                <span>{product.brand}</span>
+                <span>{product.title}</span>
               </div>
               <div className={styles.selectProduct}>
                 <div style={{ marginTop: 10, marginBottom: -10, fontWeight: "bolder" }} >Product Type</div>
@@ -509,10 +506,11 @@ export default function ProductDescription() {
                 </div>
               </div>
               <div className={styles.price}>
-                <span>₹{price}</span>
-                <p>
-                  <span>₹{PriceOff}</span> <span>{Off}</span>
-                </p>
+                <span>{product.has_offer ? product.offer_price : product.price}</span>
+                <br />
+                {product.has_offer ? <p>
+                  <span>₹{product.price}</span> <span>{product.discount}</span>
+                </p> : null}
               </div>
             </>
           )}
@@ -530,20 +528,12 @@ export default function ProductDescription() {
 
           {!customView && (
             <div>
-<<<<<<< HEAD
-             {product.stock_quantity < 10 ?
+              {product.stock_quantity < 10 ?
                 <div className={styles.alert}>
                   <img src={clockIcon} alt='clock' />
                   <span>Hurry up! Only {product.stock_quantity} left in stock</span>
                   <div>50:00</div>
                 </div> : null}
-=======
-              <div className={styles.alert}>
-                <img src={clockIcon} alt='clock' />
-                <span>Hurry up! Only 5 left in stock</span>
-                <div>50:00</div>
-              </div>
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
 
               {ProductType === 'ready made' ? <SelectSize /> : <></>}
             </div>
@@ -551,21 +541,12 @@ export default function ProductDescription() {
 
           {mobileView && (
             <div>
-<<<<<<< HEAD
               {product.stock_quantity < 10 ?
                 <div className={styles.alert}>
                   <img src={clockIcon} alt='clock' />
                   <span>Hurry up! Only {product.stock_quantity} left in stock</span>
                   <div>50:00</div>
                 </div> : null}
-=======
-              <div className={styles.alert}>
-                <img src={clockIcon} alt='clock' />
-                <span>Hurry up! Only 5 left in stock</span>
-                <div>50:00</div>
-
-              </div>
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
               {ProductType === 'ready made' ? <SelectSize /> : <></>}
 
 
@@ -580,11 +561,7 @@ export default function ProductDescription() {
             <div>Select colour</div>
             <br />
             <Select
-<<<<<<< HEAD
-              style={mobileView ? { width: "90%" } : { width: "40%" }}
-=======
               style={mobileView ? { width: "100%" } : { width: "90%" }}
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
               input={<BootstrapInput />}
               value={selectedColor}
               onChange={(e) => setSelectedColor(e.target.value)}
@@ -625,6 +602,7 @@ export default function ProductDescription() {
             <div style={{ marginBottom: "2em" }} >
               <Button
                 variant='contained'
+                onClick={buy_now_handler}
                 color='default'
                 // startIcon={<ScissorsIcon />}
                 fullWidth
@@ -633,7 +611,7 @@ export default function ProductDescription() {
                 Buy Now
               </Button>
               <Button
-
+                onClick={add_bag_handler}
                 variant='outlined'
                 color='default'
                 startIcon={<BagIcon />}
@@ -701,7 +679,7 @@ export default function ProductDescription() {
 
           }
           <div>
-            <DetailTabs type={ProductType} />
+            <DetailTabs product={product} type={ProductType} />
           </div>
         </div>
       </div>

@@ -18,6 +18,8 @@ export const topTrending = () => async (dispatch) => {
         payload: data.trending_categories,
       });
     }
+
+    console.log(data, 'lll')
   } catch (err) {
     console.log(err);
     return Promise.reject(err);

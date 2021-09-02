@@ -1,14 +1,12 @@
-// import axios from "../../utils/axios.config";
-
-import axios from "axios";
+import common_axios from "../../utils/axios.config";
 
 class DesignerHomePageDataService {
   topCategories(slug) {
-    return axios.get("/category-subgrps", slug);
+    return common_axios.get("/category-subgrps", slug);
   }
 
   getTrending() {
-    return axios.post(`/themeOption`, {
+    return common_axios.post(`/themeOption`, {
       dashboard_type: "designer_home",
       content_type: "all",
       group_name: "trending_categories",
@@ -16,11 +14,11 @@ class DesignerHomePageDataService {
   }
 
   popularCategory() {
-    return axios.get(`/banners/designer_home/designer_group_1`);
+    return common_axios.get(`/banners/designer_home/designer_group_1`);
   }
 
   suitWear() {
-    return axios.post(`/themeOption`, {
+    return common_axios.post(`/themeOption`, {
       dashboard_type: "designer_home",
       content_type: "womens-fashion",
       group_name: "suit_wear",
@@ -28,15 +26,15 @@ class DesignerHomePageDataService {
   }
 
   topDesigner() {
-    return axios.post(`/themeOptionDesigner`);
+    return common_axios.post(`/themeOptionDesigner`);
   }
 
   topSeasonOffers() {
-    return axios.get("/banners/designer_home/designer_group_2");
+    return common_axios.get("/banners/designer_home/designer_group_2");
   }
 
   handMadeClothes() {
-    return axios.post(`/themeOption`, {
+    return common_axios.post(`/themeOption`, {
       dashboard_type: "designer_home",
       content_type: "mens-fashion",
       group_name: "hand_made_cloth",

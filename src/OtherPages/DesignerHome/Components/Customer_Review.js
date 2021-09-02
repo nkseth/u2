@@ -24,11 +24,8 @@ const Customer_Review = () => {
   const theme = useTheme()
   const match = useMediaQuery(theme.breakpoints.down('xs'))
   const iPade = useMediaQuery(theme.breakpoints.down('sm'))
-<<<<<<< HEAD
-=======
   const mobileView = useMediaQuery("(max-width:1024px)");
 
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
   return (
     <div className="customer_review_content">
       <CustomSection class={styles.customerreview} style={customStyle}>
@@ -36,10 +33,6 @@ const Customer_Review = () => {
           className={`${styles.Carousel_header} ${styles.Customer_Review_header}`}
           style={{ display: "flex", alignItems: "center" }}
         >
-<<<<<<< HEAD
-          Customer's Review{" "}
-          <CustomDivider style={{ height: "1px", background: "#6A5B40", marginLeft: 10 }} />
-=======
           Customer's Reviews{" "}
           {
             mobileView ?
@@ -47,7 +40,6 @@ const Customer_Review = () => {
               :
               <CustomDivider style={{ height: "1px", background: "#6A5B40", marginLeft: 10 }} />
           }
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
         </div>
 
         <CarouselProvider

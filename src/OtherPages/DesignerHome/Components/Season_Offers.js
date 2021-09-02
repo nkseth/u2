@@ -39,13 +39,8 @@ const Season_Offers = () => {
           }}
         >
           <div>
-<<<<<<< HEAD
             <h2>{offers[0]?.title}</h2>
-            <Button onClick={Handler}>Button</Button>
-=======
-            <h2>Buy 1 Get 1 One</h2>
             <Button onClick={Handler} className={styles.buttons} >Button</Button>
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
           </div>
         </div>
         <div
@@ -56,13 +51,8 @@ const Season_Offers = () => {
           }}
         >
           <div>
-<<<<<<< HEAD
-            <h2 style={{ whiteSpace: "nowrap" }}>{offers[1]?.title}</h2>
-            <Button onClick={Handler}>Button</Button>
-=======
-            <h2>50% Flat cashback on this product</h2>
-            <Button onClick={Handler} className={styles.buttons} >Button</Button>
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
+            <h2>{offers[1]?.title}</h2>
+            <Button  className={styles.buttons} onClick={Handler}>Button</Button>
           </div>
         </div>
         <div
@@ -72,8 +62,8 @@ const Season_Offers = () => {
             backgroundColor: "blue",
           }}
         >
+          {/* Chech here */}
           <div>
-<<<<<<< HEAD
             <h2 style={{ whiteSpace: "nowrap" }}>{offers[2]?.title}</h2>
             <Button onClick={Handler}>Button</Button>
           </div>
@@ -82,10 +72,6 @@ const Season_Offers = () => {
           <div>
             <h2>Buy 1 Get 1 One</h2>
             <Button onClick={Handler}>Button</Button>
-=======
-            <h2>100% free via purchase </h2>
-            <Button onClick={Handler} className={styles.buttons} >Button</Button>
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
           </div>
         </div> */}
         {/* <div className={styles.Season_Offers_Item2}>

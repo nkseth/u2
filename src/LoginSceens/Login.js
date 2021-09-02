@@ -50,7 +50,7 @@ const Login = () => {
       console.log(data)
 
       if (data) {
-          login_Mode_Handler("LoginOtpVarify");
+        login_Mode_Handler("LoginOtpVarify");
       }
     } catch (e) {
       alert('Invalid Email or Password')

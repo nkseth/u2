@@ -147,7 +147,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function DetailTabs({ type }) {
+export default function DetailTabs({ type, product }) {
   const tabView = useMediaQuery("(max-width:768px)");
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -227,9 +227,7 @@ export default function DetailTabs({ type }) {
           <div className={styles.lastDiv}>
             <span>Description</span>
             <p>
-              Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt
-              qui esse pariatur duis deserunt mollit dolore cillum minim tempor
-              enim. Elit aute irurei...
+              {product.description}
             </p>
           </div>
         </div>
@@ -241,7 +239,7 @@ export default function DetailTabs({ type }) {
         Item Two
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        {product.description}
       </TabPanel>
     </div>
   );

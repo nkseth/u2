@@ -27,7 +27,6 @@ const Top_Designer = () => {
     padding: "5rem 3rem",
     background: "#fff",
   };
-<<<<<<< HEAD
   const [visible, setvisible] = useState(4);
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down("xs"));
@@ -42,12 +41,6 @@ const Top_Designer = () => {
     return null;
   }
 
-=======
-  const [visible, setvisible] = useState(4)
-  const theme = useTheme()
-  const match = useMediaQuery(theme.breakpoints.down('xs'))
-  const iPade = useMediaQuery(theme.breakpoints.down('sm'))
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
   return (
     <div className="top_designer">
       <CustomSection class={styles.topdesigner} style={baseStyle}>
@@ -55,21 +48,13 @@ const Top_Designer = () => {
           className={`${styles.Carousel_header} ${styles.Top_Designer_header}`}
 
         >
-<<<<<<< HEAD
-          Explore Top Designer
-=======
           Explore Top Designers
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
           <CustomDivider style={{ height: "2px", background: "#fff" }} />
         </div>
 
         <CarouselProvider
           visibleSlides={match ? 1 : iPade ? 2 : visible}
-<<<<<<< HEAD
           totalSlides={designers?.length}
-=======
-          totalSlides={5}
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
           infinite
           isIntrinsicHeight
         >
@@ -98,12 +83,7 @@ const Top_Designer = () => {
             </Slide>
             <Slide index={4}>
               <CarouselSlide5 />
-<<<<<<< HEAD
             </Slide> */}
-=======
-            </Slide>
-
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
           </Slider>
           <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
           <div className={styles.NavigationContainer}>
@@ -140,13 +120,8 @@ const CarouselSlide = () => {
       <div className={styles.Top_Designer}>
         <div className={styles.Top_Designer_Items}>
           <img src={d1} alt="items" />
-<<<<<<< HEAD
-          <Link to="designers-profile">1</Link>
-        </div>{" "}
-=======
           <Link to="designers-profile">Designer Name</Link>
         </div>
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
       </div>
     </>
   );

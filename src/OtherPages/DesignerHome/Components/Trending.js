@@ -17,7 +17,6 @@ const Trending = () => {
   const { push } = useHistory();
   const mobileView = useMediaQuery("(max-width:1024px)");
 
-<<<<<<< HEAD
   const { items } = useSelector((state) => state.root.trending);
 
   useEffect(async () => {
@@ -39,16 +38,6 @@ const Trending = () => {
             </div>
           ))}
           {/* <div className={styles.Trending_Items}>
-=======
-  return (
-    <div className={styles.trending_content} style={baseStyle}>
-      <div className={`${styles.Trending_header}`} style={{ color: "#1A202C" }}  >
-        Trending
-        <CustomDivider style={{ height: "1px", background: "#857250" }} />
-      </div>
-      <div className={styles.Trending}>
-        <div className={styles.Trending_Items}>
->>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
           <img src={c1} alt="items" />
           <Link to="designers-product-page">Wear</Link>
         </div>

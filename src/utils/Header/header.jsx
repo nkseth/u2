@@ -59,6 +59,8 @@ export default function Header() {
   });
 
   const { user_data } = useSelector(state => state.root.main)
+  //Here I use Redux For Show Login Model
+  const { login_Model_Show } = useLogin();
 
   const handleMouseEnter = (value) => {
     setMouseEnter({
@@ -85,7 +87,7 @@ export default function Header() {
   };
 
   const profileFnc = () => {
-    if(Object.keys(cookies)?.length != 0){
+    if (Object.keys(cookies)?.length != 0) {
       history.push('/profile')
     } else {
       login_Model_Show()
@@ -108,8 +110,7 @@ export default function Header() {
     setDrawerOpen(open);
   };
 
-  //Here I use Redux For Show Login Model
-  const { login_Model_Show } = useLogin();
+  
   return (
     <div style={{ padding: mobileView ? "0 1em" : "0 3em", width: mobileView ? "100%" : "100%", marginLeft: "auto", marginRight: "auto" }} className={styles.headerShadow} >
       <div className={styles.firstContainer}>

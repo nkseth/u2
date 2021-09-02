@@ -40,8 +40,15 @@
   width: 165px;
   height: 50px;
   font-weight: 700;
+<<<<<<< HEAD
   font-family: DM Sans;
   font-size: 14px;
+=======
+  font-family: DM Sans!important;
+  font-size: 14px;
+  background-color: #ffffff!important;
+  color: #857250!important;
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .Measurement_Simulation {
@@ -73,7 +80,11 @@
     }
   }
 }
+<<<<<<< HEAD
 @media screen and (max-width:768px){
+=======
+@media screen and (max-width:769px){
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
   .Measurement_Simulation{
     div{
       h1{

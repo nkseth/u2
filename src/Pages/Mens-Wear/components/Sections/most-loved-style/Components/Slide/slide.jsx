@@ -2,7 +2,7 @@ import React from "react";
 import { useMediaQuery } from "@material-ui/core";
 import DesignersCard from "../designers-card/card";
 import styles from "./slide.module.scss";
-//Images
+//Images 
 import S1 from "../Images/Style1.jpg"
 import S2 from "../Images/Style2.jpg"
 import S3 from "../Images/Style3.jpg"

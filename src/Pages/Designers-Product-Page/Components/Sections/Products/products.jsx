@@ -74,7 +74,7 @@ export default function ProductsSection(props) {
       <Grid
         container
         style={{ width: "100%", margin: 0 }}
-        justify='center'
+        justifyContent='flex-start'
         spacing={mobileView ? 1 : 3}
       >
         <Grid
@@ -111,7 +111,7 @@ export default function ProductsSection(props) {
             variant='outlined'
             style={{ minWidth: "130px" }}
           >
-            <InputLabel color={"secondary"} style={{ fontWeight: "700", color: "#6A5B40" }}>Sort by</InputLabel>
+            <InputLabel color={"secondary"} style={{ fontWeight: "700", color: "#6A5B40", fontSize: "16px" }}>Sort by</InputLabel>
             <Select
               value={sortBy}
               onChange={(e) => handleSort(e)}

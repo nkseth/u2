@@ -34,8 +34,12 @@ import Terms from "./Components/Details-Tabs/Terms";
 import Img from "./suit.png"
 import { w } from "keyboard-key";
 import SelectSize from "./Components/SelectSize/SelectSize";
+<<<<<<< HEAD
 import { useLocation } from "react-router-dom";
 import common_axios from "../../utils/axios.config";
+=======
+
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
 
 
 const CustomRadio = withStyles({
@@ -87,6 +91,13 @@ const images = [
   {
     original: Img,
     thumbnail: Img,
+<<<<<<< HEAD
+  },
+  {
+    original: Img,
+    thumbnail: Img,
+=======
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
   },
   {
     original: Img,
@@ -95,10 +106,13 @@ const images = [
   {
     original: Img,
     thumbnail: Img,
+<<<<<<< HEAD
+=======
   },
   {
     original: Img,
     thumbnail: Img,
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
   },
 ];
 const HtmlTooltip = withStyles((theme) => ({
@@ -132,6 +146,7 @@ export default function ProductDescription() {
   const [ProductDrop, setProductDrop] = useState(false);
   const price = ProductType === 'custom' ? '15,000' : "10,000"
   const PriceOff = ProductType === 'custom' ? '17,000' : "11,500"
+<<<<<<< HEAD
   const Off = ProductType === 'custom' ? '13%' : "15%";
 
   const { data: val } = location.state;
@@ -152,6 +167,9 @@ export default function ProductDescription() {
       console.log(e)
     }
   }
+=======
+  const Off = ProductType === 'custom' ? '13%' : "15%"
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
 
 
   return (
@@ -224,8 +242,13 @@ export default function ProductDescription() {
                 {product.stock_quantity < 10 ? <div className={styles.alert}>
                   <img src={clockIcon} alt='clock' />
                   <span style={{ fontSize: 14, marginLeft: -10, marginRight: 0 }} >Hurry up! Only 5 left in stock</span>
+<<<<<<< HEAD
                   <div >58:00</div>
                 </div> : null}
+=======
+                  <div >50:00</div>
+                </div>
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
               </div>
               <div className={styles.selectProduct}>
                 <div style={{ marginTop: 20, fontWeight: "bolder", marginBottom: -20 }} >Product Type</div>
@@ -507,12 +530,20 @@ export default function ProductDescription() {
 
           {!customView && (
             <div>
+<<<<<<< HEAD
              {product.stock_quantity < 10 ?
                 <div className={styles.alert}>
                   <img src={clockIcon} alt='clock' />
                   <span>Hurry up! Only {product.stock_quantity} left in stock</span>
                   <div>50:00</div>
                 </div> : null}
+=======
+              <div className={styles.alert}>
+                <img src={clockIcon} alt='clock' />
+                <span>Hurry up! Only 5 left in stock</span>
+                <div>50:00</div>
+              </div>
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
 
               {ProductType === 'ready made' ? <SelectSize /> : <></>}
             </div>
@@ -520,12 +551,21 @@ export default function ProductDescription() {
 
           {mobileView && (
             <div>
+<<<<<<< HEAD
               {product.stock_quantity < 10 ?
                 <div className={styles.alert}>
                   <img src={clockIcon} alt='clock' />
                   <span>Hurry up! Only {product.stock_quantity} left in stock</span>
                   <div>50:00</div>
                 </div> : null}
+=======
+              <div className={styles.alert}>
+                <img src={clockIcon} alt='clock' />
+                <span>Hurry up! Only 5 left in stock</span>
+                <div>50:00</div>
+
+              </div>
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
               {ProductType === 'ready made' ? <SelectSize /> : <></>}
 
 
@@ -540,7 +580,11 @@ export default function ProductDescription() {
             <div>Select colour</div>
             <br />
             <Select
+<<<<<<< HEAD
               style={mobileView ? { width: "90%" } : { width: "40%" }}
+=======
+              style={mobileView ? { width: "100%" } : { width: "90%" }}
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
               input={<BootstrapInput />}
               value={selectedColor}
               onChange={(e) => setSelectedColor(e.target.value)}

@@ -11,8 +11,10 @@ import SectionThree from "./Components/Sections/section-three/section";
 import SectionFour from "./Components/Sections/section-four/section";
 import SectionFive from "./Components/Sections/section-five/section";
 import SectionSix from "./Components/Sections/section-six/section";
+import { useMediaQuery } from "@material-ui/core";
 
 export default function Offer() {
+  const tabView = useMediaQuery("(max-width:769px)");
   return (
     <Container footerOnAllView>
       <SectionOne />
@@ -29,7 +31,11 @@ export default function Offer() {
       <SectionThree />
       <SectionFour />
       <SectionFive />
-      <SectionSix />
+      {tabView ?
+        <></>
+        :
+        <SectionSix />
+      }
     </Container>
   );
 }

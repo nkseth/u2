@@ -1,0 +1,99 @@
+@mixin  btn {
+    background: rgb(255, 255, 255)!important;
+    border-radius: 20px!important;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.267);
+    padding: 0.3em 0.5em!important;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0px;
+    border: 3px solid rgba(0, 0, 0, 0)!important;
+    transition: all 1s!important;
+    animation: linear 0.5s!important ;
+    position: absolute!important;
+
+    text-align: left;
+    &:hover{
+        border: 3px solid #857250!important;
+    }
+}
+.Neck{
+    @include btn();
+    top: 30%!important;
+    right: 15%;
+
+}
+.Shoulder{
+    @include btn();
+    top: 40%!important;
+    right: 15%;
+
+}
+.Chest{
+    @include btn();
+    top: 40%!important;
+    right: 15%;
+
+}
+
+.Arm{
+    @include btn();
+    top: 50%!important;
+    left: 40%;
+}
+
+
+.Sleeve{
+    @include btn();
+    top: 45%!important;
+    right: 2%;
+
+}
+
+.Wrist{
+    @include btn();
+    top: 50%!important;
+    right: 20%;
+}
+
+.Waist{
+    @include btn();
+    top: 55%!important;
+    right: 20%;
+}
+
+.Full{
+    @include btn();
+    top: 55%!important;
+    left: 20%;
+}
+
+.Hip{
+    @include btn();
+    top: 40%!important;
+    left: 20%;
+}
+.InSeam{
+    @include btn();
+    top: 40%!important;
+    left: 30%;
+}
+.Thigh{
+    @include btn();
+    top: 55%!important;
+    left: 30%;
+}
+
+.Calf{
+    @include btn();
+    top: 45%!important;
+    left: 30%;
+}
+
+.Ankle{
+    @include btn();
+    top: 75%!important;
+    left: 30%;
+}

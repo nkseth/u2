@@ -22,6 +22,11 @@
 .productDetails {
   display: grid;
   gap: 5px;
+  width: 100%;
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  word-break: break-all;
   .productName {
     font-size: 16px;
     font-weight: 700;

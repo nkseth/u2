@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   gap: 4rem;
+  margin-top: -0.6em;
 }
 .SuitWear {
   display: flex;
@@ -103,4 +104,18 @@
   //   width: 346px !important;
   // }
   
+}
+
+@media screen and (max-width: 769px){
+  .SuitWear_header{
+    margin-top: 0em;
+    margin-bottom: 0.7em;
+  }
+}
+  @media screen and (max-width: 550px){
+
+.SuitWear_header{
+  margin-bottom: 0.5em;
+}
+
 }

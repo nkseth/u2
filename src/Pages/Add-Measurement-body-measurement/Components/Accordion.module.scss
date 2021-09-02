@@ -1,0 +1,90 @@
+
+
+  .accordionDiv {
+    width:100%;
+    max-width:500px ;
+    display: none;
+    background: #ffffffd3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.192);
+  }
+  
+  .accordionHeader {
+    font-family: DM Sans;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+  
+  .accordionSummary {
+    background-color: #ffffff49 !important;
+    min-height: 55px !important;
+  }
+  
+  .submitBtn {
+    height: 48px !important;
+    width: 330px !important;
+    border-radius: 5px !important;
+    text-transform: none !important;
+    color: #fff !important;
+    background: #857250 !important;
+    box-shadow: none !important;
+    border: 1px solid #857250 !important;
+    font-family: DM Sans !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 20px !important;
+    margin-top: 2em!important;
+    margin-bottom: 3em!important;
+    margin-left: auto!important;
+    margin-right: auto!important;
+  }
+  @media screen and (max-width: 835px) {
+    .section {
+      padding: 0 56px;
+      flex-direction: column;
+    }
+    .accordionDiv {
+      width: 95%;
+    }
+    .submitBtn {
+        width: 330px !important;
+      }
+   
+  }
+
+  
+  @media screen and (max-width: 550px) {
+
+    .submitBtn {
+      width: 95% !important;
+    }
+
+  }
+  
+
+  
+  @media screen and (min-width:"1900px") {
+
+    .accordionDiv{
+      min-width: 100%
+    }
+   
+    .accordionSummary{
+      min-height: 100px!important;
+      background-color: #ffffff49 !important;
+    }
+    
+    .accordionHeader {
+      font-family: DM Sans;
+      font-size: 40px;
+      font-weight: bolder;
+      line-height: 20px;
+    }
+  }
+  
+  

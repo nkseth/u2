@@ -13,18 +13,29 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/HandMade_Clothes.module.scss";
+<<<<<<< HEAD
 import h1 from "../Images/h1.png";
 import h2 from "../Images/h2.png";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handMadeClothes } from "../../../Redux/actions/designerHomePage";
+=======
+import h1 from '../Images/h1.png'
+import h2 from '../Images/h2.png'
+import h3 from '../Images/c2.jpg'
+import h4 from '../Images/c4.jpg'
+import { useState } from "react";
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
 
 const HandMade_Clothes = () => {
   const dispatch = useDispatch();
   const customStyle = {
     padding: "5rem 3rem",
     background: "#857250",
+    marginTop: "3em",
+    marginBottom: "3em",
   };
+<<<<<<< HEAD
   const { clothes } = useSelector((state) => state.root.handMadeClothes);
 
   const [visible, setvisible] = useState(4);
@@ -32,17 +43,23 @@ const HandMade_Clothes = () => {
     dispatch(handMadeClothes());
   }, []);
 
+=======
+  const [visible, setvisible] = useState(4)
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
   const theme = useTheme()
   const customView = useMediaQuery("(max-width:960px)");
   const BigView = useMediaQuery("(min-width:960px)");
   const MobileView = useMediaQuery("(max-width:550px)");
   const match = useMediaQuery(theme.breakpoints.down('xs'))
   const iPade = useMediaQuery(theme.breakpoints.down('sm'))
+<<<<<<< HEAD
 
   if(!clothes){
     return null;
   }
 
+=======
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
   return (
     <div className="hande_made_clothes">
       <CustomSection class={styles.handmadeclothes} style={customStyle}>
@@ -58,9 +75,15 @@ const HandMade_Clothes = () => {
         </div>
 
         <CarouselProvider
+<<<<<<< HEAD
           style={customView ? { marginBottom: 0, marginTop: 0 } : BigView ? { marginBottom: 0, marginTop: 0 } : { marginBottom: 0, marginTop: 0 }}
           visibleSlides={match ? 1 : iPade ? 2 : visible}
           totalSlides={clothes?.length}
+=======
+          style={customView ? { marginBottom: 0, marginTop: 0 } : BigView ? { marginBottom: -50, marginTop: -80 } : { marginBottom: -50, marginTop: -80 }}
+          visibleSlides={match ? 1 : iPade ? 2 : visible}
+          totalSlides={5}
+>>>>>>> 0c76b0f394c8c5c6fb527c305a1b72cbec9cebf1
           infinite
           isIntrinsicHeight
         >

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 //Pages
+import Container from '@material-ui/core/Container';
 import Home from "./Pages/Home-Page/home";
 import MensWear from "./Pages/Mens-Wear/mensWear";
 import Offer from "./Pages/Offer/offer";
@@ -15,7 +16,6 @@ import MyMeasurements from "./Pages/My-Measurements/myMeasurements";
 import ChooseStandardSize from "./Pages/Choose-Standard-Size/chooseSize";
 import AddMeasurementGender from "./Pages/Add-Measurement-Gender/gender";
 import AddMeasurementBasicDetails from "./Pages/Add-Measurement-Basic-Details/basicDetails";
-import AddMeasurementBodyMeasurement from "./Pages/Add-Measurement-body-measurement/bodyMeasurement";
 import Measurement from "./Pages/Measurement/measurement";
 import OrderSummary from "./Pages/Order-Summary/orderSummary";
 import DeliveryAddress from "./Pages/Delivery Address/deliveryAddress";
@@ -60,6 +60,10 @@ import Designers from "./OtherPages/Designers/Designers";
 import { setUserData } from "./Redux/actions/homepage";
 import { useCookies } from 'react-cookie';
 
+import { StylesProvider } from "@material-ui/core";
+import styles from "./App.module.scss"
+import AddManMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentMan";
+import AddWomanMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentWoman";
 //Start From Here
 
 function App() {
@@ -77,7 +81,7 @@ function App() {
 
   return (
 
-    <>
+    <div className={styles.container}  >
       {/*All Other Screen on This Path ./LoginSceens/ */}
       {isLoginModel ? <Page_Login /> : null}
       <Switch>
@@ -109,9 +113,14 @@ function App() {
           path="/add-measurement-basic-details"
           component={AddMeasurementBasicDetails}
         />
+
         <Route
-          path="/add-measurement-body-measurement"
-          component={AddMeasurementBodyMeasurement}
+          path="/add-measurement-body-measurement-man"
+          component={AddManMeasurement}
+        />
+        <Route
+          path="/add-measurement-body-measurement-woman"
+          component={AddWomanMeasurement}
         />
         <Route path="/viewmeasurement" component={Measurement} />
         <Route path="/order-summary" component={OrderSummary} />
@@ -170,7 +179,7 @@ function App() {
         <Route path={"/home/poll-result"} component={PollResult} />
         {/* <Route exact path={"/designer-page/product"} component={Product} /> */}
       </Switch>
-    </>
+    </div>
   );
 }
 

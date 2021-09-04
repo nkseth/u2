@@ -1,7 +1,7 @@
 import Axios from "axios";
 
  const common_axios = Axios.create({
-  baseURL: "http://3.108.240.44/api",
+  baseURL: "http://3.109.176.19/api",
 });
 
 common_axios.interceptors.request.use(

@@ -65,7 +65,7 @@ const SuitWear = () => {
                     <div className={styles.SuitWear}>
                       <div className={styles.SuitWear_Items}>
                         <img src={item.feature_image} alt={item.id} />
-                        <Link to={{ pathname:'/designers-product-page', state:{data: item, name: 'Suit Wear'} }}>{item.name}</Link>
+                        <Link to={{ pathname:`/designers-product-page/${item.slug}`}}>{item.name}</Link>
                       </div>
                     </div>
                   </div>

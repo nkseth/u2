@@ -10,21 +10,21 @@ const ProfileEdit = () => {
   const [ name, setName ] = useState('')
   const [email, setEmail] = useState('')
   const [phone_no, setPhoneNo] = useState('')
+  const [avatar, setAvatar] = useState('')
 
   useEffect(()=> {
     setName(user_data.name)
     setEmail(user_data.email)
     setPhoneNo(user_data.phone_no)
-  },[])
+    setAvatar(user_data.avatar)
+  },[user_data])
 
-  const profileImg =
-    "https://cdn.pixabay.com/photo/2017/08/06/15/13/woman-2593366__340.jpg";
   return (
     <div className={styles.ProfileEdit}>
       <div className={styles.ProfileEdit_Image}>
         <input id="UserAvatar" style={{ display: "none" }} type="file" />
         <label htmlFor="UserAvatar">
-          <img src={profileImg} alt="userAvatar" />
+          <img src={avatar} alt="userAvatar" />
           <span id={styles.ProfileEdit_Label}>EDIT</span>
         </label>
       </div>

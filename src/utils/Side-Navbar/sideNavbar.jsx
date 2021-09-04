@@ -21,6 +21,7 @@ import chatExpertIcon from "../../Images/side-navbar/chat.svg";
 import aboutUsIcon from "../../Images/side-navbar/aboutUs.svg";
 import contactUsIcon from "../../Images/side-navbar/contactUs.svg";
 import supportIcon from "../../Images/side-navbar/support.svg";
+import { useSelector } from "react-redux";
 
 const navItems = [
   { name: "Designers", icon: designersIcon, path: "/designers/" },
@@ -42,8 +43,10 @@ const navItems = [
 ];
 
 export default function SideNavbar() {
-  const profileImg =
-    "https://images.pexels.com/photos/5257599/pexels-photo-5257599.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+
+
+  const { user_data } = useSelector(state => state.root.main)
+
   return (
     <div className={styles.container}>
       <div className={styles.breadcrumbDiv}>
@@ -51,10 +54,10 @@ export default function SideNavbar() {
       </div>
 
       <div className={styles.profileDiv}>
-        <img src={profileImg} alt="profile" />
+        <img src={user_data.avatar} alt="profile" />
         <div>
-          <span>Robert Maxwell</span>
-          <span>example@example.com</span>
+          <span>{user_data.nice_name}</span>
+          <span>{user_data.email}</span>
         </div>
         <IconButton aria-label="settings">
           <img src={settingsIcon} alt="settings" />

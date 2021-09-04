@@ -1,23 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Button, useMediaQuery } from "@material-ui/core";
 import ProductCard from "./Components/product-cards/card";
 import CustomSection from "../../../../../utils/Custom Section/section";
 import styles from "./forHim.module.scss";
+import { useDispatch, useSelector } from "react-redux";
 //Images
 import Main from "./Components/Images/Main.jpg"
 import Card1 from "./Components/Images/Card1.jpg"
 import Card2 from "./Components/Images/Card2.jpg"
 import Card3 from "./Components/Images/Card3.jpg"
+import { get_mens_active_product, get_mens_wear_subgrp, setSelectedSubGrp } from "../../../../../Redux/actions/mensWear";
 
 
 
 
 export default function ForHimSection() {
+
+
   const customView = useMediaQuery("(max-width:1235px)");
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
-  const [activeNav, setActiveNav] = useState("all");
+
+  const dispatch = useDispatch()
+
+  //const [activeNav, setActiveNav] = useState("all");
+  const { mens_wear_subgrp, selected_sub_grp: activeNav, mens_active_product } = useSelector(state => state.root.main)
+
+  const setActiveNav = (val) => {
+    dispatch(setSelectedSubGrp(val))
+  }
+
+  useEffect(() => {
+    dispatch(get_mens_wear_subgrp('mens-fashion'))
+  }, [])
+
+  useEffect(() => {
+    console.log(activeNav)
+    const type = 'mens-fashion';
+    dispatch(get_mens_active_product(type, activeNav))
+
+  }, [activeNav])
+
+  console.log(mens_active_product)
+
+
   return (
     <CustomSection
       style={{
@@ -51,41 +78,17 @@ export default function ForHimSection() {
                 >
                   All
                 </span>
-                <span
-                  href="#"
-                  className={activeNav === "shirts" && styles.activeNav}
-                  onClick={() => setActiveNav("shirts")}
-                >
-                  Shirts
-                </span>
-                <span
-                  href="#"
-                  className={activeNav === "jeans" && styles.activeNav}
-                  onClick={() => setActiveNav("jeans")}
-                >
-                  Jeans
-                </span>
-                <span
-                  href="#"
-                  className={activeNav === "jackets" && styles.activeNav}
-                  onClick={() => setActiveNav("jackets")}
-                >
-                  Jackets
-                </span>
-                <span
-                  href="#"
-                  className={activeNav === "blazzers" && styles.activeNav}
-                  onClick={() => setActiveNav("blazzers")}
-                >
-                  Blazzers
-                </span>
-                <span
-                  href="#"
-                  className={activeNav === "trousers" && styles.activeNav}
-                  onClick={() => setActiveNav("trousers")}
-                >
-                  Trousers
-                </span>
+                {mens_wear_subgrp.map((item) => {
+                  return (
+                    <span
+                      href="#"
+                      className={activeNav === item.slug && styles.activeNav}
+                      onClick={() => setActiveNav(item.slug)}
+                    >
+                      {item.name}
+                    </span>
+                  )
+                })}
               </div>
             </nav>
           )}
@@ -112,65 +115,29 @@ export default function ForHimSection() {
                   >
                     All
                   </span>
-                  <span
-                    href="#"
-                    className={activeNav === "shirts" && styles.activeNav}
-                    onClick={() => setActiveNav("shirts")}
-                  >
-                    Shirts
-                  </span>
-                  <span
-                    href="#"
-                    className={activeNav === "jeans" && styles.activeNav}
-                    onClick={() => setActiveNav("jeans")}
-                  >
-                    Jeans
-                  </span>
-                  <span
-                    href="#"
-                    className={activeNav === "jackets" && styles.activeNav}
-                    onClick={() => setActiveNav("jackets")}
-                  >
-                    Jackets
-                  </span>
-                  <span
-                    href="#"
-                    className={activeNav === "blazzers" && styles.activeNav}
-                    onClick={() => setActiveNav("blazzers")}
-                  >
-                    Blazzers
-                  </span>
-                  <span
-                    href="#"
-                    className={activeNav === "trousers" && styles.activeNav}
-                    onClick={() => setActiveNav("trousers")}
-                  >
-                    Trousers
-                  </span>
+                  {mens_wear_subgrp.map((item) => {
+                    return (
+                      <span
+                        href="#"
+                        className={activeNav === item.slug && styles.activeNav}
+                        onClick={() => setActiveNav(item.slug)}
+                      >
+                        {item.name}
+                      </span>
+                    )
+                  })}
                 </div>
                 <Button className={styles.viewAllBtn}>View all</Button>
               </nav>
             </Grid>
           )}
-
-          <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
-            <ProductCard image={Card1} />
-          </Grid>
-          <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
-            <ProductCard image={Card2} />
-          </Grid>
-          <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
-            <ProductCard image={Card3} />
-          </Grid>
-          <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
-            <ProductCard image={Card1} />
-          </Grid>
-          <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
-            <ProductCard image={Card2} />
-          </Grid>
-          <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
-            <ProductCard image={Card3} />
-          </Grid>
+          {mens_active_product.map((item) => {
+            return (
+              <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
+                <ProductCard data={item} image={Card1} />
+              </Grid>
+            )
+          })}
         </Grid>
         {customView && (
           <Grid

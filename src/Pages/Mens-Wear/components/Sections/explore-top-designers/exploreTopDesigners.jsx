@@ -40,7 +40,7 @@ export default function ExploreTopDesignersSection() {
         </Slider>
         <DotGroup style={{ display: "flex" }} />
         <div className={styles.carouselNavigationDiv}>
-          <Link to="/designers-product-page">SEE All</Link>
+          <Link>SEE All</Link>
           <div className={styles.sliderBtnDiv}>
             <ButtonBack className={styles.sliderBtn}>
               <IconButton size="small" className={styles.iconBtn}>

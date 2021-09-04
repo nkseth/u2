@@ -34,7 +34,7 @@ const Trending = () => {
           {items?.map((item) => (
             <div key={item.name} className={styles.Trending_Items}>
               <img src={item.cover_image} alt={item.name} />
-              <Link to="designers-product-page" to={{ pathname: '/designers-product-page', state: { data: item, name: 'Category' } }}>{item.name}</Link>
+              <Link to="designers-product-page" to={{ pathname:`/designers-product-page/${item.slug}` }}>{item.name}</Link>
             </div>
           ))}
           {/* <div className={styles.Trending_Items}>
@@ -69,7 +69,7 @@ const Trending = () => {
           )}
         </div>
         <div className={`${styles.Trending_Button}`}>
-          <Button onClick={() => push("/designers-product-page")}>
+          <Button>
             View all
           </Button>
         </div>

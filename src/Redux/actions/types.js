@@ -12,6 +12,15 @@ export const GET_SUIT_WEAR = "GET_SUIT_WEAR";
 export const GET_TOP_DESIGNERS = "GET_TOP_DESIGNERS";
 export const GET_TOP_SEASON_OFFERS = "GET_TOP_SEASON_OFFERS";
 export const GET_HAND_MADE_CLOTHES = "GET_HAND_MADE_CLOTHES";
+
+//Authentication
 export const SIGNUP_CREDS = "SIGNUP_CREDS";
 export const LOGIN_CREDS = "LOGIN_CREDS";
 export const USER_DATA = "USER_DATA";
+
+//Men's Wear
+export const MENS_WEAR_SLIDER = "MENS_WEAR_SLIDER";
+export const MENS_WEAR_CAT = "MENS_WEAR_CAT";
+export const MENS_WEAR_SUBGRP = "MENS_WEAR_SUBGRP";
+export const SELECTED_SUB_GRP = "SELECTED_SUB_GRP";
+export const MENS_ACTIVE_PRODUCT = "MENS_ACTIVE_PRODUCT";

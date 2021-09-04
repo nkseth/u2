@@ -19,7 +19,7 @@ export default function SectionTwo() {
           <div className={styles.imgBox}>
 
             <img src={fiftyOff} alt='Extra 50% off' />
-            <Link to='/designers-product-page'>
+            <Link>
               <Button className={styles.btn}>Shop Now</Button>
             </Link>
           </div>

@@ -67,7 +67,7 @@ const CategoryItems = ({ heading, details, image, categories, slug }) => {
             <h2>
               {heading}
               <CustomDivider
-                style={{
+                style={{ 
                   height: "1px",
                   background: "#fff",
                   marginleft: "-5px",
@@ -76,7 +76,7 @@ const CategoryItems = ({ heading, details, image, categories, slug }) => {
             </h2>
               {/* {details} */}
               {categories?.map((item) => (
-                <Link key={item.id.toString()} to={{ pathname:'/designers-product-page', state:{data: item, name: heading} }}>
+                <Link key={item.id.toString()} to={{ pathname:`/designers-product-page/${item.slug}` }}>
                   <p>
                   {item.name}
                   </p>

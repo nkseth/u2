@@ -13,7 +13,6 @@ common_axios.interceptors.request.use(
       config.headers.common = {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
         Authorization: "Bearer " + token,
       };
     }

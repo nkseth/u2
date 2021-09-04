@@ -7,8 +7,6 @@ import styles from "./designer-product-page.module.scss";
 import ProductsSection from "./Components/Sections/Products/products";
 import { useLocation } from "react-router-dom";
 
-
-
 //images 
 
 import AllenSolly from "./Components/Sections/Products/Images/AllenSolly.png"
@@ -17,32 +15,38 @@ import BeneKleed from "./Components/Sections/Products/Images/BeneKleed.png"
 import common_axios from "../../utils/axios.config";
 
 
-function DesignerProductPage() {
+function DesignerProductPage({ match }) {
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   const location = useLocation()
 
-  const { data: val, name } = location.state;
+  const { params: { slug } } = match;
 
   const [product, setProduct] = useState([])
+  const [ category, setCategory] = useState({})
+  const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
       fetch_products()
-  },[val])
+  },[slug])
 
 
   const fetch_products = async () => {
     const { data } = await common_axios.post(`/product_by_category`,{
-      slug:val.slug
+      slug
     })
 
     if(data.product){
-      console.log(data)
       setProduct(data.product)
+      setCategory(data.category)
     }
+    setLoading(false)
   }
 
+  if(loading){
+    return null
+  }
 
   return (
     <Container bottomDivider footerOnAllView>
@@ -61,8 +65,8 @@ function DesignerProductPage() {
             {!tabViewPro && (
               <div style={{ width: "200%", marginLeft: 15 }} >
                 <Breadcrumb
-                  path={`Designers Home / ${name} /`}
-                  activePath={val.name}
+                  path={`Designers Home / ${'Category'} /`}
+                  activePath={category.name || 'product'}
                 />
               </div>
 
@@ -79,8 +83,8 @@ function DesignerProductPage() {
             {tabViewPro && (
               <div className={styles.upperbread} >
                 <Breadcrumb
-                  path={`Designers Home / ${name} /`}
-                  activePath={val.name}
+                  path={`Designers Home / ${'Category'} /`}
+                  activePath={category.name || 'product'}
                 />
               </div>
 

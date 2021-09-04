@@ -74,7 +74,9 @@ function App() {
 
   useEffect(()=>{
      
-     dispatch(setUserData(cookies.data))
+     if(cookies.data){
+      dispatch(setUserData(cookies.data))
+     }
 
   },[])
 
@@ -90,9 +92,9 @@ function App() {
         <Route path="/mens-wear" component={MensWear} />
         <Route path="/offers" component={Offer} />
         <Route
-          path="/designers-product-page" component={DesignersProductPage}
+          path="/designers-product-page/:slug" component={DesignersProductPage}
         />
-        <Route path="/product-description" component={ProductDescription} />
+        <Route path="/product-description/:slug" component={ProductDescription} />
         <Route path="/product-breakdown" component={ProductBreakdown} />
         <Route
           path="/customised-product-details"

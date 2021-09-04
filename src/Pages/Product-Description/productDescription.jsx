@@ -11,10 +11,7 @@ import {
   FormControlLabel,
   useMediaQuery,
   Tooltip,
-  Fab,
-  Typography
 } from "@material-ui/core";
-import Tooltipss from "./Tooltipss"
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss";
 import CustomSection from "../../utils/Custom Section/section";
@@ -27,13 +24,10 @@ import deliveryTruckIcon from "../../Images/icons/deliveryTruck.svg";
 import clockIcon from "../../Images/icons/clock.svg";
 import { ReactComponent as BagIcon } from "../../Images/icons/bag-primary.svg";
 import HelpIcon from '@material-ui/icons/Help';
-import Terms from "./Components/Details-Tabs/Terms";
-import Img from "./suit.png"
-import { w } from "keyboard-key";
 import SelectSize from "./Components/SelectSize/SelectSize";
 import { useLocation } from "react-router-dom";
 import common_axios from "../../utils/axios.config";
-import { useCookies } from 'react-cookie';
+import { useSelector } from 'react-redux';
 import useLogin from "../../LoginSceens/useLogin";
 
 
@@ -76,11 +70,7 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
+
 
 const HtmlTooltip = withStyles((theme) => ({
   tooltip: {
@@ -97,7 +87,7 @@ const HtmlTooltip = withStyles((theme) => ({
 
 
 
-export default function ProductDescription() {
+export default function ProductDescription({ match }) {
 
 
   const history = useHistory();
@@ -106,21 +96,23 @@ export default function ProductDescription() {
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(min-width:768px) and (max-width:1044px");
   const mobileView = useMediaQuery("(max-width:550px)");
-  const PriceView = useMediaQuery("(min-width:834px) and (max-width:1044px");
 
   const [selectedColor, setSelectedColor] = useState("Brown");
   const [ProductType, setProductType] = useState("custom");
   const [ProductDrop, setProductDrop] = useState(false);
-  const price = ProductType === 'custom' ? '15,000' : "10,000"
-  const PriceOff = ProductType === 'custom' ? '17,000' : "11,500"
-  const Off = ProductType === 'custom' ? '13%' : "15%";
 
-  const { data: val } = location.state;
+
+  //const { data: val } = location.state;
+  const { params: { slug } } = match;
+
   const [product, setProduct] = useState({ });
   const [images, setImages] = useState([])
-  const [cookies, setCookie] = useCookies(['user']);
+
+  console.log(slug)
+  
 
   const { login_Model_Show } = useLogin();
+  const { user_data } = useSelector(state => state.root.main)
 
   useEffect(() => {
     fetch_data()
@@ -128,8 +120,8 @@ export default function ProductDescription() {
 
   const fetch_data = async () => {
     try {
-      const { data } = await common_axios.get(`/productDetail/${val.slug}`);
-      console.log(data)
+      const { data } = await common_axios.get(`/productDetail/${slug}`);
+
       if (data.data) {
         setProduct(data.data)
         const img = []
@@ -143,10 +135,8 @@ export default function ProductDescription() {
     }
   }
 
-  console.log(cookies)
-
   const buy_now_handler = () => {
-    if (cookies.data) {
+    if (user_data?.name) {
 
 
     } else {
@@ -155,17 +145,15 @@ export default function ProductDescription() {
   }
 
   const add_bag_handler = async () => {
-    if (cookies.data) {
+    if (user_data?.name) {
       try{
-        const { data } = await common_axios.post('/addToCart',{
-          slug: val.slug
-        })
+        const { data } = await common_axios.post(`/addToCart/${slug}`)
 
         if(data){
-          console.log('done')
+          console.log(data)
         }
       } catch (e){
-        console.log(e)
+        alert(e.response.data.message)
       }
     } else {
       login_Model_Show()
@@ -177,7 +165,7 @@ export default function ProductDescription() {
     <Container bottomDivider footerOnTabMob>
       <CustomSection style={{ marginTop: 10, marginBottom: 10 }} >
         <Breadcrumb
-          path='Home / Men / Suit /'
+          path={`Home / Men / Suit /`}
           activePath='Allen Solly'
           style={{ paddingBottom: "1rem" }}
         />

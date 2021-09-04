@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MUICarousel from "react-material-ui-carousel";
 import { Carousel } from "react-responsive-carousel";
 import Container from "../../utils/Container/container";
@@ -13,8 +13,8 @@ import styles from "./mensWear.module.scss";
 import shirt from "./Images/shirt.png"
 import Tshirt from "./Images/T-shirt.png"
 import blazer from "./Images/blazer.png"
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 //Sections
 import ForHimSection from "./components/Sections/for-him/forHim";
 import NewCollectionSection from "./components/Sections/new-collection/newCollection";
@@ -24,6 +24,7 @@ import MostLovedStyleSection from "./components/Sections/most-loved-style/mostLo
 import AllThatYouWantSection from "./components/Sections/all-that-you-want/allThatYouWant";
 import TopOffersOfTheSeasonSection from "./components/Sections/top-offer-of-the-season/topOffersOfTheSeason";
 import CelebrityStyleSection from "./components/Sections/celebrity-style/celebrityStyle";
+import { get_mens_wear_cat, get_mens_wear_slider } from "../../Redux/actions/mensWear";
 
 export default function MensWear() {
   const mobileView = useMediaQuery("(max-width:550px)");
@@ -33,6 +34,16 @@ export default function MensWear() {
   const customView2 = useMediaQuery("(max-width:910px)");
   const carouselImg1 =
     "https://s3-alpha-sig.figma.com/img/e0c5/9b62/217c0cbfc4e549ecbe7e3ab7a44b35d5?Expires=1624838400&Signature=Yai9GrJIDlLK7UButwnyGeLNxiSq1IIxZw3tyTYKgH8hPWe10x11ufrNjyBi-5qLEJ3En3i4C00LefmV689~1AmFKVdOHUIOrH1XscxiCYGvyNthgYLWZ-QEmOMxgWRRiHjoY6wKH4DPtfI7C68b5E5uThyQXMDArHjEO4PWoeuIRcEwqno0dyApj7FKNA6737rqbCUJGo5ytbo6woCTA3DM83Aiy91tD3YYla3mTXiwqCJKZ3-qNcYhRdbZGqCY1Ttk8TrMYlUJE3F~eSOdoXeiHOqB-nYW~4vapTQOYLnywaSbeBtZfWVFV4PMCNfdb4oHt~kMy6bHlai998w17g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
+
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const { mens_wear_slider, mens_wear_cat } = useSelector(state => state.root.main)
+
+  useEffect(() => {
+    dispatch(get_mens_wear_slider())
+    dispatch(get_mens_wear_cat('mens-fashion'))
+  }, [])
+
   return (
     <Container footerOnAllView>
       <section className={styles.heroSection}>
@@ -43,39 +54,18 @@ export default function MensWear() {
           showStatus={false}
           showArrows={false}
         >
-          <div className={styles.carouselItem}>
-            <div>
-              <span>Men’s Wear </span>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
-              </p>
-            </div>
-          </div>
-          <div className={styles.carouselItem}>
-            <div>
-              <span>Men’s Wear </span>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
-              </p>
-            </div>
-          </div>
-          <div className={styles.carouselItem}>
-            <div>
-              <span>Men’s Wear </span>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
-              </p>
-            </div>
-          </div>
+          {mens_wear_slider.map((item) => {
+            return (
+              <div onClick={() => history.push(item.link)} style={{ backgroundImage: `url(${item.image})` }} className={styles.carouselItem}>
+                <div>
+                  <span style={{ color: item.title_color }}>{item.title}</span>
+                  <p style={{ color: item.sub_title_color }}>
+                    {item.sub_title}
+                  </p>
+                </div>
+              </div>
+            )
+          })}
         </Carousel>
       </section>
       <CustomSection style={{ padding: tabView && "0 1rem" }}>
@@ -89,7 +79,7 @@ export default function MensWear() {
         <span className={styles.categoriesToBagHeader}>Categories to Bag</span>
 
 
-        <GRIDLAPTOP mobileView={mobileView} tabView={tabView} customView={customView} customView2={customView2} />
+        <GRIDLAPTOP data={mens_wear_cat} mobileView={mobileView} tabView={tabView} customView={customView} customView2={customView2} />
 
 
 
@@ -123,7 +113,7 @@ function GRID({ name, image, classname }) {
 
 
 
-function GRIDLAPTOP({ mobileView, tabView, customView, customView2 }) {
+function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
   return (
     <MUICarousel
       animation="slide"
@@ -154,14 +144,14 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2 }) {
       >
         {
           !customView2 ?
-            <GRID name='Shirt' image={shirt} />
+            data?.length > 2 ? <GRID name={data[2].name} slug={data[2].slug} image={data[2].feature_image} /> : <></>
             :
             <></>
         }
-        <GRID name='T Shirt' image={Tshirt} />
+        {data?.length > 0 ? <GRID name={data[0].name} slug={data[0].slug} image={data[0].feature_image} /> : <></>}
         {!customView ?
           <>
-            <GRID name='Blazer' image={blazer} />
+            {data?.length > 3 ? <GRID name={data[4].name} slug={data[4].slug} image={data[4].feature_image} /> : <></>}
           </>
           :
           <></>
@@ -177,14 +167,14 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2 }) {
       >
         {
           !customView2 ?
-            <GRID name='Shirt' image={shirt} />
+            data?.length > 3 ? <GRID name={data[3].name} slug={data[3].slug} image={data[3].feature_image} /> : <></>
             :
             <></>
         }
-        <GRID name='T Shirt' image={Tshirt} />
+        {data?.length > 1 ? <GRID name={data[1].name} slug={data[1].slug} image={data[1].feature_image} /> : <></>}
         {!customView ?
           <>
-            <GRID name='Blazer' image={blazer} />
+            {data?.length > 5 ? <GRID name={data[5].name} slug={data[5].slug} image={data[5].feature_image} /> : <></>}
           </>
           :
           <></>

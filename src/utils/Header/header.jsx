@@ -87,7 +87,7 @@ export default function Header() {
   };
 
   const profileFnc = () => {
-    if (Object.keys(cookies)?.length != 0) {
+    if (Object.keys(user_data)?.length != 0) {
       history.push('/profile')
     } else {
       login_Model_Show()
@@ -337,7 +337,6 @@ export default function Header() {
             </ListItem>
             <ListItem style={{ height: "64px" }}>
               <Link
-                to="/designers-product-page"
                 className={cx(styles.links, styles.menuItem)}
               >
                 New arrivals

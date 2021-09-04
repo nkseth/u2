@@ -8,15 +8,11 @@ const Profile = () => {
 
   const { user_data } = useSelector(state => state.root.main)
 
-  const profileImg =
-    "https://cdn.pixabay.com/photo/2017/08/06/15/13/woman-2593366__340.jpg";
-
-
   return (
     <div className={styles.Profile}>
       <div className={styles.Profile_Image}>
-        <img src={profileImg} alt="userAvatar" />
-        <Link to="ProfileEdit">Edit</Link>
+        <img src={user_data.avatar} alt="userAvatar" />
+        <Link to="/ProfileEdit">Edit</Link>
       </div>
       <div className={styles.Profile_Details}>
         <div>

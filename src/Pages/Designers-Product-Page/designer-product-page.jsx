@@ -26,7 +26,7 @@ function DesignerProductPage({ match }) {
   const [product, setProduct] = useState([])
   const [ category, setCategory] = useState({})
   const [loading, setLoading] = useState(true)
-
+ 
   useEffect(()=>{
       fetch_products()
   },[slug])

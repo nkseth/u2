@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useMediaQuery } from "@material-ui/core";
 import CustomSection from "../../../../../utils/Custom Section/section";
 import StylishCard from "./Components/stylish-cards/card";
@@ -9,13 +9,24 @@ import stylish2 from "../../../Images/stylish-2.png"
 import stylish3 from "../../../Images/stylish-3.png"
 import stylish4 from "../../../Images/stylish-4.png"
 import stylish5 from "../../../Images/stylish-5.png"
+import { useDispatch, useSelector } from "react-redux";
+import { get_most_loved, get_stylish_recommend } from "../../../../../Redux/actions/mensWear";
 
 
-
-export default function StylishRecommendationSection() {
+export default function StylishRecommendationSection({ type }) {
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const group = type == 'mens' ? 'men_group_2' : type == 'womens' ? 'women_group_2' : 'kid_group_2'
+    dispatch(get_stylish_recommend(`${type}_home`, group))
+  }, [type])
+
+  const { stylish_recommend } = useSelector(state => state.root.main)
+  console.log(stylish_recommend)
   return (
     <CustomSection
       style={{
@@ -29,7 +40,14 @@ export default function StylishRecommendationSection() {
         <span>Recommendation</span>
       </div>
       <div className={styles.cardContainer}>
-        {mobileView && (
+        {stylish_recommend.map((item) => {
+          return (
+            <div>
+              <StylishCard item={item} image={item.image} />
+            </div>
+          )
+        })}
+        {/* {mobileView && (
           <div>
             <StylishCard image={stylish1} />
             <StylishCard image={stylish2} />
@@ -54,7 +72,7 @@ export default function StylishRecommendationSection() {
               {/* <div>
                 <StylishCard image={stylish3} />
 
-              </div> */}
+              </div> 
               <div>
                 <StylishCard image={stylish4} />
 
@@ -65,7 +83,7 @@ export default function StylishRecommendationSection() {
               </div>
             </div>
           </>
-        )}
+        )} */}
       </div>
     </CustomSection>
   );

@@ -4,6 +4,7 @@ import styles from "./slide.module.scss";
 import image from "./Images/carouselMan.png"
 
 export default function Slide(props) {
+
   const tabView = useMediaQuery("(max-width:800px)");
   const tabViewPro = useMediaQuery("(max-width:910px)");
   const mobileView = useMediaQuery("(max-width:550px)");
@@ -12,7 +13,7 @@ export default function Slide(props) {
       <img src={image} alt='product' />
       <div>
         <span className={styles.header}>
-          New Collection <br /> 50%off
+          {props.item.title}
         </span>
         {mobileView && (
           <div style={{ display: "flex", justifyContent: "center" }}>

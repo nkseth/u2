@@ -59,7 +59,7 @@ export function DesignersHomePage() {
           <CelebrityStyleContainer />
           <TopOfferContainer />
           <RecommendationComponent />
-          <Link to='/mens-wear'>Next Page</Link>
+          <Link to='/wear'>Next Page</Link>
         </Content>
       </Layout>
     </Provider>

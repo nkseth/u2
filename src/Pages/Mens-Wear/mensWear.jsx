@@ -26,7 +26,10 @@ import TopOffersOfTheSeasonSection from "./components/Sections/top-offer-of-the-
 import CelebrityStyleSection from "./components/Sections/celebrity-style/celebrityStyle";
 import { get_mens_wear_cat, get_mens_wear_slider } from "../../Redux/actions/mensWear";
 
-export default function MensWear() {
+export default function MensWear({ match }) {
+
+  const { params: { type } } = match;
+
   const mobileView = useMediaQuery("(max-width:550px)");
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
@@ -41,8 +44,8 @@ export default function MensWear() {
 
   useEffect(() => {
     dispatch(get_mens_wear_slider())
-    dispatch(get_mens_wear_cat('mens-fashion'))
-  }, [])
+    dispatch(get_mens_wear_cat(`${type}-fashion`))
+  }, [type])
 
   return (
     <Container footerOnAllView>
@@ -72,7 +75,7 @@ export default function MensWear() {
         <Breadcrumb
           style={{ paddingTop: tabView && "0" }}
           path="Designer Home /"
-          activePath="Men’ wear"
+          activePath={type == 'mens' ? "Men’s wear" : type == 'womens' ? "Women’s wear" : "Kid’s wear"}
         />
       </CustomSection>
       <section className={styles.categoriesToBagSection}>
@@ -84,14 +87,14 @@ export default function MensWear() {
 
 
       </section>
-      <ForHimSection />
-      <NewCollectionSection />
-      <ExploreTopDesignersSection />
-      <StylishRecommendationSection />
-      <MostLovedStyleSection />
-      <AllThatYouWantSection />
-      <TopOffersOfTheSeasonSection />
-      <CelebrityStyleSection />
+      <ForHimSection type={type} />
+      <NewCollectionSection type={type} />
+      <ExploreTopDesignersSection type={type} />
+      <StylishRecommendationSection type={type} />
+      <MostLovedStyleSection type={type} />
+      <AllThatYouWantSection type={type} />
+      <TopOffersOfTheSeasonSection type={type} />
+      <CelebrityStyleSection type={type} />
     </Container>
   );
 }

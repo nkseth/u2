@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
-export default function DesignersCard({ image, title }) {
+export default function DesignersCard({ image, title, description }) {
   const [isAddToWishList, setAddToWishList] = useState(true);
   const img =
     "https://cdn.pixabay.com/photo/2016/11/29/05/55/adult-1867665__340.jpg";
@@ -14,7 +14,7 @@ export default function DesignersCard({ image, title }) {
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <img src={image} alt="product" />
-        <span>Happy 20% off</span>
+        <span>{description}</span>
       </div>
       <div className={styles.clothTypes}>
         <span>

@@ -5,7 +5,7 @@ import styles from "./card.module.scss";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
-export default function DesignersCard({ image }) {
+export default function DesignersCard({ image, item }) {
   const [isAddToWishList, setAddToWishList] = useState(false);
   const img =
     "https://images.pexels.com/photos/7137411/pexels-photo-7137411.png?auto=compress&cs=tinysrgb&dpr=2&w=500";
@@ -35,7 +35,7 @@ export default function DesignersCard({ image }) {
           </IconButton>
         )}
       </div>
-      <div className={styles.designerName}>Designer Name</div>
+      <div className={styles.designerName}>{item.name}</div>
     </div>
   );
 }

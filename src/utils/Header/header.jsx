@@ -221,7 +221,7 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave("men")}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
-              <Link style={{ color: "#9D8E73" }} to="/mens-wear">Men</Link>
+              <Link style={{ color: "#9D8E73" }} to="/wear/mens">Men</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("women")}
@@ -229,14 +229,14 @@ export default function Header() {
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
               {" "}
-              <Link style={{ color: "#9D8E73" }} to="/mens-wear"> Women</Link>
+              <Link style={{ color: "#9D8E73" }} to="/wear/womens"> Women</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("kids")}
               onMouseLeave={() => handleMouseLeave("kids")}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
-              <Link style={{ color: "#9D8E73" }} to="/mens-wear"> Kids</Link>
+              <Link style={{ color: "#9D8E73" }} to="/wear/kids"> Kids</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("designers")}
@@ -349,7 +349,7 @@ export default function Header() {
                   className={styles.accordionSummary}
                 >
                   <span className={styles.menuItem}>
-                    <Link to="mens-wear">Men</Link>
+                    <Link to="wear/mens">Men</Link>
                   </span>
                 </AccordionSummary>
                 <AccordionDetails className={styles.accordionDetials}>
@@ -368,7 +368,9 @@ export default function Header() {
                   expandIcon={<ExpandMoreIcon size="small" />}
                   className={styles.accordionSummary}
                 >
-                  <span className={styles.menuItem}>Women</span>
+                  <span className={styles.menuItem}>
+                    <Link to="wear/womens">Women</Link>
+                  </span>
                 </AccordionSummary>
                 <AccordionDetails className={styles.accordionDetials}>
                   <div className={styles.subMenuItems}>
@@ -386,7 +388,9 @@ export default function Header() {
                   expandIcon={<ExpandMoreIcon size="small" />}
                   className={styles.accordionSummary}
                 >
-                  <span className={styles.menuItem}>Kids</span>
+                  <span className={styles.menuItem}>
+                    <Link to="wear/kids">Kids</Link>
+                  </span>
                 </AccordionSummary>
                 <AccordionDetails className={styles.accordionDetials}>
                   <div className={styles.subMenuItems}>

@@ -14,7 +14,7 @@ import { get_mens_active_product, get_mens_wear_subgrp, setSelectedSubGrp } from
 
 
 
-export default function ForHimSection() {
+export default function ForHimSection({ type }) {
 
 
   const customView = useMediaQuery("(max-width:1235px)");
@@ -24,7 +24,6 @@ export default function ForHimSection() {
 
   const dispatch = useDispatch()
 
-  //const [activeNav, setActiveNav] = useState("all");
   const { mens_wear_subgrp, selected_sub_grp: activeNav, mens_active_product } = useSelector(state => state.root.main)
 
   const setActiveNav = (val) => {
@@ -32,17 +31,14 @@ export default function ForHimSection() {
   }
 
   useEffect(() => {
-    dispatch(get_mens_wear_subgrp('mens-fashion'))
-  }, [])
+    dispatch(get_mens_wear_subgrp(`${type}-fashion`))
+  }, [type])
 
   useEffect(() => {
-    console.log(activeNav)
-    const type = 'mens-fashion';
-    dispatch(get_mens_active_product(type, activeNav))
+    const val = `${type}-fashion`;
+    dispatch(get_mens_active_product(val, activeNav))
 
-  }, [activeNav])
-
-  console.log(mens_active_product)
+  }, [activeNav, type])
 
 
   return (
@@ -59,7 +55,7 @@ export default function ForHimSection() {
             <span style={{ color: "#000" }} >
               <i>#For</i>
             </span>
-            &nbsp;Him
+            &nbsp;{type == 'mens' ? 'Him' : type == 'womens' ? 'Her' : 'Kids'}
           </p>
           {customView && (
             <nav

@@ -2,7 +2,7 @@ import React from "react";
 import { useMediaQuery } from "@material-ui/core";
 import DesignersCard from "../designers-card/card";
 
-export default function DesignerSlide({ image1, image2, image3, image4, title }) {
+export default function DesignerSlide({ image1, image2, image3, image4, title, description }) {
   const mobileView = useMediaQuery("(max-width:400px)");
   const mobileViewPro = useMediaQuery("(max-width:550px)");
   const tabView = useMediaQuery("(max-width:768px)");
@@ -19,7 +19,7 @@ export default function DesignerSlide({ image1, image2, image3, image4, title })
     >
       {mobileView ?
         <>
-          <DesignersCard image={image3} title={title} />
+          <DesignersCard image={image3} title={title} description={description} />
           <DesignersCard image={image3} title={title} />
         </>
         :

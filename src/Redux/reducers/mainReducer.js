@@ -1,4 +1,4 @@
-import { MENS_ACTIVE_PRODUCT, MENS_WEAR_CAT, MENS_WEAR_SLIDER, MENS_WEAR_SUBGRP, SELECTED_SUB_GRP, USER_DATA } from "../actions/types";
+import { ALL_THAT_YOU_WANT, CELIBRITY_STYLE, MENS_ACTIVE_PRODUCT, MENS_WEAR_CAT, MENS_WEAR_SLIDER, MENS_WEAR_SUBGRP, MOST_LOVED, NEW_COLLECTION, SELECTED_SUB_GRP, STYLISH_RECOMMEND, TOP_DESIGNERS, TOP_OFFERS, USER_DATA } from "../actions/types";
 
 const inialState = {
   user_data: {},
@@ -6,7 +6,14 @@ const inialState = {
   mens_wear_cat: [],
   mens_wear_subgrp: [],
   selected_sub_grp: 'all',
-  mens_active_product: []
+  mens_active_product: [],
+  new_collection: [],
+  top_designers: [],
+  stylish_recommend: [],
+  most_loved: [],
+  all_that_you_want: [],
+  top_offers: [],
+  celibrity_style: []
 };
 
 const mainreducer = (state = inialState, action) => {
@@ -41,7 +48,41 @@ const mainreducer = (state = inialState, action) => {
         ...state,
         mens_active_product: action.payload,
       };
-
+    case NEW_COLLECTION:
+      return {
+        ...state,
+        new_collection: action.payload,
+      };
+    case TOP_DESIGNERS:
+      return {
+        ...state,
+        top_designers: action.payload,
+      };
+    case STYLISH_RECOMMEND:
+      return {
+        ...state,
+        stylish_recommend: action.payload,
+      };
+    case MOST_LOVED:
+      return {
+        ...state,
+        most_loved: action.payload,
+      };
+    case ALL_THAT_YOU_WANT:
+      return {
+        ...state,
+        all_that_you_want: action.payload,
+      };
+    case TOP_OFFERS:
+      return {
+        ...state,
+        top_offers: action.payload,
+      };
+    case CELIBRITY_STYLE:
+      return {
+        ...state,
+        celibrity_style: action.payload,
+      };
     default:
       return state;
   }

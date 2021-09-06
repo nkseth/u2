@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IconButton, useMediaQuery } from "@material-ui/core";
 import {
@@ -16,11 +16,22 @@ import styles from "./mostLovedStyle.module.scss";
 //icons
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import { get_most_loved } from "../../../../../Redux/actions/mensWear";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function MostLovedStyleSection() {
+export default function MostLovedStyleSection({ type }) {
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(get_most_loved(`${type}-fashion`))
+  }, [type])
+
+  const { most_loved } = useSelector(state => state.root.main)
+
   return (
     <CustomSection
       style={{
@@ -36,12 +47,19 @@ export default function MostLovedStyleSection() {
         isIntrinsicHeight
       >
         <Slider>
-          <Slide index={0}>
+          {most_loved.map((item, index) => {
+            return (
+              <Slide index={index}>
+                <CarouselSlide item={item} />
+              </Slide>
+            )
+          })}
+          {/* <Slide index={0}>
             <CarouselSlide />
           </Slide>
           <Slide index={1}>
             <CarouselSlide />
-          </Slide>
+          </Slide> */}
         </Slider>
         <DotGroup style={{ display: "flex" }} />
         <div className={styles.carouselNavigationDiv}>

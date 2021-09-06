@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IconButton } from "@material-ui/core";
 import {
@@ -14,7 +14,7 @@ import cs1 from "./Images/cs1.jpg"
 import cs2 from "./Images/cs2.jpg"
 import cs3 from "./Images/cs3.jpg"
 import cs4 from "./Images/cs4.jpg"
-
+import { useDispatch } from "react-redux";
 
 
 import "pure-react-carousel/dist/react-carousel.es.css";
@@ -24,8 +24,17 @@ import styles from "./celebrityStyle.module.scss";
 //icons
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import { get_celibrity_style } from "../../../../../Redux/actions/mensWear";
 
-export default function CelebrityStyleSection() {
+export default function CelebrityStyleSection({ type }) {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(get_celibrity_style(`${type}-fashion`))
+  }, [type])
+
+
   return (
     <CustomSection style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
       <div className={styles.header}>

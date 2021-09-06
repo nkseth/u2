@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, useMediaQuery } from "@material-ui/core";
 import CustomSection from "../../../../../utils/Custom Section/section";
 import TopOffersCard from "./components/offers-card/card";
 import styles from "./allThatYouWant.module.scss";
+import { useDispatch, useSelector } from "react-redux";
 //Images
 import All1 from "./components/Images/All1.jpg"
 import All2 from "./components/Images/All2.jpg"
 import All3 from "./components/Images/All3.jpg"
+import { get_all_that_you_want } from "../../../../../Redux/actions/mensWear";
 
-export default function AllThatYouWantSection() {
+export default function AllThatYouWantSection({ type }) {
+
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const group = type == 'mens' ? 'men_group_3' : type == 'womens' ? 'women_group_3' : 'kid_group_3'
+    dispatch(get_all_that_you_want(`${type}_home`, group))
+  }, [type])
+
+  const { all_that_you_want } = useSelector(state => state.root.main)
+
+
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
@@ -45,7 +59,7 @@ export default function AllThatYouWantSection() {
         <p>Under a budget &amp; Top offers</p>
       </div>
       <div className={styles.topOffersCardContainer}>
-        {arr?.map((item) => (
+        {all_that_you_want?.map((item) => (
           <TopOffersCard title={item.title} image={item.image} description={item.description} />
         ))}
       </div>

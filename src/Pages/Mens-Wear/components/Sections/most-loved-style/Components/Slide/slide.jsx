@@ -8,7 +8,7 @@ import S2 from "../Images/Style2.jpg"
 import S3 from "../Images/Style3.jpg"
 
 
-export default function DesignerSlide() {
+export default function DesignerSlide({ item }) {
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
@@ -41,10 +41,7 @@ export default function DesignerSlide() {
             </p>
           </div>
         )}
-
-        {!tabViewPro && <DesignersCard image={S1} />}
-        <DesignersCard image={S2} />
-        <DesignersCard image={S3} />
+        <DesignersCard item={item} image={item.feature_image} />
       </div>
     </>
   );

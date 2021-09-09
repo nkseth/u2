@@ -30,6 +30,7 @@ import { LOGIN_MODEL } from "../../Redux/reducers/loginreducer";
 import { useDispatch, useSelector } from "react-redux";
 import useLogin from "../../LoginSceens/useLogin";
 import { useCookies } from 'react-cookie';
+import MegaMenu from "./Components/MegaMenu";
 
 export default function Header() {
 
@@ -57,6 +58,7 @@ export default function Header() {
     offers: true,
     more: true,
   });
+  const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
 
   const { user_data } = useSelector(state => state.root.main)
   //Here I use Redux For Show Login Model
@@ -208,6 +210,7 @@ export default function Header() {
       </div>
       {!tabView && (
         <div className={styles.secondContainer}>
+          <MegaMenu visible={isMegaMenuOpen} Close={setMegaMenuOpen} />
           <div className={styles.mainMenuContainer}>
             <span
               onMouseEnter={() => handleMouseEnter("newArrivals")}
@@ -217,14 +220,14 @@ export default function Header() {
               <Link style={{ color: "#9D8E73" }} to="/designers-product-page">New arrivals</Link>
             </span>
             <span
-              onMouseEnter={() => handleMouseEnter("men")}
-              onMouseLeave={() => handleMouseLeave("men")}
+              onMouseEnter={() => {handleMouseEnter("men"); setMegaMenuOpen(true)}}
+              onMouseLeave={() => {handleMouseLeave("men"); ; setMegaMenuOpen(false)}}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
               <Link style={{ color: "#9D8E73" }} to="/wear/mens">Men</Link>
             </span>
             <span
-              onMouseEnter={() => handleMouseEnter("women")}
+              onMouseEnter={() => { handleMouseEnter("women"); setMegaMenuOpen(true) }}
               onMouseLeave={() => handleMouseLeave("women")}
               className={cx(styles.menuItem, styles.menuItem_women)}
             >

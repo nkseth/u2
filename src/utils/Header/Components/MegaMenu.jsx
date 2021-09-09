@@ -19,7 +19,6 @@ function MegaMenu({ Close, visible }) {
             <MegaMenuCard background={Img4} title={'Innerwear and Sleepwear'} />
             <MegaMenuCard background={Img5} title={'Fabrics'} />
             <MegaMenuCard background={Img6} title={'Designers'} />
-
         </div>
     )
 }

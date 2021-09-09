@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 0 0.7rem 0;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    > p:first-child {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      > span:first-child {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20px;
+      }
+      > span:last-child {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 18px;
+        color: rgba(59, 59, 59, 1);
+      }
+    }
+    > div {
+      display: grid;
+      gap: 10px;
+      p {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.1599999964237213px;
+        color: rgba(59, 59, 59, 1);
+        &::before {
+          content: "";
+          width: 10px;
+          height: 10px;
+          background-color: var(--primary-color);
+          display: inline-block;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}

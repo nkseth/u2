@@ -84,6 +84,7 @@ $brand-img-height-width: 50px;
 @media screen and (max-width: 550px) {
   .container {
     width: 100%;
+    height: 300px;
     margin-bottom: 34px;
     >img {
       height: 268px;

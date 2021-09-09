@@ -33,6 +33,16 @@ import useLogin from "../../LoginSceens/useLogin";
 
 const CustomRadio = withStyles({
   root: {
+    color: "transparent",
+    "&$checked": {
+      color: "#857250",
+    },
+  },
+  checked: {},
+})((props) => <></>);
+
+const CustomRadio1 = withStyles({
+  root: {
     color: "#9D9D9D",
     "&$checked": {
       color: "#857250",
@@ -71,7 +81,48 @@ const BootstrapInput = withStyles((theme) => ({
 }))(InputBase);
 
 
+// const images = [
+//   {
+//     original: Img,
+//     thumbnail: Img,
 
+//     thumbnailWidth: "70px",
+//     thumbnailClass: "thumbnails",
+//     thumbnailHeight: "70px",
+//     originalHeight: "400px",
+//     originalWidth: "200px"
+//   },
+//   {
+//     original: Img,
+//     thumbnail: Img,
+
+//     originalHeight: "400px",
+//     thumbnailWidth: "70px",
+//     thumbnailClass: "thumbnails",
+//     thumbnailHeight: "70px",
+//     originalWidth: "200px"
+//   },
+//   {
+//     original: Img,
+//     thumbnail: Img,
+
+//     originalHeight: "400px",
+//     thumbnailWidth: "70px",
+//     thumbnailClass: "thumbnails",
+//     thumbnailHeight: "70px",
+//     originalWidth: "200px"
+//   },
+//   {
+//     original: Img,
+//     thumbnail: Img,
+
+//     originalHeight: "400px",
+//     thumbnailWidth: "70px",
+//     thumbnailClass: "thumbnails",
+//     thumbnailHeight: "70px",
+//     originalWidth: "200px"
+//   },
+// ];
 const HtmlTooltip = withStyles((theme) => ({
   tooltip: {
     // placement: "right-start",
@@ -108,7 +159,7 @@ export default function ProductDescription({ match }) {
   const [product, setProduct] = useState({ });
   const [images, setImages] = useState([])
 
-  console.log(slug)
+  console.log(product)
   
 
   const { login_Model_Show } = useLogin();
@@ -144,7 +195,9 @@ export default function ProductDescription({ match }) {
             history.push('/order-summary')
           }
         } catch (e){
-          alert(e.response.data.message)
+          if(e?.response?.data?.message == 'Item alrealy in your cart'){
+            history.push('/order-summary')
+          }
         }
        }
     } else {
@@ -184,6 +237,7 @@ export default function ProductDescription({ match }) {
             <ImageGallery
               items={images}
               showNav={false}
+              additionalClass={styles.imagegall}
               thumbnailPosition={
                 mobileView ? "bottom" : customView ? "right" : "left"
               }
@@ -243,7 +297,7 @@ export default function ProductDescription({ match }) {
                 </div> : null}
               </div>
               <div className={styles.selectProduct}>
-                <div style={{ marginTop: 20, fontWeight: "bolder", marginBottom: -20 }} >Product Type</div>
+                <div style={{ marginTop: 25, fontWeight: "bolder", marginBottom: -10 }} >Product Type</div>
                 <br />
                 <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
                   <Select
@@ -338,7 +392,7 @@ export default function ProductDescription({ match }) {
               </div>
               {/* ========================================== */}
               <div className={styles.selectProduct}>
-                <div style={{ fontWeight: "bolder", marginTop: 15 }} >Product Type</div>
+                <div style={{ fontWeight: "bolder", marginTop: 5, marginBottom: -10 }} >Product Type</div>
                 <br />
                 <div style={{ width: "100%", display: "flex", alignItems: "center", position: "relative" }}>
                   <Select
@@ -488,7 +542,7 @@ export default function ProductDescription({ match }) {
                   </Select>
                   <HtmlTooltip
                     className={styles.ProductSelectorHelpBtn}
-                    style={{ marginLeft: 5 }}
+                    style={{ marginLeft: 0 }}
                     title={
                       <React.Fragment>
                         <h3 style={{ padding: 10 }}>Lorem ipsum is plaer text commonly used in the graphic er text commonly used in the graphic</h3>
@@ -557,7 +611,7 @@ export default function ProductDescription({ match }) {
             <div>Select colour</div>
             <br />
             <Select
-              style={mobileView ? { width: "100%" } : { width: "90%" }}
+              style={mobileView ? { width: "70%" } : { width: "50%" }}
               input={<BootstrapInput />}
               value={selectedColor}
               onChange={(e) => setSelectedColor(e.target.value)}
@@ -565,37 +619,29 @@ export default function ProductDescription({ match }) {
               <MenuItem value={"Brown"}>
                 <FormControlLabel
                   checked={selectedColor === "Brown"}
-                  control={<CustomRadio />}
+                  control={<CustomRadio1 />}
                   label={<p className={styles.radioBtnsLabels} >Brown</p>}
                 />
               </MenuItem>
               <MenuItem value={"Red"}>
                 <FormControlLabel
                   checked={selectedColor === "Red"}
-                  control={<CustomRadio />}
+                  control={<CustomRadio1 />}
                   label={<p className={styles.radioBtnsLabels}>Red</p>}
                 />
               </MenuItem>
               <MenuItem value={"Green"}>
                 <FormControlLabel
                   checked={selectedColor === "Green"}
-                  control={<CustomRadio />}
+                  control={<CustomRadio1 />}
                   label={<p className={styles.radioBtnsLabels}>Green</p>}
                 />
               </MenuItem>
             </Select>
           </div>
           <div className={styles.btnDiv}>
-            {/* <Button
-              variant='contained'
-              color='default'
-              startIcon={<SimulationIcon />}
-              fullWidth
-              className={styles.simulationBtn}
-            >
-              Simulation
-            </Button> */}
-            <div style={{ marginBottom: "2em" }} >
+
+            <div style={{ marginBottom: "2em", marginTop: "0em" }} >
               <Button
                 variant='contained'
                 onClick={buy_now_handler}
@@ -647,7 +693,7 @@ export default function ProductDescription({ match }) {
               </div>
               :
               tabViewPro ?
-                <div className={styles.container} style={{ marginLeft: -50 }} >
+                <div className={styles.container} style={{ marginLeft: -50, marginTop: "-2em" }} >
                   <div className={styles.firstContainer}>
                     <div className={styles.deliveryDiv}>
                       <div>

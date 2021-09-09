@@ -64,6 +64,7 @@ import { StylesProvider } from "@material-ui/core";
 import styles from "./App.module.scss"
 import AddManMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentMan";
 import AddWomanMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentWoman";
+import MyBag from "./Pages/My-Bag/MyBag";
 //Start From Here
 
 function App() {
@@ -100,6 +101,7 @@ function App() {
           path="/customised-product-details"
           component={CustomisedProductDetails}
         />
+
         <Route path="/simulate" component={Simulate} />
         <Route path="/add-measurement" component={AddMeasurement} />
         <Route path="/my-measurements" component={MyMeasurements} />
@@ -126,6 +128,9 @@ function App() {
         />
         <Route path="/viewmeasurement" component={Measurement} />
         <Route path="/order-summary" component={OrderSummary} />
+        {/* New page added here */}
+        <Route path="/my-bag" component={MyBag} />
+        {/* New page added here */}
         <Route path="/delivery-address" component={DeliveryAddress} />
         <Route path="/payment" component={Payment} />
         <Route path="/offers" component={Offers} />

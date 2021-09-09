@@ -25,88 +25,89 @@ import common_axios from "../../utils/axios.config";
 export default function OrderSummary() {
 
   const history = useHistory();
-  const tabView = useMediaQuery("(max-width:768px)");
+  const tabView = useMediaQuery("(max-width:769px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
+  const [data, setData] = useState([])
+  const [priceDetails, setPriceDetails] = useState({})
   const [quantity, setQuantity] = useState(1);
   const img =
     "https://images.pexels.com/photos/1096849/pexels-photo-1096849.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=165";
 
   useEffect(() => {
-   fetch_data()
-  },[])
+    fetch_data()
+  }, [])
 
-  const fetch_data = async() => {
-    const {data} = await common_axios.get('/carts')
-    console.log(data)
+  const fetch_data = async () => {
+    const { data: val } = await common_axios.get('/carts')
+    if (val.data?.length > 0) {
+      setData(val.data[0].items)
+      setPriceDetails(val.data[0])
+    }
+    console.log(val)
   }
 
   return (
     <Container bottomDivider footerOnTabMob>
-      <CustomSection>
+      <CustomSection style={{ marginTop: "2em" }} >
         <Breadcrumb
           path='Home / Men / Blazers / My Bag / Executive Measurement / Address'
           activePath='/ Order Summary'
         />
         <div>
-          <CustomStepper activeStep={0} />
+          <CustomStepper activeStep={1} />
         </div>
         <div className={styles.container}>
           <div className={styles.firstContainer}>
             <div>Order Summary</div>
-            <div>
-              <img src={img} alt='product' />
-              <div>
-                <div>
-                  <p>
-                    Men Creamed Blazer With White <br />
-                    T-shirt Be Wearing in 2021
-                  </p>
-                  <p>Solid colour</p>
-                  {mobileView && (
-                    <span
-                      style={{
-                        fontFamily: "DM Serif Display",
-                        fontSize: "20px",
-                        fontWeight: 400,
-                        lineHeight: "28px",
-                      }}
-                    >
-                      ₹559
-                    </span>
-                  )}
+            {data?.map((item) => {
+              return (
+                <div className={styles.borderDiv} >
+                  <img src={img} alt='product' className={styles.image} />
                   <div>
-                    <span>Quantity</span>
                     <div>
-                      <Button
-                        className={styles.addBtn}
-                        onClick={() => setQuantity(quantity - 1)}
-                      >
-                        <RemoveIcon style={{ width: "15px" }} />
-                      </Button>
-                      <div className={styles.quantity}>{quantity}</div>
-                      <Button
-                        className={styles.removeBtn}
-                        onClick={() => setQuantity(quantity + 1)}
-                      >
-                        <AddIcon style={{ width: "15px" }} />
-                      </Button>
+                      <p>
+                       {item.title}
+                      </p>
+                      <p>Solid colour</p>
+                      <p className={styles.protype}  >Product Type</p>
+                      <p className={styles.protypetext} >Readymade</p>
+                      {mobileView && (
+                        <div className={styles.PriceMobile}>
+                          <p className={styles.PriceMobileMain} >₹559
+
+                            <span className={styles.PriceMobileOriginal} >₹11499</span>
+                            <span className={styles.PriceMobileDiscount} >13% OFF</span>
+
+                          </p>
+
+                        </div>
+                      )}
+
+                      {/* </div> */}
+                    </div>
+                    <div className={styles.proMoney} >
+                      <p>₹559</p>
+                      <p>
+                        <span>₹1499</span>
+                        <span>63% OFF</span>
+                      </p>
                     </div>
                   </div>
                 </div>
-                <div>
-                  <p>₹559</p>
-                  <p>
-                    <span>₹1499</span>
-                    <span>63% OFF</span>
-                  </p>
-                </div>
-              </div>
-            </div>
+              )
+            })}
             <div>
               <div></div>
             </div>
-            <div>Order confirmation email will be send to your email id</div>
+            {
+              mobileView ?
+
+
+                <></>
+                :
+                <div style={tabView ? { marginTop: "1em", marginBottom: "-1em" } : {}}  >Order confirmation email will be send to your email id</div>
+            }
           </div>
           <div className={styles.lastContainer}>
             <div>

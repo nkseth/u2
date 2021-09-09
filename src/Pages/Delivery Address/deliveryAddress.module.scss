@@ -5,6 +5,7 @@
   border-radius: 5px !important;
   border: none !important;
   outline: none !important;
+  font-size: 16px!important;
 }
 
 .container {
@@ -31,6 +32,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      //styleName: Headline / H4;
+font-family: DM Serif Display;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 28px;
+letter-spacing: 0em;
+text-align: left;
+
     }
     > div:nth-child(2) {
       //   height: 201px;
@@ -266,7 +276,7 @@
         @include btn();
         background-color: var(--primary-color-dark) !important;
         color: #fff !important;
-        font-family: Inter !important;
+        font-family: DM Sans !important;
         font-size: 16px !important;
         font-weight: 700 !important;
         line-height: 24px !important;
@@ -392,6 +402,9 @@
       > div:nth-child(2) {
         width: 90%;
       }
+    }
+    .proceedBtn{
+      width: 280px!important;
     }
   }
 

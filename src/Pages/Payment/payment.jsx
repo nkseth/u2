@@ -37,13 +37,13 @@ export default function Payment() {
   }, [selectedPaymentMethod]);
   return (
     <Container bottomDivider footerOnTabMob>
-      <CustomSection style={{ paddingBottom: "3rem" }}>
+      <CustomSection style={{ marginTop: "2rem" }}>
         <Breadcrumb
           path='Home / Men / Blazers / My Bag / Executive Measurement / Address'
           activePath='/ Order Summary'
         />
         <div>
-          <CustomStepper activeStep={1} />
+          <CustomStepper activeStep={2} />
         </div>
         <div className={styles.container}>
           <div className={styles.firstContainer}>

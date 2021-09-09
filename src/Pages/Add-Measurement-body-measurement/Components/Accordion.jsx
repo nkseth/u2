@@ -10,7 +10,7 @@ import CustomTextField from "../Components/CustomTextField";
 
 import styles from "./Accordion.module.scss"
 
-function AccordionS({ position, FocusIt, Open, Form, AllDone, SetIt, NECK,
+function AccordionS({ position, FocusIt, Open, Form, AllDone, SetIt, NECK, UploadMeasurement,
     CHEST,
     WRIST,
     SHOULDER,
@@ -59,7 +59,7 @@ function AccordionS({ position, FocusIt, Open, Form, AllDone, SetIt, NECK,
                 }
 
             </motion.div>
-            <Button className={styles.submitBtn} onClick={SetIt} >{AllDone === 'Start' ? 'Start' : AllDone === false ? 'Next' : "Submit"}</Button>
+            <Button className={styles.submitBtn} onClick={AllDone === true ? UploadMeasurement : SetIt} >{AllDone === true ? 'Submit' : AllDone}</Button>
 
 
         </div>
@@ -97,7 +97,7 @@ function AccordionSingle({ name, Open, SetOpen, Form, value }) {
             </AccordionSummary>
             <AccordionDetails
                 style={{
-                    background: "#e0e0e0f2",
+                    background: "#fbfbfb",
                     display: "flex",
                     flexDirection: "column",
                     gap: "12px",

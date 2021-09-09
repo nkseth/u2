@@ -163,7 +163,7 @@ export default function DetailTabs({ type, product }) {
 
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ marginTop: "-2em" }} >
       <AntTabs
         variant={tabView && "scrollable"}
         value={value}

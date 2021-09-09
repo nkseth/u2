@@ -25,22 +25,22 @@ function FloatingTag({ position, FocusIt, IsFilled, NECK,
                 position === 'upper' ?
                     <>
                         <Button onClick={() => FocusIt('Neck')} className={NECK === '' ? styles.neck : styles.neckG} >
-                            Neck <ChevronRight />
+                            Neck <ChevronRight style={{ fontSize: 15 }} />
                         </Button>
                         <Button onClick={() => FocusIt('Shoulder')} className={SHOULDER === '' ? styles.shoulder : styles.shoulderG} >
-                            <ChevronLeft /> Shoulder
+                            <ChevronLeft style={{ fontSize: 15 }} /> Shoulder
                         </Button>
                         <Button onClick={() => FocusIt('Chest')} className={CHEST === '' ? styles.chest : styles.chestG} >
-                            Chest <ChevronRight />
+                            Chest <ChevronRight style={{ fontSize: 15 }} />
                         </Button>
                         <Button onClick={() => FocusIt('Arm Hole')} className={ARMHOLE === '' ? styles.armHole : styles.armHoleG} >
-                            <ChevronLeft />  Arm Hole
+                            <ChevronLeft style={{ fontSize: 15 }} />  Arm Hole
                         </Button>
                         <Button onClick={() => FocusIt('Sleeve length')} className={SLEEVE === '' ? styles.sleeve : styles.sleeveG} >
-                            <ChevronLeft />  Sleeve
+                            <ChevronLeft style={{ fontSize: 15 }} />  Sleeve
                         </Button>
                         <Button onClick={() => FocusIt('Wrist')} className={WRIST === '' ? styles.wrist : styles.wristG} >
-                            Wrist <ChevronRight />
+                            Wrist <ChevronRight style={{ fontSize: 15 }} />
                         </Button>
                     </>
                     :
@@ -49,25 +49,25 @@ function FloatingTag({ position, FocusIt, IsFilled, NECK,
                         {/* Bottom Tags here */}
 
                         <Button onClick={() => FocusIt('Waist')} className={WAIST === '' ? styles.waist : styles.waistG}   >
-                            <ChevronLeft /> Waist
+                            <ChevronLeft style={{ fontSize: 15 }} /> Waist
                         </Button>
                         <Button onClick={() => FocusIt('Hip Round')} className={HIPROUND === '' ? styles.hip : styles.hipG} >
-                            Hip Round  <ChevronRight />
+                            Hip Round  <ChevronRight style={{ fontSize: 15 }} />
                         </Button>
                         <Button onClick={() => FocusIt('Full length')} className={FULLLENGTH === '' ? styles.fullLength : styles.fullLengthG} >
-                            <ChevronLeft /> Full Length
+                            <ChevronLeft style={{ fontSize: 15 }} /> Full Length
                         </Button>
                         <Button onClick={() => FocusIt('Thigh')} className={THIGH === '' ? styles.thigh : styles.thighG} >
-                            <ChevronLeft />  Thigh
+                            <ChevronLeft style={{ fontSize: 15 }} />  Thigh
                         </Button>
                         <Button onClick={() => FocusIt('InSeam')} className={INSEAM === '' ? styles.inseam : styles.inseamG} >
-                            Inseam<ChevronRight />
+                            Inseam<ChevronRight style={{ fontSize: 15 }} />
                         </Button>
                         <Button onClick={() => FocusIt('Calf')} className={CALF === '' ? styles.calf : styles.calfG} >
-                            Calf <ChevronRight />
+                            Calf <ChevronRight style={{ fontSize: 15 }} />
                         </Button>
                         <Button onClick={() => FocusIt('Ankle')} className={ANKLE === '' ? styles.ankle : styles.ankleG} >
-                            <ChevronLeft /> Ankle
+                            <ChevronLeft style={{ fontSize: 15 }} /> Ankle
                         </Button>
                     </>
 

@@ -22,10 +22,8 @@ import { handMadeClothes } from "../../../Redux/actions/designerHomePage";
 const HandMade_Clothes = () => {
   const dispatch = useDispatch();
   const customStyle = {
-    padding: "5rem 3rem",
-    background: "#857250",
-    marginTop: "3em",
-    marginBottom: "3em",
+    padding: "5rem 3rem 4rem  3rem",
+    background: "#938368",
   };
   const { clothes } = useSelector((state) => state.root.handMadeClothes);
 
@@ -35,9 +33,6 @@ const HandMade_Clothes = () => {
   }, []);
 
   const theme = useTheme()
-  const customView = useMediaQuery("(max-width:960px)");
-  const BigView = useMediaQuery("(min-width:960px)");
-  const MobileView = useMediaQuery("(max-width:550px)");
   const match = useMediaQuery(theme.breakpoints.down('xs'))
   const iPade = useMediaQuery(theme.breakpoints.down('sm'))
 
@@ -46,21 +41,13 @@ const HandMade_Clothes = () => {
   }
 
   return (
-    <div className="hande_made_clothes">
-      <CustomSection class={styles.handmadeclothes} style={customStyle}>
-        <div
-          className={`${styles.Carousel_header} ${styles.HandMade_Clothes_header}`}
-        >
+    <div>
+      <CustomSection class={styles.suitwear_content} style={customStyle}>
+        <div className={`${styles.SuitWear_header}`}>
           Hand Made Clothes
-          {MobileView ?
-            <></>
-            :
-            <CustomDivider style={{ height: "2px", background: "#fff" }} />
-          }
+          <CustomDivider style={{ height: "2px", background: "#fff" }} />
         </div>
-
         <CarouselProvider
-          style={customView ? { marginBottom: 0, marginTop: 0 } : BigView ? { marginBottom: -50, marginTop: -80 } : { marginBottom: -50, marginTop: -80 }}
           visibleSlides={match ? 1 : iPade ? 2 : visible}
           totalSlides={clothes?.length}
           infinite
@@ -92,10 +79,18 @@ const HandMade_Clothes = () => {
             <Slide index={4}>
               <CarouselSlide5 />
             </Slide> */}
+            {/* </Slide>
+            <Slide index={5}>
+              <CarouselSlide6 />
+            </Slide>
+            <Slide index={6}>
+              <CarouselSlide7 />
+            </Slide> */}
+
           </Slider>
-          <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
+          <DotGroup style={{ display: "flex", marginTop: "2rem" }} />
           <div className={styles.NavigationContainer}>
-            <Link style={{ color: "#fff" }} to="/">
+            <Link style={{ color: "#fff" }} to="designers-product-page">
               SEE All
             </Link>
             <div className={styles.Carousel_SliderButtonBox}>
@@ -119,78 +114,158 @@ const HandMade_Clothes = () => {
 
 export default HandMade_Clothes;
 
-const CarouselSlide = () => {
-  const media = useMediaQuery(`(max-width:768px)`);
-  const imageSrc =
-    "https://images.unsplash.com/photo-1541888627857-37d0cd590eca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  return (
-    <>
-      <div className={styles.HandMade_Clothes}>
-        <div className={styles.HandMade_Clothes_Items}>
-          <img src={h1} alt="items" />
-          <p>Celebrity Style</p>
-        </div>{" "}
-      </div>
-    </>
-  );
-};
-const CarouselSlide2 = () => {
-  const media = useMediaQuery(`(max-width:768px)`);
-  const imageSrc =
-    "https://images.unsplash.com/photo-1541888627857-37d0cd590eca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  return (
-    <>
-      <div className={styles.HandMade_Clothes}>
-        <div className={styles.HandMade_Clothes_Items}>
-          <img src={h2} alt="items" />
-          <p>Casual wear</p>
-        </div>{" "}
-      </div>
-    </>
-  );
-};
-const CarouselSlide3 = () => {
-  const media = useMediaQuery(`(max-width:768px)`);
-  const imageSrc =
-    "https://images.unsplash.com/photo-1541888627857-37d0cd590eca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  return (
-    <>
-      <div className={styles.HandMade_Clothes}>
-        <div className={styles.HandMade_Clothes_Items}>
-          <img src={h2} alt="items" />
-          <p>Indian ethnic wear</p>
-        </div>{" "}
-      </div>
-    </>
-  );
-};
-const CarouselSlide4 = () => {
-  const media = useMediaQuery(`(max-width:768px)`);
-  const imageSrc =
-    "https://images.unsplash.com/photo-1541888627857-37d0cd590eca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  return (
-    <>
-      <div className={styles.HandMade_Clothes}>
-        <div className={styles.HandMade_Clothes_Items}>
-          <img src={h1} alt="items" />
-          <p>Indian ethnic wear</p>
-        </div>{" "}
-      </div>
-    </>
-  );
-};
-const CarouselSlide5 = () => {
-  const media = useMediaQuery(`(max-width:768px)`);
-  const imageSrc =
-    "https://images.unsplash.com/photo-1541888627857-37d0cd590eca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  return (
-    <>
-      <div className={styles.HandMade_Clothes}>
-        <div className={styles.HandMade_Clothes_Items}>
-          <img src={h2} alt="items" />
-          <p>Indian ethnic wear</p>
-        </div>{" "}
-      </div>
-    </>
-  );
-};
+// const CarouselSlide1 = () => {
+
+
+//   return (
+//     <div style={{ width: "100%" }} >
+//       <div className={styles.SuitWear}>
+//         <div className={styles.SuitWear_Items}>
+//           <img src={c2} alt="items" />
+//           <Link to="designers-product-page">Celibrity Style</Link>
+//         </div>{" "}
+
+//       </div>
+//     </div>
+//   );
+// };
+
+// const CarouselSlide2 = () => {
+
+
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+
+//         <div className={styles.SuitWear_Items}>
+//           <img src={c1} alt="items" />
+//           <Link to="designers-product-page">Indian ethinic Wear</Link>
+//         </div>{" "}
+
+
+//       </div>
+//     </div>
+//   );
+// };
+
+
+// const CarouselSlide3 = () => {
+
+
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+
+//         <div className={styles.SuitWear_Items}>
+//           <img src={c2} alt="items" />
+//           <Link to="designers-product-page">Indian ethinic Wear</Link>
+//         </div>{" "}
+
+//         {/* {media ? null : (
+//           <>
+//             <div className={styles.SuitWear_Items}>
+//               <img src={p3} alt="items" />
+//               <Link to="designers-product-page">Wearwww</Link>
+//             </div>{" "}
+//           </>
+//         )} */}
+//       </div>
+//     </div>
+//   );
+// };
+// const CarouselSlide4 = () => {
+
+
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+
+//         <div className={styles.SuitWear_Items}>
+//           <img src={c1} alt="items" />
+//           <Link to="designers-product-page">Indian ethinic Wear</Link>
+//         </div>{" "}
+
+//         {/* {media ? null : (
+//           <>
+//             <div className={styles.SuitWear_Items}>
+//               <img src={p3} alt="items" />
+//               <Link to="designers-product-page">Wearwww</Link>
+//             </div>{" "}
+//           </>
+//         )} */}
+//       </div>
+//     </div>
+//   );
+// };
+// const CarouselSlide5 = () => {
+
+
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+
+//         <div className={styles.SuitWear_Items}>
+//           <img src={c2} alt="items" />
+//           <Link to="designers-product-page">Indian ethinic Wear</Link>
+//         </div>{" "}
+
+//         {/* {media ? null : (
+//           <>
+//             <div className={styles.SuitWear_Items}>
+//               <img src={p3} alt="items" />
+//               <Link to="designers-product-page">Wearwww</Link>
+//             </div>{" "}
+//           </>
+//         )} */}
+//       </div>
+//     </div>
+//   );
+// };
+// const CarouselSlide6 = () => {
+
+
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+
+//         <div className={styles.SuitWear_Items}>
+//           <img src={c1} alt="items" />
+//           <Link to="designers-product-page">Indian ethinic Wear</Link>
+//         </div>{" "}
+
+//         {/* {media ? null : (
+//           <>
+//             <div className={styles.SuitWear_Items}>
+//               <img src={p3} alt="items" />
+//               <Link to="designers-product-page">Wearwww</Link>
+//             </div>{" "}
+//           </>
+//         )} */}
+//       </div>
+//     </div>
+//   );
+// };
+// const CarouselSlide7 = () => {
+
+
+//   return (
+//     <div className>
+//       <div className={styles.SuitWear}>
+
+//         <div className={styles.SuitWear_Items}>
+//           <img src={c2} alt="items" />
+//           <Link to="designers-product-page">Indian ethinic Wear</Link>
+//         </div>{" "}
+
+//         {/* {media ? null : (
+//           <>
+//             <div className={styles.SuitWear_Items}>
+//               <img src={p3} alt="items" />
+//               <Link to="designers-product-page">Wearwww</Link>
+//             </div>{" "}
+//           </>
+//         )} */}
+//       </div>
+//     </div>
+//   );
+// };

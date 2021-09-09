@@ -47,7 +47,7 @@ export default function StylishRecommendationSection({ type }) {
             </div>
           )
         })}
-        {/* {mobileView && (
+        {mobileView && (
           <div>
             <StylishCard image={stylish1} />
             <StylishCard image={stylish2} />
@@ -69,7 +69,7 @@ export default function StylishRecommendationSection({ type }) {
               </div>
             </div>
             <div className={styles.secondCon}>
-              {/* <div>
+               <div>
                 <StylishCard image={stylish3} />
 
               </div> 
@@ -83,7 +83,7 @@ export default function StylishRecommendationSection({ type }) {
               </div>
             </div>
           </>
-        )} */}
+        )}
       </div>
     </CustomSection>
   );

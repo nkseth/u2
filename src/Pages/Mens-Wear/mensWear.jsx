@@ -113,7 +113,7 @@ function GRID({ name, image, classname }) {
     <Grid
       item
       md={3}
-      style={{ display: "flex", justifyContent: "center", marginLeft: "1em", marginRight: "1em" }}
+      style={{ display: "flex", justifyContent: "center", marginLeft: "auto", marginRight: "auto" }}
     >
       <CategoriesToBagCard image={image} title={name} />
     </Grid>
@@ -145,12 +145,13 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2 }) {
         },
       }}
     >
+
       <Grid
         container
-        style={{ width: "100%", margin: "0" }}
+        // style={{ width: "100%", margin: "auto" }}
         justifyContent={!customView ? 'center' : 'space-evenly'}
         wrap={'nowrap'}
-        spacing={2}
+        spacing={0}
       >
         {
           !customView2 ?
@@ -170,10 +171,10 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2 }) {
 
       <Grid
         container
-        style={{ width: "100%", margin: "0" }}
+        // style={{ width: "100%", margin: "auto" }}
         justifyContent={!customView ? 'center' : 'space-evenly'}
         wrap={'nowrap'}
-        spacing={2}
+        spacing={0}
       >
         {
           !customView2 ?

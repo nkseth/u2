@@ -108,6 +108,7 @@
 
 }
 @media screen and (max-width: 550px) {
+
   .carouselItem {
     height: 225px;
     span {
@@ -118,7 +119,7 @@
     }
     p {
       margin-top: 0em;
-      font-size: 12px;
+      font-size: 12px!important;
       line-height: 18px;
       letter-spacing: 0.0075em;
       width: 90%;
@@ -142,12 +143,6 @@
   }
 }
 
-
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) {
-    
-}
 
 // Carousel
 

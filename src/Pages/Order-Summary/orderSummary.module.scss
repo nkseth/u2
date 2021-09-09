@@ -14,6 +14,7 @@
       font-weight: 400;
       line-height: 28px;
       color: var(--primary-color);
+      width: 100%;
     }
     > div:nth-child(2) {
       border-bottom: 1px solid var(--primary-color);
@@ -209,6 +210,7 @@
   .couponInputDiv {
     display: grid;
     gap: 0.5rem;
+    margin-top: -1em;
     width: 100%;
     > div:first-child {
       border: 1px solid rgba(133, 114, 80, 1);
@@ -239,10 +241,31 @@
     }
   }
 }
+.protype{
+  //styleName: Headline / H5;
+font-family: DM Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 20px;
+letter-spacing: 0px;
+text-align: left;
+}
+.protypetext{
+  font-family: DM Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 18px;
+letter-spacing: 0.1599999964237213px;
+text-align: left;
+
+}
+
 
 .placeOrderBtnDiv {
   width: 100%;
-  margin: 4rem 0;
+  margin: 2rem 0;
   display: flex;
   justify-content: center;
   padding: 0 1rem;
@@ -263,7 +286,7 @@
   .container {
     flex-direction: column;
     .firstContainer {
-      width: 100%;
+      width: 100%!important;
     }
     .placeOrderBtnDiv {
       padding: 0;
@@ -272,6 +295,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  .placeOrderBtnDiv{
+    margin-top: 1em!important;
+  }
 }
 
 @media screen and (max-width: 550px) {
@@ -283,14 +309,131 @@
   }
 
   .firstContainer {
+    width: 100%!important;
+    >div :first-child{
+      width: 100%;
+    }
     > div:nth-child(2) {
       padding: 1rem !important;
       > div {
         padding: 0 !important;
         > div:last-child {
           display: none;
-        }
+       }
       }
     }
   }
+.image{
+  height: 108px!important;
+width: 96px!important;
+border-radius: 5px;
 }
+.protype{
+  font-size: 12px;
+}
+.protypetext{
+  font-size: 12px;
+}
+
+.lastContainer{
+  margin-top: -5em!important;
+}
+
+
+
+
+
+
+
+
+
+
+}
+
+
+.PriceMobile{
+  display: flex;
+  align-items:center;
+  flex-direction: row!important;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+
+
+.PriceMobileMain{
+font-family: DM Serif Display;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: 28px;
+letter-spacing: 0em;
+text-align: left;
+}
+.PriceMobileOriginal{
+  text-decoration: line-through;
+  font-family: DM Sans;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 20px;
+letter-spacing: 0px;
+text-align: left;
+color: #e6e3dc!important;
+margin-left: 0.5em;
+
+
+}
+.PriceMobileDiscount{
+font-family: DM Sans;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 20px;
+letter-spacing: 0px;
+text-align: left;
+
+font-family: DM Sans;
+font-style: normal;
+font-weight: 700;
+color: var(--primary-color);
+margin: 0!important;
+}
+
+
+
+
+
+
+
+
+
+// .priceMainspan{
+//   font-family: DM Serif Display;
+//   font-size: 20px!important;
+//   font-style: normal;
+//   font-weight: 400;
+//   text-align: left;
+//   margin: 0!important;
+//   }
+//   .priceDropspan{
+//     font-family: DM Sans;
+//     font-size: 16px;
+//     font-style: normal;
+//     font-weight: 700;
+//     color: #9D9D9D;
+//     text-decoration: line-through;
+//   margin: 0!important;
+
+//   }
+//   .pricePercentagespan{
+//   font-family: DM Sans;
+//   font-size: 16px;
+//   font-style: normal;
+//   font-weight: 700;
+//   color: var(--primary-color);
+//   margin: 0!important;
+
+  
+//   }
+

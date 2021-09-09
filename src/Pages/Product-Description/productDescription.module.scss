@@ -14,7 +14,19 @@
 .FormControlLabel{
   max-width: 330px;
   height: 5em;
+
 }
+.imagegall{
+  background:#F1EFEB;
+  padding-top: 1em;
+  img{
+    object-fit: cover;
+    object-position: top;
+  }
+
+}
+
+
 .FormControlLabelS{
   max-width: 300px;
 }
@@ -37,6 +49,7 @@
   width: 90%;
   justify-content: center;
   align-items: flex-start;
+  padding-left: 1em;
   height: 3em; /* Sets the div height to 2x line-height (3 times text size) */
   width: 100%; /* Use whatever width you want */
   white-space: normal; /* Wrap lines of text */
@@ -252,15 +265,18 @@
 
   .selectColor {
     margin-top: 0.5rem;
+    li{
+      padding: 1em;
+    }
     > div:first-child {
       font-size: 16px;
       font-weight: 700;
       line-height: 20px;
       color: #000;
+      margin-bottom:-1em;
     }
   }
   .ProductSelectorHelpBtn{
-    margin-left: 1em;
     padding: 0.5em 0.5em ;
     color: #6a5b40;
     // position: absolute;

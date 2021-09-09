@@ -10,67 +10,67 @@ function DetailTab({ Open, Fun }) {
             {
                 Open === 'Neck' ?
                     <Button onClick={() => Fun('upper')} className={styles.Neck} >
-                        <ChevronLeft /> Neck
+                        <ChevronLeft style={{ fontSize: 15 }} /> Neck
                     </Button>
                     :
                     Open === 'Shoulder' ?
                         <Button onClick={() => Fun('upper')} className={styles.Shoulder} >
-                            <ChevronLeft /> Shoulder
+                            <ChevronLeft style={{ fontSize: 15 }} /> Shoulder
                         </Button>
                         :
                         Open === 'Chest' ?
                             <Button onClick={() => Fun('upper')} className={styles.Chest} >
-                                <ChevronLeft />Chest
+                                <ChevronLeft style={{ fontSize: 15 }} />Chest
                             </Button>
                             :
                             Open === 'Arm Hole' ?
                                 <Button onClick={() => Fun('upper')} className={styles.Arm} >
-                                    Arm Hole<ChevronRight />
+                                    Arm Hole<ChevronRight style={{ fontSize: 15 }} />
                                 </Button>
                                 :
                                 Open === 'Sleeve length' ?
                                     <Button onClick={() => Fun('upper')} className={styles.Sleeve} >
-                                        <ChevronLeft />  Sleeve length
+                                        <ChevronLeft style={{ fontSize: 15 }} />  Sleeve length
                                     </Button>
                                     :
                                     Open === 'Wrist' ?
                                         <Button onClick={() => Fun('upper')} className={styles.Wrist} >
-                                            <ChevronLeft />  Wrist
+                                            <ChevronLeft style={{ fontSize: 15 }} />  Wrist
                                         </Button>
                                         :
                                         Open === 'Waist' ?
                                             <Button onClick={() => Fun('lower')} className={styles.Waist} >
-                                                <ChevronLeft />  Waist
+                                                <ChevronLeft style={{ fontSize: 15 }} />  Waist
                                             </Button>
                                             :
                                             Open === 'Full length' ?
                                                 <Button onClick={() => Fun('lower')} className={styles.Full} >
-                                                    Full Length<ChevronRight />
+                                                    Full Length<ChevronRight style={{ fontSize: 15 }} />
                                                 </Button>
                                                 :
                                                 Open === 'Hip Round' ?
                                                     <Button onClick={() => Fun('lower')} className={styles.Hip} >
-                                                        Hip Round<ChevronRight />
+                                                        Hip Round<ChevronRight style={{ fontSize: 15 }} />
                                                     </Button>
                                                     :
                                                     Open === 'InSeam' ?
                                                         <Button onClick={() => Fun('lower')} className={styles.InSeam} >
-                                                            InSeam<ChevronRight />
+                                                            InSeam<ChevronRight style={{ fontSize: 15 }} />
                                                         </Button>
                                                         :
                                                         Open === 'Thigh' ?
                                                             <Button onClick={() => Fun('lower')} className={styles.Thigh} >
-                                                                Thigh<ChevronRight />
+                                                                Thigh<ChevronRight style={{ fontSize: 15 }} />
                                                             </Button>
                                                             :
                                                             Open === 'Calf' ?
                                                                 <Button onClick={() => Fun('lower')} className={styles.Calf} >
-                                                                    Calf<ChevronRight />
+                                                                    Calf<ChevronRight style={{ fontSize: 15 }} />
                                                                 </Button>
                                                                 :
                                                                 Open === 'Ankle' ?
                                                                     <Button onClick={() => Fun('lower')} className={styles.Ankle} >
-                                                                        Ankle<ChevronRight />
+                                                                        Ankle<ChevronRight style={{ fontSize: 15 }} />
                                                                     </Button>
                                                                     :
                                                                     <></>

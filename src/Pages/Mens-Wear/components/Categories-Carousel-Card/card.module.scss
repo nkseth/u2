@@ -3,6 +3,7 @@
   and (min-device-width: 768px) 
   and (max-device-width: 1024px)  {
     .container {
+      
       .innerContainer {
         div {
          
@@ -16,7 +17,7 @@
       }
     }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 769px) {
 
   .header {
     font-family: DM Serif Display;
@@ -91,3 +92,13 @@
           background: #fff !important;
           // border: solid !important;
         }
+
+
+@media screen and (max-width: 550px) {
+
+.container{
+  width: 100%!important;
+  margin: 0;
+}
+
+}

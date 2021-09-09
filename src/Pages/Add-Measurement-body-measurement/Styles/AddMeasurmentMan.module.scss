@@ -2,7 +2,6 @@
     width: 100%;
     height: 100%;
     display: flex;
-    flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-evenly;
 }
@@ -12,9 +11,9 @@
     margin-top: 5em;
     position: relative;
     min-width: 200px;
-    max-width:450px;
-    overflow:hidden ;
-
+    max-width:750px;
+    overflow: hidden;
+    z-index: 0;
 }
 .AccordionDiv{
     width: 100%;
@@ -24,10 +23,13 @@
     margin-top: 4em;
     max-width: 400px;
 }
+// Man
+
+
 .upperImage{
     width: 100%;
     height: 90%;
-    filter: drop-shadow(0px 0px 5px rgba(34, 34, 34, 0.555));
+    
     margin-top: 2em;
     transition: all 1s;
     
@@ -35,10 +37,38 @@
 .lowerImage{
     width: 100%;
     height: 90%;
-    filter: drop-shadow(0px 0px 5px rgba(34, 34, 34, 0.555));
+    
     margin-top: 2em;
     transition: all 1s;
 }
+
+
+// Woman
+.upperImage_w{
+    width: 100%;
+    height: 90%;
+    
+    margin-top: 2em;
+    transition: all 1s;
+    padding: 1em;
+
+
+
+    
+}
+.lowerImage_w{
+    width: 100%;
+    height: 90%;
+    
+    margin-top: 2em;
+    transition: all 1s;
+    padding: 1em;
+
+}
+
+
+
+
 
 .AddMeadurementsH1{
     font-family: DM Sans;
@@ -169,7 +199,7 @@ border-radius: 0px 5px 5px 0px  !important;
 }
 .Wrist{
     @include Img();
-        transform: scale(4) translateY(1em) translateX(-5em) ;
+        transform: scale(2) translateY(1em) translateX(-2em) ;
 }
 
 .Hip{
@@ -182,13 +212,13 @@ border-radius: 0px 5px 5px 0px  !important;
 }
 .Ankle{
     @include Img();
-        transform: scale(3) translateY(-10em) ;
+        transform: scale(3) translateY(-14em) ;
 }
 
 
 .Sleeve{
     @include Img();
-        transform: scale(2) translateY(5em) translateX(-3em) ;
+        transform: scale(2) translateY(5em)  ;
 }
 .Calf{
     @include Img();
@@ -196,7 +226,7 @@ border-radius: 0px 5px 5px 0px  !important;
 }
 .Inseam{
     @include Img();
-        transform: scale(2) translateY(-5em) translateX(5em) ;
+        transform: scale(2) translateY(-5em) ;
 }
 .FullLength{
     @include Img();
@@ -209,6 +239,7 @@ border-radius: 0px 5px 5px 0px  !important;
     bottom: -30%;
     display: none;
     max-width: 400px;
+    // margin-bottom: 3em;
 }
 
 .submitBtn{
@@ -220,7 +251,7 @@ border-radius: 0px 5px 5px 0px  !important;
     background: #857250 !important;
     box-shadow: none !important;
     border: 1px solid #857250 !important;
-    font-family: DM Sans !important;
+    font-family: inter !important;
     font-size: 16px !important;
     font-weight: 700 !important;
     line-height: 20px !important;
@@ -248,7 +279,7 @@ border-radius: 0px 5px 5px 0px  !important;
     }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:769px) {
     .container{
        align-items: center;
        flex-direction: column;
@@ -262,15 +293,72 @@ border-radius: 0px 5px 5px 0px  !important;
     }
     .TabsButtonDivTop{
         display: flex;
-        width: 90%;
+        width: 100%;
         max-width: 400px;
         // margin-top: -5em;
     }
     .submitBtn{
         display: flex!important;
     }
+    .TabsButton1,.TabsButton2,.TabsButtonActive1,.TabsButtonActive2{
+        border-radius: 0!important;
+
+    }
 .FloatingMeasure{
 display: block;
 }
 
+}
+
+@media  screen  and (max-width:769px) {
+    .SVGDiv{
+        width: 100%;
+        height: 100vh;
+        margin-top: 5em;
+        position: relative;
+        min-width: 200px;
+        max-width:450px;
+    }
+}
+@media all and (device-width: 769px) and (device-height: 1024px){
+    .SVGDiv{
+        width: 100%;
+        height: 50vh;
+        margin-top: 5em;
+        position: relative;
+        min-width: 200px;
+        max-width:450px;
+        overflow: auto;
+    }
+    .FloatingMeasure{
+        bottom: 10%;
+    }
+}
+
+
+
+@media screen and (max-width :769px) {
+    .SVGDiv{
+        width: 100%;
+        margin-top: 5em;
+        position: relative;
+        min-width: 200px;
+        max-width:450px;
+        overflow: hidden;
+    }
+
+}
+
+    @media screen and (max-width :550px) {
+   .submitBtn{
+       margin-top: 5em!important;
+   }
+   .SVGDiv{
+    width: 100%;
+    margin-top: 5em;
+    position: relative;
+    min-width: 200px;
+    max-width:450px;
+    overflow: hidden;
+}
 }

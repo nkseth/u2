@@ -20,8 +20,19 @@ export default function DesignerSlide({ img1, img2, img3, img4, brand1, brand2, 
       >
         {!tabView && <DesignersCard img={img1} brandImg={brand1} />}
         {!mobileView && <DesignersCard img={img2} brandImg={brand2} />}
-        {tabView || !mobileView ? <></> : <DesignersCard img={img3} brandImg={brand3} />}
-        <DesignersCard img={img4} brandImg={brand4} />
+        {tabView || !mobileView ? <></> :
+          <>
+            <DesignersCard img={img3} brandImg={brand3} />
+          </>}
+        <DesignersCard img={img3} brandImg={brand3} />
+        {mobileView ?
+          <>
+            <DesignersCard img={img3} brandImg={brand3} />
+          </>
+
+          :
+          <DesignersCard img={img4} brandImg={brand4} />
+        }
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import styles from "./Styles/AddMeasurmentWoman.module.scss"
+import styles from "./Styles/AddMeasurmentMan.module.scss"
 
-import { Button } from '@material-ui/core'
+import { Button, useMediaQuery } from '@material-ui/core'
 import AccordionS from './Components/Accordion'
 import FloatingTag from './Components/FloatingTag'
 import DetailTab from './Components/DetailTab'
@@ -28,6 +28,10 @@ import Container from '../../utils/Container/container'
 function AddWomanMeasurement() {
 
 
+    const mobileView = useMediaQuery("(max-width:550px)");
+    const tabView = useMediaQuery("(max-width:769px)");
+
+
     const [NECK, SETNECK] = useState('')
     const [CHEST, SETCHEST] = useState('')
     const [WRIST, SETWRIST] = useState('')
@@ -46,58 +50,71 @@ function AddWomanMeasurement() {
     const Form = (value, name) => {
         if (name === 'Neck') {
             SETNECK(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
         else if (name === 'Shoulder') {
             SETSHOULDER(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
         else if (name === 'Chest') {
             SETCHEST(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
         else if (name === 'Arm Hole') {
             SETARMHOLE(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
         else if (name === 'Sleeve length') {
             SETSLEEVE(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
         else if (name === 'Wrist') {
             SETWRIST(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
 
         else if (name === 'Waist') {
             SETWAIST(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
         else if (name === 'Full length') {
             SETFULLLENGTH(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
         else if (name === 'Hip Round') {
             SETHIPROUND(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
         else if (name === 'InSeam') {
             SETINSEAM(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
         else if (name === 'Thigh') {
             SETTHIGH(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
         else if (name === 'Calf') {
             SETCALF(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
         else if (name === 'Ankle') {
             SETANKLE(value);
-            console.log(name, value)
+            setAllDone('Done')
+
         }
-        console.log(name, value)
+
     }
 
 
@@ -116,6 +133,8 @@ function AddWomanMeasurement() {
     var CALFFilled = CALF === '' ? false : true
     var ANKLEFilled = ANKLE === '' ? false : true
 
+
+    const [AllValues, SetAllValues] = useState(NECKFilled && CHESTFilled && WRISTFilled && SHOULDERFilled && ARMHOLEFilled && SLEEVEFilled && WAISTFilled && HIPROUNDFilled && INSEAMFilled && THIGHFilled && FULLLENGTHFilled && CALFFilled && ANKLEFilled === true ? true : false)
     const [AllDone, setAllDone] = useState('Start')
     const [button, setButton] = useState('upper')
     const [Open, SetOpen] = useState('upper')
@@ -134,71 +153,105 @@ function AddWomanMeasurement() {
     };
     const SetIt = () => {
         if (AllDone === 'Start') {
-            setAllDone(false)
-        }
-        else if (NECKFilled === false) {
-            SetOpen('Neck')
-        }
-        else if (SHOULDERFilled === false) {
-            SetOpen('Shoulder')
-        }
-        else if (CHESTFilled === false) {
-            SetOpen('Chest')
-        }
-        else if (ARMHOLEFilled === false) {
-            SetOpen('Arm Hole')
-        }
-        else if (SLEEVEFilled === false) {
-            SetOpen('Sleeve length')
-        }
-        else if (WRISTFilled === false) {
-            SetOpen('Wrist')
-        }
+            SetOpen('Neck');
+            setButton('upper')
 
-
-
-        else if (WAISTFilled === false) {
-            SetOpen('Waist')
         }
-        else if (FULLLENGTHFilled === false) {
-            SetOpen('Full length')
-        }
-        else if (HIPROUNDFilled === false) {
-            SetOpen('Hip Round')
-        }
-        // lower
-        else if (INSEAMFilled === false) {
-            SetOpen('InSeam')
-        }
-
-        else if (THIGHFilled === false) {
-            SetOpen('Thigh')
-        }
-        else if (CALFFilled === false) {
-            SetOpen('Calf')
-        }
-        else if (ANKLEFilled === false) {
-            SetOpen('Ankle')
-        }
-
-        else if (WRISTFilled === true && NECKFilled === true
-            && CHESTFilled === true && SHOULDERFilled === true
-            && ARMHOLEFilled === true && SLEEVEFilled === true
-            && WAISTFilled === true && HIPROUNDFilled === true
-            && INSEAMFilled === true && FULLLENGTHFilled === true
-            && THIGHFilled === true && CALFFilled === true
-            && ANKLEFilled === true) {
+        else {
             setAllDone(true);
             SetOpen('upper');
-            alert('This will Submit all Measurements and redirect to another page')
 
 
         }
     }
+    const UploadMeasurement = () => {
+        if (Open === 'upper' || Open === 'lower') {
+            alert('This button Will upload Measurements')
+
+        }
+        else {
+            setAllDone('Done')
+
+        }
+    }
+    // const SetIt = () => {
+    //     if (AllDone === 'Start') {
+    //         setAllDone(false)
+    //     }
+    //     else if (NECKFilled === false) {
+    //         SetOpen('Neck');
+    //         setButton('upper')
+    //     }
+    //     else if (SHOULDERFilled === false) {
+    //         SetOpen('Shoulder');
+    //         setButton('upper')
+    //     }
+    //     else if (CHESTFilled === false) {
+    //         SetOpen('Chest');
+    //         setButton('upper')
+    //     }
+    //     else if (ARMHOLEFilled === false) {
+    //         SetOpen('Arm Hole');
+    //         setButton('upper')
+    //     }
+    //     else if (SLEEVEFilled === false) {
+    //         SetOpen('Sleeve length');
+    //         setButton('upper')
+    //     }
+    //     else if (WRISTFilled === false) {
+    //         SetOpen('Wrist');
+    //         setButton('upper')
+    //     }
+
+
+
+    //     else if (WAISTFilled === false) {
+    //         SetOpen('Waist');
+    //         setButton('lower')
+    //     }
+    //     else if (FULLLENGTHFilled === false) {
+    //         SetOpen('Full length');
+    //         setButton('lower')
+    //     }
+    //     else if (HIPROUNDFilled === false) {
+    //         SetOpen('Hip Round');
+    //         setButton('lower')
+    //     }
+    //     // lower
+    //     else if (INSEAMFilled === false) {
+    //         SetOpen('InSeam');
+    //         setButton('lower')
+    //     }
+
+    //     else if (THIGHFilled === false) {
+    //         SetOpen('Thigh');
+    //         setButton('lower')
+    //     }
+    //     else if (CALFFilled === false) {
+    //         SetOpen('Calf');
+    //         setButton('lower')
+    //     }
+    //     else if (ANKLEFilled === false) {
+    //         SetOpen('Ankle');
+    //         setButton('lower')
+    //     }
+
+    //     else if (WRISTFilled === true && NECKFilled === true
+    //         && CHESTFilled === true && SHOULDERFilled === true
+    //         && ARMHOLEFilled === true && SLEEVEFilled === true
+    //         && WAISTFilled === true && HIPROUNDFilled === true
+    //         && INSEAMFilled === true && FULLLENGTHFilled === true
+    //         && THIGHFilled === true && CALFFilled === true
+    //         && ANKLEFilled === true) {
+    //         setAllDone(true);
+    //         SetOpen('upper');
+    //         alert('This will Submit all Measurements and redirect to another page')
+    //     }
+    // }
     return (
         <Container >
 
-            <div className={styles.container} style={{ marginTop: "1em" }} >
+            <div className={styles.container} style={tabView && !mobileView ? { marginTop: "1em" } : { marginTop: "0em" }} >
                 <div className={styles.TabsButtonDivTop}>
                     <Button onClick={() => { setButton('upper'); SetOpen('upper') }} className={button === 'upper' ? styles.TabsButtonActive1 : styles.TabsButton1} >Upper Body</Button>
                     <Button onClick={() => { setButton('lower'); SetOpen('lower') }} className={button === 'lower' ? styles.TabsButtonActive2 : styles.TabsButton2}  >Lower Body</Button>
@@ -224,8 +277,8 @@ function AddWomanMeasurement() {
                                                                                 Open === 'Full length' ? fullLength :
                                                                                     Image
                     } alt='body' className={
-                        Open === 'upper' ? styles.upperImage :
-                            Open === 'lower' ? styles.lowerImage :
+                        Open === 'upper' ? styles.upperImage_w :
+                            Open === 'lower' ? styles.lowerImage_w :
                                 Open === 'Neck' ? styles.Neck :
                                     Open === 'Shoulder' ? styles.Shoulder :
                                         Open === 'Chest' ? styles.Chest :
@@ -239,7 +292,7 @@ function AddWomanMeasurement() {
                                                                         Open === 'Calf' ? styles.Calf :
                                                                             Open === 'InSeam' ? styles.Inseam :
                                                                                 Open === 'Full length' ? styles.FullLength :
-                                                                                    styles.upperImage
+                                                                                    styles.upperImage_w
                     }
                     />
                     {
@@ -260,22 +313,7 @@ function AddWomanMeasurement() {
                                 ANKLE={ANKLE}
                             />
                             :
-                            <DetailTab Open={Open} Fun={SetOpen}
-                                NECK={NECK}
-                                CHEST={CHEST}
-                                WRIST={WRIST}
-                                SHOULDER={SHOULDER}
-                                ARMHOLE={ARMHOLE}
-                                SLEEVE={SLEEVE}
-                                WAIST={WAIST}
-                                HIPROUND={HIPROUND}
-                                INSEAM={INSEAM}
-                                FULLLENGTH={FULLLENGTH}
-                                THIGH={THIGH}
-                                CALF={CALF}
-                                ANKLE={ANKLE} />
-
-
+                            <></>
                     }
 
                 </div>
@@ -327,7 +365,10 @@ function AddWomanMeasurement() {
 
 
                 </div>
-                <Button className={styles.submitBtn} onClick={SetIt} >{AllDone === 'Start' ? 'Start' : AllDone === false ? 'Next' : "Submit"}</Button>
+                {/* <Button className={styles.submitBtn} >{AllDone === 'Start' ? 'Submit' : AllDone === false ? 'Next' : "Submit"}</Button> */}
+                {/* <Button className={styles.submitBtn} onClick={SetIt} >{AllDone}</Button> */}
+                <Button className={styles.submitBtn} onClick={AllDone === true ? UploadMeasurement : SetIt} >{AllDone === true ? 'Submit' : AllDone}</Button>
+
                 <div className={styles.AccordionDiv}>
                     <div className={styles.TabsButtonDiv}>
                         <Button onClick={() => { setButton('upper'); SetOpen('upper') }} className={button === 'upper' ? styles.TabsButtonActive1 : styles.TabsButton1} >Upper Body</Button>
@@ -354,8 +395,8 @@ function AddWomanMeasurement() {
                         THIGH={THIGH}
                         CALF={CALF}
                         ANKLE={ANKLE}
+                        UploadMeasurement={UploadMeasurement}
                     />
-
 
                 </div>
             </div>

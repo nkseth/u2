@@ -46,7 +46,7 @@ const Top_Designer = () => {
           infinite
           isIntrinsicHeight
         >
-          <Slider>
+          <Slider >
             <Slide index={0}>
               <CarouselSlide />
             </Slide>

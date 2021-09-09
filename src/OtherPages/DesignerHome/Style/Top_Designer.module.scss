@@ -1,14 +1,14 @@
 //here Top_Designer Styles
 .Top_Designer_header {
   color: #000;
-  
+ 
 }
 .Top_Designer {
   display: flex;
   height: 400px;
   gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
+  align-items: center; 
+  justify-content: space-evenly;
   .Top_Designer_Items {
     display: grid;
     justify-content: center;
@@ -91,7 +91,13 @@
     }
   }
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 769px) {
+  .Carousel_header {
+    margin-top: 0;
+
+  }
+}
+  @media screen and (max-width: 420px) {
   .topdesigner {
     padding: 3rem 1rem !important;
   }

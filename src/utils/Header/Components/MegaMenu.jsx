@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import MegaMenuCard from './card'
 import styles from "./MegaMenu.module.scss"
 import Img1 from "../Images/1.png"
@@ -7,20 +7,29 @@ import Img3 from "../Images/3.png"
 import Img4 from "../Images/4.png"
 import Img5 from "../Images/5.png"
 import Img6 from "../Images/6.png"
+import { useSelector } from 'react-redux'
 
+function MegaMenu({ Close, visible, type }) {
 
-function MegaMenu({ Close, visible }) {
+    const { category_subgrp } = useSelector(state => state.root.main)
+
+    const arr = category_subgrp[type]
+
+    if(!arr){
+        return null;
+    }
+
     return (
         <div className={visible ? styles.container : styles.hiddenContainer}
             onMouseLeave={() => Close(false)}>
-            <MegaMenuCard background={Img1} title={'Indian & Fusion Wear'} />
-            <MegaMenuCard background={Img2} title={'Bottom Wear'} />
-            <MegaMenuCard background={Img3} title={'Western wear '} />
-            <MegaMenuCard background={Img4} title={'Innerwear and Sleepwear'} />
-            <MegaMenuCard background={Img5} title={'Fabrics'} />
-            <MegaMenuCard background={Img6} title={'Designers'} />
+            {arr['sub-group'].map((item) => {
+                return (
+                    <MegaMenuCard key={item.id?.toString()} background={item.cover_image} title={item.name} categories={item.categories} />
+                )
+            })}
         </div>
     )
 }
 
 export default MegaMenu
+

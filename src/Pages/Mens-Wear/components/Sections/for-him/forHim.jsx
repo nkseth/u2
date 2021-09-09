@@ -24,21 +24,23 @@ export default function ForHimSection({ type }) {
 
   const dispatch = useDispatch()
 
-  const { mens_wear_subgrp, selected_sub_grp: activeNav, mens_active_product } = useSelector(state => state.root.main)
+  const { category_grp, selected_sub_grp: activeNav, mens_active_product } = useSelector(state => state.root.main)
 
   const setActiveNav = (val) => {
     dispatch(setSelectedSubGrp(val))
   }
 
-  useEffect(() => {
-    dispatch(get_mens_wear_subgrp(`${type}-fashion`))
-  }, [type])
+  // useEffect(() => {
+  //   dispatch(get_mens_wear_subgrp(`${type}-fashion`))
+  // }, [type])
 
   useEffect(() => {
     const val = `${type}-fashion`;
     dispatch(get_mens_active_product(val, activeNav))
 
   }, [activeNav, type])
+
+  const grp = type == 'mens' ? 'men' : type == 'womens' ? 'women' : 'kids'
 
 
   return (
@@ -74,7 +76,7 @@ export default function ForHimSection({ type }) {
                 >
                   All
                 </span>
-                {mens_wear_subgrp?.map((item) => {
+                {category_grp[grp]?.categories?.map((item) => {
                   return (
                     <span
                       href="#"
@@ -111,7 +113,7 @@ export default function ForHimSection({ type }) {
                   >
                     All
                   </span>
-                  {mens_wear_subgrp?.map((item) => {
+                  {category_grp[grp]?.categories?.map((item) => {
                     return (
                       <span
                         href="#"

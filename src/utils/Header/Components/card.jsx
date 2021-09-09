@@ -4,10 +4,10 @@ import styles from "./card.module.scss"
 
 
 
-function MegaMenuCard({ background, title }) {
+function MegaMenuCard({ background, title, categories }) {
     return (
         <div className={styles.card} style={{ backgroundImage: "url(" + background + ")" }} >
-            <CardOverlay title={title} />
+            <CardOverlay title={title} categories={categories} />
         </div>
     )
 }
@@ -17,11 +17,21 @@ export default MegaMenuCard
 
 
 
-function CardOverlay({ title }) {
+function CardOverlay({ title, categories }) {
     return (
         <div className={styles.CardOverlay} >
             <p className={styles.title} >{title}</p>
             <p className={styles.p}>
+                {categories.map((item) => {
+                    return (
+                        <>
+                            <Link to={{ pathname:`/designers-product-page/${item.slug}` }}>{item.name}</Link>
+                            <br />
+                        </>
+                    )
+                })}
+            </p>
+            {/* <p className={styles.p}>
                 <Link> Kurta Sets</Link>
                 <br />
                 <Link>Kurtas</Link>
@@ -41,7 +51,7 @@ function CardOverlay({ title }) {
                 <Link>Blazers</Link>
                 <br />
                 <Link>Suits</Link>
-            </p>
+            </p> */}
         </div>
     )
 }

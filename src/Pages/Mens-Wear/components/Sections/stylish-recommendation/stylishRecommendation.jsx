@@ -26,7 +26,7 @@ export default function StylishRecommendationSection({ type }) {
   }, [type])
 
   const { stylish_recommend } = useSelector(state => state.root.main)
-  console.log(stylish_recommend)
+
   return (
     <CustomSection
       style={{

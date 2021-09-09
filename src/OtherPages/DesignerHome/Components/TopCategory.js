@@ -8,22 +8,22 @@ import { Link } from "react-router-dom";
 const TopCategory = () => {
   const dispatch = useDispatch();
 
-  const { categories } = useSelector((state) => state.root.topCategory);
+  const { category_grp } = useSelector((state) => state.root.main);
 
-  useEffect(() => {
-    dispatch(topCategories({ slug: "womens-fashion" }));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(topCategories({ slug: "womens-fashion" }));
+  // }, []);
 
-  const filteredCategories = categories?.filter(
-    ({ slug }) =>
-      slug.toLowerCase() === "mens-fashion" ||
-      slug.toLowerCase() === "womens-fashion" ||
-      slug.toLowerCase() === "kids-fashion"
-  );
+  // const filteredCategories = categories?.filter(
+  //   ({ slug }) =>
+  //     slug.toLowerCase() === "mens-fashion" ||
+  //     slug.toLowerCase() === "womens-fashion" ||
+  //     slug.toLowerCase() === "kids-fashion"
+  // );
 
-  if(!filteredCategories){
-    return null;
-  }
+  // if(!filteredCategories){
+  //   return null;
+  // }
 
   const baseStyle = {};
   return (
@@ -33,16 +33,27 @@ const TopCategory = () => {
         <div className={styles.TopCategory_Items}>
           <h1 className="hidden_mobile">Top Categories 2021</h1>
         </div>
-        {filteredCategories?.map(({ id, name, description, cover_image, categories, slug }) => (
-          <CategoryItems
-            key={id}
-            heading={name}
-            details={description}
-            image={cover_image}
-            categories={categories}
-            slug={slug}
-          />
-        ))}
+          {category_grp.men && <CategoryItems
+            heading={category_grp.men?.name}
+            details={category_grp.men?.description}
+            image={category_grp.men?.cover_image}
+            categories={category_grp.men?.categories}
+            slug={category_grp.men?.slug}
+          />}
+          {category_grp.women && <CategoryItems
+            heading={category_grp.women?.name}
+            details={category_grp.women?.description}
+            image={category_grp.women?.cover_image}
+            categories={category_grp.women?.categories}
+            slug={category_grp.women?.slug}
+          />}
+          {category_grp.kids && <CategoryItems
+            heading={category_grp.kids?.name}
+            details={category_grp.kids?.description}
+            image={category_grp.kids?.cover_image}
+            categories={category_grp.kids?.categories}
+            slug={category_grp.kids?.slug}
+          />}
         {/* <CategoryItems heading={"Men"} details={MenDescription} /> */}
         {/* <CategoryItems heading={"Women"} details={WomenDescription} />
         <CategoryItems heading={"Kids"} details={KidsDescription} /> */}

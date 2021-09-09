@@ -59,7 +59,7 @@ export default function Header() {
     more: true,
   });
   const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
-
+  const [megaMenuType, setMegaMenuType] = useState('')
   const { user_data } = useSelector(state => state.root.main)
   //Here I use Redux For Show Login Model
   const { login_Model_Show } = useLogin();
@@ -210,7 +210,7 @@ export default function Header() {
       </div>
       {!tabView && (
         <div className={styles.secondContainer}>
-          <MegaMenu visible={isMegaMenuOpen} Close={setMegaMenuOpen} />
+          <MegaMenu visible={isMegaMenuOpen} type={megaMenuType} Close={setMegaMenuOpen} />
           <div className={styles.mainMenuContainer}>
             <span
               onMouseEnter={() => handleMouseEnter("newArrivals")}
@@ -220,23 +220,23 @@ export default function Header() {
               <Link style={{ color: "#9D8E73" }} to="/designers-product-page">New arrivals</Link>
             </span>
             <span
-              onMouseEnter={() => {handleMouseEnter("men"); setMegaMenuOpen(true)}}
-              onMouseLeave={() => {handleMouseLeave("men"); ; setMegaMenuOpen(false)}}
+              onMouseEnter={() => {handleMouseEnter("men"); setMegaMenuType('men'); setMegaMenuOpen(true)}}
+              onMouseLeave={() => {handleMouseLeave("men");}}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
               <Link style={{ color: "#9D8E73" }} to="/wear/mens">Men</Link>
             </span>
             <span
-              onMouseEnter={() => { handleMouseEnter("women"); setMegaMenuOpen(true) }}
-              onMouseLeave={() => {handleMouseLeave("women"); ; setMegaMenuOpen(false)}}
+              onMouseEnter={() => { handleMouseEnter("women"); setMegaMenuType('women'); setMegaMenuOpen(true) }}
+              onMouseLeave={() => {handleMouseLeave("women");}}
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
               {" "}
               <Link style={{ color: "#9D8E73" }} to="/wear/womens"> Women</Link>
             </span>
             <span
-              onMouseEnter={() => {handleMouseEnter("kids"); setMegaMenuOpen(true)}}
-              onMouseLeave={() => {handleMouseLeave("kids"); ; setMegaMenuOpen(false)}}
+              onMouseEnter={() => {handleMouseEnter("kids"); setMegaMenuType('kids'); setMegaMenuOpen(true)}}
+              onMouseLeave={() => {handleMouseLeave("kids");}}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
               <Link style={{ color: "#9D8E73" }} to="/wear/kids"> Kids</Link>

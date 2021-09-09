@@ -25,7 +25,6 @@ export default function NewCollectionSection({ type }) {
 
   const dispatch = useDispatch();
   const { new_collection } = useSelector(state => state.root.main)
-  console.log(new_collection, 'new')
 
   useEffect(() => {
     const group = type == 'mens' ? 'men_group_1' : type == 'womens' ? 'women_group_1' : 'kid_group_1'

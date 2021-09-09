@@ -23,7 +23,7 @@ import Payment from "./Pages/Payment/payment";
 import Offers from "./Pages/Offers/offers";
 import Orders from "./Pages/Orders/orders";
 import AllOrders from "./Pages/All-Orders/allOrders";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Polls from "./Pages/Polls/polls";
 import FashionTips from "./Pages/Daily-Fashion-Tips/fashionTips";
 import StyleGuideMan from "./Pages/Style-Guide-Man/style-guide-man";
@@ -65,6 +65,7 @@ import styles from "./App.module.scss"
 import AddManMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentMan";
 import AddWomanMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentWoman";
 import MyBag from "./Pages/My-Bag/MyBag";
+import { getCategoryGroup, getCategorySubGroup } from "./Redux/actions/designerHomePage";
 //Start From Here
 
 function App() {
@@ -80,6 +81,17 @@ function App() {
      }
 
   },[])
+
+
+  //const { category_grp } = useSelector(state => state.root.main)
+  const arr = ['men', 'women', 'kids']
+
+  useEffect(() => {
+    arr.forEach((item) => {
+      dispatch(getCategoryGroup(item))
+      dispatch(getCategorySubGroup(item))
+    })
+  }, [])
 
 
   return (

@@ -1,4 +1,4 @@
-import { ALL_THAT_YOU_WANT, CELIBRITY_STYLE, GET_DESIGNERS, MENS_ACTIVE_PRODUCT, MENS_WEAR_CAT, MENS_WEAR_SLIDER, MENS_WEAR_SUBGRP, MOST_LOVED, NEW_COLLECTION, SECTION1_SLIDERS, SELECTED_SUB_GRP, STYLISH_RECOMMEND, TOP_DESIGNERS, TOP_OFFERS, USER_DATA } from "../actions/types";
+import { ALL_THAT_YOU_WANT, CELIBRITY_STYLE, GET_CATEGORY_GROUP, GET_CATEGORY_SUBGROUP, GET_DESIGNERS, MENS_ACTIVE_PRODUCT, MENS_WEAR_CAT, MENS_WEAR_SLIDER, MENS_WEAR_SUBGRP, MOST_LOVED, NEW_COLLECTION, SECTION1_SLIDERS, SELECTED_SUB_GRP, STYLISH_RECOMMEND, TOP_DESIGNERS, TOP_OFFERS, USER_DATA } from "../actions/types";
 
 const inialState = {
   user_data: {},
@@ -15,7 +15,9 @@ const inialState = {
   top_offers: [],
   celibrity_style: [],
   designers: [],
-  offers_sliders: []
+  offers_sliders: [],
+  category_grp: {},
+  category_subgrp: {}
 };
 
 const mainreducer = (state = inialState, action) => {
@@ -94,6 +96,16 @@ const mainreducer = (state = inialState, action) => {
       return {
         ...state,
         offers_sliders: action.payload,
+      };
+    case GET_CATEGORY_GROUP:
+      return {
+        ...state,
+        category_grp: { ...state.category_grp, [action.payload.type]: action.payload.data },
+      };
+    case GET_CATEGORY_SUBGROUP:
+      return {
+        ...state,
+        category_subgrp: { ...state.category_subgrp, [action.payload.type]: action.payload.data },
       };
     default:
       return state;

@@ -228,15 +228,15 @@ export default function Header() {
             </span>
             <span
               onMouseEnter={() => { handleMouseEnter("women"); setMegaMenuOpen(true) }}
-              onMouseLeave={() => handleMouseLeave("women")}
+              onMouseLeave={() => {handleMouseLeave("women"); ; setMegaMenuOpen(false)}}
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
               {" "}
               <Link style={{ color: "#9D8E73" }} to="/wear/womens"> Women</Link>
             </span>
             <span
-              onMouseEnter={() => handleMouseEnter("kids")}
-              onMouseLeave={() => handleMouseLeave("kids")}
+              onMouseEnter={() => {handleMouseEnter("kids"); setMegaMenuOpen(true)}}
+              onMouseLeave={() => {handleMouseLeave("kids"); ; setMegaMenuOpen(false)}}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
               <Link style={{ color: "#9D8E73" }} to="/wear/kids"> Kids</Link>

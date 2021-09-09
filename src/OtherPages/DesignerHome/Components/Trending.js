@@ -57,7 +57,7 @@ const Trending = () => {
           <img src={c2} alt="items" />
           <Link to="designers-product-page">Wear</Link>
         </div> */}
-          {mobileView ? (
+          {/* {mobileView ? (
             items?.map(({ name, cover_image }) => (
               <div key={name} className={styles.Trending_Items}>
                 <img src={cover_image} alt={name} />
@@ -66,7 +66,7 @@ const Trending = () => {
             ))
           ) : (
             <></>
-          )}
+          )} */}
         </div>
         <div className={`${styles.Trending_Button}`}>
           <Button>

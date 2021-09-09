@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Accordion,
@@ -20,8 +20,10 @@ import AddIcon from "@material-ui/icons/Add";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { ReactComponent as CouponIcon } from "../../Images/icons/coupon.svg";
+import common_axios from "../../utils/axios.config";
 
 export default function OrderSummary() {
+
   const history = useHistory();
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
@@ -29,6 +31,16 @@ export default function OrderSummary() {
   const [quantity, setQuantity] = useState(1);
   const img =
     "https://images.pexels.com/photos/1096849/pexels-photo-1096849.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=165";
+
+  useEffect(() => {
+   fetch_data()
+  },[])
+
+  const fetch_data = async() => {
+    const {data} = await common_axios.get('/carts')
+    console.log(data)
+  }
+
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection>

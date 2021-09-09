@@ -1,22 +1,25 @@
 import React from "react";
 import styles from "./card.module.scss";
 import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
 
-export default function HeroCard({ header, tagline, backgroundImg }) {
+
+export default function HeroCard({ item }) {
+
+  const history = useHistory();
+
+
   return (
     <div
-      // style={{ backgroundImage: `url(${backgroundImg})` }}
+      style={{ backgroundImage: `url(${item.image})` }}
       className={styles.container}
     >
       <div>
-        <span className={styles.header}>
-          50 - 60% off
-          <br />
-          Best of season
-          <br /> offers
+        <span style={{color:item.title_color}} className={styles.header}>
+          {item.title}
         </span>
         <Button
-          onClick={() => alert(`I don't know this page okay`)}
+          onClick={() => history.push(item.link)}
           className={styles.btn}
           variant="contained"
           color="default"

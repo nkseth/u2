@@ -28,6 +28,14 @@ class HomepageDataService {
   findByTitle(title) {
     return common_axios.get(`/categories?title=${title}`);
   }
+
+  getDesigners(){
+    return common_axios.get('/designers')
+  }
+
+  getSection1Sliders(){
+    return common_axios.get('/sliders')
+  }
 }
 
 export default new HomepageDataService();

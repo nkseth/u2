@@ -1,4 +1,4 @@
-import { ALL_THAT_YOU_WANT, CELIBRITY_STYLE, MENS_ACTIVE_PRODUCT, MENS_WEAR_CAT, MENS_WEAR_SLIDER, MENS_WEAR_SUBGRP, MOST_LOVED, NEW_COLLECTION, SELECTED_SUB_GRP, STYLISH_RECOMMEND, TOP_DESIGNERS, TOP_OFFERS, USER_DATA } from "../actions/types";
+import { ALL_THAT_YOU_WANT, CELIBRITY_STYLE, GET_DESIGNERS, MENS_ACTIVE_PRODUCT, MENS_WEAR_CAT, MENS_WEAR_SLIDER, MENS_WEAR_SUBGRP, MOST_LOVED, NEW_COLLECTION, SECTION1_SLIDERS, SELECTED_SUB_GRP, STYLISH_RECOMMEND, TOP_DESIGNERS, TOP_OFFERS, USER_DATA } from "../actions/types";
 
 const inialState = {
   user_data: {},
@@ -13,7 +13,9 @@ const inialState = {
   most_loved: [],
   all_that_you_want: [],
   top_offers: [],
-  celibrity_style: []
+  celibrity_style: [],
+  designers: [],
+  offers_sliders: []
 };
 
 const mainreducer = (state = inialState, action) => {
@@ -82,6 +84,16 @@ const mainreducer = (state = inialState, action) => {
       return {
         ...state,
         celibrity_style: action.payload,
+      };
+    case GET_DESIGNERS:
+      return {
+        ...state,
+        designers: action.payload,
+      };
+    case SECTION1_SLIDERS:
+      return {
+        ...state,
+        offers_sliders: action.payload,
       };
     default:
       return state;

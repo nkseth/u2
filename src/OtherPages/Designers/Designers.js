@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Designers.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { get_designers } from "../../Redux/actions/homepage";
+
 const Designers = () => {
+
+  const dispatch = useDispatch()
+  const { designers } = useSelector(state => state.root.main)
+
+  useEffect(()=>{
+   dispatch(get_designers())
+  },[]);
+
+  console.log(designers)
+  if(!designers){
+    return null;
+  }
+
   return (
     <div className={styles.Designers}>
       <div className={styles.Designers_Items}>
-        {Images?.map((data, index) => {
+        {designers?.map((data, index) => {
           return (
             <Designers_Box
               key={index}
-              DesignerImage={data.avatar}
-              background={data.background}
-              DesignerName="Designer Name"
-              products={"25+"}
-              followers={"230k"}
+              DesignerImage={data.image}
+              background={data.cover_image || Images[0].background}
+              DesignerName={data.name}
+              products={data.product_count || "25"}
+              followers={data.followers || "25k"}
             />
           );
         })}

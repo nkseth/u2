@@ -25,8 +25,6 @@ const TopCategory = () => {
     return null;
   }
 
-  console.log(filteredCategories)
-
   const baseStyle = {};
   return (
     <div className={styles.main}>

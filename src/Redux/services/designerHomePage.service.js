@@ -17,10 +17,10 @@ class DesignerHomePageDataService {
     return common_axios.get(`/banners/designer_home/designer_group_1`);
   }
 
-  suitWear() {
+  suitWear(type) {
     return common_axios.post(`/themeOption`, {
       dashboard_type: "designer_home",
-      content_type: "womens-fashion",
+      content_type: 'all',
       group_name: "suit_wear",
     });
   }
@@ -33,10 +33,10 @@ class DesignerHomePageDataService {
     return common_axios.get("/banners/designer_home/designer_group_2");
   }
 
-  handMadeClothes() {
+  handMadeClothes(type) {
     return common_axios.post(`/themeOption`, {
       dashboard_type: "designer_home",
-      content_type: "mens-fashion",
+      content_type: 'all',
       group_name: "hand_made_cloth",
     });
   }

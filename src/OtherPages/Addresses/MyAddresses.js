@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./MyAddresses.module.scss";
 import { Button, Radio, useMediaQuery, useTheme } from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { useHistory } from "react-router-dom";
+import common_axios from '../../utils/axios.config'
+
+
 const MyAddresses = () => {
-  return <>{false ? <MyAddresses_Home /> : <MyAddresses_Cards />}</>;
+
+  const [address, setAddress] = useState([])
+
+  useEffect(() => {
+    fetch_address()
+  }, []);
+
+  const fetch_address = async () => {
+    const { data } = await common_axios.get('/addresses')
+    if (data.data) {
+      setAddress(data.data)
+    }
+    console.log(data)
+  }
+
+  if (address.length == 0) {
+    return <MyAddresses_Home />
+  }
+
+  return <MyAddresses_Cards data={address} />;
 };
 
 export default MyAddresses;
@@ -40,28 +62,22 @@ const MyAddresses_Home = () => {
 };
 
 //When Address Added
-const MyAddresses_Cards = () => {
+const MyAddresses_Cards = ({ data }) => {
   let customText =
     "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat excepturi voluptas officia porro dolorum, dignissimos voluptates iste.";
   return (
     <div className={styles.MyAddresses_Cards}>
       <div className={styles.MyAddresses_Cards_Box}>
         <Add_New_Address_Card />
-        <Old_Address_Card
-          CardName={"Ankit"}
-          Mobile={"+919876543210"}
-          Address={customText}
-        />
-        <Old_Address_Card
-          CardName={"Sachin"}
-          Mobile={"+91634576898"}
-          Address={customText}
-        />
-        <Old_Address_Card
-          CardName={"Anuj"}
-          Mobile={"+918876543210"}
-          Address={customText}
-        />
+        {data.map((item) => {
+          return (
+            <Old_Address_Card
+              CardName={item.name}
+              Mobile={item.phone}
+              Address={item.address_line_1}
+            />
+          )
+        })}
       </div>
     </div>
   );

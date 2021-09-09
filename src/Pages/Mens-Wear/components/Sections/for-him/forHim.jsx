@@ -74,7 +74,7 @@ export default function ForHimSection({ type }) {
                 >
                   All
                 </span>
-                {mens_wear_subgrp.map((item) => {
+                {mens_wear_subgrp?.map((item) => {
                   return (
                     <span
                       href="#"
@@ -111,7 +111,7 @@ export default function ForHimSection({ type }) {
                   >
                     All
                   </span>
-                  {mens_wear_subgrp.map((item) => {
+                  {mens_wear_subgrp?.map((item) => {
                     return (
                       <span
                         href="#"
@@ -127,7 +127,7 @@ export default function ForHimSection({ type }) {
               </nav>
             </Grid>
           )}
-          {mens_active_product.map((item) => {
+          {mens_active_product?.map((item) => {
             return (
               <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'} >
                 <ProductCard data={item} image={Card1} />

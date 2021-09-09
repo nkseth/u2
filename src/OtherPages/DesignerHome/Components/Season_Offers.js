@@ -19,9 +19,9 @@ const Season_Offers = () => {
     dispatch(topSeasonOffers());
   }, []);
 
-  console.log(offers , 'kkhk')
+  console.log(offers)
 
-  if(!offers){
+  if (!offers) {
     return null;
   }
 
@@ -32,7 +32,7 @@ const Season_Offers = () => {
         <CustomDivider style={{ height: "1px", background: "#857250" }} />
       </div>
       <div className={styles.Season_Offers}>
-        <div
+        {offers.length > 0 ? <div
           className={styles.Season_Offers_Item1}
           style={{
             backgroundImage: `url("${offers[0]?.image}")`,
@@ -42,23 +42,23 @@ const Season_Offers = () => {
             <h2>{offers[0]?.title}</h2>
             <Button onClick={Handler} className={styles.buttons} >Button</Button>
           </div>
-        </div>
-        <div
+        </div> : null}
+        {offers.length > 1 ? <div
           className={styles.Season_Offers_Item2}
           style={{
-            backgroundImage: `url("${offers[0]?.image}")`,
+            backgroundImage: `url("${offers[1]?.image}")`,
             backgroundColor: "green",
           }}
         >
           <div>
             <h2>{offers[1]?.title}</h2>
-            <Button  className={styles.buttons} onClick={Handler}>Button</Button>
+            <Button className={styles.buttons} onClick={Handler}>Button</Button>
           </div>
-        </div>
-        <div
+        </div> : null}
+        {offers.length > 2 ?<div
           className={styles.Season_Offers_Item3}
           style={{
-            backgroundImage: `url("${offers[0]?.image}")`,
+            backgroundImage: `url("${offers[2]?.image}")`,
             backgroundColor: "blue",
           }}
         >
@@ -67,7 +67,7 @@ const Season_Offers = () => {
             <h2 style={{ whiteSpace: "nowrap" }}>{offers[2]?.title}</h2>
             <Button onClick={Handler}>Button</Button>
           </div>
-        </div>
+        </div> : null}
         {/* <div className={styles.Season_Offers_Item1}>
           <div>
             <h2>Buy 1 Get 1 One</h2>

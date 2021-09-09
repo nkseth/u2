@@ -155,7 +155,7 @@ export default function Header() {
                 alt="search"
               />
             </IconButton>
-            <IconButton aria-label="my bag" style={{ marginRight: "-12px" }}>
+            <IconButton onClick={()=> history.push('/order-summary')} aria-label="my bag" style={{ marginRight: "-12px" }}>
               <img
                 src={BagIcon}
                 alt="my bag"
@@ -200,7 +200,7 @@ export default function Header() {
             <IconButton aria-label="favorites">
               <img src={FavoriteIcon} alt="favorites" />
             </IconButton>
-            <IconButton aria-label="my bag">
+            <IconButton onClick={()=> history.push('/order-summary')} aria-label="my bag">
               <img src={BagIcon} alt="my bag" />
             </IconButton>
           </div>
@@ -331,7 +331,7 @@ export default function Header() {
               <IconButton aria-label="favorites">
                 <img src={FavoriteIcon} alt="favorites" />
               </IconButton>
-              <IconButton aria-label="my bag">
+              <IconButton onClick={()=> history.push('order-summary')} aria-label="my bag">
                 <img src={BagIcon} alt="my bag" />
               </IconButton>
             </ListItem>

@@ -6,15 +6,15 @@ import {
   DELETE_ALL_CATEGORIES,
   SIGNUP_CREDS,
   LOGIN_CREDS,
-  USER_DATA
+  USER_DATA,
+  GET_DESIGNERS,
+  SECTION1_SLIDERS
 } from "./types";
-
 import HomepageDataService from "../services/homepage.service";
 
 export const createCategories = (title, description) => async (dispatch) => {
   try {
     const res = await HomepageDataService.create({ title, description });
-
     dispatch({
       type: CREATE_CATEGORIES,
       payload: res.data,
@@ -98,6 +98,36 @@ export const findCategorysByTitle = (title) => async (dispatch) => {
     console.log(err);
   }
 };
+
+export const get_designers = () => async (dispatch) => {
+  try {
+    const res = await HomepageDataService.getDesigners();
+    if(res.data.data){
+      dispatch({
+        type: GET_DESIGNERS,
+        payload: res.data.data,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+export const get_section_1_sliders = () => async (dispatch) => {
+  try {
+    const res = await HomepageDataService.getSection1Sliders();
+    if(res.data.data){
+      dispatch({
+        type: SECTION1_SLIDERS,
+        payload: res.data.data,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 
 export const setSignupCreds = (val) => (
   {

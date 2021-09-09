@@ -22,11 +22,14 @@ import { topDesigner } from "../../../Redux/actions/designerHomePage";
 import { useDispatch, useSelector } from "react-redux";
 
 const Top_Designer = () => {
+
+
   const dispatch = useDispatch();
   const baseStyle = {
     padding: "5rem 3rem",
     background: "#fff",
   };
+  
   const [visible, setvisible] = useState(4);
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down("xs"));

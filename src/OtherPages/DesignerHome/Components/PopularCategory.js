@@ -16,8 +16,6 @@ const PopularCategory = () => {
     dispatch(popularCategories());
   }, []);
 
-  console.log(categories)
-
   if (categories) {
     return (
       <>

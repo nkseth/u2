@@ -135,10 +135,18 @@ export default function ProductDescription({ match }) {
     }
   }
 
-  const buy_now_handler = () => {
+  const buy_now_handler = async () => {
     if (user_data?.name) {
-
-
+       if(product.hasOwnProperty('title')){
+        try{
+          const { data } = await common_axios.post(`/addToCart/${slug}`)
+          if(data){
+            history.push('/order-summary')
+          }
+        } catch (e){
+          alert(e.response.data.message)
+        }
+       }
     } else {
       login_Model_Show()
     }

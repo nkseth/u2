@@ -18,8 +18,7 @@ export const topTrending = () => async (dispatch) => {
         payload: data.trending_categories,
       });
     }
-
-    console.log(data, 'lll')
+    console.log(data, 'top_trend')
   } catch (err) {
     console.log(err);
     return Promise.reject(err);
@@ -32,6 +31,7 @@ export const topCategories = (params) => async (dispatch) => {
     if(data.data){
       dispatch({ type: GET_TOP_CATEGORY, payload: data.data });
     }
+    console.log(data, 'top_cat')
   } catch (err) {
     console.log(err)
     return Promise.reject(err);
@@ -41,9 +41,10 @@ export const topCategories = (params) => async (dispatch) => {
 export const suitWears = () => async (dispatch) => {
   try {
     const { data } = await DesignerHomePageDataService.suitWear();
-    if(data.data){
+    if(data.suit_wear){
       dispatch({ type: GET_SUIT_WEAR, payload: data.suit_wear });
     }
+    console.log(data, 'suit_wear')
   } catch (err) {
     console.log(err)
     return Promise.reject(err);
@@ -56,6 +57,7 @@ export const popularCategories = () => async (dispatch) => {
     if(data.designer_group_1){
       dispatch({ type: GET_POPULAR_CATEGORY, payload: data.designer_group_1 });
     }
+    console.log(data, 'pop_cat')
   } catch (err) {
     console.log(err)
     return Promise.reject(err);
@@ -68,6 +70,7 @@ export const topDesigner = () => async (dispatch) => {
     if(data.top_designer){
       dispatch({ type: GET_TOP_DESIGNERS, payload: data.top_designer });
     }
+    console.log(data, 'top_des')
   } catch (err) {
     console.log(err)
     return Promise.reject(err);
@@ -80,6 +83,7 @@ export const topSeasonOffers = () => async (dispatch) => {
     if(data.designer_group_2){
       dispatch({ type: GET_TOP_SEASON_OFFERS, payload: data.designer_group_2 });
     }
+    console.log(data, 'top_ses')
   } catch (err) {
     console.log(err)
     return Promise.reject(err);
@@ -92,6 +96,7 @@ export const handMadeClothes = () => async (dispatch) => {
     if(data.hand_made_cloth){
       dispatch({ type: GET_HAND_MADE_CLOTHES, payload: data.hand_made_cloth });
     }
+    console.log(data, 'hand_clths')
   } catch (err) {
     console.log(err)
     return Promise.reject(err);

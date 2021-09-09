@@ -6,6 +6,16 @@ import styles from "./section.module.scss";
 import Button from "@material-ui/core/Button";
 
 export default function SectionTwo() {
+
+  // const dispatch = useDispatch();
+  // const { offers_sliders } = useSelector(state => state.root.main)
+
+  // useEffect(()=>{
+  //   dispatch(get_section_1_sliders());
+  // },[])
+
+  // console.log(offers_sliders)
+
   return (
     <CustomSection className={styles.offer_section_two} style={{ paddingTop: "4rem", paddingBottom: "7rem" }}>
       <div className={styles.container}>

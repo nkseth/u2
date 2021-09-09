@@ -10,7 +10,7 @@ export default function StylishCard({ image, item }) {
         alt='product'
       />
       <div className={styles.content}>
-        <div className={styles.text}>{item.title}</div>
+        <div className={styles.text}>{item?.title || ''}</div>
         <Button
           className={styles.shopNowBtn}
           variant='contained'

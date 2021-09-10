@@ -80,7 +80,7 @@ const PopularCategory = () => {
                 {categories[3]?.title}
               </Link>{" "}
             </div>
-            <div className={`${styles.Category_item5} Category_item`} style={{ backgroundImage: "url(" + categories[2]?.image + ")" }}>
+            <div className={`${styles.Category_item5} Category_item`} style={{ backgroundImage: "url(" + categories[4]?.image + ")" }}>
               <img
                 src={categories[4]?.image}
                 className={styles.divOverlayImg}
@@ -93,7 +93,7 @@ const PopularCategory = () => {
                 {categories[4]?.title}
               </Link>{" "}
             </div>
-            <div className={`${styles.Category_item6} Category_item`} style={{ backgroundImage: "url(" + categories[0]?.image + ")" }}>
+            <div className={`${styles.Category_item6} Category_item`} style={{ backgroundImage: "url(" + categories[5]?.image + ")" }}>
               <img
                 src={categories[5]?.image}
                 className={styles.divOverlayImg}

@@ -25,29 +25,6 @@ const PopularCategory = () => {
             <CustomDivider style={{ height: "1px", background: "#857250" }} />
           </div>
           <div className={`${styles.Category} Category`}>
-            {/* {categories.map(({ description, title, image, id }, i) => {
-            const classStyle = `Category_item${i}`;
-            return (
-              <div
-                className={`${styles.Category_item1} Category_item`}
-                key={id}
-              >
-                <img
-                  src={image}
-                  className={styles.divOverlayImg}
-                  alt="dsadhsahjl"
-                />
-
-                <Link
-                  style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                  to="designers-product-page"
-                >
-                  {title}
-                </Link>
-              </div>
-            );
-          })} */}
-
             <div className={`${styles.Category_item1} Category_item`} style={{ backgroundImage: "url(" + categories[0]?.image + ")" }} >
               <img
                 src={overlay}
@@ -101,7 +78,7 @@ const PopularCategory = () => {
                 {categories[3]?.title}
               </Link>{" "}
             </div>
-            <div className={`${styles.Category_item5} Category_item`} style={{ backgroundImage: "url(" + categories[2]?.image + ")" }}>
+            <div className={`${styles.Category_item5} Category_item`} style={{ backgroundImage: "url(" + categories[4]?.image + ")" }}>
               <img
                 src={overlay}
                 className={styles.divOverlayImg}
@@ -114,7 +91,7 @@ const PopularCategory = () => {
                 {categories[4]?.title}
               </Link>{" "}
             </div>
-            <div className={`${styles.Category_item6} Category_item`} style={{ backgroundImage: "url(" + categories[0]?.image + ")" }}>
+            <div className={`${styles.Category_item6} Category_item`} style={{ backgroundImage: "url(" + categories[5]?.image + ")" }}>
               <img
                 src={overlay}
                 className={styles.divOverlayImg}

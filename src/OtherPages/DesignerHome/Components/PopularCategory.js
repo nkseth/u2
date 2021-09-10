@@ -12,6 +12,8 @@ const PopularCategory = () => {
   const baseStyle = { padding: "5rem 3rem" };
   const { categories } = useSelector((state) => state.root.popularCategory);
 
+  console.log(categories)
+
   useEffect(() => {
     dispatch(popularCategories());
   }, []);
@@ -25,32 +27,9 @@ const PopularCategory = () => {
             <CustomDivider style={{ height: "1px", background: "#857250" }} />
           </div>
           <div className={`${styles.Category} Category`}>
-            {/* {categories.map(({ description, title, image, id }, i) => {
-            const classStyle = `Category_item${i}`;
-            return (
-              <div
-                className={`${styles.Category_item1} Category_item`}
-                key={id}
-              >
-                <img
-                  src={image}
-                  className={styles.divOverlayImg}
-                  alt="dsadhsahjl"
-                />
-
-                <Link
-                  style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                  to="designers-product-page"
-                >
-                  {title}
-                </Link>
-              </div>
-            );
-          })} */}
-
             <div className={`${styles.Category_item1} Category_item`} style={{ backgroundImage: "url(" + categories[0]?.image + ")" }} >
               <img
-                src={overlay}
+                src={categories[0]?.image}
                 className={styles.divOverlayImg}
                 alt={categories[0]?.id}
               />
@@ -64,7 +43,7 @@ const PopularCategory = () => {
             </div>
             <div className={`${styles.Category_item2} Category_item`} style={{ backgroundImage: "url(" + categories[1]?.image + ")" }}>
               <img
-                src={overlay}
+                src={categories[1]?.image}
                 className={styles.divOverlayImg}
                 alt={categories[1]?.id}
               />
@@ -77,7 +56,7 @@ const PopularCategory = () => {
             </div>
             <div className={`${styles.Category_item3} Category_item`} style={{ backgroundImage: "url(" + categories[2]?.image + ")" }}>
               <img
-                src={overlay}
+                src={categories[2]?.image}
                 className={styles.divOverlayImg}
                 alt={categories[2]?.id}
               />
@@ -90,7 +69,7 @@ const PopularCategory = () => {
             </div>
             <div className={`${styles.Category_item4} Category_item`} style={{ backgroundImage: "url(" + categories[3]?.image + ")" }}>
               <img
-                src={overlay}
+                src={categories[3]?.image}
                 className={styles.divOverlayImg}
                 alt={categories[3]?.id}
               />
@@ -103,7 +82,7 @@ const PopularCategory = () => {
             </div>
             <div className={`${styles.Category_item5} Category_item`} style={{ backgroundImage: "url(" + categories[2]?.image + ")" }}>
               <img
-                src={overlay}
+                src={categories[4]?.image}
                 className={styles.divOverlayImg}
                 alt={categories[4]?.id}
               />
@@ -116,7 +95,7 @@ const PopularCategory = () => {
             </div>
             <div className={`${styles.Category_item6} Category_item`} style={{ backgroundImage: "url(" + categories[0]?.image + ")" }}>
               <img
-                src={overlay}
+                src={categories[5]?.image}
                 className={styles.divOverlayImg}
                 alt={categories[5]?.id}
               />

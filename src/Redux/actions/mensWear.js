@@ -66,6 +66,8 @@ export const setSelectedSubGrp = (val) => (
                 group:type
             })
 
+            console.log(data)
+
             if (data.product) {
                 dispatch({ type: MENS_ACTIVE_PRODUCT, payload: data.product })
             }
@@ -194,7 +196,7 @@ export const get_top_offers = (type) => async (dispatch) => {
 
 export const get_celibrity_style = (type) => async (dispatch) => {
     try {
-        const { data } = await common_axios.get(`/celebrityStyle`)
+        const { data } = await common_axios.get(`/CelebrityStyle`)
         console.log(data, 'celebrity')
         if (data.data) {
             dispatch({ type: CELIBRITY_STYLE, payload: data.data });

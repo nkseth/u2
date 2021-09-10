@@ -26,6 +26,7 @@ function DesignerProductPage({ match }) {
   const [product, setProduct] = useState([])
   const [ category, setCategory] = useState({})
   const [loading, setLoading] = useState(true)
+  const [filters, setFilters] = useState([])
  
   useEffect(()=>{
       fetch_products()
@@ -44,6 +45,18 @@ function DesignerProductPage({ match }) {
     setLoading(false)
   }
 
+  const fetch_filters = async () => {
+    const { data } = await common_axios.post(`/product_by_category`,{
+      slug
+    })
+
+    if(data.product){
+      setProduct(data.product)
+      setCategory(data.category)
+    }
+  }
+
+  console.log(product)
   if(loading){
     return null
   }

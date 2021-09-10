@@ -26,6 +26,7 @@ export default function StylishRecommendationSection({ type }) {
   }, [type])
 
   const { stylish_recommend } = useSelector(state => state.root.main)
+  console.log(stylish_recommend)
 
   return (
     <CustomSection
@@ -40,13 +41,6 @@ export default function StylishRecommendationSection({ type }) {
         <span>Recommendation</span>
       </div>
       <div className={styles.cardContainer}>
-        {/* {stylish_recommend.map((item) => {
-          return (
-            <div >
-              <StylishCard item={item} image={item.image} />
-            </div>
-          )
-        })} */}
         {mobileView && (
           <div>
             {stylish_recommend.length > 0 ? <StylishCard item={stylish_recommend[0]} image={stylish_recommend[0].image} /> : null}

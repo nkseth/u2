@@ -40,50 +40,45 @@ export default function StylishRecommendationSection({ type }) {
         <span>Recommendation</span>
       </div>
       <div className={styles.cardContainer}>
-        {stylish_recommend.map((item) => {
+        {/* {stylish_recommend.map((item) => {
           return (
             <div>
               <StylishCard item={item} image={item.image} />
             </div>
           )
-        })}
-        {/* {mobileView && (
+        })} */}
+        {mobileView && (
           <div>
-            <StylishCard image={stylish1} />
-            <StylishCard image={stylish2} />
-            <StylishCard image={stylish3} />
-            <StylishCard image={stylish4} />
-            <StylishCard image={stylish5} />
+            {stylish_recommend.length > 0 ? <StylishCard item={stylish_recommend[0]} image={stylish_recommend[0].image} /> : null}
+            {stylish_recommend.length > 1 ? <StylishCard item={stylish_recommend[1]} image={stylish_recommend[1].image} /> : null}
+            {stylish_recommend.length > 2 ? <StylishCard item={stylish_recommend[2]} image={stylish_recommend[2].image} /> : null}
+            {stylish_recommend.length > 3 ? <StylishCard item={stylish_recommend[3]} image={stylish_recommend[3].image} /> : null}
+            {stylish_recommend.length > 4 ? <StylishCard item={stylish_recommend[4]} image={stylish_recommend[4].image} /> : null}
           </div>
         )}
         {!mobileView && (
           <>
             <div className={styles.firstCon}>
-              <div>
-                <StylishCard image={stylish1} />
-
-              </div>
-              <div>
-                <StylishCard image={stylish2} />
-
-              </div>
+              {stylish_recommend.length > 0 ? <div>
+                <StylishCard item={stylish_recommend[0]} image={stylish_recommend[0].image} />
+              </div> : null}
+              {stylish_recommend.length > 1 ? <div>
+                <StylishCard item={stylish_recommend[1]} image={stylish_recommend[1].image} />
+              </div> : null}
             </div>
             <div className={styles.secondCon}>
-               <div>
-                <StylishCard image={stylish3} />
-
-              </div> 
-              <div>
-                <StylishCard image={stylish4} />
-
-              </div>
-              <div>
-                <StylishCard image={stylish5} />
-
-              </div>
+              {stylish_recommend.length > 2 ? <div>
+                <StylishCard item={stylish_recommend[2]} image={stylish_recommend[2].image} />
+              </div> : null}
+              {stylish_recommend.length > 3 ? <div>
+                <StylishCard item={stylish_recommend[3]} image={stylish_recommend[3].image} />
+              </div> : null}
+              {stylish_recommend.length > 4 ? <div>
+                <StylishCard item={stylish_recommend[4]} image={stylish_recommend[4].image} />
+              </div> : null}
             </div>
           </>
-        )} */}
+        )}
       </div>
     </CustomSection>
   );

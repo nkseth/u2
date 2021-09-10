@@ -14,7 +14,7 @@ import cs1 from "./Images/cs1.jpg"
 import cs2 from "./Images/cs2.jpg"
 import cs3 from "./Images/cs3.jpg"
 import cs4 from "./Images/cs4.jpg"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 import "pure-react-carousel/dist/react-carousel.es.css";
@@ -29,6 +29,10 @@ import { get_celibrity_style } from "../../../../../Redux/actions/mensWear";
 export default function CelebrityStyleSection({ type }) {
 
   const dispatch = useDispatch()
+
+  const { celibrity_style } = useSelector(state => state.root.main)
+
+  console.log(celibrity_style)
 
   useEffect(() => {
     dispatch(get_celibrity_style(`${type}-fashion`))

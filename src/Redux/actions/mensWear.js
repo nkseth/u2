@@ -194,13 +194,8 @@ export const get_top_offers = (type) => async (dispatch) => {
 
 export const get_celibrity_style = (type) => async (dispatch) => {
     try {
-        const { data } = await common_axios.post(`/themeOption`,{
-            dashboard_type: 'comman',
-            'content_type': type,
-            "group_name": 'celebrity_style'
-
-        })
-        console.log(data, 'top designers')
+        const { data } = await common_axios.get(`/celebrityStyle`)
+        console.log(data, 'celebrity')
         if (data.data) {
             dispatch({ type: CELIBRITY_STYLE, payload: data.data });
         }

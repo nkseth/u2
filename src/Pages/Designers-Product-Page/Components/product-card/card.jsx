@@ -52,7 +52,7 @@ export default function ProductCard(props) {
         )}
       </div>
       <div className={styles.productDetails}>
-        <Link to={{ pathname:`/product-description/${product.slug}`}}><span className={styles.productName}>{product.title}</span></Link>
+        <Link to={{ pathname: `/product-description/${product.slug}` }}><span className={styles.productName}>{product.title}</span></Link>
         <span className={styles.productDesc}>{product.description}</span>
         <p className={styles.productPrice}>
           {!product.has_offer ? <span>{product.price} </span> : <span>{product.offer_price} </span>}

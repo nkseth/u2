@@ -35,8 +35,9 @@ const HandMade_Clothes = () => {
   const theme = useTheme()
   const match = useMediaQuery(theme.breakpoints.down('xs'))
   const iPade = useMediaQuery(theme.breakpoints.down('sm'))
+  const CustomView = useMediaQuery("(max-width:550px)")
 
-  if(!clothes){
+  if (!clothes) {
     return null;
   }
 
@@ -55,37 +56,27 @@ const HandMade_Clothes = () => {
         >
           <Slider>
             {clothes?.map(({ id, cover_image, name }, i) => (
-              <Slide index={i} key={id}>
-                <div className={styles.HandMade_Clothes}>
-                  <div className={styles.HandMade_Clothes_Items}>
-                    <img src={cover_image} alt={name} />
-                    <p>{name}</p>
+              <Slide index={i} key={id} style={CustomView ? { marginLeft: 0, marginRight: 0 } : { marginLeft: 20, marginRight: 20 }} >
+                <div style={{ width: "100%" }} >
+                  <div className={styles.SuitWear}>
+                    <div className={styles.SuitWear_Items}>
+                      <img src={cover_image} alt={name} />
+                      <a>{name}</a>
+                    </div>
+
                   </div>
                 </div>
               </Slide>
             ))}
-            {/* <Slide index={0}>
-              <CarouselSlide />
-            </Slide>
-            <Slide index={1}>
-              <CarouselSlide2 />
-            </Slide>
-            <Slide index={2}>
-              <CarouselSlide3 />
-            </Slide>
-            <Slide index={3}>
-              <CarouselSlide4 />
-            </Slide>
-            <Slide index={4}>
-              <CarouselSlide5 />
-            </Slide> */}
-            {/* </Slide>
-            <Slide index={5}>
-              <CarouselSlide6 />
-            </Slide>
-            <Slide index={6}>
-              <CarouselSlide7 />
-            </Slide> */}
+            {/* <div style={{ width: "100%" }} >
+              <div className={styles.SuitWear}>
+                <div className={styles.SuitWear_Items}>
+                  <img src={cover_image} alt={name} />
+                  <a>{name}</a>
+                </div>
+
+              </div>
+            </div> */}
 
           </Slider>
           <DotGroup style={{ display: "flex", marginTop: "2rem" }} />

@@ -29,18 +29,19 @@ const Top_Designer = () => {
     padding: "5rem 3rem",
     background: "#fff",
   };
-  
+
   const [visible, setvisible] = useState(4);
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down("xs"));
   const iPade = useMediaQuery(theme.breakpoints.down("sm"));
+  const CustomView = useMediaQuery("(max-width:550px)")
   const { designers } = useSelector((state) => state.root.topDesigner);
 
   useEffect(() => {
     dispatch(topDesigner());
   }, []);
 
-  if(!designers){
+  if (!designers) {
     return null;
   }
 
@@ -63,15 +64,19 @@ const Top_Designer = () => {
         >
           <Slider>
             {designers?.map(({ id, name, cover_image }, i) => (
-              <Slide index={i} key={id}>
-                <div className={styles.Top_Designer}>
-                  <div className={styles.Top_Designer_Items}>
-                    <img src={cover_image} alt={name} />
-                    <Link to="designers-profile">{name}</Link>
+              <>
+                <Slide index={i} key={id} style={CustomView ? { marginRight: 0, marginLeft: 0 } : { marginLeft: 25, marginRight: 25 }} >
+                  <div className={styles.Top_Designer}>
+                    <div className={styles.Top_Designer_Items}>
+                      <img src={cover_image} alt={id} />
+                      <Link to="designers-profile">{name}</Link>
+                    </div>
                   </div>
-                </div>
-              </Slide>
+                </Slide>
+              </>
             ))}
+
+
             {/* <Slide index={0}>
               <CarouselSlide />
             </Slide>

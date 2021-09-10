@@ -6,16 +6,19 @@
 .Top_Designer {
   display: flex;
   height: 400px;
+  width: 350px!important;
   gap: 1rem;
   align-items: center; 
   justify-content: space-evenly;
   .Top_Designer_Items {
     display: grid;
     justify-content: center;
+    height: 400px;
+    width: 350px!important;
     margin: 0 5px;
     img {
       height: 330px;
-      width: 100%;
+      width: 350px;
       object-fit: cover;
       object-position: top;
       border: 7px solid #9D8E73;
@@ -120,4 +123,39 @@
 .Carousel_header{
   margin-top: -1em!important;
 }
+
+
+.Top_Designer {
+  display: flex;
+  height: 350px!important;
+  width: 250px!important;
+  gap: 1rem;
+  align-items: center; 
+  justify-content: space-evenly;
+  margin-right: 1em;
+  margin-left: 1em;
+  .Top_Designer_Items {
+    display: grid;
+    justify-content: center;
+    height: 350px;
+    width: 250px!important;
+    margin: 0 5px;
+    img {
+      height: 290px;
+      width: 250px;
+      object-fit: cover;
+      object-position: top;
+      border: 7px solid #9D8E73;
+    }
+    a {
+      font-size: 25px;
+      font-weight: 400;
+      text-align: center;
+      padding: 20px 0px;
+      color: black;
+      font-weight: 500;
+    }
+  }
+}
+
 }

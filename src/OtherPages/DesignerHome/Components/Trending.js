@@ -20,7 +20,7 @@ const Trending = () => {
   const { items } = useSelector((state) => state.root.trending);
 
   useEffect(async () => {
-     dispatch(topTrending());
+    dispatch(topTrending());
   }, []);
 
   if (items) {
@@ -34,7 +34,9 @@ const Trending = () => {
           {items?.map((item) => (
             <div key={item.name} className={styles.Trending_Items}>
               <img src={item.cover_image} alt={item.name} />
-              <Link to="designers-product-page" to={{ pathname:`/designers-product-page/${item.slug}` }}>{item.name}</Link>
+              <div >
+                <Link to="designers-product-page" to={{ pathname: `/designers-product-page/${item.slug}` }}>{item.name}</Link>
+              </div>
             </div>
           ))}
           {/* <div className={styles.Trending_Items}>

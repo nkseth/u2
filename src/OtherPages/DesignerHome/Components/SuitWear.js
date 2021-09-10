@@ -36,11 +36,12 @@ const SuitWear = () => {
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down("xs"));
   const iPade = useMediaQuery(theme.breakpoints.down("sm"));
+  const CustomView = useMediaQuery("(max-width:400px)")
   useEffect(() => {
     dispatch(suitWears());
   }, []);
 
-  if(!suitWearItems){
+  if (!suitWearItems) {
     return null;
   }
 
@@ -60,12 +61,12 @@ const SuitWear = () => {
           <Slider>
             {suitWearItems?.map(
               (item, i) => (
-                <Slide index={i} key={item.id.toString()}>
-                  <div className>
+                <Slide index={i} key={item.id.toString()} style={CustomView ? { marginRight: 0, marginLeft: 0 } : { marginRight: 35, marginLeft: 35 }}   >
+                  <div >
                     <div className={styles.SuitWear}>
                       <div className={styles.SuitWear_Items}>
                         <img src={item.feature_image} alt={item.id} />
-                        <Link to={{ pathname:`/designers-product-page/${item.slug}`}}>{item.name}</Link>
+                        <Link to={{ pathname: `/designers-product-page/${item.slug}` }}>{item.name}</Link>
                       </div>
                     </div>
                   </div>

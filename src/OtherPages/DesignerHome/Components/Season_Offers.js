@@ -36,9 +36,10 @@ const Season_Offers = () => {
           className={styles.Season_Offers_Item1}
           style={{
             backgroundImage: `url("${offers[0]?.image}")`,
+            backgroundSize: "cover"
           }}
         >
-          <div>
+          <div className={styles.h2_div} >
             <h2>{offers[0]?.title}</h2>
             <Button onClick={Handler} className={styles.buttons} >Button</Button>
           </div>
@@ -48,22 +49,24 @@ const Season_Offers = () => {
           style={{
             backgroundImage: `url("${offers[1]?.image}")`,
             backgroundColor: "green",
+            backgroundSize: "cover"
           }}
         >
-          <div>
+          <div className={styles.h2_div} >
             <h2>{offers[1]?.title}</h2>
             <Button className={styles.buttons} onClick={Handler}>Button</Button>
           </div>
         </div> : null}
-        {offers.length > 2 ?<div
+        {offers.length > 2 ? <div
           className={styles.Season_Offers_Item3}
           style={{
             backgroundImage: `url("${offers[2]?.image}")`,
             backgroundColor: "blue",
+            backgroundSize: "cover"
           }}
         >
           {/* Chech here */}
-          <div>
+          <div className={styles.h2_div}  >
             <h2 style={{ whiteSpace: "nowrap" }}>{offers[2]?.title}</h2>
             <Button onClick={Handler}>Button</Button>
           </div>

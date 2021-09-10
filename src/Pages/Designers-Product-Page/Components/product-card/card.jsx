@@ -23,6 +23,7 @@ export default function ProductCard(props) {
     await setValue()
   }, [])
 
+  console.log(product)
 
   return (
     <div key={props.key} className={styles.container}>

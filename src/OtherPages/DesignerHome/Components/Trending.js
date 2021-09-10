@@ -39,36 +39,7 @@ const Trending = () => {
               </div>
             </div>
           ))}
-          {/* <div className={styles.Trending_Items}>
-          <img src={c1} alt="items" />
-          <Link to="designers-product-page">Wear</Link>
-        </div>
-        <div className={styles.Trending_Items}>
-          <img src={c2} alt="items" />
-          <Link to="designers-product-page">Wear</Link>
-        </div>
-        <div className={styles.Trending_Items}>
-          <img src={c3} alt="items" />
-          <Link to="designers-product-page">Wear</Link>
-        </div>
-        <div className={styles.Trending_Items}>
-          <img src={c4} alt="items" />
-          <Link to="designers-product-page">Wear</Link>
-        </div>
-        <div className={styles.Trending_Items}>
-          <img src={c2} alt="items" />
-          <Link to="designers-product-page">Wear</Link>
-        </div> */}
-          {/* {mobileView ? (
-            items?.map(({ name, cover_image }) => (
-              <div key={name} className={styles.Trending_Items}>
-                <img src={cover_image} alt={name} />
-                <Link to="designers-product-page">{name}</Link>
-              </div>
-            ))
-          ) : (
-            <></>
-          )} */}
+
         </div>
         <div className={`${styles.Trending_Button}`}>
           <Button>

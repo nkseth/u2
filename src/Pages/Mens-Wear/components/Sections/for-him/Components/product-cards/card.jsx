@@ -10,7 +10,7 @@ export default function ProductCard({ image, data }) {
 
   const [isAddToWishList, setAddToWishList] = useState(false);
 
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
@@ -38,8 +38,8 @@ export default function ProductCard({ image, data }) {
         )}
       </div>
       <div className={styles.productDetails}>
-      <Link to={{ pathname:`/product-description/${data.slug}`}}><span className={styles.productName}>{data.title}</span></Link>
-        <span className={styles.productDesc}>{data.description}</span>
+        <Link to={{ pathname: `/product-description/${data.slug}` }}><span className={styles.productName}>{data.title}</span></Link>
+        <span className={styles.productDesc}>{data.description}{data.description}</span>
         <p className={styles.productPrice}>
           <span>{data.has_offer ? data.offer_price : data.price}</span>
           {data.has_offer ? <span>{data.price}<span style={{ color: "#9D8E73 " }}  >{data.discount}</span></span> : null}

@@ -24,9 +24,9 @@
 }
 
 .secondCon {
-  // > div:first-child {
-  //   width: calc(100%/3);
-  // }
+  > div:first-child {
+    width: calc(100%/2);
+  }
   > div:last-child {
     width: calc(100%/2);
   }

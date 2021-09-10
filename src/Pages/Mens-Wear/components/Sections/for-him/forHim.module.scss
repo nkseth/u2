@@ -42,7 +42,7 @@ $first-section-width: 500px;
 .navItems {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   span {
     color: var(--primary-color);
     position: relative;
@@ -52,6 +52,7 @@ $first-section-width: 500px;
     text-decoration: none;
     overflow: hidden;
     cursor: pointer;
+    text-align: center;
     &::before {
       position: absolute;
       //   content: attr(data-content);
@@ -196,7 +197,7 @@ $first-section-width: 500px;
 
 
 }
-@media screen and (max-width:768px) {
+  @media screen and (max-width:768px) {
 
 
   .mainContainer {
@@ -204,4 +205,10 @@ $first-section-width: 500px;
   }
 
 
+}
+
+@media screen and (max-width:450px) {
+  .viewAllBtn{
+    margin-top: 5em!important;
+  }
 }

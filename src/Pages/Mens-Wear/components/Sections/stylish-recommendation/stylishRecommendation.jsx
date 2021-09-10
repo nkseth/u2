@@ -42,7 +42,7 @@ export default function StylishRecommendationSection({ type }) {
       <div className={styles.cardContainer}>
         {/* {stylish_recommend.map((item) => {
           return (
-            <div>
+            <div >
               <StylishCard item={item} image={item.image} />
             </div>
           )
@@ -80,6 +80,6 @@ export default function StylishRecommendationSection({ type }) {
           </>
         )}
       </div>
-    </CustomSection>
+    </CustomSection >
   );
 }

@@ -42,9 +42,11 @@ const Trending = () => {
 
         </div>
         <div className={`${styles.Trending_Button}`}>
-          <Button>
-            View all
-          </Button>
+          <Link to="/designers-product-page/blazers-and-coats">
+            <Button>
+              View all
+            </Button>
+          </Link>
         </div>
       </div>
     );

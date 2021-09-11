@@ -9,6 +9,7 @@ import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import CustomTextField from "../Components/CustomTextField";
 
 import styles from "./Accordion.module.scss"
+import { Link } from 'react-router-dom';
 
 function AccordionS({ position, FocusIt, Open, Form, AllDone, SetIt, NECK, UploadMeasurement,
     CHEST,
@@ -59,8 +60,16 @@ function AccordionS({ position, FocusIt, Open, Form, AllDone, SetIt, NECK, Uploa
                 }
 
             </motion.div>
-            <Button className={styles.submitBtn} onClick={AllDone === true ? UploadMeasurement : SetIt} >{AllDone === true ? 'Submit' : AllDone}</Button>
+            {
+                AllDone === true ?
 
+                    <Link to="/viewmeasurement" style={{ color: "#fff" }} > <Button className={styles.submitBtn} onClick={AllDone === true ? UploadMeasurement : SetIt} >Submit</Button></Link>
+                    :
+
+                    <Button className={styles.submitBtn} onClick={AllDone === true ? UploadMeasurement : SetIt} >{AllDone}</Button>
+
+
+            }
 
         </div>
     )

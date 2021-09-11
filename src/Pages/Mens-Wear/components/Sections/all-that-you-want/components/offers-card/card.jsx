@@ -13,7 +13,7 @@ export default function TopOffersCard({ title, image, description }) {
       <div className={styles.productDetailsDiv}>
         <img src={Off50} alt="50% off" />
         <span>OFFER WEEK</span>
-        <span>{title}</span>
+        <span><Link to='/product-description/blazers-and-coats' style={{ color: "inherit", textDecoration: "none", fontSize: "inherit" }} >{title}</Link></span>
         <p>
           {description}
         </p>

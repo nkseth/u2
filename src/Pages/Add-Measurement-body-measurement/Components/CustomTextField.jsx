@@ -75,7 +75,7 @@ export default function CustomTextField({ label, helperText, focus, Form, name, 
                             }}
 
                             InputProps={{
-                                endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
+                                endAdornment: <InputAdornment position="end">In</InputAdornment>,
                             }}
                             variant='standard'
                             fullWidth

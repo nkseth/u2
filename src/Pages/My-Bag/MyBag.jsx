@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Accordion,
@@ -20,6 +20,7 @@ import AddIcon from "@material-ui/icons/Add";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { ReactComponent as CouponIcon } from "../../Images/icons/coupon.svg";
+import common_axios from "../../utils/axios.config";
 
 export default function MyBag() {
   const history = useHistory();
@@ -29,6 +30,23 @@ export default function MyBag() {
   const [quantity, setQuantity] = useState(1);
   const img =
     "https://images.pexels.com/photos/1096849/pexels-photo-1096849.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=165";
+
+    useEffect(() => {
+      fetch_data()
+    }, [])
+  
+    const fetch_data = async () => {
+      try{
+        const { data: val } = await common_axios.get('/carts')
+        console.log(val)
+      } catch(e){
+        console.log(e.response.data)
+      }
+      // if (val.data?.length > 0) {
+      //   setData(val.data[0].items)
+      //   setPriceDetails(val.data[0])
+      // }
+    }
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection style={mobileView ? { marginTop: "0" } : { marginTop: "3em" }} >

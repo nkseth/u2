@@ -149,7 +149,6 @@ export default function ProductDescription({ match }) {
   const mobileView = useMediaQuery("(max-width:550px)");
 
   const [selectedColor, setSelectedColor] = useState("Brown");
-  const [ProductType, setProductType] = useState("custom");
   const [ProductDrop, setProductDrop] = useState(false);
 
 
@@ -158,6 +157,7 @@ export default function ProductDescription({ match }) {
 
   const [product, setProduct] = useState({ });
   const [images, setImages] = useState([])
+  const [ProductType, setProductType] = useState(product.product?.isCustomise == "1" ? 'custom' : 'ready made');
 
   console.log(product)
   
@@ -192,11 +192,11 @@ export default function ProductDescription({ match }) {
         try{
           const { data } = await common_axios.post(`/addToCart/${slug}`)
           if(data){
-            history.push('/order-summary')
+            history.push('/my-bag')
           }
         } catch (e){
           if(e?.response?.data?.message == 'Item alrealy in your cart'){
-            history.push('/order-summary')
+            history.push('/my-bag')
           }
         }
        }
@@ -226,8 +226,8 @@ export default function ProductDescription({ match }) {
     <Container bottomDivider footerOnTabMob>
       <CustomSection style={{ marginTop: 10, marginBottom: 10 }} >
         <Breadcrumb
-          path={`Home / Men / Suit /`}
-          activePath='Allen Solly'
+          path={`Home / ${product.product?.brand} /`}
+          activePath={product.title}
           style={{ paddingBottom: "1rem" }}
         />
       </CustomSection>
@@ -308,8 +308,7 @@ export default function ProductDescription({ match }) {
                     onClose={() => setProductDrop(false)}
                     onChange={(e) => setProductType(e.target.value)}
                   >
-
-                    {ProductType === 'ready made' ?
+                   {product.product?.isVariant?
                       <MenuItem value={"ready made"}>
                         <FormControlLabel
                           className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
@@ -322,23 +321,22 @@ export default function ProductDescription({ match }) {
                             </div>}
                         />
                       </MenuItem>
-                      :
-                      <></>
-                    }
+                    :null}
+                    {product.product?.isCustomise == "1"?
                     <MenuItem value={"custom"}>
                       <FormControlLabel
                         className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
                         checked={ProductType === "custom"}
                         control={<CustomRadio />}
-
                         label={<div className={styles.ProductSelector}>
                           <p className={styles.ChoicesBtnsLabels}>Customised</p>
                           {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphic er text commonly used in the graphic</h6> : <></>}
                         </div>}
                       />
                     </MenuItem>
-                    {ProductType === 'custom' ?
-
+                     : null}
+                    {/* {ProductType === 'custom' ?
+                      product.product.isVariant?
                       <MenuItem value={"ready made"}>
                         <FormControlLabel
                           className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
@@ -350,10 +348,10 @@ export default function ProductDescription({ match }) {
                               {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
                             </div>}
                         />
-                      </MenuItem>
+                      </MenuItem> : null
                       :
                       <></>
-                    }
+                    } */}
                   </Select>
                   <HtmlTooltip
                     // className={styles.ProductSelectorHelpBtn}
@@ -403,7 +401,7 @@ export default function ProductDescription({ match }) {
                     onChange={(e) => setProductType(e.target.value)}
                   >
 
-                    {ProductType === 'ready made' ?
+{product.product?.isVariant?
                       <MenuItem value={"ready made"}>
                         <FormControlLabel
                           className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
@@ -416,38 +414,20 @@ export default function ProductDescription({ match }) {
                             </div>}
                         />
                       </MenuItem>
-                      :
-                      <></>
-                    }
+                    :null}
+                    {product.product?.isCustomise == "1"?
                     <MenuItem value={"custom"}>
                       <FormControlLabel
                         className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
                         checked={ProductType === "custom"}
                         control={<CustomRadio />}
-
                         label={<div className={styles.ProductSelector}>
                           <p className={styles.ChoicesBtnsLabels}>Customised</p>
                           {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphic er text commonly used in the graphic</h6> : <></>}
                         </div>}
                       />
                     </MenuItem>
-                    {ProductType === 'custom' ?
-
-                      <MenuItem value={"ready made"}>
-                        <FormControlLabel
-                          className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
-                          checked={ProductType === "ready made"}
-                          control={<CustomRadio />}
-                          label={
-                            <div className={styles.ProductSelector}>
-                              <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
-                              {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
-                            </div>}
-                        />
-                      </MenuItem>
-                      :
-                      <></>
-                    }
+                     : null}
                   </Select>
                   <HtmlTooltip
                     className={styles.ProductSelectorHelpBtn}
@@ -493,52 +473,33 @@ export default function ProductDescription({ match }) {
                     onClose={() => setProductDrop(false)}
                     onChange={(e) => setProductType(e.target.value)}
                   >
-
-                    {ProductType === 'ready made' ?
-                      <MenuItem value={"ready made"}>
+                      {product.product?.isVariant?
+                        <MenuItem value={"ready made"}>
+                          <FormControlLabel
+                            className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                            checked={ProductType === "ready made"}
+                            control={<CustomRadio />}
+                            label={
+                              <div className={styles.ProductSelector}>
+                                <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
+                                {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
+                              </div>}
+                          />
+                        </MenuItem>
+                      :null}
+                      {product.product?.isCustomise == "1"?
+                      <MenuItem value={"custom"}>
                         <FormControlLabel
                           className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
-                          checked={ProductType === "ready made"}
+                          checked={ProductType === "custom"}
                           control={<CustomRadio />}
-                          label={
-                            <div className={styles.ProductSelector}>
-                              <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
-                              {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
-                            </div>}
+                          label={<div className={styles.ProductSelector}>
+                            <p className={styles.ChoicesBtnsLabels}>Customised</p>
+                            {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphic er text commonly used in the graphic</h6> : <></>}
+                          </div>}
                         />
                       </MenuItem>
-                      :
-                      <></>
-                    }
-                    <MenuItem value={"custom"}>
-                      <FormControlLabel
-                        className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
-                        checked={ProductType === "custom"}
-                        control={<CustomRadio />}
-
-                        label={<div className={styles.ProductSelector}>
-                          <p className={styles.ChoicesBtnsLabels}>Customised</p>
-                          {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphic er text commonly used in the graphic</h6> : <></>}
-                        </div>}
-                      />
-                    </MenuItem>
-                    {ProductType === 'custom' ?
-
-                      <MenuItem value={"ready made"}>
-                        <FormControlLabel
-                          className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
-                          checked={ProductType === "ready made"}
-                          control={<CustomRadio />}
-                          label={
-                            <div className={styles.ProductSelector}>
-                              <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
-                              {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
-                            </div>}
-                        />
-                      </MenuItem>
-                      :
-                      <></>
-                    }
+                       : null}
                   </Select>
                   <HtmlTooltip
                     className={styles.ProductSelectorHelpBtn}

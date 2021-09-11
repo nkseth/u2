@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { IconButton } from "@material-ui/core";
 import styles from "./card.module.scss";
 import { Link } from "react-router-dom";
+import parse from 'html-react-parser';
 //icon
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -53,7 +54,7 @@ export default function ProductCard(props) {
       </div>
       <div className={styles.productDetails}>
         <Link to={{ pathname: `/product-description/${product.slug}` }}><span className={styles.productName}>{product.title}</span></Link>
-        <span className={styles.productDesc}>{product.description}</span>
+        <span className={styles.productDesc}>{parse(product.description ? product.description : '')}</span>
         <p className={styles.productPrice}>
           {!product.has_offer ? <span>{product.price} </span> : <span>{product.offer_price} </span>}
           {product.has_offer ? <span>{product.currency_symbol}{parseFloat(product.raw_price).toFixed(2)} {product.discount}</span> : null}

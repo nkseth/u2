@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import styles from "./tabs.module.scss";
 import Terms from "./Terms";
+import parse from 'html-react-parser';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -177,11 +178,11 @@ export default function DetailTabs({ type, product }) {
           label='Things to know'
           {...a11yProps(1)}
         />
-        <AntTab
+        {/* <AntTab
           className={styles.tabHeader}
           label='Things to know'
           {...a11yProps(1)}
-        />
+        /> */}
         <Tab
           className={styles.tabHeader}
           label='Description'
@@ -190,7 +191,7 @@ export default function DetailTabs({ type, product }) {
         <AntTab className={styles.tabHeader} label='Shipping' {...a11yProps(1)} />
         <AntTab className={styles.tabHeader} label='Reviews' {...a11yProps(2)} />
       </AntTabs>
-      <TabPanel value={value} index={1}>
+      {/* <TabPanel value={value} index={1}>
         <div className={styles.tabPanelOne}>
           <div className={styles.firstDiv}>
             <div>
@@ -231,15 +232,15 @@ export default function DetailTabs({ type, product }) {
             </p>
           </div>
         </div>
-      </TabPanel>
+      </TabPanel> */}
       <TabPanel value={value} index={0}>
         <Terms type={type} />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      {/* <TabPanel value={value} index={1}>
         Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        {product.description}
+      </TabPanel> */}
+      <TabPanel value={value} index={1}>
+        {parse(product.description ? product.description : '')}
       </TabPanel>
     </div>
   );

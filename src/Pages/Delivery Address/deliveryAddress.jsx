@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import {
   Button,
@@ -25,7 +25,7 @@ import { ReactComponent as LocationIcon } from "../../Images/icons/location.svg"
 import { ReactComponent as CloseIcon } from "../../Images/icons/close.svg";
 import { ReactComponent as FilterIcon } from "../../Images/icons/filter.svg";
 import CustomStepper from "../../utils/Stepper/stepper";
-
+import common_axios from "../../utils/axios.config";
 const CustomRadio = withStyles({
   root: {
     color: "#9D9D9D",
@@ -46,6 +46,19 @@ export default function DeliveryAddress() {
   const [open, setOpen] = useState(false);
   const [selectedFabric, setSelectedFabric] = useState("");
   const [selectedPlan, setSelectedPlan] = useState("vip");
+  const [address, setAddress] = useState([])
+
+  useEffect(() => {
+    fetch_address()
+  }, []);
+
+  const fetch_address = async () => {
+    const { data } = await common_axios.get('/addresses')
+    if (data.data) {
+      setAddress(data.data)
+    }
+    console.log(data)
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -67,39 +80,42 @@ export default function DeliveryAddress() {
         <div className={styles.container}>
           <div className={styles.firstContainer}>
             <div>Delivery Address</div>
-            <div>
-              <div>
+            {address.map((item) => {
+              return (
                 <div>
-                  <span>John Hamilton</span>
-                  <div>Home</div>
-                </div>
-                <p>
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.
-                </p>
-                <p>
-                  <span>Mobile:</span>&nbsp;
-                  <span>+91 9595 005067</span>
-                </p>
-              </div>
+                  <div>
+                    <div>
+                      <span>{item.name}</span>
+                      <div>{item.address_type}</div>
+                    </div>
+                    <p>
+                      {`${item.address_line_1}, ${item.city}, ${item.zip_code}`}
+                    </p>
+                    <p>
+                      <span>Mobile:</span>&nbsp;
+                      <span>{item.phone}</span>
+                    </p>
+                  </div>
 
-              <div>
-                <Button
-                  variant='contained'
-                  color='default'
-                  className={styles.editBtn}
-                >
-                  Edit
-                </Button>
-                <Button
-                  variant='contained'
-                  color='default'
-                  className={styles.changeBtn}
-                >
-                  change
-                </Button>
-              </div>
-            </div>
+                  <div>
+                    <Button
+                      variant='contained'
+                      color='default'
+                      className={styles.editBtn}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant='contained'
+                      color='default'
+                      className={styles.changeBtn}
+                    >
+                      change
+                    </Button>
+                  </div>
+                </div>
+              )
+            })}
             <div className={styles.btnDiv}>
               <Button
                 className={styles.addNewAddressBtn}

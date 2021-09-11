@@ -41,7 +41,7 @@ const Season_Offers = () => {
         >
           <div className={styles.h2_div} >
             <h2>{offers[0]?.title}</h2>
-            <Button onClick={Handler} className={styles.buttons} >Button</Button>
+            <Button onClick={Handler} className={styles.buttons} >Shop Now</Button>
           </div>
         </div> : null}
         {offers.length > 1 ? <div
@@ -54,7 +54,7 @@ const Season_Offers = () => {
         >
           <div className={styles.h2_div} >
             <h2>{offers[1]?.title}</h2>
-            <Button className={styles.buttons} onClick={Handler}>Button</Button>
+            <Button className={styles.buttons} onClick={Handler}>Shop Now</Button>
           </div>
         </div> : null}
         {offers.length > 2 ? <div
@@ -68,7 +68,7 @@ const Season_Offers = () => {
           {/* Chech here */}
           <div className={styles.h2_div}  >
             <h2 style={{ whiteSpace: "nowrap" }}>{offers[2]?.title}</h2>
-            <Button onClick={Handler}>Button</Button>
+            <Button onClick={Handler}>Shop Now</Button>
           </div>
         </div> : null}
         {/* <div className={styles.Season_Offers_Item1}>

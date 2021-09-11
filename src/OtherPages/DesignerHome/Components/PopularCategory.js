@@ -34,7 +34,7 @@ const PopularCategory = () => {
 
               <Link
                 style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                to="designers-product-page"
+                to={`/designers-product-page/${categories[0]?.slug}`}
               >
                 {categories[0]?.title}
               </Link>
@@ -47,7 +47,7 @@ const PopularCategory = () => {
               />
               <Link
                 style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                to="designers-product-page"
+                to={`/designers-product-page/${categories[1]?.slug}`}
               >
                 {categories[1]?.title}
               </Link>{" "}
@@ -60,7 +60,7 @@ const PopularCategory = () => {
               />
               <Link
                 style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                to="designers-product-page"
+                to={`/designers-product-page/${categories[2]?.slug}`}
               >
                 {categories[2]?.title}
               </Link>
@@ -73,7 +73,7 @@ const PopularCategory = () => {
               />
               <Link
                 style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                to="designers-product-page"
+                to={`/designers-product-page/${categories[3]?.slug}`}
               >
                 {categories[3]?.title}
               </Link>{" "}
@@ -86,7 +86,7 @@ const PopularCategory = () => {
               />
               <Link
                 style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                to="designers-product-page"
+                to={`/designers-product-page/${categories[4]?.slug}`}
               >
                 {categories[4]?.title}
               </Link>{" "}
@@ -99,7 +99,7 @@ const PopularCategory = () => {
               />
               <Link
                 style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                to="designers-product-page"
+                to={`/designers-product-page/${categories[5]?.slug}`}
               >
                 {categories[5]?.title}
               </Link>{" "}

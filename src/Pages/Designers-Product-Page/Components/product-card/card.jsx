@@ -6,6 +6,7 @@ import parse from 'html-react-parser';
 //icon
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import common_axios from "../../../../utils/axios.config";
 
 export default function ProductCard(props) {
 
@@ -18,6 +19,18 @@ export default function ProductCard(props) {
     await setIsLoading(true)
     await setProduct(props.product)
     await setIsLoading(false)
+  }
+
+  const add_to_wishlist = async (prod) => {
+    setAddToWishList(true)
+    const { data } = await common_axios.get(`/wishlist/${prod.id}/add`)
+    console.log(data)
+  }
+
+  const remove_from_wishlist = async (prod) => {
+    setAddToWishList(false)
+    const { data } = await common_axios.get(`/wishlist/${prod.id}/remove`)
+    console.log(data)
   }
 
   useEffect(async () => {
@@ -34,7 +47,7 @@ export default function ProductCard(props) {
           <IconButton
             aria-label='product'
             onClick={() => {
-              setAddToWishList(false);
+              remove_from_wishlist(product)
             }}
             className={styles.icons}
           >
@@ -44,7 +57,7 @@ export default function ProductCard(props) {
           <IconButton
             aria-label='product'
             onClick={() => {
-              setAddToWishList(true);
+              add_to_wishlist(product)
             }}
             className={styles.icons}
           >

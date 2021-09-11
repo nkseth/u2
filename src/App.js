@@ -74,13 +74,13 @@ function App() {
   const dispatch = useDispatch();
   const [cookies, setCookie] = useCookies(['user']);
 
-  useEffect(()=>{
-     
-     if(cookies.data){
-      dispatch(setUserData(cookies.data))
-     }
+  useEffect(() => {
 
-  },[])
+    if (cookies.data) {
+      dispatch(setUserData(cookies.data))
+    }
+
+  }, [])
 
 
   //const { category_grp } = useSelector(state => state.root.main)

@@ -24,6 +24,27 @@ import MeasurementFloating from './Components/MeasurementFloating'
 import Container from '../../utils/Container/container'
 
 
+import {
+    //Upper body Values
+    NeckData, ShoulderData, ChestData, ArmHoleData,
+    SleeveLengthData, WristData,
+    //Lower body values
+    WaistData, FullLengthData,
+    HipRoundData, InSeamData, ThighData, CalfData, AnkleData,
+
+    //Upper body functions
+    NeckVALUE, ShoulderVALUE, ChestVALUE, ArmHoleVALUE,
+    SleeveLengthVALUE, WristVALUE,
+
+    //Lower body functions
+    WaistVALUE, FullLengthVALUE,
+    HipRoundVALUE, InSeamVALUE, ThighVALUE, CalfVALUE, AnkleVALUE,
+} from "../../Redux/MeasuremantData"
+
+
+
+import { Link } from 'react-router-dom'
+
 
 function AddWomanMeasurement() {
 
@@ -166,8 +187,23 @@ function AddWomanMeasurement() {
     }
     const UploadMeasurement = () => {
         if (Open === 'upper' || Open === 'lower') {
-            alert('This button Will upload Measurements')
+            NeckVALUE(NECK);
+            ShoulderVALUE(SHOULDER);
+            ChestVALUE(CHEST);
+            ArmHoleVALUE(ARMHOLE);
 
+            SleeveLengthVALUE(SLEEVE);
+            WristVALUE(WRIST);
+
+
+            WaistVALUE(WAIST);
+            FullLengthVALUE(FULLLENGTH);
+
+            HipRoundVALUE(HIPROUND);
+            InSeamVALUE(INSEAM);
+            ThighVALUE(THIGH);
+            CalfVALUE(CALF);
+            AnkleVALUE(ANKLE);
         }
         else {
             setAllDone('Done')
@@ -367,7 +403,16 @@ function AddWomanMeasurement() {
                 </div>
                 {/* <Button className={styles.submitBtn} >{AllDone === 'Start' ? 'Submit' : AllDone === false ? 'Next' : "Submit"}</Button> */}
                 {/* <Button className={styles.submitBtn} onClick={SetIt} >{AllDone}</Button> */}
-                <Button className={styles.submitBtn} onClick={AllDone === true ? UploadMeasurement : SetIt} >{AllDone === true ? 'Submit' : AllDone}</Button>
+                {
+                    AllDone === true ?
+
+                        <Link to="/viewmeasurement" style={{ color: "#fff" }} > <Button className={styles.submitBtn} onClick={AllDone === true ? UploadMeasurement : SetIt} >Submit</Button></Link>
+                        :
+
+                        <Button className={styles.submitBtn} onClick={AllDone === true ? UploadMeasurement : SetIt} >{AllDone}</Button>
+
+
+                }
 
                 <div className={styles.AccordionDiv}>
                     <div className={styles.TabsButtonDiv}>

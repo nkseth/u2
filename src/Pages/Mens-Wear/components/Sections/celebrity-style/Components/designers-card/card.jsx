@@ -36,7 +36,7 @@ export default function ProductCard({ image }) {
           </IconButton>
         )}
       </div>
-      <Link to="product-description" className={styles.productDetails}>
+      <Link to="/product-description/levis" className={styles.productDetails}>
         <span className={styles.productName}>Levi’s</span>
         <span className={styles.productDesc}>Men black checked shirt</span>
         <p className={styles.productPrice}>

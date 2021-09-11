@@ -2,6 +2,7 @@ import React from "react";
 import { Button, useMediaQuery } from "@material-ui/core";
 import styles from "./slide.module.scss";
 import image from "./Images/carouselMan.png"
+import { Link } from "react-router-dom";
 
 export default function Slide(props) {
 
@@ -15,20 +16,24 @@ export default function Slide(props) {
       <img src={image} alt='product' />
       <div>
         <span className={styles.header}>
-          {props.item?.hasOwnProperty('title')? props.item.title : 'item'}
+          {props.item?.hasOwnProperty('title') ? props.item.title : 'item'}
         </span>
         {mobileView && (
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Button variant='contained' className={styles.button}>
-              Shop Now
-            </Button>
+            <Link to='designers-product-page/blazers-and-coats'>
+              <Button variant='contained' className={styles.button}>
+                Shop Now
+              </Button>
+            </Link>
           </div>
         )}
 
         {!mobileView && (
-          <Button variant='contained' className={styles.button}>
-            Shop Now
-          </Button>
+          <Link to='designers-product-page/blazers-and-coats'>
+            <Button variant='contained' className={styles.button}>
+              Shop Now
+            </Button>
+          </Link>
         )}
 
         {!tabViewPro && <div>{props.children}</div>}

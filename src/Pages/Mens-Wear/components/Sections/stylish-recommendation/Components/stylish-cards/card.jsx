@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./card.module.scss";
 import Button from "@material-ui/core/Button";
-
+import { Link } from 'react-router-dom'
 export default function StylishCard({ image, item }) {
   return (
     <div className={styles.container}>
@@ -11,13 +11,14 @@ export default function StylishCard({ image, item }) {
       />
       <div className={styles.content}>
         <div className={styles.text}>{item?.title || ''}</div>
-        <Button
-          className={styles.shopNowBtn}
-          variant='contained'
-          color='default'
-        >
-          Shop Now
-        </Button>
+        <Link to='designers-product-page/blazers-and-coats'>
+          <Button className={styles.shopNowBtn}
+            variant='contained'
+            color='default'>
+            Shop Now
+          </Button>
+        </Link>
+
       </div>
     </div>
   );

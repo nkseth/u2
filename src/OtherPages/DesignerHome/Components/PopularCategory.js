@@ -102,7 +102,7 @@ const PopularCategory = () => {
                 to={`/designers-product-page/${categories[5]?.slug}`}
               >
                 {categories[5]?.title}
-              </Link>{" "}
+              </Link>
             </div>
           </div>
         </div>

@@ -46,10 +46,13 @@ text-align: left;
 
 
     > .mainDiv {
-      //   height: 201px;
+      position: relative;
       width: 382px;
       border: 1px solid var(--primary-color);
-      > div:first-child {
+      .radioDiv{
+        position: absolute;
+      }
+      >.firstAftermain {
         padding: 1rem;
         display: grid;
         gap: 0.6rem;
@@ -61,6 +64,7 @@ text-align: left;
             font-size: 16px;
             font-weight: 700;
             line-height: 20px;
+            margin-top:2em ;
           }
           > div {
             height: 28px;

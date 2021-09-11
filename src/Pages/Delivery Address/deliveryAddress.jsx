@@ -47,6 +47,7 @@ export default function DeliveryAddress() {
   const [selectedFabric, setSelectedFabric] = useState("");
   const [selectedPlan, setSelectedPlan] = useState("vip");
   const [address, setAddress] = useState([])
+  const [SelectAddress, setSelectAddress] = useState(0)
 
   useEffect(() => {
     fetch_address()
@@ -83,7 +84,13 @@ export default function DeliveryAddress() {
             {address.map((item) => {
               return (
                 <div className={styles.mainDiv} >
-                  <div>
+                  <div className={styles.radioDiv}>
+                    <CustomRadio
+                      checked={SelectAddress === item.id}
+                      onClick={() => setSelectAddress(item.id)}
+                    />
+                  </div>
+                  <div className={styles.firstAftermain} >
                     <div>
                       <span>{item.name}</span>
                       <div>{item.address_type}</div>

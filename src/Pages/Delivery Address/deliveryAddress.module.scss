@@ -42,7 +42,10 @@ letter-spacing: 0em;
 text-align: left;
 
     }
-    > div:nth-child(2) {
+
+
+
+    > .mainDiv {
       //   height: 201px;
       width: 382px;
       border: 1px solid var(--primary-color);

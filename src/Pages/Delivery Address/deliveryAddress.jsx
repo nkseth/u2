@@ -82,7 +82,7 @@ export default function DeliveryAddress() {
             <div>Delivery Address</div>
             {address.map((item) => {
               return (
-                <div>
+                <div className={styles.mainDiv} >
                   <div>
                     <div>
                       <span>{item.name}</span>

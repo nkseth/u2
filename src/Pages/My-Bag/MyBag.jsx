@@ -31,22 +31,22 @@ export default function MyBag() {
   const img =
     "https://images.pexels.com/photos/1096849/pexels-photo-1096849.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=165";
 
-    useEffect(() => {
-      fetch_data()
-    }, [])
-  
-    const fetch_data = async () => {
-      try{
-        const { data: val } = await common_axios.get('/carts')
-        console.log(val)
-      } catch(e){
-        console.log(e.response.data)
-      }
-      // if (val.data?.length > 0) {
-      //   setData(val.data[0].items)
-      //   setPriceDetails(val.data[0])
-      // }
+  useEffect(() => {
+    fetch_data()
+  }, [])
+
+  const fetch_data = async () => {
+    try {
+      const { data: val } = await common_axios.get('/carts')
+      console.log(val)
+    } catch (e) {
+      console.log(e.response.data)
     }
+    // if (val.data?.length > 0) {
+    //   setData(val.data[0].items)
+    //   setPriceDetails(val.data[0])
+    // }
+  }
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection style={mobileView ? { marginTop: "0" } : { marginTop: "3em" }} >
@@ -60,13 +60,16 @@ export default function MyBag() {
         <div className={styles.container}>
           {
             mobileView ?
-              <MobileProductMyBag img={img} quantity={quantity} setQuantity={setQuantity} />
-
+              <>
+                <MobileProductMyBag img={img} quantity={quantity} setQuantity={setQuantity} />
+              </>
+              //This component ⬆ is for mobile view dont itterate this component go inside it and ittetrate there
               :
 
               <div className={styles.firstContainer}>
                 <div>My Bag</div>
-                <div>
+
+                <div className={styles.mainContainer} >
                   <img src={img} alt='product' className={styles.image} />
                   <div>
                     <div style={{ alignItems: "flex-start" }} >
@@ -115,6 +118,61 @@ export default function MyBag() {
 
                   </div>
                 </div>
+
+                <div className={styles.mainContainer} >
+                  <img src={img} alt='product' className={styles.image} />
+                  <div>
+                    <div style={{ alignItems: "flex-start" }} >
+                      <p className={styles.proName} >
+                        Men Creamed Blazer With White
+                        <br />
+                        T-shirt Be Wearing in 2021
+                      </p>
+                      <p>Solid colour</p>
+
+                      <div>
+
+                        <h4>Product Type</h4>
+                        <p>Readymade</p>
+                        <Button className={styles.MoveToWishListBtn} >Move to Wishlist</Button>
+                      </div>
+                    </div>
+
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }} >
+                      <p>₹559</p>
+                      <p className={styles.priceSpanP}  >
+                        <span className={styles.priceSpan} >₹1499</span>
+                        <span className={styles.priceSpan1} >63% OFF</span>
+                      </p>
+                      <div className={styles.quan} >
+                        <p>Quantity</p>
+                        <div style={{ display: "flex" }} >
+                          <Button
+                            className={styles.addBtn}
+                            onClick={() => setQuantity(quantity - 1)}
+                          >
+                            <RemoveIcon style={{ width: "15px" }} />
+                          </Button>
+                          <div className={styles.quantity}>{quantity}</div>
+                          <Button
+                            className={styles.removeBtn}
+                            onClick={() => setQuantity(quantity + 1)}
+                          >
+                            <AddIcon style={{ width: "15px" }} />
+                          </Button>
+                        </div>
+                        <Button className={styles.RemoveBTN} >Remove item </Button>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+
+
+
+
+
                 <div>
                   <div>
 
@@ -173,17 +231,18 @@ export default function MyBag() {
   );
 }
 
-
-
 const MobileProductMyBag = ({ img, quantity, setQuantity }) => {
   return (
     <div className={styles.MobileConatiner}>
       <h1 className={styles.h1}  >My Bag</h1>
+
+
+      {/* Ittitrate from here */}
       <div className={styles.mainDiv}>
         <div className={styles.ImageQuanDiv}>
           <img src={img} className={styles.mainimg} />
-
-          {/* <div className={styles.quan} >
+          {/* 
+          <div className={styles.quan} >
             <p>Quantity</p>
             <div style={{ display: "flex" }} >
               <Button
@@ -213,27 +272,26 @@ const MobileProductMyBag = ({ img, quantity, setQuantity }) => {
                 <p className={styles.PType1}  >Product Type</p>
                 <p className={styles.PType2} >Customised</p>
               </div>
-              <div className={styles.quan} >
-                <p>Quantity</p>
-                <div style={{ display: "flex" }} >
-                  <Button
-                    className={styles.addBtn}
-                    onClick={() => setQuantity(quantity - 1)}
-                  >
-                    <RemoveIcon style={{ width: "15px" }} />
-                  </Button>
-                  <div className={styles.quantity}>{quantity}</div>
-                  <Button
-                    className={styles.removeBtn}
-                    onClick={() => setQuantity(quantity + 1)}
-                  >
-                    <AddIcon style={{ width: "15px" }} />
-                  </Button>
-                </div>
-                <Button className={styles.RemoveBTNMobile} >Remove item </Button>
+
+            </div>
+            <div className={styles.quan} >
+              <p>Quantity</p>
+              <div style={{ display: "flex" }} >
+                <Button
+                  className={styles.addBtn}
+                  onClick={() => setQuantity(quantity - 1)}
+                >
+                  <RemoveIcon style={{ width: "15px" }} />
+                </Button>
+                <div className={styles.quantity}>{quantity}</div>
+                <Button
+                  className={styles.removeBtn}
+                  onClick={() => setQuantity(quantity + 1)}
+                >
+                  <AddIcon style={{ width: "15px" }} />
+                </Button>
               </div>
             </div>
-
 
             <div className={styles.PriceMobile}>
               <p className={styles.PriceMobileMain} >₹559</p>
@@ -242,10 +300,13 @@ const MobileProductMyBag = ({ img, quantity, setQuantity }) => {
             </div>
 
             <Button className={styles.MoveToWishListBtnMobile}>Move to Whishlist</Button>
+            <Button className={styles.RemoveBTNMobile} >Remove item </Button>
+
           </div>
 
         </div>
       </div>
+      {/* till here */}
     </div>
   )
 }

@@ -69,6 +69,15 @@ export default function DeliveryAddress() {
     setOpen(false);
   };
 
+  const nav_to_payment = () => {
+    if (SelectAddress) {
+      const selected_address = address.filter(function (item) { return item.id == SelectAddress });
+      history.push({ 'pathname': "/payment", state: { selected_address: selected_address[0] } });
+    } else {
+      alert("Choose an address")
+    }
+  }
+
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection style={{ marginTop: "1em" }} >
@@ -81,7 +90,7 @@ export default function DeliveryAddress() {
         <div className={styles.container}>
           <div className={styles.firstContainer}>
             <div>Delivery Address</div>
-            {address.map((item) => {
+            {address.map((item, index) => {
               return (
                 <div className={styles.mainDiv} >
                   <div className={styles.radioDiv}>
@@ -123,18 +132,16 @@ export default function DeliveryAddress() {
                 </div>
               )
             })}
-            <Link to={'/addNewAddress'}>
-            <div className={styles.btnDiv}>
-              <Button
-                className={styles.addNewAddressBtn}
-                variant='contained'
-                color='default'
-                endIcon={<AddIcon />}
-              >
-                Add New Address
-              </Button>
-            </div>
-            </Link>
+              <div className={styles.btnDiv}>
+                <Button
+                  className={styles.addNewAddressBtn}
+                  variant='contained'
+                  color='default'
+                  endIcon={<AddIcon />}
+                >
+                  Add New Address
+                </Button>
+              </div>
             <div className={styles.btnDiv} style={{ marginBottom: "2rem" }}>
               <Button
                 className={styles.useCurrentLocationBtn}
@@ -153,7 +160,7 @@ export default function DeliveryAddress() {
               color='default'
               className={styles.proceedBtn}
               onClick={() => {
-                history.push("/payment");
+                nav_to_payment()
               }}
             >
               Proceed

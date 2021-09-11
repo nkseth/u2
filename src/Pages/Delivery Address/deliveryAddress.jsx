@@ -116,6 +116,7 @@ export default function DeliveryAddress() {
                 </div>
               )
             })}
+            <Link to={'/addNewAddress'}>
             <div className={styles.btnDiv}>
               <Button
                 className={styles.addNewAddressBtn}
@@ -126,6 +127,7 @@ export default function DeliveryAddress() {
                 Add New Address
               </Button>
             </div>
+            </Link>
             <div className={styles.btnDiv} style={{ marginBottom: "2rem" }}>
               <Button
                 className={styles.useCurrentLocationBtn}

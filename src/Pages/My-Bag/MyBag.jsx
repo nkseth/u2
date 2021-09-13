@@ -74,7 +74,7 @@ export default function MyBag() {
 
   const substract_quantity = async (item, index) => {
     setLoading(true)
-    if (parseInt(item.quantity) > 0) {
+    if (parseInt(item.quantity) > 1) {
       try {
         const { data: res } = await common_axios.put(`/cart/${value.id}/update`, {
           item: item.id,
@@ -89,7 +89,9 @@ export default function MyBag() {
         alert(e?.response?.data?.message)
         console.log(e?.response?.data)
       }
-    }
+    } else (
+      alert("Quantity can't be less than 1")
+    )
   }
 
   const move_to_wishlist = async (item) => {

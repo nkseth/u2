@@ -9,12 +9,12 @@ import { useTheme } from '@material-ui/core/styles';
 import useLogin from "./useLogin";
 import common_axios from "../utils/axios.config";
 import { useSelector, useDispatch } from "react-redux";
-import { setLoginCreds } from "../Redux/actions/homepage";
-
+import { setLoginCreds, setUserData } from "../Redux/actions/homepage";
+import { useCookies } from 'react-cookie';
 
 const Login = () => {
 
-  const { login_Mode_Handler, loginMode } = useLogin();
+  const { login_Mode_Handler, loginMode, login_Model_Hide } = useLogin();
   const dispatch = useDispatch()
   const theme = useTheme()
   const match = useMediaQuery(theme.breakpoints.down('sm'));
@@ -24,6 +24,7 @@ const Login = () => {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [cookies, setCookie] = useCookies(['user']);
 
   const login_handler = async () => {
 
@@ -50,7 +51,10 @@ const Login = () => {
       console.log(data)
 
       if (data) {
-        login_Mode_Handler("LoginOtpVarify");
+        setCookie('data', data.data, { path: '/' })
+        localStorage.setItem('token', JSON.stringify(data.data.api_token))
+        dispatch(setUserData(data.data))
+        login_Model_Hide()
       }
     } catch (e) {
       alert('Invalid Email or Password')

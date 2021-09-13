@@ -38,6 +38,8 @@ export default function TopOffersOfTheSeasonSection({ type }) {
     dispatch(get_top_offers(`${type}-fashion`))
   }, [type])
 
+  console.log(top_offers)
+
   return (
     <CustomSection
       style={{

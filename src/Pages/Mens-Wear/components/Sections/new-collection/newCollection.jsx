@@ -31,6 +31,8 @@ export default function NewCollectionSection({ type }) {
     dispatch(get_new_collection(`${type}_home`, group))
   }, [type])
 
+  console.log(new_collection)
+
   return (
     <CustomSection
       style={{

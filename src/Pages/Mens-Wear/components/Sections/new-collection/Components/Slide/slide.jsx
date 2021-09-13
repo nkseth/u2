@@ -20,7 +20,7 @@ export default function Slide(props) {
         </span>
         {mobileView && (
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Link to='designers-product-page/blazers-and-coats'>
+            <Link to='/designers-product-page/blazers-and-coats'>
               <Button variant='contained' className={styles.button}>
                 Shop Now
               </Button>
@@ -29,7 +29,7 @@ export default function Slide(props) {
         )}
 
         {!mobileView && (
-          <Link to='designers-product-page/blazers-and-coats'>
+          <Link to='/designers-product-page/blazers-and-coats'>
             <Button variant='contained' className={styles.button}>
               Shop Now
             </Button>

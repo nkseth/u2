@@ -26,6 +26,7 @@ import { ReactComponent as CloseIcon } from "../../Images/icons/close.svg";
 import { ReactComponent as FilterIcon } from "../../Images/icons/filter.svg";
 import CustomStepper from "../../utils/Stepper/stepper";
 import common_axios from "../../utils/axios.config";
+import NewAddress from "./Components/fabric-sample-card/NewAddress";
 const CustomRadio = withStyles({
   root: {
     color: "#9D9D9D",
@@ -44,6 +45,7 @@ export default function DeliveryAddress() {
   const mobileView = useMediaQuery("(max-width:550px)");
   const history = useHistory();
   const [open, setOpen] = useState(false);
+  const [NewAddressSection, setNewAddressSection] = useState(false);
   const [selectedFabric, setSelectedFabric] = useState("");
   const [selectedPlan, setSelectedPlan] = useState("vip");
   const [address, setAddress] = useState([])
@@ -86,87 +88,98 @@ export default function DeliveryAddress() {
           activePath='/ Address'
         />
         <CustomStepper activeStep={0} />
+        {
+          SelectAddress ?
+            <NewAddress />
 
-        <div className={styles.container}>
-          <div className={styles.firstContainer}>
-            <div>Delivery Address</div>
-            {address.map((item, index) => {
-              return (
-                <div className={styles.mainDiv} >
-                  <div className={styles.radioDiv}>
-                    <CustomRadio
-                      checked={SelectAddress === item.id}
-                      onClick={() => setSelectAddress(item.id)}
-                    />
-                  </div>
-                  <div className={styles.firstAftermain} >
-                    <div>
-                      <span>{item.name}</span>
-                      <div>{item.address_type}</div>
+            :
+            <div className={styles.container}>
+              <div className={styles.firstContainer}>
+                <div>Delivery Address</div>
+                {address.map((item) => {
+                  return (
+                    <div className={styles.mainDiv} >
+                      <div className={styles.radioDiv}>
+                        <CustomRadio
+                          checked={SelectAddress === item.id}
+                          onClick={() => setSelectAddress(item.id)}
+                        />
+                      </div>
+                      <div className={styles.firstAftermain} >
+                        <div>
+                          <span>{item.name}</span>
+                          <div>{item.address_type}</div>
+                        </div>
+                        <p>
+                          {`${item.address_line_1}, ${item.city}, ${item.zip_code}`}
+                        </p>
+                        <p>
+                          <span>Mobile:</span>&nbsp;
+                          <span>{item.phone}</span>
+                        </p>
+                      </div>
+
+                      <div>
+                        <Button
+                          variant='contained'
+                          color='default'
+                          className={styles.editBtn}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          variant='contained'
+                          color='default'
+                          className={styles.changeBtn}
+                        >
+                          change
+                        </Button>
+                      </div>
                     </div>
-                    <p>
-                      {`${item.address_line_1}, ${item.city}, ${item.zip_code}`}
-                    </p>
-                    <p>
-                      <span>Mobile:</span>&nbsp;
-                      <span>{item.phone}</span>
-                    </p>
-                  </div>
-
-                  <div>
-                    <Button
-                      variant='contained'
-                      color='default'
-                      className={styles.editBtn}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      variant='contained'
-                      color='default'
-                      className={styles.changeBtn}
-                    >
-                      change
-                    </Button>
-                  </div>
+                  )
+                })}
+                <div className={styles.btnDiv}>
+                  <Button
+                    className={styles.addNewAddressBtn}
+                    variant='contained'
+                    color='default'
+                    endIcon={<AddIcon />}
+                    onClick={() => setSelectAddress(!SelectAddress)}
+                  >
+                    Add New Address
+                  </Button>
                 </div>
-              )
-            })}
-              <div className={styles.btnDiv}>
+
+
+                <div className={styles.btnDiv} style={{ marginBottom: "2rem" }}>
+                  <Button
+                    className={styles.useCurrentLocationBtn}
+                    variant='contained'
+                    color='default'
+                    startIcon={<LocationIcon />}
+                  >
+                    Use current location
+                  </Button>
+                </div>
+
+
+
+
+              </div>
+              <div className={styles.lastContainer}>
                 <Button
-                  className={styles.addNewAddressBtn}
                   variant='contained'
                   color='default'
-                  endIcon={<AddIcon />}
+                  className={styles.proceedBtn}
+                  onClick={() => {
+                    history.push("/payment");
+                  }}
                 >
-                  Add New Address
+                  Proceed
                 </Button>
               </div>
-            <div className={styles.btnDiv} style={{ marginBottom: "2rem" }}>
-              <Button
-                className={styles.useCurrentLocationBtn}
-                variant='contained'
-                color='default'
-                startIcon={<LocationIcon />}
-              >
-                Use current location
-              </Button>
             </div>
-          </div>
-
-          <div className={styles.lastContainer}>
-            <Button
-              variant='contained'
-              color='default'
-              className={styles.proceedBtn}
-              onClick={() => {
-                nav_to_payment()
-              }}
-            >
-              Proceed
-            </Button>
-          </div>
-        </div>
+        }
       </CustomSection>
 
     </Container>

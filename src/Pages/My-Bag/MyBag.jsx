@@ -120,7 +120,7 @@ export default function MyBag() {
     }).then((res) => res.json())
       .then((json) => {
         console.log(json)
-        if(json.message == 'Item hs been removed'){
+        if (json.message == 'Item hs been removed') {
           setData(json.cart?.items)
           setValue(json.cart)
         }
@@ -141,6 +141,7 @@ export default function MyBag() {
     //   console.log(e)
     // }
   }
+
 
   return (
     <Container bottomDivider footerOnTabMob>
@@ -193,14 +194,14 @@ export default function MyBag() {
                             <div style={{ display: "flex" }} >
                               <Button
                                 className={styles.addBtn}
-                                onClick={() => substract_quantity(item, index)}
+                              // onClick={() => substract_quantity(item, index)}
                               >
                                 <RemoveIcon style={{ width: "15px" }} />
                               </Button>
                               <div className={styles.quantity}>{item.quantity}</div>
                               <Button
                                 className={styles.removeBtn}
-                                onClick={() => add_quantity(item, index)}
+                              // onClick={() => add_quantity(item, index)}
                               >
                                 <AddIcon style={{ width: "15px" }} />
                               </Button>

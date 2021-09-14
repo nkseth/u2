@@ -32,8 +32,148 @@
   }
 }
 
+.inputSpecial{
+  border: 1px solid #00000033;
+  height: 48px;
+  display: flex;
+  flex: 1;
+  border-radius: 2px;
+  padding: 15px;
+  outline: none;
+  font-size: 18px;
+
+  &::placeholder {
+    color: #9d9d9d;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.1599999964237213px;
+  }
+}
+
+
+
+
+.textarea{
+  border: 1px solid #6a5b40!important;
+  display: flex!important;
+  flex: 1!important;
+  border-radius: 5px!important;
+  padding: 15px!important;
+  outline: none!important;
+  &::placeholder {
+    color: #9d9d9d!important;
+    font-size: 14px!important;
+    font-weight: 400!important;
+    line-height: 18px!important;
+  }
+}
+.FormControl{
+  border: 1px solid #6a5b40;
+  height: 48px;
+  display: flex;
+  flex: 1;
+  border-radius: 5px;  
+  outline: none;
+
+  .NativeSelect{
+    width: 350px!important;
+    height: 100%;
+    margin: 0 0em 10em 0em !important;
+    select{
+      padding-left: 1em;
+      &::active{
+        background: #000;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 768px) {
   .input {
     width: 100%;
   }
 }
+
+
+@media screen and (max-width:900px) {
+
+
+  .FormControl{
+    border: 1px solid #6a5b40;
+    height: 48px;
+    display: flex;
+    flex: 1;
+    border-radius: 5px;  
+    outline: none;
+    .NativeSelect{
+      width: 310px!important;
+      height: 100%;
+    }
+        
+  }
+  }
+
+
+
+  @media screen and (max-width:830px) {
+
+
+    .FormControl{
+      border: 1px solid #6a5b40;
+      height: 48px;
+      display: flex;
+      flex: 1;
+      border-radius: 5px;  
+      outline: none;
+      .NativeSelect{
+        width: 290px!important;
+        height: 100%;
+      }
+          
+    }
+    }
+
+
+
+
+    @media screen and (max-width:705px) {
+
+
+      .FormControl{
+        border: 1px solid #6a5b40;
+        height: 48px;
+        display: flex;
+        flex: 1;
+        border-radius: 5px;  
+        outline: none;
+        .NativeSelect{
+          width: 220px!important;
+          height: 100%;
+        }
+            
+      }
+      }
+  
+
+
+      @media screen and (max-width:560px) {
+
+
+        .FormControl{
+          border: 1px solid #6a5b40;
+          height: 48px;
+          display: flex;
+          flex: 1;
+          border-radius: 5px;  
+          margin-bottom:1em!important;
+
+          outline: none;
+          .NativeSelect{
+            width: 80vw!important;
+            height: 100%;
+          }
+              
+        }
+        }
+    

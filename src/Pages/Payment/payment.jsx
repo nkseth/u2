@@ -43,11 +43,11 @@ export default function Payment() {
           activePath='/ Order Summary'
         />
         <div>
-          <CustomStepper activeStep={2} />
+          <CustomStepper activeStep={1} />
         </div>
         <div className={styles.container}>
           <div className={styles.firstContainer}>
-            <div>Payment Option</div>
+            <div className={styles.paymentHeader} >Payment Option</div>
             <div>
               <div className={styles.upiDiv}>
                 <div>
@@ -121,7 +121,7 @@ export default function Payment() {
                       color='default'
                       className={styles.payBtn}
                       onClick={() => {
-                        history.push("/offers");
+                        history.push("/add-measurement-choose-standard-size");
                       }}
                     >
                       Pay

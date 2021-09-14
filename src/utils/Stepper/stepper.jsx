@@ -14,9 +14,9 @@ export default function CustomStepper({ activeStep }) {
       completeBarColor='#6A5B40'
       size={30}
       steps={[
-        { title: "Address" },
         { title: "Order Summary" },
         { title: "Payment" },
+        { title: "Measurement" },
       ]}
       activeStep={activeStep}
     />

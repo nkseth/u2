@@ -131,11 +131,11 @@ function App() {
         />
 
         <Route
-          path="/add-measurement-body-measurement-man"
+          path="/add-measurement-body-measurement-male"
           component={AddManMeasurement}
         />
         <Route
-          path="/add-measurement-body-measurement-woman"
+          path="/add-measurement-body-measurement-female"
           component={AddWomanMeasurement}
         />
         <Route path="/viewmeasurement" component={Measurement} />

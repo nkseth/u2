@@ -11,6 +11,7 @@ import {
   trendingReducer,
 } from "./designHomePageReducer";
 import mainreducer from "./mainReducer";
+import measurement_reducer from "./measurement";
 
 const rootreducer = combineReducers({
   login: loginreducer,
@@ -23,6 +24,7 @@ const rootreducer = combineReducers({
   topSeasonOffers: topSeasonOffersReducer,
   handMadeClothes: handMadeClothesReducer,
   main: mainreducer,
+  measurement: measurement_reducer
 });
 
 export default rootreducer;

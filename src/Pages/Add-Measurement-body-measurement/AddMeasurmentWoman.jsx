@@ -7,40 +7,23 @@ import FloatingTag from './Components/FloatingTag'
 import DetailTab from './Components/DetailTab'
 
 import Image from "./Images/women/Woman.svg"
-import neck from "./Images/women/upper/neck.svg"
-import shoulder from "./Images/women/upper/shoulder.svg"
-import chest from "./Images/women/upper/chest.svg"
-import wrist from "./Images/women/upper/wrist.svg"
-import arm from "./Images/women/upper/Armhhole.svg"
-import sleeve from "./Images/women/upper/sleveelength.svg"
-import waist from "./Images/women/lower/waist.svg"
-import fullLength from "./Images/women/lower/full length.svg"
-import hip from "./Images/women/lower/hip round.svg"
-import inseam from "./Images/women/lower/inseam.svg"
-import calf from "./Images/women/lower/Calf.svg"
-import ankle from "./Images/women/lower/ankle.svg"
-import thigh from "./Images/women/lower/thigh.svg"
+import neck_image from "./Images/women/upper/neck.svg"
+import shoulder_image from "./Images/women/upper/shoulder.svg"
+import chest_image from "./Images/women/upper/chest.svg"
+import wrist_image from "./Images/women/upper/wrist.svg"
+import arm_image from "./Images/women/upper/Armhhole.svg"
+import sleeve_image from "./Images/women/upper/sleveelength.svg"
+import waist_image from "./Images/women/lower/waist.svg"
+import fullLength_image from "./Images/women/lower/full length.svg"
+import hip_image from "./Images/women/lower/hip round.svg"
+import inseam_image from "./Images/women/lower/inseam.svg"
+import calf_image from "./Images/women/lower/Calf.svg"
+import ankle_image from "./Images/women/lower/ankle.svg"
+import thigh_image from "./Images/women/lower/thigh.svg"
 import MeasurementFloating from './Components/MeasurementFloating'
 import Container from '../../utils/Container/container'
-
-
-import {
-    //Upper body Values
-    NeckData, ShoulderData, ChestData, ArmHoleData,
-    SleeveLengthData, WristData,
-    //Lower body values
-    WaistData, FullLengthData,
-    HipRoundData, InSeamData, ThighData, CalfData, AnkleData,
-
-    //Upper body functions
-    NeckVALUE, ShoulderVALUE, ChestVALUE, ArmHoleVALUE,
-    SleeveLengthVALUE, WristVALUE,
-
-    //Lower body functions
-    WaistVALUE, FullLengthVALUE,
-    HipRoundVALUE, InSeamVALUE, ThighVALUE, CalfVALUE, AnkleVALUE,
-} from "../../Redux/MeasuremantData"
-
+import { useSelector, useDispatch } from 'react-redux'
+import { set_lower_body, set_upper_body } from '../../Redux/actions/measurement';
 
 
 import { Link } from 'react-router-dom'
@@ -51,6 +34,12 @@ function AddWomanMeasurement() {
 
     const mobileView = useMediaQuery("(max-width:550px)");
     const tabView = useMediaQuery("(max-width:769px)");
+    const dispatch = useDispatch()
+
+    const { upper_body, lower_body } = useSelector(state => state.root.measurement)
+
+    const { neck, chest, wrist, shoulder, arm_hole, sleeve } = upper_body;
+    const { waist, hip_round, full_length, inseam, thigh, calf, ankle} = lower_body;
 
 
     const [NECK, SETNECK] = useState('')
@@ -70,68 +59,69 @@ function AddWomanMeasurement() {
 
     const Form = (value, name) => {
         if (name === 'Neck') {
-            SETNECK(value);
+
+            dispatch(set_upper_body({...upper_body, neck:value}))
             setAllDone('Done')
 
         }
         else if (name === 'Shoulder') {
-            SETSHOULDER(value);
+            dispatch(set_upper_body({...upper_body, shoulder:value}));
             setAllDone('Done')
 
         }
         else if (name === 'Chest') {
-            SETCHEST(value);
+            dispatch(set_upper_body({...upper_body, chest:value}));
             setAllDone('Done')
 
         }
         else if (name === 'Arm Hole') {
-            SETARMHOLE(value);
+            dispatch(set_upper_body({...upper_body, arm_hole:value}));
             setAllDone('Done')
 
         }
         else if (name === 'Sleeve length') {
-            SETSLEEVE(value);
+            dispatch(set_upper_body({...upper_body, sleeve:value}));
             setAllDone('Done')
 
         }
         else if (name === 'Wrist') {
-            SETWRIST(value);
+            dispatch(set_upper_body({...upper_body, wrist:value}));
             setAllDone('Done')
 
         }
 
         else if (name === 'Waist') {
-            SETWAIST(value);
+            dispatch(set_lower_body({...lower_body, waist:value}));
             setAllDone('Done')
 
         }
         else if (name === 'Full length') {
-            SETFULLLENGTH(value);
+            dispatch(set_lower_body({...lower_body, full_length:value}));
             setAllDone('Done')
 
         }
         else if (name === 'Hip Round') {
-            SETHIPROUND(value);
+            dispatch(set_lower_body({...lower_body, hip_round:value}));
             setAllDone('Done')
 
         }
         else if (name === 'InSeam') {
-            SETINSEAM(value);
+            dispatch(set_lower_body({...lower_body, inseam:value}));
             setAllDone('Done')
 
         }
         else if (name === 'Thigh') {
-            SETTHIGH(value);
+            dispatch(set_lower_body({...lower_body, thigh:value}));
             setAllDone('Done')
 
         }
         else if (name === 'Calf') {
-            SETCALF(value);
+            dispatch(set_lower_body({...lower_body, calf:value}));
             setAllDone('Done')
 
         }
         else if (name === 'Ankle') {
-            SETANKLE(value);
+            dispatch(set_lower_body({...lower_body, ankle:value}));
             setAllDone('Done')
 
         }
@@ -139,20 +129,20 @@ function AddWomanMeasurement() {
     }
 
 
-    var NECKFilled = NECK === '' ? false : true
-    var CHESTFilled = CHEST === '' ? false : true
-    var WRISTFilled = WRIST === '' ? false : true
-    var SHOULDERFilled = SHOULDER === '' ? false : true
-    var ARMHOLEFilled = ARMHOLE === '' ? false : true
-    var SLEEVEFilled = SLEEVE === '' ? false : true
+    var NECKFilled = neck === '' ? false : true
+    var CHESTFilled = chest === '' ? false : true
+    var WRISTFilled = wrist === '' ? false : true
+    var SHOULDERFilled = shoulder === '' ? false : true
+    var ARMHOLEFilled = arm_hole === '' ? false : true
+    var SLEEVEFilled = sleeve === '' ? false : true
 
-    var WAISTFilled = WAIST === '' ? false : true
-    var HIPROUNDFilled = HIPROUND === '' ? false : true
-    var INSEAMFilled = INSEAM === '' ? false : true
-    var FULLLENGTHFilled = FULLLENGTH === '' ? false : true
-    var THIGHFilled = THIGH === '' ? false : true
-    var CALFFilled = CALF === '' ? false : true
-    var ANKLEFilled = ANKLE === '' ? false : true
+    var WAISTFilled = waist === '' ? false : true
+    var HIPROUNDFilled = hip_round === '' ? false : true
+    var INSEAMFilled = inseam === '' ? false : true
+    var FULLLENGTHFilled = full_length === '' ? false : true
+    var THIGHFilled = thigh === '' ? false : true
+    var CALFFilled = calf === '' ? false : true
+    var ANKLEFilled = ankle === '' ? false : true
 
 
     const [AllValues, SetAllValues] = useState(NECKFilled && CHESTFilled && WRISTFilled && SHOULDERFilled && ARMHOLEFilled && SLEEVEFilled && WAISTFilled && HIPROUNDFilled && INSEAMFilled && THIGHFilled && FULLLENGTHFilled && CALFFilled && ANKLEFilled === true ? true : false)
@@ -186,29 +176,30 @@ function AddWomanMeasurement() {
         }
     }
     const UploadMeasurement = () => {
-        if (Open === 'upper' || Open === 'lower') {
-            NeckVALUE(NECK);
-            ShoulderVALUE(SHOULDER);
-            ChestVALUE(CHEST);
-            ArmHoleVALUE(ARMHOLE);
+        setAllDone(true)
+        // if (Open === 'upper' || Open === 'lower') {
+        //     NeckVALUE(NECK);
+        //     ShoulderVALUE(SHOULDER);
+        //     ChestVALUE(CHEST);
+        //     ArmHoleVALUE(ARMHOLE);
 
-            SleeveLengthVALUE(SLEEVE);
-            WristVALUE(WRIST);
+        //     SleeveLengthVALUE(SLEEVE);
+        //     WristVALUE(WRIST);
 
 
-            WaistVALUE(WAIST);
-            FullLengthVALUE(FULLLENGTH);
+        //     WaistVALUE(WAIST);
+        //     FullLengthVALUE(FULLLENGTH);
 
-            HipRoundVALUE(HIPROUND);
-            InSeamVALUE(INSEAM);
-            ThighVALUE(THIGH);
-            CalfVALUE(CALF);
-            AnkleVALUE(ANKLE);
-        }
-        else {
-            setAllDone('Done')
+        //     HipRoundVALUE(HIPROUND);
+        //     InSeamVALUE(INSEAM);
+        //     ThighVALUE(THIGH);
+        //     CalfVALUE(CALF);
+        //     AnkleVALUE(ANKLE);
+        // }
+        // else {
+        //     setAllDone('Done')
 
-        }
+        // }
     }
     // const SetIt = () => {
     //     if (AllDone === 'Start') {
@@ -298,19 +289,19 @@ function AddWomanMeasurement() {
                     <img src={
                         Open === 'upper' ? Image :
                             Open === 'lower' ? Image :
-                                Open === 'Neck' ? neck :
-                                    Open === 'Shoulder' ? shoulder :
-                                        Open === 'Chest' ? chest :
-                                            Open === 'Arm Hole' ? arm :
-                                                Open === 'Waist' ? waist :
-                                                    Open === 'Wrist' ? wrist :
-                                                        Open === 'Hip Round' ? hip :
-                                                            Open === 'Thigh' ? thigh :
-                                                                Open === 'Ankle' ? ankle :
-                                                                    Open === 'Sleeve length' ? sleeve :
-                                                                        Open === 'Calf' ? calf :
-                                                                            Open === 'InSeam' ? inseam :
-                                                                                Open === 'Full length' ? fullLength :
+                                Open === 'Neck' ? neck_image :
+                                    Open === 'Shoulder' ? shoulder_image :
+                                        Open === 'Chest' ? chest_image :
+                                            Open === 'Arm Hole' ? arm_image :
+                                                Open === 'Waist' ? waist_image :
+                                                    Open === 'Wrist' ? wrist_image :
+                                                        Open === 'Hip Round' ? hip_image :
+                                                            Open === 'Thigh' ? thigh_image :
+                                                                Open === 'Ankle' ? ankle_image :
+                                                                    Open === 'Sleeve length' ? sleeve_image :
+                                                                        Open === 'Calf' ? calf_image :
+                                                                            Open === 'InSeam' ? inseam_image :
+                                                                                Open === 'Full length' ? fullLength_image :
                                                                                     Image
                     } alt='body' className={
                         Open === 'upper' ? styles.upperImage_w :
@@ -334,19 +325,19 @@ function AddWomanMeasurement() {
                     {
                         Open === 'upper' || Open === 'lower' ?
                             <FloatingTag position={button} FocusIt={FocusIt}
-                                NECK={NECK}
-                                CHEST={CHEST}
-                                WRIST={WRIST}
-                                SHOULDER={SHOULDER}
-                                ARMHOLE={ARMHOLE}
-                                SLEEVE={SLEEVE}
-                                WAIST={WAIST}
-                                HIPROUND={HIPROUND}
-                                INSEAM={INSEAM}
-                                FULLLENGTH={FULLLENGTH}
-                                THIGH={THIGH}
-                                CALF={CALF}
-                                ANKLE={ANKLE}
+                            NECK={neck}
+                            CHEST={chest}
+                            WRIST={wrist}
+                            SHOULDER={shoulder}
+                            ARMHOLE={arm_hole}
+                            SLEEVE={sleeve}
+                            WAIST={waist}
+                            HIPROUND={hip_round}
+                            INSEAM={inseam}
+                            FULLLENGTH={full_length}
+                            THIGH={thigh}
+                            CALF={calf}
+                            ANKLE={ankle}
                             />
                             :
                             <></>
@@ -357,45 +348,45 @@ function AddWomanMeasurement() {
 
                     <MeasurementFloating name={Open} focused={true} Form={Form} value={
                         Open === 'Neck' ?
-                            NECK
+                        neck
+                        :
+                        Open === 'Shoulder' ?
+                            shoulder
                             :
-                            Open === 'Shoulder' ?
-                                SHOULDER
+                            Open === 'Arm Hole' ?
+                                arm_hole
                                 :
-                                Open === 'Arm Hole' ?
-                                    ARMHOLE
+                                Open === 'Sleeve length' ?
+                                    sleeve
                                     :
-                                    Open === 'Sleeve length' ?
-                                        SLEEVE
+                                    Open === 'Waist' ?
+                                        waist
                                         :
-                                        Open === 'Waist' ?
-                                            WAIST
+                                        Open === 'Full length' ?
+                                            full_length
                                             :
-                                            Open === 'Full length' ?
-                                                FULLLENGTH
+                                            Open === 'Chest' ?
+                                                chest
                                                 :
-                                                Open === 'Chest' ?
-                                                    CHEST
+                                                Open === 'Ankle' ?
+                                                    ankle
                                                     :
-                                                    Open === 'Ankle' ?
-                                                        ANKLE
+                                                    Open === 'InSeam' ?
+                                                        inseam
                                                         :
-                                                        Open === 'InSeam' ?
-                                                            INSEAM
+                                                        Open === 'Thigh' ?
+                                                            thigh
                                                             :
-                                                            Open === 'Thigh' ?
-                                                                THIGH
+                                                            Open === 'Calf' ?
+                                                                calf
                                                                 :
-                                                                Open === 'Calf' ?
-                                                                    CALF
+                                                                Open === 'Wrist' ?
+                                                                    wrist
                                                                     :
-                                                                    Open === 'Wrist' ?
-                                                                        WRIST
+                                                                    Open === 'Hip Round' ?
+                                                                        hip_round
                                                                         :
-                                                                        Open === 'Hip Round' ?
-                                                                            HIPROUND
-                                                                            :
-                                                                            0
+                                                                        0
 
                     } />
 
@@ -427,19 +418,19 @@ function AddWomanMeasurement() {
                         Form={Form}
                         AllDone={AllDone}
                         SetIt={SetIt}
-                        NECK={NECK}
-                        CHEST={CHEST}
-                        WRIST={WRIST}
-                        SHOULDER={SHOULDER}
-                        ARMHOLE={ARMHOLE}
-                        SLEEVE={SLEEVE}
-                        WAIST={WAIST}
-                        HIPROUND={HIPROUND}
-                        INSEAM={INSEAM}
-                        FULLLENGTH={FULLLENGTH}
-                        THIGH={THIGH}
-                        CALF={CALF}
-                        ANKLE={ANKLE}
+                        NECK={neck}
+                        CHEST={chest}
+                        WRIST={wrist}
+                        SHOULDER={shoulder}
+                        ARMHOLE={arm_hole}
+                        SLEEVE={sleeve}
+                        WAIST={waist}
+                        HIPROUND={hip_round}
+                        INSEAM={inseam}
+                        FULLLENGTH={full_length}
+                        THIGH={thigh}
+                        CALF={calf}
+                        ANKLE={ankle}
                         UploadMeasurement={UploadMeasurement}
                     />
 

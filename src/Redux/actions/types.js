@@ -39,3 +39,12 @@ export const CELIBRITY_STYLE = "CELIBRITY_STYLE";
 //Offers
 export const SECTION1_SLIDERS = "SECTION1_SLIDERS";
 export const SECTION2_TOP_OFFERS = "SECTION1_TOP_OFFERS";
+
+//Measurement
+
+export const MY_MEASUREMENTS = "MY_MEASUREMENTS";
+export const GENDER = "GENDER";
+export const BASIC_DETAILS = "BASIC_DETAILS";
+export const UPPER_BODY = "UPPER_BODY";
+export const LOWER_BODY = "LOWER_BODY";
+export const BASIC_ID = "BASIC_ID"

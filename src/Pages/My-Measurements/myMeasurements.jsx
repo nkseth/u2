@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Grid, Button, useMediaQuery } from "@material-ui/core";
 import cx from "classnames";
@@ -15,6 +15,11 @@ export default function MyMeasurements() {
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   const [activeBtn, setActiveBtn] = useState("self");
+
+  useEffect(()=>{
+    
+  },[])
+
   return (
     <Container bottomDivider footerOnTabMob>
       <section

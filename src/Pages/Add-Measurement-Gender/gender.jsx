@@ -7,13 +7,18 @@ import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
 import styles from "./gender.module.scss";
 //images
 import Male from "../../Images/gender/male.svg";
+import { useSelector, useDispatch } from "react-redux";
+import { set_gender } from "../../Redux/actions/measurement";
 
 export default function AddMeasurementGender() {
   const history = useHistory();
+  const dispatch = useDispatch()
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   const [selectedBtn, setSelectedBtn] = useState("men");
+  const { gender } = useSelector(state => state.root.measurement);
+
   return (
     <Container bottomDivider footerOnTabMob>
       <div
@@ -51,20 +56,20 @@ export default function AddMeasurementGender() {
             <img src={Male} alt='male' />
             <div className={styles.buttonDiv}>
               <Button
-                onClick={() => setSelectedBtn("men")}
+                onClick={() => dispatch(set_gender('male'))}
                 className={cx(
                   styles.button,
-                  selectedBtn === "men" && styles.buttonActive
+                  gender === "male" && styles.buttonActive
                 )}
                 variant='contained'
               >
                 Men
               </Button>
               <Button
-                onClick={() => setSelectedBtn("women")}
+                onClick={() => dispatch(set_gender('female'))}
                 className={cx(
                   styles.button,
-                  selectedBtn === "women" && styles.buttonActive
+                  gender === "female" && styles.buttonActive
                 )}
                 variant='contained'
               >

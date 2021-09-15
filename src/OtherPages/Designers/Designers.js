@@ -27,8 +27,8 @@ const Designers = () => {
               DesignerImage={data.image}
               background={data.cover_image || Images[0].background}
               DesignerName={data.name}
-              products={data.product_count || "25"}
-              followers={data.followers || "25k"}
+              products={data.products_count}
+              followers={data.followers_count}
             />
           );
         })}

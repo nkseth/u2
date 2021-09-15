@@ -1,19 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Review.module.scss";
 import CustomDivider from "../../utils/Custom Divider/divider";
 import { Button } from "@material-ui/core";
+import common_axios from "../../utils/axios.config";
+
 const Review = () => {
+
+  const [review, setReviews] = useState([])
+
+  useEffect(()=>{
+    fetch_data()
+  },[])
+
+  const fetch_data = async () => {
+        
+    const { data } = await common_axios.get('/product_review_list')
+    console.log(data)
+    if(data){
+      setReviews(data)
+    }
+  }
+
+  const GetDate = ({ val }) => {
+
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    const date = new Date(val)
+
+    const day = date.getDate()
+    const month = date.getMonth()
+    const year = date.getFullYear()
+
+    return <p>{`${day} / ${months[month]} / ${year}`}</p>
+
+  }
+
   return (
     <div className={styles.Review}>
-      <div className={styles.Review_Top}>
+      {review.map((item)=>{
+        return(
+          <diz className={styles.Review_Top}>
         <div>
-          <h2>Canada Goose</h2>
-          <p>Rohit bal</p>
+          <h2>{item.description}</h2>
+          <p>{item.name}</p>
         </div>
         <div>
-          <p>7 / OCT / 2021</p>
+          <GetDate val={item.created_at}/>
         </div>
-      </div>
+      </diz>
+        )
+      })}
       <div className={styles.Review_Video}>
         <div>
           <h2>Watch Video</h2>

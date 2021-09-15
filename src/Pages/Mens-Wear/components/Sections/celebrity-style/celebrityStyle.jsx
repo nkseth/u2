@@ -32,7 +32,6 @@ export default function CelebrityStyleSection({ type }) {
 
   const { celibrity_style } = useSelector(state => state.root.main)
 
-  console.log(celibrity_style, 'll')
 
   useEffect(() => {
     dispatch(get_celibrity_style(`${type}-fashion`))

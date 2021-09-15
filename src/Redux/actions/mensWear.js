@@ -198,8 +198,8 @@ export const get_celibrity_style = (type) => async (dispatch) => {
     try {
         const { data } = await common_axios.get(`/CelebrityStyle`)
         console.log(data, 'celebrity')
-        if (data.data) {
-            dispatch({ type: CELIBRITY_STYLE, payload: data.data });
+        if (data) {
+            dispatch({ type: CELIBRITY_STYLE, payload: data });
         }
 
     } catch (err) {

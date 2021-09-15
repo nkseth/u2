@@ -5,7 +5,7 @@
   gap: 2rem;
   .firstContainer {
     width: 750px;
-    > div:first-child {
+    > .paymentHeader {
       height: 60px;
       padding: 1rem 1.7rem;
       background: rgba(230, 227, 220, 1);
@@ -193,7 +193,10 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 769px) {
+  .paymentHeader{
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 550px) {

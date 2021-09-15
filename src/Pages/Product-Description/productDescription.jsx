@@ -48,7 +48,7 @@ const CustomRadio1 = withStyles({
       color: "#857250",
     },
   },
-  checked: { },
+  checked: {},
 })((props) => <Radio color='default' {...props} />);
 
 const BootstrapInput = withStyles((theme) => ({
@@ -81,48 +81,7 @@ const BootstrapInput = withStyles((theme) => ({
 }))(InputBase);
 
 
-// const images = [
-//   {
-//     original: Img,
-//     thumbnail: Img,
 
-//     thumbnailWidth: "70px",
-//     thumbnailClass: "thumbnails",
-//     thumbnailHeight: "70px",
-//     originalHeight: "400px",
-//     originalWidth: "200px"
-//   },
-//   {
-//     original: Img,
-//     thumbnail: Img,
-
-//     originalHeight: "400px",
-//     thumbnailWidth: "70px",
-//     thumbnailClass: "thumbnails",
-//     thumbnailHeight: "70px",
-//     originalWidth: "200px"
-//   },
-//   {
-//     original: Img,
-//     thumbnail: Img,
-
-//     originalHeight: "400px",
-//     thumbnailWidth: "70px",
-//     thumbnailClass: "thumbnails",
-//     thumbnailHeight: "70px",
-//     originalWidth: "200px"
-//   },
-//   {
-//     original: Img,
-//     thumbnail: Img,
-
-//     originalHeight: "400px",
-//     thumbnailWidth: "70px",
-//     thumbnailClass: "thumbnails",
-//     thumbnailHeight: "70px",
-//     originalWidth: "200px"
-//   },
-// ];
 const HtmlTooltip = withStyles((theme) => ({
   tooltip: {
     // placement: "right-start",
@@ -155,12 +114,12 @@ export default function ProductDescription({ match }) {
   //const { data: val } = location.state;
   const { params: { slug } } = match;
 
-  const [product, setProduct] = useState({ });
+  const [product, setProduct] = useState({});
   const [images, setImages] = useState([])
   const [ProductType, setProductType] = useState(product.product?.isCustomise == "1" ? 'custom' : 'ready made');
 
   console.log(product)
-  
+
 
   const { login_Model_Show } = useLogin();
   const { user_data } = useSelector(state => state.root.main)
@@ -188,18 +147,18 @@ export default function ProductDescription({ match }) {
 
   const buy_now_handler = async () => {
     if (user_data?.name) {
-       if(product.hasOwnProperty('title')){
-        try{
+      if (product.hasOwnProperty('title')) {
+        try {
           const { data } = await common_axios.post(`/addToCart/${slug}`)
-          if(data){
+          if (data) {
             history.push('/my-bag')
           }
-        } catch (e){
-          if(e?.response?.data?.message == 'Item alrealy in your cart'){
+        } catch (e) {
+          if (e?.response?.data?.message == 'Item alrealy in your cart') {
             history.push('/my-bag')
           }
         }
-       }
+      }
     } else {
       login_Model_Show()
     }
@@ -207,13 +166,13 @@ export default function ProductDescription({ match }) {
 
   const add_bag_handler = async () => {
     if (user_data?.name) {
-      try{
+      try {
         const { data } = await common_axios.post(`/addToCart/${slug}`)
 
-        if(data){
+        if (data) {
           console.log(data)
         }
-      } catch (e){
+      } catch (e) {
         alert(e.response.data.message)
       }
     } else {
@@ -308,7 +267,7 @@ export default function ProductDescription({ match }) {
                     onClose={() => setProductDrop(false)}
                     onChange={(e) => setProductType(e.target.value)}
                   >
-                   {product.product?.isVariant?
+                    {product.product?.isVariant ?
                       <MenuItem value={"ready made"}>
                         <FormControlLabel
                           className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
@@ -321,20 +280,20 @@ export default function ProductDescription({ match }) {
                             </div>}
                         />
                       </MenuItem>
-                    :null}
-                    {product.product?.isCustomise == "1"?
-                    <MenuItem value={"custom"}>
-                      <FormControlLabel
-                        className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
-                        checked={ProductType === "custom"}
-                        control={<CustomRadio />}
-                        label={<div className={styles.ProductSelector}>
-                          <p className={styles.ChoicesBtnsLabels}>Customised</p>
-                          {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphic er text commonly used in the graphic</h6> : <></>}
-                        </div>}
-                      />
-                    </MenuItem>
-                     : null}
+                      : null}
+                    {product.product?.isCustomise == "1" ?
+                      <MenuItem value={"custom"}>
+                        <FormControlLabel
+                          className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                          checked={ProductType === "custom"}
+                          control={<CustomRadio />}
+                          label={<div className={styles.ProductSelector}>
+                            <p className={styles.ChoicesBtnsLabels}>Customised</p>
+                            {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphic er text commonly used in the graphic</h6> : <></>}
+                          </div>}
+                        />
+                      </MenuItem>
+                      : null}
                     {/* {ProductType === 'custom' ?
                       product.product.isVariant?
                       <MenuItem value={"ready made"}>
@@ -401,7 +360,7 @@ export default function ProductDescription({ match }) {
                     onChange={(e) => setProductType(e.target.value)}
                   >
 
-{product.product?.isVariant?
+                    {product.product?.isVariant ?
                       <MenuItem value={"ready made"}>
                         <FormControlLabel
                           className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
@@ -414,20 +373,20 @@ export default function ProductDescription({ match }) {
                             </div>}
                         />
                       </MenuItem>
-                    :null}
-                    {product.product?.isCustomise == "1"?
-                    <MenuItem value={"custom"}>
-                      <FormControlLabel
-                        className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
-                        checked={ProductType === "custom"}
-                        control={<CustomRadio />}
-                        label={<div className={styles.ProductSelector}>
-                          <p className={styles.ChoicesBtnsLabels}>Customised</p>
-                          {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphic er text commonly used in the graphic</h6> : <></>}
-                        </div>}
-                      />
-                    </MenuItem>
-                     : null}
+                      : null}
+                    {product.product?.isCustomise == "1" ?
+                      <MenuItem value={"custom"}>
+                        <FormControlLabel
+                          className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                          checked={ProductType === "custom"}
+                          control={<CustomRadio />}
+                          label={<div className={styles.ProductSelector}>
+                            <p className={styles.ChoicesBtnsLabels}>Customised</p>
+                            {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphic er text commonly used in the graphic</h6> : <></>}
+                          </div>}
+                        />
+                      </MenuItem>
+                      : null}
                   </Select>
                   <HtmlTooltip
                     className={styles.ProductSelectorHelpBtn}
@@ -473,21 +432,21 @@ export default function ProductDescription({ match }) {
                     onClose={() => setProductDrop(false)}
                     onChange={(e) => setProductType(e.target.value)}
                   >
-                      {product.product?.isVariant?
-                        <MenuItem value={"ready made"}>
-                          <FormControlLabel
-                            className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
-                            checked={ProductType === "ready made"}
-                            control={<CustomRadio />}
-                            label={
-                              <div className={styles.ProductSelector}>
-                                <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
-                                {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
-                              </div>}
-                          />
-                        </MenuItem>
-                      :null}
-                      {product.product?.isCustomise == "1"?
+                    {product.product?.isVariant ?
+                      <MenuItem value={"ready made"}>
+                        <FormControlLabel
+                          className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
+                          checked={ProductType === "ready made"}
+                          control={<CustomRadio />}
+                          label={
+                            <div className={styles.ProductSelector}>
+                              <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
+                              {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
+                            </div>}
+                        />
+                      </MenuItem>
+                      : null}
+                    {product.product?.isCustomise == "1" ?
                       <MenuItem value={"custom"}>
                         <FormControlLabel
                           className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
@@ -499,7 +458,7 @@ export default function ProductDescription({ match }) {
                           </div>}
                         />
                       </MenuItem>
-                       : null}
+                      : null}
                   </Select>
                   <HtmlTooltip
                     className={styles.ProductSelectorHelpBtn}

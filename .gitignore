@@ -23,8 +23,10 @@ yarn-debug.log*
 yarn-error.log*
 
 
+#firebase files
 firebase.json
 firebase-debug.json
 .firebaserc
 firebase-debug.log
 .firebase
+.firebaserc

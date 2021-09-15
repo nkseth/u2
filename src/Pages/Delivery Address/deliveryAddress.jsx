@@ -89,7 +89,7 @@ export default function DeliveryAddress() {
         />
         <CustomStepper activeStep={0} />
         {
-          SelectAddress ?
+          NewAddressSection ?
             <NewAddress />
 
             :
@@ -144,7 +144,7 @@ export default function DeliveryAddress() {
                     variant='contained'
                     color='default'
                     endIcon={<AddIcon />}
-                    onClick={() => setSelectAddress(!SelectAddress)}
+                    onClick={() => setNewAddressSection(!NewAddressSection)}
                   >
                     Add New Address
                   </Button>

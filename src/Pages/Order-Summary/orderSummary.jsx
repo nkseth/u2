@@ -6,6 +6,7 @@ import {
   AccordionDetails,
   useMediaQuery,
 } from "@material-ui/core";
+import { ReactComponent as LocationIcon } from "../../Images/icons/location.svg";
 import SelectedFabricSample from "./Components/Selected-Fabric-Sample/index";
 import SelectedSubscriptionPlans from "./Components/Selected-Subscription-plan";
 import Container from "../../utils/Container/container";
@@ -47,6 +48,34 @@ export default function OrderSummary() {
     console.log(val)
   }
 
+
+
+  const dataItem = [
+    {
+      title: "First product",
+      color: "red",
+      productType: "Customesed",
+      price: 500,
+      discount: 29,
+      quantity: 10,
+      product: {
+        image: img
+      }
+    },
+    {
+      title: "Second product",
+      color: "red",
+      productType: "Customesed",
+      price: 500,
+      discount: 29,
+      quantity: 10,
+      product: {
+        image: img
+      }
+    },
+
+  ]
+
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection style={{ marginTop: "2em" }} >
@@ -55,48 +84,83 @@ export default function OrderSummary() {
           activePath='/ Order Summary'
         />
         <div>
-          <CustomStepper activeStep={1} />
+          <CustomStepper activeStep={0} />
         </div>
         <div className={styles.container}>
           <div className={styles.firstContainer}>
-            <div>Order Summary</div>
-            {data?.map((item) => {
-              return (
-                <div className={styles.borderDiv} >
-                  <img src={img} alt='product' className={styles.image} />
-                  <div>
-                    <div>
-                      <p>
-                       {item.title}
-                      </p>
-                      <p>Solid colour</p>
-                      <p className={styles.protype}  >Product Type</p>
-                      <p className={styles.protypetext} >Readymade</p>
-                      {mobileView && (
-                        <div className={styles.PriceMobile}>
-                          <p className={styles.PriceMobileMain} >₹559
-
-                            <span className={styles.PriceMobileOriginal} >₹11499</span>
-                            <span className={styles.PriceMobileDiscount} >13% OFF</span>
-
+            <div className={styles.mainHeader} >Order Summary</div>
+            <div className={styles.borderDiv}>
+              <div className={styles.OrderLine}>
+                <p>Delivery address</p>
+                <CustomDivider />
+              </div>
+              <DeliveryAddress />
+              <div className={styles.OrderLine}>
+                <p>Order Details</p>
+                <CustomDivider />
+              </div>
+              {dataItem?.map((item) => {
+                return (
+                  <>
+                    <div className={styles.mainDiv} >
+                      <img src={img} alt='product' className={styles.image} />
+                      <div style={{ padding: "0" }} >
+                        <div  >
+                          <p className={styles.Itemname} >
+                            {item.title}
                           </p>
+                          <p>Solid colour</p>
+                          <p className={styles.protype}  >Product Type</p>
+                          <p className={styles.protypetext} >Readymade</p>
+                          <div className={styles.quan} >
+                            <p>Quantity</p>
+                            <div style={{ display: "flex" }} >
+                              <Button
+                                className={styles.addBtn}
+                              // onClick={() => substract_quantity(item, index)}
+                              >
+                                <RemoveIcon style={{ width: "15px" }} />
+                              </Button>
+                              <div className={styles.quantity}>{item.quantity}</div>
+                              <Button
+                                className={styles.removeBtn}
+                              // onClick={() => add_quantity(item, index)}
+                              >
+                                <AddIcon style={{ width: "15px" }} />
+                              </Button>
+                            </div>
+                          </div>
+                          {mobileView && (
+                            <div className={styles.PriceMobile}>
+                              <p className={styles.PriceMobileMain} >₹559
+
+                                <span className={styles.PriceMobileOriginal} >₹11499</span>
+                                <span className={styles.PriceMobileDiscount} >13% OFF</span>
+
+                              </p>
+
+                            </div>
+                          )}
 
                         </div>
-                      )}
+                        {mobileView ?
 
-                      {/* </div> */}
+                          <></>
+                          :
+                          <div className={styles.proMoney} >
+                            <p>₹559</p>
+                            <p>
+                              <span>₹1499</span>
+                              <span>63% OFF</span>
+                            </p>
+                          </div>
+                        }
+                      </div>
                     </div>
-                    <div className={styles.proMoney} >
-                      <p>₹559</p>
-                      <p>
-                        <span>₹1499</span>
-                        <span>63% OFF</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
+                  </>
+                )
+              })}
+            </div>
             <div>
               <div></div>
             </div>
@@ -189,7 +253,7 @@ export default function OrderSummary() {
                 variant='text'
                 color='default'
                 className={styles.placeOrderBtn}
-                onClick={() => history.push("/delivery-address")}
+                onClick={() => history.push("/payment")}
               >
                 Place Order
               </Button>
@@ -199,4 +263,75 @@ export default function OrderSummary() {
       </CustomSection>
     </Container>
   );
+}
+
+
+function DeliveryAddress() {
+  const routerHistory = useHistory()
+  return (
+    <div className={styles.DeliveryAddress}>
+      <div className={styles.mainDiv} >
+        <div className={styles.firstAftermain} >
+          <div>
+            <span>John Hamilton</span>
+            <div className={styles.badge}  >primary</div>
+          </div>
+          <p>
+            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.
+          </p>
+          <p>
+            <span>Mobile:</span>&nbsp;
+            <span>+91 9595 005067</span>
+          </p>
+        </div>
+
+        <div>
+          <Button
+            variant='contained'
+            color='default'
+            className={styles.editBtn}
+          >
+            Edit
+          </Button>
+          <Button
+            variant='contained'
+            color='default'
+            className={styles.changeBtn}
+            onClick={() => routerHistory.push('/myaddresses')}
+          >
+            change
+          </Button>
+        </div>
+      </div>
+      <div className={styles.ActionBtnDiv}>
+        <div className={styles.btnDiv} style={{ marginBottom: "1rem" }} >
+
+          <Button
+            className={styles.addNewAddressBtn}
+            variant='contained'
+            color='default'
+            endIcon={<AddIcon />}
+            onClick={() => routerHistory.push('/addNewaddress')}
+          >
+            Add New Address
+          </Button>
+        </div>
+
+
+        <div className={styles.btnDiv} >
+          <Button
+            className={styles.useCurrentLocationBtn}
+            variant='contained'
+            color='default'
+            startIcon={<LocationIcon />}
+          >
+            Use current location
+          </Button>
+        </div>
+
+
+      </div>
+
+    </div>
+  )
 }

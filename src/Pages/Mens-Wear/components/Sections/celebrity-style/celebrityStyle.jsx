@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { IconButton } from "@material-ui/core";
+import { IconButton, useMediaQuery } from "@material-ui/core";
 import {
   CarouselProvider,
   Slider,
@@ -15,7 +15,7 @@ import cs2 from "./Images/cs2.jpg"
 import cs3 from "./Images/cs3.jpg"
 import cs4 from "./Images/cs4.jpg"
 import { useDispatch, useSelector } from "react-redux";
-
+import DesignersCard from "./Components/designers-card/card";
 
 import "pure-react-carousel/dist/react-carousel.es.css";
 import CustomSection from "../../../../../utils/Custom Section/section";
@@ -31,7 +31,9 @@ export default function CelebrityStyleSection({ type }) {
   const dispatch = useDispatch()
 
   const { celibrity_style } = useSelector(state => state.root.main)
-
+  const LaptopView = "(max-width:1210px)";
+  const tabViewPro = useMediaQuery("(max-width:769px)");
+  const mobileView = useMediaQuery("(max-width:550px)");
 
   useEffect(() => {
     dispatch(get_celibrity_style(`${type}-fashion`))
@@ -46,18 +48,105 @@ export default function CelebrityStyleSection({ type }) {
       </div>
       <CarouselProvider
         naturalSlideWidth={100}
-        totalSlides={2}
+        totalSlides={tabViewPro ? 3 : mobileView ? 4 : 2}
         infinite
         className="celebrity_style_slider"
         isIntrinsicHeight
       >
         <Slider>
+
           <Slide index={0} style={{ marginLeft: "0.2em" }} >
-            <CarouselSlide image1={cs4} image2={cs2} image3={cs3} image4={cs1} />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
+                gap: "1rem",
+                padding: "2rem 0em",
+              }}
+            >
+              <DesignersCard image={cs1} />
+
+            </div>
           </Slide>
-          <Slide index={1} style={{ marginLeft: "0.2em" }} >
-            <CarouselSlide image1={cs4} image2={cs2} image3={cs3} image4={cs1} />
+          <Slide index={0} style={{ marginLeft: "0.2em" }} >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
+                gap: "1rem",
+                padding: "2rem 0em",
+              }}
+            >
+              <DesignersCard image={cs1} />
+
+            </div>
           </Slide>
+          <Slide index={0} style={{ marginLeft: "0.2em" }} >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
+                gap: "1rem",
+                padding: "2rem 0em",
+              }}
+            >
+              <DesignersCard image={cs1} />
+
+            </div>
+          </Slide>
+          <Slide index={0} style={{ marginLeft: "0.2em" }} >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
+                gap: "1rem",
+                padding: "2rem 0em",
+              }}
+            >
+              <DesignersCard image={cs1} />
+
+            </div>
+          </Slide>
+          <Slide index={0} style={{ marginLeft: "0.2em" }} >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
+                gap: "1rem",
+                padding: "2rem 0em",
+              }}
+            >
+              <DesignersCard image={cs1} />
+
+            </div>
+          </Slide>
+          <Slide index={0} style={{ marginLeft: "0.2em" }} >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
+                gap: "1rem",
+                padding: "2rem 0em",
+              }}
+            >
+              <DesignersCard image={cs1} />
+
+            </div>
+          </Slide>
+          <Slide index={0} style={{ marginLeft: "0.2em" }} >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
+                gap: "1rem",
+                padding: "2rem 0em",
+              }}
+            >
+              <DesignersCard image={cs1} />
+
+            </div>
+          </Slide>
+
         </Slider>
         <DotGroup style={{ display: "flex" }} />
         <div className={styles.carouselNavigationDiv}>

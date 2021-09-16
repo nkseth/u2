@@ -8,6 +8,7 @@ export default function StylishCard({ image, item }) {
     <div className={styles.container}>
       <img
         src={image}
+        style={{ objectFit: "cover", objectPosition: "top" }}
         alt='product'
       />
       <div className={styles.content}>

@@ -1,5 +1,4 @@
 .header {
-  // height: 469px;
   width: 100%;
     margin-bottom: 50px;
     display: flex;
@@ -10,6 +9,28 @@
     line-height: 63px;
     letter-spacing: -1.5px;
     // overflow-wrap: anywhere;
+  p {
+    color: #fff;
+    > span:first-child {
+      font-style: italic!important;
+      font-family: DM Serif Display !important;
+    }
+    > span:last-child {
+      font-family: DM Sans  !important;
+
+    }
+  }
+}
+.headerMobile{
+  width: 100%;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 63px;
+  letter-spacing: -1.5px;
   p {
     color: #fff;
     > span:first-child {

@@ -42,24 +42,30 @@ export default function MostLovedStyleSection({ type }) {
     >
       <CarouselProvider
         naturalSlideWidth={100}
-        totalSlides={most_loved.length}
+        totalSlides={most_loved.length / 2}
         infinite
         isIntrinsicHeight
       >
-        <Slider>
-          {most_loved.map((item, index) => {
-            return (
-              <Slide index={index}>
-                <CarouselSlide item={item} />
-              </Slide>
-            )
-          })}
-          {/* <Slide index={0}>
-            <CarouselSlide />
-          </Slide>
-          <Slide index={1}>
-            <CarouselSlide />
-          </Slide> */}
+        {
+          mobileView ?
+            <div className={styles.headerMobile}>
+              <p>
+                <span className={styles.italic}  >
+                  Most Loved
+                </span>
+                <span> Style</span>
+              </p>
+            </div>
+            :
+            <></>
+        }
+
+        <Slider  >
+
+
+          <CarouselSlide most_loved={most_loved} />
+
+
         </Slider>
         <DotGroup style={{ display: "flex" }} />
         <div className={styles.carouselNavigationDiv}>
@@ -78,6 +84,6 @@ export default function MostLovedStyleSection({ type }) {
           </div>
         </div>
       </CarouselProvider>
-    </CustomSection>
+    </CustomSection >
   );
 }

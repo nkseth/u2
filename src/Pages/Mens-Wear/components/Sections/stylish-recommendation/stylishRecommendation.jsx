@@ -21,7 +21,7 @@ export default function StylishRecommendationSection({ type }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-  //const group = type == 'mens' ? 'men_group_2' : type == 'womens' ? 'women_group_2' : 'kid_group_2'
+    //const group = type == 'mens' ? 'men_group_2' : type == 'womens' ? 'women_group_2' : 'kid_group_2'
     dispatch(get_stylish_recommend(type))
   }, [type])
 
@@ -74,6 +74,6 @@ export default function StylishRecommendationSection({ type }) {
           </>
         )}
       </div>
-    </CustomSection >
+    </CustomSection>
   );
 }

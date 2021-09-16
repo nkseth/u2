@@ -50,29 +50,34 @@ export default function CelebrityStyleSection({ type }) {
       </div>
       <CarouselProvider
         naturalSlideWidth={100}
-        totalSlides={tabViewPro ? 3 : mobileView ? 4 : 2}
+        totalSlides={celibrity_style.length / 4}
         infinite
         className="celebrity_style_slider"
         isIntrinsicHeight
       >
         <Slider>
-           {celibrity_style?.map((item)=>{
-             return(
-              <Slide index={0} style={{ marginLeft: "0.2em" }} >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
-                  gap: "1rem",
-                  padding: "2rem 0em",
-                }}
-              >
-                <DesignersCard item={item} image={item.feature_image} />
-  
-              </div>
-            </Slide>
-             )
-           })}
+          {celibrity_style?.map((item) => {
+            console.log(celibrity_style)
+            return (
+              <>
+                <Slide index={0} style={{ marginLeft: "0.2em" }} >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: mobileView || tabViewPro ? 'space-around' : "flex-start",
+                      gap: "1rem",
+                      padding: "2rem 0em",
+                    }}
+                  >
+
+                    <DesignersCard item={item} image={item.feature_image} />
+
+                  </div>
+                </Slide>
+              </>
+            )
+          })}
+
         </Slider>
         <DotGroup style={{ display: "flex" }} />
         <div className={styles.carouselNavigationDiv}>
@@ -91,6 +96,6 @@ export default function CelebrityStyleSection({ type }) {
           </div>
         </div>
       </CarouselProvider>
-    </CustomSection>
+    </CustomSection >
   );
 }

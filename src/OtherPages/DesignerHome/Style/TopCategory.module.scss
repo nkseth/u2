@@ -14,6 +14,13 @@
     position: relative;
     overflow: hidden;
     height: 603px;
+    &:hover .hover{
+      display: block;
+      transition:all  0.3s ease;
+    }
+    &:hover .TopCategory_Items_Layer {
+      background:rgba(0, 0, 0, 0.507) ;
+    }
     h1 {
       color: #6a5b40;
       font-family: DM Serif Display;
@@ -37,7 +44,8 @@
       position: absolute;
       height: 100%;
       width: 100%;
-      // background: linear-gradient(270deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+      background: #00000000;
+      transition:  all 0.3s ease-in-out;
       display: flex;
       align-items: flex-end;
       .TopCategory_Items_Layer_text {
@@ -47,7 +55,7 @@
         gap: 1rem;
         font-family: Quicksand;
         height: 70%;
-
+        justify-content: flex-end;
         h2 {
           color: #fff;
           display: flex;
@@ -55,6 +63,12 @@
           gap: 1rem;
           font-size: 35px;
           font-weight: 700;
+          width: 100%;
+         > div{
+            height: 1em;
+            width: 100px;
+            background-color: rgba(255, 255, 255, 0);
+          }
         }
         p {
           color: #fff;
@@ -66,6 +80,11 @@
       }
     }
   }
+}
+.hover{
+  display: none;
+  transition:all  0.3s ease;
+
 }
 .TopCategory_Button {
   display: flex;

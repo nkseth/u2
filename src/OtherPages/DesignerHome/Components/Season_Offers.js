@@ -39,32 +39,37 @@ const Season_Offers = () => {
             backgroundSize: "cover"
           }}
         >
+          <div className={styles.overLayDiv}>
+          </div>
           <div className={styles.h2_div} >
             <h2>{offers[0]?.title}</h2>
             <Button onClick={Handler} className={styles.buttons} >Shop Now</Button>
           </div>
         </div> : null}
-        {offers.length > 1 ? <div
-          className={styles.Season_Offers_Item2}
-          style={{
-            backgroundImage: `url("${offers[1]?.image}")`,
-            backgroundColor: "green",
-            backgroundSize: "cover"
-          }}
-        >
-          <div className={styles.h2_div} >
-            <h2>{offers[1]?.title}</h2>
-            <Button className={styles.buttons} onClick={Handler}>Shop Now</Button>
-          </div>
-        </div> : null}
+        {offers.length > 1 ?
+          <div
+            className={styles.Season_Offers_Item2}
+            style={{
+              backgroundImage: `url("${offers[1]?.image}")`,
+              backgroundSize: "cover"
+            }}
+          >
+            <div className={styles.overLayDiv}>
+            </div>
+            <div className={styles.h2_div} >
+              <h2>{offers[1]?.title}</h2>
+              <Button className={styles.buttons} onClick={Handler}>Shop Now</Button>
+            </div>
+          </div> : null}
         {offers.length > 2 ? <div
           className={styles.Season_Offers_Item3}
           style={{
             backgroundImage: `url("${offers[2]?.image}")`,
-            backgroundColor: "blue",
             backgroundSize: "cover"
           }}
         >
+          <div className={styles.overLayDiv}>
+          </div>
           {/* Chech here */}
           <div className={styles.h2_div}  >
             <h2 style={{ whiteSpace: "nowrap" }}>{offers[2]?.title}</h2>
@@ -73,7 +78,7 @@ const Season_Offers = () => {
         </div> : null}
         {/* <div className={styles.Season_Offers_Item1}>
           <div>
-            <h2>Buy 1 Get 1 One</h2>
+            <h2>Buy 1 Get 1 One</h2> 
             <Button onClick={Handler}>Button</Button>
           </div>
         </div> */}

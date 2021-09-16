@@ -21,7 +21,7 @@ export default function ProductCard({ image, item }) {
         <span className={styles.productDesc}>{item.description}</span>
         <p className={styles.productPrice}>
           <span>{item.has_offer ? item.offer_price : item.price}</span>
-          {item.has_offer?<span>{item.price}{' '}{item.discount}{' '}OFF</span> : null}
+          {item.has_offer ? <span>{item.price}{' '}{item.discount}{' '}OFF</span> : null}
         </p>
       </Link>
     </div>

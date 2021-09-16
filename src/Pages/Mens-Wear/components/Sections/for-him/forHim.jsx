@@ -78,7 +78,10 @@ export default function ForHimSection({ type }) {
                 >
                   All
                 </span>
-                {category_grp[grp]?.categories?.map((item) => {
+                {category_grp[grp]?.categories?.map((item, index) => {
+                  if(index > 3){
+                    return null;
+                  }
                   return (
                     <span
                       href="#"
@@ -115,7 +118,10 @@ export default function ForHimSection({ type }) {
                   >
                     All
                   </span>
-                  {category_grp[grp]?.categories?.map((item) => {
+                  {category_grp[grp]?.categories?.map((item, index) => {
+                    if(index > 4){
+                      return null;
+                    }
                     return (
                       <span
                         href="#"

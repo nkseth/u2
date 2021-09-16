@@ -63,6 +63,7 @@ export default function MyBag() {
 
   const add_quantity = async (item, index) => {
     setLoading(true)
+    console.log('running')
     try {
       const { data: res } = await common_axios.put(`/cart/${value.id}/update`, {
         item: item.id,
@@ -196,14 +197,14 @@ export default function MyBag() {
                                 <div style={{ display: "flex" }} >
                                   <Button
                                     className={styles.addBtn}
-                                  // onClick={() => substract_quantity(item, index)}
+                                  onClick={() => substract_quantity(item, index)}
                                   >
                                     <RemoveIcon style={{ width: "15px" }} />
                                   </Button>
                                   <div className={styles.quantity}>{item.quantity}</div>
                                   <Button
                                     className={styles.removeBtn}
-                                  // onClick={() => add_quantity(item, index)}
+                                  onClick={() => add_quantity(item, index)}
                                   >
                                     <AddIcon style={{ width: "15px" }} />
                                   </Button>

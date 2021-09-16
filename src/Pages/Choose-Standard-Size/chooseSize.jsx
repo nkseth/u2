@@ -125,7 +125,8 @@ export default function ChooseStandardSize() {
         user_id: user_data.id
       });
       dispatch(set_basic_id(data))
-      history.push(`/add-measurement-body-measurement-${gender}`)
+      history.push(`/add-measurement-body-measurement-${gender}`);
+
     } catch (e) {
       console.log(e.response?.data)
     }
@@ -316,7 +317,7 @@ export default function ChooseStandardSize() {
                 </MenuItem>
               </Select>
             </div>
-            <Button className={styles.SaveBTN} onClick={() => history.push('/viewmeasurement')} > Save and Add measurement</Button>
+            <Button className={styles.SaveBTN} onClick={() => history.push(`/add-measurement-body-measurement-${Gender}`)} > Save and Add measurement</Button>
 
           </div>
         </div>

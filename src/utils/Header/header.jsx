@@ -95,7 +95,7 @@ export default function Header() {
       login_Model_Show()
     }
   }
-  
+
 
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
@@ -113,7 +113,7 @@ export default function Header() {
     setDrawerOpen(open);
   };
 
-  
+
   return (
     <div style={{ padding: mobileView ? "0 1em" : "0 3em", width: mobileView ? "100%" : "100%", marginLeft: "auto", marginRight: "auto" }} className={styles.headerShadow} >
       <div className={styles.firstContainer}>
@@ -158,7 +158,7 @@ export default function Header() {
                 alt="search"
               />
             </IconButton>
-            <IconButton onClick={()=> history.push('/my-bag')} aria-label="my bag" style={{ marginRight: "-12px" }}>
+            <IconButton onClick={() => history.push('/my-bag')} aria-label="my bag" style={{ marginRight: "-12px" }}>
               <img
                 src={BagIcon}
                 alt="my bag"
@@ -203,7 +203,7 @@ export default function Header() {
             <IconButton aria-label="favorites">
               <img src={FavoriteIcon} alt="favorites" />
             </IconButton>
-            <IconButton onClick={()=> history.push('/my-bag')} aria-label="my bag">
+            <IconButton onClick={() => history.push('/my-bag')} aria-label="my bag">
               <img src={BagIcon} alt="my bag" />
             </IconButton>
           </div>
@@ -221,23 +221,23 @@ export default function Header() {
               <Link style={{ color: "#9D8E73" }} to="/designers-product-page">New arrivals</Link>
             </span>
             <span
-              onMouseEnter={() => {handleMouseEnter("men"); setMegaMenuType('men'); setMegaMenuOpen(true)}}
-              onMouseLeave={() => {handleMouseLeave("men");}}
+              onMouseEnter={() => { handleMouseEnter("men"); setMegaMenuType('men'); setMegaMenuOpen(true) }}
+              onMouseLeave={() => { handleMouseLeave("men"); }}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
               <Link style={{ color: "#9D8E73" }} to="/wear/mens">Men</Link>
             </span>
             <span
               onMouseEnter={() => { handleMouseEnter("women"); setMegaMenuType('women'); setMegaMenuOpen(true) }}
-              onMouseLeave={() => {handleMouseLeave("women");}}
+              onMouseLeave={() => { handleMouseLeave("women"); }}
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
               {" "}
               <Link style={{ color: "#9D8E73" }} to="/wear/womens"> Women</Link>
             </span>
             <span
-              onMouseEnter={() => {handleMouseEnter("kids"); setMegaMenuType('kids'); setMegaMenuOpen(true)}}
-              onMouseLeave={() => {handleMouseLeave("kids");}}
+              onMouseEnter={() => { handleMouseEnter("kids"); setMegaMenuType('kids'); setMegaMenuOpen(true) }}
+              onMouseLeave={() => { handleMouseLeave("kids"); }}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
               <Link style={{ color: "#9D8E73" }} to="/wear/kids"> Kids</Link>
@@ -335,7 +335,7 @@ export default function Header() {
               <IconButton aria-label="favorites">
                 <img src={FavoriteIcon} alt="favorites" />
               </IconButton>
-              <IconButton onClick={()=> history.push('/my-bag')} aria-label="my bag">
+              <IconButton onClick={() => history.push('/my-bag')} aria-label="my bag">
                 <img src={BagIcon} alt="my bag" />
               </IconButton>
             </ListItem>

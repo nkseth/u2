@@ -477,7 +477,60 @@ text-align: left;
   color: rgba(218, 30, 40, 1) !important;
 }
 
+// Modal Css
 
+.modal{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99;
+  overflow: hidden;  
+  top: 0;
+  background: #00000066;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  
+  .CloseBtn{
+    position: absolute;
+    top: 2%;
+    right: 2%;
+  }
+  .Popup{
+    width: 90%;
+    position: relative;
+    max-width: 650px;
+    background-color: #fff;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    h1{
+      font-family: DM Serif Display;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin-top: 1em;
+    }
+    p{
+      font-family: DM Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin-top: 0.5em;
+  width: 80%;
+    }
+  }
+  }
+  
 
 @media screen and (max-width: 769px) {
   .placeOrderBtnDiv{

@@ -1,7 +1,45 @@
+
+
+.modal{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    overflow: hidden;  
+    top: 0;
+    background: #00000066;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .CloseBtn{
+      position: absolute;
+      top: 2%;
+      right: 2%;
+    }
+    .Popup{
+      width: 100%;
+      margin:2em;
+      height: 90vh;
+      overflow-y: scroll;
+      position: relative;
+      max-width: 950px;
+      padding: 1em;
+      background-color: #fff;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    
+    }
+    }
+    
+  
+
 .newAddressContainer{
-    width:70%;
+    width:90%;
     margin-top: 3em;
     margin-bottom: 10em;
+    height: 100%;
 
     .h1dividerdiv{
         display: flex;
@@ -85,6 +123,7 @@ text-align: left;
     background-color: #6A5B40!important;
     color: #fff!important;
     margin-top: 1em!important;
+    margin-bottom: 2em!important;
 }
 
 
@@ -101,13 +140,19 @@ text-align: left;
         border: none !important;
         outline: none !important;
         font-size: 16px!important;
-
-
-
         height: 56px !important;
         width: 330px !important;
         background-color: var(--primary-color-dark) !important;
         color: #fff !important;
+    }
+}
+
+.CloseBTN{
+    position: absolute;
+    right: 3%;
+    top: 3%;
+    img{
+        width: 1em;
     }
 }
 
@@ -117,9 +162,57 @@ text-align: left;
 
 
 
-
-
-
+@media screen  and (max-width:560px) {
+    .modal{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        z-index: 99;
+        overflow: hidden;  
+        top: 0;
+        background: #00000066;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        
+        .CloseBtn{
+          position: absolute;
+          top: 2%;
+          right: 2%;
+        }
+        .Popup{
+          width: 100%;
+          margin:0.2em;
+          height: 90vh;
+          overflow-y: scroll;
+          position: relative;
+          max-width: 950px;
+          padding: 1em;
+          background-color: #fff;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+        
+        }
+        }
+.UseLocationBtnDiv{
+        
+        .useCurrentLocationBtn{
+            text-transform: none !important;
+            font-family: DM Sans !important;
+            box-shadow: none !important;
+            border-radius: 5px !important;
+            border: none !important;
+            outline: none !important;
+            font-size: 15px!important;
+            height: 56px !important;
+            width: 250px !important;
+            background-color: var(--primary-color-dark) !important;
+            color: #fff !important;
+        }
+    }
+    }
 
 
 

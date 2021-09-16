@@ -92,11 +92,54 @@
 .detailsDiv {
   // padding: 44px;
 }
+.OtherInfoDiv{
+  width: 100%;
+max-width:300px;
+margin-bottom: 1em;
+background-color: #E6E3DC;
+border-radius: 12px;
+display: flex;
+align-items: flex-start;
+justify-content: center;
+flex-direction: column;
+padding: 1em;
+span{
+  display: flex;
+  align-items: center;
+  h3{
+    font-family: DM Sans;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 48px;
+letter-spacing: 0.03em;
+text-align: left;
+margin-left: 0.5em;
 
-@media screen and (max-width: 856px) {
+  }
+  h1{
+font-family: DM Serif Display;
+font-size: 25px;
+font-style: normal;
+font-weight: 400;
+line-height: 48px;
+letter-spacing: 0.03em;
+text-align: left;
+margin-right: 0.3em;
+  }
+}
+}
+
+@media screen and (max-width: 956px) {
+  .OtherInfoDiv{
+    margin: 1em;
+  }
+}
+  @media screen and (max-width: 856px) {
   .section {
     padding: 0 56px;
   }
+
 }
 
 @media screen and (max-width: 768px) {

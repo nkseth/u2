@@ -30,6 +30,9 @@ import common_axios from "../../utils/axios.config";
 import { useSelector } from 'react-redux';
 import useLogin from "../../LoginSceens/useLogin";
 
+// Product Type
+import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData"
+
 
 const CustomRadio = withStyles({
   root: {
@@ -107,7 +110,7 @@ export default function ProductDescription({ match }) {
   const tabViewPro = useMediaQuery("(min-width:768px) and (max-width:1044px");
   const mobileView = useMediaQuery("(max-width:550px)");
 
-  const [selectedColor, setSelectedColor] = useState("Brown");
+  const [selectedColor, setSelectedColor] = useState("");
   const [ProductDrop, setProductDrop] = useState(false);
 
 
@@ -118,7 +121,7 @@ export default function ProductDescription({ match }) {
   const [images, setImages] = useState([])
   const [ProductType, setProductType] = useState(product.product?.isCustomise == "1" ? 'custom' : 'ready made');
 
-  console.log(product)
+  Product_Type_Change(ProductType)
 
 
   const { login_Model_Show } = useLogin();
@@ -530,34 +533,20 @@ export default function ProductDescription({ match }) {
           <div className={styles.selectColor}>
             <div>Select colour</div>
             <br />
-            <Select
-              style={mobileView ? { width: "70%" } : { width: "50%" }}
-              input={<BootstrapInput />}
-              value={selectedColor}
-              onChange={(e) => setSelectedColor(e.target.value)}
-            >
-              <MenuItem value={"Brown"}>
-                <FormControlLabel
-                  checked={selectedColor === "Brown"}
-                  control={<CustomRadio1 />}
-                  label={<p className={styles.radioBtnsLabels} >Brown</p>}
-                />
-              </MenuItem>
-              <MenuItem value={"Red"}>
-                <FormControlLabel
-                  checked={selectedColor === "Red"}
-                  control={<CustomRadio1 />}
-                  label={<p className={styles.radioBtnsLabels}>Red</p>}
-                />
-              </MenuItem>
-              <MenuItem value={"Green"}>
-                <FormControlLabel
-                  checked={selectedColor === "Green"}
-                  control={<CustomRadio1 />}
-                  label={<p className={styles.radioBtnsLabels}>Green</p>}
-                />
-              </MenuItem>
-            </Select>
+            <div className={styles.SelectColorCard}>
+              <IconButton className={styles.ColorBTN}
+                onClick={() => setSelectedColor('#DAD3C1')}
+                style={{ backgroundColor: "#DAD3C1", borderColor: selectedColor === '#DAD3C1' ? "#DAD3C1" : "white" }}  ><IconButton className={styles.ColorInnerBTN} style={{ borderColor: selectedColor === '#DAD3C1' ? "#fff" : "transparent" }} ></IconButton></IconButton>
+              <IconButton className={styles.ColorBTN}
+                onClick={() => setSelectedColor('#FF543E')}
+                style={{ backgroundColor: "#FF543E", borderColor: selectedColor === '#FF543E' ? "#FF543E" : "white" }}  ><IconButton className={styles.ColorInnerBTN} style={{ borderColor: selectedColor === '#FF543E' ? "#fff" : "transparent" }} ></IconButton></IconButton>
+              <IconButton className={styles.ColorBTN}
+                onClick={() => setSelectedColor('#D1AA67')}
+                style={{ backgroundColor: "#D1AA67", borderColor: selectedColor === '#D1AA67' ? "#D1AA67" : "white" }}  ><IconButton className={styles.ColorInnerBTN} style={{ borderColor: selectedColor === '#D1AA67' ? "#fff" : "transparent" }} ></IconButton></IconButton>
+              <IconButton className={styles.ColorBTN}
+                onClick={() => setSelectedColor('#000000')}
+                style={{ backgroundColor: "#000000", borderColor: selectedColor === '#000000' ? "#000000" : "white" }}  ><IconButton className={styles.ColorInnerBTN} style={{ borderColor: selectedColor === '#000000' ? "#fff" : "transparent" }} ></IconButton></IconButton>
+            </div>
           </div>
           <div className={styles.btnDiv}>
 

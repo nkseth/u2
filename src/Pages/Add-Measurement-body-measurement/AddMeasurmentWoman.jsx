@@ -28,6 +28,38 @@ import { set_lower_body, set_upper_body } from '../../Redux/actions/measurement'
 
 import { Link } from 'react-router-dom'
 
+import {
+    // Measuremant Parameters
+    NeckData,
+    ShoulderData,
+    ChestData,
+    ArmHoleData,
+    SleeveLengthData,
+    WristData,
+    WaistData,
+    FullLengthData,
+    HipRoundData,
+    InSeamData,
+    ThighData,
+    CalfData,
+    AnkleData,
+
+    // Measurement Functions
+    NeckVALUE,
+    ShoulderVALUE,
+    ChestVALUE,
+    ArmHoleVALUE,
+    SleeveLengthVALUE,
+    WristVALUE,
+    WaistVALUE,
+    FullLengthVALUE,
+    HipRoundVALUE,
+    InSeamVALUE,
+    ThighVALUE,
+    CalfVALUE,
+    AnkleVALUE
+
+} from "../../Redux/MeasuremantData"
 
 function AddWomanMeasurement() {
 
@@ -39,7 +71,7 @@ function AddWomanMeasurement() {
     const { upper_body, lower_body } = useSelector(state => state.root.measurement)
 
     const { neck, chest, wrist, shoulder, arm_hole, sleeve } = upper_body;
-    const { waist, hip_round, full_length, inseam, thigh, calf, ankle} = lower_body;
+    const { waist, hip_round, full_length, inseam, thigh, calf, ankle } = lower_body;
 
 
     const [NECK, SETNECK] = useState('')
@@ -56,73 +88,96 @@ function AddWomanMeasurement() {
     const [THIGH, SETTHIGH] = useState('')
     const [CALF, SETCALF] = useState('')
     const [ANKLE, SETANKLE] = useState('')
-
     const Form = (value, name) => {
         if (name === 'Neck') {
 
-            dispatch(set_upper_body({...upper_body, neck:value}))
+            dispatch(set_upper_body({ ...upper_body, neck: value }))
             setAllDone('Done')
+            NeckVALUE(value)
 
         }
         else if (name === 'Shoulder') {
-            dispatch(set_upper_body({...upper_body, shoulder:value}));
+            dispatch(set_upper_body({ ...upper_body, shoulder: value }));
             setAllDone('Done')
+            ShoulderVALUE(value)
 
         }
         else if (name === 'Chest') {
-            dispatch(set_upper_body({...upper_body, chest:value}));
+            dispatch(set_upper_body({ ...upper_body, chest: value }));
             setAllDone('Done')
+            ChestVALUE(value)
+
 
         }
         else if (name === 'Arm Hole') {
-            dispatch(set_upper_body({...upper_body, arm_hole:value}));
+            dispatch(set_upper_body({ ...upper_body, arm_hole: value }));
             setAllDone('Done')
+            ArmHoleVALUE(value)
+
 
         }
         else if (name === 'Sleeve length') {
-            dispatch(set_upper_body({...upper_body, sleeve:value}));
+            dispatch(set_upper_body({ ...upper_body, sleeve: value }));
             setAllDone('Done')
+            SleeveLengthVALUE(value)
+
 
         }
         else if (name === 'Wrist') {
-            dispatch(set_upper_body({...upper_body, wrist:value}));
+            dispatch(set_upper_body({ ...upper_body, wrist: value }));
             setAllDone('Done')
+            WristVALUE(value)
+
 
         }
 
         else if (name === 'Waist') {
-            dispatch(set_lower_body({...lower_body, waist:value}));
+            dispatch(set_lower_body({ ...lower_body, waist: value }));
             setAllDone('Done')
+            WaistVALUE(value)
+
 
         }
         else if (name === 'Full length') {
-            dispatch(set_lower_body({...lower_body, full_length:value}));
+            dispatch(set_lower_body({ ...lower_body, full_length: value }));
             setAllDone('Done')
+            FullLengthVALUE(value)
+
 
         }
         else if (name === 'Hip Round') {
-            dispatch(set_lower_body({...lower_body, hip_round:value}));
+            dispatch(set_lower_body({ ...lower_body, hip_round: value }));
             setAllDone('Done')
+            HipRoundVALUE(value)
+
 
         }
         else if (name === 'InSeam') {
-            dispatch(set_lower_body({...lower_body, inseam:value}));
+            dispatch(set_lower_body({ ...lower_body, inseam: value }));
             setAllDone('Done')
+            InSeamVALUE(value)
+
 
         }
         else if (name === 'Thigh') {
-            dispatch(set_lower_body({...lower_body, thigh:value}));
+            dispatch(set_lower_body({ ...lower_body, thigh: value }));
             setAllDone('Done')
+            ThighVALUE(value)
+
 
         }
         else if (name === 'Calf') {
-            dispatch(set_lower_body({...lower_body, calf:value}));
+            dispatch(set_lower_body({ ...lower_body, calf: value }));
             setAllDone('Done')
+            CalfVALUE(value)
+
 
         }
         else if (name === 'Ankle') {
-            dispatch(set_lower_body({...lower_body, ankle:value}));
+            dispatch(set_lower_body({ ...lower_body, ankle: value }));
             setAllDone('Done')
+            AnkleVALUE(value)
+
 
         }
 
@@ -325,19 +380,19 @@ function AddWomanMeasurement() {
                     {
                         Open === 'upper' || Open === 'lower' ?
                             <FloatingTag position={button} FocusIt={FocusIt}
-                            NECK={neck}
-                            CHEST={chest}
-                            WRIST={wrist}
-                            SHOULDER={shoulder}
-                            ARMHOLE={arm_hole}
-                            SLEEVE={sleeve}
-                            WAIST={waist}
-                            HIPROUND={hip_round}
-                            INSEAM={inseam}
-                            FULLLENGTH={full_length}
-                            THIGH={thigh}
-                            CALF={calf}
-                            ANKLE={ankle}
+                                NECK={neck}
+                                CHEST={chest}
+                                WRIST={wrist}
+                                SHOULDER={shoulder}
+                                ARMHOLE={arm_hole}
+                                SLEEVE={sleeve}
+                                WAIST={waist}
+                                HIPROUND={hip_round}
+                                INSEAM={inseam}
+                                FULLLENGTH={full_length}
+                                THIGH={thigh}
+                                CALF={calf}
+                                ANKLE={ankle}
                             />
                             :
                             <></>
@@ -348,45 +403,45 @@ function AddWomanMeasurement() {
 
                     <MeasurementFloating name={Open} focused={true} Form={Form} value={
                         Open === 'Neck' ?
-                        neck
-                        :
-                        Open === 'Shoulder' ?
-                            shoulder
+                            neck
                             :
-                            Open === 'Arm Hole' ?
-                                arm_hole
+                            Open === 'Shoulder' ?
+                                shoulder
                                 :
-                                Open === 'Sleeve length' ?
-                                    sleeve
+                                Open === 'Arm Hole' ?
+                                    arm_hole
                                     :
-                                    Open === 'Waist' ?
-                                        waist
+                                    Open === 'Sleeve length' ?
+                                        sleeve
                                         :
-                                        Open === 'Full length' ?
-                                            full_length
+                                        Open === 'Waist' ?
+                                            waist
                                             :
-                                            Open === 'Chest' ?
-                                                chest
+                                            Open === 'Full length' ?
+                                                full_length
                                                 :
-                                                Open === 'Ankle' ?
-                                                    ankle
+                                                Open === 'Chest' ?
+                                                    chest
                                                     :
-                                                    Open === 'InSeam' ?
-                                                        inseam
+                                                    Open === 'Ankle' ?
+                                                        ankle
                                                         :
-                                                        Open === 'Thigh' ?
-                                                            thigh
+                                                        Open === 'InSeam' ?
+                                                            inseam
                                                             :
-                                                            Open === 'Calf' ?
-                                                                calf
+                                                            Open === 'Thigh' ?
+                                                                thigh
                                                                 :
-                                                                Open === 'Wrist' ?
-                                                                    wrist
+                                                                Open === 'Calf' ?
+                                                                    calf
                                                                     :
-                                                                    Open === 'Hip Round' ?
-                                                                        hip_round
+                                                                    Open === 'Wrist' ?
+                                                                        wrist
                                                                         :
-                                                                        0
+                                                                        Open === 'Hip Round' ?
+                                                                            hip_round
+                                                                            :
+                                                                            0
 
                     } />
 

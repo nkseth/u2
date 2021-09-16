@@ -63,7 +63,7 @@ function AccordionS({ position, FocusIt, Open, Form, AllDone, SetIt, NECK, Uploa
             {
                 AllDone === true ?
 
-                    <Link to="/viewmeasurement" style={{ color: "#fff" }} > <Button className={styles.submitBtn} onClick={AllDone === true ? UploadMeasurement : SetIt} >Submit</Button></Link>
+                    <Link to="/viewmeasurement" style={{ color: "#fff", display: "flex", alignItems: "center" }} > <Button className={styles.submitBtn} onClick={AllDone === true ? UploadMeasurement : SetIt} >Submit</Button></Link>
                     :
 
                     <Button className={styles.submitBtn} onClick={AllDone === true ? UploadMeasurement : SetIt} >{AllDone}</Button>

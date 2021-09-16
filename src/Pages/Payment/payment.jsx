@@ -12,9 +12,9 @@ import styles from "./payment.module.scss";
 //icons
 import AddIcon from "@material-ui/icons/Add";
 import { ReactComponent as PayPalIcon } from "../../Images/icons/paypal.svg";
-import common_axios from "../../utils/axios.config";
-import { useSelector } from "react-redux";
-
+import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData"
+import tick from "./tick.svg"
+import close from "./close.svg"
 const CustomRadio = withStyles({
   root: {
     color: "#9D9D9D",
@@ -24,17 +24,14 @@ const CustomRadio = withStyles({
   },
   checked: {},
 })((props) => <Radio color='default' {...props} />);
-
-
 export default function Payment() {
-
-
   const history = useHistory();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("upi");
   const [selectedUPIApp, setSelectedUPIApp] = useState("");
-  const { order_summ } = useSelector(state => state.root.main)
-
-
+  const [PaymentDone, setPaymentDone] = useState(false);
+  const toggle = () => {
+    setPaymentDone(false)
+  }
   useEffect(() => {
     const unsub = () => {
       if (selectedPaymentMethod !== "upi") {
@@ -44,11 +41,20 @@ export default function Payment() {
     unsub();
     return unsub;
   }, [selectedPaymentMethod]);
-
-
   return (
-    <Container bottomDivider footerOnTabMob>
-      <CustomSection style={{ marginTop: "2rem" }}>
+    // <Container bottomDivider footerOnTabMob>
+    <div className={styles.PaymentHeader} >
+      <div className={styles.Navbar}>
+        <h1>LOGO</h1>
+        <CustomDivider />
+      </div>
+      {
+        PaymentDone ?
+          <SuccessPopUp history={history} payment toggle={toggle} title={'Your payment is successfully done'} text={'Lorem Ipsum is simply dummy text of the printing and typesetting'} />
+          :
+          <></>
+      }
+      <CustomSection style={{ marginTop: "2rem" }} >
         <Breadcrumb
           path='Home / Men / Blazers / My Bag / Executive Measurement / Address'
           activePath='/ Order Summary'
@@ -132,7 +138,10 @@ export default function Payment() {
                       color='default'
                       className={styles.payBtn}
                       onClick={() => {
-                        history.push("/add-measurement-choose-standard-size");
+                        // Product_Type === 'Customised' ?
+                        setPaymentDone(!PaymentDone)
+                        // :
+                        // history.push('/add-measurement-choose-standard-size')
                       }}
                     >
                       Pay
@@ -174,15 +183,15 @@ export default function Payment() {
                 <div className={styles.selectedProductPrices}>
                   <div>
                     <label>Product Price</label>
-                    <span>{order_summ.total}</span>
+                    <span>₹599</span>
                   </div>
                   <div>
                     <label>Service charges</label>
-                    <span>{order_summ.taxes}</span>
+                    <span>₹50</span>
                   </div>
                   <div>
                     <label>Delivery charges</label>
-                    <span>{order_summ.delivery_charge ? order_summ.delivery_charge : '$0'}</span>
+                    <span>₹100</span>
                   </div>
                 </div>
                 <CustomDivider style={{ backgroundColor: "#CECECE" }} />
@@ -190,13 +199,39 @@ export default function Payment() {
               <div className={styles.totalAmtDiv}>
                 <div>
                   <label>Total Amount</label>
-                  <span>{order_summ.grand_total}</span>
+                  <span>₹749</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </CustomSection>
-    </Container>
+    </div>
+    // </Container>
   );
 }
+
+
+export function SuccessPopUp({ toggle, title, text, history, payment }) {
+  return (
+    <div className={styles.modal}  >
+      <div className={styles.Popup}>
+        <IconButton className={styles.CloseBtn} onClick={toggle} ><img src={close} /></IconButton>
+        <img src={tick} />
+        <h1>{title}</h1>
+        <p>{text}</p>
+        {
+          payment ?
+            <>
+              <Button className={styles.AddmeasureBTN} onClick={() => history.push('/add-measurement-choose-standard-size')} >Add measurement</Button>
+              <Button className={styles.LaterBTN} onClick={toggle}  >I’ll do it later</Button>
+            </>
+            :
+            <></>
+        }
+      </div>
+    </div>
+  )
+}
+
+

@@ -16,11 +16,11 @@
       line-height: 28px;
       color: var(--primary-color);
     }
-   
-    >.mainContainer {
-      border-bottom: 1px solid var(--primary-color);
-      border-left: 1px solid var(--primary-color);
-      border-right: 1px solid var(--primary-color);
+   .BorderContainer{
+    border-bottom: 1px solid var(--primary-color);
+    border-left: 1px solid var(--primary-color);
+    border-right: 1px solid var(--primary-color);
+    .mainContainer {
       padding: 1rem 1.5rem;
       display: flex;
       gap: 1rem;
@@ -120,7 +120,7 @@
         }
       }
     }
-
+  }
     > div:last-child {
       margin-top: 5rem;
       font-size: 16px;
@@ -393,6 +393,56 @@ color: #9D8E73!important;
   background-color: var(--primary-color) !important;
 }
 
+.CheckOutProcess{
+  width: 95%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  background: #F1EFEB;
+  max-width: 550px;
+  padding: 1em;
+  border-radius: 5px;
+  h1{
+    font-family: DM Sans;
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: 20px;
+letter-spacing: 0px;
+text-align: left;
+color: #000!important;
+  }
+  li{
+    font-family: DM Sans;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: 0px;
+text-align: left;
+margin-top: 1em;
+  }
+  .CheckOutProcessBtn{
+border-radius: 5px!important;
+background-color: #6A5B40!important;
+color: #fff!important;
+margin-top: 1em!important;
+font-family: DM Sans!important;
+font-size: 14px!important;
+font-style: normal!important;
+font-weight: 700!important;
+line-height: 20px!important;
+letter-spacing: 0px!important;
+text-align: center!important;
+
+
+  }
+}
+
+
+
+
 @media screen and (max-width: 835px) {
   .container {
     flex-direction: column;
@@ -409,6 +459,10 @@ color: #9D8E73!important;
   .lastContainer{
     margin-top: -5em!important;
   }
+  .CheckOutProcess{
+  margin-bottom: 5em;
+  }
+
 }
 
 @media screen and (max-width: 550px) {
@@ -420,6 +474,14 @@ color: #9D8E73!important;
       margin: 2rem 0;
     }
   }
+  .CheckOutProcess{
+    margin-left: auto;
+    margin-right: auto;
+    .CheckOutProcessBtn{
+      font-size: 9px!important;
+      }
+  }
+ 
 
 }
 

@@ -6,7 +6,7 @@ import styles from "./card.module.scss"
 
 function MegaMenuCard({ background, title, categories }) {
     return (
-        <div className={styles.card} style={{ backgroundImage: "url(" + background + ")" }} >
+        <div className={styles.card} style={{ backgroundImage: "url(" + background + ")", backgroundPosition: "center", backgroundSize: "cover" }} >
             <CardOverlay title={title} categories={categories} />
         </div>
     )
@@ -25,33 +25,12 @@ function CardOverlay({ title, categories }) {
                 {categories.map((item) => {
                     return (
                         <>
-                            <Link to={{ pathname:`/designers-product-page/${item.slug}` }}>{item.name}</Link>
+                            <Link to={{ pathname: `/designers-product-page/${item.slug}` }}>{item.name}</Link>
                             <br />
                         </>
                     )
                 })}
             </p>
-            {/* <p className={styles.p}>
-                <Link> Kurta Sets</Link>
-                <br />
-                <Link>Kurtas</Link>
-                <br />
-                <Link>Sherwanis</Link>
-                <br />
-                <Link>Nehru Jackets</Link>
-                <br />
-                <Link>Bandhgalas</Link>
-                <br />
-                <Link>Shirts</Link>
-                <br />
-                <Link>Dhotis</Link>
-                <br />
-                <Link>Suits & Tuxedos</Link>
-                <br />
-                <Link>Blazers</Link>
-                <br />
-                <Link>Suits</Link>
-            </p> */}
         </div>
     )
 }

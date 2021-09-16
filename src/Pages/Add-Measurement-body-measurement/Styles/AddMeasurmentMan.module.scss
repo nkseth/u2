@@ -4,10 +4,11 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-evenly;
+    margin-bottom: 5em;
 }
 .SVGDiv{
     width: 100%;
-    height: 100vh;
+    height: 110vh;
     margin-top: 5em;
     position: relative;
     min-width: 200px;
@@ -46,9 +47,9 @@
 // Woman
 .upperImage_w{
     width: 100%;
-    height: 90%;
-    transform: scale(1.2) translateY(1em) ;
-    margin-top: 2em;
+    height: 80%;
+    transform: scale(1.2) ;
+    margin-top: 3em;
     transition: all 1s;
     padding: 1em;
 
@@ -58,9 +59,9 @@
 }
 .lowerImage_w{
     width: 100%;
-    height: 90%;
-    transform: scale(1.2) translateY(-1em) ;
-    margin-top: 2em;
+    height: 80%;
+    transform: scale(1.2) ;
+    margin-top: 3em;
     transition: all 1s;
     padding: 1em;
 
@@ -237,7 +238,7 @@ border-radius: 0px 5px 5px 0px  !important;
     position: absolute;
     width: 100%;
     border-radius: 10px;
-    bottom: -30%;
+    top: 120%;
     display: none;
     max-width: 400px;
     // margin-bottom: 3em;
@@ -284,6 +285,7 @@ border-radius: 0px 5px 5px 0px  !important;
     .container{
        align-items: center;
        flex-direction: column;
+       margin-bottom: 0em;
     }
     .AccordionDiv{
         display: none;
@@ -291,6 +293,7 @@ border-radius: 0px 5px 5px 0px  !important;
     .SVGDiv{
         width: 100%;
     margin-top: 0em;
+
     }
     .TabsButtonDivTop{
         display: flex;
@@ -361,5 +364,8 @@ display: block;
     min-width: 200px;
     max-width:450px;
     overflow: hidden;
+}
+.FloatingMeasure{
+    top: 125%;
 }
 }

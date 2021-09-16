@@ -8,15 +8,15 @@ const Review = () => {
 
   const [review, setReviews] = useState([])
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch_data()
-  },[])
+  }, [])
 
   const fetch_data = async () => {
-        
+
     const { data } = await common_axios.get('/product_review_list')
     console.log(data)
-    if(data){
+    if (data) {
       setReviews(data)
     }
   }
@@ -36,17 +36,17 @@ const Review = () => {
 
   return (
     <div className={styles.Review}>
-      {review.map((item)=>{
-        return(
+      {review.map((item) => {
+        return (
           <diz className={styles.Review_Top}>
-        <div>
-          <h2>{item.description}</h2>
-          <p>{item.name}</p>
-        </div>
-        <div>
-          <GetDate val={item.created_at}/>
-        </div>
-      </diz>
+            <div>
+              <h2>{item.description}</h2>
+              <p>{item.name}</p>
+            </div>
+            <div>
+              <GetDate val={item.created_at} />
+            </div>
+          </diz>
         )
       })}
       <div className={styles.Review_Video}>
@@ -93,9 +93,9 @@ const Review = () => {
           <h2>Your Action</h2>
           <CustomDivider />
         </div>
-        <div>
-          <Button>Accept & Confirm</Button>
-          <Button>Comment</Button>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }} >
+          {/* <Button>Accept & Confirm</Button> */}
+          <Button style={{ width: "350px" }} >Comment</Button>
         </div>
       </div>
     </div>

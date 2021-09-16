@@ -1,5 +1,6 @@
 import React from "react";
 import Stepper from "react-stepper-horizontal";
+import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData"
 
 export default function CustomStepper({ activeStep }) {
   return (
@@ -13,11 +14,17 @@ export default function CustomStepper({ activeStep }) {
       activeBorderColor='green'
       completeBarColor='#6A5B40'
       size={30}
-      steps={[
+      steps={Product_Type === 'Customised' ? [
         { title: "Order Summary" },
         { title: "Payment" },
         { title: "Measurement" },
-      ]}
+      ]
+        :
+        [
+          { title: "Order Summary" },
+          { title: "Payment" },
+        ]
+      }
       activeStep={activeStep}
     />
   );

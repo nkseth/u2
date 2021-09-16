@@ -25,13 +25,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InputField({ label, placeholder, onChange, style, StatesName, notimp, textfield, IsState, special, value }) {
   const handleInputChange = (e) => {
-    // if (onChange) {
-    //   onChange(e);
-    // }
-    return (
-      <div className={styles.container}>
-      </div>
-    );
+    if (onChange) {
+      onChange(e);
+    }
   };
 
 
@@ -80,7 +76,7 @@ export default function InputField({ label, placeholder, onChange, style, States
 
 
             <div style={BreakPointMobile ? { marginTop: "-0.8em" } : { marginTop: "-1.5em" }} >
-              <label className={styles.label} style={BreakPointMobile ? { marginBottom: "0.3em" } : { marginBottom: "0.5em" }}  >{label}</label>
+              <label className={styles.label} style={BreakPointMobile ? { marginBottom: "0.3em", marginTop: "0em" } : { marginBottom: "0.5em" }}  >{label}</label>
               <FormControl className={styles.FormControl}
                 style={{
                   border: "1px solid #6a5b40",
@@ -124,7 +120,8 @@ export default function InputField({ label, placeholder, onChange, style, States
                   type='text'
                   name={label}
                   placeholder={placeholder}
-                  onChange={onChange}
+                  onChange={handleInputChange}
+                  value={value}
                 />
 
               </>

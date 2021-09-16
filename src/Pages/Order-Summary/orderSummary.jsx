@@ -5,6 +5,7 @@ import {
   AccordionSummary,
   AccordionDetails,
   useMediaQuery,
+  IconButton,
 } from "@material-ui/core";
 import { ReactComponent as LocationIcon } from "../../Images/icons/location.svg";
 import SelectedFabricSample from "./Components/Selected-Fabric-Sample/index";
@@ -22,6 +23,13 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { ReactComponent as CouponIcon } from "../../Images/icons/coupon.svg";
 import common_axios from "../../utils/axios.config";
+import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData"
+import { CheckOutProcess } from "../My-Bag/MyBag"
+import close from "../Payment/close.svg"
+import NewAddress from "../Delivery Address/Components/fabric-sample-card/NewAddress";
+
+
+
 
 export default function OrderSummary() {
 
@@ -30,6 +38,7 @@ export default function OrderSummary() {
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   const [data, setData] = useState([])
+  const [AddAddress, setAddAddress] = useState(false)
   const [priceDetails, setPriceDetails] = useState({})
   const [quantity, setQuantity] = useState(1);
   const img =
@@ -78,6 +87,11 @@ export default function OrderSummary() {
 
   return (
     <Container bottomDivider footerOnTabMob>
+      {AddAddress ?
+        <NewAddress setAddAddress={setAddAddress} />
+        :
+        <></>
+      }
       <CustomSection style={{ marginTop: "2em" }} >
         <Breadcrumb
           path='Home / Men / Blazers / My Bag / Executive Measurement / Address'
@@ -94,7 +108,7 @@ export default function OrderSummary() {
                 <p>Delivery address</p>
                 <CustomDivider />
               </div>
-              <DeliveryAddress />
+              <DeliveryAddress setAddAddress={setAddAddress} />
               <div className={styles.OrderLine}>
                 <p>Order Details</p>
                 <CustomDivider />
@@ -160,7 +174,17 @@ export default function OrderSummary() {
                   </>
                 )
               })}
+              {
+                Product_Type === 'Customised' ?
+
+                  <div style={{ margin: mobileView ? "0" : "1em", marginTop: "1em", width: "100%" }} >
+                    <CheckOutProcess />
+                  </div>
+                  :
+                  <></>
+              }
             </div>
+
             <div>
               <div></div>
             </div>
@@ -266,7 +290,7 @@ export default function OrderSummary() {
 }
 
 
-function DeliveryAddress() {
+export function DeliveryAddress({ setAddAddress }) {
   const routerHistory = useHistory()
   return (
     <div className={styles.DeliveryAddress}>
@@ -311,7 +335,7 @@ function DeliveryAddress() {
             variant='contained'
             color='default'
             endIcon={<AddIcon />}
-            onClick={() => routerHistory.push('/addNewaddress')}
+            onClick={() => setAddAddress(true)}
           >
             Add New Address
           </Button>

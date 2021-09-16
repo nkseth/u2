@@ -29,6 +29,17 @@ import playBtn from "./images/play.svg"
 import { useSelector, useDispatch } from "react-redux";
 import { set_basic_details, set_basic_id, set_gender } from "../../Redux/actions/measurement";
 import common_axios from "../../utils/axios.config";
+import { SuccessPopUp } from "../Payment/payment";
+import {
+  Customer_Name,
+  Customer_Name_Change,
+  Customer_Gender,
+  Customer_Gender_Change,
+  Customer_Size,
+  Customer_Size_Change,
+  Customer_Fitting,
+  Customer_Fitting_Change
+} from "../../Redux/MeasuremantData"
 
 const CustomRadio1 = withStyles({
   root: {
@@ -76,47 +87,69 @@ export default function ChooseStandardSize() {
   const tabView = useMediaQuery("(max-width:769px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
+  // Measuremant parameters
+  const [Gender, SetGender] = useState(Customer_Gender)
+  const [Size, SetSize] = useState(Customer_Size)
+  const [Fitting, SetFitting] = useState(Customer_Fitting)
+  const [Names, setName] = useState(Customer_Name)
 
   const { gender, basic_details } = useSelector(state => state.root.measurement);
   const { user_data } = useSelector(state => state.root.main);
 
   const { name, fitting, standard_size } = basic_details;
 
- 
-  const onSubmit  = async () => {
-    if(name.length == 0){
+
+  const onSubmit = async () => {
+    if (name.length == 0) {
       alert('Enter a valid name');
       return;
     }
 
-    if(fitting.length == 0){
+    if (fitting.length == 0) {
       alert('Enter a valid age');
       return;
     }
 
 
-    if(standard_size.length == 0){
+    if (standard_size.length == 0) {
       alert('Choose your size');
       return;
     }
 
-    try{
-      const { data } = await common_axios.post('/save_measurment',{
+    try {
+      const { data } = await common_axios.post('/save_measurment', {
         gender,
         name,
         standard_size,
         fitting,
-        user_id:user_data.id
+        user_id: user_data.id
       });
       dispatch(set_basic_id(data))
       history.push(`/add-measurement-body-measurement-${gender}`)
-    } catch(e){
+    } catch (e) {
       console.log(e.response?.data)
     }
+  }
+  const handleName = (e) => {
+    setName(e.target.value)
+    Customer_Name_Change(e.target.value)
+  }
+  const handleGender = (e) => {
+    SetGender(e.target.value)
+    Customer_Gender_Change(e.target.value)
+  }
+  const handleSize = (e) => {
+    SetSize(e.target.value)
+    Customer_Size_Change(e.target.value)
+  }
+  const handleFitting = (e) => {
+    SetFitting(e.target.value)
+    Customer_Fitting_Change(e.target.value)
   }
 
   return (
     <Container bottomDivider footerOnTabMob>
+
       <div className={styles.Container}>
         <p style={{ marginLeft: "1em", marginTop: "2em" }} >
           <Breadcrumb
@@ -142,11 +175,11 @@ export default function ChooseStandardSize() {
               <p className={styles.SelectHead} >Name</p>
               <InputField
                 special
-                value={name}
+                value={Names}
                 style={mobileView ? { width: "285px" } : tabView ? { width: "375px" } : { width: "100%", minWidth: "350px", maxWidth: "450px" }}
                 notimp
                 placeholder='Name'
-                onChange={(e) => dispatch(set_basic_details({...basic_details, name:e.target.value}))}
+                onChange={(e) => handleName(e)}
               />
             </div>
 
@@ -156,19 +189,19 @@ export default function ChooseStandardSize() {
                 style={mobileView ? { width: "90%", maxWidth: "285px" } : tabView ? { background: "grey" } : { width: "100%", minWidth: "300px", maxWidth: "350px" }}
 
                 input={<BootstrapInput />}
-                value={gender}
-                onChange={(e) => dispatch(set_gender(e.target.value))}
+                value={Gender}
+                onChange={(e) => handleGender(e)}
               >
                 <MenuItem value={"male"}>
                   <FormControlLabel
-                    checked={gender === "male"}
+                    checked={Gender === "male"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels} >Male</p>}
                   />
                 </MenuItem>
                 <MenuItem value={"female"}>
                   <FormControlLabel
-                    checked={gender === "female"}
+                    checked={Gender === "female"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels}>Female</p>}
                   />
@@ -183,40 +216,40 @@ export default function ChooseStandardSize() {
               <Select
                 style={mobileView ? { width: "90%", maxWidth: "285px" } : tabView ? { background: "grey" } : { width: "100%", minWidth: "300px", maxWidth: "350px" }}
                 input={<BootstrapInput />}
-                value={standard_size}
-                onChange={(e) => dispatch(set_basic_details({...basic_details, standard_size:e.target.value}))}
+                value={Size}
+                onChange={(e) => handleSize(e)}
               >
                 <MenuItem value={"S"}>
                   <FormControlLabel
-                    checked={standard_size === "S"}
+                    checked={Size === "S"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels} >S</p>}
                   />
                 </MenuItem>
                 <MenuItem value={"M"}>
                   <FormControlLabel
-                    checked={standard_size === "M"}
+                    checked={Size === "M"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels} >M</p>}
                   />
                 </MenuItem>
                 <MenuItem value={"L"}>
                   <FormControlLabel
-                    checked={standard_size === "L"}
+                    checked={Size === "L"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels} >L</p>}
                   />
                 </MenuItem>
                 <MenuItem value={"XL"}>
                   <FormControlLabel
-                    checked={standard_size === "XL"}
+                    checked={Size === "XL"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels} >XL</p>}
                   />
                 </MenuItem>
                 <MenuItem value={"XXl"}>
                   <FormControlLabel
-                    checked={standard_size === "XXl"}
+                    checked={Size === "XXl"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels} >XXL</p>}
                   />
@@ -231,13 +264,13 @@ export default function ChooseStandardSize() {
                 style={mobileView ? { width: "90%", maxWidth: "285px" } : tabView ? { background: "grey" } : { width: "100%", minWidth: "300px", maxWidth: "350px" }}
 
                 input={<BootstrapInput />}
-                value={fitting}
-                onChange={(e) => dispatch(set_basic_details({...basic_details, fitting:e.target.value}))}
+                value={Fitting}
+                onChange={(e) => handleFitting(e)}
               >
                 <MenuItem value={"Regular"} >
                   <FormControlLabel
                     style={{ height: "5em" }}
-                    checked={fitting === "Regular"}
+                    checked={Fitting === "Regular"}
                     control={<CustomRadio1 />}
                     label={
                       <>
@@ -249,12 +282,10 @@ export default function ChooseStandardSize() {
                       </>}
                   />
                 </MenuItem>
-
-
                 <MenuItem value={"Slim"} >
                   <FormControlLabel
                     style={{ height: "5em" }}
-                    checked={fitting === "Slim"}
+                    checked={Fitting === "Slim"}
                     control={<CustomRadio1 />}
                     label={
                       <>
@@ -271,7 +302,7 @@ export default function ChooseStandardSize() {
                 <MenuItem value={"Loose"} >
                   <FormControlLabel
                     style={{ height: "5em" }}
-                    checked={fitting === "Loose"}
+                    checked={Fitting === "Loose"}
                     control={<CustomRadio1 />}
                     label={
                       <>
@@ -285,7 +316,7 @@ export default function ChooseStandardSize() {
                 </MenuItem>
               </Select>
             </div>
-            <Button className={styles.SaveBTN} > Save and Add measurement</Button>
+            <Button className={styles.SaveBTN} onClick={() => history.push('/viewmeasurement')} > Save and Add measurement</Button>
 
           </div>
         </div>
@@ -293,182 +324,3 @@ export default function ChooseStandardSize() {
     </Container>
   );
 }
-// old code is here
-
-{/* {tabViewPro && !mobileView && (
-        <div style={{ padding: tabView ? "0 30px" : "0 56px" }}>
-          <Breadcrumb
-            path='Home / Men / Blazers / '
-            activePath='Add measurement'
-          />
-        </div>
-      )}
-      <section className={styles.section}>
-        {!tabViewPro && (
-          <Breadcrumb
-            path='Home / Men / Blazers / '
-            activePath='Add measurement'
-          />
-        )}
-
-        <div className={styles.header}>Choose Standard Size</div>
-        <div className={styles.sizesDiv}>
-          <IconButton
-            onClick={() => setSize("xs")}
-            size={mobileView && "small"}
-          >
-            <div
-              className={cx(
-                styles.sizeButton,
-                size === "xs" && styles.sizeButtonActive
-              )}
-            >
-              XS
-            </div>
-          </IconButton>
-          <IconButton onClick={() => setSize("s")} size={mobileView && "small"}>
-            <div
-              className={cx(
-                styles.sizeButton,
-                size === "s" && styles.sizeButtonActive
-              )}
-            >
-              S
-            </div>
-          </IconButton>
-          <IconButton onClick={() => setSize("m")} size={mobileView && "small"}>
-            <div
-              className={cx(
-                styles.sizeButton,
-                size === "m" && styles.sizeButtonActive
-              )}
-            >
-              M
-            </div>
-          </IconButton>
-          <IconButton onClick={() => setSize("l")} size={mobileView && "small"}>
-            <div
-              className={cx(
-                styles.sizeButton,
-                size === "l" && styles.sizeButtonActive
-              )}
-            >
-              L
-            </div>
-          </IconButton>
-          <IconButton
-            onClick={() => setSize("xl")}
-            size={mobileView && "small"}
-          >
-            <div
-              className={cx(
-                styles.sizeButton,
-                size === "xl" && styles.sizeButtonActive
-              )}
-            >
-              XL
-            </div>
-          </IconButton>
-          <IconButton
-            onClick={() => setSize("xxl")}
-            size={mobileView && "small"}
-          >
-            <div
-              className={cx(
-                styles.sizeButton,
-                size === "xxl" && styles.sizeButtonActive
-              )}
-            >
-              XXL
-            </div>
-          </IconButton>
-        </div>
-        <div>
-          {mobileView && (
-            <div>
-              <Carousel
-                autoPlay={false}
-                centerMode
-                centerSlidePercentage={100}
-                showArrows={false}
-                showStatus={false}
-                showIndicators={true}
-                stopOnHover
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    height: "350px",
-                    alignItems: "center",
-                  }}
-                >
-                  <SizesCard
-                    fitImg={LooseFit}
-                    fitType='Loose'
-                    fitDescription='A Loose Modern cut'
-                  />
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    height: "350px",
-                    alignItems: "center",
-                  }}
-                >
-                  <SizesCard
-                    fitImg={SlimFit}
-                    fitType='Slim'
-                    fitDescription='A Slim Modern cut'
-                  />
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    height: "350px",
-                    alignItems: "center",
-                  }}
-                >
-                  <SizesCard
-                    fitImg={RegularFit}
-                    fitType='Regular'
-                    fitDescription='A Regular Modern cut'
-                  />
-                </div>
-              </Carousel>
-            </div>
-          )}
-
-          {!mobileView && (
-            <div className={styles.sizeIllustrationDiv}>
-              <SizesCard
-                fitImg={LooseFit}
-                fitType='Loose'
-                fitDescription='A Loose Modern cut'
-              />
-              <SizesCard
-                fitImg={SlimFit}
-                fitType='Slim'
-                fitDescription='A Slim Modern cut'
-              />
-              <SizesCard
-                fitImg={RegularFit}
-                fitType='Regular'
-                fitDescription='A Regular Modern cut'
-              />
-            </div>
-          )}
-        </div>
-        <div className={styles.buttonDiv}>
-          <Button
-            className={styles.button}
-            variant='contained'
-            color='default'
-            onClick={() => history.push("/add-measurement-gender")}
-          >
-            Continue
-          </Button>
-        </div>
-      </section> */}

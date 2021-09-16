@@ -21,29 +21,7 @@ export default function DesignersCard({ image, title, description }) {
           <Link to="offers">{title}</Link>{" "}
         </span>
 
-        {isAddToWishList ? (
-          <IconButton
-            aria-label="product"
-            onClick={() => {
-              setAddToWishList(false);
-            }}
-            className={styles.icons}
-            size="small"
-          >
-            <FavoriteIcon style={{ color: "red" }} />
-          </IconButton>
-        ) : (
-          <IconButton
-            aria-label="product"
-            onClick={() => {
-              setAddToWishList(true);
-            }}
-            className={styles.icons}
-            size="small"
-          >
-            <FavoriteBorderIcon />
-          </IconButton>
-        )}
+
       </div>
     </div>
   );

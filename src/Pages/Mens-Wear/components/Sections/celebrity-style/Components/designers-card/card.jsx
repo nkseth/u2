@@ -14,27 +14,7 @@ export default function ProductCard({ image }) {
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <img src={image} alt="product" />
-        {isAddToWishList ? (
-          <IconButton
-            aria-label="product"
-            onClick={() => {
-              setAddToWishList(false);
-            }}
-            className={styles.icons}
-          >
-            <FavoriteIcon style={{ color: "red" }} />
-          </IconButton>
-        ) : (
-          <IconButton
-            aria-label="product"
-            onClick={() => {
-              setAddToWishList(true);
-            }}
-            className={styles.icons}
-          >
-            <FavoriteBorderIcon />
-          </IconButton>
-        )}
+
       </div>
       <Link to="/product-description/levis" className={styles.productDetails}>
         <span className={styles.productName}>Levi’s</span>

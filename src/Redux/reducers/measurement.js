@@ -4,7 +4,7 @@ import { BASIC_DETAILS, BASIC_ID, GENDER, LOWER_BODY, MY_MEASUREMENTS, UPPER_BOD
 const inialState = {
     my_measurements: [],
     gender: 'male',
-    basic_details: { name: '', age: '', height: '', weight: '' },
+    basic_details: { name: '', fitting:'Regular', standard_size:'S' },
     upper_body: { neck: '', shoulder: '', chest: '', arm_hole: '', sleeve: '', wrist: '' },
     lower_body: { waist: '', hip_round: '', full_length: '', inseam: '', thigh: '', calf: '', ankle: '' },
     basic_id: null,

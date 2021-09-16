@@ -1,4 +1,4 @@
-import { ALL_THAT_YOU_WANT, CELIBRITY_STYLE, GET_CATEGORY_GROUP, GET_CATEGORY_SUBGROUP, GET_DESIGNERS, MENS_ACTIVE_PRODUCT, MENS_WEAR_CAT, MENS_WEAR_SLIDER, MENS_WEAR_SUBGRP, MOST_LOVED, NEW_COLLECTION, SECTION1_SLIDERS, SELECTED_SUB_GRP, STYLISH_RECOMMEND, TOP_DESIGNERS, TOP_OFFERS, USER_DATA } from "../actions/types";
+import { ALL_THAT_YOU_WANT, CELIBRITY_STYLE, GET_CATEGORY_GROUP, GET_CATEGORY_SUBGROUP, GET_DESIGNERS, MENS_ACTIVE_PRODUCT, MENS_WEAR_CAT, MENS_WEAR_SLIDER, MENS_WEAR_SUBGRP, MOST_LOVED, NEW_COLLECTION, ORDER_SUMM, SECTION1_SLIDERS, SELECTED_SUB_GRP, STYLISH_RECOMMEND, TOP_DESIGNERS, TOP_OFFERS, USER_DATA } from "../actions/types";
 
 const inialState = {
   user_data: {},
@@ -17,7 +17,8 @@ const inialState = {
   designers: [],
   offers_sliders: [],
   category_grp: {},
-  category_subgrp: {}
+  category_subgrp: {},
+  order_summ: {}
 };
 
 const mainreducer = (state = inialState, action) => {
@@ -106,6 +107,11 @@ const mainreducer = (state = inialState, action) => {
       return {
         ...state,
         category_subgrp: { ...state.category_subgrp, [action.payload.type]: action.payload.data },
+      };
+    case ORDER_SUMM:
+      return {
+        ...state,
+        order_summ: action.payload,
       };
     default:
       return state;

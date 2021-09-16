@@ -48,3 +48,7 @@ export const BASIC_DETAILS = "BASIC_DETAILS";
 export const UPPER_BODY = "UPPER_BODY";
 export const LOWER_BODY = "LOWER_BODY";
 export const BASIC_ID = "BASIC_ID"
+
+
+//Order
+export const ORDER_SUMM = "ORDER_SUMM"

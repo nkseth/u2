@@ -8,7 +8,8 @@ import {
   LOGIN_CREDS,
   USER_DATA,
   GET_DESIGNERS,
-  SECTION1_SLIDERS
+  SECTION1_SLIDERS,
+  ORDER_SUMM
 } from "./types";
 import HomepageDataService from "../services/homepage.service";
 
@@ -147,6 +148,14 @@ export const setLoginCreds = (val) => (
 export const setUserData = (val) => (
   {
     type: USER_DATA,
+    payload: val
+  }
+);
+
+
+export const setOrderSumm = (val) => (
+  {
+    type: ORDER_SUMM,
     payload: val
   }
 );

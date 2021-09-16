@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function InputField({ label, placeholder, onChange, style, StatesName, notimp, textfield, IsState, special }) {
+export default function InputField({ label, placeholder, onChange, style, StatesName, notimp, textfield, IsState, special, value }) {
   const handleInputChange = (e) => {
     // if (onChange) {
     //   onChange(e);
@@ -69,9 +69,10 @@ export default function InputField({ label, placeholder, onChange, style, States
               style={style}
               className={styles.textarea}
               type='text'
+              value={value}
               name={label}
               placeholder={placeholder}
-              onChange={handleInputChange}
+              onChange={onChange}
             ></textarea>
           </>
           :
@@ -123,7 +124,7 @@ export default function InputField({ label, placeholder, onChange, style, States
                   type='text'
                   name={label}
                   placeholder={placeholder}
-                  onChange={handleInputChange}
+                  onChange={onChange}
                 />
 
               </>
@@ -142,9 +143,10 @@ export default function InputField({ label, placeholder, onChange, style, States
                   style={style}
                   className={styles.input}
                   type='text'
+                  value={value}
                   name={label}
                   placeholder={placeholder}
-                  onChange={handleInputChange}
+                  onChange={onChange}
                 />
 
               </>

@@ -26,7 +26,9 @@ import RegularFit from "../../Images/fits/regular.svg";
 import LooseFit from "../../Images/fits/loose.svg";
 import CustomStepper from "../../utils/Stepper/stepper";
 import playBtn from "./images/play.svg"
-
+import { useSelector, useDispatch } from "react-redux";
+import { set_basic_details, set_basic_id, set_gender } from "../../Redux/actions/measurement";
+import common_axios from "../../utils/axios.config";
 
 const CustomRadio1 = withStyles({
   root: {
@@ -59,12 +61,6 @@ const BootstrapInput = withStyles((theme) => ({
       borderColor: "#80bdff",
       boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)",
     },
-    // "@media (max-width:835px)": {
-    //   width: "calc(100vw - 102px)",
-    // },
-    // "@media (max-width:550px)": {
-    //   width: "calc(100vw - 67px)",
-    // },
   },
 }))(InputBase);
 
@@ -74,17 +70,51 @@ const BootstrapInput = withStyles((theme) => ({
 
 
 export default function ChooseStandardSize() {
+
   const history = useHistory();
+  const dispatch = useDispatch();
   const tabView = useMediaQuery("(max-width:769px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
 
-  const [Gender, SetGender] = useState('Male')
-  const [Size, SetSize] = useState('S')
-  const [Fitting, SetFitting] = useState('Regular')
+  const { gender, basic_details } = useSelector(state => state.root.measurement);
+  const { user_data } = useSelector(state => state.root.main);
+
+  const { name, fitting, standard_size } = basic_details;
+
+ 
+  const onSubmit  = async () => {
+    if(name.length == 0){
+      alert('Enter a valid name');
+      return;
+    }
+
+    if(fitting.length == 0){
+      alert('Enter a valid age');
+      return;
+    }
 
 
-  const [size, setSize] = useState("xs");
+    if(standard_size.length == 0){
+      alert('Choose your size');
+      return;
+    }
+
+    try{
+      const { data } = await common_axios.post('/save_measurment',{
+        gender,
+        name,
+        standard_size,
+        fitting,
+        user_id:user_data.id
+      });
+      dispatch(set_basic_id(data))
+      history.push(`/add-measurement-body-measurement-${gender}`)
+    } catch(e){
+      console.log(e.response?.data)
+    }
+  }
+
   return (
     <Container bottomDivider footerOnTabMob>
       <div className={styles.Container}>
@@ -112,10 +142,11 @@ export default function ChooseStandardSize() {
               <p className={styles.SelectHead} >Name</p>
               <InputField
                 special
+                value={name}
                 style={mobileView ? { width: "285px" } : tabView ? { width: "375px" } : { width: "100%", minWidth: "350px", maxWidth: "450px" }}
                 notimp
                 placeholder='Name'
-                onChange={(e) => console.log(e.target.value)}
+                onChange={(e) => dispatch(set_basic_details({...basic_details, name:e.target.value}))}
               />
             </div>
 
@@ -125,19 +156,19 @@ export default function ChooseStandardSize() {
                 style={mobileView ? { width: "90%", maxWidth: "285px" } : tabView ? { background: "grey" } : { width: "100%", minWidth: "300px", maxWidth: "350px" }}
 
                 input={<BootstrapInput />}
-                value={Gender}
-                onChange={(e) => SetGender(e.target.value)}
+                value={gender}
+                onChange={(e) => dispatch(set_gender(e.target.value))}
               >
-                <MenuItem value={"Male"}>
+                <MenuItem value={"male"}>
                   <FormControlLabel
-                    checked={Gender === "Male"}
+                    checked={gender === "male"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels} >Male</p>}
                   />
                 </MenuItem>
-                <MenuItem value={"Female"}>
+                <MenuItem value={"female"}>
                   <FormControlLabel
-                    checked={Gender === "Female"}
+                    checked={gender === "female"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels}>Female</p>}
                   />
@@ -152,40 +183,40 @@ export default function ChooseStandardSize() {
               <Select
                 style={mobileView ? { width: "90%", maxWidth: "285px" } : tabView ? { background: "grey" } : { width: "100%", minWidth: "300px", maxWidth: "350px" }}
                 input={<BootstrapInput />}
-                value={Size}
-                onChange={(e) => SetSize(e.target.value)}
+                value={standard_size}
+                onChange={(e) => dispatch(set_basic_details({...basic_details, standard_size:e.target.value}))}
               >
                 <MenuItem value={"S"}>
                   <FormControlLabel
-                    checked={Size === "S"}
+                    checked={standard_size === "S"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels} >S</p>}
                   />
                 </MenuItem>
                 <MenuItem value={"M"}>
                   <FormControlLabel
-                    checked={Size === "M"}
+                    checked={standard_size === "M"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels} >M</p>}
                   />
                 </MenuItem>
                 <MenuItem value={"L"}>
                   <FormControlLabel
-                    checked={Size === "L"}
+                    checked={standard_size === "L"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels} >L</p>}
                   />
                 </MenuItem>
                 <MenuItem value={"XL"}>
                   <FormControlLabel
-                    checked={Size === "XL"}
+                    checked={standard_size === "XL"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels} >XL</p>}
                   />
                 </MenuItem>
                 <MenuItem value={"XXl"}>
                   <FormControlLabel
-                    checked={Size === "XXl"}
+                    checked={standard_size === "XXl"}
                     control={<CustomRadio1 />}
                     label={<p className={styles.radioBtnsLabels} >XXL</p>}
                   />
@@ -200,13 +231,13 @@ export default function ChooseStandardSize() {
                 style={mobileView ? { width: "90%", maxWidth: "285px" } : tabView ? { background: "grey" } : { width: "100%", minWidth: "300px", maxWidth: "350px" }}
 
                 input={<BootstrapInput />}
-                value={Fitting}
-                onChange={(e) => SetFitting(e.target.value)}
+                value={fitting}
+                onChange={(e) => dispatch(set_basic_details({...basic_details, fitting:e.target.value}))}
               >
                 <MenuItem value={"Regular"} >
                   <FormControlLabel
                     style={{ height: "5em" }}
-                    checked={Fitting === "Regular"}
+                    checked={fitting === "Regular"}
                     control={<CustomRadio1 />}
                     label={
                       <>
@@ -223,7 +254,7 @@ export default function ChooseStandardSize() {
                 <MenuItem value={"Slim"} >
                   <FormControlLabel
                     style={{ height: "5em" }}
-                    checked={Fitting === "Slim"}
+                    checked={fitting === "Slim"}
                     control={<CustomRadio1 />}
                     label={
                       <>
@@ -240,7 +271,7 @@ export default function ChooseStandardSize() {
                 <MenuItem value={"Loose"} >
                   <FormControlLabel
                     style={{ height: "5em" }}
-                    checked={Fitting === "Loose"}
+                    checked={fitting === "Loose"}
                     control={<CustomRadio1 />}
                     label={
                       <>

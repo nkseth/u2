@@ -21,11 +21,13 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { ReactComponent as CouponIcon } from "../../Images/icons/coupon.svg";
 import common_axios from "../../utils/axios.config";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setOrderSumm } from "../../Redux/actions/homepage";
 
 
 export default function MyBag() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
@@ -49,6 +51,7 @@ export default function MyBag() {
       if (val.data) {
         setValue(val?.data[0])
         setData(val?.data[0]?.items)
+        dispatch(setOrderSumm(val?.data[0] ? val?.data[0] : {}))
       }
     } catch (e) {
       console.log(e.response?.data)
@@ -62,6 +65,7 @@ export default function MyBag() {
         item: item.id,
         quantity: parseInt(item.quantity) + 1
       })
+      console.log(res)
       data[index].quantity = parseInt(data[index].quantity) + 1
       setData(data)
       setLoading(false)
@@ -125,21 +129,11 @@ export default function MyBag() {
           setValue(json.cart)
         }
       })
-    // try{
-    //   const {data: res } = await common_axios.delete('/cart/removeItem',{
-    //     item: item.id,
-    //     cart: value.id
-    //   })
-    //   console.log(res)
+  }
 
-    //   const new_data = data.filter(function (el){
-    //     return el.id != item.id
-    //   })
-
-    //   setData(new_data)
-    // } catch(e){
-    //   console.log(e)
-    // }
+  const on_checkout = () => {
+    dispatch(setOrderSumm(value))
+    history.push("/delivery-address")
   }
 
 
@@ -259,7 +253,7 @@ export default function MyBag() {
                 variant='text'
                 color='default'
                 className={styles.placeOrderBtn}
-                onClick={() => history.push("/delivery-address")}
+                onClick={() => on_checkout()}
               >
                 Checkout
               </Button>

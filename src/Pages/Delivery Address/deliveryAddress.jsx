@@ -71,14 +71,14 @@ export default function DeliveryAddress() {
     setOpen(false);
   };
 
-  const nav_to_payment = () => {
-    if (SelectAddress) {
-      const selected_address = address.filter(function (item) { return item.id == SelectAddress });
-      history.push({ 'pathname': "/payment", state: { selected_address: selected_address[0] } });
-    } else {
-      alert("Choose an address")
-    }
-  }
+  // const nav_to_payment = () => {
+  //   if (SelectAddress) {
+  //     const selected_address = address.filter(function (item) { return item.id == SelectAddress });
+  //     history.push({ 'pathname': "/payment", state: { selected_address: selected_address[0] } });
+  //   } else {
+  //     alert("Choose an address")
+  //   }
+  // }
 
   return (
     <Container bottomDivider footerOnTabMob>
@@ -172,7 +172,7 @@ export default function DeliveryAddress() {
                   color='default'
                   className={styles.proceedBtn}
                   onClick={() => {
-                    history.push("/payment");
+                    history.push(`/payment/${SelectAddress}`);
                   }}
                 >
                   Proceed

@@ -65,19 +65,19 @@ export default function Orders() {
                 <img src={productImg} alt='product' />
                 <div>
                   <span className={styles.productHeader}>
-                    {item.inventories.length > 0 ? item.inventories[0].title : null}
+                    {item.items?.length > 0 ? item.items[0].title : null}
                   </span>
                   <span className={styles.productDescription}>
-                    {item.inventories.length > 0 ? item.inventories[0].pivot?.item_description : null}
+                    {item.items?.length > 0 ? item.items[0]?.description : null}
                   </span>
                   <div className={styles.productQuantity}>
                     <span>Quantity:</span>
                     <span>{item.quantity}</span>
                   </div>
-                  <span className={styles.price}>₹{Math.round(parseFloat(item.grand_total)).toFixed(2)}</span>
+                  <span className={styles.price}>₹{Math.round(parseFloat(item.grand_total_raw)).toFixed(2)}</span>
                 </div>
               </div>
-              {!item.feedback_id ?  <Rating item={item} set_is_reviewed={set_is_reviewed} id={item.inventories.length > 0 ? item.inventories[0].product_id : null}/> : null}
+              {!item.feedback_id ?  <Rating item={item} set_is_reviewed={set_is_reviewed} id={item.items?.length > 0 ? item.items[0].id : null}/> : null}
                </>
             )
           })}

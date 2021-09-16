@@ -144,7 +144,7 @@ function App() {
         <Route path="/my-bag" component={MyBag} />
         {/* New page added here */}
         <Route path="/delivery-address" component={DeliveryAddress} />
-        <Route path="/payment" component={Payment} />
+        <Route path="/payment/:id" component={Payment} />
         <Route path="/offers" component={Offers} />
         <Route path="/all-orders" component={AllOrders} />
         <Route path="/orders" component={Orders} />

@@ -15,6 +15,8 @@ import { ReactComponent as PayPalIcon } from "../../Images/icons/paypal.svg";
 import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData"
 import tick from "./tick.svg"
 import close from "./close.svg"
+import { useSelector } from "react-redux";
+import common_axios from "../../utils/axios.config";
 const CustomRadio = withStyles({
   root: {
     color: "#9D9D9D",
@@ -24,11 +26,13 @@ const CustomRadio = withStyles({
   },
   checked: {},
 })((props) => <Radio color='default' {...props} />);
-export default function Payment() {
+export default function Payment({ match }) {
   const history = useHistory();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("upi");
   const [selectedUPIApp, setSelectedUPIApp] = useState("");
   const [PaymentDone, setPaymentDone] = useState(false);
+  const { params: { id } } = match;
+
   const toggle = () => {
     setPaymentDone(false)
   }
@@ -41,6 +45,26 @@ export default function Payment() {
     unsub();
     return unsub;
   }, [selectedPaymentMethod]);
+
+  const { order_summ } = useSelector(state => state.root.main)
+
+  console.log(order_summ)
+
+  const initiate_payment = async () => {
+   console.log(order_summ.id)
+    try {
+      const { data } = await common_axios.put(`/order/${order_summ.id}/save`, {
+        address_id: id,
+        payment_method_id:"3"
+      });
+      console.log(data)
+      setPaymentDone(!PaymentDone);
+
+    } catch (e) {
+      console.log(e?.response?.data)
+    }
+  }
+
   return (
     // <Container bottomDivider footerOnTabMob>
     <div className={styles.PaymentHeader} >
@@ -139,7 +163,7 @@ export default function Payment() {
                       className={styles.payBtn}
                       onClick={() => {
                         // Product_Type === 'Customised' ?
-                        setPaymentDone(!PaymentDone)
+                        initiate_payment()
                         // :
                         // history.push('/add-measurement-choose-standard-size')
                       }}
@@ -183,15 +207,15 @@ export default function Payment() {
                 <div className={styles.selectedProductPrices}>
                   <div>
                     <label>Product Price</label>
-                    <span>₹599</span>
+                    <span>{order_summ.total}</span>
                   </div>
                   <div>
                     <label>Service charges</label>
-                    <span>₹50</span>
+                    <span>{order_summ.taxes}</span>
                   </div>
                   <div>
                     <label>Delivery charges</label>
-                    <span>₹100</span>
+                    <span>{order_summ.delivery_charge ? order_summ.delivery_charge : '₹0'}</span>
                   </div>
                 </div>
                 <CustomDivider style={{ backgroundColor: "#CECECE" }} />
@@ -199,7 +223,7 @@ export default function Payment() {
               <div className={styles.totalAmtDiv}>
                 <div>
                   <label>Total Amount</label>
-                  <span>₹749</span>
+                  <span>{order_summ.grand_total}</span>
                 </div>
               </div>
             </div>

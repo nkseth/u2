@@ -122,6 +122,7 @@ export default function ProductDescription({ match }) {
   const [ProductType, setProductType] = useState(product.product?.isCustomise == "1" ? 'custom' : 'ready made');
 
   Product_Type_Change(ProductType)
+  console.log(product)
 
 
   const { login_Model_Show } = useLogin();
@@ -284,7 +285,7 @@ export default function ProductDescription({ match }) {
                         />
                       </MenuItem>
                       : null}
-                    {product.product?.isCustomise == "1" ?
+                    {product.product?.isCustomise == "on" ?
                       <MenuItem value={"custom"}>
                         <FormControlLabel
                           className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
@@ -377,7 +378,7 @@ export default function ProductDescription({ match }) {
                         />
                       </MenuItem>
                       : null}
-                    {product.product?.isCustomise == "1" ?
+                    {product.product?.isCustomise == "on" ?
                       <MenuItem value={"custom"}>
                         <FormControlLabel
                           className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
@@ -449,7 +450,7 @@ export default function ProductDescription({ match }) {
                         />
                       </MenuItem>
                       : null}
-                    {product.product?.isCustomise == "1" ?
+                    {product.product?.isCustomise == "on" ?
                       <MenuItem value={"custom"}>
                         <FormControlLabel
                           className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}

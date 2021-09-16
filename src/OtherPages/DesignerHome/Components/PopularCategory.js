@@ -27,20 +27,21 @@ const PopularCategory = () => {
             <CustomDivider style={{ height: "1px", background: "#857250" }} />
           </div>
           <div className={`${styles.Category} Category`}>
-            {categories.length > 0 ? <div className={`${styles.Category_item1} Category_item`} style={{ backgroundImage: "url(" + categories[0]?.image + ")" }} >
-              <img
-                src={overlay}
-                className={styles.divOverlayImg}
-                alt={categories[0]?.id}
-              />
+            {categories.length > 0 ?
+              <div className={`${styles.Category_item1} Category_item`} style={{ backgroundImage: "url(" + categories[0]?.image + ")" }} >
+                <img
+                  src={overlay}
+                  className={styles.divOverlayImg}
+                  alt={categories[0]?.id}
+                />
 
-              <Link
-                style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                to={categories[0].link? categories[0].link : ''}
-              >
-                {categories[0]?.title}
-              </Link>
-            </div> : null}
+                <Link
+                  style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
+                  to={categories[0].link ? categories[0].link : ''}
+                >
+                  {categories[0]?.title}
+                </Link>
+              </div> : null}
             {categories.length > 1 ? <div className={`${styles.Category_item2} Category_item`} style={{ backgroundImage: "url(" + categories[1]?.image + ")" }}>
               <img
                 src={overlay}
@@ -49,7 +50,7 @@ const PopularCategory = () => {
               />
               <Link
                 style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                to={categories[1].link? categories[1].link : ''}
+                to={categories[1].link ? categories[1].link : ''}
               >
                 {categories[1]?.title}
               </Link>{" "}
@@ -62,7 +63,7 @@ const PopularCategory = () => {
               />
               <Link
                 style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                to={categories[2].link? categories[2].link : ''}
+                to={categories[2].link ? categories[2].link : ''}
               >
                 {categories[2]?.title}
               </Link>
@@ -75,7 +76,7 @@ const PopularCategory = () => {
               />
               <Link
                 style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                to={categories[3].link? categories[3].link : ''}
+                to={categories[3].link ? categories[3].link : ''}
               >
                 {categories[3]?.title}
               </Link>{" "}
@@ -88,12 +89,12 @@ const PopularCategory = () => {
               />
               <Link
                 style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                to={categories[4].link? categories[4].link : ''}
+                to={categories[4].link ? categories[4].link : ''}
               >
                 {categories[4]?.title}
               </Link>{" "}
             </div> : null}
-           {categories.length > 5 ?  <div className={`${styles.Category_item6} Category_item`} style={{ backgroundImage: "url(" + categories[5]?.image + ")" }}>
+            {categories.length > 5 ? <div className={`${styles.Category_item6} Category_item`} style={{ backgroundImage: "url(" + categories[5]?.image + ")" }}>
               <img
                 src={overlay}
                 className={styles.divOverlayImg}
@@ -101,7 +102,7 @@ const PopularCategory = () => {
               />
               <Link
                 style={{ zIndex: 10, fontFamily: "DM Serif Display" }}
-                to={categories[5].link? categories[5].link : ''}
+                to={categories[5].link ? categories[5].link : ''}
               >
                 {categories[5]?.title}
               </Link>

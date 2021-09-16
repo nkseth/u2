@@ -49,6 +49,7 @@ export default function MensWear({ match }) {
 
   return (
     <Container footerOnAllView>
+
       <section className={styles.heroSection}>
         <Carousel
           autoPlay
@@ -57,18 +58,39 @@ export default function MensWear({ match }) {
           showStatus={false}
           showArrows={false}
         >
-          {mens_wear_slider.map((item) => {
-            return (
-              <div onClick={() => history.push(item.link)} style={{ backgroundImage: `url(${item.image})` }} className={styles.carouselItem}>
-                <div>
-                  <span style={{ color: item.title_color }}>{item.title}</span>
-                  <p style={{ color: item.sub_title_color }}>
-                    {item.sub_title}
-                  </p>
-                </div>
-              </div>
-            )
-          })}
+          <div className={styles.carouselItem}>
+            <div>
+              <span>Men’s Wear </span>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book.
+              </p>
+            </div>
+          </div>
+          <div className={styles.carouselItem}>
+            <div>
+              <span>Men’s Wear </span>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book.
+              </p>
+            </div>
+          </div>
+          <div className={styles.carouselItem}>
+            <div>
+              <span>Men’s Wear </span>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book.
+              </p>
+            </div>
+          </div>
         </Carousel>
       </section>
       <CustomSection style={{ padding: tabView && "0 1rem" }}>
@@ -101,11 +123,11 @@ export default function MensWear({ match }) {
 
 
 
-function GRID({ name, image, slug }) {
+function GRID({ name, image, slug, mobileView }) {
   return (
     <Grid
       item
-      md={3}
+      md={mobileView ? 3 : 4}
       style={{ display: "flex", justifyContent: "center", marginLeft: "auto", marginRight: "auto" }}
     >
       <CategoriesToBagCard image={image} slug={slug} title={name} />
@@ -148,14 +170,14 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
       >
         {
           !customView2 ?
-            data?.length > 2 ? <GRID name={data[2].name} slug={data[2].slug} image={data[2].cover_image} /> : <></>
+            data?.length > 2 ? <GRID name={data[2].name} slug={data[2].slug} image={data[2].cover_image} mobileView={mobileView} /> : <></>
             :
             <></>
         }
-        {data?.length > 0 ? <GRID name={data[0].name} slug={data[0].slug} image={data[0].cover_image} /> : <></>}
+        {data?.length > 0 ? <GRID name={data[0].name} slug={data[0].slug} image={data[0].cover_image} mobileView={mobileView} /> : <></>}
         {!customView ?
           <>
-            {data?.length > 3 ? <GRID name={data[4].name} slug={data[4].slug} image={data[4].cover_image} /> : <></>}
+            {data?.length > 3 ? <GRID name={data[4].name} slug={data[4].slug} image={data[4].cover_image} mobileView={mobileView} /> : <></>}
           </>
           :
           <></>
@@ -171,14 +193,14 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
       >
         {
           !customView2 ?
-            data?.length > 3 ? <GRID name={data[3].name} slug={data[3].slug} image={data[3].cover_image} /> : <></>
+            data?.length > 3 ? <GRID name={data[3].name} slug={data[3].slug} image={data[3].cover_image} mobileView={mobileView} /> : <></>
             :
             <></>
         }
-        {data?.length > 1 ? <GRID name={data[1].name} slug={data[1].slug} image={data[1].cover_image} /> : <></>}
+        {data?.length > 1 ? <GRID name={data[1].name} slug={data[1].slug} image={data[1].cover_image} mobileView={mobileView} /> : <></>}
         {!customView ?
           <>
-            {data?.length > 5 ? <GRID name={data[5].name} slug={data[5].slug} image={data[5].cover_image} /> : <></>}
+            {data?.length > 5 ? <GRID name={data[5].name} slug={data[5].slug} image={data[5].cover_image} mobileView={mobileView} /> : <></>}
           </>
           :
           <></>

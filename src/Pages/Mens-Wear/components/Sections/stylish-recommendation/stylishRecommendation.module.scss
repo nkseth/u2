@@ -21,6 +21,9 @@
   > div:first-child {
     width: calc(100% / 2);
   }
+  > div:last-child {
+    width: calc(100%/2);
+  }
 }
 
 .secondCon {

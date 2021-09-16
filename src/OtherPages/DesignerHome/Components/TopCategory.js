@@ -33,27 +33,30 @@ const TopCategory = () => {
         <div className={styles.TopCategory_Items}>
           <h1 className="hidden_mobile">Top Categories 2021</h1>
         </div>
-        {category_grp.men && <CategoryItems
-          heading={category_grp.men?.name}
-          details={category_grp.men?.description}
-          image={category_grp.men?.cover_image}
-          categories={category_grp.men?.categories}
-          slug={category_grp.men?.slug}
-        />}
-        {category_grp.women && <CategoryItems
-          heading={category_grp.women?.name}
-          details={category_grp.women?.description}
-          image={category_grp.women?.cover_image}
-          categories={category_grp.women?.categories}
-          slug={category_grp.women?.slug}
-        />}
-        {category_grp.kids && <CategoryItems
-          heading={category_grp.kids?.name}
-          details={category_grp.kids?.description}
-          image={category_grp.kids?.cover_image}
-          categories={category_grp.kids?.categories}
-          slug={category_grp.kids?.slug}
-        />}
+        {category_grp.men &&
+          <CategoryItems
+            heading={category_grp.men?.name}
+            details={category_grp.men?.description}
+            image={category_grp.men?.cover_image}
+            categories={category_grp.men?.categories}
+            slug={category_grp.men?.slug}
+          />}
+        {category_grp.women &&
+          <CategoryItems
+            heading={category_grp.women?.name}
+            details={category_grp.women?.description}
+            image={category_grp.women?.cover_image}
+            categories={category_grp.women?.categories}
+            slug={category_grp.women?.slug}
+          />}
+        {category_grp.kids &&
+          <CategoryItems
+            heading={category_grp.kids?.name}
+            details={category_grp.kids?.description}
+            image={category_grp.kids?.cover_image}
+            categories={category_grp.kids?.categories}
+            slug={category_grp.kids?.slug}
+          />}
         {/* <CategoryItems heading={"Men"} details={MenDescription} /> */}
         {/* <CategoryItems heading={"Women"} details={WomenDescription} />
         <CategoryItems heading={"Kids"} details={KidsDescription} /> */}
@@ -82,15 +85,17 @@ const CategoryItems = ({ heading, details, image, categories, slug }) => {
                   marginleft: "-5px",
                 }}
               />
+              <div></div>
             </h2>
-            {/* {details} */}
-            {categories?.map((item) => (
-              <Link key={item.id.toString()} to={{ pathname: `/designers-product-page/${item.slug}` }}>
-                <p>
-                  {item.name}
-                </p>
-              </Link>
-            ))}
+            <div className={styles.hover}  >
+              {categories?.map((item) => (
+                <Link key={item.id.toString()} to={{ pathname: `/designers-product-page/${item.slug}` }}>
+                  <p>
+                    {item.name}
+                  </p>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

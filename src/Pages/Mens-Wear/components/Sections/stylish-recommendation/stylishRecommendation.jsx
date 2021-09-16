@@ -21,8 +21,8 @@ export default function StylishRecommendationSection({ type }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const group = type == 'mens' ? 'men_group_2' : type == 'womens' ? 'women_group_2' : 'kid_group_2'
-    dispatch(get_stylish_recommend(`${type}_home`, group))
+  //const group = type == 'mens' ? 'men_group_2' : type == 'womens' ? 'women_group_2' : 'kid_group_2'
+    dispatch(get_stylish_recommend(type))
   }, [type])
 
   const { stylish_recommend } = useSelector(state => state.root.main)
@@ -43,32 +43,32 @@ export default function StylishRecommendationSection({ type }) {
       <div className={styles.cardContainer}>
         {mobileView && (
           <div>
-            {stylish_recommend.length > 0 ? <StylishCard item={stylish_recommend[0]} image={stylish_recommend[0].image} /> : null}
-            {stylish_recommend.length > 1 ? <StylishCard item={stylish_recommend[1]} image={stylish_recommend[1].image} /> : null}
-            {stylish_recommend.length > 2 ? <StylishCard item={stylish_recommend[2]} image={stylish_recommend[2].image} /> : null}
-            {stylish_recommend.length > 3 ? <StylishCard item={stylish_recommend[3]} image={stylish_recommend[3].image} /> : null}
-            {stylish_recommend.length > 4 ? <StylishCard item={stylish_recommend[4]} image={stylish_recommend[4].image} /> : null}
+            {stylish_recommend.length > 0 ? <StylishCard item={stylish_recommend[0]} image={stylish_recommend[0].cover_image} /> : null}
+            {stylish_recommend.length > 1 ? <StylishCard item={stylish_recommend[1]} image={stylish_recommend[1].cover_image} /> : null}
+            {stylish_recommend.length > 2 ? <StylishCard item={stylish_recommend[2]} image={stylish_recommend[2].cover_image} /> : null}
+            {stylish_recommend.length > 3 ? <StylishCard item={stylish_recommend[3]} image={stylish_recommend[3].cover_image} /> : null}
+            {stylish_recommend.length > 4 ? <StylishCard item={stylish_recommend[4]} image={stylish_recommend[4].cover_image} /> : null}
           </div>
         )}
         {!mobileView && (
           <>
             <div className={styles.firstCon}>
               {stylish_recommend.length > 0 ? <div>
-                <StylishCard item={stylish_recommend[0]} image={stylish_recommend[0].image} />
+                <StylishCard item={stylish_recommend[0]} image={stylish_recommend[0].cover_image} />
               </div> : null}
               {stylish_recommend.length > 1 ? <div>
-                <StylishCard item={stylish_recommend[1]} image={stylish_recommend[1].image} />
+                <StylishCard item={stylish_recommend[1]} image={stylish_recommend[1].cover_image} />
               </div> : null}
             </div>
             <div className={styles.secondCon}>
               {stylish_recommend.length > 2 ? <div>
-                <StylishCard item={stylish_recommend[2]} image={stylish_recommend[2].image} />
+                <StylishCard item={stylish_recommend[2]} image={stylish_recommend[2].cover_image} />
               </div> : null}
               {stylish_recommend.length > 3 ? <div>
-                <StylishCard item={stylish_recommend[3]} image={stylish_recommend[3].image} />
+                <StylishCard item={stylish_recommend[3]} image={stylish_recommend[3].cover_image} />
               </div> : null}
               {stylish_recommend.length > 4 ? <div>
-                <StylishCard item={stylish_recommend[4]} image={stylish_recommend[4].image} />
+                <StylishCard item={stylish_recommend[4]} image={stylish_recommend[4].cover_image} />
               </div> : null}
             </div>
           </>

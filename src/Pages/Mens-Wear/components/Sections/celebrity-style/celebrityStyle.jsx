@@ -39,6 +39,8 @@ export default function CelebrityStyleSection({ type }) {
     dispatch(get_celibrity_style(`${type}-fashion`))
   }, [type])
 
+  console.log(celibrity_style)
+
 
   return (
     <CustomSection style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
@@ -54,99 +56,23 @@ export default function CelebrityStyleSection({ type }) {
         isIntrinsicHeight
       >
         <Slider>
-
-          <Slide index={0} style={{ marginLeft: "0.2em" }} >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
-                gap: "1rem",
-                padding: "2rem 0em",
-              }}
-            >
-              <DesignersCard image={cs1} />
-
-            </div>
-          </Slide>
-          <Slide index={0} style={{ marginLeft: "0.2em" }} >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
-                gap: "1rem",
-                padding: "2rem 0em",
-              }}
-            >
-              <DesignersCard image={cs1} />
-
-            </div>
-          </Slide>
-          <Slide index={0} style={{ marginLeft: "0.2em" }} >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
-                gap: "1rem",
-                padding: "2rem 0em",
-              }}
-            >
-              <DesignersCard image={cs1} />
-
-            </div>
-          </Slide>
-          <Slide index={0} style={{ marginLeft: "0.2em" }} >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
-                gap: "1rem",
-                padding: "2rem 0em",
-              }}
-            >
-              <DesignersCard image={cs1} />
-
-            </div>
-          </Slide>
-          <Slide index={0} style={{ marginLeft: "0.2em" }} >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
-                gap: "1rem",
-                padding: "2rem 0em",
-              }}
-            >
-              <DesignersCard image={cs1} />
-
-            </div>
-          </Slide>
-          <Slide index={0} style={{ marginLeft: "0.2em" }} >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
-                gap: "1rem",
-                padding: "2rem 0em",
-              }}
-            >
-              <DesignersCard image={cs1} />
-
-            </div>
-          </Slide>
-          <Slide index={0} style={{ marginLeft: "0.2em" }} >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
-                gap: "1rem",
-                padding: "2rem 0em",
-              }}
-            >
-              <DesignersCard image={cs1} />
-
-            </div>
-          </Slide>
-
+           {celibrity_style?.map((item)=>{
+             return(
+              <Slide index={0} style={{ marginLeft: "0.2em" }} >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: mobileView || tabViewPro ? 'space-around' : "space-between",
+                  gap: "1rem",
+                  padding: "2rem 0em",
+                }}
+              >
+                <DesignersCard item={item} image={item.feature_image} />
+  
+              </div>
+            </Slide>
+             )
+           })}
         </Slider>
         <DotGroup style={{ display: "flex" }} />
         <div className={styles.carouselNavigationDiv}>

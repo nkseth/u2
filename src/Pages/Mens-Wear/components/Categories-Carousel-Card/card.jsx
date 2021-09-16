@@ -29,7 +29,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import styles from "./card.module.scss";
-export default function CategoriesToBagCard({ image, title }) {
+export default function CategoriesToBagCard({ image, title, slug }) {
 
   return (
     <div className={styles.container}>
@@ -37,7 +37,7 @@ export default function CategoriesToBagCard({ image, title }) {
         <img src={image} alt='shirt' />
         <div>
           <span className={styles.header}>{title}</span>
-          <Link to='/offer'>
+          <Link to={`/designers-product-page/${slug}`}>
             <Button
               className={styles.ShopNowBtn}
               variant='contained'

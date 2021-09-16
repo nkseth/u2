@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
-export default function ProductCard({ image }) {
+export default function ProductCard({ image, item }) {
   const [isAddToWishList, setAddToWishList] = useState(false);
   const img =
     "https://cdn.pixabay.com/photo/2017/08/07/12/49/people-2603521__340.jpg";
@@ -36,12 +36,12 @@ export default function ProductCard({ image }) {
           </IconButton>
         )}
       </div>
-      <Link to="/product-description/levis" className={styles.productDetails}>
-        <span className={styles.productName}>Levi’s</span>
-        <span className={styles.productDesc}>Men black checked shirt</span>
+      <Link to={`/product-description/${item.product?.slug}`} className={styles.productDetails}>
+        <span className={styles.productName}>{item.title}</span>
+        <span className={styles.productDesc}>{item.description}</span>
         <p className={styles.productPrice}>
-          <span>₹554 </span>
-          <span>₹1499 63% OFF</span>
+          <span>{item.has_offer ? item.offer_price : item.price}</span>
+          {item.has_offer?<span>{item.price}{' '}{item.discount}{' '}OFF</span> : null}
         </p>
       </Link>
     </div>

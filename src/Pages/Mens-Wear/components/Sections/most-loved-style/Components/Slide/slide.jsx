@@ -41,7 +41,7 @@ export default function DesignerSlide({ item }) {
             </p>
           </div>
         )}
-        <DesignersCard item={item} image={item.feature_image} />
+        <DesignersCard item={item} image={item.cover_image} />
       </div>
     </>
   );

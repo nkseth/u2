@@ -101,14 +101,14 @@ export default function MensWear({ match }) {
 
 
 
-function GRID({ name, image, classname }) {
+function GRID({ name, image, slug }) {
   return (
     <Grid
       item
       md={3}
       style={{ display: "flex", justifyContent: "center", marginLeft: "auto", marginRight: "auto" }}
     >
-      <CategoriesToBagCard image={image} title={name} />
+      <CategoriesToBagCard image={image} slug={slug} title={name} />
     </Grid>
   )
 }
@@ -148,14 +148,14 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
       >
         {
           !customView2 ?
-            data?.length > 2 ? <GRID name={data[2].name} slug={data[2].slug} image={data[2].feature_image} /> : <></>
+            data?.length > 2 ? <GRID name={data[2].name} slug={data[2].slug} image={data[2].cover_image} /> : <></>
             :
             <></>
         }
-        {data?.length > 0 ? <GRID name={data[0].name} slug={data[0].slug} image={data[0].feature_image} /> : <></>}
+        {data?.length > 0 ? <GRID name={data[0].name} slug={data[0].slug} image={data[0].cover_image} /> : <></>}
         {!customView ?
           <>
-            {data?.length > 3 ? <GRID name={data[4].name} slug={data[4].slug} image={data[4].feature_image} /> : <></>}
+            {data?.length > 3 ? <GRID name={data[4].name} slug={data[4].slug} image={data[4].cover_image} /> : <></>}
           </>
           :
           <></>
@@ -171,14 +171,14 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
       >
         {
           !customView2 ?
-            data?.length > 3 ? <GRID name={data[3].name} slug={data[3].slug} image={data[3].feature_image} /> : <></>
+            data?.length > 3 ? <GRID name={data[3].name} slug={data[3].slug} image={data[3].cover_image} /> : <></>
             :
             <></>
         }
-        {data?.length > 1 ? <GRID name={data[1].name} slug={data[1].slug} image={data[1].feature_image} /> : <></>}
+        {data?.length > 1 ? <GRID name={data[1].name} slug={data[1].slug} image={data[1].cover_image} /> : <></>}
         {!customView ?
           <>
-            {data?.length > 5 ? <GRID name={data[5].name} slug={data[5].slug} image={data[5].feature_image} /> : <></>}
+            {data?.length > 5 ? <GRID name={data[5].name} slug={data[5].slug} image={data[5].cover_image} /> : <></>}
           </>
           :
           <></>

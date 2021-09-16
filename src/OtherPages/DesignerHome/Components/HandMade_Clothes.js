@@ -55,13 +55,13 @@ const HandMade_Clothes = () => {
           isIntrinsicHeight
         >
           <Slider>
-            {clothes?.map(({ id, cover_image, name }, i) => (
+            {clothes?.map(({ id, cover_image, name, slug }, i) => (
               <Slide index={i} key={id} style={CustomView ? { marginLeft: 0, marginRight: 0 } : { marginLeft: 20, marginRight: 20 }} >
                 <div style={{ width: "100%" }} >
                   <div className={styles.SuitWear}>
                     <div className={styles.SuitWear_Items}>
                       <img src={cover_image} alt={name} />
-                      <a>{name}</a>
+                      <Link to={`/designers-product-page/${slug}`}><a>{name}</a></Link>
                     </div>
 
                   </div>

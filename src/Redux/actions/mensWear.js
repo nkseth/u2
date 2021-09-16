@@ -81,7 +81,6 @@ export const setSelectedSubGrp = (val) => (
             const { data } = await common_axios.post(`/product_by_category`,{
                 slug: active
             })
-            console.log(data)
             if (data.product) {
                 dispatch({ type: MENS_ACTIVE_PRODUCT, payload: data.product })
             }
@@ -96,7 +95,6 @@ export const setSelectedSubGrp = (val) => (
 export const get_new_collection = (type, group) => async (dispatch) => {
     try {
         const { data } = await common_axios.get(`/banners/${type}/${group}`)
-        console.log(data)
         if (data[group]) {
             dispatch({ type: NEW_COLLECTION, payload: data[group] });
         }
@@ -125,12 +123,16 @@ export const get_top_designers = (type) => async (dispatch) => {
 }
 
 
-export const get_stylish_recommend = (type, group) => async (dispatch) => {
+export const get_stylish_recommend = (type) => async (dispatch) => {
     try {
-        const { data } = await common_axios.get(`/banners/${type}/${group}`)
-        console.log(data, 'top designers', group)
-        if (data[group]) {
-            dispatch({ type: STYLISH_RECOMMEND, payload: data[group] })
+        const { data } = await common_axios.post(`/themeOption`,{
+            dashboard_type:'comman',
+            content_type:type,
+            group_name:'stylish_recommendation'
+        })
+        console.log(data, 'stylish r')
+        if (data.stylish_recommendation) {
+            dispatch({ type: STYLISH_RECOMMEND, payload:data.stylish_recommendation})
         }
 
     } catch (err) {
@@ -162,7 +164,6 @@ export const get_most_loved = (type) => async (dispatch) => {
 export const get_all_that_you_want = (type, group) => async (dispatch) => {
     try {
         const { data } = await common_axios.get(`/banners/${type}/${group}`)
-        console.log(data, 'top designers')
         if (data.men_group_3 || data.women_group_3 || data.kid_group_3) {
             dispatch({ type: ALL_THAT_YOU_WANT, payload: data.men_group_3 ? data.men_group_3 : data.women_group_3 ? data.women_group_3 : data.kid_group_3  })
         }
@@ -197,7 +198,6 @@ export const get_top_offers = (type) => async (dispatch) => {
 export const get_celibrity_style = (type) => async (dispatch) => {
     try {
         const { data } = await common_axios.get(`/CelebrityStyle`)
-        console.log(data, 'celebrity')
         if (data) {
             dispatch({ type: CELIBRITY_STYLE, payload: data });
         }

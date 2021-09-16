@@ -10,7 +10,7 @@ import Card1 from "./Components/Images/Card1.jpg"
 import Card2 from "./Components/Images/Card2.jpg"
 import Card3 from "./Components/Images/Card3.jpg"
 import { get_mens_active_product, get_mens_wear_subgrp, setSelectedSubGrp } from "../../../../../Redux/actions/mensWear";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 
 
@@ -24,6 +24,7 @@ export default function ForHimSection({ type }) {
   const mobileView = useMediaQuery("(max-width:550px)");
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const { category_grp, selected_sub_grp: activeNav, mens_active_product } = useSelector(state => state.root.main)
 
@@ -126,7 +127,7 @@ export default function ForHimSection({ type }) {
                     )
                   })}
                 </div>
-                <Link to='/designers-product-page/blazers-and-coats'>  <Button className={styles.viewAllBtn}>View all</Button></Link>
+                <Button onClick={()=> history.push(`/designers-product-page/${activeNav}`)} className={styles.viewAllBtn}>View all</Button>
               </nav>
             </Grid>
           )}
@@ -144,7 +145,7 @@ export default function ForHimSection({ type }) {
             md={12}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <Button className={styles.viewAllBtn}>View all</Button>
+            <Button onClick={()=> history.push(`/designers-product-page/${activeNav}`)}  className={styles.viewAllBtn}>View all</Button>
           </Grid>
         )}
       </div>

@@ -11,8 +11,8 @@ export default function StylishCard({ image, item }) {
         alt='product'
       />
       <div className={styles.content}>
-        <div className={styles.text}>{item?.title || ''}</div>
-        <Link to='/designers-product-page/blazers-and-coats'>
+        <div className={styles.text}>{item?.name || ''}</div>
+        <Link to={`/designers-product-page/${item.slug}`}>
           <Button className={styles.shopNowBtn}
             variant='contained'
             color='default'>

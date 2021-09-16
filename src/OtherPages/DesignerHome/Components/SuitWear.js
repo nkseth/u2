@@ -65,7 +65,7 @@ const SuitWear = () => {
                   <div >
                     <div className={styles.SuitWear}>
                       <div className={styles.SuitWear_Items}>
-                        <img src={item.feature_image} alt={item.id} />
+                        <img src={item.cover_image} alt={item.id} />
                         <Link to={{ pathname: `/designers-product-page/${item.slug}` }}>{item.name}</Link>
                       </div>
                     </div>

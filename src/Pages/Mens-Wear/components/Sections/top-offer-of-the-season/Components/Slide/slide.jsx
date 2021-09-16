@@ -19,43 +19,43 @@ export default function DesignerSlide({ image1, image2, image3, image4, title, d
     >
       {mobileView ?
         <>
-          <DesignersCard image={image3} title={title} description={description} />
-          <DesignersCard image={image3} title={title} />
+          <DesignersCard image={image1} title={title} description={description} />
+          <DesignersCard image={image1} title={title} />
         </>
         :
         mobileViewPro ?
           <>
-            <DesignersCard image={image3} title={title} />
-            <DesignersCard image={image3} title={title} />
+            <DesignersCard image={image1} title={title} />
+            <DesignersCard image={image1} title={title} />
           </>
           :
           tabView ?
             <>
-              <DesignersCard image={image3} title={title} />
-              <DesignersCard image={image3} title={title} />
-              <DesignersCard image={image3} title={title} />
+              <DesignersCard image={image1} title={title} />
+              <DesignersCard image={image1} title={title} />
+              <DesignersCard image={image1} title={title} />
             </>
             :
             tabViewPro ?
               <>
-                <DesignersCard image={image3} title={title} />
-                <DesignersCard image={image3} title={title} />
-                <DesignersCard image={image3} title={title} />
+                <DesignersCard image={image1} title={title} />
+                <DesignersCard image={image1} title={title} />
+                <DesignersCard image={image1} title={title} />
               </>
               :
               CustomView ?
                 <>
-                  <DesignersCard image={image3} title={title} />
-                  <DesignersCard image={image3} title={title} />
-                  <DesignersCard image={image3} title={title} />
+                  <DesignersCard image={image1} title={title} />
+                  <DesignersCard image={image1} title={title} />
+                  <DesignersCard image={image1} title={title} />
 
                 </>
                 :
                 <>
-                  <DesignersCard image={image3} title={title} />
-                  <DesignersCard image={image3} title={title} />
-                  <DesignersCard image={image3} title={title} />
-                  <DesignersCard image={image3} title={title} />
+                  <DesignersCard image={image1} title={title} />
+                  <DesignersCard image={image1} title={title} />
+                  <DesignersCard image={image1} title={title} />
+                  <DesignersCard image={image1} title={title} />
                 </>
       }
     </div>

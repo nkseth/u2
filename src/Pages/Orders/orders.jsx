@@ -32,6 +32,7 @@ export default function Orders() {
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const productImg =
     "https://images.pexels.com/photos/2882694/pexels-photo-2882694.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+
   return (
     <Container
       bottomDivider
@@ -65,10 +66,10 @@ export default function Orders() {
                 <img src={productImg} alt='product' />
                 <div>
                   <span className={styles.productHeader}>
-                    {item.inventories.length > 0 ? item.inventories[0].title : null}
+                    {item.items?.length > 0 ? item.items[0].title : '10 Current Fashion Trends You’ll Be Wearing in 2021'}
                   </span>
                   <span className={styles.productDescription}>
-                    {item.inventories.length > 0 ? item.inventories[0].pivot?.item_description : null}
+                    {item.items?.length > 0 ? item.items[0]?.description : 'Solid Straight Kurta'}
                   </span>
                   <div className={styles.productQuantity}>
                     <span>Quantity:</span>
@@ -77,7 +78,7 @@ export default function Orders() {
                   <span className={styles.price}>₹{Math.round(parseFloat(item.grand_total)).toFixed(2)}</span>
                 </div>
               </div>
-                {!item.feedback_id ? <Rating item={item} set_is_reviewed={set_is_reviewed} id={item.inventories.length > 0 ? item.inventories[0].product_id : null} /> : null}
+                {!item.feedback_id ? <Rating item={item} set_is_reviewed={set_is_reviewed} id={item.items?.length > 0 ? item.items[0].id : null} /> : null}
               </>
             )
           })}

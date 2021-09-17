@@ -66,7 +66,6 @@ export default function Payment({ match }) {
   }
 
   return (
-    // <Container bottomDivider footerOnTabMob>
     <div className={styles.PaymentHeader} >
       <div className={styles.Navbar}>
         <h1>LOGO</h1>

@@ -11,9 +11,7 @@ import common_axios from "../utils/axios.config";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginCreds, setUserData } from "../Redux/actions/homepage";
 import { useCookies } from 'react-cookie';
-
 const Login = () => {
-
   const { login_Mode_Handler, loginMode, login_Model_Hide } = useLogin();
   const dispatch = useDispatch()
   const theme = useTheme()
@@ -25,6 +23,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [cookies, setCookie] = useCookies(['user']);
+
+
 
   const login_handler = async () => {
 

@@ -18,7 +18,7 @@ const Login = () => {
   const dispatch = useDispatch()
   const theme = useTheme()
   const match = useMediaQuery(theme.breakpoints.down('sm'));
-  const { login_creds } = useSelector( state => state.root.login)
+  const { login_creds } = useSelector(state => state.root.login)
 
   const { email, password } = login_creds;
 
@@ -85,13 +85,13 @@ const Login = () => {
       </div>
       <div className={styles.Screen_Login_Input}>
         <label>Email Id/Phone Number</label>
-        <input value={email} onChange={(e) => dispatch(setLoginCreds({...login_creds, email:e.target.value}))} type="text" placeholder="Email Id/Phone Number" />
+        <input value={email} onChange={(e) => dispatch(setLoginCreds({ ...login_creds, email: e.target.value }))} type="text" placeholder="Email Id/Phone Number" />
       </div>
       <div className={styles.Screen_Login_Input}>
         <label>Password</label>
-        <input value={password} onChange={(e) => dispatch(setLoginCreds({...login_creds, password:e.target.value}))} type="password" placeholder="password" />
+        <input value={password} onChange={(e) => dispatch(setLoginCreds({ ...login_creds, password: e.target.value }))} type="password" placeholder="password" />
         <span>
-          <Link onClick={() => login_Mode_Handler("ForgotPasswordOtp")}>
+          <Link onClick={() => login_Mode_Handler("ResetPassword")}>
             Forgot password
           </Link>
         </span>
@@ -121,7 +121,7 @@ const Login = () => {
         </Button>
       </div>
       <div className={styles.Screen_Login_Bottom}>
-        <Link onClick={()=> login_Mode_Handler("SignUp")}>
+        <Link onClick={() => login_Mode_Handler("SignUp")}>
           New user?<b>Sign Up</b>
         </Link>
       </div>

@@ -150,8 +150,8 @@ function App() {
         <Route path="/all-orders" component={AllOrders} />
         <Route path="/orders" component={Orders} />
         {/* other dev pages */}
-        {/* <Route path='/designers-home-page' component={DesignersHomePage} />
-         <Route path='/about' component={AboutPage} /> */}
+        {/* <Route path='/designers-home-page' component={DesignersHomePage} /> */}
+        {/* <Route path='/about' component={AboutPage} /> */}
 
         {/* Here New Pages Added */}
         <Route path={"/profile"} component={Page_Profile} />
@@ -186,7 +186,6 @@ function App() {
         <Route path={"/home/poll-question"} component={PollQuestion} />
         <Route path={"/home/poll-result"} component={PollResult} />
         <Route path={"/designer-posts"} component={DesignerPosts} />
-
         {/* New Urls */}
         <Route path={"/home/polls"} component={Polls} />
         <Route path={"/daily-fashion-tips"} component={FashionTips} />
@@ -198,7 +197,6 @@ function App() {
         <Route exact path={"/designer-page"} component={DesignersPage} />
         <Route path={"/home/poll-question"} component={PollQuestion} />
         <Route path={"/home/poll-result"} component={PollResult} />
-        {/* <Route exact path={"/designer-page/product"} component={Product} /> */}
       </Switch>
     </div>
   );

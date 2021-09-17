@@ -13,14 +13,14 @@
 .Product{
     width: 100%;
     max-width: 750px;
-    // background: rgba(0, 0, 0, 0.438);
+
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 1em;
     .main{
         display: flex;
-        width: 70%;
+        width: 100%;
         align-items: flex-start;
         justify-content: space-between;
         .mainImg{
@@ -33,6 +33,28 @@
             align-items: flex-start;
             flex-direction: column;
             margin-left: 1em;
+            width: 80%;
+            h5{
+                //styleName: Headline / H5;
+                font-family: DM Sans;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 20px;
+                letter-spacing: 0px;
+                text-align: left;
+                margin-top: 0.5em;
+            }
+            h6{
+                font-family: DM Sans;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 18px;
+                letter-spacing: 0.1599999964237213px;
+                text-align: left;
+                color:#6C6C6C ;
+            }
             h1{
                 //styleName: Headline / H5;
                 font-family: DM Sans;
@@ -54,52 +76,7 @@
                 color: #6C6C6C;
 
             }
-            .quantityDiv{
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                background: #fff;
-                margin-top: 0.5em;
-                p{
-                    font-family: DM Sans;
-                    font-size: 12px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 16px;
-                    letter-spacing: 0.3199999928474426px;
-                    text-align: left;
-                    margin-bottom: 0.4em;
-                    
-                }
-                .quanDiv{
-                    display: flex;
-                    align-items: center;
-                    border-radius: 5px;
-
-                    .quantity{
-                        width: 2em;
-                        align-items: center;
-                        justify-content: center;
-                        display: flex;
-
-                    }
-                    .addBtn{
-                        background-color: #CEC7B9!important;
-                        border-radius: 0px 5px 5px 0px !important;
-                        width: 1em!important;
-                        height: 27px !important;
-                        min-width: 24px !important;
-
-                    }
-                    .removeBtn{
-                        background-color: #CEC7B9!important;
-                        border-radius: 5px 0px 0px 5px !important;
-                        width: 1em!important;
-                        height: 27px !important;
-                        min-width: 24px !important;
-                    }
-                }
-            }
+           
             .BtnDiv{
                 width: 100%;
                 display: flex;
@@ -178,126 +155,172 @@
           line-height: 16px!important;
           letter-spacing: 0.3199999928474426px!important;
           text-align: left!important;
-          margin-top: 2em!important;
+          margin-top: 1em!important;
           text-decoration: underline!important;
         }
     }
+    .quantityDiv{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background: #fff;
+        p{
+            font-family: DM Sans;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 16px;
+            letter-spacing: 0.3199999928474426px;
+            text-align: left;
+            margin-bottom: 0.4em;
+            
+        }
+    }
+    .QuanTitle{
+        font-family: DM Sans;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 16px;
+        letter-spacing: 0.3199999928474426px;
+        text-align: left;
+        margin-bottom: 0.4em;
+        margin-top: 1em;
+    }
+    .quanDiv{
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+
+        .quantity{
+            width: 2em;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+
+        }
+        .addBtn{
+            background-color: #CEC7B9!important;
+            border-radius: 0px 5px 5px 0px !important;
+            width: 1em!important;
+            height: 27px !important;
+            min-width: 24px !important;
+
+        }
+        .removeBtn{
+            background-color: #CEC7B9!important;
+            border-radius: 5px 0px 0px 5px !important;
+            width: 1em!important;
+            height: 27px !important;
+            min-width: 24px !important;
+        }
+    }
     
+}
+
+.PriceDivMobile{
+display: none;
+flex-direction: column;
+align-items: flex-start;
+justify-content: center;
+.PriceMobile{
+    font-family: DM Serif Display;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: left;
+    margin-top: 0.5em;
+}
+.PriceInfoMobile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5em;
+    p{
+        font-family: DM Sans;
+        font-size: 12px!important;
+        font-style: normal!important;
+        font-weight: 700!important;
+        letter-spacing: 0px!important;
+        text-align: left!important;
+        text-decoration: line-through!important;
+        color: grey!important;
+    }
+    span{
+        font-family: DM Sans!important;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0px;
+        text-align: left;
+        margin-left: 0.5em;
+        color: #857250;
+    }
+}
+}
+.quanDivMobile{
+    display: none;
+    align-items: center;
+    border-radius: 5px;
+
+    .quantity{
+        width: 2em;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+
+    }
+    .addBtn{
+        background-color: #CEC7B9!important;
+        border-radius: 0px 5px 5px 0px !important;
+        width: 1em!important;
+        height: 27px !important;
+        min-width: 24px !important;
+
+    }
+    .removeBtn{
+        background-color: #CEC7B9!important;
+        border-radius: 5px 0px 0px 5px !important;
+        width: 1em!important;
+        height: 27px !important;
+        min-width: 24px !important;
+    }
+}
+.QuanTitleMobile{
+    display: none;
+    font-family: DM Sans;
+    font-size: 12px;
+    font-style: normal;
+    line-height: 16px;
+    text-align: left;
+    margin-bottom: 0.4em;
+    font-weight: bolder!important;
+}
+
+.RemoveItemBTNMobile{
+    color: red!important;
+    font-family: DM Sans!important;
+  font-size: 12px!important;
+  font-style: normal!important;
+  font-weight: 700!important;
+  line-height: 16px!important;
+  letter-spacing: 0.3199999928474426px!important;
+  text-align: left!important;
+  margin-top: 1em!important;
+  text-decoration: underline!important;
+  margin-top: 1em!important;
 }
 
 
 
 
 
-
-
-@media screen and (max-width: 1020px) {
-
+@media screen and (max-width:550px) {
     .Product{
         width: 100%;
         max-width: 750px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        margin-bottom: 1em;
-        .main{
-            display: flex;
-            width: 70%;
-            align-items: flex-start;
-            justify-content: space-between;
-            .mainImg{
-                height: 157px;
-            width: 135px;
-            }
-            .mainInfodiv{
-                .BtnDiv{
-                .AddToBagBtn{
-                    height: 32px!important;
-                    width: 147px!important;
-                    border-radius: 3px!important;
-                    padding: 4px, 16px, 4px, 16px!important;
-                    background-color: #857250!important;
-                    color: #fff!important;
-                    font-size: 12px!important;
-                }
-                .CustomisedBtn{
-                    height: 32px!important;
-                    width: 147px!important;
-                    border-radius: 3px!important;
-                    padding: 4px, 16px, 4px, 16px!important;
-                    background-color: #85725000!important;
-                    color: #857250!important;
-                    border: 1px solid #857250;
-                    margin-left: 1em;
-                    font-size: 12px!important;
-                }
-            }
-            }
-            }
-        }
     
-    }
-    
-    
-
-
-    
-@media screen and (max-width: 930px) {
-
-    .Product{
-        width: 100%;
-        max-width: 750px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        margin-bottom: 1em;
-        .main{
-            display: flex;
-            width: 70%;
-            align-items: flex-start;
-            justify-content: space-between;
-            .mainImg{
-                height: 157px;
-            width: 125px;
-            }
-            .mainInfodiv{
-                .BtnDiv{
-                .AddToBagBtn{
-                    height: 32px!important;
-                    width: 127px!important;
-                    border-radius: 3px!important;
-                    padding: 4px, 16px, 4px, 16px!important;
-                    background-color: #857250!important;
-                    color: #fff!important;
-                    font-size: 12px!important;
-                }
-                .CustomisedBtn{
-                    height: 32px!important;
-                    width: 127px!important;
-                    border-radius: 3px!important;
-                    padding: 4px, 16px, 4px, 16px!important;
-                    background-color: #85725000!important;
-                    color: #857250!important;
-                    border: 1px solid #857250;
-                    margin-left: 1em;
-                    font-size: 12px!important;
-                }
-            }
-            }
-            }
-        }
-    
-    }
-    
-    
-
-    
-    
-@media screen and (max-width: 878px) {
-
-    .Product{
-        width: 100%;
-        max-width: 750px;
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
@@ -308,65 +331,37 @@
             align-items: flex-start;
             justify-content: space-between;
             .mainImg{
-                height: 157px;
-            width: 105px;
-            }
-            .mainInfodiv{
-                width: 50%;
-                .BtnDiv{
-                .AddToBagBtn{
-                    height: 32px!important;
-                    width: 120px!important;
-                    border-radius: 3px!important;
-                    padding: 4px, 16px, 4px, 16px!important;
-                    background-color: #857250!important;
-                    color: #fff!important;
-                    font-size: 12px!important;
-                }
-                .CustomisedBtn{
-                    height: 32px!important;
-                    width: 120px!important;
-                    border-radius: 3px!important;
-                    padding: 4px, 16px, 4px, 16px!important;
-                    background-color: #85725000!important;
-                    color: #857250!important;
-                    border: 1px solid #857250;
-                    margin-left: 1em;
-                    font-size: 12px!important;
-                }
-            }
-            }
-            }
-        }
-    
-    }
-    
-    
-    @media screen and (max-width: 878px) {
-
-    .Product{
-        width: 100%;
-        max-width: 750px;
-        // background: rgba(0, 0, 0, 0.438);
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        margin-bottom: 1em;
-        .main{
-            display: flex;
-            width: 70%;
-            align-items: flex-start;
-            justify-content: space-between;
-            .mainImg{
                 object-fit: cover;
                 height: 187px;
-            width: 165px;
+                width: 120px;
             }
             .mainInfodiv{
                 display: flex;
                 align-items: flex-start;
                 flex-direction: column;
-                margin-left: 1em;
+                margin-left: 0.5em;
+                width:80%;
+                h5{
+                    //styleName: Headline / H5;
+                    font-family: DM Sans;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 20px;
+                    letter-spacing: 0px;
+                    text-align: left;
+                    margin-top: 0.5em;
+                }
+                h6{
+                    font-family: DM Sans;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 18px;
+                    letter-spacing: 0.1599999964237213px;
+                    text-align: left;
+                    color:#6C6C6C ;
+                }
                 h1{
                     //styleName: Headline / H5;
                     font-family: DM Sans;
@@ -388,61 +383,17 @@
                     color: #6C6C6C;
     
                 }
-                .quantityDiv{
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    background: #fff;
-                    margin-top: 0.5em;
-                    p{
-                        font-family: DM Sans;
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 700;
-                        line-height: 16px;
-                        letter-spacing: 0.3199999928474426px;
-                        text-align: left;
-                        margin-bottom: 0.4em;
-                        
-                    }
-                    .quanDiv{
-                        display: flex;
-                        align-items: center;
-                        border-radius: 5px;
-    
-                        .quantity{
-                            width: 2em;
-                            align-items: center;
-                            justify-content: center;
-                            display: flex;
-    
-                        }
-                        .addBtn{
-                            background-color: #CEC7B9!important;
-                            border-radius: 0px 5px 5px 0px !important;
-                            width: 1em!important;
-                            height: 27px !important;
-                            min-width: 24px !important;
-    
-                        }
-                        .removeBtn{
-                            background-color: #CEC7B9!important;
-                            border-radius: 5px 0px 0px 5px !important;
-                            width: 1em!important;
-                            height: 27px !important;
-                            min-width: 24px !important;
-                        }
-                    }
-                }
+               
                 .BtnDiv{
                     width: 100%;
                     display: flex;
+                    flex-direction: column;
                     margin-top: 1em;
-                    align-items: center;
-                    justify-content: space-between;
+                    align-items: flex-start;
+                    justify-content: space-around;
                     .AddToBagBtn{
                         height: 32px!important;
-                        width: 177px!important;
+                        width: 157px!important;
                         border-radius: 3px!important;
                         padding: 4px, 16px, 4px, 16px!important;
                         background-color: #857250!important;
@@ -462,820 +413,75 @@
             }
         }
         .PriceDiv{
-            width: 30%;
-                display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction:column;
-            .Price{
-                //styleName: Headline / H3;
-            font-family: DM Serif Display;
-            font-size: 28px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 36px;
-            letter-spacing: 0em;
-            text-align: left;
-            }
-            .PriceInfo{
-                display: flex;
-                p{
-                font-family: DM Sans;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 20px;
-                letter-spacing: 0px;
-                text-align: left;
-                text-decoration: line-through;
-                color: #9D9D9D;
-                }
-                span{
-                font-family: DM Sans;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 20px;
-                letter-spacing: 0px;
-                text-align: left;
-                color: #857250;
-                margin-left: 0.2em;
-    
-                }
-            }
-            .RemoveItemBTN{
-                color: red!important;
-                font-family: DM Sans!important;
-              font-size: 12px!important;
-              font-style: normal!important;
-              font-weight: 700!important;
-              line-height: 16px!important;
-              letter-spacing: 0.3199999928474426px!important;
-              text-align: left!important;
-              margin-top: 2em!important;
-              text-decoration: underline!important;
-            }
+            display: none;
         }
-        
-    }
-    
-    
-    
-}
-
-
-
-
-// Mobile----------------------------------------
-
-
-
-
-@media screen and (max-width: 605px) {
-
-    .Product{
-        width: 100%;
-        max-width: 750px;
-        // background: rgba(0, 0, 0, 0.438);
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        margin-bottom: 1em;
-        .main{
+        .quantityDiv{
             display: flex;
-            width: 70%;
+            flex-direction: column;
             align-items: flex-start;
-            justify-content: space-between;
-            .mainImg{
-                object-fit: cover;
-                height: 157px;
-            width: 135px;
-            }
-            .mainInfodiv{
-                display: flex;
-                align-items: flex-start;
-                flex-direction: column;
-                margin-left: 1em;
-                h1{
-                    //styleName: Headline / H5;
-                    font-family: DM Sans;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 20px;
-                    letter-spacing: 0px;
-                    text-align: left;
-                }
-                p{
-                    font-family: DM Sans;
-                    font-size: 12px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 16px;
-                    letter-spacing: 0.3199999928474426px;
-                    text-align: left;
-                    color: #6C6C6C;
-    
-                }
-                .quantityDiv{
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    background: #fff;
-                    margin-top: 0.5em;
-                    p{
-                        font-family: DM Sans;
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 700;
-                        line-height: 16px;
-                        letter-spacing: 0.3199999928474426px;
-                        text-align: left;
-                        margin-bottom: 0.4em;
-                        
-                    }
-                    .quanDiv{
-                        display: flex;
-                        align-items: center;
-                        border-radius: 5px;
-    
-                        .quantity{
-                            width: 2em;
-                            align-items: center;
-                            justify-content: center;
-                            display: flex;
-    
-                        }
-                        .addBtn{
-                            background-color: #CEC7B9!important;
-                            border-radius: 0px 5px 5px 0px !important;
-                            width: 1em!important;
-                            height: 27px !important;
-                            min-width: 24px !important;
-    
-                        }
-                        .removeBtn{
-                            background-color: #CEC7B9!important;
-                            border-radius: 5px 0px 0px 5px !important;
-                            width: 1em!important;
-                            height: 27px !important;
-                            min-width: 24px !important;
-                        }
-                    }
-                }
-                .BtnDiv{
-                    width: 100%;
-                    display: flex;
-                    margin-top: 1em;
-                    align-items: center;
-                    justify-content: space-between;
-                    .AddToBagBtn{
-                        height: 32px!important;
-                        width: 157px!important;
-                        border-radius: 3px!important;
-                        padding: 4px, 16px, 4px, 16px!important;
-                        background-color: #857250!important;
-                        color: #fff!important;
-                    }
-                    .CustomisedBtn{
-                        height: 32px!important;
-                        width: 157px!important;
-                        border-radius: 3px!important;
-                        padding: 4px, 16px, 4px, 16px!important;
-                        background-color: #85725000!important;
-                        color: #857250!important;
-                        border: 1px solid #857250;
-                        margin-left: 1em;
-                    }
-                }
-            }
-        }
-        .PriceDiv{
-            width: 30%;
-                display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction:column;
-            .Price{
-                //styleName: Headline / H3;
-            font-family: DM Serif Display;
-            font-size: 28px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 36px;
-            letter-spacing: 0em;
-            text-align: left;
-            }
-            .PriceInfo{
-                display: flex;
-                p{
-                font-family: DM Sans;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 20px;
-                letter-spacing: 0px;
-                text-align: left;
-                text-decoration: line-through;
-                color: #9D9D9D;
-                }
-                span{
-                font-family: DM Sans;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 20px;
-                letter-spacing: 0px;
-                text-align: left;
-                color: #857250;
-                margin-left: 0.2em;
-    
-                }
-            }
-            .RemoveItemBTN{
-                color: red!important;
-                font-family: DM Sans!important;
-              font-size: 12px!important;
-              font-style: normal!important;
-              font-weight: 700!important;
-              line-height: 16px!important;
-              letter-spacing: 0.3199999928474426px!important;
-              text-align: left!important;
-              margin-top: 2em!important;
-              text-decoration: underline!important;
-            }
-        }
-        
-    }
-    
-    
-    
-}
-
-
-.PriceDivMobile{
-    display: none;
-}
-
-
-
-@media screen and (max-width: 510px) {
-    .Product{
-        width: 100%;
-        max-width: 750px;
-        // background: rgba(0, 0, 0, 0.438);
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        margin-bottom: 1em;
-        .main{
-            display: flex;
-            width: 70%;
-            align-items: flex-start;
-            justify-content: space-between;
-            .mainImg{
-                object-fit: cover;
-                height: 157px;
-            width: 135px;
-            }
-            .mainInfodiv{
-                display: flex;
-                align-items: flex-start;
-                flex-direction: column;
-                margin-left: 1em;
-                h1{
-                    //styleName: Headline / H5;
-                    font-family: DM Sans;
-                    font-size: 13px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 20px;
-                    letter-spacing: 0px;
-                    text-align: left;
-                }
-                p{
-                    font-family: DM Sans;
-                    font-size: 12px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 16px;
-                    letter-spacing: 0.3199999928474426px;
-                    text-align: left;
-                    color: #6C6C6C;
-    
-                }
-                .quantityDiv{
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    background: #fff;
-                    margin-top: 0.5em;
-                    p{
-                        font-family: DM Sans;
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 700;
-                        line-height: 16px;
-                        letter-spacing: 0.3199999928474426px;
-                        text-align: left;
-                        margin-bottom: 0.4em;
-                        
-                    }
-                    .quanDiv{
-                        display: flex;
-                        align-items: center;
-                        border-radius: 5px;
-                        
-                        .quantity{
-                            width: 2em;
-                            align-items: center;
-                            justify-content: center;
-                            display: flex;
-
-                        }
-                        .addBtn{
-                            background-color: #CEC7B9!important;
-                            border-radius: 0px 5px 5px 0px !important;
-                            width: 1em!important;
-                            height: 27px !important;
-                            min-width: 24px !important;
-    
-                        }
-                        .removeBtn{
-                            background-color: #CEC7B9!important;
-                            border-radius: 5px 0px 0px 5px !important;
-                            width: 1em!important;
-                            height: 27px !important;
-                            min-width: 24px !important;
-                        }
-                    }
-                }
-                .BtnDiv{
-                    width: 100%;
-                    display: flex;
-                    margin-top: 1em;
-                    align-items: center;
-                    justify-content: space-between;
-                    .AddToBagBtn{
-                        height: 32px!important;
-                        width: 127px!important;
-                        border-radius: 3px!important;
-                        padding: 4px, 16px, 4px, 16px!important;
-                        background-color: #857250!important;
-                        color: #fff!important;
-                    }
-                    .CustomisedBtn{
-                        height: 32px!important;
-                        width: 127px!important;
-                        border-radius: 3px!important;
-                        padding: 4px, 16px, 4px, 16px!important;
-                        background-color: #85725000!important;
-                        color: #857250!important;
-                        border: 1px solid #857250;
-                        margin-left: 1em;
-                    }
-                }
-            }
-        }
-        .PriceDiv{
-            width: 30%;
-                display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction:column;
-            .Price{
-                //styleName: Headline / H3;
-            font-family: DM Serif Display;
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 36px;
-            letter-spacing: 0em;
-            text-align: left;
-            }
-            .PriceInfo{
-                display: flex;
-                p{
+            p{
                 font-family: DM Sans;
                 font-size: 12px;
                 font-style: normal;
                 font-weight: 700;
-                line-height: 20px;
-                letter-spacing: 0px;
+                line-height: 16px;
+                letter-spacing: 0.3199999928474426px;
                 text-align: left;
-                text-decoration: line-through;
-                color: #9D9D9D;
-                }
-                span{
-                font-family: DM Sans;
-                font-size: 12px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 20px;
-                letter-spacing: 0px;
-                text-align: left;
-                color: #857250;
-                margin-left: 0.2em;
-    
-                }
-            }
-            .RemoveItemBTN{
-                color: red!important;
-                font-family: DM Sans!important;
-              font-size: 8px!important;
-              font-style: normal!important;
-              font-weight: 700!important;
-              line-height: 16px!important;
-              letter-spacing: 0.3199999928474426px!important;
-              text-align: left!important;
-              margin-top: 2em!important;
-              text-decoration: underline!important;
-            }
-        }
-        
-    }
-    
-    
-    
-}
-
-
-
-
-
-
-@media screen and (max-width: 450px) {
-    .Product{
-        width: 100%;
-        max-width: 750px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        margin-bottom: 1em;
-        .main{
-            display: flex;
-            width: 70%;
-            align-items: flex-start;
-            justify-content: space-between;
-            .mainImg{
-                object-fit: cover;
-                height: 230px;
-                width: 155px;
-            }
-            .mainInfodiv{
-                width: 100%;
-                display: flex;
-                align-items: flex-start;
-                flex-direction: column;
-                margin-left: 1em;
-                h1{
-                    //styleName: Headline / H5;
-                    font-family: DM Sans;
-                    font-size: 13px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 20px;
-                    letter-spacing: 0px;
-                    text-align: left;
-                    width: 100%;
-                }
-                p{
-                    font-family: DM Sans;
-                    font-size: 12px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 16px;
-                    letter-spacing: 0.3199999928474426px;
-                    text-align: left;
-                    color: #6C6C6C;
-    
-                }
-                .quantityDiv{
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    background: #fff;
-                    margin-top: 0.5em;
-                    p{
-                        font-family: DM Sans;
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 700;
-                        line-height: 16px;
-                        letter-spacing: 0.3199999928474426px;
-                        text-align: left;
-                        margin-bottom: 0.4em;
-                        
-                    }
-                    .quanDiv{
-                        display: flex;
-                        align-items: center;
-                        border-radius: 5px;
-                        
-                        .quantity{
-                            width: 2em;
-                            align-items: center;
-                            justify-content: center;
-                            display: flex;
-
-                        }
-                        .addBtn{
-                            background-color: #CEC7B9!important;
-                            border-radius: 0px 5px 5px 0px !important;
-                            width: 1em!important;
-                            height: 27px !important;
-                            min-width: 24px !important;
-    
-                        }
-                        .removeBtn{
-                            background-color: #CEC7B9!important;
-                            border-radius: 5px 0px 0px 5px !important;
-                            width: 1em!important;
-                            height: 27px !important;
-                            min-width: 24px !important;
-                        }
-                    }
-                    .PriceDivMobile{
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        flex-direction:column;
-                        margin-left: 0.5em;
-                        .PriceMobile{
-                            font-family: DM Serif Display;
-                            font-size: 20px;
-                            font-style: normal;
-                            font-weight: 400;
-                            line-height: 36px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                        }
-                        .PriceInfoMobile{
-                            display: flex;
-                            p{
-                            font-family: DM Sans;
-                            font-size: 12px;
-                            font-style: normal;
-                            font-weight: 700;
-                            line-height: 20px;
-                            letter-spacing: 0px;
-                            text-align: left;
-                            text-decoration: line-through;
-                            color: #9D9D9D;
-                            }
-                            span{
-                            font-family: DM Sans;
-                            font-size: 12px;
-                            font-style: normal;
-                            font-weight: 700;
-                            line-height: 20px;
-                            letter-spacing: 0px;
-                            text-align: left;
-                            color: #857250;
-                            margin-left: 0.2em;
+                margin-bottom: 0.4em;
                 
-                            }
-                        }
-                    }
-                }
-                .BtnDiv{
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    margin-top: 1em;
-                    align-items: flex-start;
-                    justify-content: space-between;
-                    .AddToBagBtn{
-                        height: 32px!important;
-                        width: 157px!important;
-                        margin-top: 1em;
-                        border-radius: 3px!important;
-                        padding: 4px, 16px, 4px, 16px!important;
-                        background-color: #857250!important;
-                        color: #fff!important;
-                    }
-                    .CustomisedBtn{
-                        height: 32px!important;
-                        width: 157px!important;
-                        margin-top: 1em;
-                        border-radius: 3px!important;
-                        padding: 4px, 16px, 4px, 16px!important;
-                        background-color: #85725000!important;
-                        color: #857250!important;
-                        border: 1px solid #857250;
-                        margin-left: 0em;
-                    }
-                    .RemoveItemBTNMobile{
-                        color: red!important;
-                        font-family: DM Sans!important;
-                      font-size: 12px!important;
-                      font-style: normal!important;
-                      font-weight: 700!important;
-                      line-height: 16px!important;
-                      letter-spacing: 0.3199999928474426px!important;
-                      text-align: left!important;
-                      text-decoration: underline!important;
-                        
-                    }
-                }
             }
         }
-        .PriceDiv{
-            display: none;
+        .QuanTitle{
+            font-family: DM Sans;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 16px;
+            letter-spacing: 0.3199999928474426px;
+            text-align: left;
+            margin-bottom: 0.4em;
+            margin-top: 1em;
         }
-        
-    }
-    
-    
-    
-}
-
-.RemoveItemBTNMobile{
-    display: none;
-}
-
-@media screen and (max-width: 372px) {
-    .Product{
-        width: 100%;
-        max-width: 750px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        margin-bottom: 1em;
-        .main{
+        .quanDiv{
             display: flex;
-            width: 70%;
-            align-items: flex-start;
-            justify-content: space-between;
-            .mainImg{
-                object-fit: cover;
-                height: 180px;
-                width: 105px;
-            }
-            .mainInfodiv{
-                width: 100%;
+            align-items: center;
+            border-radius: 5px;
+    
+            .quantity{
+                width: 2em;
+                align-items: center;
+                justify-content: center;
                 display: flex;
-                align-items: flex-start;
-                flex-direction: column;
-                margin-left: 1em;
-                h1{
-                    //styleName: Headline / H5;
-                    font-family: DM Sans;
-                    font-size: 13px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 20px;
-                    letter-spacing: 0px;
-                    text-align: left;
-                    width: 100%;
-                }
-                p{
-                    font-family: DM Sans;
-                    font-size: 12px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 16px;
-                    letter-spacing: 0.3199999928474426px;
-                    text-align: left;
-                    color: #6C6C6C;
     
-                }
-                .quantityDiv{
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    background: #fff;
-                    margin-top: 0.5em;
-                    p{
-                        font-family: DM Sans;
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 700;
-                        line-height: 16px;
-                        letter-spacing: 0.3199999928474426px;
-                        text-align: left;
-                        margin-bottom: 0.4em;
-                        
-                    }
-                    .quanDiv{
-                        display: flex;
-                        align-items: center;
-                        border-radius: 5px;
-                        
-                        .quantity{
-                            width: 2em;
-                            align-items: center;
-                            justify-content: center;
-                            display: flex;
-
-                        }
-                        .addBtn{
-                            background-color: #CEC7B9!important;
-                            border-radius: 0px 5px 5px 0px !important;
-                            width: 1em!important;
-                            height: 27px !important;
-                            min-width: 24px !important;
-    
-                        }
-                        .removeBtn{
-                            background-color: #CEC7B9!important;
-                            border-radius: 5px 0px 0px 5px !important;
-                            width: 1em!important;
-                            height: 27px !important;
-                            min-width: 24px !important;
-                        }
-                    }
-                    .PriceDivMobile{
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        flex-direction:column;
-                        margin-left: 0.5em;
-                        .PriceMobile{
-                            font-family: DM Serif Display;
-                            font-size: 20px;
-                            font-style: normal;
-                            font-weight: 400;
-                            line-height: 36px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                        }
-                        .PriceInfoMobile{
-                            display: flex;
-                            p{
-                            font-family: DM Sans;
-                            font-size: 12px;
-                            font-style: normal;
-                            font-weight: 700;
-                            line-height: 20px;
-                            letter-spacing: 0px;
-                            text-align: left;
-                            text-decoration: line-through;
-                            color: #9D9D9D;
-                            }
-                            span{
-                            font-family: DM Sans;
-                            font-size: 12px;
-                            font-style: normal;
-                            font-weight: 700;
-                            line-height: 20px;
-                            letter-spacing: 0px;
-                            text-align: left;
-                            color: #857250;
-                            margin-left: 0.2em;
-                
-                            }
-                        }
-                    }
-                }
-                .BtnDiv{
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    margin-top: 1em;
-                    align-items: flex-start;
-                    justify-content: space-between;
-                    .AddToBagBtn{
-                        height: 32px!important;
-                        width: 147px!important;
-                        margin-top: 1em;
-                        border-radius: 3px!important;
-                        padding: 4px, 16px, 4px, 16px!important;
-                        background-color: #857250!important;
-                        color: #fff!important;
-                    }
-                    .CustomisedBtn{
-                        height: 32px!important;
-                        width: 147px!important;
-                        margin-top: 1em;
-                        border-radius: 3px!important;
-                        padding: 4px, 16px, 4px, 16px!important;
-                        background-color: #85725000!important;
-                        color: #857250!important;
-                        border: 1px solid #857250;
-                        margin-left: 0em;
-                    }
-                    .RemoveItemBTNMobile{
-                        color: red!important;
-                        font-family: DM Sans!important;
-                      font-size: 12px!important;
-                      font-style: normal!important;
-                      font-weight: 700!important;
-                      line-height: 16px!important;
-                      letter-spacing: 0.3199999928474426px!important;
-                      text-align: left!important;
-                      text-decoration: underline!important;
-                        
-                    }
-                }
             }
-        }
-        .PriceDiv{
-            display: none;
+            .addBtn{
+                background-color: #CEC7B9!important;
+                border-radius: 0px 5px 5px 0px !important;
+                width: 1em!important;
+                height: 27px !important;
+                min-width: 24px !important;
+    
+            }
+            .removeBtn{
+                background-color: #CEC7B9!important;
+                border-radius: 5px 0px 0px 5px !important;
+                width: 1em!important;
+                height: 27px !important;
+                min-width: 24px !important;
+            }
         }
         
     }
     
+    .PriceDivMobile{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    
+    .quanDivMobile{
+        display: flex;
+    }
     
     
 }

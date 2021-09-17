@@ -214,7 +214,8 @@ export default function Payment() {
 
 export function SuccessPopUp({ toggle, title, text, history, payment }) {
   return (
-    <div className={styles.modal}  >
+    <div className={styles.modal} >
+      <div className={styles.SecondLayer} onClick={toggle}   ></div>
       <div className={styles.Popup}>
         <IconButton className={styles.CloseBtn} onClick={toggle} ><img src={close} /></IconButton>
         <img src={tick} />

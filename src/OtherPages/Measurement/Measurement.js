@@ -1,8 +1,22 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import common_axios from "../../utils/axios.config";
 import styles from "./Measurement.module.scss";
 const Measurement = () => {
+
+  const [ measurement_data, set_measurement_data] = useState([])
+
+  useEffect(()=>{
+   fetch_data()
+  },[])
+
+  const fetch_data = async () => {
+    const { data } = await common_axios.get('/show_measurment')
+    console.log(data)
+  }
+
+
   return (
     <div className={styles.Measurement}>
       <div className={styles.Measurement_Box}>

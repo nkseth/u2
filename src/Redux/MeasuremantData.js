@@ -125,3 +125,10 @@ export const Customer_Fitting_Change = (value) => {
     Customer_Fitting = value
     localStorage.setItem('Customer_Fitting', Customer_Fitting);
 }
+
+export var Basic_id = localStorage.getItem('basic_id')
+
+export const Set_basic_id = (value) => {
+    Basic_id = value
+    localStorage.setItem('basic_id', Basic_id);
+}

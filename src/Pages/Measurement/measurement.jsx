@@ -35,7 +35,8 @@ import {
   InSeamData,
   ThighData,
   CalfData,
-  AnkleData
+  AnkleData,
+  Basic_id
 
 } from "../../Redux/MeasuremantData"
 export default function Measurement() {
@@ -48,22 +49,44 @@ export default function Measurement() {
   const { neck, chest, wrist, shoulder, arm_hole, sleeve } = upper_body;
   const { waist, hip_round, full_length, inseam, thigh, calf, ankle } = lower_body;
   const [OrderDone, SetOrderDone] = useState(false)
+
   const toggle = () => {
     SetOrderDone(false);
     history.push('/viewmeasurement')
   }
+  
   const onSubmit = async () => {
 
-    const { data: upper_data } = await common_axios.post('/save_measurment_value', {
-      type: "Upper",
-      measur_basic_id: basic_id,
-      neck: parseFloat(neck),
-      shoulder: parseFloat(shoulder),
-      chest: parseFloat(chest),
-      arm: parseFloat(arm_hole),
-      waist: parseFloat(waist),
-      //back_waist: 
-    })
+    try{
+      const { data: upper_data } = await common_axios.post('/save_measurment_value', {
+        type: "Upper",
+        measur_basic_id: Basic_id,
+        neck: parseFloat(NeckData),
+        shoulder: parseFloat(ShoulderData),
+        chest: parseFloat(ChestData),
+        arm: parseFloat(ArmHoleData),
+        wrist: parseFloat(WristData),
+        //back_waist: 
+      });
+
+      const { data: lower_data } = await common_axios.post('/save_measurment_value', {
+        type: "Lower",
+        measur_basic_id: Basic_id,
+        full_length: parseFloat(FullLengthData),
+        hip_round: parseFloat(HipRoundData),
+        in_seam: parseFloat(InSeamData),
+        thigh: parseFloat(ThighData),
+        waist: parseFloat(WaistData),
+        calf: parseFloat(CalfData),
+        ankle:parseFloat(AnkleData)
+        //back_waist: 
+      });
+  
+      console.log(upper_data, lower_data)
+      SetOrderDone(true)
+    } catch(e){
+      console.log(e)
+    }
   }
 
   return (
@@ -202,7 +225,7 @@ export default function Measurement() {
                   variant='contained'
                   className={cx(styles.button, styles.addToBagBtn)}
                   color='default'
-                  onClick={() => SetOrderDone(true)}
+                  onClick={() => onSubmit()}
                 >
                   Save
                 </Button>

@@ -100,31 +100,32 @@ export default function ChooseStandardSize() {
 
 
   const onSubmit = async () => {
-    if (name.length == 0) {
+    if (Names.length == 0) {
       alert('Enter a valid name');
       return;
     }
 
-    if (fitting.length == 0) {
+    if (Fitting.length == 0) {
       alert('Enter a valid age');
       return;
     }
 
 
-    if (standard_size.length == 0) {
+    if (Size.length == 0) {
       alert('Choose your size');
       return;
     }
 
     try {
       const { data } = await common_axios.post('/save_measurment', {
-        gender,
-        name,
-        standard_size,
-        fitting,
+        gender: Gender,
+        name: Names,
+        standard_size: Size,
+        fitting: Fitting,
         user_id: user_data.id
       });
       dispatch(set_basic_id(data))
+      set_basic_id(data)
       history.push(`/add-measurement-body-measurement-${gender}`);
 
     } catch (e) {
@@ -317,7 +318,7 @@ export default function ChooseStandardSize() {
                 </MenuItem>
               </Select>
             </div>
-            <Button className={styles.SaveBTN} onClick={() => history.push(`/add-measurement-body-measurement-${Gender}`)} > Save and Add measurement</Button>
+            <Button className={styles.SaveBTN} onClick={() => onSubmit()} > Save and Add measurement</Button>
 
           </div>
         </div>

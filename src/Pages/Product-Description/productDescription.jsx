@@ -122,8 +122,6 @@ export default function ProductDescription({ match }) {
   const [ProductType, setProductType] = useState(product.product?.isCustomise == "1" ? 'custom' : 'ready made');
 
   Product_Type_Change(ProductType)
-  console.log(product)
-
 
   const { login_Model_Show } = useLogin();
   const { user_data } = useSelector(state => state.root.main)
@@ -158,9 +156,15 @@ export default function ProductDescription({ match }) {
             history.push('/my-bag')
           }
         } catch (e) {
+
           if (e?.response?.data?.message == 'Item alrealy in your cart') {
             history.push('/my-bag')
           }
+
+          if (e?.response?.data?.message == 'Login first') {
+            login_Model_Show()
+          }
+
         }
       }
     } else {
@@ -183,6 +187,8 @@ export default function ProductDescription({ match }) {
       login_Model_Show()
     }
   }
+
+  console.log(product)
 
 
   return (

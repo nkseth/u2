@@ -42,7 +42,6 @@ export default function Payment() {
     return unsub;
   }, [selectedPaymentMethod]);
   return (
-    // <Container bottomDivider footerOnTabMob>
     <div className={styles.PaymentHeader} >
       <div className={styles.Navbar}>
         <h1>LOGO</h1>
@@ -138,10 +137,9 @@ export default function Payment() {
                       color='default'
                       className={styles.payBtn}
                       onClick={() => {
-                        // Product_Type === 'Customised' ?
+
                         setPaymentDone(!PaymentDone)
-                        // :
-                        // history.push('/add-measurement-choose-standard-size')
+
                       }}
                     >
                       Pay

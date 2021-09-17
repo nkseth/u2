@@ -21,9 +21,10 @@ const useLogin = () => {
   //For Close Login Model
   const login_Model_Hide = useCallback(() => {
     Controller(LOGIN_MODEL, false);
+    login_Mode_Handler("Login")
   }, [isLoginModel]);
 
-  //For Changing Login Mode
+  //For Changing  Mode
   const login_Mode_Handler = useCallback(
     (type) => {
       Controller(LOGIN_MODE, type);

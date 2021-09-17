@@ -33,7 +33,14 @@
     }
     }
     
-  
+.OverLay{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
 
 .newAddressContainer{
     width:90%;

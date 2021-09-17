@@ -88,11 +88,6 @@ const mainreducer = (state = inialState, action) => {
         ...state,
         celibrity_style: action.payload,
       };
-    case GET_DESIGNERS:
-      return {
-        ...state,
-        designers: action.payload,
-      };
     case SECTION1_SLIDERS:
       return {
         ...state,

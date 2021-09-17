@@ -5,26 +5,21 @@ import Container from "../../utils/Container/container";
 import SideNavbar from "../../utils/Side-Navbar/sideNavbar";
 import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
 import styles from "./orders.module.scss";
-import { ReactComponent as CameraIcon } from "../../Images/icons/camera.svg";
-import common_axios from "../../utils/axios.config";
 import Rating from "./components/rating";
+import { useSelector, useDispatch } from 'react-redux'
+import { get_orders } from "../../Redux/actions/profile";
 
 export default function Orders() {
 
-  const [orders, setOrders] = useState({})
+  const dispatch = useDispatch()
+  const { orders } = useSelector(state => state.root.profile)
 
   useEffect(() => {
-    fetch_orders()
+    dispatch(get_orders())
   }, [])
 
-  const fetch_orders = async () => {
-    const { data } = await common_axios.get('/orders')
-    setOrders(data)
-    console.log(data)
-  }
-
   const set_is_reviewed = (id) => {
-    fetch_orders()
+    dispatch(get_orders())
   }
 
   const mobileView = useMediaQuery("(max-width:550px)");

@@ -2,24 +2,17 @@ import React, { useEffect, useState } from "react";
 import styles from "./Review.module.scss";
 import CustomDivider from "../../utils/Custom Divider/divider";
 import { Button } from "@material-ui/core";
-import common_axios from "../../utils/axios.config";
+import { useSelector, useDispatch } from 'react-redux'
+import { get_reviews } from "../../Redux/actions/profile";
 
 const Review = () => {
 
-  const [review, setReviews] = useState([])
+  const dispatch = useDispatch()
+  const { review } = useSelector(state => state.root.profile)
 
   useEffect(() => {
-    fetch_data()
+    dispatch(get_reviews())
   }, [])
-
-  const fetch_data = async () => {
-
-    const { data } = await common_axios.get('/product_review_list')
-    console.log(data)
-    if (data) {
-      setReviews(data)
-    }
-  }
 
   const GetDate = ({ val }) => {
 

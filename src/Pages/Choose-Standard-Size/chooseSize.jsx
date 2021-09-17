@@ -132,6 +132,8 @@ export default function ChooseStandardSize() {
       console.log(e.response?.data)
     }
   }
+
+  
   const handleName = (e) => {
     setName(e.target.value)
     Customer_Name_Change(e.target.value)

@@ -3,24 +3,18 @@ import styles from "./MyAddresses.module.scss";
 import { Button, Radio, useMediaQuery, useTheme } from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { useHistory } from "react-router-dom";
-import common_axios from '../../utils/axios.config'
+import { useSelector, useDispatch } from 'react-redux'
+import { get_my_address } from "../../Redux/actions/profile";
 
 
 const MyAddresses = () => {
 
-  const [address, setAddress] = useState([])
+  const dispatch = useDispatch()
+  const { address } = useSelector(state => state.root.profile)
 
   useEffect(() => {
-    fetch_address()
+    dispatch(get_my_address())
   }, []);
-
-  const fetch_address = async () => {
-    const { data } = await common_axios.get('/addresses')
-    if (data.data) {
-      setAddress(data.data)
-    }
-    console.log(data)
-  }
 
   if (address.length == 0) {
     return <MyAddresses_Home />

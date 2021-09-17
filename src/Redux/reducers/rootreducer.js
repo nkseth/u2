@@ -12,6 +12,7 @@ import {
 } from "./designHomePageReducer";
 import mainreducer from "./mainReducer";
 import measurement_reducer from "./measurement";
+import profile_reducer from "./profileReducer";
 
 const rootreducer = combineReducers({
   login: loginreducer,
@@ -24,6 +25,7 @@ const rootreducer = combineReducers({
   topSeasonOffers: topSeasonOffersReducer,
   handMadeClothes: handMadeClothesReducer,
   main: mainreducer,
+  profile:profile_reducer,
   measurement: measurement_reducer
 });
 

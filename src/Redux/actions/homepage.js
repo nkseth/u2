@@ -100,20 +100,6 @@ export const findCategorysByTitle = (title) => async (dispatch) => {
   }
 };
 
-export const get_designers = () => async (dispatch) => {
-  try {
-    const res = await HomepageDataService.getDesigners();
-    if(res.data.data){
-      dispatch({
-        type: GET_DESIGNERS,
-        payload: res.data.data,
-      });
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 
 export const get_section_1_sliders = () => async (dispatch) => {
   try {

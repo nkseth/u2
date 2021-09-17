@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Designers.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { get_designers } from "../../Redux/actions/homepage";
+import { get_designers } from "../../Redux/actions/profile";
 
 const Designers = () => {
 
   const dispatch = useDispatch()
-  const { designers } = useSelector(state => state.root.main)
+  const { designers } = useSelector(state => state.root.profile)
 
   useEffect(()=>{
    dispatch(get_designers())
   },[]);
 
-  console.log(designers)
   if(!designers){
     return null;
   }

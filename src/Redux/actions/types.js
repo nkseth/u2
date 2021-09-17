@@ -3,7 +3,6 @@ export const RETRIEVE_CATEGORIES = "RETRIEVE_CATEGORIES";
 export const UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
 export const DELETE_CATEGORIES = "DELETE_CATEGORIES";
 export const DELETE_ALL_CATEGORIES = "DELETE_ALL_CATEGORIES";
-export const GET_DESIGNERS = "GET_DESIGNERS"
 
 //designer-home-page
 export const GET_TOP_CATEGORY = "GET_TOP_CATEGORY";
@@ -49,6 +48,10 @@ export const UPPER_BODY = "UPPER_BODY";
 export const LOWER_BODY = "LOWER_BODY";
 export const BASIC_ID = "BASIC_ID"
 
+export const ORDER_SUMM = "ORDER_SUMM";
 
-//Order
-export const ORDER_SUMM = "ORDER_SUMM"
+//Profile
+export const ADDRESS = "ADDRESS";
+export const ORDERS = "ORDERS";
+export const REVIEWS = "REVIEWS"
+export const GET_DESIGNERS = "GET_DESIGNERS"

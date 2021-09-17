@@ -27,6 +27,7 @@ export default function Orders() {
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const productImg =
     "https://images.pexels.com/photos/2882694/pexels-photo-2882694.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+
   return (
     <Container
       bottomDivider
@@ -72,8 +73,8 @@ export default function Orders() {
                   <span className={styles.price}>₹{Math.round(parseFloat(item.grand_total_raw)).toFixed(2)}</span>
                 </div>
               </div>
-              {!item.feedback_id ?  <Rating item={item} set_is_reviewed={set_is_reviewed} id={item.items?.length > 0 ? item.items[0].id : null}/> : null}
-               </>
+                {!item.feedback_id ? <Rating item={item} set_is_reviewed={set_is_reviewed} id={item.items?.length > 0 ? item.items[0].id : null} /> : null}
+              </>
             )
           })}
         </div>

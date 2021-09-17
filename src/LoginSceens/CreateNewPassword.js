@@ -4,7 +4,7 @@ import { Button } from "@material-ui/core";
 import useLogin from "./useLogin";
 
 const CreateNewPassword = () => {
-  const { login_Model_Hide } = useLogin();
+  const { login_Model_Hide, login_Mode_Handler } = useLogin();
   return (
     <form className={styles.CreateNewPassword}>
       <div className={styles.CreateNewPassword_Title}>
@@ -20,7 +20,10 @@ const CreateNewPassword = () => {
         <input type="password" placeholder="password" />
       </div>{" "}
       <div className={styles.CreateNewPassword_Button}>
-        <Button onClick={login_Model_Hide}>Reset Password</Button>
+        <Button className={styles.Create_Button} onClick={login_Model_Hide}>Reset Password</Button>
+        <Button className={styles.GoBack_Button} onClick={() => login_Mode_Handler("ResetPassword")} type="submit">
+          Go Back
+        </Button>
       </div>
     </form>
   );

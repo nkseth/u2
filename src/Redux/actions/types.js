@@ -13,8 +13,8 @@ export const GET_TOP_DESIGNERS = "GET_TOP_DESIGNERS";
 export const GET_TOP_SEASON_OFFERS = "GET_TOP_SEASON_OFFERS";
 export const GET_HAND_MADE_CLOTHES = "GET_HAND_MADE_CLOTHES";
 
-export const GET_CATEGORY_GROUP = "GET_CATEGORY_GROUP"
-export const GET_CATEGORY_SUBGROUP = "GET_CATEGORY_SUBGROUP"
+export const GET_CATEGORY_GROUP = "GET_CATEGORY_GROUP";
+export const GET_CATEGORY_SUBGROUP = "GET_CATEGORY_SUBGROUP";
 
 //Authentication
 export const SIGNUP_CREDS = "SIGNUP_CREDS";
@@ -46,12 +46,12 @@ export const GENDER = "GENDER";
 export const BASIC_DETAILS = "BASIC_DETAILS";
 export const UPPER_BODY = "UPPER_BODY";
 export const LOWER_BODY = "LOWER_BODY";
-export const BASIC_ID = "BASIC_ID"
+export const BASIC_ID = "BASIC_ID";
 
 export const ORDER_SUMM = "ORDER_SUMM";
 
 //Profile
 export const ADDRESS = "ADDRESS";
 export const ORDERS = "ORDERS";
-export const REVIEWS = "REVIEWS"
-export const GET_DESIGNERS = "GET_DESIGNERS"
+export const REVIEWS = "REVIEWS";
+export const GET_DESIGNERS = "GET_DESIGNERS";

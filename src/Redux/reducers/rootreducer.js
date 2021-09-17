@@ -25,8 +25,8 @@ const rootreducer = combineReducers({
   topSeasonOffers: topSeasonOffersReducer,
   handMadeClothes: handMadeClothesReducer,
   main: mainreducer,
-  profile:profile_reducer,
-  measurement: measurement_reducer
+  profile: profile_reducer,
+  measurement: measurement_reducer,
 });
 
 export default rootreducer;

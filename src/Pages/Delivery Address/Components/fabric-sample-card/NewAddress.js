@@ -53,6 +53,7 @@ function NewAddress({ setAddAddress }) {
 
     return (
         <div className={styles.modal}  >
+            <div className={styles.OverLay} onClick={() => setAddAddress(false)}  ></div>
             <div className={styles.Popup}>
                 <IconButton className={styles.CloseBTN} onClick={() => setAddAddress(false)} ><img src={close} /></IconButton>
                 <div className={styles.newAddressContainer} >

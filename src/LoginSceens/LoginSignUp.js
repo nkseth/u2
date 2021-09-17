@@ -12,21 +12,12 @@ import ForgotPasswordOtp from "./ForgotPasswordOtp";
 import LoginOtpVarify from "./LoginOtpVarify";
 import useLogin from "./useLogin";
 import { Switch, Route } from "react-router-dom";
-/**
- * Hello And Hii i am neeraj and on Github neerajcodes Structure of Login screens like this
- * How Screen routes are work
- *
- *
- * Login   ----->  Login Varify
- * SignUp   ----->  SignUp Varify
- * Reset Password-----> Email Sent -----> Create New PassWord
- *
- */
 
 const Container = ({ children }) => {
   const { login_Model_Hide } = useLogin();
   return (
     <div className={styles.Container}>
+      <div className={styles.OverLay} onClick={login_Model_Hide}  ></div>
       <div className={styles.Container_Box}>
         <div className={styles.Close_Button}>
           <IconButton onClick={login_Model_Hide}>

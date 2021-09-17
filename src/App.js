@@ -46,6 +46,7 @@ import {
   Page_EditPayments,
   Page_Measurement,
   Page_MyAddresses,
+  Page_Wishlist,
   Page_Payments,
   Page_Review,
   Page_TrackOrders,
@@ -159,6 +160,7 @@ function App() {
         <Route path={"/measurement"} component={Page_Measurement} />
         <Route path={"/myaddresses"} component={Page_MyAddresses} />
         <Route path={"/addNewaddress"} component={Page_AddNewAddress} />
+        <Route path={"/wishlist"} component={Page_Wishlist} />
         <Route path={"/payments"} component={Page_Payments} />
         <Route path={"/editpayments"} component={Page_EditPayments} />
         <Route path={"/trackorder"} component={Page_TrackOrders} />

@@ -77,8 +77,8 @@ export default function Orders() {
                   <span className={styles.price}>₹{Math.round(parseFloat(item.grand_total)).toFixed(2)}</span>
                 </div>
               </div>
-              {!item.feedback_id ?  <Rating item={item} set_is_reviewed={set_is_reviewed} id={item.inventories.length > 0 ? item.inventories[0].product_id : null}/> : null}
-               </>
+                {!item.feedback_id ? <Rating item={item} set_is_reviewed={set_is_reviewed} id={item.inventories.length > 0 ? item.inventories[0].product_id : null} /> : null}
+              </>
             )
           })}
         </div>

@@ -1,5 +1,5 @@
-import React from "react";
-import IconButton from "@material-ui/core/IconButton";
+import React, { useState } from "react";
+import { IconButton, Button } from "@material-ui/core";
 import { Link, useLocation } from "react-router-dom";
 import Breadcrumb from "../Breadcrumb/breadcrumb";
 import styles from "./sideNavBar.module.scss";
@@ -21,8 +21,10 @@ import chatExpertIcon from "../../Images/side-navbar/chat.svg";
 import aboutUsIcon from "../../Images/side-navbar/aboutUs.svg";
 import contactUsIcon from "../../Images/side-navbar/contactUs.svg";
 import supportIcon from "../../Images/side-navbar/support.svg";
+import logoutIcon from "../../Images/side-navbar/logout.svg";
 import { useSelector } from "react-redux";
-
+import lock from "./Lock.svg"
+import close from "./close.svg"
 const navItems = [
   { name: "Designers", icon: designersIcon, path: "/designers/" },
   { name: "Measurement", icon: mesurementIcon, path: "/measurement/" },
@@ -40,37 +42,54 @@ const navItems = [
   { name: "About us", icon: aboutUsIcon, path: "/aboutus/" },
   { name: "Contact Us", icon: contactUsIcon, path: "/contactus/" },
   { name: "Support", icon: supportIcon, path: "/support/" },
+  { name: "Logout", icon: logoutIcon, fun: true },
 ];
 
 export default function SideNavbar() {
 
-
+  const [logoutModal, setLogoutModal] = useState(false)
   const { user_data } = useSelector(state => state.root.main)
 
   return (
-    <div className={styles.container}>
-      <div className={styles.breadcrumbDiv}>
-        <Breadcrumb path="Home /" activePath="Profile" />
-      </div>
-
-      <div className={styles.profileDiv}>
-        <img src={user_data.avatar} alt="profile" />
-        <div>
-          <span>{user_data.nice_name}</span>
-          <span>{user_data.email}</span>
-        </div>
-        <IconButton aria-label="settings">
-          <img src={settingsIcon} alt="settings" />
-        </IconButton>
-      </div>
-      <div className={styles.navItemsDiv}>
-        {navItems?.map((item) => (
-          <div className={styles.navItem}>
-            <img src={item.icon} alt={item.name} />
-            <Link to={item.path}>{item.name}</Link>
+    <>
+      {
+        logoutModal ?
+          <div className={styles.LogoutModal} >
+            <div className={styles.modal}>
+              <IconButton className={styles.CloseBtn} onClick={() => setLogoutModal(false)} ><img src={close} /></IconButton>
+              <img src={lock} className={styles.Img} />
+              <h2>Are you sure you want to logout?</h2>
+              <Button className={styles.YesBtn} onClick={() => alert('Logout Successuful')} >Yes</Button>
+              <Button className={styles.NoBtn} onClick={() => setLogoutModal(false)} >No</Button>
+            </div>
           </div>
-        ))}
+          :
+          <></>
+      }
+      <div className={styles.container}>
+        <div className={styles.breadcrumbDiv}>
+          <Breadcrumb path="Home /" activePath="Profile" />
+        </div>
+
+        <div className={styles.profileDiv}>
+          <img src={user_data.avatar} alt="profile" />
+          <div>
+            <span>{user_data.nice_name}</span>
+            <span>{user_data.email}</span>
+          </div>
+          <IconButton aria-label="settings">
+            <img src={settingsIcon} alt="settings" />
+          </IconButton>
+        </div>
+        <div className={styles.navItemsDiv}>
+          {navItems?.map((item) => (
+            <div className={styles.navItem} onClick={item.fun ? () => { setLogoutModal(!logoutModal) } : {}}  >
+              <img src={item.icon} alt={item.name} />
+              <Link to={item.path}>{item.name}</Link>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

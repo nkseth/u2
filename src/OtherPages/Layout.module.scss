@@ -31,11 +31,14 @@
   gap: 25px;
 }
 
-@media screen and (max-width: 835px) {
+@media screen and (max-width: 1070px) {
   .cardsDivOuterContainer {
     padding: 30px;
     width: auto;
   }
+}
+  @media screen and (max-width: 900px) {
+
   .headerDiv {
     width: auto;
   }
@@ -43,7 +46,6 @@
     display: flex;
     width: 100%;
     box-sizing: border-box;
-    flex-direction: column;
   }
   @media screen and (max-width: 550px) {
     .cardsDivOuterContainer {

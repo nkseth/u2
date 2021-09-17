@@ -12,7 +12,7 @@ export default function Layout({
   breadcrumbpath,
   breadcrumbactivePath,
 }) {
-  const tabView = useMediaQuery("(max-width:768px)");
+  const tabView = useMediaQuery("(max-width:835px)");
   return (
     <Container
       bottomDivider

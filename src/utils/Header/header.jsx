@@ -90,12 +90,13 @@ export default function Header() {
 
   const profileFnc = () => {
     if (Object.keys(user_data)?.length != 0) {
-      history.push('/profile')
+      history.push('/profile');
     } else {
       login_Model_Show()
     }
   }
-
+  const LogedIn = Object.keys(user_data)?.length != 0
+  const image = LogedIn ? user_data.avatar : PersonIcon
 
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
@@ -194,10 +195,9 @@ export default function Header() {
             <IconButton aria-label="my account">
               <div
                 onClick={profileFnc}
-                // to="/profile"
                 style={{ display: "grid", placeContent: "center" }}
               >
-                <img src={PersonIcon} alt="my account" />
+                <img src={image} style={LogedIn ? { width: "1.3em", borderRadius: "100%" } : {}} />
               </div>
             </IconButton>
             <IconButton aria-label="favorites">

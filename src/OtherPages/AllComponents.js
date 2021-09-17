@@ -11,6 +11,7 @@ import ChatExpert from "./Chat/ChatExpert";
 import TrackOrders from "./TrackOrders/TrackOrders";
 import Review from "./Review/Review";
 import Container from "../utils/Container/container";
+import WishListPage from "./Wishlist/WishList";
 
 export const Page_Profile = () => {
   return (
@@ -37,6 +38,13 @@ export const Page_Measurement = () => {
   return (
     <Layout title={"Measurement"}>
       <Measurement />
+    </Layout>
+  );
+};
+export const Page_Wishlist = () => {
+  return (
+    <Layout title={"Wishlist"}>
+      <WishListPage />
     </Layout>
   );
 };

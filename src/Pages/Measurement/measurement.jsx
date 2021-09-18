@@ -9,7 +9,7 @@ import styles from "./measurement.module.scss";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 //image
-import img from "./body.png"
+import img from "./body.png";
 import { useSelector } from "react-redux";
 import common_axios from "../../utils/axios.config";
 import { SuccessPopUp } from "../Payment/payment";
@@ -36,71 +36,82 @@ import {
   ThighData,
   CalfData,
   AnkleData,
-  Basic_id
-
-} from "../../Redux/MeasuremantData"
+  Basic_id,
+} from "../../Redux/MeasuremantData";
 export default function Measurement() {
   const history = useHistory();
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
-  const { gender, upper_body, lower_body, basic_id } = useSelector(state => state.root.measurement);
+  const { gender, upper_body, lower_body, basic_id } = useSelector(
+    (state) => state.root.measurement
+  );
 
   const { neck, chest, wrist, shoulder, arm_hole, sleeve } = upper_body;
-  const { waist, hip_round, full_length, inseam, thigh, calf, ankle } = lower_body;
-  const [OrderDone, SetOrderDone] = useState(false)
+  const { waist, hip_round, full_length, inseam, thigh, calf, ankle } =
+    lower_body;
+  const [OrderDone, SetOrderDone] = useState(false);
 
   const toggle = () => {
     SetOrderDone(false);
-    history.push('/viewmeasurement')
-  }
-  
+    history.push("/viewmeasurement");
+  };
+
   const onSubmit = async () => {
+    try {
+      const { data: upper_data } = await common_axios.post(
+        "/save_measurment_value",
+        {
+          type: "Upper",
+          measur_basic_id: Basic_id,
+          neck: parseFloat(NeckData),
+          shoulder: parseFloat(ShoulderData),
+          chest: parseFloat(ChestData),
+          arm: parseFloat(ArmHoleData),
+          wrist: parseFloat(WristData),
+          //back_waist:
+        }
+      );
 
-    try{
-      const { data: upper_data } = await common_axios.post('/save_measurment_value', {
-        type: "Upper",
-        measur_basic_id: Basic_id,
-        neck: parseFloat(NeckData),
-        shoulder: parseFloat(ShoulderData),
-        chest: parseFloat(ChestData),
-        arm: parseFloat(ArmHoleData),
-        wrist: parseFloat(WristData),
-        //back_waist: 
-      });
+      const { data: lower_data } = await common_axios.post(
+        "/save_measurment_value",
+        {
+          type: "Lower",
+          measur_basic_id: Basic_id,
+          full_length: parseFloat(FullLengthData),
+          hip_round: parseFloat(HipRoundData),
+          in_seam: parseFloat(InSeamData),
+          thigh: parseFloat(ThighData),
+          waist: parseFloat(WaistData),
+          calf: parseFloat(CalfData),
+          ankle: parseFloat(AnkleData),
+          //back_waist:
+        }
+      );
 
-      const { data: lower_data } = await common_axios.post('/save_measurment_value', {
-        type: "Lower",
-        measur_basic_id: Basic_id,
-        full_length: parseFloat(FullLengthData),
-        hip_round: parseFloat(HipRoundData),
-        in_seam: parseFloat(InSeamData),
-        thigh: parseFloat(ThighData),
-        waist: parseFloat(WaistData),
-        calf: parseFloat(CalfData),
-        ankle:parseFloat(AnkleData)
-        //back_waist: 
-      });
-  
-      console.log(upper_data, lower_data)
-      SetOrderDone(true)
-    } catch(e){
-      console.log(e)
+      console.log(upper_data, lower_data);
+      SetOrderDone(true);
+    } catch (e) {
+      console.log(e);
     }
-  }
+  };
 
   return (
     <Container bottomDivider footerOnTabMob>
-      {
-        OrderDone ?
-          <SuccessPopUp toggle={toggle} title={'Your measurement added successfully and your order is placed'} />
-
-          :
-          <></>
-      }
+      {OrderDone ? (
+        <SuccessPopUp
+          toggle={toggle}
+          title={"Your measurement added successfully and your order is placed"}
+        />
+      ) : (
+        <></>
+      )}
       <section className={styles.section}>
         <div style={{ padding: mobileView && "0 1rem", marginTop: "1em" }}>
-          <Breadcrumb path={`Home / ${gender == 'male' ? 'Men' : 'Women'} /`} activePath='Measurements' />
+          <Breadcrumb
+            path={`Home / ${gender == "male" ? "Men" : "Women"} /`}
+            activePath="Measurements"
+          />
         </div>
 
         <Grid
@@ -109,7 +120,7 @@ export default function Measurement() {
         >
           <Grid item xs={12} sm={12} md={5} style={{ height: "100%" }}>
             <div className={styles.modelImgContainer}>
-              <img src={img} alt='all body details' />
+              <img src={img} alt="all body details" />
             </div>
           </Grid>
           {!tabView && !mobileView && (
@@ -132,32 +143,54 @@ export default function Measurement() {
               )}
             >
               <div className={styles.OtherInfoDiv}>
-                <span> <h1>Name:</h1><h3>{Customer_Name}</h3> </span>
-                <span> <h1>Gender:</h1><h3>{Customer_Gender}</h3> </span>
-                <span> <h1>Standard size:</h1><h3>{Customer_Size}</h3> </span>
-                <span> <h1>Fitting:</h1><h3>{Customer_Fitting}</h3> </span>
+                <span>
+                  {" "}
+                  <h1>Name:</h1>
+                  <h3>{Customer_Name}</h3>{" "}
+                </span>
+                <span>
+                  {" "}
+                  <h1>Gender:</h1>
+                  <h3>{Customer_Gender}</h3>{" "}
+                </span>
+                <span>
+                  {" "}
+                  <h1>Standard size:</h1>
+                  <h3>{Customer_Size}</h3>{" "}
+                </span>
+                <span>
+                  {" "}
+                  <h1>Fitting:</h1>
+                  <h3>{Customer_Fitting}</h3>{" "}
+                </span>
               </div>
               <Grid item xs={12}>
                 <div className={styles.detailsHeader}>Upper Body</div>
               </Grid>
               <Grid item xs={12}></Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>1. Neck</span> <div>{NeckData === '' ? '-' : NeckData}</div>
+                <span>1. Neck</span>{" "}
+                <div>{NeckData === "" ? "-" : NeckData}</div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>2. Shoulder</span> <div>{ShoulderData === '' ? '-' : ShoulderData}</div>
+                <span>2. Shoulder</span>{" "}
+                <div>{ShoulderData === "" ? "-" : ShoulderData}</div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>3. Chest</span> <div>{ChestData === '' ? '-' : ChestData}</div>
+                <span>3. Chest</span>{" "}
+                <div>{ChestData === "" ? "-" : ChestData}</div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>4. Arm Hole</span> <div>{ArmHoleData === '' ? '-' : ArmHoleData}</div>
+                <span>4. Arm Hole</span>{" "}
+                <div>{ArmHoleData === "" ? "-" : ArmHoleData}</div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>5. Sleeve Length</span> <div>{SleeveLengthData === '' ? '-' : SleeveLengthData}</div>
+                <span>5. Sleeve Length</span>{" "}
+                <div>{SleeveLengthData === "" ? "-" : SleeveLengthData}</div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>6. Wrist</span> <div>{WristData === '' ? '-' : WristData}</div>
+                <span>6. Wrist</span>{" "}
+                <div>{WristData === "" ? "-" : WristData}</div>
               </Grid>
               {/* <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>7. Arm</span> <div>{}</div>
@@ -174,31 +207,37 @@ export default function Measurement() {
                 styles.gridContainer
               )}
             >
-
               <Grid item xs={12}>
                 <span className={styles.detailsHeader}>Lower Body</span>
               </Grid>
               <Grid item xs={12}></Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>1. Waist</span> <div>{WaistData === '' ? '-' : WaistData}</div>
+                <span>1. Waist</span>{" "}
+                <div>{WaistData === "" ? "-" : WaistData}</div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>2. Full Length</span> <div>{FullLengthData === '' ? '-' : FullLengthData}</div>
+                <span>2. Full Length</span>{" "}
+                <div>{FullLengthData === "" ? "-" : FullLengthData}</div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>3. Hip Round</span> <div>{HipRoundData === '' ? '-' : HipRoundData}</div>
+                <span>3. Hip Round</span>{" "}
+                <div>{HipRoundData === "" ? "-" : HipRoundData}</div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>4. InSeam</span> <div>{InSeamData === '' ? '-' : InSeamData}</div>
+                <span>4. InSeam</span>{" "}
+                <div>{InSeamData === "" ? "-" : InSeamData}</div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>5. Thigh</span> <div>{ThighData === '' ? '-' : ThighData}</div>
+                <span>5. Thigh</span>{" "}
+                <div>{ThighData === "" ? "-" : ThighData}</div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>6. Calf</span> <div>{CalfData === '' ? '-' : CalfData}</div>
+                <span>6. Calf</span>{" "}
+                <div>{CalfData === "" ? "-" : CalfData}</div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>7. Ankle</span> <div>{AnkleData === '' ? '-' : AnkleData}</div>
+                <span>7. Ankle</span>{" "}
+                <div>{AnkleData === "" ? "-" : AnkleData}</div>
               </Grid>
             </Grid>
             <Grid
@@ -210,22 +249,20 @@ export default function Measurement() {
                 <Link to={`/add-measurement-body-measurement-${gender}`}>
                   <Button
                     className={cx(styles.button, styles.backBtn)}
-                    variant='contained'
-                    color='default'
+                    variant="contained"
+                    color="default"
                     startIcon={<ArrowBackIcon />}
                   >
-
                     Back
                   </Button>
                 </Link>
-
               </Grid>
               <Grid item xs={6} sm={6} md={6}>
                 <Button
-                  variant='contained'
+                  variant="contained"
                   className={cx(styles.button, styles.addToBagBtn)}
-                  color='default'
-                  onClick={() => onSubmit()}
+                  color="default"
+                  onClick={onSubmit}
                 >
                   Save
                 </Button>

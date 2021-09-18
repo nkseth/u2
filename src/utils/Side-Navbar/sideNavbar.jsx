@@ -22,9 +22,10 @@ import aboutUsIcon from "../../Images/side-navbar/aboutUs.svg";
 import contactUsIcon from "../../Images/side-navbar/contactUs.svg";
 import supportIcon from "../../Images/side-navbar/support.svg";
 import logoutIcon from "../../Images/side-navbar/logout.svg";
-import { useSelector } from "react-redux";
-import lock from "./Lock.svg"
-import close from "./close.svg"
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../Redux/actions/auth";
+import lock from "./Lock.svg";
+import close from "./close.svg";
 const navItems = [
   { name: "Designers", icon: designersIcon, path: "/designers/" },
   { name: "Measurement", icon: mesurementIcon, path: "/measurement/" },
@@ -46,26 +47,43 @@ const navItems = [
 ];
 
 export default function SideNavbar() {
+  const dispatch = useDispatch();
 
-  const [logoutModal, setLogoutModal] = useState(false)
-  const { user_data } = useSelector(state => state.root.main)
+  const [logoutModal, setLogoutModal] = useState(false);
+  const { user_data } = useSelector((state) => state.root.main);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    alert("Logout Successuful");
+  };
 
   return (
     <>
-      {
-        logoutModal ?
-          <div className={styles.LogoutModal} >
-            <div className={styles.modal}>
-              <IconButton className={styles.CloseBtn} onClick={() => setLogoutModal(false)} ><img src={close} /></IconButton>
-              <img src={lock} className={styles.Img} />
-              <h2>Are you sure you want to logout?</h2>
-              <Button className={styles.YesBtn} onClick={() => alert('Logout Successuful')} >Yes</Button>
-              <Button className={styles.NoBtn} onClick={() => setLogoutModal(false)} >No</Button>
-            </div>
+      {logoutModal ? (
+        <div className={styles.LogoutModal}>
+          <div className={styles.modal}>
+            <IconButton
+              className={styles.CloseBtn}
+              onClick={() => setLogoutModal(false)}
+            >
+              <img src={close} />
+            </IconButton>
+            <img src={lock} className={styles.Img} />
+            <h2>Are you sure you want to logout?</h2>
+            <Button className={styles.YesBtn} onClick={logoutHandler}>
+              Yes
+            </Button>
+            <Button
+              className={styles.NoBtn}
+              onClick={() => setLogoutModal(false)}
+            >
+              No
+            </Button>
           </div>
-          :
-          <></>
-      }
+        </div>
+      ) : (
+        <></>
+      )}
       <div className={styles.container}>
         <div className={styles.breadcrumbDiv}>
           <Breadcrumb path="Home /" activePath="Profile" />
@@ -83,7 +101,16 @@ export default function SideNavbar() {
         </div>
         <div className={styles.navItemsDiv}>
           {navItems?.map((item) => (
-            <div className={styles.navItem} onClick={item.fun ? () => { setLogoutModal(!logoutModal) } : {}}  >
+            <div
+              className={styles.navItem}
+              onClick={
+                item.fun
+                  ? () => {
+                      setLogoutModal(!logoutModal);
+                    }
+                  : {}
+              }
+            >
               <img src={item.icon} alt={item.name} />
               <Link to={item.path}>{item.name}</Link>
             </div>

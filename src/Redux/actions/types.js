@@ -55,3 +55,12 @@ export const ADDRESS = "ADDRESS";
 export const ORDERS = "ORDERS";
 export const REVIEWS = "REVIEWS";
 export const GET_DESIGNERS = "GET_DESIGNERS";
+
+//Wishlist Page
+export const ADD_TO_BAG = "ADD_TO_BAG";
+export const GET_WISHLIST = "GET_WISHLIST";
+export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
+export const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST";
+
+//User Authentication
+export const LOGOUT = "LOGOUT";

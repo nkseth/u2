@@ -13,6 +13,12 @@ import {
 import mainreducer from "./mainReducer";
 import measurement_reducer from "./measurement";
 import profile_reducer from "./profileReducer";
+import {
+  addToBagReducer,
+  getWishListReducer,
+  removeFromWishlistReducer,
+} from "./wishlistReducer";
+import { authReducer } from "./authReducer";
 
 const rootreducer = combineReducers({
   login: loginreducer,
@@ -27,6 +33,10 @@ const rootreducer = combineReducers({
   main: mainreducer,
   profile: profile_reducer,
   measurement: measurement_reducer,
+  addToBag: addToBagReducer,
+  auth: authReducer,
+  wishList: getWishListReducer,
+  removeFromWishlist: removeFromWishlistReducer,
 });
 
 export default rootreducer;

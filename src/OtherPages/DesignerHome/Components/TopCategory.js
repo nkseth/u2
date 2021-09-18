@@ -6,24 +6,10 @@ import { topCategories } from "../../../Redux/actions/designerHomePage";
 import { Link } from "react-router-dom";
 
 const TopCategory = () => {
+  
   const dispatch = useDispatch();
 
   const { category_grp } = useSelector((state) => state.root.main);
-
-  // useEffect(() => {
-  //   dispatch(topCategories({ slug: "womens-fashion" }));
-  // }, []);
-
-  // const filteredCategories = categories?.filter(
-  //   ({ slug }) =>
-  //     slug.toLowerCase() === "mens-fashion" ||
-  //     slug.toLowerCase() === "womens-fashion" ||
-  //     slug.toLowerCase() === "kids-fashion"
-  // );
-
-  // if(!filteredCategories){
-  //   return null;
-  // }
 
   const baseStyle = {};
   return (

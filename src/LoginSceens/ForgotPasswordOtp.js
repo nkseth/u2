@@ -13,7 +13,7 @@ const ForgotPasswordOtp = () => {
         <p>
           Please enter the OTP sent to number +91987654321
           <b>
-            <Link style={{ color: '#0000EE' }}>change</Link>
+            <Link style={{ color: "#0000EE" }}>change</Link>
           </b>
         </p>
       </div>
@@ -32,16 +32,23 @@ const ForgotPasswordOtp = () => {
         />
       </div>
       <div className={styles.ForgotPasswordOtp_Button}>
-        <Button className={styles.GetBTN} onClick={() => login_Mode_Handler("EmailSent")}>
+        <Button
+          className={styles.GetBTN}
+          onClick={() => login_Mode_Handler("EmailSent")}
+        >
           Get Started
         </Button>
-        <Button className={styles.GoBack_Button} onClick={() => login_Mode_Handler("ResetPassword")} type="submit">
+        <Button
+          className={styles.GoBack_Button}
+          onClick={() => login_Mode_Handler("ResetPassword")}
+          type="submit"
+        >
           Go Back
         </Button>
       </div>
       <div className={styles.ForgotPasswordOtp_Bottom}>
         <Link>
-          Didn't receive code? <b style={{ color: '#0000EE' }}>Resend code</b>
+          Didn't receive code? <b style={{ color: "#0000EE" }}>Resend code</b>
         </Link>
       </div>
     </form>

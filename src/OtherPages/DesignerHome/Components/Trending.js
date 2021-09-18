@@ -11,7 +11,11 @@ const Trending = () => {
   const dispatch = useDispatch();
   const imageSrc =
     "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  const baseStyle = { padding: "5rem 3rem", background: "  #F3F1EE", maginTop: "-3em" };
+  const baseStyle = {
+    padding: "5rem 3rem",
+    background: "  #F3F1EE",
+    maginTop: "-3em",
+  };
 
   // const { push } = useLocation();
   const { push } = useHistory();
@@ -26,7 +30,10 @@ const Trending = () => {
   if (items) {
     return (
       <div className={styles.trending_content} style={baseStyle}>
-        <div className={`${styles.Trending_header}`} style={{ color: "#1A202C" }}  >
+        <div
+          className={`${styles.Trending_header}`}
+          style={{ color: "#1A202C" }}
+        >
           Trending
           <CustomDivider style={{ height: "1px", background: "#857250" }} />
         </div>
@@ -34,18 +41,20 @@ const Trending = () => {
           {items?.map((item) => (
             <div key={item.name} className={styles.Trending_Items}>
               <img src={item.cover_image} alt={item.name} />
-              <div >
-                <Link to="designers-product-page" to={{ pathname: `/designers-product-page/${item.slug}` }}>{item.name}</Link>
+              <div>
+                <Link
+                  to="designers-product-page"
+                  to={{ pathname: `/designers-product-page/${item.slug}` }}
+                >
+                  {item.name}
+                </Link>
               </div>
             </div>
           ))}
-
         </div>
         <div className={`${styles.Trending_Button}`}>
           <Link to="/designers-product-page/blazers-and-coats">
-            <Button>
-              View all
-            </Button>
+            <Button>View all</Button>
           </Link>
         </div>
       </div>

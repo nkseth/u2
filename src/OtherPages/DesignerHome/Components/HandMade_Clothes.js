@@ -13,8 +13,8 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/HandMade_Clothes.module.scss";
-import h1 from '../Images/h1.png'
-import h2 from '../Images/h2.png'
+import h1 from "../Images/h1.png";
+import h2 from "../Images/h2.png";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handMadeClothes } from "../../../Redux/actions/designerHomePage";
@@ -32,10 +32,10 @@ const HandMade_Clothes = () => {
     dispatch(handMadeClothes());
   }, []);
 
-  const theme = useTheme()
-  const match = useMediaQuery(theme.breakpoints.down('xs'))
-  const iPade = useMediaQuery(theme.breakpoints.down('sm'))
-  const CustomView = useMediaQuery("(max-width:550px)")
+  const theme = useTheme();
+  const match = useMediaQuery(theme.breakpoints.down("xs"));
+  const iPade = useMediaQuery(theme.breakpoints.down("sm"));
+  const CustomView = useMediaQuery("(max-width:550px)");
 
   if (!clothes) {
     return null;
@@ -56,13 +56,22 @@ const HandMade_Clothes = () => {
         >
           <Slider>
             {clothes?.map(({ id, cover_image, name, slug }, i) => (
-              <Slide index={i} key={id} style={CustomView ? { marginLeft: 0, marginRight: 0 } : { marginLeft: 20, marginRight: 20, }} >
+              <Slide
+                index={i}
+                key={id}
+                style={
+                  CustomView
+                    ? { marginLeft: 0, marginRight: 0 }
+                    : { marginLeft: 20, marginRight: 20 }
+                }
+              >
                 <div className={styles.SuitWear}>
                   <div className={styles.SuitWear_Items}>
                     <img src={cover_image} alt={name} />
-                    <Link to={`/designers-product-page/${slug}`}><a>{name}</a></Link>
+                    <Link to={`/designers-product-page/${slug}`}>
+                      <a>{name}</a>
+                    </Link>
                   </div>
-
                 </div>
               </Slide>
             ))}
@@ -75,7 +84,6 @@ const HandMade_Clothes = () => {
 
               </div>
             </div> */}
-
           </Slider>
           <DotGroup style={{ display: "flex", marginTop: "2rem" }} />
           <div className={styles.NavigationContainer}>
@@ -105,7 +113,6 @@ export default HandMade_Clothes;
 
 // const CarouselSlide1 = () => {
 
-
 //   return (
 //     <div style={{ width: "100%" }} >
 //       <div className={styles.SuitWear}>
@@ -121,7 +128,6 @@ export default HandMade_Clothes;
 
 // const CarouselSlide2 = () => {
 
-
 //   return (
 //     <div className>
 //       <div className={styles.SuitWear}>
@@ -131,15 +137,12 @@ export default HandMade_Clothes;
 //           <Link to="designers-product-page">Indian ethinic Wear</Link>
 //         </div>{" "}
 
-
 //       </div>
 //     </div>
 //   );
 // };
 
-
 // const CarouselSlide3 = () => {
-
 
 //   return (
 //     <div className>
@@ -164,7 +167,6 @@ export default HandMade_Clothes;
 // };
 // const CarouselSlide4 = () => {
 
-
 //   return (
 //     <div className>
 //       <div className={styles.SuitWear}>
@@ -187,7 +189,6 @@ export default HandMade_Clothes;
 //   );
 // };
 // const CarouselSlide5 = () => {
-
 
 //   return (
 //     <div className>
@@ -212,7 +213,6 @@ export default HandMade_Clothes;
 // };
 // const CarouselSlide6 = () => {
 
-
 //   return (
 //     <div className>
 //       <div className={styles.SuitWear}>
@@ -235,7 +235,6 @@ export default HandMade_Clothes;
 //   );
 // };
 // const CarouselSlide7 = () => {
-
 
 //   return (
 //     <div className>

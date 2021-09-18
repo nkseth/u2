@@ -24,21 +24,21 @@ function DesignerProductPage({ match }) {
   const { params: { slug } } = match;
 
   const [product, setProduct] = useState([])
-  const [ category, setCategory] = useState({})
+  const [category, setCategory] = useState({})
   const [loading, setLoading] = useState(true)
   const [filters, setFilters] = useState([])
- 
-  useEffect(()=>{
-      fetch_products()
-  },[slug])
+
+  useEffect(() => {
+    fetch_products()
+  }, [slug])
 
 
   const fetch_products = async () => {
-    const { data } = await common_axios.post(`/product_by_category`,{
+    const { data } = await common_axios.post(`/product_by_category`, {
       slug
     })
 
-    if(data.product){
+    if (data.product) {
       setProduct(data.product)
       setCategory(data.category)
     }
@@ -46,32 +46,23 @@ function DesignerProductPage({ match }) {
   }
 
   const fetch_filters = async () => {
-    const { data } = await common_axios.post(`/product_by_category`,{
+    const { data } = await common_axios.post(`/product_by_category`, {
       slug
     })
 
-    if(data.product){
+    if (data.product) {
       setProduct(data.product)
       setCategory(data.category)
     }
   }
 
   console.log(product)
-  if(loading){
+  if (loading) {
     return null
   }
 
   return (
     <Container bottomDivider footerOnAllView>
-      {/* {!tabViewPro && (
-        <CustomSection style={{ background: "grey" }} >
-          <Breadcrumb
-            path='Designers Home / Men /'
-            activePath='Designer Profile'
-          />
-        </CustomSection>
-      )} */}
-
       <div className={styles.container}>
         {!tabViewPro && (
           <div className={styles.FilterBreadDiv}>
@@ -85,12 +76,10 @@ function DesignerProductPage({ match }) {
 
             )}
             <div className={styles.firstSection}>
-
               <Filter />
             </div>
           </div>
         )}
-
         <div className={styles.secondSection}>
           <div style={{ padding: "1rem 1rem 5rem" }}>
             {tabViewPro && (
@@ -100,7 +89,6 @@ function DesignerProductPage({ match }) {
                   activePath={category.name || 'product'}
                 />
               </div>
-
             )}
             <ProductsSection products={product} />
           </div>

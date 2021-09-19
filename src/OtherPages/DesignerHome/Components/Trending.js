@@ -39,17 +39,17 @@ const Trending = () => {
         </div>
         <div className={styles.Trending}>
           {items?.map((item) => (
-            <div key={item.name} className={styles.Trending_Items}>
-              <img src={item.cover_image} alt={item.name} />
-              <div>
-                <Link
-                  to="designers-product-page"
-                  to={{ pathname: `/designers-product-page/${item.slug}` }}
-                >
+            <Link
+              to="designers-product-page"
+              to={{ pathname: `/designers-product-page/${item.slug}` }}
+            >
+              <div key={item.name} className={styles.Trending_Items}>
+                <img src={item.cover_image} alt={item.name} />
+                <div>
                   {item.name}
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className={`${styles.Trending_Button}`}>

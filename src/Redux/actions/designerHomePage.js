@@ -21,7 +21,6 @@ export const topTrending = () => async (dispatch) => {
         payload: data.trending_categories,
       });
     }
-    console.log(data, 'top_trend')
   } catch (err) {
     console.log(err);
     return Promise.reject(err);
@@ -36,7 +35,7 @@ export const topCategories = (params) => async (dispatch) => {
     }
     //console.log(data, 'top_cat')
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return Promise.reject(err);
   }
 };
@@ -49,7 +48,7 @@ export const suitWears = () => async (dispatch) => {
     }
     //console.log(data, 'suit_wear')
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return Promise.reject(err);
   }
 };
@@ -62,7 +61,7 @@ export const popularCategories = () => async (dispatch) => {
     }
     //console.log(data, 'pop_cat')
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return Promise.reject(err);
   }
 };
@@ -75,7 +74,7 @@ export const topDesigner = () => async (dispatch) => {
     }
     //console.log(data, 'top_des')
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return Promise.reject(err);
   }
 };
@@ -88,7 +87,7 @@ export const topSeasonOffers = () => async (dispatch) => {
     }
     //console.log(data, 'top_ses')
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return Promise.reject(err);
   }
 };
@@ -101,32 +100,39 @@ export const handMadeClothes = () => async (dispatch) => {
     }
     // console.log(data, 'hand_clths')
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return Promise.reject(err);
   }
 };
 
 export const getCategoryGroup = (val) => async (dispatch) => {
   try {
-    const { data } = await common_axios.get(`/category-grps/${val}`)
+    const { data } = await common_axios.get(`/category-grps/${val}`);
     if (data.data?.length > 0) {
-      dispatch({ type: GET_CATEGORY_GROUP, payload: { type: val, data: data.data[0] } });
+      dispatch({
+        type: GET_CATEGORY_GROUP,
+        payload: { type: val, data: data.data[0] },
+      });
     }
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return Promise.reject(err);
   }
-}
-
+};
 
 export const getCategorySubGroup = (val) => async (dispatch) => {
   try {
-    const { data } = await common_axios.get(`/category-subgrps/${val}`)
+    console.log(val);
+    const { data } = await common_axios.get(`/category-subgrps/${val}/10`);
+    console.log(data.data);
     if (data.data) {
-      dispatch({ type: GET_CATEGORY_SUBGROUP, payload: { type: val, data: data.data } });
+      dispatch({
+        type: GET_CATEGORY_SUBGROUP,
+        payload: { type: val, data: data.data },
+      });
     }
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return Promise.reject(err);
   }
-}
+};

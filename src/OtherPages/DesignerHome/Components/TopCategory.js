@@ -73,7 +73,7 @@ const CategoryItems = ({ heading, details, image, categories, slug }) => {
               />
               <div></div>
             </h2>
-            <div className={styles.hover}  >
+            <div className={styles.hover} >
               {categories?.map((item) => (
                 <Link key={item.id.toString()} to={{ pathname: `/designers-product-page/${item.slug}` }}>
                   <p>

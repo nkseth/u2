@@ -17,7 +17,7 @@ const Trending = () => {
     maginTop: "-3em",
   };
 
-  // const { push } = useLocation();
+  // const { push } = useLocation(); 
   const { push } = useHistory();
   const mobileView = useMediaQuery("(max-width:1024px)");
 

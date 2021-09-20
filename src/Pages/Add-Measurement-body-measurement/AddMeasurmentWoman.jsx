@@ -4,7 +4,6 @@ import styles from "./Styles/AddMeasurmentMan.module.scss"
 import { Button, useMediaQuery } from '@material-ui/core'
 import AccordionS from './Components/Accordion'
 import FloatingTag from './Components/FloatingTag'
-import DetailTab from './Components/DetailTab'
 
 import Image from "./Images/women/Woman.svg"
 import neck_image from "./Images/women/upper/neck.svg"
@@ -29,21 +28,6 @@ import { set_lower_body, set_upper_body } from '../../Redux/actions/measurement'
 import { Link } from 'react-router-dom'
 
 import {
-    // Measuremant Parameters
-    NeckData,
-    ShoulderData,
-    ChestData,
-    ArmHoleData,
-    SleeveLengthData,
-    WristData,
-    WaistData,
-    FullLengthData,
-    HipRoundData,
-    InSeamData,
-    ThighData,
-    CalfData,
-    AnkleData,
-
     // Measurement Functions
     NeckVALUE,
     ShoulderVALUE,

@@ -4,32 +4,28 @@ import styles from "./MegaMenu.module.scss";
 import { useSelector } from "react-redux";
 
 function MegaMenu({ Close, visible, type }) {
-  const { category_subgrp } = useSelector((state) => state.root.main);
-  const arr = category_subgrp[type];
+    const { category_subgrp } = useSelector((state) => state.root.main);
+    const arr = category_subgrp[type]
 
-  if (!arr) {
-    return null;
-  }
-  console.log(arr);
-  return (
-    <div
-      className={visible ? styles.container : styles.hiddenContainer}
-      onMouseLeave={() => Close(false)}
-    >
-      {arr.length > 0 &&
-        arr["sub-group"].map((item) => {
-          console.log(item);
-          return (
-            <MegaMenuCard
-              key={item.id?.toString()}
-              background={item.cover_image}
-              title={item.name}
-              categories={item.categories}
-            />
-          );
-        })}
-    </div>
-  );
+    return (
+        <div
+            className={visible ? styles.container : styles.hiddenContainer}
+            onMouseLeave={() => Close(false)}
+        >
+            {arr?.sub_grp?.map((item) => {
+                return (
+
+                    <MegaMenuCard
+                        key={item.id?.toString()}
+                        background={item.cover_image}
+                        title={item.name}
+                        categories={item.categories}
+                    />
+                );
+            })}
+        </div>
+    );
 }
+
 
 export default MegaMenu;

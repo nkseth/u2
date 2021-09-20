@@ -12,23 +12,34 @@ import ForgotPasswordOtp from "./ForgotPasswordOtp";
 import LoginOtpVarify from "./LoginOtpVarify";
 import useLogin from "./useLogin";
 import { Switch, Route } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Container = ({ children }) => {
   const { login_Model_Hide } = useLogin();
   return (
     <div className={styles.Container}>
-      <div className={styles.OverLay} onClick={login_Model_Hide}  ></div>
-      <div className={styles.Container_Box}>
-        <div className={styles.Close_Button}>
-          <IconButton onClick={login_Model_Hide}>
-            <CloseRounded />
-          </IconButton>
+      <motion.div
+        initial={{ scale: 0, rotate: 10 }}
+        animate={{ rotate: 0, scale: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 18
+        }}
+      >
+        <div className={styles.OverLay} onClick={login_Model_Hide}  ></div>
+        <div className={styles.Container_Box}>
+          <div className={styles.Close_Button}>
+            <IconButton onClick={login_Model_Hide}>
+              <CloseRounded />
+            </IconButton>
+          </div>
+          <div className={styles.Container_Image}>
+            <img src={Image} alt="login" />
+          </div>
+          {children}
         </div>
-        <div className={styles.Container_Image}>
-          <img src={Image} alt="login" />
-        </div>
-        {children}
-      </div>
+      </motion.div>
     </div>
   );
 };

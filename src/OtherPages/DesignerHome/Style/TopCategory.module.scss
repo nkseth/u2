@@ -16,7 +16,10 @@
     height: 603px;
     &:hover .hover{
       display: block;
-      transition:all  0.3s ease;
+      transition:  all 0.3s ease-in-out;
+      width: 100%;
+      height: 100%;  
+      opacity: 1;
     }
     &:hover .TopCategory_Items_Layer {
       background:rgba(0, 0, 0, 0.507) ;
@@ -36,6 +39,8 @@
       object-fit: cover;
       object-position: top;
       box-shadow: 0px 5px 10px #00000041;
+      
+
     }
     .main{
       margin-bottom: -2em!important;
@@ -45,7 +50,6 @@
       height: 100%;
       width: 100%;
       background: #00000000;
-      transition:  all 0.3s ease-in-out;
       display: flex;
       align-items: flex-end;
       .TopCategory_Items_Layer_text {
@@ -76,15 +80,17 @@
           font-size: 18px;
           font-weight: 500;
           padding-right: 2rem;
+          transition:  all 0.3s ease-in-out;
         }
       }
     }
   }
 }
 .hover{
-  display: none;
   transition:all  0.3s ease;
-
+  width: 0;
+  height: 0;  
+  opacity: 0;
 }
 .TopCategory_Button {
   display: flex;
@@ -117,7 +123,9 @@
         padding-right: 1rem !important;
       }
     }
-
+  }
+  .TopCategory_Items_Layer {  
+    height: 540px!important;
   }
   .hidden_web {
     display: block !important;
@@ -157,6 +165,7 @@
   }
   .TopCategory .TopCategory_Items:nth-of-type(1) {
     display: none !important;
+
   }
   .top_category_title {
     display: block;
@@ -214,6 +223,18 @@
       font-weight: 700;
       
     }
+  }
+  .TopCategory_Items_Layer {  
+      width: 100%!important;
+      height: 100%!important;
+      background-color: transparent!important;
+
+  }
+  .hover{
+    transition:all  0.3s ease;
+    width: 100%;
+    height: 100%;  
+    opacity: 1;
   }
 }
 

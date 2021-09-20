@@ -53,7 +53,7 @@ export default function ProductsSection(props) {
   };
 
   useEffect(() => {
-   setValue(props)
+    setValue(props)
   }, [props])
 
   return (
@@ -142,7 +142,7 @@ export default function ProductsSection(props) {
         {tabView &&
           <>
             {!isLoading ? products?.map((value, index) => (
-              <Grid item xs={6} sm={4} md={3} lg={3}>
+              <Grid item xs={6} sm={4} md={3} lg={3} style={{ display: "flex" }} >
                 <ProductCard
                   key={index.id?.toString()}
                   product={value}
@@ -155,7 +155,7 @@ export default function ProductsSection(props) {
         {!tabView &&
           <>
             {!isLoading ? products?.map((value, key) => (
-              <Grid item xs={6} sm={4} md={3} lg={3}>
+              <Grid item xs={6} sm={4} md={3} lg={3} style={{ display: "flex" }}>
                 <ProductCard
                   product={value}
                 />

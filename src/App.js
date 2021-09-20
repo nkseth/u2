@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
 //Pages
-import Container from '@material-ui/core/Container';
 import Home from "./Pages/Home-Page/home";
 import MensWear from "./Pages/Mens-Wear/mensWear";
 import Offer from "./Pages/Offer/offer";
@@ -23,7 +21,7 @@ import Payment from "./Pages/Payment/payment";
 import Offers from "./Pages/Offers/offers";
 import Orders from "./Pages/Orders/orders";
 import AllOrders from "./Pages/All-Orders/allOrders";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Polls from "./Pages/Polls/polls";
 import FashionTips from "./Pages/Daily-Fashion-Tips/fashionTips";
 import StyleGuideMan from "./Pages/Style-Guide-Man/style-guide-man";
@@ -46,6 +44,7 @@ import {
   Page_EditPayments,
   Page_Measurement,
   Page_MyAddresses,
+  Page_Wishlist,
   Page_Payments,
   Page_Review,
   Page_TrackOrders,
@@ -56,11 +55,9 @@ import DesignerHome from "./OtherPages/DesignerHome/DesignerHome";
 import { Page_Login } from "./LoginSceens/LoginSignUp";
 import useLogin from "./LoginSceens/useLogin";
 import MeasurementAndSimulation from "./OtherPages/MeasurementAndSimulation/MeasurementAndSimulation";
-import Designers from "./OtherPages/Designers/Designers";
 import { setUserData } from "./Redux/actions/homepage";
 import { useCookies } from 'react-cookie';
 
-import { StylesProvider } from "@material-ui/core";
 import styles from "./App.module.scss"
 import AddManMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentMan";
 import AddWomanMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentWoman";
@@ -129,7 +126,6 @@ function App() {
           path="/add-measurement-basic-details"
           component={AddMeasurementBasicDetails}
         />
-
         <Route
           path="/add-measurement-body-measurement-male"
           component={AddManMeasurement}
@@ -149,8 +145,8 @@ function App() {
         <Route path="/all-orders" component={AllOrders} />
         <Route path="/orders" component={Orders} />
         {/* other dev pages */}
-        {/* <Route path='/designers-home-page' component={DesignersHomePage} />
-         <Route path='/about' component={AboutPage} /> */}
+        {/* <Route path='/designers-home-page' component={DesignersHomePage} /> */}
+        {/* <Route path='/about' component={AboutPage} /> */}
 
         {/* Here New Pages Added */}
         <Route path={"/profile"} component={Page_Profile} />
@@ -159,6 +155,7 @@ function App() {
         <Route path={"/measurement"} component={Page_Measurement} />
         <Route path={"/myaddresses"} component={Page_MyAddresses} />
         <Route path={"/addNewaddress"} component={Page_AddNewAddress} />
+        <Route path={"/wishlist"} component={Page_Wishlist} />
         <Route path={"/payments"} component={Page_Payments} />
         <Route path={"/editpayments"} component={Page_EditPayments} />
         <Route path={"/trackorder"} component={Page_TrackOrders} />
@@ -184,7 +181,6 @@ function App() {
         <Route path={"/home/poll-question"} component={PollQuestion} />
         <Route path={"/home/poll-result"} component={PollResult} />
         <Route path={"/designer-posts"} component={DesignerPosts} />
-
         {/* New Urls */}
         <Route path={"/home/polls"} component={Polls} />
         <Route path={"/daily-fashion-tips"} component={FashionTips} />
@@ -196,7 +192,6 @@ function App() {
         <Route exact path={"/designer-page"} component={DesignersPage} />
         <Route path={"/home/poll-question"} component={PollQuestion} />
         <Route path={"/home/poll-result"} component={PollResult} />
-        {/* <Route exact path={"/designer-page/product"} component={Product} /> */}
       </Switch>
     </div>
   );

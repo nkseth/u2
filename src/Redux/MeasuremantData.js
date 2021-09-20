@@ -99,8 +99,7 @@ export const Customer_Name_Change = (value) => {
     localStorage.setItem('Customer_Name', Customer_Name);
 }
 
-
-
+localStorage.setItem('Customer_Size', 'S');
 export var Customer_Size = localStorage.getItem('Customer_Size')
 
 export const Customer_Size_Change = (value) => {
@@ -109,7 +108,7 @@ export const Customer_Size_Change = (value) => {
 }
 
 
-
+localStorage.setItem('Customer_Gender', 'male');
 export var Customer_Gender = localStorage.getItem('Customer_Gender')
 
 export const Customer_Gender_Change = (value) => {
@@ -118,7 +117,7 @@ export const Customer_Gender_Change = (value) => {
 }
 
 
-
+localStorage.setItem('Customer_Fitting', 'Regular');
 export var Customer_Fitting = localStorage.getItem('Customer_Fitting')
 
 export const Customer_Fitting_Change = (value) => {

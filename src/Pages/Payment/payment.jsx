@@ -66,7 +66,6 @@ export default function Payment({ match }) {
   }
 
   return (
-    // <Container bottomDivider footerOnTabMob>
     <div className={styles.PaymentHeader} >
       <div className={styles.Navbar}>
         <h1>LOGO</h1>
@@ -162,10 +161,9 @@ export default function Payment({ match }) {
                       color='default'
                       className={styles.payBtn}
                       onClick={() => {
-                        // Product_Type === 'Customised' ?
-                        initiate_payment()
-                        // :
-                        // history.push('/add-measurement-choose-standard-size')
+
+                        setPaymentDone(!PaymentDone)
+
                       }}
                     >
                       Pay
@@ -238,7 +236,8 @@ export default function Payment({ match }) {
 
 export function SuccessPopUp({ toggle, title, text, history, payment }) {
   return (
-    <div className={styles.modal}  >
+    <div className={styles.modal} >
+      <div className={styles.SecondLayer} onClick={toggle}   ></div>
       <div className={styles.Popup}>
         <IconButton className={styles.CloseBtn} onClick={toggle} ><img src={close} /></IconButton>
         <img src={tick} />

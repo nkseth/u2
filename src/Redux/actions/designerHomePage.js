@@ -121,7 +121,8 @@ export const getCategoryGroup = (val) => async (dispatch) => {
 
 export const getCategorySubGroup = (val) => async (dispatch) => {
   try {
-    const { data } = await common_axios.get(`/category-subgrps/${val}`)
+    const { data } = await common_axios.get(`/category-subgrps/${val}/10`)
+
     if (data.data) {
       dispatch({ type: GET_CATEGORY_SUBGROUP, payload: { type: val, data: data.data } });
     }

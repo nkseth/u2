@@ -61,10 +61,10 @@ export default function Orders() {
                 <img src={productImg} alt='product' />
                 <div>
                   <span className={styles.productHeader}>
-                    {item.items?.length > 0 ? item.items[0].title : null}
+                    {item.items?.length > 0 ? item.items[0].title : '10 Current Fashion Trends You’ll Be Wearing in 2021'}
                   </span>
                   <span className={styles.productDescription}>
-                    {item.items?.length > 0 ? item.items[0]?.description : null}
+                    {item.items?.length > 0 ? item.items[0]?.description : 'Solid Straight Kurta'}
                   </span>
                   <div className={styles.productQuantity}>
                     <span>Quantity:</span>

@@ -122,9 +122,14 @@ export const getCategoryGroup = (val) => async (dispatch) => {
 
 export const getCategorySubGroup = (val) => async (dispatch) => {
   try {
+<<<<<<< HEAD
     console.log(val);
     const { data } = await common_axios.get(`/category-subgrps/${val}/10`);
     console.log(data.data);
+=======
+    const { data } = await common_axios.get(`/category-subgrps/${val}/10`)
+
+>>>>>>> 46d6b6356c82ef61001a8655db4682d795b9f946
     if (data.data) {
       dispatch({
         type: GET_CATEGORY_SUBGROUP,

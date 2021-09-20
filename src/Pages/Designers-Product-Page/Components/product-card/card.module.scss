@@ -1,19 +1,19 @@
 .container {
-    height: 360px;
-    // width: 271px;
-  left: 501px;
-  top: 151.07861328125px;
+  max-height: 360px;
     transition: all 0.3s ease-in-out;
     border-radius: 0px;
   &:hover{
-    transform: scale(1.03);
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.534);
-    border-radius:5px ;
+    box-shadow: 0 0 20px #0000003b;
+    border-radius:5px;
     .productDetails{
       padding-left: 0.3em;
       transition: all 0.3s ease-in-out;
     }
+  .imgContainer {
+img{
+  border-radius: 5px 5px 0 0   ;
+}}
   }
   .imgContainer {
     position: relative;
@@ -22,7 +22,8 @@
 
     img {
       width: 100%;
-      border-radius:5px ;
+      object-fit: cover;
+      object-position: center;
 
     }
   }
@@ -71,10 +72,7 @@
 }
 
 @media screen and (max-width: 550px) {
-  .container{
-  margin-bottom: -4em;
 
-  }
   .imgContainer {
     > img {
       height: 180px !important;

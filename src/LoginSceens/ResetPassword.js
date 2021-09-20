@@ -28,7 +28,6 @@ const ResetPassword = () => {
   const { login_Mode_Handler } = useLogin();
   return (
     <form className={styles.ResetPassword}>
-      <IconButton className={styles.BackBtn} ><ArrowBackIcon /></IconButton>
       <div className={styles.ResetPassword_Title}>
         <h1 style={{ marginBottom: '1rem' }}>Reset Password</h1>
         <p>

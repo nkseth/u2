@@ -14,8 +14,9 @@
     width: 170px;
     font-size: 14px;
     margin: 0 auto;
-    color: #857250;
-    background-color: #fff;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0);
+    border: 2px solid #ffffff;
     font-weight: 500;
     display: flex;
     justify-content: center;
@@ -24,8 +25,9 @@
     text-transform: capitalize;
     // box-shadow: 0px 6px 10px #0000007d;
     &:hover {
-         background: #614c26b5;
+         background: #857250;
          color: #fff;
+         border: 2px solid #857250;
       }
   }
   h2 {

@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
 //Pages
-import Container from '@material-ui/core/Container';
 import Home from "./Pages/Home-Page/home";
 import MensWear from "./Pages/Mens-Wear/mensWear";
 import Offer from "./Pages/Offer/offer";
@@ -23,7 +21,7 @@ import Payment from "./Pages/Payment/payment";
 import Offers from "./Pages/Offers/offers";
 import Orders from "./Pages/Orders/orders";
 import AllOrders from "./Pages/All-Orders/allOrders";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Polls from "./Pages/Polls/polls";
 import FashionTips from "./Pages/Daily-Fashion-Tips/fashionTips";
 import StyleGuideMan from "./Pages/Style-Guide-Man/style-guide-man";
@@ -57,11 +55,9 @@ import DesignerHome from "./OtherPages/DesignerHome/DesignerHome";
 import { Page_Login } from "./LoginSceens/LoginSignUp";
 import useLogin from "./LoginSceens/useLogin";
 import MeasurementAndSimulation from "./OtherPages/MeasurementAndSimulation/MeasurementAndSimulation";
-import Designers from "./OtherPages/Designers/Designers";
 import { setUserData } from "./Redux/actions/homepage";
 import { useCookies } from 'react-cookie';
 
-import { StylesProvider } from "@material-ui/core";
 import styles from "./App.module.scss"
 import AddManMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentMan";
 import AddWomanMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentWoman";
@@ -130,7 +126,6 @@ function App() {
           path="/add-measurement-basic-details"
           component={AddMeasurementBasicDetails}
         />
-
         <Route
           path="/add-measurement-body-measurement-male"
           component={AddManMeasurement}

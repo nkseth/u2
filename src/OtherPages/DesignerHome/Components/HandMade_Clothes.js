@@ -75,15 +75,7 @@ const HandMade_Clothes = () => {
                 </div>
               </Slide>
             ))}
-            {/* <div style={{ width: "100%" }} >
-              <div className={styles.SuitWear}>
-                <div className={styles.SuitWear_Items}>
-                  <img src={cover_image} alt={name} />
-                  <a>{name}</a>
-                </div>
 
-              </div>
-            </div> */}
           </Slider>
           <DotGroup style={{ display: "flex", marginTop: "2rem" }} />
           <div className={styles.NavigationContainer}>

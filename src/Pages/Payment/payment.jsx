@@ -161,10 +161,9 @@ export default function Payment({ match }) {
                       color='default'
                       className={styles.payBtn}
                       onClick={() => {
-                        // Product_Type === 'Customised' ?
-                        initiate_payment()
-                        // :
-                        // history.push('/add-measurement-choose-standard-size')
+
+                        setPaymentDone(!PaymentDone)
+
                       }}
                     >
                       Pay

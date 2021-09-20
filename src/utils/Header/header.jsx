@@ -33,8 +33,7 @@ import { useCookies } from 'react-cookie';
 import MegaMenu from "./Components/MegaMenu";
 
 export default function Header() {
-
-  const history = useHistory()
+  const history = useHistory();
   const location = useLocation();
   const [currency, setCurrency] = useState("INR");
   const [cookies, setCookie] = useCookies(['user']);
@@ -59,8 +58,8 @@ export default function Header() {
     more: true,
   });
   const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
-  const [megaMenuType, setMegaMenuType] = useState('')
-  const { user_data } = useSelector(state => state.root.main)
+  const [megaMenuType, setMegaMenuType] = useState("men");
+  const { user_data } = useSelector((state) => state.root.main);
   //Here I use Redux For Show Login Model
   const { login_Model_Show } = useLogin();
 
@@ -90,13 +89,13 @@ export default function Header() {
 
   const profileFnc = () => {
     if (Object.keys(user_data)?.length != 0) {
-      history.push('/profile');
+      history.push("/profile");
     } else {
-      login_Model_Show()
+      login_Model_Show();
     }
-  }
-  const LogedIn = Object.keys(user_data)?.length != 0
-  const image = LogedIn ? user_data.avatar : PersonIcon
+  };
+  const LogedIn = Object.keys(user_data)?.length != 0;
+  const image = LogedIn ? user_data.avatar : PersonIcon;
 
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
@@ -113,7 +112,6 @@ export default function Header() {
 
     setDrawerOpen(open);
   };
-
 
   return (
     <div style={{ padding: mobileView ? "0 1em" : "0 3em", width: mobileView ? "100%" : "100%", marginLeft: "auto", marginRight: "auto" }} className={styles.headerShadow} >

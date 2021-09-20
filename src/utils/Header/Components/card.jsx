@@ -22,6 +22,7 @@ function CardOverlay({ title, categories }) {
         <div className={styles.CardOverlay} >
             <p className={styles.title} >{title}</p>
             <p className={styles.p}>
+                sujal
                 {categories.map((item) => {
                     return (
                         <>

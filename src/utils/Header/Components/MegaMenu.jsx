@@ -5,14 +5,14 @@ import { useSelector } from "react-redux";
 
 function MegaMenu({ Close, visible, type }) {
     const { category_subgrp } = useSelector((state) => state.root.main);
-    const arr = Object.values(category_subgrp);
-    console.log('arr', arr)
+    const arr = category_subgrp[type]
+
     return (
         <div
             className={visible ? styles.container : styles.hiddenContainer}
             onMouseLeave={() => Close(false)}
         >
-            {arr?.map((item) => {
+            {arr?.sub_grp?.map((item) => {
                 return (
 
                     <MegaMenuCard

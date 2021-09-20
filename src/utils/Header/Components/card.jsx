@@ -1,41 +1,38 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styles from "./card.module.scss";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styles from "./card.module.scss"
+
+
 
 function MegaMenuCard({ background, title, categories }) {
-    console.log(title);
     return (
-        <div
-            className={styles.card}
-            style={{
-                backgroundImage: "url(" + background + ")",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-            }}
-        >
+        <div className={styles.card} style={{ backgroundImage: "url(" + background + ")", backgroundPosition: "center", backgroundSize: "cover" }} >
             <CardOverlay title={title} categories={categories} />
         </div>
-    );
+    )
 }
 
-export default MegaMenuCard;
+export default MegaMenuCard
+
+
+
 
 function CardOverlay({ title, categories }) {
     return (
-        <div className={styles.CardOverlay}>
-            <p className={styles.title}>{title}</p>
+        <div className={styles.CardOverlay} >
+            <p className={styles.title} >{title}</p>
             <p className={styles.p}>
+                sujal
                 {categories.map((item) => {
                     return (
                         <>
-                            <Link to={{ pathname: `/designers-product-page/${item.slug}` }}>
-                                {item.name}
-                            </Link>
+                            <Link to={{ pathname: `/designers-product-page/${item.slug}` }}>{item.name}</Link>
                             <br />
                         </>
-                    );
+                    )
                 })}
             </p>
         </div>
-    );
+    )
 }
+

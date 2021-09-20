@@ -59,11 +59,7 @@ export default function Header() {
     offers: true,
     more: true,
   });
-  const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
-  const [megaMenuType, setMegaMenuType] = useState("men");
-  const { user_data } = useSelector((state) => state.root.main);
   //Here I use Redux For Show Login Model
-  const { login_Model_Show } = useLogin();
 
   const handleMouseEnter = (value) => {
     setMouseEnter({

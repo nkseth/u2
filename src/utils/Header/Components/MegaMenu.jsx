@@ -1,19 +1,18 @@
-import React from 'react'
-import MegaMenuCard from './card'
-import styles from "./MegaMenu.module.scss"
-import { useSelector } from 'react-redux'
-
+import React, { useEffect } from "react";
+import MegaMenuCard from "./card";
+import styles from "./MegaMenu.module.scss";
+import { useSelector } from "react-redux";
 
 function MegaMenu({ Close, visible, type }) {
     const { category_subgrp } = useSelector((state) => state.root.main);
-    const arr = category_subgrp[type]
-
+    const arr = Object.values(category_subgrp);
+    console.log('arr', arr)
     return (
         <div
             className={visible ? styles.container : styles.hiddenContainer}
             onMouseLeave={() => Close(false)}
         >
-            {arr?.sub_grp?.map((item) => {
+            {arr?.map((item) => {
                 return (
 
                     <MegaMenuCard

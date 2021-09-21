@@ -19,7 +19,10 @@ import {
   removeFromWishlistReducer,
 } from "./wishlistReducer";
 import { authReducer } from "./authReducer";
-import { filterCategoryReducer } from "./filterCategoryReducer";
+import {
+  filterCategoryReducer,
+  filteredProductReducer,
+} from "./filterCategoryReducer";
 
 const rootreducer = combineReducers({
   login: loginreducer,
@@ -39,6 +42,7 @@ const rootreducer = combineReducers({
   wishList: getWishListReducer,
   removeFromWishlist: removeFromWishlistReducer,
   filterCategory: filterCategoryReducer,
+  filteredProduct: filteredProductReducer,
 });
 
 export default rootreducer;

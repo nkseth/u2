@@ -13,7 +13,10 @@ import AllenSolly from "./Components/Sections/Products/Images/AllenSolly.png";
 import PeterEngland from "./Components/Sections/Products/Images/PeterEngland.png";
 import BeneKleed from "./Components/Sections/Products/Images/BeneKleed.png";
 import common_axios from "../../utils/axios.config";
-import { getFilterList } from "../../Redux/actions/filter-category";
+import {
+  getFilteredProduct,
+  getFilterList,
+} from "../../Redux/actions/filter-category";
 import { useDispatch, useSelector } from "react-redux";
 
 function DesignerProductPage({ match }) {
@@ -63,7 +66,10 @@ function DesignerProductPage({ match }) {
   if (loading) {
     return null;
   }
-
+  const filterProduct = (filterData) => {
+    // console.log(`FilterData`, filterData);
+    dispatch(getFilteredProduct(slug, filterData));
+  };
   return (
     <Container bottomDivider footerOnAllView>
       {/* {!tabViewPro && (
@@ -87,7 +93,7 @@ function DesignerProductPage({ match }) {
               </div>
             )}
             <div className={styles.firstSection}>
-              <Filter filters={filters} />
+              <Filter filters={filters} filterProduct={filterProduct} />
             </div>
           </div>
         )}

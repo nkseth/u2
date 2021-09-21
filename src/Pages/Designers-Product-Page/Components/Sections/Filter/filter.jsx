@@ -29,8 +29,8 @@ const CustomRadio = withStyles({
 
 export default function Filter(props) {
   // const { filters } = useSelector((state) => state.root.filterCategory);
-  console.log(props.filters);
-  const { filterProduct, applyFilter } = props;
+
+  const { filterProduct, filters } = props;
   const [isCategory, setIsCategory] = useState(false);
   const [priceRange, setPriceRange] = useState([]);
   const [colorFilter, setColor] = useState([]);
@@ -45,7 +45,6 @@ export default function Filter(props) {
 
   const setFilters = async (filters) => {
     setIsLoading(true);
-    console.log(filters);
     const {
       price_range,
       color,
@@ -65,24 +64,16 @@ export default function Filter(props) {
     setIsLoading(false);
   };
 
-  console.log(
-    "price",
-    priceRange,
-    colorFilter,
-    discountFilter,
-    fabricFilter,
-    sizeFilter
-  );
   const [selectedFilter, setSelectedFilter] = useState({
     categories: "All categories",
-    price: priceRange[0]?.value,
+    price: filters?.price_range[0]?.value,
     itemType: "All items",
-    color: colorFilter[0]?.value,
-    discount: discountFilter[0]?.value,
-    fabric: fabricFilter[0]?.value,
-    size: sizeFilter[0]?.value,
-    sleeveLength: sleeveLength[0]?.value,
-    length: length[0]?.value,
+    color: filters?.color[0]?.value,
+    discount: filters?.discount[0]?.discount,
+    fabric: filters?.fabric[0]?.value,
+    size: filters?.size[0]?.value,
+    sleeveLength: filters?.sleevs_length[0]?.value,
+    length: filters?.length[0]?.value,
     design: "New",
     shopByOccasion: "New",
   });
@@ -91,11 +82,46 @@ export default function Filter(props) {
       ...prevState,
       [filterName]: value,
     }));
+
+    console.log(selectedFilter);
+    const newColor = colorFilter.filter(
+      ({ value }) => value === selectedFilter.color
+    )[0];
+    const newFabric = fabricFilter.filter(
+      ({ value }) => value === selectedFilter.fabric
+    )[0];
+    const newLength = length.filter(
+      ({ value }) => value === selectedFilter.length
+    )[0];
+    const newSize = sizeFilter.filter(
+      ({ value }) => value === selectedFilter.size
+    )[0];
+
+    const newSleeveLength = sleeveLength.filter(
+      ({ value }) => value === selectedFilter.sleeveLength
+    )[0];
+    console.log(selectedFilter.itemType);
+    if (selectedFilter.itemType === "Customise") {
+      filterProduct({
+        attributeValue_id: `${newColor.attr_value_id},${newFabric.attr_value_id},${newLength.attr_value_id},${newSize.attr_value_id},${newSleeveLength.attr_value_id}`,
+        attribute_id: `${newColor.attribute_id},${newFabric.attribute_id},${newLength.attribute_id},${newSize.attribute_id},${newSleeveLength.attribute_id}`,
+        range: selectedFilter.price,
+        discount: selectedFilter.discount,
+        product_type: selectedFilter.itemType.toLowerCase(),
+      });
+    } else {
+      filterProduct({
+        attributeValue_id: `${newColor.attr_value_id},${newFabric.attr_value_id},${newLength.attr_value_id},${newSize.attr_value_id},${newSleeveLength.attr_value_id}`,
+        attribute_id: `${newColor.attribute_id},${newFabric.attribute_id},${newLength.attribute_id},${newSize.attribute_id},${newSleeveLength.attribute_id}`,
+        range: selectedFilter.price,
+        discount: selectedFilter.discount,
+      });
+    }
   };
 
   useEffect(() => {
     const setAllFilters = async () => {
-      await setFilters(props.filters);
+      await setFilters(filters);
     };
     setAllFilters();
   }, []);
@@ -128,7 +154,7 @@ export default function Filter(props) {
           <AccordionDetails className={styles.accordionDetials}>
             <RadioGroup
               aria-label="Categories"
-              onChange={(e) => filterProduct("price", e.target.value)}
+              onChange={(e) => handleFilterChange("price", e.target.value)}
               value={selectedFilter.categories}
             >
               <FormControlLabel
@@ -163,7 +189,7 @@ export default function Filter(props) {
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
             aria-label="price"
-            onChange={(e) => filterProduct("price", e.target.value)}
+            onChange={(e) => handleFilterChange("price", e.target.value)}
             value={selectedFilter?.price}
           >
             {!isLoading && priceRange?.length > 0 ? (
@@ -195,7 +221,7 @@ export default function Filter(props) {
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
             aria-label="Item type"
-            onChange={(e) => filterProduct("itemType", e.target.value)}
+            onChange={(e) => handleFilterChange("itemType", e.target.value)}
             value={selectedFilter.itemType}
           >
             <FormControlLabel
@@ -225,17 +251,17 @@ export default function Filter(props) {
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
             aria-label="Colour"
-            onChange={(e) => filterProduct("color", e.target.value)}
+            onChange={(e) => handleFilterChange("color", e.target.value)}
             value={selectedFilter.color}
           >
             {!isLoading ? (
-              colorFilter?.map((value, key) => (
+              colorFilter?.map(({ value }) => (
                 <FormControlLabel
-                  value={value.id}
+                  value={value}
                   control={<CustomRadio />}
                   label={
                     <p className={styles.radioBtnsLabels}>
-                      {value.value[0].toUpperCase() + value.value.slice(1)}
+                      {value.toUpperCase()}
                     </p>
                   }
                 />
@@ -260,17 +286,15 @@ export default function Filter(props) {
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
             aria-label="Discount"
-            onChange={(e) => filterProduct("discount", e.target.value)}
-            value={selectedFilter.itemType}
+            onChange={(e) => handleFilterChange("discount", e.target.value)}
+            value={selectedFilter.discount}
           >
             {!isLoading ? (
-              discountFilter?.map((value, key) => (
+              discountFilter?.map(({ discount }, key) => (
                 <FormControlLabel
-                  value={value.discount}
+                  value={discount}
                   control={<CustomRadio />}
-                  label={
-                    <p className={styles.radioBtnsLabels}>{value.discount}%</p>
-                  }
+                  label={<p className={styles.radioBtnsLabels}>{discount}%</p>}
                 />
               ))
             ) : (
@@ -293,17 +317,15 @@ export default function Filter(props) {
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
             aria-label="Fabric"
-            onChange={(e) => filterProduct("fabric", e.target.value)}
+            onChange={(e) => handleFilterChange("fabric", e.target.value)}
             value={selectedFilter.fabric}
           >
             {!isLoading ? (
-              fabricFilter?.map((value, key) => (
+              fabricFilter?.map(({ value }, key) => (
                 <FormControlLabel
-                  value={value.id}
+                  value={value}
                   control={<CustomRadio />}
-                  label={
-                    <p className={styles.radioBtnsLabels}>{value.value}</p>
-                  }
+                  label={<p className={styles.radioBtnsLabels}>{value}</p>}
                 />
               ))
             ) : (
@@ -326,16 +348,18 @@ export default function Filter(props) {
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
             aria-label="Size"
-            onChange={(e) => filterProduct("size", e.target.value)}
+            onChange={(e) => handleFilterChange("size", e.target.value)}
             value={selectedFilter.size}
           >
             {!isLoading ? (
-              sizeFilter?.map((value, key) => (
+              sizeFilter?.map(({ value }, key) => (
                 <FormControlLabel
-                  value={value.id}
+                  value={value}
                   control={<CustomRadio />}
                   label={
-                    <p className={styles.radioBtnsLabels}>{value.value}</p>
+                    <p className={styles.radioBtnsLabels}>
+                      {value.toUpperCase()}
+                    </p>
                   }
                 />
               ))

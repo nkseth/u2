@@ -64,3 +64,6 @@ export const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST";
 
 //User Authentication
 export const LOGOUT = "LOGOUT";
+
+//Filter
+export const GET_FILTER_LIST = "GET_FILTER_LIST";

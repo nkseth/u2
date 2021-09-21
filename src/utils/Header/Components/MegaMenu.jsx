@@ -17,7 +17,7 @@ function MegaMenu({ Close, visible, type }) {
       onMouseLeave={() => Close(false)}
     >
       {arr.length > 0 &&
-        arr["sub-group"].map((item) => {
+        arr["sub_group"].map((item) => {
           console.log(item);
           return (
             <MegaMenuCard

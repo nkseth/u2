@@ -20,7 +20,7 @@ class DesignerHomePageDataService {
   suitWear(type) {
     return common_axios.post(`/themeOption`, {
       dashboard_type: "designer_home",
-      content_type: 'all',
+      content_type: "all",
       group_name: "suit_wear",
     });
   }
@@ -36,7 +36,7 @@ class DesignerHomePageDataService {
   handMadeClothes(type) {
     return common_axios.post(`/themeOption`, {
       dashboard_type: "designer_home",
-      content_type: 'all',
+      content_type: "all",
       group_name: "hand_made_cloth",
     });
   }

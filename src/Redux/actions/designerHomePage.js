@@ -81,7 +81,9 @@ export const topDesigner = () => async (dispatch) => {
 
 export const topSeasonOffers = () => async (dispatch) => {
   try {
+    console.log("data");
     const { data } = await DesignerHomePageDataService.topSeasonOffers();
+    console.log(data);
     if (data.designer_group_2) {
       dispatch({ type: GET_TOP_SEASON_OFFERS, payload: data.designer_group_2 });
     }
@@ -122,7 +124,7 @@ export const getCategoryGroup = (val) => async (dispatch) => {
 
 export const getCategorySubGroup = (val) => async (dispatch) => {
   try {
-    const { data } = await common_axios.get(`/category-subgrps/${val}/10`)
+    const { data } = await common_axios.get(`/category-subgrps/${val}/10`);
 
     if (data.data) {
       dispatch({

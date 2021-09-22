@@ -1,11 +1,31 @@
-import { ALL_THAT_YOU_WANT, CELIBRITY_STYLE, GET_CATEGORY_GROUP, GET_CATEGORY_SUBGROUP, GET_DESIGNERS, MENS_ACTIVE_PRODUCT, MENS_WEAR_CAT, MENS_WEAR_SLIDER, MENS_WEAR_SUBGRP, MOST_LOVED, NEW_COLLECTION, ORDER_SUMM, SECTION1_SLIDERS, SELECTED_SUB_GRP, STYLISH_RECOMMEND, TOP_DESIGNERS, TOP_OFFERS, USER_DATA } from "../actions/types";
+import {
+  ALL_THAT_YOU_WANT,
+  CELIBRITY_STYLE,
+  GET_BANNER,
+  GET_CATEGORY_GROUP,
+  GET_CATEGORY_SUBGROUP,
+  GET_DESIGNERS,
+  MENS_ACTIVE_PRODUCT,
+  MENS_WEAR_CAT,
+  MENS_WEAR_SLIDER,
+  MENS_WEAR_SUBGRP,
+  MOST_LOVED,
+  NEW_COLLECTION,
+  ORDER_SUMM,
+  SECTION1_SLIDERS,
+  SELECTED_SUB_GRP,
+  STYLISH_RECOMMEND,
+  TOP_DESIGNERS,
+  TOP_OFFERS,
+  USER_DATA,
+} from "../actions/types";
 
 const inialState = {
   user_data: {},
   mens_wear_slider: [],
   mens_wear_cat: [],
   mens_wear_subgrp: [],
-  selected_sub_grp: 'all',
+  selected_sub_grp: "all",
   mens_active_product: [],
   new_collection: [],
   top_designers: [],
@@ -18,7 +38,8 @@ const inialState = {
   offers_sliders: [],
   category_grp: {},
   category_subgrp: {},
-  order_summ: {}
+  order_summ: {},
+  banner: [],
 };
 
 const mainreducer = (state = inialState, action) => {
@@ -32,6 +53,11 @@ const mainreducer = (state = inialState, action) => {
       return {
         ...state,
         mens_wear_slider: action.payload,
+      };
+    case GET_BANNER:
+      return {
+        ...state,
+        banner: action.payload,
       };
     case MENS_WEAR_CAT:
       return {
@@ -96,12 +122,18 @@ const mainreducer = (state = inialState, action) => {
     case GET_CATEGORY_GROUP:
       return {
         ...state,
-        category_grp: { ...state.category_grp, [action.payload.type]: action.payload.data },
+        category_grp: {
+          ...state.category_grp,
+          [action.payload.type]: action.payload.data,
+        },
       };
     case GET_CATEGORY_SUBGROUP:
       return {
         ...state,
-        category_subgrp: { ...state.category_subgrp, [action.payload.type]: action.payload.data },
+        category_subgrp: {
+          ...state.category_subgrp,
+          [action.payload.type]: action.payload.data,
+        },
       };
     case ORDER_SUMM:
       return {

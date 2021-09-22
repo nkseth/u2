@@ -34,6 +34,7 @@ export const MOST_LOVED = "MOST_LOVED";
 export const ALL_THAT_YOU_WANT = "ALL_THAT_YOU_WANT";
 export const TOP_OFFERS = "TOP_OFFERS";
 export const CELIBRITY_STYLE = "CELIBRITY_STYLE";
+export const GET_BANNER = "GET_BANNER";
 
 //Offers
 export const SECTION1_SLIDERS = "SECTION1_SLIDERS";

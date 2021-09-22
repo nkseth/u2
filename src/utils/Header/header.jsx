@@ -33,7 +33,9 @@ import { useCookies } from "react-cookie";
 import MegaMenu from "./Components/MegaMenu";
 
 export default function Header() {
-  const history = useHistory();
+
+
+  const history = useHistory()
   const location = useLocation();
   const [currency, setCurrency] = useState("INR");
   const [cookies, setCookie] = useCookies(["user"]);
@@ -57,11 +59,7 @@ export default function Header() {
     offers: true,
     more: true,
   });
-  const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
-  const [megaMenuType, setMegaMenuType] = useState("men");
-  const { user_data } = useSelector((state) => state.root.main);
   //Here I use Redux For Show Login Model
-  const { login_Model_Show } = useLogin();
 
   const handleMouseEnter = (value) => {
     setMouseEnter({
@@ -87,20 +85,12 @@ export default function Header() {
     }, 200);
   };
 
-  const profileFnc = () => {
-    if (Object.keys(user_data)?.length != 0) {
-      history.push("/profile");
-    } else {
-      login_Model_Show();
-    }
-  };
-  const LogedIn = Object.keys(user_data)?.length != 0;
-  const image = LogedIn ? user_data.avatar : PersonIcon;
-
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
-
+  const [megaMenuType, setMegaMenuType] = useState('')
+  const { user_data } = useSelector(state => state.root.main)
   const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
@@ -112,6 +102,27 @@ export default function Header() {
 
     setDrawerOpen(open);
   };
+
+
+
+
+
+
+  const profileFnc = () => {
+    if (Object.keys(user_data)?.length != 0) {
+      history.push('/profile');
+    } else {
+      login_Model_Show()
+    }
+  }
+  const LogedIn = Object.keys(user_data)?.length != 0
+  const image = LogedIn ? user_data.avatar : PersonIcon
+  const { login_Model_Show } = useLogin();
+
+
+
+
+
 
   return (
     <div
@@ -131,6 +142,8 @@ export default function Header() {
             gap: mobileView ? "8px" : "21px",
           }}
         >
+
+
           {tabView && (
             <IconButton
               aria-label="menu"
@@ -144,7 +157,7 @@ export default function Header() {
               />
             </IconButton>
           )}
-          <span className={styles.logo}>LOGO</span>
+          <span className={styles.logo}><Link to="/" >LOGO</Link></span>
         </div>
         {tabView && !mobileView && (
           <div className={styles.searchBarContainer}>
@@ -178,30 +191,10 @@ export default function Header() {
             </IconButton>
           </div>
         )}
+
+
         {!tabView && (
           <div>
-            <FormControl
-              style={{
-                width: "auto",
-                boxShadow: "none",
-              }}
-            >
-              <Select
-                disableUnderline
-                value={currency}
-                onChange={(e) => setCurrency(e.target.value)}
-              >
-                <MenuItem selected value="INR">
-                  <b>India(₹)</b>
-                </MenuItem>
-                <MenuItem value="USD">
-                  <b>US($)</b>
-                </MenuItem>
-                <MenuItem value="JPY">
-                  <b>Japan(¥)</b>
-                </MenuItem>
-              </Select>
-            </FormControl>
             <IconButton aria-label="my account">
               <div
                 onClick={profileFnc}
@@ -227,6 +220,7 @@ export default function Header() {
           </div>
         )}
       </div>
+
       {!tabView && (
         <div className={styles.secondContainer}>
           <MegaMenu
@@ -245,52 +239,26 @@ export default function Header() {
               </Link>
             </span>
             <span
-              onMouseEnter={() => {
-                handleMouseEnter("men");
-                setMegaMenuType("men");
-                setMegaMenuOpen(true);
-              }}
-              onMouseLeave={() => {
-                handleMouseLeave("men");
-              }}
+              onMouseEnter={() => { handleMouseEnter("men"); setMegaMenuOpen(true) }}
+              onMouseLeave={() => handleMouseLeave("men")}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
-              <Link style={{ color: "#9D8E73" }} to="/wear/mens">
-                Men
-              </Link>
+              <Link style={{ color: "#9D8E73" }} to="/mens-wear">Men</Link>
             </span>
             <span
-              onMouseEnter={() => {
-                handleMouseEnter("women");
-                setMegaMenuType("women");
-                setMegaMenuOpen(true);
-              }}
-              onMouseLeave={() => {
-                handleMouseLeave("women");
-              }}
+              onMouseEnter={() => { handleMouseEnter("women"); setMegaMenuOpen(true) }}
+              onMouseLeave={() => handleMouseLeave("women")}
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
               {" "}
-              <Link style={{ color: "#9D8E73" }} to="/wear/womens">
-                {" "}
-                Women
-              </Link>
+              <Link style={{ color: "#9D8E73" }} to="/mens-wear"> Women</Link>
             </span>
             <span
-              onMouseEnter={() => {
-                handleMouseEnter("kids");
-                setMegaMenuType("kids");
-                setMegaMenuOpen(true);
-              }}
-              onMouseLeave={() => {
-                handleMouseLeave("kids");
-              }}
+              onMouseEnter={() => { handleMouseEnter("kids"); setMegaMenuOpen(true) }}
+              onMouseLeave={() => handleMouseLeave("kids")}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
-              <Link style={{ color: "#9D8E73" }} to="/wear/kids">
-                {" "}
-                Kids
-              </Link>
+              <Link style={{ color: "#9D8E73" }} to="/mens-wear"> Kids</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("designers")}
@@ -341,8 +309,8 @@ export default function Header() {
           display: mouseEnter.newArrivals
             ? "block"
             : mouseLeave.newArrivals
-            ? "none"
-            : "",
+              ? "none"
+              : "",
         }}
       ></div>
       <SwipeableDrawer
@@ -353,8 +321,8 @@ export default function Header() {
         transitionDuration={600}
       >
         {location.pathname === "/orders" ||
-        location.pathname === "/offers" ||
-        location.pathname === "/all-orders" ? (
+          location.pathname === "/offers" ||
+          location.pathname === "/all-orders" ? (
           <div className={styles.sideNavbarDiv}>
             <SideNavbar />
           </div>
@@ -503,3 +471,4 @@ export default function Header() {
     </div>
   );
 }
+

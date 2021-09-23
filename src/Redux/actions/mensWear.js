@@ -2,6 +2,7 @@ import common_axios from "../../utils/axios.config";
 import {
   ALL_THAT_YOU_WANT,
   CELIBRITY_STYLE,
+  GET_BANNER,
   MENS_ACTIVE_PRODUCT,
   MENS_WEAR_CAT,
   MENS_WEAR_SLIDER,
@@ -20,6 +21,18 @@ export const get_mens_wear_slider = () => async (dispatch) => {
 
     if (data.data) {
       dispatch({ type: MENS_WEAR_SLIDER, payload: data.data });
+    }
+  } catch (err) {
+    console.log(err?.response?.data);
+    return Promise.reject(err);
+  }
+};
+export const getBanner = (slug, groupOrder) => async (dispatch) => {
+  try {
+    const { data } = await common_axios.get(`/banners/${slug}/${groupOrder}`);
+    console.log("Banner - ", data);
+    if (data.data) {
+      dispatch({ type: GET_BANNER, payload: data.data });
     }
   } catch (err) {
     console.log(err?.response?.data);

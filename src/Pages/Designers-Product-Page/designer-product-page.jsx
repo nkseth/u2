@@ -9,9 +9,9 @@ import { useLocation } from "react-router-dom";
 
 //images
 
-import AllenSolly from "./Components/Sections/Products/Images/AllenSolly.png";
-import PeterEngland from "./Components/Sections/Products/Images/PeterEngland.png";
-import BeneKleed from "./Components/Sections/Products/Images/BeneKleed.png";
+// import AllenSolly from "./Components/Sections/Products/Images/AllenSolly.png";
+// import PeterEngland from "./Components/Sections/Products/Images/PeterEngland.png";
+// import BeneKleed from "./Components/Sections/Products/Images/BeneKleed.png";
 import common_axios from "../../utils/axios.config";
 import {
   getFilteredProduct,
@@ -112,119 +112,3 @@ function DesignerProductPage({ match }) {
 }
 
 export default DesignerProductPage;
-//dummy data
-
-// const productData = [
-//   {
-//     Name: "Allen solly",
-//     image: AllenSolly,
-//     description: "Cream three piece suit",
-//     price: "₹6,000",
-//     off: "63% OFF",
-//   },
-//   {
-//     Name: "Peter England",
-//     image: PeterEngland,
-//     description: "Blue two piece suit",
-//     price: "₹9,000",
-//     off: "10% OFF",
-//   },
-//   {
-//     Name: "Allen solly",
-//     image: AllenSolly,
-//     description: "Cream three piece suit",
-//     price: "₹6,000",
-//     off: "63% OFF",
-//   },
-//   {
-//     Name: "Bene kleed",
-//     image: BeneKleed,
-//     description: "Men off-white & blue Suit",
-//     price: "₹3,000",
-//     off: "63% OFF",
-//   },
-//   {
-//     Name: "Allen solly",
-//     image: AllenSolly,
-//     description: "Cream three piece suit",
-//     price: "₹6,000",
-//     off: "63% OFF",
-//   },
-//   {
-//     Name: "Peter England",
-//     image: PeterEngland,
-//     description: "Blue two piece suit",
-//     price: "₹9,000",
-//     off: "10% OFF",
-//   },
-//   {
-//     Name: "Allen solly",
-//     image: AllenSolly,
-//     description: "Cream three piece suit",
-//     price: "₹6,000",
-//     off: "63% OFF",
-//   },
-//   {
-//     Name: "Peter England",
-//     image: PeterEngland,
-//     description: "Blue two piece suit",
-//     price: "₹9,000",
-//     off: "10% OFF",
-//   },
-//   {
-//     Name: "Allen solly",
-//     image: AllenSolly,
-//     description: "Cream three piece suit",
-//     price: "₹6,000",
-//     off: "63% OFF",
-//   },
-//   {
-//     Name: "Peter England",
-//     image: PeterEngland,
-//     description: "Blue two piece suit",
-//     price: "₹9,000",
-//     off: "10% OFF",
-//   },
-//   {
-//     Name: "Bene kleed",
-//     image: BeneKleed,
-//     description: "Men off-white & blue Suit",
-//     price: "₹3,000",
-//     off: "63% OFF",
-//   },
-//   {
-//     Name: "Allen solly",
-//     image: AllenSolly,
-//     description: "Cream three piece suit",
-//     price: "₹6,000",
-//     off: "63% OFF",
-//   },
-//   {
-//     Name: "Bene kleed",
-//     image: BeneKleed,
-//     description: "Men off-white & blue Suit",
-//     price: "₹3,000",
-//     off: "63% OFF",
-//   },
-//   {
-//     Name: "Peter England",
-//     image: PeterEngland,
-//     description: "Blue two piece suit",
-//     price: "₹9,000",
-//     off: "10% OFF",
-//   },
-//   {
-//     Name: "Allen solly",
-//     image: AllenSolly,
-//     description: "Cream three piece suit",
-//     price: "₹6,000",
-//     off: "63% OFF",
-//   },
-//   {
-//     Name: "Peter England",
-//     image: PeterEngland,
-//     description: "Blue two piece suit",
-//     price: "₹9,000",
-//     off: "10% OFF",
-//   },
-// ];

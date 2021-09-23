@@ -15,23 +15,23 @@ import styles from "./newCollection.module.scss";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 //BackGroud Image
-import bg from "../../../Images/bg.png"
+import bg from "../../../Images/bg.png";
 import { useDispatch, useSelector } from "react-redux";
 import { get_new_collection } from "../../../../../Redux/actions/mensWear";
 
-
-
 export default function NewCollectionSection({ type }) {
-
   const dispatch = useDispatch();
-  const { new_collection } = useSelector(state => state.root.main)
+  const { new_collection } = useSelector((state) => state.root.main);
 
   useEffect(() => {
-    const group = type == 'mens' ? 'men_group_1' : type == 'womens' ? 'women_group_1' : 'kid_group_1'
-    dispatch(get_new_collection(`${type}_home`, group))
-  }, [type])
-
-  console.log(new_collection)
+    const group =
+      type == "mens"
+        ? "men_group_1"
+        : type == "womens"
+        ? "women_group_1"
+        : "kid_group_1";
+    dispatch(get_new_collection(`${type}_home`, group));
+  }, [type]);
 
   return (
     <CustomSection
@@ -51,7 +51,9 @@ export default function NewCollectionSection({ type }) {
       >
         <Slider>
           <Slide index={0}>
-            <CarouselSlide item={new_collection.length > 0 ? new_collection[0] : {}}>
+            <CarouselSlide
+              item={new_collection.length > 0 ? new_collection[0] : {}}
+            >
               <div className={styles.sliderBtnDiv}>
                 <ButtonBack className={styles.sliderBtn}>
                   <IconButton className={styles.iconBtn}>
@@ -67,7 +69,9 @@ export default function NewCollectionSection({ type }) {
             </CarouselSlide>
           </Slide>
           <Slide index={1}>
-            <CarouselSlide item={new_collection.length > 1 ? new_collection[1] : {}}>
+            <CarouselSlide
+              item={new_collection.length > 1 ? new_collection[1] : {}}
+            >
               <div className={styles.sliderBtnDiv}>
                 <ButtonBack className={styles.sliderBtn}>
                   <IconButton className={styles.iconBtn}>

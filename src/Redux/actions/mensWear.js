@@ -174,7 +174,9 @@ export const get_most_loved = (type) => async (dispatch) => {
 
 export const get_all_that_you_want = (type, group) => async (dispatch) => {
   try {
+    console.log(type);
     const { data } = await common_axios.get(`/banners/${type}/${group}`);
+    console.log(data);
     if (data.men_group_3 || data.women_group_3 || data.kid_group_3) {
       dispatch({
         type: ALL_THAT_YOU_WANT,

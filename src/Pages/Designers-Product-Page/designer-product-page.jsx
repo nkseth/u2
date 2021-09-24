@@ -51,16 +51,16 @@ function DesignerProductPage({ match }) {
     setLoading(false);
   };
 
-  const fetch_filters = async () => {
-    const { data } = await common_axios.post(`/product_by_category`, {
-      slug,
-    });
+  // const fetch_filters = async () => {
+  //   const { data } = await common_axios.post(`/product_by_category`, {
+  //     slug,
+  //   });
 
-    if (data.product) {
-      setProduct(data.product);
-      setCategory(data.category);
-    }
-  };
+  //   if (data.product) {
+  //     setProduct(data.product);
+  //     setCategory(data.category);
+  //   }
+  // };
 
   // console.log(product);
   if (loading) {

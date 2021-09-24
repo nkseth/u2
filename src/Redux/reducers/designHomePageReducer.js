@@ -1,4 +1,5 @@
 import {
+  GET_CUSTOMER_REVIEWS,
   GET_HAND_MADE_CLOTHES,
   GET_POPULAR_CATEGORY,
   GET_SUIT_WEAR,
@@ -104,6 +105,21 @@ export const handMadeClothesReducer = (
   switch (type) {
     case GET_HAND_MADE_CLOTHES:
       return { ...initialState, clothes: payload };
+
+    default:
+      return initialState;
+  }
+};
+
+export const customerReviewsReducer = (
+  initialState = { reviews: [] },
+  action
+) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case GET_CUSTOMER_REVIEWS:
+      return { ...initialState, reviews: payload };
 
     default:
       return initialState;

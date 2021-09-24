@@ -3,6 +3,7 @@ import DesignerHomePageDataService from "../services/designerHomePage.service";
 import {
   GET_CATEGORY_GROUP,
   GET_CATEGORY_SUBGROUP,
+  GET_CUSTOMER_REVIEWS,
   GET_HAND_MADE_CLOTHES,
   GET_POPULAR_CATEGORY,
   GET_SUIT_WEAR,
@@ -33,7 +34,6 @@ export const topCategories = (params) => async (dispatch) => {
     if (data.data) {
       dispatch({ type: GET_TOP_CATEGORY, payload: data.data });
     }
-    //console.log(data, 'top_cat')
   } catch (err) {
     console.log(err);
     return Promise.reject(err);
@@ -46,7 +46,6 @@ export const suitWears = () => async (dispatch) => {
     if (data.suit_wear) {
       dispatch({ type: GET_SUIT_WEAR, payload: data.suit_wear });
     }
-    //console.log(data, 'suit_wear')
   } catch (err) {
     console.log(err);
     return Promise.reject(err);
@@ -59,7 +58,6 @@ export const popularCategories = () => async (dispatch) => {
     if (data.designer_group_1) {
       dispatch({ type: GET_POPULAR_CATEGORY, payload: data.designer_group_1 });
     }
-    //console.log(data, 'pop_cat')
   } catch (err) {
     console.log(err);
     return Promise.reject(err);
@@ -72,7 +70,6 @@ export const topDesigner = () => async (dispatch) => {
     if (data.top_designer) {
       dispatch({ type: GET_TOP_DESIGNERS, payload: data.top_designer });
     }
-    //console.log(data, 'top_des')
   } catch (err) {
     console.log(err);
     return Promise.reject(err);
@@ -81,13 +78,10 @@ export const topDesigner = () => async (dispatch) => {
 
 export const topSeasonOffers = () => async (dispatch) => {
   try {
-    console.log("data");
     const { data } = await DesignerHomePageDataService.topSeasonOffers();
-    console.log(data);
-    if (data.designer_group_2) {
-      dispatch({ type: GET_TOP_SEASON_OFFERS, payload: data.designer_group_2 });
+    if (data.data) {
+      dispatch({ type: GET_TOP_SEASON_OFFERS, payload: data.data });
     }
-    //console.log(data, 'top_ses')
   } catch (err) {
     console.log(err);
     return Promise.reject(err);
@@ -100,7 +94,6 @@ export const handMadeClothes = () => async (dispatch) => {
     if (data.hand_made_cloth) {
       dispatch({ type: GET_HAND_MADE_CLOTHES, payload: data.hand_made_cloth });
     }
-    // console.log(data, 'hand_clths')
   } catch (err) {
     console.log(err);
     return Promise.reject(err);
@@ -125,11 +118,27 @@ export const getCategoryGroup = (val) => async (dispatch) => {
 export const getCategorySubGroup = (val) => async (dispatch) => {
   try {
     const { data } = await common_axios.get(`/category-subgrps/${val}/10`);
-    console.log(data.data);
+
     if (data.data) {
       dispatch({
         type: GET_CATEGORY_SUBGROUP,
         payload: { type: val, data: data.data },
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    return Promise.reject(err);
+  }
+};
+
+export const getCustomerReviews = () => async (dispatch) => {
+  try {
+    const { data } = await common_axios.get(`/product_review_list`);
+    console.log(data.data);
+    if (data.data) {
+      dispatch({
+        type: GET_CUSTOMER_REVIEWS,
+        payload: data.data,
       });
     }
   } catch (err) {

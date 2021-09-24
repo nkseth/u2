@@ -19,22 +19,25 @@ import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { get_top_designers } from "../../../../../Redux/actions/mensWear";
 
-export default function ExploreTopDesignersSection() {
+export default function ExploreTopDesignersSection({ type }) {
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(get_top_designers('designer_home'))
-  }, [])
+    dispatch(get_top_designers(`${type}`));
+  }, []);
 
-  const { top_designers } = useSelector(state => state.root.main)
-
+  const { top_designers } = useSelector((state) => state.root.main);
+  console.log(top_designers);
 
   return (
-    <CustomSection class="explore_top_designer" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
+    <CustomSection
+      class="explore_top_designer"
+      style={{ paddingTop: "3rem", paddingBottom: "3rem" }}
+    >
       <div className={styles.header}>Explore Top Designers</div>
       <CarouselProvider
         naturalSlideWidth={100}
@@ -43,12 +46,17 @@ export default function ExploreTopDesignersSection() {
         isIntrinsicHeight
       >
         <Slider>
-          {top_designers.map((item, index) => {
+          {top_designers.map(({ id, cover_image, name }, index) => {
             return (
               <Slide index={index}>
-                <CarouselSlide item={item} />
+                <div className={styles.Top_Designer}>
+                  <div className={styles.Top_Designer_Items}>
+                    <img src={cover_image} alt={id} />
+                    <Link to="designers-profile">{name}</Link>
+                  </div>
+                </div>
               </Slide>
-            )
+            );
           })}
         </Slider>
         <DotGroup style={{ display: "flex" }} />

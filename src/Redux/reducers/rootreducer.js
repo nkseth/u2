@@ -9,6 +9,7 @@ import {
   topSeasonOffersReducer,
   handMadeClothesReducer,
   trendingReducer,
+  customerReviewsReducer,
 } from "./designHomePageReducer";
 import mainreducer from "./mainReducer";
 import measurement_reducer from "./measurement";
@@ -34,6 +35,7 @@ const rootreducer = combineReducers({
   topDesigner: topDesignerReducer,
   topSeasonOffers: topSeasonOffersReducer,
   handMadeClothes: handMadeClothesReducer,
+  customerReviews: customerReviewsReducer,
   main: mainreducer,
   profile: profile_reducer,
   measurement: measurement_reducer,

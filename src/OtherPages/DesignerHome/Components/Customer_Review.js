@@ -14,18 +14,25 @@ import CustomSection from "../../../utils/Custom Section/section";
 import CustomDivider from "../../../utils/Custom Divider/divider";
 import styles from "../Style/Customer_Review.module.scss";
 import ReactStars from "react-rating-stars-component";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getCustomerReviews } from "../../../Redux/actions/designerHomePage";
+import { useDispatch, useSelector } from "react-redux";
 const Customer_Review = () => {
+  const dispatch = useDispatch();
   const customStyle = {
     padding: "5rem 3rem",
     background: "#fff",
   };
-  const [visible, setvisible] = useState(4)
-  const theme = useTheme()
-  const match = useMediaQuery(theme.breakpoints.down('xs'))
-  const iPade = useMediaQuery(theme.breakpoints.down('sm'))
+  const [visible, setvisible] = useState(4);
+  const theme = useTheme();
+  const match = useMediaQuery(theme.breakpoints.down("xs"));
+  const iPade = useMediaQuery(theme.breakpoints.down("sm"));
   const mobileView = useMediaQuery("(max-width:1024px)");
-
+  const { reviews } = useSelector((state) => state.root.customerReviews);
+  console.log(reviews);
+  useEffect(() => {
+    dispatch(getCustomerReviews());
+  }, []);
   return (
     <div className="customer_review_content">
       <CustomSection class={styles.customerreview} style={customStyle}>
@@ -34,36 +41,65 @@ const Customer_Review = () => {
           style={{ display: "flex", alignItems: "center" }}
         >
           Customer's Reviews{" "}
-          {
-            mobileView ?
-              <></>
-              :
-              <CustomDivider style={{ height: "1px", background: "#6A5B40", marginLeft: 10 }} />
-          }
+          {mobileView ? (
+            <></>
+          ) : (
+            <CustomDivider
+              style={{ height: "1px", background: "#6A5B40", marginLeft: 10 }}
+            />
+          )}
         </div>
 
         <CarouselProvider
           visibleSlides={match ? 1 : iPade ? 2 : 3}
-          totalSlides={5}
+          totalSlides={reviews.length}
           infinite
           isIntrinsicHeight
         >
           <Slider>
-            <Slide index={0}>
-              <CarouselSlide />
-            </Slide>
-            <Slide index={1}>
-              <CarouselSlide2 />
-            </Slide>
-            <Slide index={2}>
-              <CarouselSlide3 />
-            </Slide>
-            <Slide index={3}>
-              <CarouselSlide4 />
-            </Slide>
-            <Slide index={4}>
-              <CarouselSlide5 />
-            </Slide>
+            {reviews.length > 0 &&
+              reviews.map(
+                (
+                  {
+                    id,
+                    created_at,
+                    images,
+                    description,
+                    customers_name,
+                    point,
+                  },
+                  i
+                ) => (
+                  <Slide index={i} key={id + i}>
+                    <div className={styles.Customer_Review}>
+                      <div className={styles.Customer_Review_Items}>
+                        <span style={{ fontSize: "14px", color: "#6c6c6c" }}>
+                          {created_at}
+                        </span>
+                        <img src={images} alt="items" />
+                        <h4>{customers_name}</h4>
+                        <ReactStars
+                          size={30}
+                          activeColor="#ffd700"
+                          value={point}
+                          edit={false}
+                        />
+
+                        <p
+                          style={{
+                            width: "200px",
+                            height: "80px",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {description}
+                        </p>
+                      </div>
+                    </div>
+                  </Slide>
+                )
+              )}
           </Slider>
           <DotGroup style={{ display: "flex" }} />
           <div className={styles.NavigationContainer}>
@@ -91,120 +127,25 @@ const Customer_Review = () => {
 
 export default Customer_Review;
 
-const CarouselSlide = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__340.jpg";
+const CarouselSlide = (review) => {
+  const { created_at, customers_name, description, id, images, point } = review;
+  console.log(created_at, point);
   const media = useMediaQuery(`(max-width:768px)`);
   return (
-    <>
-      <div className={styles.Customer_Review}>
-        <div className={styles.Customer_Review_Items}>
-          <span style={{ fontSize: "14px", color: "#6c6c6c" }} >23 Dec</span>
-          <img src={imageSrc} alt="items" />
-          <h4>Name</h4>
-          <ReactStars size={30} activeColor="#ffd700" value={'4'} edit={false} />
+    <div className={styles.Customer_Review}>
+      <div className={styles.Customer_Review_Items}>
+        <span style={{ fontSize: "14px", color: "#6c6c6c" }}>{created_at}</span>
+        <img src={images} alt="items" />
+        <h4>{customers_name}</h4>
+        <ReactStars
+          size={30}
+          activeColor="#ffd700"
+          value={point}
+          edit={false}
+        />
 
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-            nobis eos cupiditate voluptates.
-          </p>
-        </div>
+        <p>{description}</p>
       </div>
-    </>
-  );
-};
-
-const CarouselSlide2 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
-  return (
-    <>
-      <div className={styles.Customer_Review}>
-        <div className={styles.Customer_Review_Items}>
-          <span style={{ fontSize: "14px", color: "#6c6c6c" }} >23 Dec</span>
-
-          <img src={imageSrc} alt="items" />
-          <h4>Name</h4>
-          <ReactStars size={30} activeColor="#ffd700" value={'4'} edit={false} />
-
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-            nobis eos cupiditate voluptates.
-          </p>
-        </div>
-      </div>
-    </>
-  );
-};
-
-const CarouselSlide3 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
-  return (
-    <>
-      <div className={styles.Customer_Review}>
-        <div className={styles.Customer_Review_Items}>
-          <span style={{ fontSize: "14px", color: "#6c6c6c" }} >23 Dec</span>
-
-          <img src={imageSrc} alt="items" />
-          <h4>Name</h4>
-          <ReactStars size={30} activeColor="#ffd700" value={'4'} edit={false} />
-
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-            nobis eos cupiditate voluptates.
-          </p>
-        </div>
-      </div>
-    </>
-  );
-};
-
-const CarouselSlide4 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
-  return (
-    <>
-      <div className={styles.Customer_Review}>
-        <div className={styles.Customer_Review_Items}>
-          <span style={{ fontSize: "14px", color: "#6c6c6c" }} >23 Dec</span>
-
-          <img src={imageSrc} alt="items" />
-          <h4>Name</h4>
-          <ReactStars size={30} activeColor="#ffd700" value={'4'} edit={false} />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-            nobis eos cupiditate voluptates.
-          </p>
-        </div>
-      </div>
-    </>
-  );
-};
-
-const CarouselSlide5 = () => {
-  const imageSrc =
-    "https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__340.jpg";
-  const media = useMediaQuery(`(max-width:768px)`);
-  return (
-    <>
-      <div className={styles.Customer_Review}>
-        <div className={styles.Customer_Review_Items}>
-          <span style={{ fontSize: "14px", color: "#6c6c6c" }} >23 Dec</span>
-
-          <img src={imageSrc} alt="items" />
-          <h4>Name</h4>
-          <ReactStars size={30} activeColor="#ffd700" value={'4'} edit={false} />
-
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-            nobis eos cupiditate voluptates.
-          </p>
-        </div>
-      </div>
-    </>
+    </div>
   );
 };

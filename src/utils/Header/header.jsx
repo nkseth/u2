@@ -243,7 +243,7 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave("men")}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
-              <Link style={{ color: "#9D8E73" }} to="/mens-wear">Men</Link>
+              <Link style={{ color: "#9D8E73" }} to={'/wear/mens'}>Men</Link>
             </span>
             <span
               onMouseEnter={() => { handleMouseEnter("women"); setMegaMenuOpen(true) }}
@@ -251,14 +251,14 @@ export default function Header() {
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
               {" "}
-              <Link style={{ color: "#9D8E73" }} to="/mens-wear"> Women</Link>
+              <Link style={{ color: "#9D8E73" }} to='/wear/womens'> Women</Link>
             </span>
             <span
               onMouseEnter={() => { handleMouseEnter("kids"); setMegaMenuOpen(true) }}
               onMouseLeave={() => handleMouseLeave("kids")}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
-              <Link style={{ color: "#9D8E73" }} to="/mens-wear"> Kids</Link>
+              <Link style={{ color: "#9D8E73" }} to='/wear/kids'> Kids</Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter("designers")}

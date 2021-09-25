@@ -55,8 +55,9 @@ export const suitWears = () => async (dispatch) => {
 export const popularCategories = () => async (dispatch) => {
   try {
     const { data } = await DesignerHomePageDataService.popularCategory();
-    if (data.designer_group_1) {
-      dispatch({ type: GET_POPULAR_CATEGORY, payload: data.designer_group_1 });
+    console.log(data);
+    if (data.data) {
+      dispatch({ type: GET_POPULAR_CATEGORY, payload: data.data });
     }
   } catch (err) {
     console.log(err);

@@ -189,6 +189,7 @@ export default function Header() {
               >
                 <img
                   src={image}
+                  alt="profilepic"
                   style={
                     LogedIn ? { width: "1.3em", borderRadius: "100%" } : {}
                   }
@@ -196,7 +197,11 @@ export default function Header() {
               </div>
             </IconButton>
             <IconButton aria-label="favorites">
-              <img src={FavoriteIcon} alt="favorites" />
+              <img
+                src={FavoriteIcon}
+                alt="favorites"
+                onClick={() => history.push("/wishlist")}
+              />
             </IconButton>
             <IconButton
               onClick={() => history.push("/my-bag")}

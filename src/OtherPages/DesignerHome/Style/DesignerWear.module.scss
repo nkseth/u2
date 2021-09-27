@@ -2,12 +2,7 @@
 
 .DesignerWear {
   height: 610px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  // margin-bottom: 10rem;
+
   h1 {
     font-family: DM Serif Display;
     font-size: 92px;
@@ -28,28 +23,45 @@
     margin: 1rem auto;
     color: #fff;
   }
-  button {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: #fff;
-    border: none;
-    text-transform: capitalize;
-    font-weight: bold;
-    font-family: Quicksand;
-    display: flex;
-    align-items: center;
-    &:hover {
-      background: #f1f1f1;
-    }
-    svg {
-      fill: rgba(0, 0, 0, 0.7);
-    }
-  }
+  // button {
+  //   position: absolute;
+  //   top: 8px;
+  //   right: 8px;
+  //   background: #fff;
+  //   border: none;
+  //   text-transform: capitalize;
+  //   font-weight: bold;
+  //   font-family: Quicksand;
+  //   display: flex;
+  //   align-items: center;
+  //   &:hover {
+  //     background: #f1f1f1;
+  //   }
+  //   svg {
+  //     fill: rgba(0, 0, 0, 0.7);
+  //   }
+  // }
 }
-.DesignerWear_Button{
-  color: #6a5b40!important;;
+.itemDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  z-index: 10;
 }
+.carouselItem {
+  height: 610px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  width: 100vw;
+}
+
+// .DesignerWear_Button {
+//   color: #6a5b40 !important;
+// }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .DesignerWear {
@@ -65,14 +77,12 @@
   }
 }
 
-
 @media screen and (max-width: 420px) {
   .DesignerWear {
     margin-bottom: 0;
     h1 {
       font-size: 35px;
       line-height: 50px;
-      
     }
     p {
       font-size: 16px;
@@ -86,14 +96,13 @@
     h1 {
       font-size: 45px;
       line-height: 50px;
-      
     }
     p {
       font-size: 16px;
       line-height: 1.45;
     }
   }
-  .DesignerWear_Button{
-    font-size: 10px!important;
+  .DesignerWear_Button {
+    font-size: 10px !important;
   }
 }

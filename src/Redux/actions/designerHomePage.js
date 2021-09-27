@@ -68,6 +68,7 @@ export const popularCategories = () => async (dispatch) => {
 export const topDesigner = () => async (dispatch) => {
   try {
     const { data } = await DesignerHomePageDataService.topDesigner();
+
     if (data.top_designer) {
       dispatch({ type: GET_TOP_DESIGNERS, payload: data.top_designer });
     }

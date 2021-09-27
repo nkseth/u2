@@ -82,9 +82,9 @@ export default function MensWear({ match }) {
           style={{ paddingTop: tabView && "0" }}
           path="Designer Home /"
           activePath={
-            type == "mens"
+            type === "mens"
               ? "Men’s wear"
-              : type == "womens"
+              : type === "womens"
               ? "Women’s wear"
               : "Kid’s wear"
           }

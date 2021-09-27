@@ -36,7 +36,7 @@ const SuitWear = () => {
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down("xs"));
   const iPade = useMediaQuery(theme.breakpoints.down("sm"));
-  const CustomView = useMediaQuery("(max-width:400px)")
+  const CustomView = useMediaQuery("(max-width:400px)");
   useEffect(() => {
     dispatch(suitWears());
   }, []);
@@ -59,46 +59,39 @@ const SuitWear = () => {
           isIntrinsicHeight
         >
           <Slider>
-            {suitWearItems?.map(
-              (item, i) => (
-                <Slide index={i} key={item.id.toString()} style={CustomView ? { marginRight: 0, marginLeft: 0 } : { marginRight: 35, marginLeft: 35 }}   >
-                  <div >
-                    <div className={styles.SuitWear}>
-                      <div className={styles.SuitWear_Items}>
-                        <img src={item.cover_image} alt={item.id} />
-                        <Link to={{ pathname: `/designers-product-page/${item.slug}` }}>{item.name}</Link>
-                      </div>
+            {suitWearItems?.map((item, i) => (
+              <Slide
+                index={i}
+                key={item.id.toString()}
+                style={
+                  CustomView
+                    ? { marginRight: 0, marginLeft: 0 }
+                    : { marginRight: 35, marginLeft: 35 }
+                }
+              >
+                <div>
+                  <div className={styles.SuitWear}>
+                    <div className={styles.SuitWear_Items}>
+                      <img src={item.cover_image} alt={item.id} />
+                      <Link
+                        to={{
+                          pathname: `/designers-product-page/${item.slug}`,
+                        }}
+                      >
+                        {item.name}
+                      </Link>
                     </div>
                   </div>
-                </Slide>
-              )
-            )}
-
-            {/* <Slide index={0}>
-              <CarouselSlide1 />
-            </Slide>
-            <Slide index={1}>
-              <CarouselSlide2 />
-            </Slide>
-            <Slide index={2}>
-              <CarouselSlide3 />
-            </Slide>
-            <Slide index={3}>
-              <CarouselSlide4 />
-            </Slide>
-            <Slide index={4}>
-              <CarouselSlide5 />
-            </Slide>
-            <Slide index={5}>
-              <CarouselSlide6 />
-            </Slide>
-            <Slide index={6}>
-              <CarouselSlide7 />
-            </Slide> */}
+                </div>
+              </Slide>
+            ))}
           </Slider>
           <DotGroup style={{ display: "flex", marginTop: "2rem" }} />
           <div className={styles.NavigationContainer}>
-            <Link style={{ color: "#fff" }} to="designers-product-page">
+            <Link
+              style={{ color: "#fff" }}
+              to="/designers-product-page/suit_wear"
+            >
               SEE All
             </Link>
             <div className={styles.Carousel_SliderButtonBox}>
@@ -121,189 +114,3 @@ const SuitWear = () => {
 };
 
 export default SuitWear;
-
-const CarouselSlide1 = () => {
-
-
-  return (
-    <div style={{ width: "100%" }} >
-      <div className={styles.SuitWear}>
-        <div className={styles.SuitWear_Items}>
-          <img src={c2} alt="items" />
-          <Link to="designers-product-page">Party Wear</Link>
-        </div>{" "}
-
-      </div>
-    </div>
-  );
-};
-
-const CarouselSlide2 = () => {
-
-
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-
-        <div className={styles.SuitWear_Items}>
-          <img src={c1} alt="items" />
-          <Link to="designers-product-page">2</Link>
-        </div>{" "}
-
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};
-
-// const CarouselSlide2 = () => {
-//   const imageSrc =
-//     "https://cdn.pixabay.com/photo/2017/07/31/14/55/black-and-white-2558273__340.jpg";
-//   const media = useMediaQuery(`(max-width:768px)`);
-//   return (
-//     <div className>
-//       <div className={styles.SuitWear}>
-//         <div className={styles.SuitWear_Items}>
-//           <img src={p1} alt="items" />
-//           <Link to="designers-product-page">2</Link>
-//         </div>{" "}
-//         {/* {media ? null : (
-//           <>
-//             <div className={styles.SuitWear_Items}>
-//               <img src={p3} alt="items" />
-//               <Link to="designers-product-page">Wearwww</Link>
-//             </div>{" "}
-//           </>
-//         )} */}
-//       </div>
-//     </div>
-//   );
-// };
-
-const CarouselSlide3 = () => {
-
-
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-
-        <div className={styles.SuitWear_Items}>
-          <img src={c2} alt="items" />
-          <Link to="designers-product-page">3</Link>
-        </div>{" "}
-
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};
-const CarouselSlide4 = () => {
-
-
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-
-        <div className={styles.SuitWear_Items}>
-          <img src={c1} alt="items" />
-          <Link to="designers-product-page">4</Link>
-        </div>{" "}
-
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};
-const CarouselSlide5 = () => {
-
-
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-
-        <div className={styles.SuitWear_Items}>
-          <img src={c2} alt="items" />
-          <Link to="designers-product-page">5</Link>
-        </div>{" "}
-
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};
-const CarouselSlide6 = () => {
-
-
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-
-        <div className={styles.SuitWear_Items}>
-          <img src={c1} alt="items" />
-          <Link to="designers-product-page">5</Link>
-        </div>{" "}
-
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};
-const CarouselSlide7 = () => {
-
-
-  return (
-    <div className>
-      <div className={styles.SuitWear}>
-
-        <div className={styles.SuitWear_Items}>
-          <img src={c2} alt="items" />
-          <Link to="designers-product-page">5</Link>
-        </div>{" "}
-
-        {/* {media ? null : (
-          <>
-            <div className={styles.SuitWear_Items}>
-              <img src={p3} alt="items" />
-              <Link to="designers-product-page">Wearwww</Link>
-            </div>{" "}
-          </>
-        )} */}
-      </div>
-    </div>
-  );
-};

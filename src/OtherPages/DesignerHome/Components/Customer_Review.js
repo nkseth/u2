@@ -29,7 +29,6 @@ const Customer_Review = () => {
   const iPade = useMediaQuery(theme.breakpoints.down("sm"));
   const mobileView = useMediaQuery("(max-width:1024px)");
   const { reviews } = useSelector((state) => state.root.customerReviews);
-  console.log(reviews);
   useEffect(() => {
     dispatch(getCustomerReviews());
   }, []);

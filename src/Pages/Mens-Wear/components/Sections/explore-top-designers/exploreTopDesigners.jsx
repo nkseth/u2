@@ -31,7 +31,6 @@ export default function ExploreTopDesignersSection({ type }) {
   }, []);
 
   const { top_designers } = useSelector((state) => state.root.main);
-  console.log(top_designers);
 
   return (
     <CustomSection

@@ -71,3 +71,6 @@ export const LOGOUT = "LOGOUT";
 //Filter
 export const GET_FILTER_LIST = "GET_FILTER_LIST";
 export const GET_FILTERED_PRODUCT = "GET_FILTERED_PRODUCT";
+
+//Product Description Page
+export const GET_PRODUCT = "GET_PRODUCT";

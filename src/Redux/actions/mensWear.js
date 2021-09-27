@@ -27,8 +27,10 @@ export const get_mens_wear_slider = () => async (dispatch) => {
     return Promise.reject(err);
   }
 };
+
 export const getBanner = (slug, groupOrder) => async (dispatch) => {
   try {
+    console.log(slug, groupOrder);
     const { data } = await common_axios.get(`/banners/${slug}/${groupOrder}`);
     console.log("Banner - ", data);
     if (data.data) {
@@ -83,8 +85,6 @@ export const get_mens_active_product = (type, active) => async (dispatch) => {
         slug: "all",
       });
 
-      console.log(data);
-
       if (data.product) {
         dispatch({ type: MENS_ACTIVE_PRODUCT, payload: data.product });
       }
@@ -109,7 +109,9 @@ export const get_mens_active_product = (type, active) => async (dispatch) => {
 
 export const get_new_collection = (type, group) => async (dispatch) => {
   try {
+    console.log(type, group);
     const { data } = await common_axios.get(`/banners/${type}/${group}`);
+    console.log(data);
     if (data[group]) {
       dispatch({ type: NEW_COLLECTION, payload: data[group] });
     }
@@ -125,7 +127,6 @@ export const get_top_designers = (type) => async (dispatch) => {
     const { data } = await common_axios.post(`/themeOptionDesigner`, {
       dashboard_type: type,
     });
-    console.log(data);
     if (data.top_designer) {
       dispatch({ type: TOP_DESIGNERS, payload: data.top_designer });
     }
@@ -142,7 +143,6 @@ export const get_stylish_recommend = (type) => async (dispatch) => {
       content_type: type,
       group_name: "stylish_recommendation",
     });
-    console.log(data, "stylish r");
     if (data.stylish_recommendation) {
       dispatch({
         type: STYLISH_RECOMMEND,
@@ -174,7 +174,7 @@ export const get_most_loved = (type) => async (dispatch) => {
 
 export const get_all_that_you_want = (type, group) => async (dispatch) => {
   try {
-    console.log(type);
+    console.log(type, group);
     const { data } = await common_axios.get(`/banners/${type}/${group}`);
     console.log(data);
     if (data.men_group_3 || data.women_group_3 || data.kid_group_3) {

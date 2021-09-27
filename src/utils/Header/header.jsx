@@ -60,6 +60,7 @@ export default function Header() {
   //Here I use Redux For Show Login Model
 
   const handleMouseEnter = (value) => {
+    setMegaMenuType(value);
     setMouseEnter({
       ...mouseEnter,
       [value]: true,
@@ -108,7 +109,7 @@ export default function Header() {
       login_Model_Show();
     }
   };
-  const LogedIn = Object.keys(user_data)?.length != 0;
+  const LogedIn = Object.keys(user_data)?.length !== 0;
   const image = LogedIn ? user_data.avatar : PersonIcon;
   const { login_Model_Show } = useLogin();
 

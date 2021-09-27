@@ -125,7 +125,7 @@ export const get_top_designers = (type) => async (dispatch) => {
     const { data } = await common_axios.post(`/themeOptionDesigner`, {
       dashboard_type: type,
     });
-
+    console.log(data);
     if (data.top_designer) {
       dispatch({ type: TOP_DESIGNERS, payload: data.top_designer });
     }

@@ -1,81 +1,82 @@
-import React, { useState, useEffect } from 'react';
-import { Grid, Button, useMediaQuery } from '@material-ui/core';
-import ProductCard from './Components/product-cards/card';
-import CustomSection from '../../../../../utils/Custom Section/section';
-import styles from './forHim.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { Grid, Button, useMediaQuery } from "@material-ui/core";
+import ProductCard from "./Components/product-cards/card";
+import CustomSection from "../../../../../utils/Custom Section/section";
+import styles from "./forHim.module.scss";
+import { useDispatch, useSelector } from "react-redux";
 //Images
-import Main from './Components/Images/Main.jpg';
-import Card1 from './Components/Images/Card1.jpg';
-import Card2 from './Components/Images/Card2.jpg';
-import Card3 from './Components/Images/Card3.jpg';
+import Main from "./Components/Images/Main.jpg";
+import Card1 from "./Components/Images/Card1.jpg";
+import Card2 from "./Components/Images/Card2.jpg";
+import Card3 from "./Components/Images/Card3.jpg";
 import {
   get_mens_active_product,
   get_mens_wear_subgrp,
   setSelectedSubGrp,
-} from '../../../../../Redux/actions/mensWear';
-import { Link, useHistory } from 'react-router-dom';
+} from "../../../../../Redux/actions/mensWear";
+import { Link, useHistory } from "react-router-dom";
 
 export default function ForHimSection({ type }) {
-  const customView = useMediaQuery('(max-width:1235px)');
-  const tabView = useMediaQuery('(max-width:768px)');
-  const tabViewPro = useMediaQuery('(max-width:835px)');
-  const mobileView = useMediaQuery('(max-width:550px)');
+  const customView = useMediaQuery("(max-width:1235px)");
+  const tabView = useMediaQuery("(max-width:768px)");
+  const tabViewPro = useMediaQuery("(max-width:835px)");
+  const mobileView = useMediaQuery("(max-width:550px)");
 
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const {
     category_grp,
     selected_sub_grp: activeNav,
-    mens_active_product,
-  } = useSelector(state => state.root.main);
+    banner,
+  } = useSelector((state) => state.root.main);
 
-  const setActiveNav = val => {
-    dispatch(setSelectedSubGrp(val));
-  };
+  const [activeProducts, setActiveProducts] = useState(banner?.categories);
+  const [activeNavigation, setActiveNavigation] = useState("all");
 
   // useEffect(() => {
-  //   dispatch(get_mens_wear_subgrp(`${type}-fashion`))
-  // }, [type])
+  //   setActiveProducts(banner?.categories);
+  // }, [type]);
 
-  useEffect(() => {
-    const val = `${type}-fashion`;
-    dispatch(get_mens_active_product(val, activeNav));
-  }, [activeNav, type]);
+  const setActiveNav = (val) => {
+    if (val === "all") setActiveProducts(banner.categories);
+    else {
+      setActiveProducts(banner.categories.filter((prod) => prod.slug === val));
+    }
+    setActiveNavigation(val);
+  };
 
-  const grp = type == 'mens' ? 'men' : type == 'womens' ? 'women' : 'kids';
+  const grp = type === "mens" ? "men" : type === "womens" ? "women" : "kids";
 
   return (
     <CustomSection
       style={{
-        backgroundColor: 'rgba(230, 227, 220, 0.21)',
-        paddingBottom: mobileView ? '40px' : '84px',
-        paddingTop: mobileView ? '30px' : '45px',
+        backgroundColor: "rgba(230, 227, 220, 0.21)",
+        paddingBottom: mobileView ? "40px" : "84px",
+        paddingTop: mobileView ? "30px" : "45px",
       }}
     >
       <div className={styles.mainContainer}>
         <div className={styles.forHimFirstSection}>
           <p>
-            <span style={{ color: '#000' }}>
+            <span style={{ color: "#000" }}>
               <i>#For</i>
             </span>
-            &nbsp;{type == 'mens' ? 'Him' : type == 'womens' ? 'Her' : 'Kids'}
+            &nbsp;{type === "mens" ? "Him" : type === "womens" ? "Her" : "Kids"}
           </p>
           {customView && (
             <nav
               className={styles.navBar}
               style={{
-                width: mobileView ? '100%' : '85%',
-                justifyContent: 'center',
-                marginTop: mobileView ? '.5rem' : '2rem',
+                width: mobileView ? "100%" : "85%",
+                justifyContent: "center",
+                marginTop: mobileView ? ".5rem" : "2rem",
               }}
             >
               <div className={styles.navItems}>
                 <span
-                  href='#'
-                  className={activeNav === 'all' && styles.activeNav}
-                  onClick={() => setActiveNav('all')}
+                  href="#"
+                  className={activeNav === "all" && styles.activeNav}
+                  onClick={() => setActiveNav("all")}
                 >
                   All
                 </span>
@@ -85,7 +86,7 @@ export default function ForHimSection({ type }) {
                   }
                   return (
                     <span
-                      href='#'
+                      href="#"
                       className={activeNav === item.slug && styles.activeNav}
                       onClick={() => setActiveNav(item.slug)}
                     >
@@ -96,13 +97,13 @@ export default function ForHimSection({ type }) {
               </div>
             </nav>
           )}
-          <img src={Main} alt='for him' />
+          <img src={Main} alt="for him" />
         </div>
         <Grid
           container
-          style={{ margin: '0' }}
+          style={{ margin: "0" }}
           spacing={mobileView ? 1 : tabView ? 2 : 4}
-          justify='space-between'
+          justify="space-between"
           className={styles.secondSection}
         >
           {!customView && (
@@ -110,9 +111,9 @@ export default function ForHimSection({ type }) {
               <nav className={styles.navBar}>
                 <div className={styles.navItems}>
                   <span
-                    href='#'
-                    className={activeNav === 'all' && styles.activeNav}
-                    onClick={() => setActiveNav('all')}
+                    href="#"
+                    className={activeNav === "all" && styles.activeNav}
+                    onClick={() => setActiveNav("all")}
                   >
                     All
                   </span>
@@ -122,7 +123,7 @@ export default function ForHimSection({ type }) {
                     }
                     return (
                       <span
-                        href='#'
+                        href="#"
                         className={activeNav === item.slug && styles.activeNav}
                         onClick={() => setActiveNav(item.slug)}
                       >
@@ -142,19 +143,41 @@ export default function ForHimSection({ type }) {
               </nav>
             </Grid>
           )}
-          {mens_active_product?.slice(0, 6).map(item => {
-            return (
-              <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'}>
-                <ProductCard data={item} image={Card1} />
-              </Grid>
-            );
-          })}
+          {activeProducts?.length > 0
+            ? activeProducts?.slice(0, 6).map((item) => {
+                return (
+                  <Grid
+                    item
+                    xs={6}
+                    sm={4}
+                    md={4}
+                    justifyContent={"space-between"}
+                  >
+                    <ProductCard data={item} image={item.cover_image} />
+                  </Grid>
+                );
+              })
+            : activeNavigation === "all"
+            ? banner?.categories?.slice(0, 6).map((item) => {
+                return (
+                  <Grid
+                    item
+                    xs={6}
+                    sm={4}
+                    md={4}
+                    justifyContent={"space-between"}
+                  >
+                    <ProductCard data={item} image={item.cover_image} />
+                  </Grid>
+                );
+              })
+            : {}}
         </Grid>
         {customView && (
           <Grid
             item
             md={12}
-            style={{ display: 'flex', justifyContent: 'center' }}
+            style={{ display: "flex", justifyContent: "center" }}
           >
             <Button
               onClick={() =>

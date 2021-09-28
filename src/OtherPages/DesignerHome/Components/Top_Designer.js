@@ -56,7 +56,6 @@ const Top_Designer = () => {
         <CarouselProvider
           visibleSlides={match ? 1 : iPade ? 2 : visible}
           totalSlides={designers?.length}
-          infinite
           isIntrinsicHeight
         >
           <Slider>
@@ -101,9 +100,9 @@ const Top_Designer = () => {
           </Slider>
           <DotGroup style={{ display: 'flex', marginTop: '1rem' }} />
           <div className={styles.NavigationContainer}>
-            <Link to='designers-profile' style={{ color: '#0A0A0A' }}>
+            {/* <Link to='designers-profile' style={{ color: '#0A0A0A' }}>
               SEE All
-            </Link>
+            </Link> */}
             <div className={styles.Carousel_SliderButtonBox}>
               <ButtonBack className={styles.Carousel_SliderButtons}>
                 <IconButton size='small' className={styles.Carousel_iconBtn}>

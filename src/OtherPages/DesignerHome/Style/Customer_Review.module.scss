@@ -22,13 +22,12 @@
     width: 100%;
     position: relative;
     padding: 0 3rem;
-    transition:all 0.3s ease-in-out ;
+    transition: all 0.3s ease-in-out;
     box-shadow: 0px 5px 10px #85725048;
-    &:hover{
-    box-shadow: 0px 0px 30px #00000025;
-    transition:all 0.3s ease-in-out ;
-    border: 2px solid #85725000;
-
+    &:hover {
+      box-shadow: 0px 0px 30px #00000025;
+      transition: all 0.3s ease-in-out;
+      border: 2px solid #85725000;
     }
     h4 {
       margin-top: 0.75rem;
@@ -55,10 +54,24 @@
       padding: 0.3rem;
       font-size: 16px;
       // font-size: 13px;
+      width: 200px;
       font-weight: 400;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
+button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+
+  border-radius: 50%;
+}
+
 //Here Static Styles For Carousel
 .Carousel_header {
   font-family: DM Serif Display;
@@ -82,18 +95,18 @@
 .Carousel_SliderButtonBox {
   display: flex;
   gap: 1rem;
+  margin-left: auto;
   .Carousel_SliderButtons {
     background: none;
     border: none;
     .Carousel_iconBtn {
       border: 1px solid rgb(0, 0, 0) !important;
       color: rgb(0, 0, 0) !important;
-      &:hover{
+      &:hover {
         background-color: #00000085;
-        color: #fff!important;
+        color: #fff !important;
         border: 1px solid #000000 !important;
       }
-     
     }
   }
 }
@@ -112,7 +125,7 @@
   }
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 450px) {
   .Carousel_header {
     font-size: 35px;
     margin-bottom: 0px;
@@ -120,5 +133,4 @@
   .customerreview {
     padding: 3rem 1rem !important;
   }
-  
 }

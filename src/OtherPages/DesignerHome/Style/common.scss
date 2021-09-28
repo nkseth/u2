@@ -1,0 +1,65 @@
+// Top Categories
+.Category_item-0 {
+  grid-area: one;
+}
+.Category_item-1 {
+  grid-area: two;
+}
+.Category_item-2 {
+  grid-area: three;
+}
+.Category_item-3 {
+  grid-area: four;
+}
+.Category_item-4 {
+  grid-area: five;
+}
+
+.Category_item-5 {
+  grid-area: six;
+}
+
+// Season Offers
+
+.Season_offers-0 {
+  grid-area: one;
+}
+.Season_offers-1 {
+  grid-area: two;
+}
+.Season_offers-2 {
+  grid-area: three;
+}
+
+.swiper-container {
+  // width: 100vw;
+  height: 600px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  gap: 5rem;
+
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.swiper-pagination-bullet {
+  background: #9d8e73 !important;
+}

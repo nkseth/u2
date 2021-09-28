@@ -28,7 +28,7 @@ const inialState = {
   selected_sub_grp: "all",
   mens_active_product: [],
   new_collection: [],
-  top_designers: [],
+  top_designers: {},
   stylish_recommend: [],
   most_loved: [],
   all_that_you_want: [],
@@ -39,7 +39,7 @@ const inialState = {
   category_grp: {},
   category_subgrp: {},
   order_summ: {},
-  banner: [],
+  banner: {},
 };
 
 const mainreducer = (state = inialState, action) => {

@@ -59,7 +59,9 @@ export default function Header() {
   });
   //Here I use Redux For Show Login Model
 
-  const handleMouseEnter = value => {
+  const handleMouseEnter = (value) => {
+    setMegaMenuType(value);
+
     setMouseEnter({
       ...mouseEnter,
       [value]: true,
@@ -108,7 +110,7 @@ export default function Header() {
       login_Model_Show();
     }
   };
-  const LogedIn = Object.keys(user_data)?.length != 0;
+  const LogedIn = Object.keys(user_data)?.length !== 0;
   const image = LogedIn ? user_data.avatar : PersonIcon;
   const { login_Model_Show } = useLogin();
 
@@ -189,14 +191,20 @@ export default function Header() {
               >
                 <img
                   src={image}
+                  alt="profilepic"
                   style={
                     LogedIn ? { width: '1.3em', borderRadius: '100%' } : {}
                   }
                 />
               </div>
             </IconButton>
-            <IconButton aria-label='favorites'>
-              <img src={FavoriteIcon} alt='favorites' />
+            <IconButton aria-label="favorites">
+              <img
+                src={FavoriteIcon}
+                alt="favorites"
+                onClick={() => history.push("/wishlist")}
+              />
+
             </IconButton>
             <IconButton
               onClick={() => history.push('/my-bag')}
@@ -233,7 +241,8 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave('men')}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
-              <Link style={{ color: '#9D8E73' }} to={'/wear/mens'}>
+              <Link style={{ color: "#9D8E73" }} to="/wear/mens">
+
                 Men
               </Link>
             </span>
@@ -245,11 +254,9 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave('women')}
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
-              {' '}
-              <Link style={{ color: '#9D8E73' }} to='/wear/womens'>
-                {' '}
-                Women
-              </Link>
+              {" "}
+              <Link style={{ color: "#9D8E73" }} to='/wear/womens'> Women</Link>
+
             </span>
             <span
               onMouseEnter={() => {
@@ -259,10 +266,8 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave('kids')}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
-              <Link style={{ color: '#9D8E73' }} to='/wear/kids'>
-                {' '}
-                Kids
-              </Link>
+              <Link style={{ color: "#9D8E73" }} to='/wear/kids'> Kids</Link>
+
             </span>
             <span
               onMouseEnter={() => handleMouseEnter('designers')}

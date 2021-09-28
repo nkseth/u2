@@ -45,6 +45,7 @@ const Trending = () => {
             >
               <div key={item.name} className={styles.Trending_Items}>
                 <img src={item.cover_image} alt={item.name} />
+
                 <div>
                   <p> {item.name}</p>
                 </div>
@@ -53,7 +54,8 @@ const Trending = () => {
           ))}
         </div>
         <div className={`${styles.Trending_Button}`}>
-          <Link to='/designers-product-page/blazers-and-coats'>
+          <Link to="/designers-product-page/trending_categories">
+
             <Button>View all</Button>
           </Link>
         </div>

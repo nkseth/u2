@@ -19,8 +19,6 @@ const Season_Offers = () => {
     dispatch(topSeasonOffers());
   }, []);
 
-  console.log(offers);
-
   if (!offers) {
     return null;
   }
@@ -37,6 +35,7 @@ const Season_Offers = () => {
             className={styles.Season_Offers_Item1}
             style={{
               backgroundImage: `url("${offers[0]?.image}")`,
+
               backgroundSize: 'cover',
             }}
           >
@@ -54,6 +53,7 @@ const Season_Offers = () => {
             className={styles.Season_Offers_Item2}
             style={{
               backgroundImage: `url("${offers[1]?.image}")`,
+
               backgroundSize: 'cover',
             }}
           >
@@ -71,12 +71,14 @@ const Season_Offers = () => {
             className={styles.Season_Offers_Item3}
             style={{
               backgroundImage: `url("${offers[2]?.image}")`,
+
               backgroundSize: 'cover',
             }}
           >
             <div className={styles.overLayDiv}></div>
             {/* Chech here */}
             <div className={styles.h2_div}>
+
               <h2 style={{ whiteSpace: 'nowrap' }}>{offers[2]?.title}</h2>
               <Button className={styles.buttons} onClick={Handler}>
                 Shop Now

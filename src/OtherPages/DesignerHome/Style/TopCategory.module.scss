@@ -166,7 +166,7 @@
 
 @media screen and (max-width: 750px) {
   .main {
-    margin-top: -2em;
+    margin-top: 2rem;
   }
   .hidden_web {
     display: block !important;
@@ -261,7 +261,7 @@
     display: block;
     color: #6a5b40;
     text-align: center;
-    padding-top: 3rem;
+    // padding-top: 3rem;
     font-family: DM Serif Display;
     font-size: 35px;
     font-weight: 400;
@@ -272,19 +272,20 @@
     align-items: center;
   }
   .TopCategory_Items_Layer_text {
-    padding: 3em !important;
+    // padding: 3em !important;
   }
   .TopCategory_header {
     font-size: 2rem;
   }
+
   .TopCategory {
-    margin-top: 1rem;
+    // margin-top: 1rem;
     height: auto;
     display: grid;
     grid-template-columns: repeat(3, 0fr);
     grid-gap: 0;
     gap: 0rem;
-    padding-bottom: 2rem;
+    // padding-bottom: 2rem;
     padding-left: 0px;
     overflow-x: scroll;
     .TopCategory_Items {

@@ -52,11 +52,11 @@ const Trending = () => {
             </Link>
           ))}
         </div>
-        <div className={`${styles.Trending_Button}`}>
+        {/* <div className={`${styles.Trending_Button}`}>
           <Link to='/designers-product-page/blazers-and-coats'>
             <Button>View all</Button>
           </Link>
-        </div>
+        </div> */}
       </div>
     );
   } else {

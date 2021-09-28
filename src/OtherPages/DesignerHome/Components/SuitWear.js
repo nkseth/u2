@@ -110,9 +110,9 @@ const SuitWear = () => {
           </Slider>
           <DotGroup style={{ display: 'flex', marginTop: '2rem' }} />
           <div className={styles.NavigationContainer}>
-            <Link style={{ color: '#fff' }} to='designers-product-page'>
+            {/* <Link style={{ color: '#fff' }} to='designers-product-page'>
               SEE All
-            </Link>
+            </Link> */}
             <div className={styles.Carousel_SliderButtonBox}>
               <ButtonBack className={styles.Carousel_SliderButtons}>
                 <IconButton size='small' className={styles.Carousel_iconBtn}>

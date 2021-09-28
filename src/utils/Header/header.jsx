@@ -31,7 +31,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useLogin from '../../LoginSceens/useLogin';
 import { useCookies } from 'react-cookie';
 import MegaMenu from './Components/MegaMenu';
-
+import Logo from '../../Images/logo/logo.png';
 export default function Header() {
   const history = useHistory();
   const location = useLocation();
@@ -144,7 +144,10 @@ export default function Header() {
             </IconButton>
           )}
           <span className={styles.logo}>
-            <Link to='/'>LOGO</Link>
+            <Link to='/'>
+              LOGO
+              {/* <img src={Logo} alt='' /> */}
+            </Link>
           </span>
         </div>
         {tabView && !mobileView && (

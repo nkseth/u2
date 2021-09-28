@@ -17,7 +17,7 @@ const Trending = () => {
     maginTop: "-3em",
   };
 
-  // const { push } = useLocation(); 
+  // const { push } = useLocation();
   const { push } = useHistory();
   const mobileView = useMediaQuery("(max-width:1024px)");
 
@@ -45,15 +45,13 @@ const Trending = () => {
             >
               <div key={item.name} className={styles.Trending_Items}>
                 <img src={item.cover_image} alt={item.name} />
-                <div>
-                  {item.name}
-                </div>
+                <div>{item.name}</div>
               </div>
             </Link>
           ))}
         </div>
         <div className={`${styles.Trending_Button}`}>
-          <Link to="/designers-product-page/blazers-and-coats">
+          <Link to="/designers-product-page/trending_categories">
             <Button>View all</Button>
           </Link>
         </div>

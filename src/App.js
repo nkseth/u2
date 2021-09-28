@@ -34,7 +34,6 @@ import PollQuestion from "./Pages/Polls/poll-question";
 import PollResult from "./Pages/Polls/poll-result";
 import DesignerPosts from "./Pages/Designer-Profile/designer-posts";
 
-
 import {
   Page_Profile,
   Page_ProfileEdit,
@@ -56,44 +55,41 @@ import { Page_Login } from "./LoginSceens/LoginSignUp";
 import useLogin from "./LoginSceens/useLogin";
 import MeasurementAndSimulation from "./OtherPages/MeasurementAndSimulation/MeasurementAndSimulation";
 import { setUserData } from "./Redux/actions/homepage";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 
-import styles from "./App.module.scss"
+import styles from "./App.module.scss";
 import AddManMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentMan";
 import AddWomanMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentWoman";
 import MyBag from "./Pages/My-Bag/MyBag";
-import { getCategoryGroup, getCategorySubGroup } from "./Redux/actions/designerHomePage";
+import {
+  getCategoryGroup,
+  getCategorySubGroup,
+} from "./Redux/actions/designerHomePage";
 //Start From Here
 
 function App() {
-
   const { isLoginModel } = useLogin();
   const dispatch = useDispatch();
-  const [cookies, setCookie] = useCookies(['user']);
+  const [cookies, setCookie] = useCookies(["user"]);
 
   useEffect(() => {
-
     if (cookies.data) {
-      dispatch(setUserData(cookies.data))
+      dispatch(setUserData(cookies.data));
     }
-
-  }, [])
-
+  }, []);
 
   //const { category_grp } = useSelector(state => state.root.main)
-  const arr = ['men', 'women', 'kids']
+  const arr = ["men", "women", "kids"];
 
   useEffect(() => {
     arr.forEach((item) => {
-      dispatch(getCategoryGroup(item))
-      dispatch(getCategorySubGroup(item))
-    })
-  }, [])
-
+      dispatch(getCategoryGroup(item));
+      dispatch(getCategorySubGroup(item));
+    });
+  }, []);
 
   return (
-
-    <div className={styles.container}  >
+    <div className={styles.container}>
       {/*All Other Screen on This Path ./LoginSceens/ */}
       {isLoginModel ? <Page_Login /> : null}
       <Switch>
@@ -102,9 +98,13 @@ function App() {
         <Route path="/wear/:type" component={MensWear} />
         <Route path="/offers" component={Offer} />
         <Route
-          path="/designers-product-page/:slug" component={DesignersProductPage}
+          path="/designers-product-page/:slug"
+          component={DesignersProductPage}
         />
-        <Route path="/product-description/:slug" component={ProductDescription} />
+        <Route
+          path="/product-description/:slug"
+          component={ProductDescription}
+        />
         <Route path="/product-breakdown" component={ProductBreakdown} />
         <Route
           path="/customised-product-details"
@@ -174,7 +174,11 @@ function App() {
         <Route path={"/daily-fashion-tips"} component={FashionTips} />
         <Route exact path={"/style-guide"} component={StyleGuideMan} />
         <Route exact path={"/style-guide-man"} component={StyleGuide} />
-        <Route exact path={"/designer-profile-home"} component={DesignerProfile} />
+        <Route
+          exact
+          path={"/designer-profile-home"}
+          component={DesignerProfile}
+        />
         <Route path={"/home/explore"} component={HomeExplore} />
         <Route path={"/visual-search"} component={VisualSearch} />
         <Route exact path={"/designer-page"} component={DesignersPage} />
@@ -186,7 +190,11 @@ function App() {
         <Route path={"/daily-fashion-tips"} component={FashionTips} />
         <Route exact path={"/style-guide"} component={StyleGuideMan} />
         <Route exact path={"/style-guide-man"} component={StyleGuide} />
-        <Route exact path={"/designer-profile-home"} component={DesignerProfile} />
+        <Route
+          exact
+          path={"/designer-profile-home"}
+          component={DesignerProfile}
+        />
         <Route path={"/home/explore"} component={HomeExplore} />
         <Route path={"/visual-search"} component={VisualSearch} />
         <Route exact path={"/designer-page"} component={DesignersPage} />

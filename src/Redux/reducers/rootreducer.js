@@ -25,6 +25,8 @@ import {
   filteredProductReducer,
 } from "./filterCategoryReducer";
 
+import { productDetailReducer } from "./productDescriptionReducer";
+
 const rootreducer = combineReducers({
   login: loginreducer,
   homepage: homepageReducer,
@@ -45,6 +47,7 @@ const rootreducer = combineReducers({
   removeFromWishlist: removeFromWishlistReducer,
   filterCategory: filterCategoryReducer,
   filteredProduct: filteredProductReducer,
+  productDetail: productDetailReducer,
 });
 
 export default rootreducer;

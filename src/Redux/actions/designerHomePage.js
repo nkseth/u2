@@ -55,7 +55,6 @@ export const suitWears = () => async (dispatch) => {
 export const popularCategories = () => async (dispatch) => {
   try {
     const { data } = await DesignerHomePageDataService.popularCategory();
-    console.log(data);
     if (data.data) {
       dispatch({ type: GET_POPULAR_CATEGORY, payload: data.data });
     }
@@ -119,8 +118,7 @@ export const getCategoryGroup = (val) => async (dispatch) => {
 
 export const getCategorySubGroup = (val) => async (dispatch) => {
   try {
-    const { data } = await common_axios.get(`/category-subgrps/${val}/10`);
-
+    const { data } = await common_axios.get(`/category_sub_grp/${val}/10`);
     if (data.data) {
       dispatch({
         type: GET_CATEGORY_SUBGROUP,
@@ -136,7 +134,6 @@ export const getCategorySubGroup = (val) => async (dispatch) => {
 export const getCustomerReviews = () => async (dispatch) => {
   try {
     const { data } = await common_axios.get(`/product_review_list`);
-    console.log(data.data);
     if (data.data) {
       dispatch({
         type: GET_CUSTOMER_REVIEWS,

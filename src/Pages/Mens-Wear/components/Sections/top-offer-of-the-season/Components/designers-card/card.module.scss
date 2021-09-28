@@ -1,8 +1,9 @@
 .container {
-  // display: grid;
+  display: grid;
   border-radius: 5px;
   height: 320px;
   width: 305px;
+  text-align: center;
   .imgContainer {
     position: relative;
     display: grid;
@@ -11,11 +12,11 @@
     img {
       border-radius: 5px 5px 0 0;
       height: 250px;
+      width: 100%;
       object-fit: cover;
       object-position: top;
     }
     span {
-      position: absolute;
       font-family: DM Serif Display;
       font-size: 30px;
       font-weight: 400;
@@ -35,102 +36,70 @@
   background: #fff;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   border-radius: 0 0 5px 5px;
   font-size: 16px;
+
   font-weight: 700;
   line-height: 20px;
   letter-spacing: 0.3199999928474426px;
 }
 
-@media screen and (max-width: 1350px) {
+// @media screen and (max-width: 1350px) {
+//   .container {
+//     width: 45%;
+//     max-width: 250px;
 
-  .container{
-    width: 45%;
-    max-width: 250px;
-  
-  .imgContainer {
+//     .imgContainer {
+//       img {
+//         height: 280px !important;
+//       }
+//     }
+//   }
+// }
+// @media screen and (max-width: 835px) {
+//   .container {
+//     width: 200px !important;
+//     .imgContainer {
+//       img {
+//         // height: 280px !important;
+//         width: 100%;
+//       }
+//     }
+//   }
+// }
 
-    img {
-      height: 280px !important;
-    }
-  }
-}
+// @media screen and (max-width: 700px) {
+//   .container {
+//     width: 190px !important;
+//     .imgContainer {
+//       img {
+//         // height: 280px !important;
+//         width: 100%;
+//       }
+//       span {
+//         font-size: 20px;
+//       }
+//     }
+//   }
+// }
 
-}
-  @media screen and (max-width: 835px) {
-  .container{
-    width: 200px !important;
-  .imgContainer {
+// @media screen and (max-width: 640px) {
+//   .container {
+//     width: 170px !important;
+//     .imgContainer {
+//       img {
+//         // height: 280px !important;
+//         width: 100%;
+//       }
+//       span {
+//         font-size: 20px;
+//       }
+//     }
+//   }
+// }
 
-    img {
-      // height: 280px !important;
-      width: 100%;
-    }
-  }
-}
-}
-
-@media screen and (max-width: 700px) {
-  .container{
-    width: 190px !important;
-  .imgContainer {
-
-    img {
-      // height: 280px !important;
-      width: 100%;
-    }
-    span{
-      font-size: 20px;
-    }
-  }
-} 
-}
-
-@media screen and (max-width: 640px) {
-  .container{
-    width: 170px !important;
-  .imgContainer {
-
-    img {
-      // height: 280px !important;
-      width: 100%;
-    }
-    span{
-      font-size: 20px;
-    }
-  }
-} 
-}
-@media screen and (max-width: 585px) {
-  .container{
-    width: 150px !important;
-  .imgContainer {
-
-    img {
-      // height: 280px !important;
-      width: 100%;
-    }
-    span{
-      font-size: 20px;
-    }
-  }
-} 
-}
-
-  @media screen and (max-width: 550px) {
-  .container{
-    width: 210px!important;
-  .imgContainer {
-    > span {
-      font-size: 20px !important;
-    }
-    img {
-      // height: 210px !important;
-      width: 100%;
-    }
-  }
-}
+@media screen and (max-width: 550px) {
   .clothTypes {
     font-size: 12px;
     line-height: 16px;
@@ -140,18 +109,6 @@
 }
 
 @media screen and (max-width: 475px) {
-  .container{
-    width: 170px!important;
-  .imgContainer {
-    > span {
-      font-size: 20px !important;
-    }
-    img {
-      // height: 210px !important;
-      width: 100%;
-    }
-  }
-}
   .clothTypes {
     font-size: 12px;
     line-height: 16px;
@@ -160,50 +117,32 @@
   }
 }
 
-
-@media screen and (max-width: 1150px) {
-
-  .container{
-    width: 40%;
-    max-width: 210px;
-    // height: 270px;
-  .imgContainer {
-
-    img {
-      height: 230px !important;
-    }
-  }
-}
-}
-@media screen and (max-width: 1050px) {
-
-  .container{
-    width: 40%;
-    max-width: 230px;
-    height: 270px;
-  .imgContainer {
-
-    img {
-      height: 230px !important;
-    }
-  }
-}
-}
-
+// @media screen and (max-width: 1150px) {
+//   .container {
+//     width: 40%;
+//     max-width: 210px;
+//     // height: 270px;
+//     .imgContainer {
+//       img {
+//         height: 230px !important;
+//       }
+//     }
+//   }
+// }
+// @media screen and (max-width: 1050px) {
+//   .container {
+//     width: 40%;
+//     max-width: 230px;
+//     height: 270px;
+//     .imgContainer {
+//       img {
+//         height: 230px !important;
+//       }
+//     }
+//   }
+// }
 
 @media screen and (max-width: 400px) {
-  .container{
-    width: 610px!important;
-  .imgContainer {
-    > span {
-      font-size: 20px !important;
-    }
-    img {
-      // height: 210px !important;
-      width: 100%;
-    }
-  }
-}
   .clothTypes {
     font-size: 12px;
     line-height: 16px;

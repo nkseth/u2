@@ -1,13 +1,23 @@
 .sliderBtnDiv {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   display: flex;
   gap: 2rem;
   .sliderBtn {
     background: none;
     border: none;
+    border-radius: 50%;
+    &:hover {
+      background-color: #00000085;
+      color: #fff !important;
+    }
   }
 }
 
+button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  border-radius: 50%;
+}
 .iconBtn {
   border: 1px solid #fff !important;
   color: #fff !important;

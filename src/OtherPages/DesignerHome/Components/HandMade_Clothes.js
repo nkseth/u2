@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { IconButton, useMediaQuery, useTheme } from "@material-ui/core";
+import { Link } from 'react-router-dom';
+import { IconButton, useMediaQuery, useTheme } from '@material-ui/core';
 import {
   CarouselProvider,
   Slider,
@@ -7,25 +7,25 @@ import {
   ButtonBack,
   ButtonNext,
   DotGroup,
-} from "pure-react-carousel";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import CustomSection from "../../../utils/Custom Section/section";
-import CustomDivider from "../../../utils/Custom Divider/divider";
-import styles from "../Style/HandMade_Clothes.module.scss";
-import h1 from "../Images/h1.png";
-import h2 from "../Images/h2.png";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { handMadeClothes } from "../../../Redux/actions/designerHomePage";
+} from 'pure-react-carousel';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import CustomSection from '../../../utils/Custom Section/section';
+import CustomDivider from '../../../utils/Custom Divider/divider';
+import styles from '../Style/HandMade_Clothes.module.scss';
+import h1 from '../Images/h1.png';
+import h2 from '../Images/h2.png';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { handMadeClothes } from '../../../Redux/actions/designerHomePage';
 
 const HandMade_Clothes = () => {
   const dispatch = useDispatch();
   const customStyle = {
-    padding: "5rem 3rem 4rem  3rem",
-    background: "#938368",
+    padding: '5rem 3rem 4rem  3rem',
+    background: '#938368',
   };
-  const { clothes } = useSelector((state) => state.root.handMadeClothes);
+  const { clothes } = useSelector(state => state.root.handMadeClothes);
 
   const [visible, setvisible] = useState(4);
   useEffect(() => {
@@ -33,9 +33,9 @@ const HandMade_Clothes = () => {
   }, []);
 
   const theme = useTheme();
-  const match = useMediaQuery(theme.breakpoints.down("xs"));
-  const iPade = useMediaQuery(theme.breakpoints.down("sm"));
-  const CustomView = useMediaQuery("(max-width:550px)");
+  const match = useMediaQuery(theme.breakpoints.down('xs'));
+  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
+  const CustomView = useMediaQuery('(max-width:550px)');
 
   if (!clothes) {
     return null;
@@ -46,12 +46,11 @@ const HandMade_Clothes = () => {
       <CustomSection class={styles.suitwear_content} style={customStyle}>
         <div className={`${styles.SuitWear_header}`}>
           Hand Made Clothes
-          <CustomDivider style={{ height: "2px", background: "#fff" }} />
+          <CustomDivider style={{ height: '2px', background: '#fff' }} />
         </div>
         <CarouselProvider
           visibleSlides={match ? 1 : iPade ? 2 : visible}
           totalSlides={clothes?.length}
-          infinite
           isIntrinsicHeight
         >
           <Slider>
@@ -75,21 +74,20 @@ const HandMade_Clothes = () => {
                 </div>
               </Slide>
             ))}
-
           </Slider>
-          <DotGroup style={{ display: "flex", marginTop: "2rem" }} />
+          <DotGroup style={{ display: 'flex', marginTop: '2rem' }} />
           <div className={styles.NavigationContainer}>
-            <Link style={{ color: "#fff" }} to="designers-product-page">
+            {/* <Link style={{ color: '#fff' }} to='designers-product-page'>
               SEE All
-            </Link>
+            </Link> */}
             <div className={styles.Carousel_SliderButtonBox}>
               <ButtonBack className={styles.Carousel_SliderButtons}>
-                <IconButton size="small" className={styles.Carousel_iconBtn}>
+                <IconButton size='small' className={styles.Carousel_iconBtn}>
                   <NavigateBeforeIcon />
                 </IconButton>
               </ButtonBack>
               <ButtonNext className={styles.Carousel_SliderButtons}>
-                <IconButton size="small" className={styles.Carousel_iconBtn}>
+                <IconButton size='small' className={styles.Carousel_iconBtn}>
                   <NavigateNextIcon />
                 </IconButton>
               </ButtonNext>

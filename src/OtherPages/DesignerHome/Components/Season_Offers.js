@@ -19,8 +19,6 @@ const Season_Offers = () => {
     dispatch(topSeasonOffers());
   }, []);
 
-  console.log(offers);
-
   if (!offers) {
     return null;
   }

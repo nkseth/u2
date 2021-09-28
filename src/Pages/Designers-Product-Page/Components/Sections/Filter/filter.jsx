@@ -66,7 +66,7 @@ export default function Filter(props) {
 
   const [selectedFilter, setSelectedFilter] = useState({
     categories: "All categories",
-    price: filters?.price_range[0]?.value,
+    price: 0,
     itemType: "All items",
     color: filters?.color[0]?.value,
     discount: filters?.discount[0]?.discount,

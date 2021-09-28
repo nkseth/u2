@@ -45,6 +45,7 @@ const Trending = () => {
             >
               <div key={item.name} className={styles.Trending_Items}>
                 <img src={item.cover_image} alt={item.name} />
+
                 <div>
                   <p> {item.name}</p>
                 </div>

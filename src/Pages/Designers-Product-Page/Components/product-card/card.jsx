@@ -13,27 +13,38 @@ export default function ProductCard(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState({});
 
-  const setValue = async () => {
+  const setValue = async (product) => {
     await setIsLoading(true);
-    await setProduct(props.product);
+    await setProduct(product);
     await setIsLoading(false);
   };
 
   const add_to_wishlist = async (prod) => {
-    setAddToWishList(true);
-    const { data } = await common_axios.get(`/wishlist/${prod.id}/add`);
-    console.log(data);
+    try {
+      setAddToWishList(true);
+      console.log(prod);
+      const { data } = await common_axios.get(`/wishlist/${prod.slug}/add`);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const remove_from_wishlist = async (prod) => {
-    setAddToWishList(false);
-    const { data } = await common_axios.get(`/wishlist/${prod.id}/remove`);
-    console.log(data);
+    try {
+      setAddToWishList(false);
+      const { data } = await common_axios.delete(
+        `/wishlist/${prod.slug}/remove`
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  useEffect(async () => {
-    await setValue();
-  }, []);
+  useEffect(() => {
+    setValue(props.product);
+  }, [props.product]);
 
   // console.log(product)
 
@@ -54,9 +65,7 @@ export default function ProductCard(props) {
         ) : (
           <IconButton
             aria-label="product"
-            onClick={() => {
-              add_to_wishlist(product);
-            }}
+            onClick={() => add_to_wishlist(product)}
             className={styles.icons}
           >
             <FavoriteBorderIcon />

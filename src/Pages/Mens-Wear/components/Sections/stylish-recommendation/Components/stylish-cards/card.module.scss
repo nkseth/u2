@@ -2,7 +2,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-  cursor: pointer;
   overflow: hidden;
   img {
     width: 100%;
@@ -45,8 +44,6 @@
   opacity: 1;
 }
 
-
-
 .shopNowBtn {
   font-family: Inter !important;
   font-size: 11px !important;
@@ -62,25 +59,27 @@
   background: transparent !important;
   border: 1px solid #ffffff !important;
   color: #fff !important;
+  &:hover {
+    background-color: #ffffff !important;
+    color: #000 !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
-.text{
-  font-size: 25px!important;
-}
-.shopNowBtn{
-  font-size: 12px!important;
-}
+  .text {
+    font-size: 25px !important;
+  }
+  .shopNowBtn {
+    font-size: 12px !important;
+  }
 }
 
 @media screen and (max-width: 550px) {
-.container{
-  height: 200px;
-  img{
-    object-fit: cover;
-    object-position: top;
+  .container {
+    height: 200px;
+    img {
+      object-fit: cover;
+      object-position: top;
+    }
   }
 }
-  }
-  
-  

@@ -22,9 +22,9 @@
     letter-spacing: -1.5px;
     text-align: center;
   }
-.menswear_categories{
-  width: 100%;
-}
+  .menswear_categories {
+    width: 100%;
+  }
   p {
     font-size: 16px;
     font-style: normal;
@@ -53,19 +53,17 @@
   }
 }
 
-
 @media screen and (max-width: 835px) {
 }
 @media screen and (max-width: 768px) {
   .carouselItem {
-
     span {
-      font-size: 62px!important;
+      font-size: 62px !important;
       line-height: 62px;
       letter-spacing: -1.5px;
     }
     p {
-      font-size: 16px!important;
+      font-size: 16px !important;
       line-height: 24px;
       letter-spacing: 0.0075em;
       width: 80%;
@@ -86,7 +84,6 @@
     }
   }
 
-  
   .categoriesToBagSection {
     gap: 2rem;
     .categoriesToBagHeader {
@@ -104,24 +101,19 @@
       padding-top: 15px;
     }
   }
-
-
-
-
 }
 @media screen and (max-width: 550px) {
-
   .carouselItem {
     height: 225px;
     span {
-      font-size: 30px!important;
+      font-size: 30px !important;
       line-height: 30px;
       letter-spacing: -1.5px;
       margin-bottom: 1em;
     }
     p {
       margin-top: 0em;
-      font-size: 12px!important;
+      font-size: 12px !important;
       line-height: 18px;
       letter-spacing: 0.0075em;
       width: 90%;
@@ -137,18 +129,15 @@
       padding-top: 15px;
     }
   }
-  .categoriesToBagSection{
-    button{
-      width:120px!important;
-      font-size: 13px!important;
+  .categoriesToBagSection {
+    button {
+      width: 120px !important;
+      font-size: 13px !important;
     }
   }
 }
 
-
 // Carousel
-
-
 
 .NavigationContainer {
   margin-top: 1rem;
@@ -171,7 +160,6 @@
     .Carousel_iconBtn {
       border: 1px solid rgb(0, 0, 0) !important;
       color: rgb(0, 0, 0) !important;
-     
     }
   }
 }
@@ -194,7 +182,7 @@
       height: 300px;
       width: 100%;
       object-fit: cover;
-      object-position: top!important;
+      object-position: top !important;
     }
     a {
       font-size: 16px;
@@ -207,11 +195,4 @@
   }
 }
 
-
 // Carousel
-
-
-
-
-
-

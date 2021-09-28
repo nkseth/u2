@@ -78,6 +78,7 @@ const CategoryItems = ({ heading, details, image, categories, slug }) => {
             <div className={styles.hover}>
               {categories?.slice(0, 8).map(item => (
                 <Link
+                  style={{ padding: '1rem 0' }}
                   key={item.id.toString()}
                   to={{ pathname: `/designers-product-page/${item.slug}` }}
                 >

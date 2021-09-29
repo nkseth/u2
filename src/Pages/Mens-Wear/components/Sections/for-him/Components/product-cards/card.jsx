@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { IconButton } from '@material-ui/core';
 import styles from './card.module.scss';
 import parse from 'html-react-parser';
+
 //icon
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -13,6 +14,7 @@ export default function ProductCard({ image, data }) {
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
+
         {/* <img src={data.feature_image} alt='product' /> */}
         <img
           src={
@@ -26,6 +28,7 @@ export default function ProductCard({ image, data }) {
           <span className={styles.productName}>{data.title}</span>
         </Link>
         <span className={styles.productDesc}>
+
           {data.description ? data.description : ''}
         </span>
         <p className={styles.productPrice}>
@@ -33,6 +36,7 @@ export default function ProductCard({ image, data }) {
           {data.has_offer ? (
             <span>
               {data.price}
+
               <span style={{ color: '#9D8E73 ' }}>{data.discount}</span>
             </span>
           ) : null}

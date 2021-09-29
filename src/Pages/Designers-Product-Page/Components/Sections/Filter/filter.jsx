@@ -66,14 +66,14 @@ export default function Filter(props) {
 
   const [selectedFilter, setSelectedFilter] = useState({
     categories: "All categories",
-    price: 0,
+    price: filters?.price_range[0].name || 0,
     itemType: "All items",
-    color: filters?.color[0]?.value,
-    discount: filters?.discount[0]?.discount,
-    fabric: filters?.fabric[0]?.value,
-    size: filters?.size[0]?.value,
-    sleeveLength: filters?.sleevs_length[0]?.value,
-    length: filters?.length[0]?.value,
+    color: filters?.color[0]?.value || null,
+    discount: filters?.discount[0]?.discount || null,
+    fabric: filters?.fabric[0]?.value || null,
+    size: filters?.size[0]?.value || null,
+    sleeveLength: filters?.sleevs_length[0]?.value || null,
+    length: filters?.length[0]?.value || null,
     design: "New",
     shopByOccasion: "New",
   });

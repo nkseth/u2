@@ -10,12 +10,13 @@ import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
 import { Link } from 'react-router-dom';
 import styles from './mensWear.module.scss';
 //Carousel Images
-import shirt from './Images/shirt.png';
-import Tshirt from './Images/T-shirt.png';
-import blazer from './Images/blazer.png';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import shirt from "./Images/shirt.png";
+import Tshirt from "./Images/T-shirt.png";
+import blazer from "./Images/blazer.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 //Sections
+
 import ForHimSection from './components/Sections/for-him/forHim';
 import NewCollectionSection from './components/Sections/new-collection/newCollection';
 import ExploreTopDesignersSection from './components/Sections/explore-top-designers/exploreTopDesigners';
@@ -50,6 +51,7 @@ export default function MensWear({ match }) {
     params: { type },
   } = match;
 
+
   const mobileView = useMediaQuery('(max-width:550px)');
   const tabView = useMediaQuery('(max-width:768px)');
   const tabViewPro = useMediaQuery('(max-width:835px)');
@@ -58,18 +60,20 @@ export default function MensWear({ match }) {
   SwiperCore.use([Pagination]);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { mens_wear_slider, mens_wear_cat, banner } = useSelector(
-    state => state.root.main
-  );
+  const {
+    mens_wear_slider,
+    mens_wear_cat,
+    banner: { id, name, description, cover_image },
+  } = useSelector((state) => state.root.main);
 
   const theme = useTheme();
   const small = useMediaQuery(theme.breakpoints.down('xs'));
   const iPade = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
-    dispatch(get_mens_wear_slider());
+    dispatch(get_mens_wear_slider(type));
     dispatch(get_mens_wear_cat(`${type}-fashion`));
-    dispatch(getBanner(type, 1));
+    dispatch(getBanner(type));
   }, [type, dispatch]);
 
   return (
@@ -82,6 +86,7 @@ export default function MensWear({ match }) {
           showStatus={false}
           showArrows={false}
         >
+
           {banner?.map(({ id, title, description, image }, i) => {
             return (
               <div
@@ -130,12 +135,13 @@ export default function MensWear({ match }) {
         <Breadcrumb
           style={{ paddingTop: tabView && '2rem 0' }}
           path='Designer Home /'
+
           activePath={
-            type == 'mens'
-              ? 'Men’s wear'
-              : type == 'womens'
-              ? 'Women’s wear'
-              : 'Kid’s wear'
+            type === "mens"
+              ? "Men’s wear"
+              : type === "womens"
+              ? "Women’s wear"
+              : "Kid’s wear"
           }
         />
       </CustomSection>
@@ -202,10 +208,10 @@ function GRID({ name, image, slug, mobileView }) {
       item
       // md={mobileView ? 3 : 4}
       style={{
-        display: 'flex',
-        justifyContent: 'center',
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        display: "flex",
+        justifyContent: "center",
+        marginLeft: "auto",
+        marginRight: "auto",
       }}
     >
       <CategoriesToBagCard image={image} slug={slug} title={name} />
@@ -216,7 +222,7 @@ function GRID({ name, image, slug, mobileView }) {
 function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
   return (
     <MUICarousel
-      animation='slide'
+      animation="slide"
       autoPlay={true}
       indicators={false}
       className={styles.menswear_categories}
@@ -226,20 +232,20 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
       fullHeightHover={false}
       navButtonsProps={{
         style: {
-          backgroundColor: 'transparent',
-          color: '#000',
-          height: '100px',
-          width: '10px',
-          marginTop: '0em',
+          backgroundColor: "transparent",
+          color: "#000",
+          height: "100px",
+          width: "10px",
+          marginTop: "0em",
         },
       }}
     >
       <Grid
         container
         // style={{ width: '100%', margin: 'auto' }}
-        justifyContent={'center'}
+        justifyContent={"center"}
         // justifyContent={!customView ? 'center' : 'space-evenly'}
-        wrap={'nowrap'}
+        wrap={"nowrap"}
         spacing={0}
       >
         {!customView2 ? (
@@ -287,8 +293,8 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
       <Grid
         container
         // style={{ width: "100%", margin: "auto" }}
-        justifyContent={!customView ? 'center' : 'space-evenly'}
-        wrap={'nowrap'}
+        justifyContent={!customView ? "center" : "space-evenly"}
+        wrap={"nowrap"}
         spacing={0}
       >
         {!customView2 ? (

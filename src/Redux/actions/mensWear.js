@@ -28,13 +28,12 @@ export const get_mens_wear_slider = () => async (dispatch) => {
   }
 };
 
-export const getBanner = (slug, groupOrder) => async (dispatch) => {
+export const getBanner = (slug) => async (dispatch) => {
   try {
-    console.log(slug, groupOrder);
-    const { data } = await common_axios.get(`/banners/${slug}/${groupOrder}`);
+    const { data } = await common_axios.get(`/category-grps/${slug}`);
     console.log("Banner - ", data);
     if (data.data) {
-      dispatch({ type: GET_BANNER, payload: data.data });
+      dispatch({ type: GET_BANNER, payload: data.data[0] });
     }
   } catch (err) {
     console.log(err?.response?.data);
@@ -63,7 +62,7 @@ export const get_mens_wear_subgrp = (type) => async (dispatch) => {
   try {
     console.log(type);
     const { data } = await common_axios.get(`/category-subgrps/${type}`);
-
+    console.log(data);
     if (data.data) {
       dispatch({ type: MENS_WEAR_SUBGRP, payload: data.data[0]?.categories });
     }
@@ -79,7 +78,7 @@ export const setSelectedSubGrp = (val) => ({
 });
 
 export const get_mens_active_product = (type, active) => async (dispatch) => {
-  if (active == "all") {
+  if (active === "all") {
     try {
       const { data } = await common_axios.post(`/product_by_category/${type}`, {
         slug: "all",
@@ -109,7 +108,7 @@ export const get_mens_active_product = (type, active) => async (dispatch) => {
 
 export const get_new_collection = (type, group) => async (dispatch) => {
   try {
-    console.log(type, group);
+    // console.log(type, group);
     const { data } = await common_axios.get(`/banners/${type}/${group}`);
     console.log(data);
     if (data[group]) {
@@ -122,13 +121,14 @@ export const get_new_collection = (type, group) => async (dispatch) => {
 };
 
 //done
-export const get_top_designers = (type) => async (dispatch) => {
+export const get_top_designers = () => async (dispatch) => {
   try {
     const { data } = await common_axios.post(`/themeOptionDesigner`, {
-      dashboard_type: type,
+      dashboard_type: "designer_home",
     });
-    if (data.top_designer) {
-      dispatch({ type: TOP_DESIGNERS, payload: data.top_designer });
+    console.log(data[0]);
+    if (data[0]) {
+      dispatch({ type: TOP_DESIGNERS, payload: data[0] });
     }
   } catch (err) {
     console.log(err?.response?.data);
@@ -174,17 +174,13 @@ export const get_most_loved = (type) => async (dispatch) => {
 
 export const get_all_that_you_want = (type, group) => async (dispatch) => {
   try {
-    console.log(type, group);
     const { data } = await common_axios.get(`/banners/${type}/${group}`);
     console.log(data);
-    if (data.men_group_3 || data.women_group_3 || data.kid_group_3) {
+
+    if (data.data) {
       dispatch({
         type: ALL_THAT_YOU_WANT,
-        payload: data.men_group_3
-          ? data.men_group_3
-          : data.women_group_3
-          ? data.women_group_3
-          : data.kid_group_3,
+        payload: data.data,
       });
     }
   } catch (err) {

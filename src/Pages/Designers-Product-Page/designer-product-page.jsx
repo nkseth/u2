@@ -36,12 +36,13 @@ function DesignerProductPage({ match }) {
 
   useEffect(() => {
     dispatch(getFilterList());
-    fetch_products();
-  }, [slug]);
+    fetch_products(slug);
+  }, [slug, dispatch]);
 
-  const fetch_products = async () => {
+  const fetch_products = async (slug) => {
     try {
-      const { data } = await common_axios.post(`/product_by_category`, {
+      console.log(slug);
+      const { data } = await common_axios.post(`/product_by_category/men`, {
         slug,
       });
       console.log(data);
@@ -83,7 +84,7 @@ function DesignerProductPage({ match }) {
               <div style={{ width: "200%", marginLeft: 15 }}>
                 <Breadcrumb
                   path={`Designers Home / ${"Category"} /`}
-                  activePath={category.name || "product"}
+                  activePath={category?.name || "product"}
                 />
               </div>
             )}

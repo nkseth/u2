@@ -73,11 +73,10 @@ export default function ForHimSection({ type }) {
                   href="#"
                   className={activeNav === "all" && styles.activeNav}
                   onClick={() => setActiveNav("all")}
-
                 >
                   All
                 </span>
-                {category_grp[grp]?.categories?.map((item, index) => {
+                {banner.categories?.map((item, index) => {
                   if (index > 3) {
                     return null;
                   }
@@ -116,7 +115,7 @@ export default function ForHimSection({ type }) {
                   >
                     All
                   </span>
-                  {category_grp[grp]?.categories?.map((item, index) => {
+                  {banner.categories?.map((item, index) => {
                     if (index > 4) {
                       return null;
                     }

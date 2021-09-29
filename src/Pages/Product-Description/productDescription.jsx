@@ -128,12 +128,12 @@ export default function ProductDescription({ match }) {
   const fetch_data = async (slug) => {
     try {
       const { data } = await common_axios.get(`/productDetail/${slug}`);
-      console.log(data);
+      console.log(data.data);
 
-      if (data.product_details) {
-        setProduct(data.product_details);
+      if (data.data) {
+        setProduct(data.data);
         const img = [];
-        data.product_details?.images?.forEach((item) => {
+        data.data?.images?.forEach((item) => {
           img.push({ thumbnail: item.path, original: item.path });
         });
         setImages(img);
@@ -152,11 +152,11 @@ export default function ProductDescription({ match }) {
             history.push("/my-bag");
           }
         } catch (e) {
-          if (e?.response?.data?.message == "Item alrealy in your cart") {
+          if (e?.response?.data?.message === "Item alrealy in your cart") {
             history.push("/my-bag");
           }
 
-          if (e?.response?.data?.message == "Login first") {
+          if (e?.response?.data?.message === "Login first") {
             login_Model_Show();
           }
         }
@@ -591,7 +591,7 @@ export default function ProductDescription({ match }) {
                         />
                       </MenuItem>
                     ) : null}
-                    {product.product?.isCustomise == "on" ? (
+                    {product.product?.isCustomise === "on" ? (
                       <MenuItem value={"custom"}>
                         <FormControlLabel
                           className={

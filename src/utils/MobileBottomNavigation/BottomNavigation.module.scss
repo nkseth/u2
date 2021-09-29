@@ -1,0 +1,65 @@
+.NavContainer {
+  background-color: white;
+  max-width: 100%;
+  height: 84px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px 5px 5px 5px;
+  z-index: 99;
+}
+.btnContainer {
+  position: relative;
+}
+
+.btnContainer {
+}
+
+.active {
+  svg {
+    color: #857250;
+  }
+}
+
+.svgStyle {
+  background-color: #857250;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  border-radius: 50%;
+  height: 45px;
+
+  svg {
+    width: 25px !important;
+    height: 25px;
+  }
+}
+.svg {
+  svg {
+    width: 25px !important;
+    height: 25px;
+  }
+}
+.dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  background-color: #857250;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 10px;
+}
+
+.background {
+  background-color: #6a5b40;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}

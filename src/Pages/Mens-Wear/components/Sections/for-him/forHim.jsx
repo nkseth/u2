@@ -73,6 +73,7 @@ export default function ForHimSection({ type }) {
                   href="#"
                   className={activeNav === "all" && styles.activeNav}
                   onClick={() => setActiveNav("all")}
+
                 >
                   All
                 </span>
@@ -84,7 +85,9 @@ export default function ForHimSection({ type }) {
                     <span
                       href="#"
                       className={activeNav === item.slug && styles.activeNav}
-                      onClick={() => setActiveNav(item.slug)}
+                      onClick={() => {
+                        setActiveNav(item.slug);
+                      }}
                     >
                       {item.name}
                     </span>

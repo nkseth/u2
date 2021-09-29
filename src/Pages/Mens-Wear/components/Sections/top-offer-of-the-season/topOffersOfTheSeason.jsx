@@ -57,7 +57,6 @@ export default function TopOffersOfTheSeasonSection({ type }) {
         naturalSlideWidth={100}
         visibleSlides={match ? 1 : iPade ? 2 : 4}
         totalSlides={top_offers.length}
-        infinite
         isIntrinsicHeight
       >
         <Slider>

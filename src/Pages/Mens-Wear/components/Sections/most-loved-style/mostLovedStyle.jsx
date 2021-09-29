@@ -43,7 +43,6 @@ export default function MostLovedStyleSection({ type }) {
       <CarouselProvider
         naturalSlideWidth={100}
         totalSlides={most_loved.length / 2}
-        infinite
         isIntrinsicHeight
       >
         {mobileView ? (

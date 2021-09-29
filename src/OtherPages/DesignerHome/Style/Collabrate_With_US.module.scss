@@ -1,14 +1,14 @@
 //Here Collabrate_With_US style
 .Collabrate_With_US {
   height: 550px;
-  background-image:
-    url("../Images//bg.png");
-    padding: 0 2rem;
+  background-image: url('../Images//bg.png');
+  padding: 0 2rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: grid;
   place-content: center;
+  margin: 1rem 0 2rem;
   button {
     height: 45px;
     width: 170px;
@@ -21,20 +21,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "DM Serif Display";
+    font-family: 'DM Serif Display';
     text-transform: capitalize;
     // box-shadow: 0px 6px 10px #0000007d;
     &:hover {
-         background: #857250;
-         color: #fff;
-         border: 2px solid #857250;
-      }
+      background: #857250;
+      color: #fff;
+      border: 2px solid #857250;
+    }
   }
   h2 {
     color: #fff;
     font-size: 54px;
     text-align: center;
-    font-family: "DM Serif Display";
+    font-family: 'DM Serif Display';
     padding-bottom: 20px;
   }
   p {
@@ -65,7 +65,7 @@
   // }
 }
 
-.collabrate_bgg{
+.collabrate_bgg {
   background: #392d169a !important;
   padding: 3rem 2rem !important;
 }
@@ -81,19 +81,17 @@
   }
 }
 
-
-@media screen and (max-width: 420px){
-  .collabrate_bg{
-    
-      padding: 3rem 7rem;
+@media screen and (max-width: 420px) {
+  .collabrate_bg {
+    padding: 3rem 7rem;
   }
-  .Collabrate_With_US  {
+  .Collabrate_With_US {
     h2 {
       font-size: 35px;
       padding-bottom: 10px;
       line-height: 33px;
     }
-    p{
+    p {
       margin-bottom: 35px !important;
       width: 95%;
       text-align: center;

@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react';
-import CustomDivider from '../../../utils/Custom Divider/divider';
-import styles from '../Style/TopCategory.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { topCategories } from '../../../Redux/actions/designerHomePage';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import CustomDivider from "../../../utils/Custom Divider/divider";
+import styles from "../Style/TopCategory.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const TopCategory = () => {
   const dispatch = useDispatch();
 
-  const { category_grp } = useSelector(state => state.root.main);
-
+  const { category_grp } = useSelector((state) => state.root.main);
+  console.log(category_grp);
   const baseStyle = {};
   return (
     <div className={styles.main}>
       <h1 className={styles.top_category_title}>Top Categories 2021</h1>
       <div className={styles.TopCategory}>
         <div className={styles.TopCategory_Items}>
-          <h1 className='hidden_mobile'>Top Categories 2021</h1>
+          <h1 className="hidden_mobile">Top Categories 2021</h1>
         </div>
         {category_grp.men && (
           <CategoryItems
@@ -45,40 +44,35 @@ const TopCategory = () => {
             slug={category_grp.kids?.slug}
           />
         )}
-        {/* <CategoryItems heading={"Men"} details={MenDescription} /> */}
-        {/* <CategoryItems heading={"Women"} details={WomenDescription} />
-        <CategoryItems heading={"Kids"} details={KidsDescription} /> */}
       </div>
     </div>
   );
 };
 
 export default TopCategory;
-// const imageSrc =
-//   "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
 
 const CategoryItems = ({ heading, details, image, categories, slug }) => {
   return (
     <>
       <div className={styles.TopCategory_Items}>
-        <img src={image} alt='items' />
+        <img src={image} alt="items" />
         <div className={styles.TopCategory_Items_Layer}>
           <div className={styles.TopCategory_Items_Layer_text}>
             <h2>
               {heading}
               <CustomDivider
                 style={{
-                  height: '1px',
-                  background: '#fff',
-                  marginleft: '-5px',
+                  height: "1px",
+                  background: "#fff",
+                  marginleft: "-5px",
                 }}
               />
               <div></div>
             </h2>
             <div className={styles.hover}>
-              {categories?.slice(0, 8).map(item => (
+              {categories?.slice(0, 8).map((item) => (
                 <Link
-                  style={{ padding: '1rem 0' }}
+                  style={{ padding: "1rem 0" }}
                   key={item.id.toString()}
                   to={{ pathname: `/designers-product-page/${item.slug}` }}
                 >

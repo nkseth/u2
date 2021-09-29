@@ -1,5 +1,5 @@
 .carouselNavigationDiv {
-  margin-top: 1rem; 
+  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   > a:first-child {
@@ -19,12 +19,19 @@
   }
 }
 
+button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+
+  border-radius: 50%;
+}
+
 .iconBtn {
   border: 1px solid rgb(0, 0, 0) !important;
   color: rgb(0, 0, 0) !important;
 }
 
-.headerMobile{
+.headerMobile {
   width: 100%;
   margin-bottom: 20px;
   margin-top: -15px;
@@ -39,15 +46,14 @@
   justify-content: center;
   p {
     color: #fff;
-  text-align: center;
+    text-align: center;
 
     > span:first-child {
-      font-style: italic!important;
+      font-style: italic !important;
       font-family: DM Serif Display !important;
     }
     > span:last-child {
-      font-family: DM Sans  !important;
-
+      font-family: DM Sans !important;
     }
   }
 }

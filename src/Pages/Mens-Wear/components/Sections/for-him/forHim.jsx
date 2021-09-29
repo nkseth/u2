@@ -33,10 +33,6 @@ export default function ForHimSection({ type }) {
   const [activeProducts, setActiveProducts] = useState(banner?.categories);
   const [activeNavigation, setActiveNavigation] = useState("all");
 
-  // useEffect(() => {
-  //   setActiveProducts(banner?.categories);
-  // }, [type]);
-
   const setActiveNav = (val) => {
     if (val === "all") setActiveProducts(banner.categories);
     else {
@@ -45,7 +41,7 @@ export default function ForHimSection({ type }) {
     setActiveNavigation(val);
   };
 
-  const grp = type === "mens" ? "men" : type === "womens" ? "women" : "kids";
+  const grp = type;
 
   return (
     <CustomSection
@@ -77,6 +73,7 @@ export default function ForHimSection({ type }) {
                   href="#"
                   className={activeNav === "all" && styles.activeNav}
                   onClick={() => setActiveNav("all")}
+
                 >
                   All
                 </span>
@@ -88,7 +85,9 @@ export default function ForHimSection({ type }) {
                     <span
                       href="#"
                       className={activeNav === item.slug && styles.activeNav}
-                      onClick={() => setActiveNav(item.slug)}
+                      onClick={() => {
+                        setActiveNav(item.slug);
+                      }}
                     >
                       {item.name}
                     </span>

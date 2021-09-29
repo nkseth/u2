@@ -9,6 +9,12 @@
   margin-bottom: 3rem;
   color: #ffffff;
 }
+button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+
+  border-radius: 50%;
+}
 
 .carouselNavigationDiv {
   margin-top: 1rem;

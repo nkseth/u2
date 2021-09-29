@@ -26,7 +26,7 @@ const Customer_Review = () => {
   const [visible, setvisible] = useState(4);
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down('xs'));
-  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
+  const iPade = useMediaQuery('(max-width:1100px)');
   const mobileView = useMediaQuery('(max-width:1024px)');
   const { reviews } = useSelector(state => state.root.customerReviews);
   useEffect(() => {

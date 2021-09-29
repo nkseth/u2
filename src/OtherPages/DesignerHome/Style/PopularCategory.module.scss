@@ -248,7 +248,7 @@
   font-weight: 400;
   line-height: 54px;
   letter-spacing: -1.5px;
-  margin-bottom: 42px;
+  margin-bottom: 4rem;
   margin-top: -0.8em;
   display: flex;
   align-items: center;
@@ -291,6 +291,7 @@
     'one one  six six '
     'four five  six six';
   grid-template-rows: 200px 200px 200px;
+  gap: 0.2rem;
 
   div {
     display: flex;

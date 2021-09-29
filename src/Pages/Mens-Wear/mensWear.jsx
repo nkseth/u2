@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import MUICarousel from 'react-material-ui-carousel';
-import { Carousel } from 'react-responsive-carousel';
-import Container from '../../utils/Container/container';
-import { Grid, IconButton, useMediaQuery, useTheme } from '@material-ui/core';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
-import CustomSection from '../../utils/Custom Section/section';
-import CategoriesToBagCard from './components/Categories-Carousel-Card/card';
-import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
-import { Link } from 'react-router-dom';
-import styles from './mensWear.module.scss';
+import React, { useEffect, useState } from "react";
+import MUICarousel from "react-material-ui-carousel";
+import { Carousel } from "react-responsive-carousel";
+import Container from "../../utils/Container/container";
+import { Grid, IconButton, useMediaQuery, useTheme } from "@material-ui/core";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import CustomSection from "../../utils/Custom Section/section";
+import CategoriesToBagCard from "./components/Categories-Carousel-Card/card";
+import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
+import { Link } from "react-router-dom";
+import styles from "./mensWear.module.scss";
 //Carousel Images
 import shirt from "./Images/shirt.png";
 import Tshirt from "./Images/T-shirt.png";
@@ -17,24 +17,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 //Sections
 
-import ForHimSection from './components/Sections/for-him/forHim';
-import NewCollectionSection from './components/Sections/new-collection/newCollection';
-import ExploreTopDesignersSection from './components/Sections/explore-top-designers/exploreTopDesigners';
-import StylishRecommendationSection from './components/Sections/stylish-recommendation/stylishRecommendation';
-import MostLovedStyleSection from './components/Sections/most-loved-style/mostLovedStyle';
-import AllThatYouWantSection from './components/Sections/all-that-you-want/allThatYouWant';
-import TopOffersOfTheSeasonSection from './components/Sections/top-offer-of-the-season/topOffersOfTheSeason';
-import CelebrityStyleSection from './components/Sections/celebrity-style/celebrityStyle';
+import ForHimSection from "./components/Sections/for-him/forHim";
+import NewCollectionSection from "./components/Sections/new-collection/newCollection";
+import ExploreTopDesignersSection from "./components/Sections/explore-top-designers/exploreTopDesigners";
+import StylishRecommendationSection from "./components/Sections/stylish-recommendation/stylishRecommendation";
+import MostLovedStyleSection from "./components/Sections/most-loved-style/mostLovedStyle";
+import AllThatYouWantSection from "./components/Sections/all-that-you-want/allThatYouWant";
+import TopOffersOfTheSeasonSection from "./components/Sections/top-offer-of-the-season/topOffersOfTheSeason";
+import CelebrityStyleSection from "./components/Sections/celebrity-style/celebrityStyle";
 
 import {
   getBanner,
   get_mens_wear_cat,
   get_mens_wear_slider,
-} from '../../Redux/actions/mensWear';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Pagination } from 'swiper/core';
-import 'swiper/swiper.min.css';
-import 'swiper/components/pagination/pagination.min.css';
+} from "../../Redux/actions/mensWear";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Pagination } from "swiper/core";
+import "swiper/swiper.min.css";
+import "swiper/components/pagination/pagination.min.css";
 import {
   CarouselProvider,
   Slider,
@@ -42,21 +42,20 @@ import {
   ButtonBack,
   ButtonNext,
   DotGroup,
-} from 'pure-react-carousel';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+} from "pure-react-carousel";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
 export default function MensWear({ match }) {
   const {
     params: { type },
   } = match;
 
-
-  const mobileView = useMediaQuery('(max-width:550px)');
-  const tabView = useMediaQuery('(max-width:768px)');
-  const tabViewPro = useMediaQuery('(max-width:835px)');
-  const customView = useMediaQuery('(max-width:1125px)');
-  const customView2 = useMediaQuery('(max-width:910px)');
+  const mobileView = useMediaQuery("(max-width:550px)");
+  const tabView = useMediaQuery("(max-width:768px)");
+  const tabViewPro = useMediaQuery("(max-width:835px)");
+  const customView = useMediaQuery("(max-width:1125px)");
+  const customView2 = useMediaQuery("(max-width:910px)");
   SwiperCore.use([Pagination]);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -67,8 +66,8 @@ export default function MensWear({ match }) {
   } = useSelector((state) => state.root.main);
 
   const theme = useTheme();
-  const small = useMediaQuery(theme.breakpoints.down('xs'));
-  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
+  const small = useMediaQuery(theme.breakpoints.down("xs"));
+  const iPade = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     dispatch(get_mens_wear_slider(type));
@@ -113,29 +112,28 @@ export default function MensWear({ match }) {
           }}
           navigation={true}
         > */}
-        {banner?.slice(0, 1).map(({ id, title, description, image }, i) => {
-          return (
-            // <SwiperSlide className={styles.swiper_slide}>
-            <div
-              className={styles.carouselItem}
-              key={id}
-              style={{ backgroundImage: `url(${image})` }}
-            >
-              <div>
-                <span>{title}</span>
-                <p>{description}</p>
-              </div>
-            </div>
-            // </SwiperSlide>
-          );
-        })}
+        {/* {banner?.slice(0, 1).map(({ id, title, description, image }, i) => { */}
+        {/* return ( */}
+        {/* // <SwiperSlide className={styles.swiper_slide}> */}
+        <div
+          className={styles.carouselItem}
+          key={id}
+          style={{ backgroundImage: `url(${cover_image})` }}
+        >
+          <div>
+            <span>{name}</span>
+            <p>{description}</p>
+          </div>
+        </div>
+        {/* // </SwiperSlide> */}
+        {/* ); */}
+        {/* })} */}
         {/* </Swiper> */}
       </section>
-      <CustomSection style={{ padding: '2rem 1rem' }}>
+      <CustomSection style={{ padding: "2rem 1rem" }}>
         <Breadcrumb
-          style={{ paddingTop: tabView && '2rem 0' }}
-          path='Designer Home /'
-
+          style={{ paddingTop: tabView && "2rem 0" }}
+          path="Designer Home /"
           activePath={
             type === "mens"
               ? "Men’s wear"

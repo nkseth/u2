@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Grid, Button, useMediaQuery } from "@material-ui/core";
 import ProductCard from "./Components/product-cards/card";
 import CustomSection from "../../../../../utils/Custom Section/section";
@@ -6,42 +6,37 @@ import styles from "./forHim.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 //Images
 import Main from "./Components/Images/Main.jpg";
-import Card1 from "./Components/Images/Card1.jpg";
-import Card2 from "./Components/Images/Card2.jpg";
-import Card3 from "./Components/Images/Card3.jpg";
+
 import {
   get_mens_active_product,
-  get_mens_wear_subgrp,
   setSelectedSubGrp,
 } from "../../../../../Redux/actions/mensWear";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function ForHimSection({ type }) {
   const customView = useMediaQuery("(max-width:1235px)");
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
-
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const {
-    category_grp,
     selected_sub_grp: activeNav,
+    mens_active_product,
     banner,
   } = useSelector((state) => state.root.main);
 
-  const [activeProducts, setActiveProducts] = useState(banner?.categories);
-  const [activeNavigation, setActiveNavigation] = useState("all");
-
-  const setActiveNav = (val) => {
-    if (val === "all") setActiveProducts(banner.categories);
-    else {
-      setActiveProducts(banner.categories.filter((prod) => prod.slug === val));
-    }
-    setActiveNavigation(val);
-  };
-
   const grp = type;
+
+  useEffect(() => {
+    dispatch(get_mens_active_product(type, "all"));
+  }, [type, dispatch]);
+
+  const setActiveNav = (type, active) => {
+    dispatch(setSelectedSubGrp(type));
+    dispatch(get_mens_active_product(type, active));
+  };
 
   return (
     <CustomSection
@@ -72,21 +67,23 @@ export default function ForHimSection({ type }) {
                 <span
                   href="#"
                   className={activeNav === "all" && styles.activeNav}
-                  onClick={() => setActiveNav("all")}
-
+                  onClick={() => setActiveNav(grp, "all")}
                 >
                   All
                 </span>
-                {category_grp[grp]?.categories?.map((item, index) => {
+                {banner.categories?.map((item, index) => {
                   if (index > 3) {
                     return null;
                   }
                   return (
                     <span
                       href="#"
-                      className={activeNav === item.slug && styles.activeNav}
+                      className={
+                        activeNav.toLowerCase() === item.slug.toLowerCase() &&
+                        styles.activeNav
+                      }
                       onClick={() => {
-                        setActiveNav(item.slug);
+                        setActiveNav(grp, item.slug);
                       }}
                     >
                       {item.name}
@@ -112,11 +109,11 @@ export default function ForHimSection({ type }) {
                   <span
                     href="#"
                     className={activeNav === "all" && styles.activeNav}
-                    onClick={() => setActiveNav("all")}
+                    onClick={() => setActiveNav(grp, "all")}
                   >
                     All
                   </span>
-                  {category_grp[grp]?.categories?.map((item, index) => {
+                  {banner.categories?.map((item, index) => {
                     if (index > 4) {
                       return null;
                     }
@@ -124,7 +121,7 @@ export default function ForHimSection({ type }) {
                       <span
                         href="#"
                         className={activeNav === item.slug && styles.activeNav}
-                        onClick={() => setActiveNav(item.slug)}
+                        onClick={() => setActiveNav(grp, item.slug)}
                       >
                         {item.name}
                       </span>
@@ -142,35 +139,13 @@ export default function ForHimSection({ type }) {
               </nav>
             </Grid>
           )}
-          {activeProducts?.length > 0
-            ? activeProducts?.slice(0, 6).map((item) => {
-                return (
-                  <Grid
-                    item
-                    xs={6}
-                    sm={4}
-                    md={4}
-                    justifyContent={"space-between"}
-                  >
-                    <ProductCard data={item} image={item.cover_image} />
-                  </Grid>
-                );
-              })
-            : activeNavigation === "all"
-            ? banner?.categories?.slice(0, 6).map((item) => {
-                return (
-                  <Grid
-                    item
-                    xs={6}
-                    sm={4}
-                    md={4}
-                    justifyContent={"space-between"}
-                  >
-                    <ProductCard data={item} image={item.cover_image} />
-                  </Grid>
-                );
-              })
-            : {}}
+          {mens_active_product?.slice(0, 6).map((item) => {
+            return (
+              <Grid item xs={6} sm={4} md={4} justifyContent={"space-between"}>
+                <ProductCard data={item} image={item.feature_image} />
+              </Grid>
+            );
+          })}
         </Grid>
         {customView && (
           <Grid

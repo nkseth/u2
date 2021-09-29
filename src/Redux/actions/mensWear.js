@@ -31,7 +31,6 @@ export const get_mens_wear_slider = () => async (dispatch) => {
 export const getBanner = (slug) => async (dispatch) => {
   try {
     const { data } = await common_axios.get(`/category-grps/${slug}`);
-    console.log("Banner - ", data);
     if (data.data) {
       dispatch({ type: GET_BANNER, payload: data.data[0] });
     }
@@ -78,12 +77,14 @@ export const setSelectedSubGrp = (val) => ({
 });
 
 export const get_mens_active_product = (type, active) => async (dispatch) => {
+  console.log(type, "===", active);
   if (active === "all") {
+    console.log("It's All");
     try {
       const { data } = await common_axios.post(`/product_by_category/${type}`, {
         slug: "all",
       });
-
+      console.log(data);
       if (data.product) {
         dispatch({ type: MENS_ACTIVE_PRODUCT, payload: data.product });
       }
@@ -96,6 +97,7 @@ export const get_mens_active_product = (type, active) => async (dispatch) => {
       const { data } = await common_axios.post(`/product_by_category`, {
         slug: active,
       });
+      console.log(active);
       if (data.product) {
         dispatch({ type: MENS_ACTIVE_PRODUCT, payload: data.product });
       }
@@ -126,7 +128,6 @@ export const get_top_designers = () => async (dispatch) => {
     const { data } = await common_axios.post(`/themeOptionDesigner`, {
       dashboard_type: "designer_home",
     });
-    console.log(data[0]);
     if (data[0]) {
       dispatch({ type: TOP_DESIGNERS, payload: data[0] });
     }
@@ -175,7 +176,6 @@ export const get_most_loved = (type) => async (dispatch) => {
 export const get_all_that_you_want = (type, group) => async (dispatch) => {
   try {
     const { data } = await common_axios.get(`/banners/${type}/${group}`);
-    console.log(data);
 
     if (data.data) {
       dispatch({

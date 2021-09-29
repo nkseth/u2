@@ -175,6 +175,7 @@ export const get_most_loved = (type) => async (dispatch) => {
 export const get_all_that_you_want = (type, group) => async (dispatch) => {
   try {
     const { data } = await common_axios.get(`/banners/${type}/${group}`);
+    console.log(data);
 
     if (data.data) {
       dispatch({

@@ -103,7 +103,12 @@ export const handMadeClothes = () => async (dispatch) => {
 
 export const getCategoryGroup = (val) => async (dispatch) => {
   try {
-    const { data } = await common_axios.get(`/category-grps/${val}`);
+    console.log(`Type -`, val);
+    let type = val;
+    if (type === "men") type = "mens";
+    if (type === "women") type = "womens";
+    const { data } = await common_axios.get(`/category-grps/${type}`);
+    console.log(data);
     if (data.data?.length > 0) {
       dispatch({
         type: GET_CATEGORY_GROUP,

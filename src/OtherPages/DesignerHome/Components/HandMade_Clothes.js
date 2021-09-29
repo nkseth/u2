@@ -34,7 +34,8 @@ const HandMade_Clothes = () => {
 
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down('xs'));
-  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
+  const small = useMediaQuery(theme.breakpoints.down('sm'));
+  const iPade = useMediaQuery(theme.breakpoints.down('md'));
   const CustomView = useMediaQuery('(max-width:550px)');
 
   if (!clothes) {
@@ -49,7 +50,7 @@ const HandMade_Clothes = () => {
           <CustomDivider style={{ height: '2px', background: '#fff' }} />
         </div>
         <CarouselProvider
-          visibleSlides={match ? 1 : iPade ? 2 : visible}
+          visibleSlides={match ? 1 : small ? 2 : iPade ? 3 : 4}
           totalSlides={clothes?.length}
           isIntrinsicHeight
         >

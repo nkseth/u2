@@ -386,10 +386,55 @@
 }
 
 @media screen and(max-width:1370px) {
+  .Trending_Items {
+    width: 260px !important;
+    height: 330px;
+    img {
+      height: 260px;
+      width: 260px !important;
+    }
+  }
+}
+@media screen and(max-width:1200px) {
+  .Trending_Items {
+    width: 230px !important;
+    height: 300px !important;
+    img {
+      height: 240px !important;
+      width: 230px !important;
+    }
+  }
+}
+@media screen and(max-width:1060px) {
+  // .Trending {
+  //   display: grid;
+  //   grid-template-columns: repeat(2, 1fr);
+  //   place-items: center;
+  //   gap: 2rem;
+  // }
+  .Trending_Items {
+    width: 200px !important;
+    height: 280px !important;
+    img {
+      height: 220px !important;
+      width: 200px !important;
+    }
+  }
+}
+@media screen and(max-width:930px) {
   .Trending {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
     gap: 2rem;
+  }
+  .Trending_Items {
+    width: 280px !important;
+    height: 280px !important;
+    img {
+      height: 220px !important;
+      width: 280px !important;
+    }
   }
 }
 
@@ -402,7 +447,7 @@
   }
   .Trending_Items {
     width: 280px !important;
-    height: 330px !important;
+    // height: 330px !important;
     img {
       width: 280px !important;
     }

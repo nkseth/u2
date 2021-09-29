@@ -40,13 +40,12 @@
   font-weight: 700 !important;
   line-height: 16px !important;
   background-color: #fff !important;
-  color: #6A5B40 !important;
+  color: #6a5b40 !important;
 }
-.button:after{
+.button:after {
   background-color: #fff !important;
 }
 @media screen and (max-width: 1000px) {
-
   .header {
     font-size: 55px;
     line-height: 72px;
@@ -67,20 +66,18 @@
     }
   }
   .header {
-    text-align: center!important;
+    text-align: center !important;
     font-size: 65px;
   }
-  .button{
-    margin-left: auto!important;
-    margin-right: auto!important;
+  .button {
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 
 @media screen and (max-width: 768px) {
- 
   .header {
     text-align: left;
     font-size: 65px;
   }
-
 }

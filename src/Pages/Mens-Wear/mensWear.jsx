@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MUICarousel from 'react-material-ui-carousel';
 import { Carousel } from 'react-responsive-carousel';
 import Container from '../../utils/Container/container';
-import { Grid, useMediaQuery } from '@material-ui/core';
+import { Grid, IconButton, useMediaQuery, useTheme } from '@material-ui/core';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import CustomSection from '../../utils/Custom Section/section';
 import CategoriesToBagCard from './components/Categories-Carousel-Card/card';
@@ -24,11 +24,26 @@ import MostLovedStyleSection from './components/Sections/most-loved-style/mostLo
 import AllThatYouWantSection from './components/Sections/all-that-you-want/allThatYouWant';
 import TopOffersOfTheSeasonSection from './components/Sections/top-offer-of-the-season/topOffersOfTheSeason';
 import CelebrityStyleSection from './components/Sections/celebrity-style/celebrityStyle';
+
 import {
   getBanner,
   get_mens_wear_cat,
   get_mens_wear_slider,
 } from '../../Redux/actions/mensWear';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Pagination } from 'swiper/core';
+import 'swiper/swiper.min.css';
+import 'swiper/components/pagination/pagination.min.css';
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext,
+  DotGroup,
+} from 'pure-react-carousel';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 export default function MensWear({ match }) {
   const {
@@ -40,12 +55,16 @@ export default function MensWear({ match }) {
   const tabViewPro = useMediaQuery('(max-width:835px)');
   const customView = useMediaQuery('(max-width:1125px)');
   const customView2 = useMediaQuery('(max-width:910px)');
-
+  SwiperCore.use([Pagination]);
   const dispatch = useDispatch();
   const history = useHistory();
   const { mens_wear_slider, mens_wear_cat, banner } = useSelector(
     state => state.root.main
   );
+
+  const theme = useTheme();
+  const small = useMediaQuery(theme.breakpoints.down('xs'));
+  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     dispatch(get_mens_wear_slider());
@@ -56,7 +75,7 @@ export default function MensWear({ match }) {
   return (
     <Container footerOnAllView>
       <section className={styles.heroSection}>
-        <Carousel
+        {/* <Carousel
           autoPlay
           emulateTouch
           infiniteLoop
@@ -77,11 +96,39 @@ export default function MensWear({ match }) {
               </div>
             );
           })}
-        </Carousel>
+        </Carousel> */}
+        {/* <Swiper
+          centeredSlides={true}
+          autoplay={{
+            delay: 4500,
+            disableOnInteraction: true,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+        > */}
+        {banner?.slice(0, 1).map(({ id, title, description, image }, i) => {
+          return (
+            // <SwiperSlide className={styles.swiper_slide}>
+            <div
+              className={styles.carouselItem}
+              key={id}
+              style={{ backgroundImage: `url(${image})` }}
+            >
+              <div>
+                <span>{title}</span>
+                <p>{description}</p>
+              </div>
+            </div>
+            // </SwiperSlide>
+          );
+        })}
+        {/* </Swiper> */}
       </section>
-      <CustomSection style={{ padding: tabView && '0 1rem' }}>
+      <CustomSection style={{ padding: '2rem 1rem' }}>
         <Breadcrumb
-          style={{ paddingTop: tabView && '0' }}
+          style={{ paddingTop: tabView && '2rem 0' }}
           path='Designer Home /'
           activePath={
             type == 'mens'
@@ -102,6 +149,40 @@ export default function MensWear({ match }) {
           customView={customView}
           customView2={customView2}
         />
+
+        {/* <CarouselProvider
+          naturalSlideWidth={100}
+          visibleSlides={small ? 1 : iPade ? 1 : 3}
+          totalSlides={mens_wear_cat.length}
+          infinite
+          isIntrinsicHeight
+          className={styles.carousel}
+        >
+          <Slider>
+            {mens_wear_cat.map((item, index) => {
+              const { name, slug, cover_image: image } = item;
+              return (
+                <Slide index={item.name + index} style={{ marginRight: '4em' }}>
+                  <CategoriesToBagCard image={image} slug={slug} title={name} />
+                </Slide>
+              );
+            })}
+          </Slider>
+          <DotGroup style={{ display: 'flex' }} />
+
+          <div className={styles.sliderBtnDiv}>
+            <ButtonBack className={styles.sliderBtnPrev}>
+              <IconButton size='small' className={styles.iconBtn}>
+                <NavigateBeforeIcon />
+              </IconButton>
+            </ButtonBack>
+            <ButtonNext className={styles.sliderBtnNext}>
+              <IconButton size='small' className={styles.iconBtn}>
+                <NavigateNextIcon />
+              </IconButton>
+            </ButtonNext>
+          </div>
+        </CarouselProvider> */}
       </section>
       <ForHimSection type={type} />
       <NewCollectionSection type={type} />
@@ -119,7 +200,7 @@ function GRID({ name, image, slug, mobileView }) {
   return (
     <Grid
       item
-      md={mobileView ? 3 : 4}
+      // md={mobileView ? 3 : 4}
       style={{
         display: 'flex',
         justifyContent: 'center',
@@ -141,7 +222,7 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
       className={styles.menswear_categories}
       navButtonsAlwaysVisible={true}
       autoPlay={false}
-      navButtonsAlwaysInvisible={mobileView}
+      // navButtonsAlwaysInvisible={mobileView}
       fullHeightHover={false}
       navButtonsProps={{
         style: {

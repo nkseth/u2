@@ -59,7 +59,7 @@ export default function Header() {
   });
   //Here I use Redux For Show Login Model
 
-  const handleMouseEnter = (value) => {
+  const handleMouseEnter = value => {
     setMegaMenuType(value);
 
     setMouseEnter({
@@ -194,20 +194,19 @@ export default function Header() {
               >
                 <img
                   src={image}
-                  alt="profilepic"
+                  alt='profilepic'
                   style={
                     LogedIn ? { width: '1.3em', borderRadius: '100%' } : {}
                   }
                 />
               </div>
             </IconButton>
-            <IconButton aria-label="favorites">
+            <IconButton aria-label='favorites'>
               <img
                 src={FavoriteIcon}
-                alt="favorites"
-                onClick={() => history.push("/wishlist")}
+                alt='favorites'
+                onClick={() => history.push('/wishlist')}
               />
-
             </IconButton>
             <IconButton
               onClick={() => history.push('/my-bag')}
@@ -244,8 +243,7 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave('men')}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
-              <Link style={{ color: "#9D8E73" }} to="/wear/mens">
-
+              <Link style={{ color: '#9D8E73' }} to='/wear/mens'>
                 Men
               </Link>
             </span>
@@ -257,9 +255,11 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave('women')}
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
-              {" "}
-              <Link style={{ color: "#9D8E73" }} to='/wear/womens'> Women</Link>
-
+              {' '}
+              <Link style={{ color: '#9D8E73' }} to='/wear/womens'>
+                {' '}
+                Women
+              </Link>
             </span>
             <span
               onMouseEnter={() => {
@@ -269,8 +269,10 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave('kids')}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
-              <Link style={{ color: "#9D8E73" }} to='/wear/kids'> Kids</Link>
-
+              <Link style={{ color: '#9D8E73' }} to='/wear/kids'>
+                {' '}
+                Kids
+              </Link>
             </span>
             <span
               onMouseEnter={() => handleMouseEnter('designers')}
@@ -339,145 +341,7 @@ export default function Header() {
             <SideNavbar />
           </div>
         ) : (
-          <List style={{ width: mobileView ? '80vw' : '40vw' }}>
-            <ListItem style={{ display: 'flex', alignItems: 'center' }}>
-              <FormControl
-                style={{
-                  width: 'auto',
-                  boxShadow: 'none',
-                }}
-              >
-                <Select
-                  disableUnderline
-                  value={currency}
-                  onChange={e => setCurrency(e.target.value)}
-                >
-                  <MenuItem selected value='INR'>
-                    <b>India(₹)</b>
-                  </MenuItem>
-                  <MenuItem value='USD'>
-                    <b>US($)</b>
-                  </MenuItem>
-                  <MenuItem value='JPY'>
-                    <b>Japan(¥)</b>
-                  </MenuItem>
-                </Select>
-              </FormControl>
-              <IconButton onClick={profileFnc} aria-label='my account'>
-                <img src={PersonIcon} alt='my account' />
-              </IconButton>
-              <IconButton aria-label='favorites'>
-                <img src={FavoriteIcon} alt='favorites' />
-              </IconButton>
-              <IconButton
-                onClick={() => history.push('/my-bag')}
-                aria-label='my bag'
-              >
-                <img src={BagIcon} alt='my bag' />
-              </IconButton>
-            </ListItem>
-            <ListItem style={{ height: '64px' }}>
-              <Link className={cx(styles.links, styles.menuItem)}>
-                New arrivals
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Accordion className={styles.accordion}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon size='small' />}
-                  className={styles.accordionSummary}
-                >
-                  <span className={styles.menuItem}>
-                    <Link to='wear/mens'>Men</Link>
-                  </span>
-                </AccordionSummary>
-                <AccordionDetails className={styles.accordionDetials}>
-                  <div className={styles.subMenuItems}>
-                    <Link>Indian fusion wear</Link>
-                    <Link>western wear</Link>
-                    <Link>Bottom wear</Link>
-                    <Link>Bottom wear</Link>
-                  </div>
-                </AccordionDetails>
-              </Accordion>
-            </ListItem>
-            <ListItem>
-              <Accordion className={styles.accordion}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon size='small' />}
-                  className={styles.accordionSummary}
-                >
-                  <span className={styles.menuItem}>
-                    <Link to='wear/womens'>Women</Link>
-                  </span>
-                </AccordionSummary>
-                <AccordionDetails className={styles.accordionDetials}>
-                  <div className={styles.subMenuItems}>
-                    <Link>Indian fusion wear</Link>
-                    <Link>western wear</Link>
-                    <Link>Bottom wear</Link>
-                    <Link>Bottom wear</Link>
-                  </div>
-                </AccordionDetails>
-              </Accordion>
-            </ListItem>
-            <ListItem>
-              <Accordion className={styles.accordion}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon size='small' />}
-                  className={styles.accordionSummary}
-                >
-                  <span className={styles.menuItem}>
-                    <Link to='wear/kids'>Kids</Link>
-                  </span>
-                </AccordionSummary>
-                <AccordionDetails className={styles.accordionDetials}>
-                  <div className={styles.subMenuItems}>
-                    <Link>Indian fusion wear</Link>
-                    <Link>western wear</Link>
-                    <Link>Bottom wear</Link>
-                    <Link>Bottom wear</Link>
-                  </div>
-                </AccordionDetails>
-              </Accordion>
-            </ListItem>
-            <ListItem>
-              <Accordion className={styles.accordion}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon size='small' />}
-                  className={styles.accordionSummary}
-                >
-                  <span className={styles.menuItem}>
-                    {' '}
-                    <Link to='designers'>Designers</Link>
-                  </span>
-                </AccordionSummary>
-                <AccordionDetails className={styles.accordionDetials}>
-                  <div className={styles.subMenuItems}>
-                    <Link>Indian fusion wear</Link>
-                    <Link>western wear</Link>
-                    <Link>Bottom wear</Link>
-                    <Link>Bottom wear</Link>
-                  </div>
-                </AccordionDetails>
-              </Accordion>
-            </ListItem>
-            <ListItem style={{ height: '64px' }}>
-              <Link to='/' className={cx(styles.links, styles.menuItem)}>
-                Contempory
-              </Link>
-            </ListItem>
-            <ListItem style={{ height: '64px' }}>
-              <Link to='/offers' className={cx(styles.links, styles.menuItem)}>
-                Offers
-              </Link>
-            </ListItem>
-            <ListItem style={{ height: '64px' }}>
-              <Link to='/' className={cx(styles.links, styles.menuItem)}>
-                More
-              </Link>
-            </ListItem>
-          </List>
+          <SideNavbar main />
         )}
       </SwipeableDrawer>
     </div>

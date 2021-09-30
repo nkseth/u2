@@ -35,7 +35,7 @@ const HandMade_Clothes = () => {
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down('xs'));
   const small = useMediaQuery(theme.breakpoints.down('sm'));
-  const iPade = useMediaQuery(theme.breakpoints.down('md'));
+  const iPade = useMediaQuery(theme.breakpoints.down('1330'));
   const CustomView = useMediaQuery('(max-width:550px)');
 
   if (!clothes) {

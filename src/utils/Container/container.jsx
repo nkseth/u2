@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { useMediaQuery } from '@material-ui/core';
 import Header from '../Header/header';
 import Footer from '../Footer/footer';
 import CustomDivider from '../Custom Divider/divider';
 import CustomSection from '../Custom Section/section';
 import BottomNavigation from '../MobileBottomNavigation/BottomNavigation';
+import { useLocation } from 'react-router';
 
 export default function Container(props) {
   const tabView = useMediaQuery('(max-width:768px)');

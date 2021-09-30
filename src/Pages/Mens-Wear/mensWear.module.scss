@@ -40,11 +40,9 @@
 }
 
 .categoriesToBagSection {
-  display: grid;
-  gap: 3rem;
-  width: 100%;
   text-align: center;
-  padding-bottom: 5rem;
+  margin-bottom: 5rem;
+
   .categoriesToBagHeader {
     font-family: DM Serif Display;
     font-size: 54px;
@@ -52,6 +50,8 @@
     line-height: 64px;
     text-align: center;
     color: #0a0a0a;
+    margin: 2rem auto;
+    display: inline-block;
   }
 }
 .categoriesToBagContainer {
@@ -66,25 +66,29 @@
   align-items: center !important;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
+  height: 20px;
+
   // gap: 1rem;
   .sliderBtnPrev,
   .sliderBtnNext {
     background: none;
     border: none;
+    margin-top: 3rem;
   }
 }
 
 @media screen and(max-width:1400px) {
   .sliderBtnDiv {
-    // position: absolute;
-    display: flex;
-    align-items: flex-end !important;
-    justify-content: center !important;
-    margin: auto;
-    gap: 4rem;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    // align-content: end;
+
     width: 80vw;
-    height: 120%;
+    .sliderBtnPrev,
+    .sliderBtnNext {
+      margin-top: 13rem;
+    }
   }
 }
 .iconBtn {
@@ -180,10 +184,21 @@
     }
   }
   .categoriesToBagSection {
-    button {
-      width: 120px !important;
-      font-size: 13px !important;
-    }
+    // button {
+    //   width: 120px !important;
+    //   font-size: 13px !important;
+    // }
+  }
+}
+
+.sliderBtnDiv {
+  z-index: 1;
+  margin-top: 3rem;
+  // gap: 1rem;
+  .sliderBtnPrev,
+  .sliderBtnNext {
+    background: none;
+    border: none;
   }
 }
 

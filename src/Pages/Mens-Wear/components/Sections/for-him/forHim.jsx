@@ -1,23 +1,23 @@
-import React, { useEffect } from "react";
-import { Grid, Button, useMediaQuery } from "@material-ui/core";
-import ProductCard from "./Components/product-cards/card";
-import CustomSection from "../../../../../utils/Custom Section/section";
-import styles from "./forHim.module.scss";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { Grid, Button, useMediaQuery } from '@material-ui/core';
+import ProductCard from './Components/product-cards/card';
+import CustomSection from '../../../../../utils/Custom Section/section';
+import styles from './forHim.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
 //Images
-import Main from "./Components/Images/Main.jpg";
+import Main from './Components/Images/Main.jpg';
 
 import {
   get_mens_active_product,
   setSelectedSubGrp,
-} from "../../../../../Redux/actions/mensWear";
-import { useHistory } from "react-router-dom";
+} from '../../../../../Redux/actions/mensWear';
+import { useHistory } from 'react-router-dom';
 
 export default function ForHimSection({ type }) {
-  const customView = useMediaQuery("(max-width:1235px)");
-  const tabView = useMediaQuery("(max-width:768px)");
-  const tabViewPro = useMediaQuery("(max-width:835px)");
-  const mobileView = useMediaQuery("(max-width:550px)");
+  const customView = useMediaQuery('(max-width:1235px)');
+  const tabView = useMediaQuery('(max-width:768px)');
+  const tabViewPro = useMediaQuery('(max-width:835px)');
+  const mobileView = useMediaQuery('(max-width:550px)');
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -25,12 +25,12 @@ export default function ForHimSection({ type }) {
     selected_sub_grp: activeNav,
     mens_active_product,
     banner,
-  } = useSelector((state) => state.root.main);
+  } = useSelector(state => state.root.main);
 
   const grp = type;
 
   useEffect(() => {
-    dispatch(get_mens_active_product(type, "all"));
+    dispatch(get_mens_active_product(type, 'all'));
   }, [type, dispatch]);
 
   const setActiveNav = (type, active) => {
@@ -41,33 +41,33 @@ export default function ForHimSection({ type }) {
   return (
     <CustomSection
       style={{
-        backgroundColor: "rgba(230, 227, 220, 0.21)",
-        paddingBottom: mobileView ? "40px" : "84px",
-        paddingTop: mobileView ? "30px" : "45px",
+        backgroundColor: 'rgba(230, 227, 220, 0.21)',
+        paddingBottom: mobileView ? '40px' : '84px',
+        paddingTop: mobileView ? '30px' : '45px',
       }}
     >
       <div className={styles.mainContainer}>
         <div className={styles.forHimFirstSection}>
           <p>
-            <span style={{ color: "#000" }}>
+            <span style={{ color: '#000' }}>
               <i>#For</i>
             </span>
-            &nbsp;{type === "mens" ? "Him" : type === "womens" ? "Her" : "Kids"}
+            &nbsp;{type === 'mens' ? 'Him' : type === 'womens' ? 'Her' : 'Kids'}
           </p>
           {customView && (
             <nav
               className={styles.navBar}
               style={{
-                width: mobileView ? "100%" : "85%",
-                justifyContent: "center",
-                marginTop: mobileView ? ".5rem" : "2rem",
+                width: mobileView ? '100%' : '85%',
+                justifyContent: 'center',
+                marginTop: mobileView ? '.5rem' : '2rem',
               }}
             >
               <div className={styles.navItems}>
                 <span
-                  href="#"
-                  className={activeNav === "all" && styles.activeNav}
-                  onClick={() => setActiveNav(grp, "all")}
+                  href='#'
+                  className={activeNav === 'all' && styles.activeNav}
+                  onClick={() => setActiveNav(grp, 'all')}
                 >
                   All
                 </span>
@@ -77,7 +77,7 @@ export default function ForHimSection({ type }) {
                   }
                   return (
                     <span
-                      href="#"
+                      href='#'
                       className={
                         activeNav.toLowerCase() === item.slug.toLowerCase() &&
                         styles.activeNav
@@ -93,13 +93,13 @@ export default function ForHimSection({ type }) {
               </div>
             </nav>
           )}
-          <img src={Main} alt="for him" />
+          <img src={Main} alt='for him' />
         </div>
         <Grid
           container
-          style={{ margin: "0" }}
+          style={{ margin: '0' }}
           spacing={mobileView ? 1 : tabView ? 2 : 4}
-          justify="space-between"
+          justify='space-between'
           className={styles.secondSection}
         >
           {!customView && (
@@ -107,9 +107,9 @@ export default function ForHimSection({ type }) {
               <nav className={styles.navBar}>
                 <div className={styles.navItems}>
                   <span
-                    href="#"
-                    className={activeNav === "all" && styles.activeNav}
-                    onClick={() => setActiveNav(grp, "all")}
+                    href='#'
+                    className={activeNav === 'all' && styles.activeNav}
+                    onClick={() => setActiveNav(grp, 'all')}
                   >
                     All
                   </span>
@@ -119,7 +119,7 @@ export default function ForHimSection({ type }) {
                     }
                     return (
                       <span
-                        href="#"
+                        href='#'
                         className={activeNav === item.slug && styles.activeNav}
                         onClick={() => setActiveNav(grp, item.slug)}
                       >
@@ -139,9 +139,9 @@ export default function ForHimSection({ type }) {
               </nav>
             </Grid>
           )}
-          {mens_active_product?.slice(0, 6).map((item) => {
+          {mens_active_product?.slice(0, 6).map(item => {
             return (
-              <Grid item xs={6} sm={4} md={4} justifyContent={"space-between"}>
+              <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'}>
                 <ProductCard data={item} image={item.feature_image} />
               </Grid>
             );
@@ -151,7 +151,7 @@ export default function ForHimSection({ type }) {
           <Grid
             item
             md={12}
-            style={{ display: "flex", justifyContent: "center" }}
+            style={{ display: 'flex', justifyContent: 'center' }}
           >
             <Button
               onClick={() =>

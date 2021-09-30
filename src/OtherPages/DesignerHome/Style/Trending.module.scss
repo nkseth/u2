@@ -321,25 +321,26 @@
 .Trending {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  place-items: center;
 
   .Trending_Items {
-    width: 310px;
+    width: 320px;
     height: 330px;
     display: grid;
     justify-content: center;
     border-radius: 5px;
     background: #fff;
     box-shadow: 0px 5px 5px #a57b7b10;
-    transition: all 0.3s ease-in-out;
+    transition: box-shadow 0.3s ease-in-out;
     &:hover {
       box-shadow: 0px 0px 20px #03030342;
-      transition: all 0.3s ease-in-out;
+      transition: box-shadow 0.3s ease-in-out;
     }
     img {
       height: 260px;
-      width: 310px;
+      width: 320px;
       object-fit: cover;
-      object-position: center;
+      object-position: top;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
     }

@@ -37,7 +37,7 @@ const SuitWear = () => {
 
   const match = useMediaQuery(theme.breakpoints.down('xs'));
   const iPade = useMediaQuery(theme.breakpoints.down('sm'));
-  const large = useMediaQuery(theme.breakpoints.down('md'));
+  const large = useMediaQuery(theme.breakpoints.down('1330'));
   const CustomView = useMediaQuery('(max-width:400px)');
 
   useEffect(() => {
@@ -67,8 +67,8 @@ const SuitWear = () => {
                 key={item.id.toString()}
                 style={
                   CustomView
-                    ? { marginRight: 0, marginLeft: 0 }
-                    : { marginRight: 35, marginLeft: 35 }
+                    ? { marginRight: '10px', marginLeft: '10px' }
+                    : { marginRight: '20px', marginLeft: '20px' }
                 }
               >
                 <Link

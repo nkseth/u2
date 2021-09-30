@@ -16,8 +16,9 @@ export const add_to_bag = (slug) => async (dispatch) => {
 export const getWishList = () => async (dispatch) => {
   try {
     const { data } = await common_axios.get(`/wishlist`);
-    if (data.data) {
-      dispatch({ type: GET_WISHLIST, payload: data.data });
+    console.log(data);
+    if (data) {
+      dispatch({ type: GET_WISHLIST, payload: data });
     }
   } catch (err) {
     console.log(err?.response?.data);

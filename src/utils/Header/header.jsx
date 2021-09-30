@@ -1,21 +1,7 @@
-import React, { useState, useRef, useCallback } from "react";
-import {
-  FormControl,
-  Select,
-  MenuItem,
-  IconButton,
-  useMediaQuery,
-  Drawer,
-  List,
-  SwipeableDrawer,
-  ListItem,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from "@material-ui/core";
+import React, { useState } from "react";
+import { IconButton, useMediaQuery, SwipeableDrawer } from "@material-ui/core";
 import cx from "classnames";
 import { Link, useLocation, useHistory } from "react-router-dom";
-import CustomSection from "../Custom Section/section";
 import SideNavbar from "../Side-Navbar/sideNavbar";
 import styles from "./header.module.scss";
 //Icons
@@ -25,20 +11,17 @@ import BagIcon from "../../Images/icons/bag.svg";
 import SearchIcon from "../../Images/icons/search.svg";
 import HamMenuIcon from "../../Images/icons/hamMenu.svg";
 import SearchDarkIcon from "../../Images/icons/searchDark.svg";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { LOGIN_MODEL } from "../../Redux/reducers/loginreducer";
+
 import { useDispatch, useSelector } from "react-redux";
 import useLogin from "../../LoginSceens/useLogin";
 import { useCookies } from "react-cookie";
 import MegaMenu from "./Components/MegaMenu";
-import Logo from "../../Images/logo/logo.png";
+
 import { getCategorySubGroup } from "../../Redux/actions/designerHomePage";
 export default function Header() {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const [currency, setCurrency] = useState("INR");
-  const [cookies, setCookie] = useCookies(["user"]);
   const [mouseEnter, setMouseEnter] = useState({
     newArrivals: false,
     men: false,
@@ -61,7 +44,7 @@ export default function Header() {
   });
   //Here I use Redux For Show Login Model
 
-  const handleMouseEnter = value => {
+  const handleMouseEnter = (value) => {
     setMegaMenuType(value);
     dispatch(getCategorySubGroup(value));
     setMouseEnter({
@@ -90,7 +73,7 @@ export default function Header() {
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   const [megaMenuType, setMegaMenuType] = useState("");
-  const { user_data } = useSelector((state) => state.root.main);
+  const { user } = useSelector((state) => state.root.auth);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
   const toggleDrawer = (anchor, open) => (event) => {
@@ -106,14 +89,14 @@ export default function Header() {
   };
 
   const profileFnc = () => {
-    if (Object.keys(user_data)?.length !== 0) {
+    if (Object.keys(user)?.length !== 0) {
       history.push("/profile");
     } else {
       login_Model_Show();
     }
   };
-  const LogedIn = Object.keys(user_data)?.length !== 0;
-  const image = LogedIn ? user_data.avatar : PersonIcon;
+  const LogedIn = Object.keys(user)?.length !== 0;
+  const image = LogedIn ? user.avatar : PersonIcon;
   const { login_Model_Show } = useLogin();
 
   return (
@@ -196,18 +179,18 @@ export default function Header() {
               >
                 <img
                   src={image}
-                  alt='profilepic'
+                  alt="profilepic"
                   style={
                     LogedIn ? { width: "1.3em", borderRadius: "100%" } : {}
                   }
                 />
               </div>
             </IconButton>
-            <IconButton aria-label='favorites'>
+            <IconButton aria-label="favorites">
               <img
                 src={FavoriteIcon}
-                alt='favorites'
-                onClick={() => history.push('/wishlist')}
+                alt="favorites"
+                onClick={() => history.push("/wishlist")}
               />
             </IconButton>
             <IconButton
@@ -245,8 +228,7 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave("mens")}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
-
-              <Link style={{ color: '#9D8E73' }} to='/wear/mens'>
+              <Link style={{ color: "#9D8E73" }} to="/wear/mens">
                 Men
               </Link>
             </span>
@@ -258,10 +240,9 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave("womens")}
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
-
-              {' '}
-              <Link style={{ color: '#9D8E73' }} to='/wear/womens'>
-                {' '}
+              {" "}
+              <Link style={{ color: "#9D8E73" }} to="/wear/womens">
+                {" "}
                 Women
               </Link>
             </span>
@@ -273,9 +254,8 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave("kids")}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
-
-              <Link style={{ color: '#9D8E73' }} to='/wear/kids'>
-                {' '}
+              <Link style={{ color: "#9D8E73" }} to="/wear/kids">
+                {" "}
                 Kids
               </Link>
             </span>
@@ -347,7 +327,6 @@ export default function Header() {
           </div>
         ) : (
           <SideNavbar main />
-
         )}
       </SwipeableDrawer>
     </div>

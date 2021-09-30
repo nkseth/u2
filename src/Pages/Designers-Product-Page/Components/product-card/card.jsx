@@ -22,7 +22,7 @@ export default function ProductCard(props) {
   const add_to_wishlist = async (prod) => {
     try {
       setAddToWishList(true);
-      console.log(prod);
+      console.log(prod.slug);
       const { data } = await common_axios.get(`/wishlist/${prod.slug}/add`);
       console.log(data);
     } catch (error) {
@@ -33,6 +33,7 @@ export default function ProductCard(props) {
   const remove_from_wishlist = async (prod) => {
     try {
       setAddToWishList(false);
+      console.log(prod.slug);
       const { data } = await common_axios.delete(
         `/wishlist/${prod.slug}/remove`
       );

@@ -9,7 +9,7 @@ import {
   USER_DATA,
   GET_DESIGNERS,
   SECTION1_SLIDERS,
-  ORDER_SUMM
+  ORDER_SUMM,
 } from "./types";
 import HomepageDataService from "../services/homepage.service";
 
@@ -28,7 +28,7 @@ export const createCategories = (title, description) => async (dispatch) => {
 };
 
 export const displayContent = () => {
-  console.log('content displayed');
+  console.log("content displayed");
 };
 
 export const retrieveCategories = () => async (dispatch) => {
@@ -100,11 +100,10 @@ export const findCategorysByTitle = (title) => async (dispatch) => {
   }
 };
 
-
 export const get_section_1_sliders = () => async (dispatch) => {
   try {
     const res = await HomepageDataService.getSection1Sliders();
-    if(res.data.data){
+    if (res.data.data) {
       dispatch({
         type: SECTION1_SLIDERS,
         payload: res.data.data,
@@ -115,33 +114,22 @@ export const get_section_1_sliders = () => async (dispatch) => {
   }
 };
 
+export const setSignupCreds = (val) => ({
+  type: SIGNUP_CREDS,
+  payload: val,
+});
 
-export const setSignupCreds = (val) => (
-  {
-    type: SIGNUP_CREDS,
-    payload: val
-  }
-);
+export const setLoginCreds = (val) => ({
+  type: LOGIN_CREDS,
+  payload: val,
+});
 
-export const setLoginCreds = (val) => (
-  {
-    type: LOGIN_CREDS,
-    payload: val
-  }
-);
+export const setUserData = (val) => ({
+  type: USER_DATA,
+  payload: val,
+});
 
-
-export const setUserData = (val) => (
-  {
-    type: USER_DATA,
-    payload: val
-  }
-);
-
-
-export const setOrderSumm = (val) => (
-  {
-    type: ORDER_SUMM,
-    payload: val
-  }
-);
+export const setOrderSumm = (val) => ({
+  type: ORDER_SUMM,
+  payload: val,
+});

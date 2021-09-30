@@ -66,6 +66,7 @@ export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
 export const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST";
 
 //User Authentication
+export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
 //Filter

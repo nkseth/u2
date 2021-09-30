@@ -42,7 +42,7 @@ function DesignerProductPage({ match }) {
   const fetch_products = async (slug) => {
     try {
       console.log(slug);
-      const { data } = await common_axios.post(`/product_by_category/men`, {
+      const { data } = await common_axios.post(`/product_by_category/mens`, {
         slug,
       });
       console.log(data);
@@ -99,7 +99,7 @@ function DesignerProductPage({ match }) {
               <div className={styles.upperbread}>
                 <Breadcrumb
                   path={`Designers Home / ${"Category"} /`}
-                  activePath={category.name || "product"}
+                  activePath={category?.name || "product"}
                 />
               </div>
             )}

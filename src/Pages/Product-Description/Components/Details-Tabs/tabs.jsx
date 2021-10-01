@@ -1,13 +1,13 @@
-import React from "react";
-import { useMediaQuery } from "@material-ui/core";
-import PropTypes from "prop-types";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import styles from "./tabs.module.scss";
-import Terms from "./Terms";
+import React from 'react';
+import { useMediaQuery } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import styles from './tabs.module.scss';
+import Terms from './Terms';
 import parse from 'html-react-parser';
 
 function TabPanel(props) {
@@ -39,7 +39,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
@@ -48,11 +48,6 @@ function a11yProps(index) {
 //     backgroundColor: theme.palette.background.paper,
 //   },
 // }));
-
-
-
-
-
 
 const AntTabs = withStyles({
   root: {
@@ -63,7 +58,7 @@ const AntTabs = withStyles({
   },
 })(Tabs);
 
-const AntTab = withStyles((theme) => ({
+const AntTab = withStyles(theme => ({
   root: {
     textTransform: 'none',
     minWidth: 72,
@@ -94,7 +89,7 @@ const AntTab = withStyles((theme) => ({
     },
   },
   selected: {},
-}))((props) => <Tab disableRipple {...props} />);
+}))(props => <Tab disableRipple {...props} />);
 
 const StyledTabs = withStyles({
   indicator: {
@@ -107,9 +102,9 @@ const StyledTabs = withStyles({
       backgroundColor: '#857250',
     },
   },
-})((props) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
+})(props => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
 
-const StyledTab = withStyles((theme) => ({
+const StyledTab = withStyles(theme => ({
   root: {
     textTransform: 'none',
     color: '#fff',
@@ -120,9 +115,9 @@ const StyledTab = withStyles((theme) => ({
       opacity: 1,
     },
   },
-}))((props) => <Tab disableRipple {...props} />);
+}))(props => <Tab disableRipple {...props} />);
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
@@ -137,19 +132,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-
-
-
-
-
-
-
-
-
 export default function DetailTabs({ type, product }) {
-  const tabView = useMediaQuery("(max-width:768px)");
+  const tabView = useMediaQuery('(max-width:768px)');
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -157,20 +141,14 @@ export default function DetailTabs({ type, product }) {
     setValue(newValue);
   };
 
-
-
-
-
-
-
   return (
-    <div className={classes.root} style={{ marginTop: "-2em" }} >
+    <div className={classes.root} style={{ marginTop: '-2em' }}>
       <AntTabs
-        variant={tabView && "scrollable"}
+        variant={tabView && 'scrollable'}
         value={value}
         onChange={handleChange}
         classes={styles.tabHeaderContainer}
-        TabIndicatorProps={{ style: { background: "#857250", height: "3px", } }}
+        TabIndicatorProps={{ style: { background: '#857250', height: '3px' } }}
         aria-label='simple tabs example'
       >
         <AntTab
@@ -179,13 +157,21 @@ export default function DetailTabs({ type, product }) {
           {...a11yProps(1)}
         />
 
-        <Tab
+        <AntTab
           className={styles.tabHeader}
           label='Description'
           {...a11yProps(0)}
         />
-        <AntTab className={styles.tabHeader} label='Shipping' {...a11yProps(1)} />
-        <AntTab className={styles.tabHeader} label='Reviews' {...a11yProps(2)} />
+        <AntTab
+          className={styles.tabHeader}
+          label='Shipping'
+          {...a11yProps(1)}
+        />
+        <AntTab
+          className={styles.tabHeader}
+          label='Reviews'
+          {...a11yProps(2)}
+        />
       </AntTabs>
 
       <TabPanel value={value} index={0}>

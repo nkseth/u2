@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { suitWears } from '../../../Redux/actions/designerHomePage';
 import c1 from '../Images/111.png';
 import c2 from '../Images/c2.jpg';
+import { LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const SuitWear = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const SuitWear = () => {
   const [visible, setvisible] = useState(4);
   const theme = useTheme();
 
-  const match = useMediaQuery(theme.breakpoints.down('xs'));
+  const match = useMediaQuery('(max-width:630px)');
   const iPade = useMediaQuery(theme.breakpoints.down('sm'));
   const large = useMediaQuery(theme.breakpoints.down('1330'));
   const CustomView = useMediaQuery('(max-width:400px)');
@@ -79,7 +80,8 @@ const SuitWear = () => {
                   <div>
                     <div className={styles.SuitWear}>
                       <div className={styles.SuitWear_Items}>
-                        <img src={item.cover_image} alt={item.id} />
+                        <LazyLoadingImg image={item.cover_image} />
+                        {/* <img src={item.cover_image} alt={item.id} /> */}
                         <Link>{item.name}</Link>
                       </div>
                     </div>

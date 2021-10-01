@@ -7,6 +7,8 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { popularCategories } from '../../../Redux/actions/designerHomePage';
 import '../Style/common.scss';
+import { LazyLoadingComp } from '../../../utils/LazyLoading/index';
+
 //TRBL
 //TRBL
 const PopularCategory = () => {

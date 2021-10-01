@@ -17,6 +17,8 @@ import ReactStars from 'react-rating-stars-component';
 import { useEffect, useState } from 'react';
 import { getCustomerReviews } from '../../../Redux/actions/designerHomePage';
 import { useDispatch, useSelector } from 'react-redux';
+import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 const Customer_Review = () => {
   const dispatch = useDispatch();
   const customStyle = {
@@ -69,26 +71,28 @@ const Customer_Review = () => {
                   i
                 ) => (
                   <Slide index={i} key={id + i}>
-                    <div className={styles.Customer_Review}>
-                      <div className={styles.Customer_Review_Items}>
-                        <span style={{ fontSize: '14px', color: '#6c6c6c' }}>
-                          {created_at}
-                        </span>
-                        <img src={images} alt='items' />
-                        <h4>{customers_name}</h4>
-                        <ReactStars
-                          size={30}
-                          activeColor='#ffd700'
-                          value={point}
-                          edit={false}
-                        />
+                    <LazyLoadingComp>
+                      <div className={styles.Customer_Review}>
+                        <div className={styles.Customer_Review_Items}>
+                          <span style={{ fontSize: '14px', color: '#6c6c6c' }}>
+                            {created_at}
+                          </span>
+                          <img src={images} alt='items' />
+                          <h4>{customers_name}</h4>
+                          <ReactStars
+                            size={30}
+                            activeColor='#ffd700'
+                            value={point}
+                            edit={false}
+                          />
 
-                        <p>
-                          {description ||
-                            ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem animi eaque labore tempore nulla consequatur dicta id vel doloribus necessitatibus totam est, itaque in veniam veritatis cumque voluptatibus, aperiam doloremque?'}
-                        </p>
+                          <p>
+                            {description ||
+                              ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem animi eaque labore tempore nulla consequatur dicta id vel doloribus necessitatibus totam est, itaque in veniam veritatis cumque voluptatibus, aperiam doloremque?'}
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                    </LazyLoadingComp>
                   </Slide>
                 )
               )}

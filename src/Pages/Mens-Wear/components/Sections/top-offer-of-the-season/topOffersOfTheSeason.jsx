@@ -32,7 +32,8 @@ export default function TopOffersOfTheSeasonSection({ type }) {
   const CustomView = useMediaQuery('(max-width:1050px)');
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down('xs'));
-  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
+  const small = useMediaQuery(theme.breakpoints.down('sm'));
+  const iPade = useMediaQuery(theme.breakpoints.down('lg'));
 
   const dispatch = useDispatch();
   const { top_offers } = useSelector(state => state.root.main);
@@ -55,7 +56,7 @@ export default function TopOffersOfTheSeasonSection({ type }) {
       </div>
       <CarouselProvider
         naturalSlideWidth={100}
-        visibleSlides={match ? 1 : iPade ? 2 : 4}
+        visibleSlides={match ? 1 : iPade ? 3 : small ? 2 : 4}
         totalSlides={top_offers.length}
         isIntrinsicHeight
       >

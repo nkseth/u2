@@ -29,7 +29,7 @@ $first-section-width: 500px;
 .secondSection {
   width: 100% !important;
   display: flex;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
 }
 
@@ -70,7 +70,7 @@ $first-section-width: 500px;
     }
     &::after {
       display: inline-block;
-      content: "";
+      content: '';
       width: 0%;
       height: 2px;
       background-color: var(--primary-color);
@@ -97,15 +97,15 @@ $first-section-width: 500px;
   background: #ffffff !important;
   border: 1px solid #000000 !important;
   color: var(--primary-color-dark) !important;
-  margin-top: 3em!important;
-  margin-bottom: 1em!important;
+  margin-top: 3em !important;
+  margin-bottom: 1em !important;
 }
 
 .activeNav {
   color: var(--primary-color-dark) !important;
   &::after {
     display: inline-block !important;
-    content: "" !important;
+    content: '' !important;
     width: 100% !important;
     height: 2px !important;
     background-color: var(--primary-color-dark) !important;
@@ -135,11 +135,9 @@ $first-section-width: 500px;
     }
   }
   .mainContainer {
-    gap: 0px!important;
+    gap: 0px !important;
     flex-direction: column;
-
   }
-
 }
 
 @media screen and (max-width: 835px) {
@@ -152,13 +150,12 @@ $first-section-width: 500px;
 
   .viewAllBtn {
     font-size: 11px !important;
-    margin-top: 3em!important;
-    margin-bottom: -3em!important;
+    margin-top: 3em !important;
+    margin-bottom: -3em !important;
   }
   .mainContainer {
-    gap: 0px!important;
+    gap: 0px !important;
   }
-
 }
 
 @media screen and (max-width: 550px) {
@@ -182,33 +179,25 @@ $first-section-width: 500px;
       letter-spacing: 0.02em;
     }
   }
-  .viewAllBtn{
-    margin-bottom:  1em!important;
-    margin-top: -0.3em!important;
+  .viewAllBtn {
+    margin-bottom: 1em !important;
+    margin-top: -0.3em !important;
   }
 }
 
-@media screen and (max-width:950px) {
-
-
+@media screen and (max-width: 950px) {
   .mainContainer {
     gap: 0px;
   }
-
-
 }
-  @media screen and (max-width:768px) {
-
-
+@media screen and (max-width: 768px) {
   .mainContainer {
     gap: 0px;
   }
-
-
 }
 
-@media screen and (max-width:450px) {
-  .viewAllBtn{
-    margin-top: 5em!important;
+@media screen and (max-width: 450px) {
+  .viewAllBtn {
+    margin-top: 5em !important;
   }
 }

@@ -1,371 +1,347 @@
-.container{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    margin-bottom: 5em;
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  margin-bottom: 5em;
 }
-.SVGDiv{
-    width: 100%;
-    height: 110vh;
-    margin-top: 5em;
-    position: relative;
-    min-width: 200px;
-    max-width:750px;
-    overflow: hidden;
-    z-index: 0;
+.SVGDiv {
+  width: 100%;
+  height: 110vh;
+  margin-top: 5em;
+  position: relative;
+  min-width: 200px;
+  max-width: 750px;
+  overflow: hidden;
+  z-index: 0;
 }
-.AccordionDiv{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 4em;
-    max-width: 400px;
+.AccordionDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4em;
+  max-width: 400px;
 }
 // Man
 
+.upperImage {
+  width: 100%;
+  height: 90%;
 
-.upperImage{
-    width: 100%;
-    height: 90%;
-    
-    margin-top: 2em;
-    transition: all 1s;
-    
+  margin-top: 2em;
+  transition: all 1s;
 }
-.lowerImage{
-    width: 100%;
-    height: 90%;
-    
-    margin-top: 2em;
-    transition: all 1s;
-}
+.lowerImage {
+  width: 100%;
+  height: 90%;
 
+  margin-top: 2em;
+  transition: all 1s;
+}
 
 // Woman
-.upperImage_w{
-    width: 100%;
-    height: 80%;
-    transform: scale(1.2) ;
-    margin-top: 3em;
-    transition: all 1s;
-    padding: 1em;
-
-
-
-    
+.upperImage_w {
+  width: 100%;
+  height: 80%;
+  transform: scale(1.2);
+  margin-top: 3em;
+  transition: all 1s;
+  padding: 1em;
 }
-.lowerImage_w{
-    width: 100%;
-    height: 80%;
-    transform: scale(1.2) ;
-    margin-top: 3em;
-    transition: all 1s;
-    padding: 1em;
-
+.lowerImage_w {
+  width: 100%;
+  height: 80%;
+  transform: scale(1.2);
+  margin-top: 3em;
+  transition: all 1s;
+  padding: 1em;
 }
 
+.AddMeadurementsH1 {
+  font-family: DM Sans;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: left;
+  width: 100%;
+  padding: 1em 1em 1em 0;
 
-
-
-
-.AddMeadurementsH1{
-    font-family: DM Sans;
-font-size: 22px;
-font-style: normal;
-font-weight: 700;
-line-height: 20px;
-letter-spacing: 0px;
-text-align: left;
-width: 100%;
-padding: 1em 1em 1em 0  ;
-
-max-width: 450px;
-
+  max-width: 450px;
 }
-
 
 // Button divs
 
-.TabsButtonDiv{
-display: flex;
-width: 100%;
-max-width: 450px;
-border-radius: 5px;
-height: 50px;
+.TabsButtonDiv {
+  display: flex;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 5px;
+  height: 50px;
 }
 
 //Button Divs
 
 //Buttons
 
-.TabsButtonActive2{
-    width: 50%;
-    background-color: #857250 !important;
-    font-family: DM Sans !important;
-    font-size: 16px !important;
-    font-style: normal !important;
-    font-weight: 700 !important;
-    height: 50px!important;
-    color: #fff!important;
-    border: 2px solid #857250!important;
+.TabsButtonActive2 {
+  width: 50%;
+  background-color: #857250 !important;
+  font-family: DM Sans !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  height: 50px !important;
+  color: #fff !important;
+  border: 2px solid #857250 !important;
 
-    padding: 0!important;
-    border-radius: 0px 5px 5px 0px  !important;
-
+  padding: 0 !important;
+  border-radius: 0px 5px 5px 0px !important;
 }
 
-.TabsButtonActive1{
-    width: 50%;
-    background-color: #857250 !important;
-    font-family: DM Sans !important;
-    font-size: 16px !important;
-    font-style: normal !important;
-    font-weight: 700 !important;
-    height: 50px!important;
-    color: #fff!important;
-    border: 2px solid #857250!important;
+.TabsButtonActive1 {
+  width: 50%;
+  background-color: #857250 !important;
+  font-family: DM Sans !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  height: 50px !important;
+  color: #fff !important;
+  border: 2px solid #857250 !important;
 
-    padding: 0!important;
-    border-radius: 5px 0px 0px 5px  !important;
-
+  padding: 0 !important;
+  border-radius: 5px 0px 0px 5px !important;
 }
-.TabsButton1{
-    width: 50%;
-    height: 50px!important;
-    background-color: #ffffff !important;
-    color: #857250 !important;
-font-family: DM Sans !important;
-font-size: 16px !important;
-font-style: normal !important;
-font-weight: 700 !important;
-line-height: 20px !important;
-letter-spacing: 0px !important;
-text-align: center !important;
-padding: 0!important;
-border: 2px solid #857250!important;
-border-radius: 5px 0px 0px 5px  !important;
-
+.TabsButton1 {
+  width: 50%;
+  height: 50px !important;
+  background-color: #ffffff !important;
+  color: #857250 !important;
+  font-family: DM Sans !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  line-height: 20px !important;
+  letter-spacing: 0px !important;
+  text-align: center !important;
+  padding: 0 !important;
+  border: 2px solid #857250 !important;
+  border-radius: 5px 0px 0px 5px !important;
 }
-.TabsButton2{
-    width: 50%;
-    height: 50px!important;
-    background-color: #ffffff !important;
-    color: #857250 !important;
-font-family: DM Sans !important;
-font-size: 16px !important;
-font-style: normal !important;
-font-weight: 700 !important;
-line-height: 20px !important;
-letter-spacing: 0px !important;
-text-align: center !important;
-padding: 0!important;
-border: 2px solid #857250!important;
-border-radius: 0px 5px 5px 0px  !important;
-
+.TabsButton2 {
+  width: 50%;
+  height: 50px !important;
+  background-color: #ffffff !important;
+  color: #857250 !important;
+  font-family: DM Sans !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  line-height: 20px !important;
+  letter-spacing: 0px !important;
+  text-align: center !important;
+  padding: 0 !important;
+  border: 2px solid #857250 !important;
+  border-radius: 0px 5px 5px 0px !important;
 }
-
 
 // Image Sets
 
-@mixin Img{
-    height: 100%;  
-    box-sizing: border-box;
-    width: 100%;
-    transition: all 1s;
-
+@mixin Img {
+  height: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  transition: all 1s ease-in;
 }
 
-.Neck{
-    @include Img();
-        transform: scale(3) translateY(10em) ;
+.Neck {
+  @include Img();
+  transform: scale(3) translateY(10em);
 }
-.Shoulder{
-    @include Img();
-        transform: scale(3) translateY(10em) ;
+.Shoulder {
+  @include Img();
+  transform: scale(3) translateY(10em);
 }
-.Chest{
-    @include Img();
-        transform: scale(3) translateY(8em) ;
+.Chest {
+  @include Img();
+  transform: scale(3) translateY(8em);
 }
-.Arm{
-    @include Img();
-        transform: scale(3) translateY(10em) ;
-}
-
-.Waist{
-    @include Img();
-        transform: scale(3) translateY(4em) ;
-}
-.Wrist{
-    @include Img();
-        transform: scale(2) translateY(1em) translateX(-2em) ;
+.Arm {
+  @include Img();
+  transform: scale(3) translateY(10em);
 }
 
-.Hip{
-    @include Img();
-        transform: scale(3) translateY(0em) ;
+.Waist {
+  @include Img();
+  transform: scale(3) translateY(4em);
 }
-.Thigh{
-    @include Img();
-        transform: scale(3) translateY(-3em) ;
-}
-.Ankle{
-    @include Img();
-        transform: scale(3) translateY(-14em) ;
+.Wrist {
+  @include Img();
+  transform: scale(2) translateY(1em) translateX(-2em);
 }
 
-
-.Sleeve{
-    @include Img();
-        transform: scale(2) translateY(5em)  ;
+.Hip {
+  @include Img();
+  transform: scale(3) translateY(0em);
 }
-.Calf{
-    @include Img();
-        transform: scale(2) translateY(-10em) ;
+.Thigh {
+  @include Img();
+  transform: scale(3) translateY(-3em);
 }
-.Inseam{
-    @include Img();
-        transform: scale(2) translateY(-5em) ;
-}
-.FullLength{
-    @include Img();
-        transform: scale(2) translateY(-6em) ;
-}
-.FloatingMeasure{
-    position: absolute;
-    width: 100%;
-    border-radius: 10px;
-    top: 120%;
-    display: none;
-    max-width: 400px;
-    // margin-bottom: 3em;
+.Ankle {
+  @include Img();
+  transform: scale(3) translateY(-14em);
 }
 
-.submitBtn{
-    height: 48px !important;
-    width: 290px !important;
-    border-radius: 5px !important;
-    text-transform: none !important;
-    color: #fff !important;
-    background: #857250 !important;
-    box-shadow: none !important;
-    border: 1px solid #857250 !important;
-    font-family: DM Sans !important;
-    font-size: 16px !important;
-    font-weight: 700 !important;
-    line-height: 20px !important;
-    margin-top: 5em!important;
-    margin-bottom: 3em!important;
-    margin-left: auto!important;
-    margin-right: auto!important;
-    display: none!important;
+.Sleeve {
+  @include Img();
+  transform: scale(2) translateY(5em);
+}
+.Calf {
+  @include Img();
+  transform: scale(2) translateY(-10em);
+}
+.Inseam {
+  @include Img();
+  transform: scale(2) translateY(-5em);
+}
+.FullLength {
+  @include Img();
+  transform: scale(2) translateY(-6em);
+}
+.FloatingMeasure {
+  position: absolute;
+  width: 100%;
+  border-radius: 10px;
+  top: 120%;
+  display: none;
+  max-width: 400px;
+  // margin-bottom: 3em;
+}
+
+.submitBtn {
+  height: 48px !important;
+  width: 290px !important;
+  border-radius: 5px !important;
+  text-transform: none !important;
+  color: #fff !important;
+  background: #857250 !important;
+  box-shadow: none !important;
+  border: 1px solid #857250 !important;
+  font-family: DM Sans !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 20px !important;
+  margin-top: 5em !important;
+  margin-bottom: 3em !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: none !important;
 }
 // Image Sets
 
-.TabsButtonDivTop{
+.TabsButtonDivTop {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    align-items: center;
+  }
+  .AccordionDiv {
+    width: 50%;
+  }
+  .SVGDiv {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .container {
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 0em;
+  }
+  .AccordionDiv {
     display: none;
-}
-
-@media screen and (max-width:900px) {
-    .container{
-       align-items: center;
-    }
-    .AccordionDiv{
-       width: 50%;
-    }
-    .SVGDiv{
-        width: 50%;
-    }
-}
-
-@media screen and (max-width:769px) {
-    .container{
-       align-items: center;
-       flex-direction: column;
-       margin-bottom: 0em;
-    }
-    .AccordionDiv{
-        display: none;
-    }
-    .SVGDiv{
-        width: 100%;
+  }
+  .SVGDiv {
+    width: 100%;
     margin-top: 0em;
-
-    }
-    .TabsButtonDivTop{
-        display: flex;
-        width: 100%;
-        max-width: 400px;
-        // margin-top: -5em;
-    }
-    .submitBtn{
-        display: flex!important;
-    }
-    .TabsButton1,.TabsButton2,.TabsButtonActive1,.TabsButtonActive2{
-        border-radius: 0!important;
-
-    }
-.FloatingMeasure{
-display: block;
+  }
+  .TabsButtonDivTop {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    // margin-top: -5em;
+  }
+  .submitBtn {
+    display: flex !important;
+  }
+  .TabsButton1,
+  .TabsButton2,
+  .TabsButtonActive1,
+  .TabsButtonActive2 {
+    border-radius: 0 !important;
+  }
+  .FloatingMeasure {
+    display: block;
+  }
 }
 
+@media screen and (max-width: 769px) {
+  .SVGDiv {
+    width: 100%;
+    height: 100vh;
+    margin-top: 5em;
+    position: relative;
+    min-width: 200px;
+    max-width: 450px;
+  }
+}
+@media all and (device-width: 769px) and (device-height: 1024px) {
+  .SVGDiv {
+    width: 100%;
+    height: 50vh;
+    margin-top: 5em;
+    position: relative;
+    min-width: 200px;
+    max-width: 450px;
+    overflow: auto;
+  }
+  .FloatingMeasure {
+    bottom: 10%;
+  }
 }
 
-@media  screen  and (max-width:769px) {
-    .SVGDiv{
-        width: 100%;
-        height: 100vh;
-        margin-top: 5em;
-        position: relative;
-        min-width: 200px;
-        max-width:450px;
-    }
-}
-@media all and (device-width: 769px) and (device-height: 1024px){
-    .SVGDiv{
-        width: 100%;
-        height: 50vh;
-        margin-top: 5em;
-        position: relative;
-        min-width: 200px;
-        max-width:450px;
-        overflow: auto;
-    }
-    .FloatingMeasure{
-        bottom: 10%;
-    }
-}
-
-
-
-@media screen and (max-width :769px) {
-    .SVGDiv{
-        width: 100%;
-        margin-top: 5em;
-        position: relative;
-        min-width: 200px;
-        max-width:450px;
-        overflow: hidden;
-    }
-
-}
-
-    @media screen and (max-width :550px) {
-   .submitBtn{
-       margin-top: 5em!important;
-   }
-   .SVGDiv{
+@media screen and (max-width: 769px) {
+  .SVGDiv {
     width: 100%;
     margin-top: 5em;
     position: relative;
     min-width: 200px;
-    max-width:450px;
+    max-width: 450px;
     overflow: hidden;
+  }
 }
-.FloatingMeasure{
+
+@media screen and (max-width: 550px) {
+  .submitBtn {
+    margin-top: 5em !important;
+  }
+  .SVGDiv {
+    width: 100%;
+    margin-top: 5em;
+    position: relative;
+    min-width: 200px;
+    max-width: 450px;
+    overflow: hidden;
+  }
+  .FloatingMeasure {
     top: 125%;
-}
+  }
 }

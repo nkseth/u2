@@ -5,6 +5,7 @@ import CustomDivider from '../../../utils/Custom Divider/divider';
 import styles from '../Style/Season_Offers.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { topSeasonOffers } from '../../../Redux/actions/designerHomePage';
+import { LazyLoadingComp } from '../../../utils/LazyLoading';
 const Season_Offers = () => {
   const dispatch = useDispatch();
   const baseStyle = { padding: '5rem 3rem 9rem 3rem' };

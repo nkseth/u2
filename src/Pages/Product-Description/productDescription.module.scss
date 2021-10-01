@@ -7,35 +7,37 @@
   font-size: 16px !important;
   font-weight: 700 !important;
   line-height: 20px !important;
-  @media screen and (max-width:550px) {
-  font-size: 16px !important;
+  @media screen and (max-width: 550px) {
+    font-size: 16px !important;
   }
 }
-.FormControlLabel{
+.FormControlLabel {
   max-width: 330px;
   height: 5em;
-
 }
-.imagegall{
-  background:#F1EFEB;
+
+.imagegall {
+  background: white;
   padding-top: 1em;
-  img{
+  img {
     object-fit: cover;
     object-position: top;
   }
-
+  img .image-gallery-image {
+    height: 200px !important;
+  }
 }
 
-
-.FormControlLabelS{
+.FormControlLabelS {
   max-width: 300px;
 }
 .container {
   width: 100%;
+
   position: relative;
   display: flex;
 }
-.ChoicesBtnsLabels{
+.ChoicesBtnsLabels {
   padding: 0.5em 0em 0.5em 0em;
   font-weight: bolder;
 }
@@ -43,7 +45,7 @@
 .lastContainer {
   width: 50%;
 }
-.ProductSelector{
+.ProductSelector {
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -62,6 +64,7 @@
   flex-direction: column;
   gap: 1rem;
   .deliveryDiv {
+    margin: 2rem 0;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -128,6 +131,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
+  margin-top: 1rem;
   .productDetails {
     display: grid;
     > span:first-child {
@@ -173,41 +177,40 @@
     }
   }
 
-.priceTab {
-  display: flex;
-  align-items: center;
-  // flex-direction: column;
-  justify-content: space-between;
-  margin-left: 1em;
-  flex-wrap: wrap;
-  > span:first-child {
-    font-family: DM Serif Display;
-    font-size: 34px;
-    font-weight: 400;
-    line-height: 48px;
-    color: rgba(10, 10, 10, 1);
-    margin-right: 0.4em;
-  }
-  > p:last-child {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 18px;
-    letter-spacing: 0.1599999964237213px;
+  .priceTab {
+    display: flex;
+    align-items: center;
+    // flex-direction: column;
+    justify-content: space-between;
+    margin-left: 1em;
+    flex-wrap: wrap;
     > span:first-child {
-      text-decoration: line-through;
-      color: grey;
+      font-family: DM Serif Display;
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 48px;
+      color: rgba(10, 10, 10, 1);
+      margin-right: 0.4em;
     }
+    > p:last-child {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 0.1599999964237213px;
+      > span:first-child {
+        text-decoration: line-through;
+        color: grey;
+      }
 
-    > span:last-child {
-      color: var(--primary-color);
+      > span:last-child {
+        color: var(--primary-color);
+      }
     }
   }
-}
 
-
-.radioBtnsLabels{
-  font-size: 14px!important;
-}
+  .radioBtnsLabels {
+    font-size: 14px !important;
+  }
 
   .alert {
     display: flex;
@@ -265,7 +268,7 @@
 
   .selectColor {
     margin-top: 0.5rem;
-    li{
+    li {
       padding: 1em;
     }
     > div:first-child {
@@ -273,11 +276,11 @@
       font-weight: 700;
       line-height: 20px;
       color: #000;
-      margin-bottom:-1em;
+      margin-bottom: -1em;
     }
   }
-  .ProductSelectorHelpBtn{
-    padding: 0.5em 0.5em ;
+  .ProductSelectorHelpBtn {
+    padding: 0.5em 0.5em;
     color: #6a5b40;
     // position: absolute;
     right: 0;
@@ -317,26 +320,23 @@
   }
 }
 
-
-
-.SelectColorCard{
+.SelectColorCard {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  .ColorBTN{
-    width: 1.5em!important;
-    height: 1.5em!important;
+  .ColorBTN {
+    width: 1.5em !important;
+    height: 1.5em !important;
     margin-right: 0.5em;
     border-width: 5px !important;
-    border-style: solid!important;
-    .ColorInnerBTN{
-      width: 1em!important;
-      height: 1em!important;
-      background-color: transparent!important;
+    border-style: solid !important;
+    .ColorInnerBTN {
+      width: 1em !important;
+      height: 1em !important;
+      background-color: transparent !important;
       border: 3px;
       border-style: solid;
     }
-    
   }
 }
 
@@ -364,24 +364,22 @@
   }
 }
 
-@media only screen and (min-width: 834px) and (max-width:1044px) {
-
-.priceTab{
-  margin-left: 10em!important;
+@media only screen and (min-width: 834px) and (max-width: 1044px) {
+  .priceTab {
+    margin-left: 10em !important;
+  }
+  .FormControlLabelS {
+  }
 }
-.FormControlLabelS{
-}
-
-}
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .container {
     padding: 0 30px;
   }
   .btnDiv {
     width: 100% !important;
   }
-  .priceTab{
-    margin-left: 1em!important;
+  .priceTab {
+    margin-left: 1em !important;
   }
 }
 
@@ -421,7 +419,7 @@
       margin-right: 0.4em;
     }
     > p:last-child {
-      font-size: 14px!important;
+      font-size: 14px !important;
       font-weight: 400;
       line-height: 18px;
       letter-spacing: 0.1599999964237213px;
@@ -429,25 +427,25 @@
         text-decoration: line-through;
         color: grey;
       }
-  
+
       > span:last-child {
         color: var(--primary-color);
       }
     }
   }
-  .price{
+  .price {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     > span:first-child {
       font-family: DM Serif Display;
-      font-size: 20px!important;
+      font-size: 20px !important;
       font-weight: 400;
       line-height: 48px;
       color: rgba(10, 10, 10, 1);
     }
     > p:last-child {
-      font-size: 14px!important;
+      font-size: 14px !important;
       font-weight: 400;
       line-height: 18px;
       letter-spacing: 0.1599999964237213px;
@@ -455,7 +453,7 @@
         text-decoration: line-through;
         color: grey;
       }
-  
+
       > span:last-child {
         color: var(--primary-color);
       }

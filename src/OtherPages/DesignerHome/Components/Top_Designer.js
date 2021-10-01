@@ -20,6 +20,7 @@ import d4 from '../Images/d4.png';
 import { useEffect, useState } from 'react';
 import { topDesigner } from '../../../Redux/actions/designerHomePage';
 import { useDispatch, useSelector } from 'react-redux';
+import { LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const Top_Designer = () => {
   const dispatch = useDispatch();
@@ -73,7 +74,8 @@ const Top_Designer = () => {
                   <Link to='designers-profile'>
                     <div className={styles.Top_Designer}>
                       <div className={styles.Top_Designer_Items}>
-                        <img src={cover_image} alt={id} />
+                        <LazyLoadingImg image={cover_image} />
+                        {/* <img src={cover_image} alt={id} /> */}
                         <Link to='designers-profile'>{name}</Link>
                       </div>
                     </div>

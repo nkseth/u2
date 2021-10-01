@@ -7,7 +7,7 @@
 <mask maskUnits="userSpaceOnUse" x="0" y="0" width="0" height="0" fill="black">
 <rect fill="white" width="0" height="0"/>
 </mask>
-<path d="M682.141 2335.02L686.779 2338.46L687.438 2332.72L682.141 2335.02ZM707.971 2337.99L703.333 2334.55L702.675 2340.28L707.971 2337.99ZM686.555 2336.03L703.444 2337.97L703.558 2336.98L686.669 2335.04L686.555 2336.03Z" fill="#DA1E28" mask="url(#)"/>
+<path d="M682.141 2335.02L686.779 2338.46L687.438 2332.72L682.141 2335.02ZM707.971 2337.99L703.333 2334.55L702.675 2340.28L707.971 2337.99ZM686.555 2336.03L703.444 2337.97L703.558 2336.98L686.669 2335.04L686.555 2336.03Z" fill="#DA1E28"   mask="url(#)"/>
 <defs>
 <filter id="filter0_d" x="0" y="0" width="1152" height="2830" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>

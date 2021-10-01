@@ -14,20 +14,20 @@
   box-sizing: border-box;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 body {
   margin: 0;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* width: 100vw; */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -84,20 +84,25 @@ input {
 }
 
 .top_designer .carousel__dot--selected {
-  background-color: #CECECE !important;
+  background-color: #cecece !important;
 }
 .hande_made_clothes .carousel__dot--selected {
-  background-color: #CECECE !important;
+  background-color: #cecece !important;
 }
 .customer_review_content .carousel__dot--selected {
-  background-color: #CECECE !important;
+  background-color: #cecece !important;
 }
 .explore_top_designer .carousel__dot--selected {
-  background-color: #CECECE !important;
+  background-color: #cecece !important;
 }
 .celebrity_style_slider .carousel__dot--selected {
-  background-color: #CECECE !important;
+  background-color: #cecece !important;
 }
 .buy_get_slidee .carousel__dot--selected {
-  background-color: #CECECE !important;
+  background-color: #cecece !important;
+}
+
+/* Image Gallery */
+.image-gallery {
+  background-color: white;
 }

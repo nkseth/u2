@@ -18,6 +18,7 @@ import h2 from '../Images/h2.png';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { handMadeClothes } from '../../../Redux/actions/designerHomePage';
+import { LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const HandMade_Clothes = () => {
   const dispatch = useDispatch();
@@ -67,7 +68,8 @@ const HandMade_Clothes = () => {
               >
                 <div className={styles.SuitWear}>
                   <div className={styles.SuitWear_Items}>
-                    <img src={cover_image} alt={name} />
+                    <LazyLoadingImg image={cover_image} />
+                    {/* <img src={cover_image} alt={name} /> */}
                     <Link to={`/designers-product-page/${slug}`}>
                       <a>{name}</a>
                     </Link>

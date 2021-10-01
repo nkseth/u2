@@ -45,6 +45,7 @@ import {
 } from 'pure-react-carousel';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { LazyLoadingComp } from '../../utils/LazyLoading';
 
 export default function MensWear({ match }) {
   const {
@@ -62,6 +63,7 @@ export default function MensWear({ match }) {
   const {
     mens_wear_slider,
     mens_wear_cat,
+    loading,
     banner: { id, name, description, cover_image },
   } = useSelector(state => state.root.main);
 
@@ -167,7 +169,13 @@ export default function MensWear({ match }) {
               const { name, slug, cover_image: image } = item;
               return (
                 <Slide index={item.name + index} style={{ marginRight: '4em' }}>
-                  <CategoriesToBagCard image={image} slug={slug} title={name} />
+                  <LazyLoadingComp>
+                    <CategoriesToBagCard
+                      image={image}
+                      slug={slug}
+                      title={name}
+                    />
+                  </LazyLoadingComp>
                 </Slide>
               );
             })}
@@ -188,7 +196,7 @@ export default function MensWear({ match }) {
           </div>
         </CarouselProvider>
       </section>
-      <ForHimSection type={type} />
+      <ForHimSection type={type} loading={loading} />
       <NewCollectionSection type={type} />
       <ExploreTopDesignersSection type={type} />
       <StylishRecommendationSection type={type} />

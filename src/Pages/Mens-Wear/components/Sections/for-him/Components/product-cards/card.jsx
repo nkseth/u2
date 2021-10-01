@@ -7,6 +7,7 @@ import parse from 'html-react-parser';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom';
+import { LazyLoadingImg } from '../../../../../../../utils/LazyLoading';
 
 export default function ProductCard({ data }) {
   const [isAddToWishList, setAddToWishList] = useState(false);
@@ -15,7 +16,8 @@ export default function ProductCard({ data }) {
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <Link to={{ pathname: `/product-description/${data.slug}` }}>
-          <img src={data.feature_image} alt='product' />
+          <LazyLoadingImg image={data.feature_image} />
+          {/* <img src={data.feature_image} alt='product' /> */}
         </Link>
       </div>
       <div className={styles.productDetails}>

@@ -9,6 +9,7 @@ import All1 from './components/Images/All1.jpg';
 import All2 from './components/Images/All2.jpg';
 import All3 from './components/Images/All3.jpg';
 import { get_all_that_you_want } from '../../../../../Redux/actions/mensWear';
+import { LazyLoadingImg } from '../../../../../utils/LazyLoading';
 
 export default function AllThatYouWantSection({ type }) {
   const dispatch = useDispatch();
@@ -70,7 +71,9 @@ export default function AllThatYouWantSection({ type }) {
         {all_that_you_want?.slice(0, 3).map(item => {
           return (
             <div key={item.id} className={styles.item}>
-              <img src={item.image} alt={item.name} />
+              <LazyLoadingImg image={item.image} height={'225px'} />
+
+              {/* <img src={item.image} alt={item.name} /> */}
 
               <h1>{item.title}</h1>
             </div>

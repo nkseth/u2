@@ -4,6 +4,7 @@ import ProductCard from './Components/product-cards/card';
 import CustomSection from '../../../../../utils/Custom Section/section';
 import styles from './forHim.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import ContentLoader from 'react-content-loader';
 //Images
 import Main from './Components/Images/Main.jpg';
 
@@ -12,8 +13,9 @@ import {
   setSelectedSubGrp,
 } from '../../../../../Redux/actions/mensWear';
 import { useHistory } from 'react-router-dom';
+import { LazyLoadingImg } from '../../../../../utils/LazyLoading';
 
-export default function ForHimSection({ type }) {
+export default function ForHimSection({ type, loading }) {
   const customView = useMediaQuery('(max-width:1235px)');
   const tabView = useMediaQuery('(max-width:768px)');
   const tabViewPro = useMediaQuery('(max-width:835px)');
@@ -93,7 +95,8 @@ export default function ForHimSection({ type }) {
               </div>
             </nav>
           )}
-          <img src={Main} alt='for him' />
+          <LazyLoadingImg image={Main} />
+          {/* <img src={Main} alt='for him' /> */}
         </div>
         <Grid
           container
@@ -139,13 +142,58 @@ export default function ForHimSection({ type }) {
               </nav>
             </Grid>
           )}
-          {mens_active_product?.slice(0, 6).map(item => {
+          {/* {mens_active_product?.slice(0, 6).map(item => {
             return (
               <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'}>
                 <ProductCard data={item} image={item.feature_image} />
               </Grid>
             );
-          })}
+          })} */}
+
+          {loading
+            ? [...Array(6)].map(item => (
+                <Grid
+                  item
+                  xs={6}
+                  sm={4}
+                  md={4}
+                  justifyContent={'space-between'}
+                >
+                  <ContentLoader
+                    speed={2}
+                    width={400}
+                    height={'100%'}
+                    viewBox='0 0 400 160'
+                    backgroundColor='#f3f3f3'
+                    foregroundColor='#ecebeb'
+                    // {...props}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <rect x='0' y='0' rx='0' ry='0' width='300' height='2000' />
+                    <rect x='' y='50' rx='3' ry='3' width='88' height='6' />
+                    {/* <rect x='48' y='26' rx='3' ry='3' width='52' height='6' />
+                    <rect x='0' y='56' rx='3' ry='3' width='410' height='6' />
+                    <rect x='0' y='72' rx='3' ry='3' width='380' height='6' />
+                    <rect x='0' y='88' rx='3' ry='3' width='178' height='6' /> */}
+                  </ContentLoader>
+                </Grid>
+              ))
+            : mens_active_product?.slice(0, 6).map(item => {
+                return (
+                  <Grid
+                    item
+                    xs={6}
+                    sm={4}
+                    md={4}
+                    justifyContent={'space-between'}
+                  >
+                    <ProductCard data={item} image={item.feature_image} />
+                  </Grid>
+                );
+              })}
         </Grid>
         {customView && (
           <Grid

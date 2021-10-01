@@ -17,7 +17,7 @@ import profile_reducer from "./profileReducer";
 import {
   addToBagReducer,
   getWishListReducer,
-  removeFromWishlistReducer,
+  updateWishlistReducer,
 } from "./wishlistReducer";
 import { authReducer } from "./authReducer";
 import {
@@ -26,28 +26,30 @@ import {
 } from "./filterCategoryReducer";
 
 import { productDetailReducer } from "./productDescriptionReducer";
+import { allMeasurementsReducer } from "./measurement";
 
 const rootreducer = combineReducers({
-  login: loginreducer,
-  homepage: homepageReducer,
-  trending: trendingReducer,
-  topCategory: topCategoryReducer,
-  popularCategory: popularCategoryReducer,
-  suitWears: suitWearReducer,
-  topDesigner: topDesignerReducer,
-  topSeasonOffers: topSeasonOffersReducer,
-  handMadeClothes: handMadeClothesReducer,
-  customerReviews: customerReviewsReducer,
-  main: mainreducer,
-  profile: profile_reducer,
-  measurement: measurement_reducer,
   addToBag: addToBagReducer,
+  allMeasurements: allMeasurementsReducer,
   auth: authReducer,
-  wishList: getWishListReducer,
-  removeFromWishlist: removeFromWishlistReducer,
+  customerReviews: customerReviewsReducer,
   filterCategory: filterCategoryReducer,
   filteredProduct: filteredProductReducer,
+  handMadeClothes: handMadeClothesReducer,
+  homepage: homepageReducer,
+  login: loginreducer,
+  main: mainreducer,
+  measurement: measurement_reducer,
+  popularCategory: popularCategoryReducer,
   productDetail: productDetailReducer,
+  profile: profile_reducer,
+  suitWears: suitWearReducer,
+  topCategory: topCategoryReducer,
+  topDesigner: topDesignerReducer,
+  topSeasonOffers: topSeasonOffersReducer,
+  trending: trendingReducer,
+  updateWishlist: updateWishlistReducer,
+  wishlist: getWishListReducer,
 });
 
 export default rootreducer;

@@ -17,18 +17,20 @@ import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
 import CustomStepper from '../../utils/Stepper/stepper';
 import styles from './MyBag.module.scss';
 //icons
-import AddIcon from '@material-ui/icons/Add';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import RemoveIcon from '@material-ui/icons/Remove';
-import { ReactComponent as CouponIcon } from '../../Images/icons/coupon.svg';
-import common_axios from '../../utils/axios.config';
-import { useSelector, useDispatch } from 'react-redux';
-import { setOrderSumm } from '../../Redux/actions/homepage';
 
-import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import AddIcon from "@material-ui/icons/Add";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import RemoveIcon from "@material-ui/icons/Remove";
+import { ReactComponent as CouponIcon } from "../../Images/icons/coupon.svg";
+import common_axios from "../../utils/axios.config";
+import { useSelector, useDispatch } from "react-redux";
+import { setOrderSumm } from "../../Redux/actions/homepage";
+import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 
 // Product Type
-import { Product_Type, Product_Type_Change } from '../../Redux/MeasuremantData';
+import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData";
+import { addToWishlist } from "../../Redux/actions/wishlist";
+
 
 export default function MyBag() {
   const history = useHistory();
@@ -43,7 +45,9 @@ export default function MyBag() {
   const img =
     'https://images.pexels.com/photos/1096849/pexels-photo-1096849.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=165';
 
-  const { user_data } = useSelector(state => state.root.main);
+
+  const { user } = useSelector((state) => state.root.auth);
+
 
   useEffect(() => {
     fetch_data();
@@ -51,7 +55,9 @@ export default function MyBag() {
 
   const fetch_data = async () => {
     try {
-      const { data: val } = await common_axios.get('/carts');
+
+      const { data: val } = await common_axios.get("/carts");
+
       console.log(val);
       if (val.data) {
         setValue(val?.data[0]);
@@ -65,7 +71,9 @@ export default function MyBag() {
 
   const add_quantity = async (item, index) => {
     setLoading(true);
-    console.log('running');
+
+    console.log("running");
+
     try {
       const { data: res } = await common_axios.put(`/cart/${value.id}/update`, {
         item: item.id,
@@ -105,50 +113,48 @@ export default function MyBag() {
     } else alert("Quantity can't be less than 1");
   };
 
-  const move_to_wishlist = async item => {
-    try {
-      const { data: res } = await common_axios.get(`/wishlist/${item.id}/add`);
-      remove_item(item);
-      console.log(res);
-    } catch (e) {
-      alert(e.response?.data?.message);
-    }
+
+  const move_to_wishlist = async (item) => {
+    dispatch(addToWishlist(item.slug, user.api_token));
+    remove_item(item);
   };
 
-  const remove_item = async item => {
-    fetch('http://3.109.176.19/api/cart/removeItem', {
-      method: 'DELETE',
-      headers: {
-        accept: 'application/json',
-        'content-type': 'application/json',
-        Authorization: `Bearer ${user_data.api_token}`,
-      },
-      body: JSON.stringify({
+  const remove_item = async (item) => {
+    try {
+      console.log(value.id, item.id);
+      const { data } = await common_axios.delete("/cart/removeItem", {
         item: item.id,
         cart: value.id,
-      }),
-    })
-      .then(res => res.json())
-      .then(json => {
-        console.log(json);
-        if (json.message == 'Item hs been removed') {
-          setData(json.cart?.items);
-          setValue(json.cart);
-        }
+        headers: {
+          Authorization: `Bearer ${user.api_token}`,
+        },
       });
+      console.log(data);
+      if (data.message === "Item has been removed") {
+        setData(data.cart?.items);
+        setValue(data.cart);
+      }
+    } catch (error) {
+      console.log(error.response);
+      alert(error.response?.data?.error);
+    }
+
   };
 
   const on_checkout = () => {
     dispatch(setOrderSumm(value));
-    history.push('/delivery-address');
+    history.push("/delivery-address");
+
   };
 
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection
-        style={mobileView ? { marginTop: '0' } : { marginTop: '3em' }}
+
+        style={mobileView ? { marginTop: "0" } : { marginTop: "3em" }}
       >
-        <Breadcrumb path='Home / Men / Blazers' activePath='/ My Bag' />
+        <Breadcrumb path="Home" activePath="/ My Bag" />
+
         <div></div>
         <div className={styles.container}>
           {mobileView ? (
@@ -171,26 +177,36 @@ export default function MyBag() {
               <div>My Bag</div>
               {data?.map((item, index) => {
                 var last = index + 1 === data.length;
-                if (item.productType === 'Customised') {
-                  Product_Type_Change(item.productType);
-                }
+
+                if (item.product.isVariant) Product_Type_Change("Readymade");
+                else Product_Type_Change("Customized");
+
+
                 return (
                   <>
                     <div className={styles.BorderContainer}>
                       <div className={styles.mainContainer}>
                         <img
                           src={item.product?.image}
-                          alt='product'
+
+                          alt="product"
                           className={styles.image}
                         />
                         <div>
-                          <div style={{ alignItems: 'flex-start' }}>
+                          <div style={{ alignItems: "flex-start" }}>
+
                             <p className={styles.proName}>{item.title}</p>
                             <p>{item.color}</p>
 
                             <div>
                               <h4>Product Type</h4>
-                              <p>{item.productType}</p>
+
+                              {item.product.isVariant ? (
+                                <p>Readymade</p>
+                              ) : (
+                                <p>Customized</p>
+                              )}
+
                               <Button
                                 onClick={() => move_to_wishlist(item)}
                                 className={styles.MoveToWishListBtn}
@@ -202,9 +218,11 @@ export default function MyBag() {
 
                           <div
                             style={{
-                              display: 'flex',
-                              flexDirection: 'column',
-                              alignItems: 'center',
+
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "center",
+
                             }}
                           >
                             <p>
@@ -222,14 +240,16 @@ export default function MyBag() {
                             </p>
                             <div className={styles.quan}>
                               <p>Quantity</p>
-                              <div style={{ display: 'flex' }}>
+                              <div style={{ display: "flex" }}>
+
                                 <Button
                                   className={styles.addBtn}
                                   onClick={() =>
                                     substract_quantity(item, index)
                                   }
                                 >
-                                  <RemoveIcon style={{ width: '15px' }} />
+                                  <RemoveIcon style={{ width: "15px" }} />
+
                                 </Button>
                                 <div className={styles.quantity}>
                                   {item.quantity}
@@ -238,21 +258,24 @@ export default function MyBag() {
                                   className={styles.removeBtn}
                                   onClick={() => add_quantity(item, index)}
                                 >
-                                  <AddIcon style={{ width: '15px' }} />
+                                  <AddIcon style={{ width: "15px" }} />
+
                                 </Button>
                               </div>
                               <Button
                                 onClick={() => remove_item(item)}
                                 className={styles.RemoveBTN}
                               >
-                                Remove item{' '}
+                                Remove item{" "}
+
                               </Button>
                             </div>
                           </div>
                         </div>
                       </div>
-                      {Product_Type === 'Customised' ? (
-                        <div style={{ marginLeft: '1em', marginBottom: '1em' }}>
+                      {Product_Type === "Customised" ? (
+                        <div style={{ marginLeft: "1em", marginBottom: "1em" }}>
+
                           <CheckOutProcess />
                         </div>
                       ) : (
@@ -271,9 +294,10 @@ export default function MyBag() {
             <div>
               <div
                 style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+
                 }}
               >
                 <div>Price Details</div>
@@ -292,7 +316,7 @@ export default function MyBag() {
                   </div>
                   <div>
                     <label>Delivery charges</label>
-                    <span>{value?.delivery_charge || '$0'}</span>
+                    <span>{value?.delivery_charge || "$0"}</span>
                   </div>
                 </div>
                 <CustomDivider style={{ backgroundColor: '#CECECE' }} />
@@ -373,8 +397,8 @@ export default function MyBag() {
                 </AccordionDetails>
               </Accordion>
               <Button
-                variant='text'
-                color='default'
+                variant="text"
+                color="default"
                 className={styles.placeOrderBtn}
                 onClick={() => on_checkout()}
               >
@@ -397,6 +421,8 @@ const MobileProductMyBag = ({
   move_to_wishlist,
   Product_Type,
 }) => {
+  console.log(data);
+
   return (
     <div className={styles.MobileConatiner}>
       <h1 className={styles.h1}>My Bag</h1>
@@ -405,33 +431,42 @@ const MobileProductMyBag = ({
           <div className={styles.MobileborderDiv}>
             <div className={styles.mainDiv}>
               <div className={styles.ImageQuanDiv}>
-                <img src={item.product?.image} className={styles.mainimg} />
+                <img
+                  src={item.product?.image}
+                  className={styles.mainimg}
+                  alt={data.id}
+                />
               </div>
               <div className={styles.InfoDiv}>
                 <div className={styles.mainInfo}>
                   <h1>{item.title}</h1>
                   <div
                     style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      justifyContent: 'space-between',
-                      width: '100%',
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      width: "100%",
+
                     }}
                   >
                     <div
                       style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        width: '80%',
+                        display: "flex",
+                        flexDirection: "column",
+                        width: "80%",
                       }}
                     >
                       <p className={styles.PType1}>Product Type</p>
-                      <p className={styles.PType2}>{item.productType}</p>
+                      <p className={styles.PType2}>
+                        {item.product?.isVariant ? "Readymade" : "Customized"}
+                      </p>
+
                     </div>
                   </div>
                   <div className={styles.quan}>
                     <p>Quantity</p>
-                    <div style={{ display: 'flex' }}>
+                    <div style={{ display: "flex" }}>
+
                       <Button
                         className={styles.addBtn}
                         onClick={() => substract_quantity(item, index)}
@@ -470,12 +505,14 @@ const MobileProductMyBag = ({
                     onClick={() => remove_item(item)}
                     className={styles.RemoveBTNMobile}
                   >
-                    Remove item{' '}
+                    Remove item{" "}
+
                   </Button>
                 </div>
               </div>
             </div>
-            {Product_Type === 'Customised' ? <CheckOutProcess /> : <></>}
+            {Product_Type === "Customised" ? <CheckOutProcess /> : <></>}
+
           </div>
         );
       })}

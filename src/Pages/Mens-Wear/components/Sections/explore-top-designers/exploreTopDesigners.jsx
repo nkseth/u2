@@ -50,10 +50,12 @@ export default function ExploreTopDesignersSection({ type }) {
               return (
                 <Slide index={index}>
                   <div className={styles.Top_Designer}>
-                    <div className={styles.Top_Designer_Items}>
-                      <img src={cover_image} alt={id} />
-                      <Link to="designers-profile">{get_merchant?.name}</Link>
-                    </div>
+                    <Link to="/designers-profile">
+                      <div className={styles.Top_Designer_Items}>
+                        <img src={cover_image} alt={id} />
+                        <span>{get_merchant?.name}</span>
+                      </div>
+                    </Link>
                   </div>
                 </Slide>
               );

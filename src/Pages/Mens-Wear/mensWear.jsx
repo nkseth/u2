@@ -148,13 +148,15 @@ export default function MensWear({ match }) {
       <section className={styles.categoriesToBagSection}>
         <span className={styles.categoriesToBagHeader}>Categories to Bag</span>
 
-        {/* <GRIDLAPTOP
+         <GRIDLAPTOP
           data={mens_wear_cat}
           mobileView={mobileView}
           tabView={tabView}
           customView={customView}
           customView2={customView2}
-        /> */}
+          type={type}
+        />
+
 
         <CarouselProvider
           naturalSlideWidth={100}
@@ -208,7 +210,7 @@ export default function MensWear({ match }) {
   );
 }
 
-function GRID({ name, image, slug, mobileView }) {
+function GRID({ name, image, type, slug, mobileView }) {
   return (
     <Grid
       item
@@ -220,12 +222,19 @@ function GRID({ name, image, slug, mobileView }) {
         marginRight: 'auto',
       }}
     >
-      <CategoriesToBagCard image={image} slug={slug} title={name} />
+      <CategoriesToBagCard image={image} slug={slug} type={type} title={name} />
     </Grid>
   );
 }
 
-function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
+function GRIDLAPTOP({
+  mobileView,
+  type,
+  tabView,
+  customView,
+  customView2,
+  data,
+}) {
   return (
     <MUICarousel
       animation='slide'
@@ -257,6 +266,7 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
             <GRID
               name={data[2].name}
               slug={data[2].slug}
+              type={type}
               image={data[2].cover_image}
               mobileView={mobileView}
             />
@@ -269,6 +279,7 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
         {data?.length > 0 ? (
           <GRID
             name={data[0].name}
+            type={type}
             slug={data[0].slug}
             image={data[0].cover_image}
             mobileView={mobileView}
@@ -281,6 +292,7 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
             {data?.length > 3 ? (
               <GRID
                 name={data[4].name}
+                type={type}
                 slug={data[4].slug}
                 image={data[4].cover_image}
                 mobileView={mobileView}
@@ -305,6 +317,7 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
           data?.length > 3 ? (
             <GRID
               name={data[3].name}
+              type={type}
               slug={data[3].slug}
               image={data[3].cover_image}
               mobileView={mobileView}
@@ -319,6 +332,7 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
           <GRID
             name={data[1].name}
             slug={data[1].slug}
+            type={type}
             image={data[1].cover_image}
             mobileView={mobileView}
           />
@@ -331,6 +345,7 @@ function GRIDLAPTOP({ mobileView, tabView, customView, customView2, data }) {
               <GRID
                 name={data[5].name}
                 slug={data[5].slug}
+                type={type}
                 image={data[5].cover_image}
                 mobileView={mobileView}
               />

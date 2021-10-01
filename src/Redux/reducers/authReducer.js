@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from "../actions/types";
+import { LOAD_USER, LOGIN, LOGOUT } from "../actions/types";
 
 export const authReducer = (
   initialState = { isAuthenticated: false, user: {} },
@@ -8,6 +8,7 @@ export const authReducer = (
 
   switch (type) {
     case LOGIN:
+    case LOAD_USER:
       return { ...initialState, isAuthenticated: true, user: payload };
     case LOGOUT:
       return { ...initialState, isAuthenticated: false, user: null };

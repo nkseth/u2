@@ -89,13 +89,15 @@ export default function Header() {
   };
 
   const profileFnc = () => {
-    if (Object.keys(user)?.length !== 0) {
+    // if (Object.keys(user)?.length !== 0) {
+    if (user?.id) {
       history.push("/profile");
     } else {
       login_Model_Show();
     }
   };
-  const LogedIn = Object.keys(user)?.length !== 0;
+  // const LogedIn = Object.keys(user)?.length !== 0;
+  const LogedIn = user?.id ? true : false;
   const image = LogedIn ? user.avatar : PersonIcon;
   const { login_Model_Show } = useLogin();
 
@@ -179,9 +181,9 @@ export default function Header() {
               >
                 <img
                   src={image}
-                  alt="profilepic"
+                  alt="user"
                   style={
-                    LogedIn ? { width: "1.3em", borderRadius: "100%" } : {}
+                    LogedIn ? { width: "1.3em", borderRadius: "999px" } : {}
                   }
                 />
               </div>

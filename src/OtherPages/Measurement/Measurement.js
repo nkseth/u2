@@ -1,33 +1,36 @@
 import { Button } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getAllMeasurements } from "../../Redux/actions/measurement";
 import common_axios from "../../utils/axios.config";
 import styles from "./Measurement.module.scss";
 const Measurement = () => {
+  const dispatch = useDispatch();
 
-  const [ measurement_data, set_measurement_data] = useState([])
+  const [measurement_data, set_measurement_data] = useState([]);
+  const { measurements } = useSelector((state) => state.root.allMeasurements);
+  const { user } = useSelector((state) => state.root.auth);
 
-  useEffect(()=>{
-   fetch_data()
-  },[])
-
-  const fetch_data = async () => {
-    const { data } = await common_axios.get('/show_measurment')
-    console.log(data)
-  }
-
+  useEffect(() => {
+    dispatch(getAllMeasurements(user.api_token));
+  }, [dispatch, user]);
+  // const fetch_data = async () => {
+  //   const { data } = await common_axios.get("/show_measurment");
+  //   console.log(data);
+  // };
 
   return (
     <div className={styles.Measurement}>
       <div className={styles.Measurement_Box}>
-        {backgroundURL?.map((data, index) => {
+        {measurements?.map((measurement) => {
           return (
             <MeasurementItems
-              key={index}
-              background={data.url}
-              titlename="Rohith"
+              key={measurement.id}
+              background={measurement.url}
+              titlename={measurement.name}
               productname="Suits"
-              date={new Date().toLocaleDateString()}
+              date={measurement.updated_at}
             />
           );
         })}
@@ -54,7 +57,7 @@ const MeasurementItems = ({ background, titlename, productname, date }) => {
         </div>
         <div>
           <Button>
-            <Link to="viewmeasurement">View</Link>
+            <Link to="/viewmeasurement">View</Link>
           </Button>
           <Button>Delete</Button>
         </div>

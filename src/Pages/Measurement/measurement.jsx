@@ -51,7 +51,7 @@ export default function Measurement() {
   const { waist, hip_round, full_length, inseam, thigh, calf, ankle } =
     lower_body;
   const [OrderDone, SetOrderDone] = useState(false);
-
+  console.log(upper_body);
   const toggle = () => {
     SetOrderDone(false);
     history.push("/viewmeasurement");
@@ -109,7 +109,7 @@ export default function Measurement() {
       <section className={styles.section}>
         <div style={{ padding: mobileView && "0 1rem", marginTop: "1em" }}>
           <Breadcrumb
-            path={`Home / ${gender == "male" ? "Men" : "Women"} /`}
+            path={`Home / ${gender === "male" ? "Men" : "Women"} /`}
             activePath="Measurements"
           />
         </div>

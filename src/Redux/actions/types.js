@@ -44,7 +44,8 @@ export const SECTION2_TOP_OFFERS = "SECTION1_TOP_OFFERS";
 
 //Measurement
 
-export const MY_MEASUREMENTS = "MY_MEASUREMENTS";
+export const GET_ALL_MEASUREMENTS = "GET_ALL_MEASUREMENTS";
+export const GET_SINGLE_MEASUREMENT = "GET_SINGLE_MEASUREMENT";
 export const GENDER = "GENDER";
 export const BASIC_DETAILS = "BASIC_DETAILS";
 export const UPPER_BODY = "UPPER_BODY";
@@ -60,14 +61,19 @@ export const REVIEWS = "REVIEWS";
 export const GET_DESIGNERS = "GET_DESIGNERS";
 
 //Wishlist Page
-export const ADD_TO_BAG = "ADD_TO_BAG";
 export const GET_WISHLIST = "GET_WISHLIST";
 export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
+export const CLEAR_WISHLIST_UPDATE = "CLEAR_WISHLIST_UPDATE";
 export const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST";
+
+//My Bag Page
+export const ADD_TO_BAG = "ADD_TO_BAG";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 
 //User Authentication
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+export const LOAD_USER = "LOAD_USER";
 
 //Filter
 export const GET_FILTER_LIST = "GET_FILTER_LIST";

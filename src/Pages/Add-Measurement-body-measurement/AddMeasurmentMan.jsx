@@ -4,7 +4,6 @@ import styles from "./Styles/AddMeasurmentMan.module.scss";
 import { Button, useMediaQuery } from "@material-ui/core";
 import AccordionS from "./Components/Accordion";
 import FloatingTag from "./Components/FloatingTag";
-import DetailTab from "./Components/DetailTab";
 
 import Image from "./Images/men/Man.svg";
 import neck_image from "./Images/men/upper/neck.svg";

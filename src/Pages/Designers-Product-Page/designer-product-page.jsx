@@ -18,6 +18,7 @@ import {
   getFilterList,
 } from "../../Redux/actions/filter-category";
 import { useDispatch, useSelector } from "react-redux";
+import { getWishList } from "../../Redux/actions/wishlist";
 
 function DesignerProductPage({ match }) {
   const dispatch = useDispatch();
@@ -27,22 +28,26 @@ function DesignerProductPage({ match }) {
   const location = useLocation();
   const { filters } = useSelector((state) => state.root.filterCategory);
   const {
-    params: { slug },
+    params: { slug, type },
   } = match;
 
   const [product, setProduct] = useState([]);
   const [category, setCategory] = useState({});
   const [loading, setLoading] = useState(true);
-
+  const { user, isAuthenticated } = useSelector((state) => state.root.auth);
   useEffect(() => {
     dispatch(getFilterList());
     fetch_products(slug);
-  }, [slug, dispatch]);
+    if (isAuthenticated) {
+      dispatch(getWishList(user.api_token));
+    }
+  }, [slug, dispatch, isAuthenticated, user]);
 
   const fetch_products = async (slug) => {
     try {
-      console.log(slug);
-      const { data } = await common_axios.post(`/product_by_category/mens`, {
+      let url = `/product_by_category`;
+      if (type) url = `/product_by_category/${type}`;
+      const { data } = await common_axios.post(url, {
         slug,
       });
       console.log(data);
@@ -72,7 +77,6 @@ function DesignerProductPage({ match }) {
     return null;
   }
   const filterProduct = (filterData) => {
-    // console.log(`FilterData`, filterData);
     dispatch(getFilteredProduct(slug, filterData));
   };
   return (

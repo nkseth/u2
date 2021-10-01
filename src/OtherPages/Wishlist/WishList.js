@@ -18,12 +18,13 @@ import { useHistory } from "react-router-dom";
 function WishListPage() {
   const dispatch = useDispatch();
 
-  const { list } = useSelector((state) => state?.root.wishList);
+  const { list } = useSelector((state) => state?.root.wishlist);
+  const { user, isAuthenticated } = useSelector((state) => state?.root.auth);
   console.log(list);
 
   useEffect(() => {
-    dispatch(getWishList());
-  }, []);
+    if (isAuthenticated) dispatch(getWishList(user.api_token));
+  }, [isAuthenticated, user, dispatch]);
   return (
     <div className={styles.WishList}>
       <div className={styles.Container}>
@@ -53,10 +54,10 @@ export function Product({
   const [customised, setCustomised] = useState(false);
   const MobileView = useMediaQuery("(max-width:450px)");
   const { message } = useSelector((state) => state.root.addToBag);
-  console.log(message);
+  const { user } = useSelector((state) => state.root.auth);
   const removeHandler = () => {
-    dispatch(removeFromWishlist(id));
-    history.push("/wishlist");
+    dispatch(removeFromWishlist(id, user.api_token));
+    dispatch(getWishList(user.api_token));
   };
   const addToBagHandler = () => {
     dispatch(add_to_bag(slug));

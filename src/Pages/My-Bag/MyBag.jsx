@@ -27,6 +27,7 @@ import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 
 // Product Type
 import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData";
+import { addToWishlist } from "../../Redux/actions/wishlist";
 
 export default function MyBag() {
   const history = useHistory();
@@ -41,7 +42,7 @@ export default function MyBag() {
   const img =
     "https://images.pexels.com/photos/1096849/pexels-photo-1096849.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=165";
 
-  const { user_data } = useSelector((state) => state.root.main);
+  const { user } = useSelector((state) => state.root.auth);
 
   useEffect(() => {
     fetch_data();
@@ -104,55 +105,29 @@ export default function MyBag() {
   };
 
   const move_to_wishlist = async (item) => {
-    try {
-      const { data: res } = await common_axios.get(
-        `/wishlist/${item.slug}/add`,
-        {
-          headers: {
-            Authorization: `Bearer ${user_data.api_token}`,
-          },
-        }
-      );
-      remove_item(item);
-      console.log(res);
-    } catch (e) {
-      alert(e.response?.data?.message);
-    }
+    dispatch(addToWishlist(item.slug, user.api_token));
+    remove_item(item);
   };
 
   const remove_item = async (item) => {
     try {
+      console.log(value.id, item.id);
       const { data } = await common_axios.delete("/cart/removeItem", {
+        item: item.id,
+        cart: value.id,
         headers: {
-          accept: "application/json",
-          "content-type": "application/json",
-          Authorization: `Bearer gvvbajRXz3K04xP2UO3yulCKgZinEsdzBMjfTM8LN3stCvrSfGuScVNbHydI`,
+          Authorization: `Bearer ${user.api_token}`,
         },
-        body: JSON.stringify({
-          item: item.id,
-          cart: value.id,
-        }),
       });
       console.log(data);
-      if (data.message === "Item hs been removed") {
+      if (data.message === "Item has been removed") {
         setData(data.cart?.items);
         setValue(data.cart);
       }
     } catch (error) {
-      console.log(error);
-      alert(error.response?.data?.message);
+      console.log(error.response);
+      alert(error.response?.data?.error);
     }
-    // fetch("http://3.109.176.19/api/cart/removeItem", {
-    //   method: "DELETE",
-    // })
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     console.log(json);
-    //     if (json.message == "Item hs been removed") {
-    //       setData(json.cart?.items);
-    //       setValue(json.cart);
-    //     }
-    //   });
   };
 
   const on_checkout = () => {
@@ -165,7 +140,7 @@ export default function MyBag() {
       <CustomSection
         style={mobileView ? { marginTop: "0" } : { marginTop: "3em" }}
       >
-        <Breadcrumb path="Home / Men / Blazers" activePath="/ My Bag" />
+        <Breadcrumb path="Home" activePath="/ My Bag" />
         <div></div>
         <div className={styles.container}>
           {mobileView ? (
@@ -188,9 +163,9 @@ export default function MyBag() {
               <div>My Bag</div>
               {data?.map((item, index) => {
                 var last = index + 1 === data.length;
-                if (item.productType === "Customised") {
-                  Product_Type_Change(item.productType);
-                }
+                if (item.product.isVariant) Product_Type_Change("Readymade");
+                else Product_Type_Change("Customized");
+
                 return (
                   <>
                     <div className={styles.BorderContainer}>
@@ -207,7 +182,11 @@ export default function MyBag() {
 
                             <div>
                               <h4>Product Type</h4>
-                              <p>{item.productType}</p>
+                              {item.product.isVariant ? (
+                                <p>Readymade</p>
+                              ) : (
+                                <p>Customized</p>
+                              )}
                               <Button
                                 onClick={() => move_to_wishlist(item)}
                                 className={styles.MoveToWishListBtn}
@@ -346,6 +325,7 @@ const MobileProductMyBag = ({
   move_to_wishlist,
   Product_Type,
 }) => {
+  console.log(data);
   return (
     <div className={styles.MobileConatiner}>
       <h1 className={styles.h1}>My Bag</h1>
@@ -354,7 +334,11 @@ const MobileProductMyBag = ({
           <div className={styles.MobileborderDiv}>
             <div className={styles.mainDiv}>
               <div className={styles.ImageQuanDiv}>
-                <img src={item.product?.image} className={styles.mainimg} />
+                <img
+                  src={item.product?.image}
+                  className={styles.mainimg}
+                  alt={data.id}
+                />
               </div>
               <div className={styles.InfoDiv}>
                 <div className={styles.mainInfo}>
@@ -375,7 +359,9 @@ const MobileProductMyBag = ({
                       }}
                     >
                       <p className={styles.PType1}>Product Type</p>
-                      <p className={styles.PType2}>{item.productType}</p>
+                      <p className={styles.PType2}>
+                        {item.product?.isVariant ? "Readymade" : "Customized"}
+                      </p>
                     </div>
                   </div>
                   <div className={styles.quan}>

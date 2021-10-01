@@ -1,42 +1,81 @@
 import common_axios from "../../utils/axios.config";
-import { BASIC_DETAILS, BASIC_ID, GENDER, LOWER_BODY, UPPER_BODY } from "./types";
+import {
+  BASIC_DETAILS,
+  BASIC_ID,
+  GENDER,
+  GET_ALL_MEASUREMENTS,
+  GET_SINGLE_MEASUREMENT,
+  LOWER_BODY,
+  UPPER_BODY,
+} from "./types";
 
-
-export const get_my_measurements = () => async (dispatch) => {
-    // try {
-    //     const { data } = await common_axios.get('/sliders')
-
-    //     if (data.data) {
-    //         dispatch({ type: MENS_WEAR_SLIDER, payload: data.data })
-    //     }
-
-    // } catch (err) {
-    //     console.log(err?.response?.data);
-    //     return Promise.reject(err);
-    // }
+export const getAllMeasurements = (token) => async (dispatch) => {
+  try {
+    const { data } = await common_axios.post("/get_measurment_basic", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(data);
+    if (data) {
+      dispatch({ type: GET_ALL_MEASUREMENTS, payload: data });
+    }
+  } catch (err) {
+    console.log(err?.response?.data);
+    return Promise.reject(err);
+  }
 };
 
+export const getSingleMeasurement = (token, id) => async (dispatch) => {
+  try {
+    const { data } = await common_axios.post(`/get_measurment/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(data);
+    if (data) {
+      dispatch({ type: GET_SINGLE_MEASUREMENT, payload: data });
+    }
+  } catch (err) {
+    console.log(err?.response?.data);
+    return Promise.reject(err);
+  }
+};
+
+// export const get_my_measurements = () => async (dispatch) => {
+//   // try {
+//   //     const { data } = await common_axios.get('/sliders')
+//   //     if (data.data) {
+//   //         dispatch({ type: MENS_WEAR_SLIDER, payload: data.data })
+//   //     }
+//   // } catch (err) {
+//   //     console.log(err?.response?.data);
+//   //     return Promise.reject(err);
+//   // }
+// };
+
 export const set_basic_details = (val) => ({
-    type: BASIC_DETAILS,
-    payload: val
-})
+  type: BASIC_DETAILS,
+  payload: val,
+});
 
 export const set_gender = (val) => ({
-    type: GENDER,
-    payload: val
-})
+  type: GENDER,
+  payload: val,
+});
 
 export const set_upper_body = (val) => ({
-    type: UPPER_BODY,
-    payload: val
-})
+  type: UPPER_BODY,
+  payload: val,
+});
 
 export const set_lower_body = (val) => ({
-    type: LOWER_BODY,
-    payload: val
-})
+  type: LOWER_BODY,
+  payload: val,
+});
 
 export const set_basic_id = (val) => ({
-    type: BASIC_ID,
-    payload: val
-})
+  type: BASIC_ID,
+  payload: val,
+});

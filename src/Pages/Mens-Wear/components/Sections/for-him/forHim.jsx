@@ -133,7 +133,7 @@ export default function ForHimSection({ type, loading }) {
                 </div>
                 <Button
                   onClick={() =>
-                    history.push(`/designers-product-page/${activeNav}`)
+                    history.push(`/designers-product-page/${grp}/all`)
                   }
                   className={styles.viewAllBtn}
                 >
@@ -202,9 +202,7 @@ export default function ForHimSection({ type, loading }) {
             style={{ display: 'flex', justifyContent: 'center' }}
           >
             <Button
-              onClick={() =>
-                history.push(`/designers-product-page/${activeNav}`)
-              }
+              onClick={() => history.push(`/designers-product-page/${grp}/all`)}
               className={styles.viewAllBtn}
             >
               View all

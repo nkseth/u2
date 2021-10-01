@@ -4,43 +4,72 @@ import styles from './card.module.scss';
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
 //icon
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import common_axios from '../../../../utils/axios.config';
+
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import common_axios from "../../../../utils/axios.config";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../../../Redux/actions/wishlist";
+
 import { LazyLoadingImg } from '../../../../utils/LazyLoading';
 
+
 export default function ProductCard(props) {
+  const dispatch = useDispatch();
   const [isAddToWishList, setAddToWishList] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState({});
 
-  const setValue = async product => {
+
+  const { user, isAuthenticated } = useSelector((state) => state.root.auth);
+  const { added, removed } = useSelector((state) => state.root.updateWishlist);
+  const { list } = useSelector((state) => state.root.wishlist);
+
+  const setValue = async (product) => {
+
     await setIsLoading(true);
     await setProduct(product);
     await setIsLoading(false);
   };
+  const favourite = list?.filter(
+    (data) => data.listing_id === props.product.id
+  );
 
-  const add_to_wishlist = async prod => {
-    try {
-      setAddToWishList(true);
-      console.log(prod);
-      const { data } = await common_axios.get(`/wishlist/${prod.slug}/add`);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+
+  const add_to_wishlist = async (prod) => {
+    if (!user?.api_token)
+      return alert("Login first to add the item to wishlist");
+    dispatch(addToWishlist(prod.slug, user.api_token));
+    setAddToWishList(true);
+
+    // try {
+    //   console.log(prod.slug);
+    //   const { data } = await common_axios.get(`/wishlist/${prod.slug}/add`);
+    //   console.log(data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
-  const remove_from_wishlist = async prod => {
-    try {
-      setAddToWishList(false);
-      const { data } = await common_axios.delete(
-        `/wishlist/${prod.slug}/remove`
-      );
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+  const remove_from_wishlist = async (prod) => {
+    if (!user?.api_token)
+      return alert("Login first to add the item to wishlist");
+    const id = prod.id;
+    dispatch(removeFromWishlist(id, user.api_token));
+    setAddToWishList(false);
+    // try {
+    //   console.log(prod.slug);
+    //   const { data } = await common_axios.delete(
+    //     `/wishlist/${prod.slug}/remove`
+    //   );
+    //   console.log(data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
   };
 
   useEffect(() => {

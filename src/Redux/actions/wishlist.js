@@ -1,5 +1,11 @@
 import common_axios from "../../utils/axios.config";
-import { ADD_TO_BAG, GET_WISHLIST, REMOVE_FROM_WISHLIST } from "./types";
+import {
+  ADD_TO_BAG,
+  ADD_TO_WISHLIST,
+  CLEAR_WISHLIST_UPDATE,
+  GET_WISHLIST,
+  REMOVE_FROM_WISHLIST,
+} from "./types";
 
 export const add_to_bag = (slug) => async (dispatch) => {
   try {
@@ -13,11 +19,34 @@ export const add_to_bag = (slug) => async (dispatch) => {
   }
 };
 
-export const getWishList = () => async (dispatch) => {
+export const getWishList = (token) => async (dispatch) => {
   try {
-    const { data } = await common_axios.get(`/wishlist`);
+    // const userToken = localStorage.getItem("token");
+    const { data } = await common_axios.get(`/wishlist`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
     if (data.data) {
       dispatch({ type: GET_WISHLIST, payload: data.data });
+    }
+  } catch (err) {
+    console.log(err);
+    return Promise.reject(err);
+  }
+};
+
+export const addToWishlist = (slug, token) => async (dispatch) => {
+  try {
+    const { data } = await common_axios.get(`/wishlist/${slug}/add`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(data);
+    if (data) {
+      dispatch({ type: ADD_TO_WISHLIST, payload: data });
     }
   } catch (err) {
     console.log(err?.response?.data);
@@ -25,9 +54,15 @@ export const getWishList = () => async (dispatch) => {
   }
 };
 
-export const removeFromWishlist = (id) => async (dispatch) => {
+export const removeFromWishlist = (id, token) => async (dispatch) => {
   try {
-    const { data } = await common_axios.delete(`/wishlist/${id}/remove`);
+    console.log(id, token);
+    const { data } = await common_axios.delete(`/wishlist/${id}/remove`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(data);
     if (data) {
       dispatch({ type: REMOVE_FROM_WISHLIST, payload: data });
     }
@@ -36,3 +71,7 @@ export const removeFromWishlist = (id) => async (dispatch) => {
     return Promise.reject(err);
   }
 };
+
+// export const clearUpdateWishlist = () => async (dispatch) => {
+//   dispatch({ type: CLEAR_WISHLIST_UPDATE });
+// };

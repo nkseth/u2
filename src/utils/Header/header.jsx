@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import {
   FormControl,
   Select,
@@ -33,6 +34,7 @@ import { useCookies } from 'react-cookie';
 import MegaMenu from './Components/MegaMenu';
 import { ReactComponent as Logo } from '../../Images/logo/u2.svg';
 import { getCategorySubGroup } from '../../Redux/actions/designerHomePage';
+
 export default function Header() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -61,7 +63,7 @@ export default function Header() {
   });
   //Here I use Redux For Show Login Model
 
-  const handleMouseEnter = value => {
+  const handleMouseEnter = (value) => {
     setMegaMenuType(value);
     dispatch(getCategorySubGroup(value));
     setMouseEnter({
@@ -87,11 +89,12 @@ export default function Header() {
     }, 200);
   };
 
-  const tabView = useMediaQuery('(max-width:768px)');
-  const mobileView = useMediaQuery('(max-width:550px)');
+  const tabView = useMediaQuery("(max-width:768px)");
+  const mobileView = useMediaQuery("(max-width:550px)");
   const mobile = useMediaQuery('(max-width:460px)');
-  const [megaMenuType, setMegaMenuType] = useState('');
-  const { user_data } = useSelector(state => state.root.main);
+  const [megaMenuType, setMegaMenuType] = useState("");
+  const { user } = useSelector((state) => state.root.auth);
+
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
   const toggleDrawer = (anchor, open) => event => {
@@ -107,14 +110,17 @@ export default function Header() {
   };
 
   const profileFnc = () => {
-    if (Object.keys(user_data)?.length !== 0) {
-      history.push('/profile');
+    // if (Object.keys(user)?.length !== 0) {
+    if (user?.id) {
+      history.push("/profile");
+
     } else {
       login_Model_Show();
     }
   };
-  const LogedIn = Object.keys(user_data)?.length !== 0;
-  const image = LogedIn ? user_data.avatar : PersonIcon;
+  // const LogedIn = Object.keys(user)?.length !== 0;
+  const LogedIn = user?.id ? true : false;
+  const image = LogedIn ? user.avatar : PersonIcon;
   const { login_Model_Show } = useLogin();
 
   return (
@@ -198,18 +204,19 @@ export default function Header() {
               >
                 <img
                   src={image}
-                  alt='profilepic'
+                  alt="user"
                   style={
-                    LogedIn ? { width: '1.3em', borderRadius: '100%' } : {}
+                    LogedIn ? { width: "1.3em", borderRadius: "999px" } : {}
+
                   }
                 />
               </div>
             </IconButton>
-            <IconButton aria-label='favorites'>
+            <IconButton aria-label="favorites">
               <img
                 src={FavoriteIcon}
-                alt='favorites'
-                onClick={() => history.push('/wishlist')}
+                alt="favorites"
+                onClick={() => history.push("/wishlist")}
               />
             </IconButton>
             <IconButton
@@ -247,7 +254,8 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave('mens')}
               className={cx(styles.menuItem, styles.menuItem_men)}
             >
-              <Link style={{ color: '#9D8E73' }} to='/wear/mens'>
+              <Link style={{ color: "#9D8E73" }} to="/wear/mens">
+
                 Men
               </Link>
             </span>
@@ -259,9 +267,10 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave('womens')}
               className={cx(styles.menuItem, styles.menuItem_women)}
             >
-              {' '}
-              <Link style={{ color: '#9D8E73' }} to='/wear/womens'>
-                {' '}
+              {" "}
+              <Link style={{ color: "#9D8E73" }} to="/wear/womens">
+                {" "}
+
                 Women
               </Link>
             </span>
@@ -273,8 +282,10 @@ export default function Header() {
               onMouseLeave={() => handleMouseLeave('kids')}
               className={cx(styles.menuItem, styles.menuItem_kids)}
             >
-              <Link style={{ color: '#9D8E73' }} to='/wear/kids'>
-                {' '}
+
+              <Link style={{ color: "#9D8E73" }} to="/wear/kids">
+                {" "}
+
                 Kids
               </Link>
             </span>

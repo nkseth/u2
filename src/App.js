@@ -65,6 +65,7 @@ import {
   getCategoryGroup,
   getCategorySubGroup,
 } from "./Redux/actions/designerHomePage";
+import { loadUser } from "./Redux/actions/auth";
 //Start From Here
 
 function App() {
@@ -73,9 +74,11 @@ function App() {
   const [cookies, setCookie] = useCookies(["user"]);
 
   useEffect(() => {
-    if (cookies.data) {
-      dispatch(setUserData(cookies.data));
-    }
+    // if (cookies.data) {
+    //   dispatch(setUserData(cookies.data));
+    // }
+
+    dispatch(loadUser());
   }, []);
 
   //const { category_grp } = useSelector(state => state.root.main)
@@ -100,7 +103,14 @@ function App() {
         <Route
           path="/designers-product-page/:slug"
           component={DesignersProductPage}
+          exact
         />
+        <Route
+          path="/designers-product-page/:type/:slug"
+          component={DesignersProductPage}
+          exact
+        />
+
         <Route
           path="/product-description/:slug"
           component={ProductDescription}

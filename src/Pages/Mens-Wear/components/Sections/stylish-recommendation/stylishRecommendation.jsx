@@ -46,30 +46,35 @@ export default function StylishRecommendationSection({ type }) {
           <div>
             {stylish_recommend.length > 0 ? (
               <StylishCard
+                type={type}
                 item={stylish_recommend[0]}
                 image={stylish_recommend[0].cover_image}
               />
             ) : null}
             {stylish_recommend.length > 1 ? (
               <StylishCard
+                type={type}
                 item={stylish_recommend[1]}
                 image={stylish_recommend[1].cover_image}
               />
             ) : null}
             {stylish_recommend.length > 2 ? (
               <StylishCard
+                type={type}
                 item={stylish_recommend[2]}
                 image={stylish_recommend[2].cover_image}
               />
             ) : null}
             {stylish_recommend.length > 3 ? (
               <StylishCard
+                type={type}
                 item={stylish_recommend[3]}
                 image={stylish_recommend[3].cover_image}
               />
             ) : null}
             {stylish_recommend.length > 4 ? (
               <StylishCard
+                type={type}
                 item={stylish_recommend[4]}
                 image={stylish_recommend[4].cover_image}
               />
@@ -82,6 +87,7 @@ export default function StylishRecommendationSection({ type }) {
               {stylish_recommend.length > 0 ? (
                 <div>
                   <StylishCard
+                    type={type}
                     item={stylish_recommend[0]}
                     image={stylish_recommend[0].cover_image}
                   />
@@ -90,6 +96,7 @@ export default function StylishRecommendationSection({ type }) {
               {stylish_recommend.length > 1 ? (
                 <div>
                   <StylishCard
+                    type={type}
                     item={stylish_recommend[1]}
                     image={stylish_recommend[1].cover_image}
                   />
@@ -100,6 +107,7 @@ export default function StylishRecommendationSection({ type }) {
               {stylish_recommend.length > 2 ? (
                 <div>
                   <StylishCard
+                    type={type}
                     item={stylish_recommend[2]}
                     image={stylish_recommend[2].cover_image}
                   />
@@ -108,6 +116,7 @@ export default function StylishRecommendationSection({ type }) {
               {stylish_recommend.length > 3 ? (
                 <div>
                   <StylishCard
+                    type={type}
                     item={stylish_recommend[3]}
                     image={stylish_recommend[3].cover_image}
                   />
@@ -116,6 +125,7 @@ export default function StylishRecommendationSection({ type }) {
               {stylish_recommend.length > 4 ? (
                 <div>
                   <StylishCard
+                    type={type}
                     item={stylish_recommend[4]}
                     image={stylish_recommend[4].cover_image}
                   />

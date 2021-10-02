@@ -67,6 +67,7 @@ export const CLEAR_WISHLIST_UPDATE = "CLEAR_WISHLIST_UPDATE";
 export const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST";
 
 //My Bag Page
+export const GET_CART = "GET_CART";
 export const ADD_TO_BAG = "ADD_TO_BAG";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 

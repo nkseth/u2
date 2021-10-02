@@ -27,6 +27,7 @@ const Measurement = () => {
           return (
             <MeasurementItems
               key={measurement.id}
+              id={measurement.id}
               background={measurement.url}
               titlename={measurement.name}
               productname="Suits"
@@ -41,7 +42,7 @@ const Measurement = () => {
 
 export default Measurement;
 
-const MeasurementItems = ({ background, titlename, productname, date }) => {
+const MeasurementItems = ({ id, background, titlename, productname, date }) => {
   return (
     <>
       <div
@@ -57,7 +58,7 @@ const MeasurementItems = ({ background, titlename, productname, date }) => {
         </div>
         <div>
           <Button>
-            <Link to="/viewmeasurement">View</Link>
+            <Link to={`/viewmeasurement/${id}`}>View</Link>
           </Button>
           <Button>Delete</Button>
         </div>

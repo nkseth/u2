@@ -35,10 +35,10 @@ const CustomRadio = withStyles({
     },
   },
   checked: {},
-})((props) => <Radio color='default' {...props} />);
+})((props) => <Radio color="default" {...props} />);
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction='up' ref={ref} {...props} />;
+  return <Slide direction="up" ref={ref} {...props} />;
 });
 export default function DeliveryAddress() {
   const tabView = useMediaQuery("(max-width:768px)");
@@ -48,20 +48,20 @@ export default function DeliveryAddress() {
   const [NewAddressSection, setNewAddressSection] = useState(false);
   const [selectedFabric, setSelectedFabric] = useState("");
   const [selectedPlan, setSelectedPlan] = useState("vip");
-  const [address, setAddress] = useState([])
-  const [SelectAddress, setSelectAddress] = useState(0)
+  const [address, setAddress] = useState([]);
+  const [SelectAddress, setSelectAddress] = useState(0);
 
   useEffect(() => {
-    fetch_address()
+    fetch_address();
   }, []);
 
   const fetch_address = async () => {
-    const { data } = await common_axios.get('/addresses')
+    const { data } = await common_axios.get("/addresses");
     if (data.data) {
-      setAddress(data.data)
+      setAddress(data.data);
     }
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -82,106 +82,95 @@ export default function DeliveryAddress() {
 
   return (
     <Container bottomDivider footerOnTabMob>
-      <CustomSection style={{ marginTop: "1em" }} >
-        <Breadcrumb
-          path='Home / Men / Blazers / My Bag / Executive Measurement'
-          activePath='/ Address'
-        />
+      <CustomSection style={{ marginTop: "1em" }}>
+        <Breadcrumb path="Home / My Bag" activePath="/ Delivery Address" />
         <CustomStepper activeStep={0} />
-        {
-          NewAddressSection ?
-            <NewAddress />
-
-            :
-            <div className={styles.container}>
-              <div className={styles.firstContainer}>
-                <div>Delivery Address</div>
-                {address.map((item) => {
-                  return (
-                    <div className={styles.mainDiv} >
-                      <div className={styles.radioDiv}>
-                        <CustomRadio
-                          checked={SelectAddress === item.id}
-                          onClick={() => setSelectAddress(item.id)}
-                        />
-                      </div>
-                      <div className={styles.firstAftermain} >
-                        <div>
-                          <span>{item.name}</span>
-                          <div>{item.address_type}</div>
-                        </div>
-                        <p>
-                          {`${item.address_line_1}, ${item.city}, ${item.zip_code}`}
-                        </p>
-                        <p>
-                          <span>Mobile:</span>&nbsp;
-                          <span>{item.phone}</span>
-                        </p>
-                      </div>
-
-                      <div>
-                        <Button
-                          variant='contained'
-                          color='default'
-                          className={styles.editBtn}
-                        >
-                          Edit
-                        </Button>
-                        <Button
-                          variant='contained'
-                          color='default'
-                          className={styles.changeBtn}
-                        >
-                          change
-                        </Button>
-                      </div>
+        {NewAddressSection ? (
+          <NewAddress />
+        ) : (
+          <div className={styles.container}>
+            <div className={styles.firstContainer}>
+              <div>Delivery Address</div>
+              {address.map((item) => {
+                return (
+                  <div className={styles.mainDiv}>
+                    <div className={styles.radioDiv}>
+                      <CustomRadio
+                        checked={SelectAddress === item.id}
+                        onClick={() => setSelectAddress(item.id)}
+                      />
                     </div>
-                  )
-                })}
-                <div className={styles.btnDiv}>
-                  <Button
-                    className={styles.addNewAddressBtn}
-                    variant='contained'
-                    color='default'
-                    endIcon={<AddIcon />}
-                    onClick={() => setNewAddressSection(!NewAddressSection)}
-                  >
-                    Add New Address
-                  </Button>
-                </div>
+                    <div className={styles.firstAftermain}>
+                      <div>
+                        <span>{item.name}</span>
+                        <div>{item.address_type}</div>
+                      </div>
+                      <p>
+                        {`${item.address_line_1}, ${item.city}, ${item.zip_code}`}
+                      </p>
+                      <p>
+                        <span>Mobile:</span>&nbsp;
+                        <span>{item.phone}</span>
+                      </p>
+                    </div>
 
-
-                <div className={styles.btnDiv} style={{ marginBottom: "2rem" }}>
-                  <Button
-                    className={styles.useCurrentLocationBtn}
-                    variant='contained'
-                    color='default'
-                    startIcon={<LocationIcon />}
-                  >
-                    Use current location
-                  </Button>
-                </div>
-
-
-
-
-              </div>
-              <div className={styles.lastContainer}>
+                    <div>
+                      <Button
+                        variant="contained"
+                        color="default"
+                        className={styles.editBtn}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="default"
+                        className={styles.changeBtn}
+                      >
+                        change
+                      </Button>
+                    </div>
+                  </div>
+                );
+              })}
+              <div className={styles.btnDiv}>
                 <Button
-                  variant='contained'
-                  color='default'
-                  className={styles.proceedBtn}
-                  onClick={() => {
-                    history.push(`/payment/${SelectAddress}`);
-                  }}
+                  className={styles.addNewAddressBtn}
+                  variant="contained"
+                  color="default"
+                  endIcon={<AddIcon />}
+                  onClick={() => setNewAddressSection(!NewAddressSection)}
                 >
-                  Proceed
+                  Add New Address
+                </Button>
+              </div>
+
+              <div className={styles.btnDiv} style={{ marginBottom: "2rem" }}>
+                <Button
+                  className={styles.useCurrentLocationBtn}
+                  variant="contained"
+                  color="default"
+                  startIcon={<LocationIcon />}
+                >
+                  Use current location
                 </Button>
               </div>
             </div>
-        }
+            <div className={styles.lastContainer}>
+              <Button
+                variant="contained"
+                color="default"
+                className={styles.proceedBtn}
+                onClick={() => {
+                  history.push(`/payment/${SelectAddress}`);
+                }}
+              >
+                Proceed
+              </Button>
+            </div>
+          </div>
+        )}
       </CustomSection>
-
     </Container>
   );
 }

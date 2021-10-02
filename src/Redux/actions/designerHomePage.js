@@ -67,7 +67,7 @@ export const popularCategories = () => async (dispatch) => {
 export const topDesigner = () => async (dispatch) => {
   try {
     const { data } = await DesignerHomePageDataService.topDesigner();
-
+    console.log(data);
     if (data.top_designer) {
       dispatch({ type: GET_TOP_DESIGNERS, payload: data.top_designer });
     }
@@ -130,7 +130,6 @@ export const getCategorySubGroup = (val) => async (dispatch) => {
       });
     }
   } catch (err) {
-    console.log(err);
     return Promise.reject(err);
   }
 };

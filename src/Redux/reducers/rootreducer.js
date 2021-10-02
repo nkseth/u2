@@ -28,10 +28,13 @@ import {
 import { productDetailReducer } from "./productDescriptionReducer";
 import { allMeasurementsReducer } from "./measurement";
 
+import { cartItemsReducer } from "./myBagReducer";
+
 const rootreducer = combineReducers({
   addToBag: addToBagReducer,
   allMeasurements: allMeasurementsReducer,
   auth: authReducer,
+  cartItems: cartItemsReducer,
   customerReviews: customerReviewsReducer,
   filterCategory: filterCategoryReducer,
   filteredProduct: filteredProductReducer,

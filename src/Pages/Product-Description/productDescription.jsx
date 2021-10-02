@@ -190,7 +190,7 @@ export default function ProductDescription({ match }) {
         <Breadcrumb
           path={`Home / ${product.brands_name} /`}
           activePath={product.title}
-          style={{ paddingBottom: "1rem" }}
+          style={{ padding: "1rem 0" }}
         />
       </CustomSection>
       <div className={styles.container}>

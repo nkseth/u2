@@ -1,7 +1,21 @@
-import React, { useState } from "react";
-import { IconButton, useMediaQuery, SwipeableDrawer } from "@material-ui/core";
+import React, { useState, useRef, useCallback } from "react";
+import {
+  FormControl,
+  Select,
+  MenuItem,
+  IconButton,
+  useMediaQuery,
+  Drawer,
+  List,
+  SwipeableDrawer,
+  ListItem,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@material-ui/core";
 import cx from "classnames";
 import { Link, useLocation, useHistory } from "react-router-dom";
+import CustomSection from "../Custom Section/section";
 import SideNavbar from "../Side-Navbar/sideNavbar";
 import styles from "./header.module.scss";
 //Icons
@@ -11,17 +25,21 @@ import BagIcon from "../../Images/icons/bag.svg";
 import SearchIcon from "../../Images/icons/search.svg";
 import HamMenuIcon from "../../Images/icons/hamMenu.svg";
 import SearchDarkIcon from "../../Images/icons/searchDark.svg";
-
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { LOGIN_MODEL } from "../../Redux/reducers/loginreducer";
 import { useDispatch, useSelector } from "react-redux";
 import useLogin from "../../LoginSceens/useLogin";
 import { useCookies } from "react-cookie";
 import MegaMenu from "./Components/MegaMenu";
-
+import { ReactComponent as Logo } from "../../Images/logo/u2.svg";
 import { getCategorySubGroup } from "../../Redux/actions/designerHomePage";
+
 export default function Header() {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
+  const [currency, setCurrency] = useState("INR");
+  const [cookies, setCookie] = useCookies(["user"]);
   const [mouseEnter, setMouseEnter] = useState({
     newArrivals: false,
     men: false,
@@ -72,8 +90,10 @@ export default function Header() {
 
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
+  const mobile = useMediaQuery("(max-width:460px)");
   const [megaMenuType, setMegaMenuType] = useState("");
   const { user } = useSelector((state) => state.root.auth);
+
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
   const toggleDrawer = (anchor, open) => (event) => {
@@ -119,7 +139,7 @@ export default function Header() {
             gap: mobileView ? "8px" : "21px",
           }}
         >
-          {tabView && (
+          {tabView && !mobile && (
             <IconButton
               aria-label="menu"
               style={{ marginLeft: "-12px" }}
@@ -134,8 +154,9 @@ export default function Header() {
           )}
           <span className={styles.logo}>
             <Link to="/">
-              LOGO
+              {/* LOGO */}
               {/* <img src={Logo} alt='' /> */}
+              <Logo />
             </Link>
           </span>
         </div>

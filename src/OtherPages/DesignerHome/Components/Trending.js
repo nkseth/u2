@@ -6,6 +6,7 @@ import CustomDivider from '../../../utils/Custom Divider/divider';
 import styles from '../Style/Trending.module.scss';
 import { topTrending } from '../../../Redux/actions/designerHomePage';
 import { useDispatch, useSelector } from 'react-redux';
+import { LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const Trending = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,8 @@ const Trending = () => {
               to={{ pathname: `/designers-product-page/${item.slug}` }}
             >
               <div key={item.name} className={styles.Trending_Items}>
-                <img src={item.cover_image} alt={item.name} />
+                <LazyLoadingImg image={item.cover_image} />
+                {/* <img src={item.cover_image} alt={item.name} /> */}
 
                 <div>
                   <p> {item.name}</p>

@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   Accordion,
   AccordionSummary,
   AccordionDetails,
   useMediaQuery,
-} from "@material-ui/core";
-import SelectedFabricSample from "./Components/Selected-Fabric-Sample/index";
-import SelectedSubscriptionPlans from "./Components/Selected-Subscription-plan";
-import Container from "../../utils/Container/container";
-import { Link, useHistory } from "react-router-dom";
-import CustomDivider from "../../utils/Custom Divider/divider";
-import CustomSection from "../../utils/Custom Section/section";
-import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
-import CustomStepper from "../../utils/Stepper/stepper";
-import styles from "./MyBag.module.scss";
+} from '@material-ui/core';
+// import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import SelectedFabricSample from './Components/Selected-Fabric-Sample/index';
+import SelectedSubscriptionPlans from './Components/Selected-Subscription-plan';
+import Container from '../../utils/Container/container';
+import { Link, useHistory } from 'react-router-dom';
+import CustomDivider from '../../utils/Custom Divider/divider';
+import CustomSection from '../../utils/Custom Section/section';
+import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
+import CustomStepper from '../../utils/Stepper/stepper';
+import styles from './MyBag.module.scss';
 //icons
+
 import AddIcon from "@material-ui/icons/Add";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import RemoveIcon from "@material-ui/icons/Remove";
@@ -29,20 +31,23 @@ import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData";
 import { addToWishlist } from "../../Redux/actions/wishlist";
 
+
 export default function MyBag() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const tabView = useMediaQuery("(max-width:768px)");
-  const tabViewPro = useMediaQuery("(max-width:835px)");
-  const mobileView = useMediaQuery("(max-width:550px)");
+  const tabView = useMediaQuery('(max-width:768px)');
+  const tabViewPro = useMediaQuery('(max-width:835px)');
+  const mobileView = useMediaQuery('(max-width:550px)');
   const [quantity, setQuantity] = useState(1);
   const [data, setData] = useState([]);
   const [value, setValue] = useState({});
   const [loading, setLoading] = useState(false);
   const img =
-    "https://images.pexels.com/photos/1096849/pexels-photo-1096849.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=165";
+    'https://images.pexels.com/photos/1096849/pexels-photo-1096849.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=165';
+
 
   const { user } = useSelector((state) => state.root.auth);
+
 
   useEffect(() => {
     fetch_data();
@@ -50,7 +55,9 @@ export default function MyBag() {
 
   const fetch_data = async () => {
     try {
+
       const { data: val } = await common_axios.get("/carts");
+
       console.log(val);
       if (val.data) {
         setValue(val?.data[0]);
@@ -64,7 +71,9 @@ export default function MyBag() {
 
   const add_quantity = async (item, index) => {
     setLoading(true);
+
     console.log("running");
+
     try {
       const { data: res } = await common_axios.put(`/cart/${value.id}/update`, {
         item: item.id,
@@ -104,6 +113,7 @@ export default function MyBag() {
     } else alert("Quantity can't be less than 1");
   };
 
+
   const move_to_wishlist = async (item) => {
     dispatch(addToWishlist(item.slug, user.api_token));
     remove_item(item);
@@ -128,19 +138,23 @@ export default function MyBag() {
       console.log(error.response);
       alert(error.response?.data?.error);
     }
+
   };
 
   const on_checkout = () => {
     dispatch(setOrderSumm(value));
     history.push("/delivery-address");
+
   };
 
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection
+
         style={mobileView ? { marginTop: "0" } : { marginTop: "3em" }}
       >
         <Breadcrumb path="Home" activePath="/ My Bag" />
+
         <div></div>
         <div className={styles.container}>
           {mobileView ? (
@@ -163,8 +177,10 @@ export default function MyBag() {
               <div>My Bag</div>
               {data?.map((item, index) => {
                 var last = index + 1 === data.length;
+
                 if (item.product.isVariant) Product_Type_Change("Readymade");
                 else Product_Type_Change("Customized");
+
 
                 return (
                   <>
@@ -172,21 +188,25 @@ export default function MyBag() {
                       <div className={styles.mainContainer}>
                         <img
                           src={item.product?.image}
+
                           alt="product"
                           className={styles.image}
                         />
                         <div>
                           <div style={{ alignItems: "flex-start" }}>
+
                             <p className={styles.proName}>{item.title}</p>
                             <p>{item.color}</p>
 
                             <div>
                               <h4>Product Type</h4>
+
                               {item.product.isVariant ? (
                                 <p>Readymade</p>
                               ) : (
                                 <p>Customized</p>
                               )}
+
                               <Button
                                 onClick={() => move_to_wishlist(item)}
                                 className={styles.MoveToWishListBtn}
@@ -198,9 +218,11 @@ export default function MyBag() {
 
                           <div
                             style={{
+
                               display: "flex",
                               flexDirection: "column",
                               alignItems: "center",
+
                             }}
                           >
                             <p>
@@ -219,6 +241,7 @@ export default function MyBag() {
                             <div className={styles.quan}>
                               <p>Quantity</p>
                               <div style={{ display: "flex" }}>
+
                                 <Button
                                   className={styles.addBtn}
                                   onClick={() =>
@@ -226,6 +249,7 @@ export default function MyBag() {
                                   }
                                 >
                                   <RemoveIcon style={{ width: "15px" }} />
+
                                 </Button>
                                 <div className={styles.quantity}>
                                   {item.quantity}
@@ -235,6 +259,7 @@ export default function MyBag() {
                                   onClick={() => add_quantity(item, index)}
                                 >
                                   <AddIcon style={{ width: "15px" }} />
+
                                 </Button>
                               </div>
                               <Button
@@ -242,6 +267,7 @@ export default function MyBag() {
                                 className={styles.RemoveBTN}
                               >
                                 Remove item{" "}
+
                               </Button>
                             </div>
                           </div>
@@ -249,6 +275,7 @@ export default function MyBag() {
                       </div>
                       {Product_Type === "Customised" ? (
                         <div style={{ marginLeft: "1em", marginBottom: "1em" }}>
+
                           <CheckOutProcess />
                         </div>
                       ) : (
@@ -270,13 +297,14 @@ export default function MyBag() {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+
                 }}
               >
                 <div>Price Details</div>
                 <div className={styles.BtnlIkediv}>{data?.length}</div>
               </div>
               <div>
-                <CustomDivider style={{ backgroundColor: "#CECECE" }} />
+                <CustomDivider style={{ backgroundColor: '#CECECE' }} />
                 <div className={styles.selectedProductPrices}>
                   <div>
                     <label>Product Price</label>
@@ -291,7 +319,7 @@ export default function MyBag() {
                     <span>{value?.delivery_charge || "$0"}</span>
                   </div>
                 </div>
-                <CustomDivider style={{ backgroundColor: "#CECECE" }} />
+                <CustomDivider style={{ backgroundColor: '#CECECE' }} />
               </div>
               <div className={styles.totalAmtDiv}>
                 <div>
@@ -299,7 +327,75 @@ export default function MyBag() {
                   <span>{value?.grand_total}</span>
                 </div>
               </div>
+              <CustomDivider style={{ backgroundColor: '#CECECE' }} />
 
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  // aria-controls='panel1a-content'
+                  // className={styles.accordionSummary}
+                >
+                  <span>Apply Coupon</span>
+                </AccordionSummary>
+                <AccordionDetails className={styles.accordionDetials}>
+                  {/* <RadioGroup
+                    aria-label='Categories'
+                    onChange={e => handleFilterChange('price', e.target.value)}
+                    value={selectedFilter.categories}
+                  >
+                    <FormControlLabel
+                      value='All categories'
+                      checked={selectedFilter.categories === 'All categories'}
+                      control={<CustomRadio />}
+                      label={
+                        <p className={styles.radioBtnsLabels}>All categories</p>
+                      }
+                    />
+                  </RadioGroup> */}
+                  <div style={{ position: 'relative', width: '100%' }}>
+                    <input
+                      type='text'
+                      placeholder='Enter Coupon Code'
+                      style={{
+                        padding: '0.7rem',
+                        width: '100%',
+                        borderRadius: '5px',
+                        border: '1px solid  #857250',
+                      }}
+                    />
+                    <button
+                      style={{
+                        color: 'red',
+                        position: 'absolute',
+                        right: '13px',
+                        top: '12px',
+                        background: 'none',
+                        border: 'none',
+                        fontSize: '0.8rem',
+                        cursor: 'pointer',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      Apply
+                    </button>
+                    <div>
+                      <button
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          fontSize: '0.8rem',
+                          cursor: 'pointer',
+                          color: '#007AB9',
+                          fontSize: '0.8rem',
+                          marginTop: '1rem',
+                        }}
+                      >
+                        View Offers
+                      </button>
+                    </div>
+                  </div>
+                </AccordionDetails>
+              </Accordion>
               <Button
                 variant="text"
                 color="default"
@@ -326,6 +422,7 @@ const MobileProductMyBag = ({
   Product_Type,
 }) => {
   console.log(data);
+
   return (
     <div className={styles.MobileConatiner}>
       <h1 className={styles.h1}>My Bag</h1>
@@ -349,6 +446,7 @@ const MobileProductMyBag = ({
                       alignItems: "flex-start",
                       justifyContent: "space-between",
                       width: "100%",
+
                     }}
                   >
                     <div
@@ -362,23 +460,25 @@ const MobileProductMyBag = ({
                       <p className={styles.PType2}>
                         {item.product?.isVariant ? "Readymade" : "Customized"}
                       </p>
+
                     </div>
                   </div>
                   <div className={styles.quan}>
                     <p>Quantity</p>
                     <div style={{ display: "flex" }}>
+
                       <Button
                         className={styles.addBtn}
                         onClick={() => substract_quantity(item, index)}
                       >
-                        <RemoveIcon style={{ width: "15px" }} />
+                        <RemoveIcon style={{ width: '15px' }} />
                       </Button>
                       <div className={styles.quantity}>{item.quantity}</div>
                       <Button
                         className={styles.removeBtn}
                         onClick={() => add_quantity(item, index)}
                       >
-                        <AddIcon style={{ width: "15px" }} />
+                        <AddIcon style={{ width: '15px' }} />
                       </Button>
                     </div>
                   </div>
@@ -406,11 +506,13 @@ const MobileProductMyBag = ({
                     className={styles.RemoveBTNMobile}
                   >
                     Remove item{" "}
+
                   </Button>
                 </div>
               </div>
             </div>
             {Product_Type === "Customised" ? <CheckOutProcess /> : <></>}
+
           </div>
         );
       })}
@@ -427,8 +529,8 @@ export function CheckOutProcess() {
         body measurement. You can add the measurement after the payment.
       </li>
       <Button
-        variant="contained"
-        color="secondary"
+        variant='contained'
+        color='secondary'
         className={styles.CheckOutProcessBtn}
         startIcon={<PlayCircleFilledIcon />}
       >

@@ -18,6 +18,7 @@ import h2 from '../Images/h2.png';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { handMadeClothes } from '../../../Redux/actions/designerHomePage';
+import { LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const HandMade_Clothes = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const HandMade_Clothes = () => {
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down('xs'));
   const small = useMediaQuery(theme.breakpoints.down('sm'));
-  const iPade = useMediaQuery(theme.breakpoints.down('md'));
+  const iPade = useMediaQuery(theme.breakpoints.down('1330'));
   const CustomView = useMediaQuery('(max-width:550px)');
 
   if (!clothes) {
@@ -67,7 +68,8 @@ const HandMade_Clothes = () => {
               >
                 <div className={styles.SuitWear}>
                   <div className={styles.SuitWear_Items}>
-                    <img src={cover_image} alt={name} />
+                    <LazyLoadingImg image={cover_image} />
+                    {/* <img src={cover_image} alt={name} /> */}
                     <Link to={`/designers-product-page/${slug}`}>
                       <a>{name}</a>
                     </Link>

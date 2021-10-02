@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { suitWears } from '../../../Redux/actions/designerHomePage';
 import c1 from '../Images/111.png';
 import c2 from '../Images/c2.jpg';
+import { LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const SuitWear = () => {
   const dispatch = useDispatch();
@@ -35,9 +36,9 @@ const SuitWear = () => {
   const [visible, setvisible] = useState(4);
   const theme = useTheme();
 
-  const match = useMediaQuery(theme.breakpoints.down('xs'));
+  const match = useMediaQuery('(max-width:630px)');
   const iPade = useMediaQuery(theme.breakpoints.down('sm'));
-  const large = useMediaQuery(theme.breakpoints.down('md'));
+  const large = useMediaQuery(theme.breakpoints.down('1330'));
   const CustomView = useMediaQuery('(max-width:400px)');
 
   useEffect(() => {
@@ -67,8 +68,8 @@ const SuitWear = () => {
                 key={item.id.toString()}
                 style={
                   CustomView
-                    ? { marginRight: 0, marginLeft: 0 }
-                    : { marginRight: 35, marginLeft: 35 }
+                    ? { marginRight: '10px', marginLeft: '10px' }
+                    : { marginRight: '20px', marginLeft: '20px' }
                 }
               >
                 <Link
@@ -79,7 +80,8 @@ const SuitWear = () => {
                   <div>
                     <div className={styles.SuitWear}>
                       <div className={styles.SuitWear_Items}>
-                        <img src={item.cover_image} alt={item.id} />
+                        <LazyLoadingImg image={item.cover_image} />
+                        {/* <img src={item.cover_image} alt={item.id} /> */}
                         <Link>{item.name}</Link>
                       </div>
                     </div>

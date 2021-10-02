@@ -96,8 +96,9 @@ function App() {
       {/*All Other Screen on This Path ./LoginSceens/ */}
       {isLoginModel ? <Page_Login /> : null}
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/designer-home" component={DesignerHome} />
+        <Route exact path="/" component={DesignerHome} />
+        <Route path="/home" component={Home} />
+        {/* <Route path="/designer-home" component={Home} /> */}
         <Route path="/wear/:type" component={MensWear} />
         <Route path="/offers" component={Offer} />
         <Route

@@ -21,7 +21,6 @@ export const add_to_bag = (slug) => async (dispatch) => {
 
 export const getWishList = (token) => async (dispatch) => {
   try {
-    // const userToken = localStorage.getItem("token");
     const { data } = await common_axios.get(`/wishlist`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -46,7 +45,7 @@ export const addToWishlist = (slug, token) => async (dispatch) => {
     });
     console.log(data);
     if (data) {
-      dispatch({ type: ADD_TO_WISHLIST, payload: data });
+      dispatch({ type: ADD_TO_WISHLIST, payload: data.message });
     }
   } catch (err) {
     console.log(err?.response?.data);
@@ -64,7 +63,7 @@ export const removeFromWishlist = (id, token) => async (dispatch) => {
     });
     console.log(data);
     if (data) {
-      dispatch({ type: REMOVE_FROM_WISHLIST, payload: data });
+      dispatch({ type: REMOVE_FROM_WISHLIST, payload: data.message });
     }
   } catch (err) {
     console.log(err?.response?.data);
@@ -72,6 +71,9 @@ export const removeFromWishlist = (id, token) => async (dispatch) => {
   }
 };
 
-// export const clearUpdateWishlist = () => async (dispatch) => {
-//   dispatch({ type: CLEAR_WISHLIST_UPDATE });
-// };
+export const clearUpdateWishlist = () => async (dispatch) => {
+  dispatch({
+    type: CLEAR_WISHLIST_UPDATE,
+    payload: { added: false, removed: false },
+  });
+};

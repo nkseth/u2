@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
   Button,
   IconButton,
@@ -11,98 +11,98 @@ import {
   FormControlLabel,
   useMediaQuery,
   Tooltip,
-} from '@material-ui/core';
-import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/scss/image-gallery.scss';
-import CustomSection from '../../utils/Custom Section/section';
-import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
-import Container from '../../utils/Container/container';
-import DetailTabs from './Components/Details-Tabs/tabs';
-import styles from './productDescription.module.scss';
+} from "@material-ui/core";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/scss/image-gallery.scss";
+import CustomSection from "../../utils/Custom Section/section";
+import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
+import Container from "../../utils/Container/container";
+import DetailTabs from "./Components/Details-Tabs/tabs";
+import styles from "./productDescription.module.scss";
 //icons
-import deliveryTruckIcon from '../../Images/icons/deliveryTruck.svg';
-import clockIcon from '../../Images/icons/clock.svg';
-import { ReactComponent as BagIcon } from '../../Images/icons/bag-primary.svg';
-import HelpIcon from '@material-ui/icons/Help';
-import SelectSize from './Components/SelectSize/SelectSize';
-import { useLocation } from 'react-router-dom';
-import common_axios from '../../utils/axios.config';
-import { useSelector } from 'react-redux';
-import useLogin from '../../LoginSceens/useLogin';
+import deliveryTruckIcon from "../../Images/icons/deliveryTruck.svg";
+import clockIcon from "../../Images/icons/clock.svg";
+import { ReactComponent as BagIcon } from "../../Images/icons/bag-primary.svg";
+import HelpIcon from "@material-ui/icons/Help";
+import SelectSize from "./Components/SelectSize/SelectSize";
+import { useLocation } from "react-router-dom";
+import common_axios from "../../utils/axios.config";
+import { useSelector } from "react-redux";
+import useLogin from "../../LoginSceens/useLogin";
 
 // Product Type
-import { Product_Type, Product_Type_Change } from '../../Redux/MeasuremantData';
+import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData";
 
 const CustomRadio = withStyles({
   root: {
-    color: 'transparent',
-    '&$checked': {
-      color: '#857250',
+    color: "transparent",
+    "&$checked": {
+      color: "#857250",
     },
   },
   checked: {},
-})(props => <></>);
+})((props) => <></>);
 
 const CustomRadio1 = withStyles({
   root: {
-    color: '#9D9D9D',
-    '&$checked': {
-      color: '#857250',
+    color: "#9D9D9D",
+    "&$checked": {
+      color: "#857250",
     },
   },
   checked: {},
-})(props => <Radio color='default' {...props} />);
+})((props) => <Radio color="default" {...props} />);
 
-const BootstrapInput = withStyles(theme => ({
+const BootstrapInput = withStyles((theme) => ({
   root: {
-    'label + &': {
+    "label + &": {
       marginTop: theme.spacing(3),
     },
   },
   input: {
-    width: '343px',
+    width: "343px",
     borderRadius: 0,
-    position: 'relative',
+    position: "relative",
     backgroundColor: theme.palette.background.paper,
-    border: '1px solid #ced4da',
+    border: "1px solid #ced4da",
     fontSize: 16,
-    padding: '3px 8px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
-    '&:focus': {
+    padding: "3px 8px",
+    transition: theme.transitions.create(["border-color", "box-shadow"]),
+    "&:focus": {
       borderRadius: 4,
-      borderColor: '#80bdff',
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+      borderColor: "#80bdff",
+      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)",
     },
-    '@media (max-width:835px)': {
-      width: 'calc(100vw - 102px)',
+    "@media (max-width:835px)": {
+      width: "calc(100vw - 102px)",
     },
-    '@media (max-width:550px)': {
-      width: 'calc(100vw - 67px)',
+    "@media (max-width:550px)": {
+      width: "calc(100vw - 67px)",
     },
   },
 }))(InputBase);
 
-const HtmlTooltip = withStyles(theme => ({
+const HtmlTooltip = withStyles((theme) => ({
   tooltip: {
     // placement: "right-start",
-    backgroundColor: '#f5f5f9',
-    color: 'rgba(0, 0, 0, 0.87)',
+    backgroundColor: "#f5f5f9",
+    color: "rgba(0, 0, 0, 0.87)",
     width: 200,
     // height: 100,
     fontSize: theme.typography.pxToRem(10),
-    border: '1px solid #dadde9',
+    border: "1px solid #dadde9",
   },
 }))(Tooltip);
 
 export default function ProductDescription({ match }) {
   const history = useHistory();
   const location = useLocation();
-  const customView = useMediaQuery('(max-width:1044px)');
-  const tabView = useMediaQuery('(max-width:768px)');
-  const tabViewPro = useMediaQuery('(min-width:768px) and (max-width:1044px');
-  const mobileView = useMediaQuery('(max-width:550px)');
+  const customView = useMediaQuery("(max-width:1044px)");
+  const tabView = useMediaQuery("(max-width:768px)");
+  const tabViewPro = useMediaQuery("(min-width:768px) and (max-width:1044px");
+  const mobileView = useMediaQuery("(max-width:550px)");
 
-  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedColor, setSelectedColor] = useState("");
   const [ProductDrop, setProductDrop] = useState(false);
 
   //const { data: val } = location.state;
@@ -113,27 +113,28 @@ export default function ProductDescription({ match }) {
   const [product, setProduct] = useState({});
   const [images, setImages] = useState([]);
   const [ProductType, setProductType] = useState(
-    product.product?.isCustomise === '1' ? 'custom' : 'ready made'
+    product.product?.isCustomise === "1" ? "custom" : "ready made"
   );
 
   Product_Type_Change(ProductType);
 
   const { login_Model_Show } = useLogin();
-  const { user_data } = useSelector(state => state.root.main);
+  const { user_data } = useSelector((state) => state.root.main);
+  const { user, isAuthenticated } = useSelector((state) => state.root.auth);
 
   useEffect(() => {
     fetch_data(slug);
   }, [slug]);
 
-  const fetch_data = async slug => {
+  const fetch_data = async (slug) => {
     try {
       const { data } = await common_axios.get(`/productDetail/${slug}`);
-      console.log(data.data);
+      console.log(data);
 
       if (data.data) {
         setProduct(data.data);
         const img = [];
-        data.data?.images?.forEach(item => {
+        data.data?.images?.forEach((item) => {
           img.push({ thumbnail: item.path, original: item.path });
         });
         setImages(img);
@@ -144,19 +145,21 @@ export default function ProductDescription({ match }) {
   };
 
   const buy_now_handler = async () => {
-    if (user_data?.name) {
-      if (product.hasOwnProperty('title')) {
+    if (isAuthenticated) {
+      if (product.hasOwnProperty("title")) {
         try {
           const { data } = await common_axios.post(`/addToCart/${slug}`);
+          console.log(data);
           if (data) {
-            history.push('/my-bag');
+            history.push("/my-bag");
           }
         } catch (e) {
-          if (e?.response?.data?.message === 'Item alrealy in your cart') {
-            history.push('/my-bag');
+          console.log(e?.response?.data?.message);
+          if (e?.response?.data?.message === "Item alrealy in your cart") {
+            history.push("/my-bag");
           }
 
-          if (e?.response?.data?.message === 'Login first') {
+          if (e?.response?.data?.message === "Login first") {
             login_Model_Show();
           }
         }
@@ -167,7 +170,7 @@ export default function ProductDescription({ match }) {
   };
 
   const add_bag_handler = async () => {
-    if (user_data?.name) {
+    if (isAuthenticated) {
       try {
         const { data } = await common_axios.post(`/addToCart/${slug}`);
 
@@ -183,25 +186,26 @@ export default function ProductDescription({ match }) {
   };
 
   console.log(product);
+  console.log(Product_Type);
 
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection style={{ marginTop: 10, marginBottom: 10 }}>
         <Breadcrumb
-          path={`Home / ${product.product?.brand} /`}
+          path={`Home / ${product.brand} /`}
           activePath={product.title}
-          style={{ padding: '1rem 0' }}
+          style={{ padding: "1rem 0" }}
         />
       </CustomSection>
       <div className={styles.container}>
         <div className={styles.firstContainer}>
-          <div style={{ width: '100%' }}>
+          <div style={{ width: "100%" }}>
             <ImageGallery
               items={images}
               showNav={false}
               additionalClass={styles.imagegall}
               thumbnailPosition={
-                mobileView ? 'bottom' : customView ? 'right' : 'left'
+                mobileView ? "bottom" : customView ? "right" : "left"
               }
               showFullscreenButton={false}
               useBrowserFullscreen={false}
@@ -212,18 +216,18 @@ export default function ProductDescription({ match }) {
             <div className={styles.deliveryDiv}>
               <div>
                 <span>Delivery option</span>
-                <img src={deliveryTruckIcon} alt='deliver truck' />:
+                <img src={deliveryTruckIcon} alt="deliver truck" />:
               </div>
               <div>
                 <label>Enter pincode*</label>
-                <input type='text' name='pincode/zipcode' />
+                <input type="text" name="pincode/zipcode" />
               </div>
               <span>Please enter the pincode to check delivery time </span>
               <Button
-                variant='contained'
-                color='default'
+                variant="contained"
+                color="default"
                 className={styles.checkBtn}
-                onClick={() => history.push('/product-breakdown')}
+                onClick={() => history.push("/product-breakdown")}
               >
                 Check
               </Button>
@@ -237,20 +241,20 @@ export default function ProductDescription({ match }) {
           {customView && !mobileView && (
             <div
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                width: '100%',
-                maxWidth: '700px',
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                width: "100%",
+                maxWidth: "700px",
               }}
             >
               <div
                 style={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
                 }}
               >
                 <div className={styles.productDetails}>
@@ -259,7 +263,7 @@ export default function ProductDescription({ match }) {
                 </div>
                 {product.stock_quantity < 10 ? (
                   <div className={styles.alert}>
-                    <img src={clockIcon} alt='clock' />
+                    <img src={clockIcon} alt="clock" />
                     <span
                       style={{ fontSize: 14, marginLeft: -10, marginRight: 0 }}
                     >
@@ -273,7 +277,7 @@ export default function ProductDescription({ match }) {
                 <div
                   style={{
                     marginTop: 25,
-                    fontWeight: 'bolder',
+                    fontWeight: "bolder",
                     marginBottom: -10,
                   }}
                 >
@@ -282,28 +286,28 @@ export default function ProductDescription({ match }) {
                 <br />
                 <div
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    width: '100%',
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100%",
                   }}
                 >
                   <Select
-                    style={{ width: '35%' }}
+                    style={{ width: "35%" }}
                     input={<BootstrapInput />}
                     value={ProductType}
                     onOpen={() => setProductDrop(true)}
                     onClose={() => setProductDrop(false)}
-                    onChange={e => setProductType(e.target.value)}
+                    onChange={(e) => setProductType(e.target.value)}
                   >
                     {product.product?.isVariant ? (
-                      <MenuItem value={'ready made'}>
+                      <MenuItem value={"ready made"}>
                         <FormControlLabel
                           className={
                             ProductDrop
                               ? styles.FormControlLabel
                               : styles.FormControlLabelS
                           }
-                          checked={ProductType === 'ready made'}
+                          checked={ProductType === "ready made"}
                           control={<CustomRadio />}
                           label={
                             <div className={styles.ProductSelector}>
@@ -324,15 +328,15 @@ export default function ProductDescription({ match }) {
                         />
                       </MenuItem>
                     ) : null}
-                    {product.product?.isCustomise === 'on' ? (
-                      <MenuItem value={'custom'}>
+                    {product.product?.isCustomise === "on" ? (
+                      <MenuItem value={"custom"}>
                         <FormControlLabel
                           className={
                             ProductDrop
                               ? styles.FormControlLabel
                               : styles.FormControlLabelS
                           }
-                          checked={ProductType === 'custom'}
+                          checked={ProductType === "custom"}
                           control={<CustomRadio />}
                           label={
                             <div className={styles.ProductSelector}>
@@ -373,7 +377,7 @@ export default function ProductDescription({ match }) {
                   </Select>
                   <HtmlTooltip
                     // className={styles.ProductSelectorHelpBtn}
-                    style={{ color: '#6a5b40' }}
+                    style={{ color: "#6a5b40" }}
                     title={
                       <React.Fragment>
                         <h3 style={{ padding: 10 }}>
@@ -382,7 +386,7 @@ export default function ProductDescription({ match }) {
                         </h3>
                       </React.Fragment>
                     }
-                    placement={'right'}
+                    placement={"right"}
                     arrow
                   >
                     <IconButton>
@@ -392,18 +396,32 @@ export default function ProductDescription({ match }) {
                   {/* <IconButton className={styles.ProductSelectorHelpBtn} aria-label="add to shopping cart" size={'medium'} ><HelpIcon color="#6a5b40" /></IconButton> */}
                   <div className={styles.priceTab}>
                     <span>
-                      {product.has_offer ? product.offer_price : product.price}
+                      {product.currency_symbol}
+                      {product.has_offer
+                        ? product.offer_price
+                        : Product_Type === "custom"
+                        ? product.custom_price >= 1
+                          ? product.custom_price
+                          : product.price
+                        : Product_Type === "ready made"
+                        ? product.readymade_price1 >= 1
+                          ? product.readymade_price1
+                          : product.price
+                        : product.price}
                     </span>
                     <br />
                     {product.has_offer ? (
                       <p>
-                        <span>₹{product.price}</span>{' '}
+                        <span>
+                          {product.currency_symbol}
+                          {product.price}
+                        </span>
                         <span>{product.discount}</span>
                       </p>
                     ) : null}
                   </div>
                 </div>
-                {ProductType === 'ready made' ? <SelectSize /> : <></>}
+                {ProductType === "ready made" ? <SelectSize /> : <></>}
               </div>
             </div>
           )}
@@ -418,7 +436,7 @@ export default function ProductDescription({ match }) {
               <div className={styles.selectProduct}>
                 <div
                   style={{
-                    fontWeight: 'bolder',
+                    fontWeight: "bolder",
                     marginTop: 5,
                     marginBottom: -10,
                   }}
@@ -428,10 +446,10 @@ export default function ProductDescription({ match }) {
                 <br />
                 <div
                   style={{
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    position: 'relative',
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    position: "relative",
                   }}
                 >
                   <Select
@@ -439,17 +457,17 @@ export default function ProductDescription({ match }) {
                     value={ProductType}
                     onOpen={() => setProductDrop(true)}
                     onClose={() => setProductDrop(false)}
-                    onChange={e => setProductType(e.target.value)}
+                    onChange={(e) => setProductType(e.target.value)}
                   >
                     {product.product?.isVariant ? (
-                      <MenuItem value={'ready made'}>
+                      <MenuItem value={"ready made"}>
                         <FormControlLabel
                           className={
                             ProductDrop
                               ? styles.FormControlLabel
                               : styles.FormControlLabelS
                           }
-                          checked={ProductType === 'ready made'}
+                          checked={ProductType === "ready made"}
                           control={<CustomRadio />}
                           label={
                             <div className={styles.ProductSelector}>
@@ -470,15 +488,15 @@ export default function ProductDescription({ match }) {
                         />
                       </MenuItem>
                     ) : null}
-                    {product.product?.isCustomise == 'on' ? (
-                      <MenuItem value={'custom'}>
+                    {product.product?.isCustomise === "on" ? (
+                      <MenuItem value={"custom"}>
                         <FormControlLabel
                           className={
                             ProductDrop
                               ? styles.FormControlLabel
                               : styles.FormControlLabelS
                           }
-                          checked={ProductType === 'custom'}
+                          checked={ProductType === "custom"}
                           control={<CustomRadio />}
                           label={
                             <div className={styles.ProductSelector}>
@@ -510,7 +528,7 @@ export default function ProductDescription({ match }) {
                         </h3>
                       </React.Fragment>
                     }
-                    placement={'right'}
+                    placement={"right"}
                     arrow
                   >
                     <IconButton>
@@ -524,12 +542,26 @@ export default function ProductDescription({ match }) {
 
               <div className={styles.price}>
                 <span>
-                  {product.has_offer ? product.offer_price : product.price}
+                  {product.currency_symbol}
+                  {product.has_offer
+                    ? product.offer_price
+                    : Product_Type === "custom"
+                    ? product.custom_price >= 1
+                      ? product.custom_price
+                      : product.price
+                    : Product_Type === "ready made"
+                    ? product.readymade_price1 >= 1
+                      ? product.readymade_price1
+                      : product.price
+                    : product.price}
                 </span>
                 <br />
                 {product.has_offer ? (
                   <p>
-                    <span>₹{product.price}</span>{' '}
+                    <span>
+                      {product.currency_symbol}
+                      {product.price}
+                    </span>{" "}
                     <span>{product.discount}</span>
                   </p>
                 ) : null}
@@ -547,30 +579,30 @@ export default function ProductDescription({ match }) {
                   style={{
                     marginTop: 10,
                     marginBottom: -10,
-                    fontWeight: 'bolder',
+                    fontWeight: "bolder",
                   }}
                 >
                   Product Type
                 </div>
                 <br />
-                <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div style={{ display: "flex", alignItems: "center" }}>
                   <Select
-                    style={{ width: '80%' }}
+                    style={{ width: "80%" }}
                     input={<BootstrapInput />}
                     value={ProductType}
                     onOpen={() => setProductDrop(true)}
                     onClose={() => setProductDrop(false)}
-                    onChange={e => setProductType(e.target.value)}
+                    onChange={(e) => setProductType(e.target.value)}
                   >
                     {product.product?.isVariant ? (
-                      <MenuItem value={'ready made'}>
+                      <MenuItem value={"ready made"}>
                         <FormControlLabel
                           className={
                             ProductDrop
                               ? styles.FormControlLabel
                               : styles.FormControlLabelS
                           }
-                          checked={ProductType === 'ready made'}
+                          checked={ProductType === "ready made"}
                           control={<CustomRadio />}
                           label={
                             <div className={styles.ProductSelector}>
@@ -591,15 +623,15 @@ export default function ProductDescription({ match }) {
                         />
                       </MenuItem>
                     ) : null}
-                    {product.product?.isCustomise === 'on' ? (
-                      <MenuItem value={'custom'}>
+                    {product.product?.isCustomise === "on" ? (
+                      <MenuItem value={"custom"}>
                         <FormControlLabel
                           className={
                             ProductDrop
                               ? styles.FormControlLabel
                               : styles.FormControlLabelS
                           }
-                          checked={ProductType === 'custom'}
+                          checked={ProductType === "custom"}
                           control={<CustomRadio />}
                           label={
                             <div className={styles.ProductSelector}>
@@ -632,7 +664,7 @@ export default function ProductDescription({ match }) {
                         </h3>
                       </React.Fragment>
                     }
-                    placement={'bottom'}
+                    placement={"bottom"}
                     arrow
                   >
                     <IconButton>
@@ -643,12 +675,26 @@ export default function ProductDescription({ match }) {
               </div>
               <div className={styles.price}>
                 <span>
-                  {product.has_offer ? product.offer_price : product.price}
+                  {product.currency_symbol}
+                  {product.has_offer
+                    ? product.offer_price
+                    : Product_Type === "custom"
+                    ? product.custom_price >= 1
+                      ? product.custom_price
+                      : product.price
+                    : Product_Type === "ready made"
+                    ? product.readymade_price1 >= 1
+                      ? product.readymade_price1
+                      : product.price
+                    : product.price}
                 </span>
                 <br />
                 {product.has_offer ? (
                   <p>
-                    <span>₹{product.price}</span>{' '}
+                    <span>
+                      {product.currency_symbol}
+                      {product.price}
+                    </span>{" "}
                     <span>{product.discount}</span>
                   </p>
                 ) : null}
@@ -658,9 +704,9 @@ export default function ProductDescription({ match }) {
           {customView && !mobileView && (
             <div
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             ></div>
           )}
@@ -669,7 +715,7 @@ export default function ProductDescription({ match }) {
             <div>
               {product.stock_quantity < 10 ? (
                 <div className={styles.alert}>
-                  <img src={clockIcon} alt='clock' />
+                  <img src={clockIcon} alt="clock" />
                   <span>
                     Hurry up! Only {product.stock_quantity} left in stock
                   </span>
@@ -677,7 +723,7 @@ export default function ProductDescription({ match }) {
                 </div>
               ) : null}
 
-              {ProductType === 'ready made' ? <SelectSize /> : <></>}
+              {ProductType === "ready made" ? <SelectSize /> : <></>}
             </div>
           )}
 
@@ -685,14 +731,14 @@ export default function ProductDescription({ match }) {
             <div>
               {product.stock_quantity < 10 ? (
                 <div className={styles.alert}>
-                  <img src={clockIcon} alt='clock' />
+                  <img src={clockIcon} alt="clock" />
                   <span>
                     Hurry up! Only {product.stock_quantity} left in stock
                   </span>
                   <div>50:00</div>
                 </div>
               ) : null}
-              {ProductType === 'ready made' ? <SelectSize /> : <></>}
+              {ProductType === "ready made" ? <SelectSize /> : <></>}
 
               {/* <div className={styles.sizeDiv}>
                 <img src={measuringTapeIcon} alt='' />
@@ -707,80 +753,80 @@ export default function ProductDescription({ match }) {
             <div className={styles.SelectColorCard}>
               <IconButton
                 className={styles.ColorBTN}
-                onClick={() => setSelectedColor('#DAD3C1')}
+                onClick={() => setSelectedColor("#DAD3C1")}
                 style={{
-                  backgroundColor: '#DAD3C1',
+                  backgroundColor: "#DAD3C1",
                   borderColor:
-                    selectedColor === '#DAD3C1' ? '#DAD3C1' : 'white',
+                    selectedColor === "#DAD3C1" ? "#DAD3C1" : "white",
                 }}
               >
                 <IconButton
                   className={styles.ColorInnerBTN}
                   style={{
                     borderColor:
-                      selectedColor === '#DAD3C1' ? '#fff' : 'transparent',
+                      selectedColor === "#DAD3C1" ? "#fff" : "transparent",
                   }}
                 ></IconButton>
               </IconButton>
               <IconButton
                 className={styles.ColorBTN}
-                onClick={() => setSelectedColor('#FF543E')}
+                onClick={() => setSelectedColor("#FF543E")}
                 style={{
-                  backgroundColor: '#FF543E',
+                  backgroundColor: "#FF543E",
                   borderColor:
-                    selectedColor === '#FF543E' ? '#FF543E' : 'white',
+                    selectedColor === "#FF543E" ? "#FF543E" : "white",
                 }}
               >
                 <IconButton
                   className={styles.ColorInnerBTN}
                   style={{
                     borderColor:
-                      selectedColor === '#FF543E' ? '#fff' : 'transparent',
+                      selectedColor === "#FF543E" ? "#fff" : "transparent",
                   }}
                 ></IconButton>
               </IconButton>
               <IconButton
                 className={styles.ColorBTN}
-                onClick={() => setSelectedColor('#D1AA67')}
+                onClick={() => setSelectedColor("#D1AA67")}
                 style={{
-                  backgroundColor: '#D1AA67',
+                  backgroundColor: "#D1AA67",
                   borderColor:
-                    selectedColor === '#D1AA67' ? '#D1AA67' : 'white',
+                    selectedColor === "#D1AA67" ? "#D1AA67" : "white",
                 }}
               >
                 <IconButton
                   className={styles.ColorInnerBTN}
                   style={{
                     borderColor:
-                      selectedColor === '#D1AA67' ? '#fff' : 'transparent',
+                      selectedColor === "#D1AA67" ? "#fff" : "transparent",
                   }}
                 ></IconButton>
               </IconButton>
               <IconButton
                 className={styles.ColorBTN}
-                onClick={() => setSelectedColor('#000000')}
+                onClick={() => setSelectedColor("#000000")}
                 style={{
-                  backgroundColor: '#000000',
+                  backgroundColor: "#000000",
                   borderColor:
-                    selectedColor === '#000000' ? '#000000' : 'white',
+                    selectedColor === "#000000" ? "#000000" : "white",
                 }}
               >
                 <IconButton
                   className={styles.ColorInnerBTN}
                   style={{
                     borderColor:
-                      selectedColor === '#000000' ? '#fff' : 'transparent',
+                      selectedColor === "#000000" ? "#fff" : "transparent",
                   }}
                 ></IconButton>
               </IconButton>
             </div>
           </div>
           <div className={styles.btnDiv}>
-            <div style={{ marginBottom: '2em', marginTop: '0em' }}>
+            <div style={{ marginBottom: "2em", marginTop: "0em" }}>
               <Button
-                variant='contained'
+                variant="contained"
                 onClick={buy_now_handler}
-                color='default'
+                color="default"
                 // startIcon={<ScissorsIcon />}
                 fullWidth
                 className={styles.customiseBtn}
@@ -789,8 +835,8 @@ export default function ProductDescription({ match }) {
               </Button>
               <Button
                 onClick={add_bag_handler}
-                variant='outlined'
-                color='default'
+                variant="outlined"
+                color="default"
                 startIcon={<BagIcon />}
                 fullWidth
                 className={styles.addToBagBtn}
@@ -809,18 +855,18 @@ export default function ProductDescription({ match }) {
                 <div className={styles.deliveryDiv}>
                   <div>
                     <span>Delivery option</span>
-                    <img src={deliveryTruckIcon} alt='deliver truck' />:
+                    <img src={deliveryTruckIcon} alt="deliver truck" />:
                   </div>
                   <div>
                     <label>Enter pincode*</label>
-                    <input type='text' name='pincode/zipcode' />
+                    <input type="text" name="pincode/zipcode" />
                   </div>
                   <span>Please enter the pincode to check delivery time </span>
                   <Button
-                    variant='contained'
-                    color='default'
+                    variant="contained"
+                    color="default"
                     className={styles.checkBtn}
-                    onClick={() => history.push('/product-breakdown')}
+                    onClick={() => history.push("/product-breakdown")}
                   >
                     Check
                   </Button>
@@ -830,24 +876,24 @@ export default function ProductDescription({ match }) {
           ) : tabViewPro ? (
             <div
               className={styles.container}
-              style={{ marginLeft: -50, marginTop: '-2em' }}
+              style={{ marginLeft: -50, marginTop: "-2em" }}
             >
               <div className={styles.firstContainer}>
                 <div className={styles.deliveryDiv}>
                   <div>
                     <span>Delivery option</span>
-                    <img src={deliveryTruckIcon} alt='deliver truck' />:
+                    <img src={deliveryTruckIcon} alt="deliver truck" />:
                   </div>
                   <div>
                     <label>Enter pincode*</label>
-                    <input type='text' name='pincode/zipcode' />
+                    <input type="text" name="pincode/zipcode" />
                   </div>
                   <span>Please enter the pincode to check delivery time </span>
                   <Button
-                    variant='contained'
-                    color='default'
+                    variant="contained"
+                    color="default"
                     className={styles.checkBtn}
-                    onClick={() => history.push('/product-breakdown')}
+                    onClick={() => history.push("/product-breakdown")}
                   >
                     Check
                   </Button>

@@ -28,14 +28,16 @@ export const getAllMeasurements = (token) => async (dispatch) => {
 
 export const getSingleMeasurement = (token, id) => async (dispatch) => {
   try {
-    const { data } = await common_axios.post(`/get_measurment/${id}`, {
+    console.log(id);
+    const { data } = await common_axios.get(`/get_measurment/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
     console.log(data);
-    if (data) {
-      dispatch({ type: GET_SINGLE_MEASUREMENT, payload: data });
+    console.log(data[0]);
+    if (data.data[0]) {
+      dispatch({ type: GET_SINGLE_MEASUREMENT, payload: data.data[0] });
     }
   } catch (err) {
     console.log(err?.response?.data);

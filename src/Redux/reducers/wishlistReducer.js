@@ -1,6 +1,7 @@
 import {
   ADD_TO_BAG,
   ADD_TO_WISHLIST,
+  CLEAR_WISHLIST_UPDATE,
   GET_WISHLIST,
   REMOVE_FROM_WISHLIST,
 } from "../actions/types";
@@ -28,7 +29,8 @@ export const updateWishlistReducer = (
       return { ...initialState, added: payload };
     case REMOVE_FROM_WISHLIST:
       return { ...initialState, removed: payload };
-
+    case CLEAR_WISHLIST_UPDATE:
+      return { ...initialState, ...payload };
     default:
       return initialState;
   }

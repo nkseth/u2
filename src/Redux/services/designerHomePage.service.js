@@ -26,7 +26,9 @@ class DesignerHomePageDataService {
   }
 
   topDesigner() {
-    return common_axios.post(`/themeOptionDesigner`);
+    return common_axios.post(`/themeOptionDesigner`, {
+      dashboard_type: "designer_home",
+    });
   }
 
   topSeasonOffers() {

@@ -96,8 +96,9 @@ function App() {
       {/*All Other Screen on This Path ./LoginSceens/ */}
       {isLoginModel ? <Page_Login /> : null}
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/designer-home" component={DesignerHome} />
+        <Route exact path="/" component={DesignerHome} />
+        <Route path="/home" component={Home} />
+        {/* <Route path="/designer-home" component={Home} /> */}
         <Route path="/wear/:type" component={MensWear} />
         <Route path="/offers" component={Offer} />
         <Route
@@ -144,7 +145,8 @@ function App() {
           path="/add-measurement-body-measurement-female"
           component={AddWomanMeasurement}
         />
-        <Route path="/viewmeasurement" component={Measurement} />
+        <Route path="/viewmeasurement" component={Measurement} exact />
+        <Route path="/viewmeasurement/:id" component={Measurement} exact />
         <Route path="/order-summary" component={OrderSummary} />
         {/* New page added here */}
         <Route path="/my-bag" component={MyBag} />

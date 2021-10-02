@@ -1,52 +1,52 @@
-import styles from './BottomNavigation.module.scss';
+import styles from "./BottomNavigation.module.scss";
 
-import { Button, useMediaQuery, SwipeableDrawer } from '@material-ui/core';
+import { Button, useMediaQuery, SwipeableDrawer } from "@material-ui/core";
 
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link, useLocation, useHistory } from "react-router-dom";
 
-import { useEffect, useState } from 'react';
-import SideNavbar from '../Side-Navbar/sideNavbar';
+import { useEffect, useState } from "react";
+import SideNavbar from "../Side-Navbar/sideNavbar";
 
 // ICONS
-import { ReactComponent as Home } from '../../Images/bottomNav/home.svg';
-import { ReactComponent as Categories } from '../../Images/bottomNav/categories.svg';
-import { ReactComponent as Measurement } from '../../Images/bottomNav/measurement.svg';
-import { ReactComponent as Explore } from '../../Images/bottomNav/explore.svg';
-import { ReactComponent as Profile } from '../../Images/bottomNav/profile.svg';
+import { ReactComponent as Home } from "../../Images/bottomNav/home.svg";
+import { ReactComponent as Categories } from "../../Images/bottomNav/categories.svg";
+import { ReactComponent as Measurement } from "../../Images/bottomNav/measurement.svg";
+import { ReactComponent as Explore } from "../../Images/bottomNav/explore.svg";
+import { ReactComponent as Profile } from "../../Images/bottomNav/profile.svg";
 
 const BottomNavigation = () => {
   const details = [
     {
-      title: 'Home',
+      title: "Home",
       icon: <Home />,
-      to: '/',
+      to: "/",
     },
     {
-      title: 'category',
+      title: "category",
       icon: <Categories />,
-      to: '/',
+      to: "/",
     },
     {
-      title: 'measurement',
+      title: "measurement",
       icon: <Measurement style={{}} />,
-      to: '/',
+      to: "/",
     },
-    { title: 'date', icon: <Explore />, to: '/' },
-    { title: 'time', icon: <Profile />, to: '/' },
+    { title: "date", icon: <Explore />, to: "/" },
+    { title: "time", icon: <Profile />, to: "/" },
   ];
 
   const [activeNav, setActiveNav] = useState(0);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isDrawerOpen2, setDrawerOpen2] = useState(false);
   const history = useHistory();
-  const mobileView = useMediaQuery('(max-width:550px)');
+  const mobileView = useMediaQuery("(max-width:550px)");
   const location = useLocation();
-  const [currency, setCurrency] = useState('INR');
-  const toggleDrawer = (anchor, open) => event => {
+  const [currency, setCurrency] = useState("INR");
+  const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
     }
@@ -57,13 +57,13 @@ const BottomNavigation = () => {
 
   const [scroll, setScroll] = useState(0);
 
-  const handleScroll = e => {
-    console.log(window.scrollY);
+  const handleScroll = (e) => {
+    // console.log(window.scrollY);
     setScroll(window.scrollY);
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
   }, [scroll]);
   // const profileFnc = () => {
   //   if (Object.keys(user_data)?.length != 0) {
@@ -75,7 +75,7 @@ const BottomNavigation = () => {
   return (
     <div
       className={styles.NavContainer}
-      style={{ transform: `translateY(${scroll > 50 ? '0' : '100%'})` }}
+      style={{ transform: `translateY(${scroll > 50 ? "0" : "100%"})` }}
     >
       {details.map((item, i) => {
         return (
@@ -91,18 +91,18 @@ const BottomNavigation = () => {
             }}
             className={`${styles.btnContainer}`}
             style={{
-              width: '100%',
-              height: '100%',
+              width: "100%",
+              height: "100%",
             }}
           >
             <Link
               className={`${
                 activeNav === i && activeNav !== 1 && activeNav !== 4
                   ? styles.active
-                  : ''
+                  : ""
               }`}
             >
-              {item.title === 'measurement' ? (
+              {item.title === "measurement" ? (
                 <div class={styles.background}>
                   <div className={styles.svgStyle}>{item.icon}</div>
                 </div>
@@ -118,10 +118,10 @@ const BottomNavigation = () => {
 
       <>
         <SwipeableDrawer
-          anchor={'right'}
+          anchor={"right"}
           open={isDrawerOpen2}
-          onClose={toggleDrawer('right', false)}
-          onOpen={toggleDrawer('right', true)}
+          onClose={toggleDrawer("right", false)}
+          onOpen={toggleDrawer("right", true)}
           transitionDuration={600}
         >
           <div>
@@ -129,10 +129,10 @@ const BottomNavigation = () => {
           </div>
         </SwipeableDrawer>
         <SwipeableDrawer
-          anchor={'left'}
+          anchor={"left"}
           open={isDrawerOpen}
-          onClose={toggleDrawer('left', false)}
-          onOpen={toggleDrawer('left', true)}
+          onClose={toggleDrawer("left", false)}
+          onOpen={toggleDrawer("left", true)}
           transitionDuration={600}
         >
           <SideNavbar main />
@@ -145,5 +145,5 @@ const BottomNavigation = () => {
 export default BottomNavigation;
 
 export const ButtonContainer = ({ children, i }) => {
-  return <Button style={{ width: '100%', height: '100%' }}>{children}</Button>;
+  return <Button style={{ width: "100%", height: "100%" }}>{children}</Button>;
 };

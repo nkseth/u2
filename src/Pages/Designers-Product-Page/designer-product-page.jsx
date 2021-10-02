@@ -61,18 +61,6 @@ function DesignerProductPage({ match }) {
     }
   };
 
-  // const fetch_filters = async () => {
-  //   const { data } = await common_axios.post(`/product_by_category`, {
-  //     slug,
-  //   });
-
-  //   if (data.product) {
-  //     setProduct(data.product);
-  //     setCategory(data.category);
-  //   }
-  // };
-
-  // console.log(product);
   if (loading) {
     return null;
   }
@@ -87,7 +75,7 @@ function DesignerProductPage({ match }) {
             {!tabViewPro && (
               <div style={{ width: "200%", marginLeft: 15 }}>
                 <Breadcrumb
-                  path={`Designers Home / ${"Category"} /`}
+                  path={`Products / ${"Category"} /`}
                   activePath={category?.name || "product"}
                 />
               </div>
@@ -102,7 +90,7 @@ function DesignerProductPage({ match }) {
             {tabViewPro && (
               <div className={styles.upperbread}>
                 <Breadcrumb
-                  path={`Designers Home / ${"Category"} /`}
+                  path={`Products / ${"Category"} /`}
                   activePath={category?.name || "product"}
                 />
               </div>

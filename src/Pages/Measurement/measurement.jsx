@@ -65,20 +65,20 @@ export default function Measurement({
   console.log(upper_body);
   const toggle = () => {
     SetOrderDone(false);
-    history.push("/viewmeasurement");
+    // history.push("/viewmeasurement");
   };
 
   useEffect(() => {
     if (id) dispatch(getSingleMeasurement(user.api_token, id));
-  }, []);
+  }, [dispatch, id, user]);
 
   const onSubmit = async () => {
     try {
       const { data: upper_data } = await common_axios.post(
         "/save_measurment_value",
         {
-          type: "Upper",
-          measur_basic_id: Basic_id,
+          type: "upper",
+          measurements_basic_id: id,
           neck: parseFloat(NeckData),
           shoulder: parseFloat(ShoulderData),
           chest: parseFloat(ChestData),
@@ -92,7 +92,7 @@ export default function Measurement({
         "/save_measurment_value",
         {
           type: "Lower",
-          measur_basic_id: Basic_id,
+          measurements_basic_id: id,
           full_length: parseFloat(FullLengthData),
           hip_round: parseFloat(HipRoundData),
           in_seam: parseFloat(InSeamData),

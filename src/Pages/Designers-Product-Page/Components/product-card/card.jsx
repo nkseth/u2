@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { IconButton } from '@material-ui/core';
-import styles from './card.module.scss';
-import { Link } from 'react-router-dom';
-import parse from 'html-react-parser';
+import React, { useState, useEffect } from "react";
+import { IconButton } from "@material-ui/core";
+import styles from "./card.module.scss";
+import { Link } from "react-router-dom";
+import parse from "html-react-parser";
 //icon
 
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
@@ -11,11 +11,13 @@ import common_axios from "../../../../utils/axios.config";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToWishlist,
+  clearUpdateWishlist,
   removeFromWishlist,
 } from "../../../../Redux/actions/wishlist";
+import { getWishList } from "../../../../Redux/actions/wishlist";
 
-import { LazyLoadingImg } from '../../../../utils/LazyLoading';
-
+import { LazyLoadingImg } from "../../../../utils/LazyLoading";
+import { CLEAR_WISHLIST_UPDATE } from "../../../../Redux/actions/types";
 
 export default function ProductCard(props) {
   const dispatch = useDispatch();
@@ -23,35 +25,19 @@ export default function ProductCard(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState({});
 
-
   const { user, isAuthenticated } = useSelector((state) => state.root.auth);
   const { added, removed } = useSelector((state) => state.root.updateWishlist);
-  const { list } = useSelector((state) => state.root.wishlist);
-
   const setValue = async (product) => {
-
     await setIsLoading(true);
     await setProduct(product);
     await setIsLoading(false);
   };
-  const favourite = list?.filter(
-    (data) => data.listing_id === props.product.id
-  );
-
 
   const add_to_wishlist = async (prod) => {
     if (!user?.api_token)
       return alert("Login first to add the item to wishlist");
     dispatch(addToWishlist(prod.slug, user.api_token));
     setAddToWishList(true);
-
-    // try {
-    //   console.log(prod.slug);
-    //   const { data } = await common_axios.get(`/wishlist/${prod.slug}/add`);
-    //   console.log(data);
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   const remove_from_wishlist = async (prod) => {
@@ -60,44 +46,43 @@ export default function ProductCard(props) {
     const id = prod.id;
     dispatch(removeFromWishlist(id, user.api_token));
     setAddToWishList(false);
-    // try {
-    //   console.log(prod.slug);
-    //   const { data } = await common_axios.delete(
-    //     `/wishlist/${prod.slug}/remove`
-    //   );
-    //   console.log(data);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
   };
 
   useEffect(() => {
     setValue(props.product);
-  }, [props.product]);
+    if (props.product.is_wishlist) setAddToWishList(true);
 
-  // console.log(product)
+    if (added) {
+      console.log(added);
+      dispatch(clearUpdateWishlist());
+      // alert(added);
+    }
+    if (removed) {
+      console.log(removed);
+      // alert(removed);
+      dispatch(clearUpdateWishlist());
+    }
+  }, [props, added, removed, dispatch]);
 
   return (
     <div key={props.key} className={styles.container}>
       <div className={styles.imgContainer}>
         <Link to={{ pathname: `/product-description/${product.slug}` }}>
           <LazyLoadingImg image={product.feature_image} />
-          {/* <img src={product.feature_image} alt='product' /> */}
         </Link>
         {isAddToWishList ? (
           <IconButton
-            aria-label='product'
+            aria-label="product"
             onClick={() => {
               remove_from_wishlist(product);
             }}
             className={styles.icons}
           >
-            <FavoriteIcon style={{ color: 'red' }} />
+            <FavoriteIcon style={{ color: "red" }} />
           </IconButton>
         ) : (
           <IconButton
-            aria-label='product'
+            aria-label="product"
             onClick={() => add_to_wishlist(product)}
             className={styles.icons}
           >
@@ -107,16 +92,23 @@ export default function ProductCard(props) {
       </div>
       <div className={styles.productDetails}>
         <Link to={{ pathname: `/product-description/${product.slug}` }}>
-          <span className={styles.productName}>{product.title}</span>
+          <span className={styles.productName}>{product?.brand}</span>
         </Link>
         <span className={styles.productDesc}>
-          {parse(product.description ? product.description : '')}
+          {parse(product.description ? product?.title : "")}
         </span>
         <p className={styles.productPrice}>
           {!product.has_offer ? (
-            <span>{product.price} </span>
+            <span>
+              {product.currency_symbol}
+              {product.custom_price >= 1
+                ? product.custom_price
+                : product.readymade_price >= 1
+                ? product.readymade_price
+                : product.price}
+            </span>
           ) : (
-            <span>{product.offer_price} </span>
+            <span>{product.offer_price}</span>
           )}
           {product.has_offer ? (
             <span>

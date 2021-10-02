@@ -120,6 +120,7 @@ export default function ProductDescription({ match }) {
 
   const { login_Model_Show } = useLogin();
   const { user_data } = useSelector((state) => state.root.main);
+  const { user, isAuthenticated } = useSelector((state) => state.root.auth);
 
   useEffect(() => {
     fetch_data(slug);
@@ -128,12 +129,12 @@ export default function ProductDescription({ match }) {
   const fetch_data = async (slug) => {
     try {
       const { data } = await common_axios.get(`/productDetail/${slug}`);
-      console.log(data.items);
+      console.log(data);
 
-      if (data.items) {
-        setProduct(data.items);
+      if (data.data) {
+        setProduct(data.data);
         const img = [];
-        data.items?.images?.forEach((item) => {
+        data.data?.images?.forEach((item) => {
           img.push({ thumbnail: item.path, original: item.path });
         });
         setImages(img);
@@ -144,14 +145,16 @@ export default function ProductDescription({ match }) {
   };
 
   const buy_now_handler = async () => {
-    if (user_data?.name) {
+    if (isAuthenticated) {
       if (product.hasOwnProperty("title")) {
         try {
           const { data } = await common_axios.post(`/addToCart/${slug}`);
+          console.log(data);
           if (data) {
             history.push("/my-bag");
           }
         } catch (e) {
+          console.log(e?.response?.data?.message);
           if (e?.response?.data?.message === "Item alrealy in your cart") {
             history.push("/my-bag");
           }
@@ -167,7 +170,7 @@ export default function ProductDescription({ match }) {
   };
 
   const add_bag_handler = async () => {
-    if (user_data?.name) {
+    if (isAuthenticated) {
       try {
         const { data } = await common_axios.post(`/addToCart/${slug}`);
 
@@ -183,12 +186,13 @@ export default function ProductDescription({ match }) {
   };
 
   console.log(product);
+  console.log(Product_Type);
 
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection style={{ marginTop: 10, marginBottom: 10 }}>
         <Breadcrumb
-          path={`Home / ${product.brands_name} /`}
+          path={`Home / ${product.brand} /`}
           activePath={product.title}
           style={{ padding: "1rem 0" }}
         />
@@ -254,7 +258,7 @@ export default function ProductDescription({ match }) {
                 }}
               >
                 <div className={styles.productDetails}>
-                  <span>{product.brands_name}</span>
+                  <span>{product.brand}</span>
                   <span>{product.title}</span>
                 </div>
                 {product.stock_quantity < 10 ? (
@@ -392,12 +396,26 @@ export default function ProductDescription({ match }) {
                   {/* <IconButton className={styles.ProductSelectorHelpBtn} aria-label="add to shopping cart" size={'medium'} ><HelpIcon color="#6a5b40" /></IconButton> */}
                   <div className={styles.priceTab}>
                     <span>
-                      {product.has_offer ? product.offer_price : product.price}
+                      {product.currency_symbol}
+                      {product.has_offer
+                        ? product.offer_price
+                        : Product_Type === "custom"
+                        ? product.custom_price >= 1
+                          ? product.custom_price
+                          : product.price
+                        : Product_Type === "ready made"
+                        ? product.readymade_price1 >= 1
+                          ? product.readymade_price1
+                          : product.price
+                        : product.price}
                     </span>
                     <br />
                     {product.has_offer ? (
                       <p>
-                        <span>₹{product.price}</span>{" "}
+                        <span>
+                          {product.currency_symbol}
+                          {product.price}
+                        </span>
                         <span>{product.discount}</span>
                       </p>
                     ) : null}
@@ -411,7 +429,7 @@ export default function ProductDescription({ match }) {
           {!customView && (
             <>
               <div className={styles.productDetails}>
-                <span>{product.brands_name}</span>
+                <span>{product.brand}</span>
                 <span>{product.title}</span>
               </div>
               {/* ========================================== */}
@@ -524,12 +542,26 @@ export default function ProductDescription({ match }) {
 
               <div className={styles.price}>
                 <span>
-                  {product.has_offer ? product.offer_price : product.price}
+                  {product.currency_symbol}
+                  {product.has_offer
+                    ? product.offer_price
+                    : Product_Type === "custom"
+                    ? product.custom_price >= 1
+                      ? product.custom_price
+                      : product.price
+                    : Product_Type === "ready made"
+                    ? product.readymade_price1 >= 1
+                      ? product.readymade_price1
+                      : product.price
+                    : product.price}
                 </span>
                 <br />
                 {product.has_offer ? (
                   <p>
-                    <span>₹{product.price}</span>{" "}
+                    <span>
+                      {product.currency_symbol}
+                      {product.price}
+                    </span>{" "}
                     <span>{product.discount}</span>
                   </p>
                 ) : null}
@@ -643,12 +675,26 @@ export default function ProductDescription({ match }) {
               </div>
               <div className={styles.price}>
                 <span>
-                  {product.has_offer ? product.offer_price : product.price}
+                  {product.currency_symbol}
+                  {product.has_offer
+                    ? product.offer_price
+                    : Product_Type === "custom"
+                    ? product.custom_price >= 1
+                      ? product.custom_price
+                      : product.price
+                    : Product_Type === "ready made"
+                    ? product.readymade_price1 >= 1
+                      ? product.readymade_price1
+                      : product.price
+                    : product.price}
                 </span>
                 <br />
                 {product.has_offer ? (
                   <p>
-                    <span>₹{product.price}</span>{" "}
+                    <span>
+                      {product.currency_symbol}
+                      {product.price}
+                    </span>{" "}
                     <span>{product.discount}</span>
                   </p>
                 ) : null}

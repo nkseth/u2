@@ -128,12 +128,12 @@ export default function ProductDescription({ match }) {
   const fetch_data = async (slug) => {
     try {
       const { data } = await common_axios.get(`/productDetail/${slug}`);
-      console.log(data.data);
+      console.log(data.items);
 
-      if (data.data) {
-        setProduct(data.data);
+      if (data.items) {
+        setProduct(data.items);
         const img = [];
-        data.data?.images?.forEach((item) => {
+        data.items?.images?.forEach((item) => {
           img.push({ thumbnail: item.path, original: item.path });
         });
         setImages(img);
@@ -188,7 +188,7 @@ export default function ProductDescription({ match }) {
     <Container bottomDivider footerOnTabMob>
       <CustomSection style={{ marginTop: 10, marginBottom: 10 }}>
         <Breadcrumb
-          path={`Home / ${product.product?.brand} /`}
+          path={`Home / ${product.brands_name} /`}
           activePath={product.title}
           style={{ paddingBottom: "1rem" }}
         />
@@ -254,7 +254,7 @@ export default function ProductDescription({ match }) {
                 }}
               >
                 <div className={styles.productDetails}>
-                  <span>{product.brand}</span>
+                  <span>{product.brands_name}</span>
                   <span>{product.title}</span>
                 </div>
                 {product.stock_quantity < 10 ? (
@@ -411,7 +411,7 @@ export default function ProductDescription({ match }) {
           {!customView && (
             <>
               <div className={styles.productDetails}>
-                <span>{product.brand}</span>
+                <span>{product.brands_name}</span>
                 <span>{product.title}</span>
               </div>
               {/* ========================================== */}
@@ -470,7 +470,7 @@ export default function ProductDescription({ match }) {
                         />
                       </MenuItem>
                     ) : null}
-                    {product.product?.isCustomise == "on" ? (
+                    {product.product?.isCustomise === "on" ? (
                       <MenuItem value={"custom"}>
                         <FormControlLabel
                           className={

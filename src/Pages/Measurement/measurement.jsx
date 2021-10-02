@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { IconButton, Button, Grid, useMediaQuery } from "@material-ui/core";
 import cx from "classnames";
@@ -10,7 +10,7 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 //image
 import img from "./body.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import common_axios from "../../utils/axios.config";
 import { SuccessPopUp } from "../Payment/payment";
 import {
@@ -38,14 +38,25 @@ import {
   AnkleData,
   Basic_id,
 } from "../../Redux/MeasuremantData";
-export default function Measurement() {
+import { getSingleMeasurement } from "../../Redux/actions/measurement";
+export default function Measurement({
+  match: {
+    params: { id },
+  },
+}) {
   const history = useHistory();
+  const dispatch = useDispatch();
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   const { gender, upper_body, lower_body, basic_id } = useSelector(
     (state) => state.root.measurement
   );
+
+  const { user } = useSelector((state) => state.root.auth);
+  const { measurement } = useSelector((state) => state.root.measurement);
+
+  console.log(measurement);
 
   const { neck, chest, wrist, shoulder, arm_hole, sleeve } = upper_body;
   const { waist, hip_round, full_length, inseam, thigh, calf, ankle } =
@@ -56,6 +67,10 @@ export default function Measurement() {
     SetOrderDone(false);
     history.push("/viewmeasurement");
   };
+
+  useEffect(() => {
+    if (id) dispatch(getSingleMeasurement(user.api_token, id));
+  }, []);
 
   const onSubmit = async () => {
     try {

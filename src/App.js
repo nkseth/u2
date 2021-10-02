@@ -144,7 +144,8 @@ function App() {
           path="/add-measurement-body-measurement-female"
           component={AddWomanMeasurement}
         />
-        <Route path="/viewmeasurement" component={Measurement} />
+        <Route path="/viewmeasurement" component={Measurement} exact />
+        <Route path="/viewmeasurement/:id" component={Measurement} exact />
         <Route path="/order-summary" component={OrderSummary} />
         {/* New page added here */}
         <Route path="/my-bag" component={MyBag} />

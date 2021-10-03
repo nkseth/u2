@@ -2,7 +2,10 @@ import { Button } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllMeasurements } from "../../Redux/actions/measurement";
+import {
+  deleteMeasurement,
+  getAllMeasurements,
+} from "../../Redux/actions/measurement";
 import common_axios from "../../utils/axios.config";
 import styles from "./Measurement.module.scss";
 const Measurement = () => {
@@ -43,6 +46,13 @@ const Measurement = () => {
 export default Measurement;
 
 const MeasurementItems = ({ id, background, titlename, productname, date }) => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.root.auth);
+  const deleteMeasurementDataHandle = (e) => {
+    e.preventDefault();
+    dispatch(deleteMeasurement(user.api_token, id));
+    dispatch(getAllMeasurements(user.api_token));
+  };
   return (
     <>
       <div
@@ -58,9 +68,9 @@ const MeasurementItems = ({ id, background, titlename, productname, date }) => {
         </div>
         <div>
           <Button>
-            <Link to={`/viewmeasurement/${id}`}>View</Link>
+            <Link to={`/viewmeasurement/view/${id}`}>View</Link>
           </Button>
-          <Button>Delete</Button>
+          <Button onClick={deleteMeasurementDataHandle}>Delete</Button>
         </div>
       </div>
     </>

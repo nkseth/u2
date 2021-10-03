@@ -6,6 +6,7 @@ import {
   LOWER_BODY,
   GET_SINGLE_MEASUREMENT,
   UPPER_BODY,
+  DELETE_MEASUREMENT,
 } from "../actions/types";
 
 const inialState = {
@@ -32,7 +33,7 @@ const inialState = {
   basic_id: null,
 };
 
-const measurement_reducer = (state = inialState, action) => {
+export const measurement_reducer = (state = inialState, action) => {
   switch (action.type) {
     case GET_SINGLE_MEASUREMENT:
       return {
@@ -84,4 +85,33 @@ export const allMeasurementsReducer = (
   }
 };
 
-export default measurement_reducer;
+export const deleteMeasurementReducer = (
+  inialState = { message: [] },
+  action
+) => {
+  switch (action.type) {
+    case DELETE_MEASUREMENT:
+      return {
+        ...inialState,
+        message: action.payload,
+      };
+    default:
+      return inialState;
+  }
+};
+
+export const saveMeasurementReducer = (
+  inialState = { message: [] },
+  action
+) => {
+  switch (action.type) {
+    case DELETE_MEASUREMENT:
+      return {
+        ...inialState,
+        message: action.payload,
+      };
+    default:
+      return inialState;
+  }
+};
+// export default measurement_reducer;

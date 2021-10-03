@@ -12,7 +12,6 @@ import {
   customerReviewsReducer,
 } from "./designHomePageReducer";
 import mainreducer from "./mainReducer";
-import measurement_reducer from "./measurement";
 import profile_reducer from "./profileReducer";
 import {
   addToBagReducer,
@@ -26,7 +25,12 @@ import {
 } from "./filterCategoryReducer";
 
 import { productDetailReducer } from "./productDescriptionReducer";
-import { allMeasurementsReducer } from "./measurement";
+import {
+  allMeasurementsReducer,
+  deleteMeasurementReducer,
+  measurement_reducer,
+  saveMeasurementReducer,
+} from "./measurement";
 
 import { cartItemsReducer } from "./myBagReducer";
 
@@ -36,6 +40,7 @@ const rootreducer = combineReducers({
   auth: authReducer,
   cartItems: cartItemsReducer,
   customerReviews: customerReviewsReducer,
+  deleteMeasurement: deleteMeasurementReducer,
   filterCategory: filterCategoryReducer,
   filteredProduct: filteredProductReducer,
   handMadeClothes: handMadeClothesReducer,
@@ -47,6 +52,7 @@ const rootreducer = combineReducers({
   productDetail: productDetailReducer,
   profile: profile_reducer,
   suitWears: suitWearReducer,
+  saveMeasurement: saveMeasurementReducer,
   topCategory: topCategoryReducer,
   topDesigner: topDesignerReducer,
   topSeasonOffers: topSeasonOffersReducer,

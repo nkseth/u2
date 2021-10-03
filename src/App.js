@@ -138,15 +138,17 @@ function App() {
           component={AddMeasurementBasicDetails}
         />
         <Route
-          path="/add-measurement-body-measurement-male"
+          path="/add-measurement-body-measurement-male/:basic_id"
           component={AddManMeasurement}
+          exact
         />
         <Route
-          path="/add-measurement-body-measurement-female"
+          path="/add-measurement-body-measurement-female/:basic_id"
           component={AddWomanMeasurement}
+          exact
         />
-        <Route path="/viewmeasurement" component={Measurement} exact />
-        <Route path="/viewmeasurement/:id" component={Measurement} exact />
+        <Route path="/viewmeasurement/save/:id" component={Measurement} exact />
+        <Route path="/viewmeasurement/view/:id" component={Measurement} exact />
         <Route path="/order-summary" component={OrderSummary} />
         {/* New page added here */}
         <Route path="/my-bag" component={MyBag} />

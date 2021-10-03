@@ -94,22 +94,23 @@ export default function ChooseStandardSize() {
   const { gender, basic_details } = useSelector(
     (state) => state.root.measurement
   );
-  const { user_data } = useSelector((state) => state.root.main);
+  console.log(gender);
+  const { user } = useSelector((state) => state.root.auth);
 
   const { name, fitting, standard_size } = basic_details;
 
   const onSubmit = async () => {
-    if (Names.length == 0) {
+    if (Names.length === 0) {
       alert("Enter a valid name");
       return;
     }
 
-    if (Fitting.length == 0) {
+    if (Fitting.length === 0) {
       alert("Enter a valid age");
       return;
     }
 
-    if (Size.length == 0) {
+    if (Size.length === 0) {
       alert("Choose your size");
       return;
     }
@@ -120,12 +121,13 @@ export default function ChooseStandardSize() {
         name: Names,
         standard_size: Size,
         fitting: Fitting,
-        user_id: user_data.id,
+        user_id: user.id,
       });
       console.log(data);
       dispatch(set_basic_id(data));
       set_basic_id(data);
-      history.push(`/add-measurement-body-measurement-${gender}`);
+      if (data)
+        history.push(`/add-measurement-body-measurement-${Gender}/${data}`);
     } catch (e) {
       console.log(e.response?.data);
       return Promise.reject(e);
@@ -137,6 +139,7 @@ export default function ChooseStandardSize() {
     Customer_Name_Change(e.target.value);
   };
   const handleGender = (e) => {
+    console.log(e.target.value);
     SetGender(e.target.value);
     Customer_Gender_Change(e.target.value);
   };

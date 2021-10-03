@@ -38,7 +38,10 @@ import {
   AnkleData,
   Basic_id,
 } from "../../Redux/MeasuremantData";
-import { getSingleMeasurement } from "../../Redux/actions/measurement";
+import {
+  getSingleMeasurement,
+  saveMeasurement,
+} from "../../Redux/actions/measurement";
 export default function Measurement({
   match: {
     params: { id },
@@ -65,7 +68,7 @@ export default function Measurement({
   console.log(upper_body);
   const toggle = () => {
     SetOrderDone(false);
-    // history.push("/viewmeasurement");
+    history.push("/measurement");
   };
 
   useEffect(() => {
@@ -73,42 +76,67 @@ export default function Measurement({
   }, [dispatch, id, user]);
 
   const onSubmit = async () => {
-    try {
-      const { data: upper_data } = await common_axios.post(
-        "/save_measurment_value",
-        {
-          type: "upper",
-          measurements_basic_id: id,
-          neck: parseFloat(NeckData),
-          shoulder: parseFloat(ShoulderData),
-          chest: parseFloat(ChestData),
-          arm: parseFloat(ArmHoleData),
-          wrist: parseFloat(WristData),
-          //back_waist:
-        }
-      );
+    const upperBodyData = {
+      type: "upper",
+      measurements_basic_id: id,
+      neck: parseFloat(NeckData),
+      shoulder: parseFloat(ShoulderData),
+      chest: parseFloat(ChestData),
+      arm_hole: parseFloat(ArmHoleData),
+      wrist: parseFloat(WristData),
+      sleeve: parseFloat(SleeveLengthData),
+    };
 
-      const { data: lower_data } = await common_axios.post(
-        "/save_measurment_value",
-        {
-          type: "Lower",
-          measurements_basic_id: id,
-          full_length: parseFloat(FullLengthData),
-          hip_round: parseFloat(HipRoundData),
-          in_seam: parseFloat(InSeamData),
-          thigh: parseFloat(ThighData),
-          waist: parseFloat(WaistData),
-          calf: parseFloat(CalfData),
-          ankle: parseFloat(AnkleData),
-          //back_waist:
-        }
-      );
+    const lowerBodyData = {
+      type: "Lower",
+      measurements_basic_id: id,
+      full_length: parseFloat(FullLengthData),
+      hip_round: parseFloat(HipRoundData),
+      inseam: parseFloat(InSeamData),
+      thigh: parseFloat(ThighData),
+      waist: parseFloat(WaistData),
+      calf: parseFloat(CalfData),
+      ankle: parseFloat(AnkleData),
+    };
 
-      console.log(upper_data, lower_data);
-      SetOrderDone(true);
-    } catch (e) {
-      console.log(e);
-    }
+    dispatch(saveMeasurement(user.api_token, upperBodyData));
+    dispatch(saveMeasurement(user.api_token, lowerBodyData));
+    SetOrderDone(true);
+    // try {
+    //   const { data: upper_data } = await common_axios.post(
+    //     "/save_measurment_value",
+    //     {
+    //       type: "upper",
+    //       measurements_basic_id: id,
+    //       neck: parseFloat(NeckData),
+    //       shoulder: parseFloat(ShoulderData),
+    //       chest: parseFloat(ChestData),
+    //       arm_hole: parseFloat(ArmHoleData),
+    //       wrist: parseFloat(WristData),
+    //       sleeve: 1,
+    //       //back_waist:
+    //     }
+    //   );
+    //   const { data: lower_data } = await common_axios.post(
+    //     "/save_measurment_value",
+    //     {
+    //       type: "Lower",
+    //       measurements_basic_id: id,
+    //       full_length: parseFloat(FullLengthData),
+    //       hip_round: parseFloat(HipRoundData),
+    //       inseam: parseFloat(InSeamData),
+    //       thigh: parseFloat(ThighData),
+    //       waist: parseFloat(WaistData),
+    //       calf: parseFloat(CalfData),
+    //       ankle: parseFloat(AnkleData),
+    //       //back_waist:
+    //     }
+    //   );
+    //   console.log(upper_data, lower_data);
+    //   SetOrderDone(true);
+    // } catch (e) {
+    //   console.log(e);
+    // }
   };
 
   return (
@@ -161,22 +189,22 @@ export default function Measurement({
                 <span>
                   {" "}
                   <h1>Name:</h1>
-                  <h3>{Customer_Name}</h3>{" "}
+                  <h3>{measurement?.name}</h3>{" "}
                 </span>
                 <span>
                   {" "}
                   <h1>Gender:</h1>
-                  <h3>{Customer_Gender}</h3>{" "}
+                  <h3>{measurement?.gender}</h3>{" "}
                 </span>
                 <span>
                   {" "}
                   <h1>Standard size:</h1>
-                  <h3>{Customer_Size}</h3>{" "}
+                  <h3>{measurement?.standard_size}</h3>{" "}
                 </span>
                 <span>
                   {" "}
                   <h1>Fitting:</h1>
-                  <h3>{Customer_Fitting}</h3>{" "}
+                  <h3>{measurement.fitting}</h3>{" "}
                 </span>
               </div>
               <Grid item xs={12}>
@@ -185,27 +213,63 @@ export default function Measurement({
               <Grid item xs={12}></Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>1. Neck</span>{" "}
-                <div>{NeckData === "" ? "-" : NeckData}</div>
+                <div>
+                  {measurement?.measurments[0]?.neck
+                    ? measurement?.measurments[0]?.neck
+                    : NeckData === ""
+                    ? "-"
+                    : NeckData}
+                </div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>2. Shoulder</span>{" "}
-                <div>{ShoulderData === "" ? "-" : ShoulderData}</div>
+                <div>
+                  {measurement?.measurments[0]?.shoulder
+                    ? measurement?.measurments[0]?.shoulder
+                    : ShoulderData === ""
+                    ? "-"
+                    : ShoulderData}
+                </div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>3. Chest</span>{" "}
-                <div>{ChestData === "" ? "-" : ChestData}</div>
+                <div>
+                  {measurement?.measurments[0]?.chest
+                    ? measurement?.measurments[0]?.chest
+                    : ChestData === ""
+                    ? "-"
+                    : ChestData}
+                </div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>4. Arm Hole</span>{" "}
-                <div>{ArmHoleData === "" ? "-" : ArmHoleData}</div>
+                <div>
+                  {measurement?.measurments[0]?.arm_hole
+                    ? measurement?.measurments[0]?.arm_hole
+                    : ArmHoleData === ""
+                    ? "-"
+                    : ArmHoleData}
+                </div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>5. Sleeve Length</span>{" "}
-                <div>{SleeveLengthData === "" ? "-" : SleeveLengthData}</div>
+                <div>
+                  {measurement?.measurments[0]?.sleeve
+                    ? measurement?.measurments[0]?.sleeve
+                    : SleeveLengthData === ""
+                    ? "-"
+                    : SleeveLengthData}
+                </div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>6. Wrist</span>{" "}
-                <div>{WristData === "" ? "-" : WristData}</div>
+                <div>
+                  {measurement?.measurments[0]?.wrist
+                    ? measurement?.measurments[0]?.wrist
+                    : WristData === ""
+                    ? "-"
+                    : WristData}
+                </div>
               </Grid>
               {/* <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>7. Arm</span> <div>{}</div>
@@ -228,31 +292,73 @@ export default function Measurement({
               <Grid item xs={12}></Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>1. Waist</span>{" "}
-                <div>{WaistData === "" ? "-" : WaistData}</div>
+                <div>
+                  {measurement?.measurments[1]?.waist
+                    ? measurement?.measurments[1]?.waist
+                    : WaistData === ""
+                    ? "-"
+                    : WaistData}
+                </div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>2. Full Length</span>{" "}
-                <div>{FullLengthData === "" ? "-" : FullLengthData}</div>
+                <div>
+                  {measurement?.measurments[1]?.full_length
+                    ? measurement?.measurments[1]?.full_length
+                    : FullLengthData === ""
+                    ? "-"
+                    : FullLengthData}
+                </div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>3. Hip Round</span>{" "}
-                <div>{HipRoundData === "" ? "-" : HipRoundData}</div>
+                <div>
+                  {measurement?.measurments[1]?.hip_round
+                    ? measurement?.measurments[1]?.hip_round
+                    : HipRoundData === ""
+                    ? "-"
+                    : HipRoundData}
+                </div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>4. InSeam</span>{" "}
-                <div>{InSeamData === "" ? "-" : InSeamData}</div>
+                <div>
+                  {measurement?.measurments[1]?.inseam
+                    ? measurement?.measurments[1]?.inseam
+                    : InSeamData === ""
+                    ? "-"
+                    : InSeamData}
+                </div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>5. Thigh</span>{" "}
-                <div>{ThighData === "" ? "-" : ThighData}</div>
+                <div>
+                  {measurement?.measurments[1]?.thigh
+                    ? measurement?.measurments[1]?.thigh
+                    : ThighData === ""
+                    ? "-"
+                    : ThighData}
+                </div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>6. Calf</span>{" "}
-                <div>{CalfData === "" ? "-" : CalfData}</div>
+                <div>
+                  {measurement?.measurments[1]?.calf
+                    ? measurement?.measurments[1]?.calf
+                    : CalfData === ""
+                    ? "-"
+                    : CalfData}
+                </div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>7. Ankle</span>{" "}
-                <div>{AnkleData === "" ? "-" : AnkleData}</div>
+                <div>
+                  {measurement?.measurments[1]?.ankle
+                    ? measurement?.measurments[1]?.ankle
+                    : AnkleData === ""
+                    ? "-"
+                    : AnkleData}
+                </div>
               </Grid>
             </Grid>
             <Grid
@@ -261,7 +367,13 @@ export default function Measurement({
               spacing={3}
             >
               <Grid item xs={6} sm={6} md={6}>
-                <Link to={`/add-measurement-body-measurement-${gender}`}>
+                <Link
+                  to={
+                    id
+                      ? "/measurement"
+                      : `/add-measurement-body-measurement-${gender}`
+                  }
+                >
                   <Button
                     className={cx(styles.button, styles.backBtn)}
                     variant="contained"
@@ -289,3 +401,248 @@ export default function Measurement({
     </Container>
   );
 }
+
+// const GridData=()=>{
+//   return(
+//     <Grid
+//           container
+//           className={cx(styles.gridContainer, styles.mainGridContainer)}
+//         >
+//           <Grid item xs={12} sm={12} md={5} style={{ height: "100%" }}>
+//             <div className={styles.modelImgContainer}>
+//               <img src={img} alt="all body details" />
+//             </div>
+//           </Grid>
+//           {!tabView && !mobileView && (
+//             <Grid item xs={0} sm={0} md={1} style={{ height: "100%" }}></Grid>
+//           )}
+//           <Grid
+//             item
+//             xs={12}
+//             sm={12}
+//             md={6}
+//             style={{ height: "100%" }}
+//             className={styles.detailsDiv}
+//           >
+//             <Grid
+//               container
+//               spacing={2}
+//               className={cx(
+//                 styles.upperBodyGridContainer,
+//                 styles.gridContainer
+//               )}
+//             >
+//               <div className={styles.OtherInfoDiv}>
+//                 <span>
+//                   {" "}
+//                   <h1>Name:</h1>
+//                   <h3>{measurement?.name}</h3>{" "}
+//                 </span>
+//                 <span>
+//                   {" "}
+//                   <h1>Gender:</h1>
+//                   <h3>{measurement?.gender}</h3>{" "}
+//                 </span>
+//                 <span>
+//                   {" "}
+//                   <h1>Standard size:</h1>
+//                   <h3>{measurement?.standard_size}</h3>{" "}
+//                 </span>
+//                 <span>
+//                   {" "}
+//                   <h1>Fitting:</h1>
+//                   <h3>{measurement.fitting}</h3>{" "}
+//                 </span>
+//               </div>
+//               <Grid item xs={12}>
+//                 <div className={styles.detailsHeader}>Upper Body</div>
+//               </Grid>
+//               <Grid item xs={12}></Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>1. Neck</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[0]?.neck
+//                     ? measurement?.measurments[0]?.neck
+//                     : NeckData === ""
+//                     ? "-"
+//                     : NeckData}
+//                 </div>
+//               </Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>2. Shoulder</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[0]?.shoulder
+//                     ? measurement?.measurments[0]?.shoulder
+//                     : ShoulderData === ""
+//                     ? "-"
+//                     : ShoulderData}
+//                 </div>
+//               </Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>3. Chest</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[0]?.chest
+//                     ? measurement?.measurments[0]?.chest
+//                     : ChestData === ""
+//                     ? "-"
+//                     : ChestData}
+//                 </div>
+//               </Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>4. Arm Hole</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[0]?.arm_hole
+//                     ? measurement?.measurments[0]?.arm_hole
+//                     : ArmHoleData === ""
+//                     ? "-"
+//                     : ArmHoleData}
+//                 </div>
+//               </Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>5. Sleeve Length</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[0]?.sleeve
+//                     ? measurement?.measurments[0]?.sleeve
+//                     : SleeveLengthData === ""
+//                     ? "-"
+//                     : SleeveLengthData}
+//                 </div>
+//               </Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>6. Wrist</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[0]?.wrist
+//                     ? measurement?.measurments[0]?.wrist
+//                     : WristData === ""
+//                     ? "-"
+//                     : WristData}
+//                 </div>
+//               </Grid>
+//               {/* <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>7. Arm</span> <div>{}</div>
+//               </Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>8. Waist </span> <div>{}</div>
+//               </Grid> */}
+//             </Grid>
+//             <Grid
+//               container
+//               spacing={2}
+//               className={cx(
+//                 styles.lowerBodyGridContainer,
+//                 styles.gridContainer
+//               )}
+//             >
+//               <Grid item xs={12}>
+//                 <span className={styles.detailsHeader}>Lower Body</span>
+//               </Grid>
+//               <Grid item xs={12}></Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>1. Waist</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[1]?.waist
+//                     ? measurement?.measurments[1]?.waist
+//                     : WaistData === ""
+//                     ? "-"
+//                     : WaistData}
+//                 </div>
+//               </Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>2. Full Length</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[1]?.full_length
+//                     ? measurement?.measurments[1]?.full_length
+//                     : FullLengthData === ""
+//                     ? "-"
+//                     : FullLengthData}
+//                 </div>
+//               </Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>3. Hip Round</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[1]?.hip_round
+//                     ? measurement?.measurments[1]?.hip_round
+//                     : HipRoundData === ""
+//                     ? "-"
+//                     : HipRoundData}
+//                 </div>
+//               </Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>4. InSeam</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[1]?.inseam
+//                     ? measurement?.measurments[1]?.inseam
+//                     : InSeamData === ""
+//                     ? "-"
+//                     : InSeamData}
+//                 </div>
+//               </Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>5. Thigh</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[1]?.thigh
+//                     ? measurement?.measurments[1]?.thigh
+//                     : ThighData === ""
+//                     ? "-"
+//                     : ThighData}
+//                 </div>
+//               </Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>6. Calf</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[1]?.calf
+//                     ? measurement?.measurments[1]?.calf
+//                     : CalfData === ""
+//                     ? "-"
+//                     : CalfData}
+//                 </div>
+//               </Grid>
+//               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+//                 <span>7. Ankle</span>{" "}
+//                 <div>
+//                   {measurement?.measurments[1]?.ankle
+//                     ? measurement?.measurments[1]?.ankle
+//                     : AnkleData === ""
+//                     ? "-"
+//                     : AnkleData}
+//                 </div>
+//               </Grid>
+//             </Grid>
+//             <Grid
+//               container
+//               className={cx(styles.gridContainer, styles.buttonGridContainer)}
+//               spacing={3}
+//             >
+//               <Grid item xs={6} sm={6} md={6}>
+//                 <Link
+//                   to={
+//                     id
+//                       ? "/measurement"
+//                       : `/add-measurement-body-measurement-${gender}`
+//                   }
+//                 >
+//                   <Button
+//                     className={cx(styles.button, styles.backBtn)}
+//                     variant="contained"
+//                     color="default"
+//                     startIcon={<ArrowBackIcon />}
+//                   >
+//                     Back
+//                   </Button>
+//                 </Link>
+//               </Grid>
+//               <Grid item xs={6} sm={6} md={6}>
+//                 <Button
+//                   variant="contained"
+//                   className={cx(styles.button, styles.addToBagBtn)}
+//                   color="default"
+//                   onClick={onSubmit}
+//                 >
+//                   Save
+//                 </Button>
+//               </Grid>
+//             </Grid>
+//           </Grid>
+//         </Grid>
+//   )
+// }

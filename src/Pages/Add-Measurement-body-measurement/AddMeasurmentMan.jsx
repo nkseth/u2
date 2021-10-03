@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Styles/AddMeasurmentMan.module.scss";
 
 import { Button, useMediaQuery } from "@material-ui/core";
@@ -25,6 +25,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
 import {
+  getAllMeasurements,
+  saveMeasurement,
   set_lower_body,
   set_upper_body,
 } from "../../Redux/actions/measurement";
@@ -61,7 +63,11 @@ import {
   AnkleVALUE,
 } from "../../Redux/MeasuremantData";
 
-function AddManMeasurement() {
+function AddManMeasurement({
+  match: {
+    params: { basic_id },
+  },
+}) {
   const mobileView = useMediaQuery("(max-width:550px)");
   const tabView = useMediaQuery("(max-width:769px)");
   const dispatch = useDispatch();
@@ -69,7 +75,12 @@ function AddManMeasurement() {
   const { upper_body, lower_body } = useSelector(
     (state) => state.root.measurement
   );
+  console.log(basic_id);
 
+  const { measurements } = useSelector((state) => state.root.allMeasurements);
+  console.log(measurements[measurements.length - 1]);
+  const { user } = useSelector((state) => state.root.auth);
+  console.log("body");
   const { neck, chest, wrist, shoulder, arm_hole, sleeve } = upper_body;
   const { waist, hip_round, full_length, inseam, thigh, calf, ankle } =
     lower_body;
@@ -88,6 +99,11 @@ function AddManMeasurement() {
   // const [THIGH, SETTHIGH] = useState('')
   // const [CALF, SETCALF] = useState('')
   // const [ANKLE, SETANKLE] = useState('')
+
+  useEffect(() => {
+    if (measurements.length > 0) return;
+    dispatch(getAllMeasurements(user.api_token));
+  }, [user, dispatch, measurements]);
 
   const Form = (value, name) => {
     if (name === "Neck") {
@@ -210,6 +226,31 @@ function AddManMeasurement() {
   };
   const UploadMeasurement = () => {
     setAllDone("Done");
+    const upperBodyData = {
+      type: "upper",
+      measurements_basic_id: basic_id,
+      neck: parseFloat(NeckData),
+      shoulder: parseFloat(ShoulderData),
+      chest: parseFloat(ChestData),
+      arm_hole: parseFloat(ArmHoleData),
+      wrist: parseFloat(WristData),
+      sleeve: parseFloat(SleeveLengthData),
+    };
+
+    const lowerBodyData = {
+      type: "Lower",
+      measurements_basic_id: basic_id,
+      full_length: parseFloat(FullLengthData),
+      hip_round: parseFloat(HipRoundData),
+      inseam: parseFloat(InSeamData),
+      thigh: parseFloat(ThighData),
+      waist: parseFloat(WaistData),
+      calf: parseFloat(CalfData),
+      ankle: parseFloat(AnkleData),
+    };
+
+    // dispatch(saveMeasurement(user.api_token, upperBodyData));
+    // dispatch(saveMeasurement(user.api_token, lowerBodyData));
     console.log(
       "UpperData",
       NeckData,
@@ -229,102 +270,8 @@ function AddManMeasurement() {
       CalfData,
       AnkleData
     );
-
-    // if (Open === 'upper' || Open === 'lower') {
-    //     //Upper
-    //     dispatch(set_upper_body({...upper_body, neck:NECK}))
-    //     dispatch(set_upper_body({...upper_body, shoulder:SHOULDER}));
-    //     dispatch(set_upper_body({...upper_body, chest:CHEST}));
-    //     dispatch(set_upper_body({...upper_body, arm_hole:ARMHOLE}));
-    //     dispatch(set_upper_body({...upper_body, sleeve:SLEEVE}));
-    //     dispatch(set_upper_body({...upper_body, wrist:WRIST}));
-
-    //     //Lower
-    //     dispatch(set_lower_body({...lower_body, waist:WAIST}));
-    //     dispatch(set_lower_body({...lower_body, full_length:FULLLENGTH}));
-    //     dispatch(set_lower_body({...lower_body, hip_round:HIPROUND}));
-    //     dispatch(set_lower_body({...lower_body, inseam:INSEAM}));
-    //     dispatch(set_lower_body({...lower_body, thigh:THIGH}));
-    //     dispatch(set_lower_body({...lower_body, calf:CALF}));
-    //     dispatch(set_lower_body({...lower_body, ankle:ANKLE}));
-    // }
-    // else {
-    //setAllDone('Done')
-
-    //}
   };
-  // const SetIt = () => {
-  //     if (AllDone === 'Start') {
-  //         setAllDone(false)
-  //     }
-  //     else if (NECKFilled === false) {
-  //         SetOpen('Neck');
-  //         setButton('upper')
-  //     }
-  //     else if (SHOULDERFilled === false) {
-  //         SetOpen('Shoulder');
-  //         setButton('upper')
-  //     }
-  //     else if (CHESTFilled === false) {
-  //         SetOpen('Chest');
-  //         setButton('upper')
-  //     }
-  //     else if (ARMHOLEFilled === false) {
-  //         SetOpen('Arm Hole');
-  //         setButton('upper')
-  //     }
-  //     else if (SLEEVEFilled === false) {
-  //         SetOpen('Sleeve length');
-  //         setButton('upper')
-  //     }
-  //     else if (WRISTFilled === false) {
-  //         SetOpen('Wrist');
-  //         setButton('upper')
-  //     }
 
-  //     else if (WAISTFilled === false) {
-  //         SetOpen('Waist');
-  //         setButton('lower')
-  //     }
-  //     else if (FULLLENGTHFilled === false) {
-  //         SetOpen('Full length');
-  //         setButton('lower')
-  //     }
-  //     else if (HIPROUNDFilled === false) {
-  //         SetOpen('Hip Round');
-  //         setButton('lower')
-  //     }
-  //     // lower
-  //     else if (INSEAMFilled === false) {
-  //         SetOpen('InSeam');
-  //         setButton('lower')
-  //     }
-
-  //     else if (THIGHFilled === false) {
-  //         SetOpen('Thigh');
-  //         setButton('lower')
-  //     }
-  //     else if (CALFFilled === false) {
-  //         SetOpen('Calf');
-  //         setButton('lower')
-  //     }
-  //     else if (ANKLEFilled === false) {
-  //         SetOpen('Ankle');
-  //         setButton('lower')
-  //     }
-
-  //     else if (WRISTFilled === true && NECKFilled === true
-  //         && CHESTFilled === true && SHOULDERFilled === true
-  //         && ARMHOLEFilled === true && SLEEVEFilled === true
-  //         && WAISTFilled === true && HIPROUNDFilled === true
-  //         && INSEAMFilled === true && FULLLENGTHFilled === true
-  //         && THIGHFilled === true && CALFFilled === true
-  //         && ANKLEFilled === true) {
-  //         setAllDone(true);
-  //         SetOpen('upper');
-  //         alert('This will Submit all Measurements and redirect to another page')
-  //     }
-  // }
   return (
     <Container>
       <div
@@ -490,8 +437,7 @@ function AddManMeasurement() {
         {/* <Button className={styles.submitBtn} >{AllDone === 'Start' ? 'Submit' : AllDone === false ? 'Next' : "Submit"}</Button> */}
         {/* <Button className={styles.submitBtn} onClick={SetIt} >{AllDone}</Button> */}
         {AllDone === true ? (
-          <Link to="/viewmeasurement" style={{ color: "#fff" }}>
-            {" "}
+          <Link to={`/viewmeasurement/${basic_id}`} style={{ color: "#fff" }}>
             <Button
               className={styles.submitBtn}
               onClick={AllDone === true ? UploadMeasurement : SetIt}
@@ -559,6 +505,7 @@ function AddManMeasurement() {
             CALF={calf}
             ANKLE={ankle}
             UploadMeasurement={UploadMeasurement}
+            basicId={basic_id}
           />
         </div>
       </div>

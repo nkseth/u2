@@ -2,10 +2,12 @@ import common_axios from "../../utils/axios.config";
 import {
   BASIC_DETAILS,
   BASIC_ID,
+  DELETE_MEASUREMENT,
   GENDER,
   GET_ALL_MEASUREMENTS,
   GET_SINGLE_MEASUREMENT,
   LOWER_BODY,
+  SAVE_MEASUREMENT,
   UPPER_BODY,
 } from "./types";
 
@@ -26,6 +28,29 @@ export const getAllMeasurements = (token) => async (dispatch) => {
   }
 };
 
+export const saveMeasurement = (token, sizeData) => async (dispatch) => {
+  try {
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const { data } = await common_axios.post(
+      "/save_measurment_value",
+      sizeData,
+      headers
+    );
+    console.log(data);
+
+    if (data) {
+      dispatch({ type: SAVE_MEASUREMENT, payload: data });
+    }
+  } catch (err) {
+    console.log(err?.response?.data);
+    return Promise.reject(err);
+  }
+};
+
 export const getSingleMeasurement = (token, id) => async (dispatch) => {
   try {
     console.log(id);
@@ -38,6 +63,27 @@ export const getSingleMeasurement = (token, id) => async (dispatch) => {
     console.log(data[0]);
     if (data.data[0]) {
       dispatch({ type: GET_SINGLE_MEASUREMENT, payload: data.data[0] });
+    }
+  } catch (err) {
+    console.log(err?.response?.data);
+    return Promise.reject(err);
+  }
+};
+
+export const deleteMeasurement = (token, id) => async (dispatch) => {
+  try {
+    const { data } = await common_axios.delete(
+      `/delete_measurment_basic/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(data);
+
+    if (data) {
+      dispatch({ type: DELETE_MEASUREMENT, payload: data.message });
     }
   } catch (err) {
     console.log(err?.response?.data);

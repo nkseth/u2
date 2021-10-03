@@ -27,6 +27,9 @@ export default function ProductCard(props) {
 
   const { user, isAuthenticated } = useSelector((state) => state.root.auth);
   const { added, removed } = useSelector((state) => state.root.updateWishlist);
+  const { list } = useSelector((state) => state.root.wishlist);
+  // console.log(props.product);
+
   const setValue = async (product) => {
     await setIsLoading(true);
     await setProduct(product);
@@ -38,6 +41,7 @@ export default function ProductCard(props) {
       return alert("Login first to add the item to wishlist");
     dispatch(addToWishlist(prod.slug, user.api_token));
     setAddToWishList(true);
+    dispatch(getWishList(user.api_token));
   };
 
   const remove_from_wishlist = async (prod) => {
@@ -46,23 +50,28 @@ export default function ProductCard(props) {
     const id = prod.id;
     dispatch(removeFromWishlist(id, user.api_token));
     setAddToWishList(false);
+    dispatch(getWishList(user.api_token));
   };
 
   useEffect(() => {
     setValue(props.product);
-    if (props.product.is_wishlist) setAddToWishList(true);
+    if (isAuthenticated && list.length > 0) {
+      const item = list.filter((data) => data.product_id === props.product.id);
+      // console.log(item[0]);
+      if (item[0]?.product_id) setAddToWishList(true);
+    }
 
     if (added) {
-      console.log(added);
+      // console.log(added);
       dispatch(clearUpdateWishlist());
       // alert(added);
     }
     if (removed) {
-      console.log(removed);
+      // console.log(removed);
       // alert(removed);
       dispatch(clearUpdateWishlist());
     }
-  }, [props, added, removed, dispatch]);
+  }, [props, added, removed, dispatch, user, isAuthenticated, list]);
 
   return (
     <div key={props.key} className={styles.container}>

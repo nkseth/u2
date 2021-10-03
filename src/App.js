@@ -66,6 +66,7 @@ import {
   getCategorySubGroup,
 } from "./Redux/actions/designerHomePage";
 import { loadUser } from "./Redux/actions/auth";
+import ViewMeasurement from "./Pages/Measurement/ViewMeasurement";
 //Start From Here
 
 function App() {
@@ -148,7 +149,11 @@ function App() {
           exact
         />
         <Route path="/viewmeasurement/save/:id" component={Measurement} exact />
-        <Route path="/viewmeasurement/view/:id" component={Measurement} exact />
+        <Route
+          path="/viewmeasurement/view/:id"
+          component={ViewMeasurement}
+          exact
+        />
         <Route path="/order-summary" component={OrderSummary} />
         {/* New page added here */}
         <Route path="/my-bag" component={MyBag} />

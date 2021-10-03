@@ -42,7 +42,7 @@ import {
   getSingleMeasurement,
   saveMeasurement,
 } from "../../Redux/actions/measurement";
-export default function Measurement({
+export default function ViewMeasurement({
   match: {
     params: { id },
   },
@@ -157,168 +157,234 @@ export default function Measurement({
           />
         </div>
 
-        <Grid
-          container
-          className={cx(styles.gridContainer, styles.mainGridContainer)}
-        >
-          <Grid item xs={12} sm={12} md={5} style={{ height: "100%" }}>
-            <div className={styles.modelImgContainer}>
-              <img src={img} alt="all body details" />
-            </div>
-          </Grid>
-          {!tabView && !mobileView && (
-            <Grid item xs={0} sm={0} md={1} style={{ height: "100%" }}></Grid>
-          )}
+        {!measurement.measurement[0] && (
           <Grid
-            item
-            xs={12}
-            sm={12}
-            md={6}
-            style={{ height: "100%" }}
-            className={styles.detailsDiv}
+            container
+            className={cx(styles.gridContainer, styles.mainGridContainer)}
           >
-            <Grid
-              container
-              spacing={2}
-              className={cx(
-                styles.upperBodyGridContainer,
-                styles.gridContainer
-              )}
-            >
-              <div className={styles.OtherInfoDiv}>
-                <span>
-                  {" "}
-                  <h1>Name:</h1>
-                  <h3>{measurement?.name}</h3>{" "}
-                </span>
-                <span>
-                  {" "}
-                  <h1>Gender:</h1>
-                  <h3>{measurement?.gender}</h3>{" "}
-                </span>
-                <span>
-                  {" "}
-                  <h1>Standard size:</h1>
-                  <h3>{measurement?.standard_size}</h3>{" "}
-                </span>
-                <span>
-                  {" "}
-                  <h1>Fitting:</h1>
-                  <h3>{measurement.fitting}</h3>{" "}
-                </span>
+            <Grid item xs={12} sm={12} md={5} style={{ height: "100%" }}>
+              <div className={styles.modelImgContainer}>
+                <img src={img} alt="all body details" />
               </div>
-              <Grid item xs={12}>
-                <div className={styles.detailsHeader}>Upper Body</div>
-              </Grid>
-              <Grid item xs={12}></Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>1. Neck</span>{" "}
-                <div>{NeckData === "" ? "-" : NeckData}</div>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>2. Shoulder</span>{" "}
-                <div>{ShoulderData === "" ? "-" : ShoulderData}</div>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>3. Chest</span>{" "}
-                <div>{ChestData === "" ? "-" : ChestData}</div>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>4. Arm Hole</span>{" "}
-                <div>{ArmHoleData === "" ? "-" : ArmHoleData}</div>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>5. Sleeve Length</span>{" "}
-                <div>{SleeveLengthData === "" ? "-" : SleeveLengthData}</div>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>6. Wrist</span>{" "}
-                <div>{WristData === "" ? "-" : WristData}</div>
-              </Grid>
-              {/* <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+            </Grid>
+            {!tabView && !mobileView && (
+              <Grid item xs={0} sm={0} md={1} style={{ height: "100%" }}></Grid>
+            )}
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={6}
+              style={{ height: "100%" }}
+              className={styles.detailsDiv}
+            >
+              <Grid
+                container
+                spacing={2}
+                className={cx(
+                  styles.upperBodyGridContainer,
+                  styles.gridContainer
+                )}
+              >
+                <div className={styles.OtherInfoDiv}>
+                  <span>
+                    {" "}
+                    <h1>Name:</h1>
+                    <h3>{measurement?.name}</h3>{" "}
+                  </span>
+                  <span>
+                    {" "}
+                    <h1>Gender:</h1>
+                    <h3>{measurement?.gender}</h3>{" "}
+                  </span>
+                  <span>
+                    {" "}
+                    <h1>Standard size:</h1>
+                    <h3>{measurement?.standard_size}</h3>{" "}
+                  </span>
+                  <span>
+                    {" "}
+                    <h1>Fitting:</h1>
+                    <h3>{measurement.fitting}</h3>{" "}
+                  </span>
+                </div>
+                <Grid item xs={12}>
+                  <div className={styles.detailsHeader}>Upper Body</div>
+                </Grid>
+                <Grid item xs={12}></Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>1. Neck</span>{" "}
+                  <div>
+                    {measurement?.measurments[0]?.neck
+                      ? measurement?.measurments[0]?.neck
+                      : 0}
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>2. Shoulder</span>{" "}
+                  <div>
+                    {measurement?.measurments[0]?.shoulder
+                      ? measurement?.measurments[0]?.shoulder
+                      : 0}
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>3. Chest</span>{" "}
+                  <div>
+                    {measurement?.measurments[0]?.chest
+                      ? measurement?.measurments[0]?.chest
+                      : 0}
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>4. Arm Hole</span>{" "}
+                  <div>
+                    {measurement?.measurments[0]?.arm_hole
+                      ? measurement?.measurments[0]?.arm_hole
+                      : 0}
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>5. Sleeve Length</span>{" "}
+                  <div>
+                    {measurement?.measurments[0]?.sleeve
+                      ? measurement?.measurments[0]?.sleeve
+                      : 0}
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>6. Wrist</span>{" "}
+                  <div>
+                    {measurement?.measurments[0]?.wrist
+                      ? measurement?.measurments[0]?.wrist
+                      : 0}
+                  </div>
+                </Grid>
+                {/* <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>7. Arm</span> <div>{}</div>
               </Grid>
               <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
                 <span>8. Waist </span> <div>{}</div>
               </Grid> */}
-            </Grid>
-            <Grid
-              container
-              spacing={2}
-              className={cx(
-                styles.lowerBodyGridContainer,
-                styles.gridContainer
-              )}
-            >
-              <Grid item xs={12}>
-                <span className={styles.detailsHeader}>Lower Body</span>
               </Grid>
-              <Grid item xs={12}></Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>1. Waist</span>{" "}
-                <div>{WaistData === "" ? "-" : WaistData}</div>
+              <Grid
+                container
+                spacing={2}
+                className={cx(
+                  styles.lowerBodyGridContainer,
+                  styles.gridContainer
+                )}
+              >
+                <Grid item xs={12}>
+                  <span className={styles.detailsHeader}>Lower Body</span>
+                </Grid>
+                <Grid item xs={12}></Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>1. Waist</span>{" "}
+                  <div>
+                    {measurement?.measurments[1]?.waist
+                      ? measurement?.measurments[1]?.waist
+                      : 0}
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>2. Full Length</span>{" "}
+                  <div>
+                    {measurement?.measurments[1]?.full_length
+                      ? measurement?.measurments[1]?.full_length
+                      : FullLengthData === ""
+                      ? "-"
+                      : FullLengthData}
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>3. Hip Round</span>{" "}
+                  <div>
+                    {measurement?.measurments[1]?.hip_round
+                      ? measurement?.measurments[1]?.hip_round
+                      : HipRoundData === ""
+                      ? "-"
+                      : HipRoundData}
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>4. InSeam</span>{" "}
+                  <div>
+                    {measurement?.measurments[1]?.inseam
+                      ? measurement?.measurments[1]?.inseam
+                      : InSeamData === ""
+                      ? "-"
+                      : InSeamData}
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>5. Thigh</span>{" "}
+                  <div>
+                    {measurement?.measurments[1]?.thigh
+                      ? measurement?.measurments[1]?.thigh
+                      : ThighData === ""
+                      ? "-"
+                      : ThighData}
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>6. Calf</span>{" "}
+                  <div>
+                    {measurement?.measurments[1]?.calf
+                      ? measurement?.measurments[1]?.calf
+                      : CalfData === ""
+                      ? "-"
+                      : CalfData}
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
+                  <span>7. Ankle</span>{" "}
+                  <div>
+                    {measurement?.measurments[1]?.ankle
+                      ? measurement?.measurments[1]?.ankle
+                      : AnkleData === ""
+                      ? "-"
+                      : AnkleData}
+                  </div>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>2. Full Length</span>{" "}
-                <div>{FullLengthData === "" ? "-" : FullLengthData}</div>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>3. Hip Round</span>{" "}
-                <div>{HipRoundData === "" ? "-" : HipRoundData}</div>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>4. InSeam</span>{" "}
-                <div>{InSeamData === "" ? "-" : InSeamData}</div>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>5. Thigh</span>{" "}
-                <div>{ThighData === "" ? "-" : ThighData}</div>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>6. Calf</span>{" "}
-                <div>{CalfData === "" ? "-" : CalfData}</div>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                <span>7. Ankle</span>{" "}
-                <div>{AnkleData === "" ? "-" : AnkleData}</div>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              className={cx(styles.gridContainer, styles.buttonGridContainer)}
-              spacing={3}
-            >
-              <Grid item xs={6} sm={6} md={6}>
-                <Link
-                  to={
-                    id
-                      ? "/measurement"
-                      : `/add-measurement-body-measurement-${gender}`
-                  }
-                >
-                  <Button
-                    className={cx(styles.button, styles.backBtn)}
-                    variant="contained"
-                    color="default"
-                    startIcon={<ArrowBackIcon />}
+              <Grid
+                container
+                className={cx(styles.gridContainer, styles.buttonGridContainer)}
+                spacing={3}
+              >
+                <Grid item xs={6} sm={6} md={6}>
+                  <Link
+                    to={
+                      id
+                        ? "/measurement"
+                        : `/add-measurement-body-measurement-${gender}`
+                    }
                   >
-                    Back
+                    <Button
+                      className={cx(styles.button, styles.backBtn)}
+                      variant="contained"
+                      color="default"
+                      startIcon={<ArrowBackIcon />}
+                    >
+                      Back
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item xs={6} sm={6} md={6}>
+                  <Button
+                    variant="contained"
+                    className={cx(styles.button, styles.addToBagBtn)}
+                    color="default"
+                    onClick={onSubmit}
+                  >
+                    Save
                   </Button>
-                </Link>
-              </Grid>
-              <Grid item xs={6} sm={6} md={6}>
-                <Button
-                  variant="contained"
-                  className={cx(styles.button, styles.addToBagBtn)}
-                  color="default"
-                  onClick={onSubmit}
-                >
-                  Save
-                </Button>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        )}
       </section>
     </Container>
   );

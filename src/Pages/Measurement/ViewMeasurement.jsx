@@ -11,37 +11,9 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 //image
 import img from "./body.png";
 import { useDispatch, useSelector } from "react-redux";
-import common_axios from "../../utils/axios.config";
 import { SuccessPopUp } from "../Payment/payment";
-import {
-  Customer_Name,
-  Customer_Name_Change,
-  Customer_Gender,
-  Customer_Gender_Change,
-  Customer_Size,
-  Customer_Size_Change,
-  Customer_Fitting,
-  Customer_Fitting_Change,
-  // Measuremant Parameters
-  NeckData,
-  ShoulderData,
-  ChestData,
-  ArmHoleData,
-  SleeveLengthData,
-  WristData,
-  WaistData,
-  FullLengthData,
-  HipRoundData,
-  InSeamData,
-  ThighData,
-  CalfData,
-  AnkleData,
-  Basic_id,
-} from "../../Redux/MeasuremantData";
-import {
-  getSingleMeasurement,
-  saveMeasurement,
-} from "../../Redux/actions/measurement";
+
+import { getSingleMeasurement } from "../../Redux/actions/measurement";
 export default function ViewMeasurement({
   match: {
     params: { id },
@@ -72,71 +44,13 @@ export default function ViewMeasurement({
   };
 
   useEffect(() => {
-    if (id) dispatch(getSingleMeasurement(user.api_token, id));
+    dispatch(getSingleMeasurement(user.api_token, id));
   }, [dispatch, id, user]);
 
   const onSubmit = async () => {
-    const upperBodyData = {
-      type: "upper",
-      measurements_basic_id: id,
-      neck: parseFloat(NeckData),
-      shoulder: parseFloat(ShoulderData),
-      chest: parseFloat(ChestData),
-      arm_hole: parseFloat(ArmHoleData),
-      wrist: parseFloat(WristData),
-      sleeve: parseFloat(SleeveLengthData),
-    };
-
-    const lowerBodyData = {
-      type: "Lower",
-      measurements_basic_id: id,
-      full_length: parseFloat(FullLengthData),
-      hip_round: parseFloat(HipRoundData),
-      inseam: parseFloat(InSeamData),
-      thigh: parseFloat(ThighData),
-      waist: parseFloat(WaistData),
-      calf: parseFloat(CalfData),
-      ankle: parseFloat(AnkleData),
-    };
-
-    dispatch(saveMeasurement(user.api_token, upperBodyData));
-    dispatch(saveMeasurement(user.api_token, lowerBodyData));
+    // dispatch(saveMeasurement(user.api_token, upperBodyData));
+    // dispatch(saveMeasurement(user.api_token, lowerBodyData));
     SetOrderDone(true);
-    // try {
-    //   const { data: upper_data } = await common_axios.post(
-    //     "/save_measurment_value",
-    //     {
-    //       type: "upper",
-    //       measurements_basic_id: id,
-    //       neck: parseFloat(NeckData),
-    //       shoulder: parseFloat(ShoulderData),
-    //       chest: parseFloat(ChestData),
-    //       arm_hole: parseFloat(ArmHoleData),
-    //       wrist: parseFloat(WristData),
-    //       sleeve: 1,
-    //       //back_waist:
-    //     }
-    //   );
-    //   const { data: lower_data } = await common_axios.post(
-    //     "/save_measurment_value",
-    //     {
-    //       type: "Lower",
-    //       measurements_basic_id: id,
-    //       full_length: parseFloat(FullLengthData),
-    //       hip_round: parseFloat(HipRoundData),
-    //       inseam: parseFloat(InSeamData),
-    //       thigh: parseFloat(ThighData),
-    //       waist: parseFloat(WaistData),
-    //       calf: parseFloat(CalfData),
-    //       ankle: parseFloat(AnkleData),
-    //       //back_waist:
-    //     }
-    //   );
-    //   console.log(upper_data, lower_data);
-    //   SetOrderDone(true);
-    // } catch (e) {
-    //   console.log(e);
-    // }
   };
 
   return (
@@ -157,7 +71,7 @@ export default function ViewMeasurement({
           />
         </div>
 
-        {!measurement.measurement[0] && (
+        {measurement && (
           <Grid
             container
             className={cx(styles.gridContainer, styles.mainGridContainer)}
@@ -292,9 +206,7 @@ export default function ViewMeasurement({
                   <div>
                     {measurement?.measurments[1]?.full_length
                       ? measurement?.measurments[1]?.full_length
-                      : FullLengthData === ""
-                      ? "-"
-                      : FullLengthData}
+                      : 0}
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
@@ -302,9 +214,7 @@ export default function ViewMeasurement({
                   <div>
                     {measurement?.measurments[1]?.hip_round
                       ? measurement?.measurments[1]?.hip_round
-                      : HipRoundData === ""
-                      ? "-"
-                      : HipRoundData}
+                      : 0}
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
@@ -312,9 +222,7 @@ export default function ViewMeasurement({
                   <div>
                     {measurement?.measurments[1]?.inseam
                       ? measurement?.measurments[1]?.inseam
-                      : InSeamData === ""
-                      ? "-"
-                      : InSeamData}
+                      : 0}
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
@@ -322,9 +230,7 @@ export default function ViewMeasurement({
                   <div>
                     {measurement?.measurments[1]?.thigh
                       ? measurement?.measurments[1]?.thigh
-                      : ThighData === ""
-                      ? "-"
-                      : ThighData}
+                      : 0}
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
@@ -332,9 +238,7 @@ export default function ViewMeasurement({
                   <div>
                     {measurement?.measurments[1]?.calf
                       ? measurement?.measurments[1]?.calf
-                      : CalfData === ""
-                      ? "-"
-                      : CalfData}
+                      : 0}
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
@@ -342,9 +246,7 @@ export default function ViewMeasurement({
                   <div>
                     {measurement?.measurments[1]?.ankle
                       ? measurement?.measurments[1]?.ankle
-                      : AnkleData === ""
-                      ? "-"
-                      : AnkleData}
+                      : 0}
                   </div>
                 </Grid>
               </Grid>
@@ -354,13 +256,7 @@ export default function ViewMeasurement({
                 spacing={3}
               >
                 <Grid item xs={6} sm={6} md={6}>
-                  <Link
-                    to={
-                      id
-                        ? "/measurement"
-                        : `/add-measurement-body-measurement-${gender}`
-                    }
-                  >
+                  <Link to={"/measurement"}>
                     <Button
                       className={cx(styles.button, styles.backBtn)}
                       variant="contained"

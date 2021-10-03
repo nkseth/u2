@@ -10,7 +10,7 @@ import {
 } from "../actions/types";
 
 const inialState = {
-  measurement: {},
+  measurement: null,
   gender: "male",
   basic_details: { name: "", fitting: "Regular", standard_size: "S" },
   upper_body: {

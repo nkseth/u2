@@ -16,12 +16,13 @@ import ProductCard from "../../product-card/card";
 import Filter from "../Filter/filter";
 import styles from "./product.module.scss";
 import Breadcrumb from "../../../../../utils/Breadcrumb/breadcrumb";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getWishList } from "../../../../../Redux/actions/wishlist";
 export default function ProductsSection(props) {
+  const dispatch = useDispatch();
 
-
-  const [isLoading, setIsLoading] = useState(true)
-  const [products, setProducts] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
+  const [products, setProducts] = useState(true);
 
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:550px)");
@@ -30,11 +31,11 @@ export default function ProductsSection(props) {
   const [isFilterOpen, setFilterOpen] = useState(false);
 
   const setValue = async (props) => {
-    setIsLoading(true)
-    setProducts(props.products)
-    setIsLoading(false)
-  }
-
+    setIsLoading(true);
+    setProducts(props.products);
+    setIsLoading(false);
+  };
+  const { user, isAuthenticated } = useSelector((state) => state.root.auth);
 
   const handleSort = (e) => {
     setSortBy(e.target.value);
@@ -53,8 +54,10 @@ export default function ProductsSection(props) {
   };
 
   useEffect(() => {
-    setValue(props)
-  }, [props])
+    if (isAuthenticated) dispatch(getWishList(user.api_token));
+
+    setValue(props);
+  }, [props]);
 
   return (
     <>
@@ -66,7 +69,6 @@ export default function ProductsSection(props) {
           onOpen={toggleDrawer("left", true)}
           transitionDuration={600}
         >
-
           <Filter />
         </Drawer>
       )}
@@ -74,7 +76,7 @@ export default function ProductsSection(props) {
       <Grid
         container
         style={{ width: "100%", margin: 0 }}
-        justifyContent='flex-start'
+        justifyContent="flex-start"
         spacing={mobileView ? 1 : 3}
       >
         <Grid
@@ -89,10 +91,8 @@ export default function ProductsSection(props) {
           }}
         >
           {tabViewPro && (
-
             <div className={styles.filterDiv}>
-
-              <ButtonGroup variant='contained' color='default' aria-label=''>
+              <ButtonGroup variant="contained" color="default" aria-label="">
                 <Button
                   onClick={() => setFilterOpen(true)}
                   className={cx(styles.btn, styles.filterBtn)}
@@ -107,15 +107,20 @@ export default function ProductsSection(props) {
           )}
 
           <FormControl
-            size='small'
-            variant='outlined'
+            size="small"
+            variant="outlined"
             style={{ minWidth: "130px" }}
           >
-            <InputLabel color={"secondary"} style={{ fontWeight: "700", color: "#6A5B40", fontSize: "16px" }}>Sort by</InputLabel>
+            <InputLabel
+              color={"secondary"}
+              style={{ fontWeight: "700", color: "#6A5B40", fontSize: "16px" }}
+            >
+              Sort by
+            </InputLabel>
             <Select
               value={sortBy}
               onChange={(e) => handleSort(e)}
-              label='Sort by'
+              label="Sort by"
             >
               <MenuItem
                 value={"relavence"}
@@ -139,31 +144,42 @@ export default function ProductsSection(props) {
           </FormControl>
         </Grid>
 
-        {tabView &&
+        {tabView && (
           <>
-            {!isLoading ? products?.map((value, index) => (
-              <Grid item xs={6} sm={4} md={3} lg={3} style={{ display: "flex" }} >
-                <ProductCard
-                  key={index.id?.toString()}
-                  product={value}
-                />
-              </Grid>
-            )) : ''}
+            {!isLoading
+              ? products?.map((value, index) => (
+                  <Grid
+                    item
+                    xs={6}
+                    sm={4}
+                    md={3}
+                    lg={3}
+                    style={{ display: "flex" }}
+                  >
+                    <ProductCard key={index.id?.toString()} product={value} />
+                  </Grid>
+                ))
+              : ""}
           </>
-
-        }
-        {!tabView &&
+        )}
+        {!tabView && (
           <>
-            {!isLoading ? products?.map((value, key) => (
-              <Grid item xs={6} sm={4} md={3} lg={3} style={{ display: "flex" }}>
-                <ProductCard
-                  product={value}
-                />
-              </Grid>
-            )) : ''}
+            {!isLoading
+              ? products?.map((value, key) => (
+                  <Grid
+                    item
+                    xs={6}
+                    sm={4}
+                    md={3}
+                    lg={3}
+                    style={{ display: "flex" }}
+                  >
+                    <ProductCard product={value} />
+                  </Grid>
+                ))
+              : ""}
           </>
-
-        }
+        )}
         {/* {!mobileView && (
           <>
             {!isLoading ? products.map((value, key) => (

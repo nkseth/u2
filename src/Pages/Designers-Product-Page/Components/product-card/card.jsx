@@ -49,12 +49,11 @@ export default function ProductCard(props) {
       return alert("Login first to add the item to wishlist");
     const id = prod.id;
     dispatch(removeFromWishlist(id, user.api_token));
-    setAddToWishList(false);
     dispatch(getWishList(user.api_token));
+    setAddToWishList(false);
   };
 
   useEffect(() => {
-    setValue(props.product);
     if (isAuthenticated && list.length > 0) {
       const item = list.filter((data) => data.product_id === props.product.id);
       // console.log(item[0]);
@@ -71,6 +70,7 @@ export default function ProductCard(props) {
       // alert(removed);
       dispatch(clearUpdateWishlist());
     }
+    setValue(props.product);
   }, [props, added, removed, dispatch, user, isAuthenticated, list]);
 
   return (

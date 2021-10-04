@@ -68,7 +68,7 @@ export const topDesigner = () => async (dispatch) => {
   try {
     const { data } = await DesignerHomePageDataService.topDesigner();
     console.log(data);
-    if (data.top_designer) {
+    if (data[0].get_designer) {
       dispatch({ type: GET_TOP_DESIGNERS, payload: data[0].get_designer });
     }
   } catch (err) {
@@ -122,6 +122,7 @@ export const getCategoryGroup = (val) => async (dispatch) => {
 
 export const getCategorySubGroup = (val) => async (dispatch) => {
   try {
+    console.log(val);
     const { data } = await common_axios.get(`/category_sub_grp/${val}/10`);
     if (data.data) {
       dispatch({

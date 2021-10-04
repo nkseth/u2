@@ -53,14 +53,13 @@ export const saveMeasurement = (token, sizeData) => async (dispatch) => {
 
 export const getSingleMeasurement = (token, id) => async (dispatch) => {
   try {
-    console.log(id);
+    console.log(id, token);
     const { data } = await common_axios.get(`/get_measurment/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
     console.log(data);
-    console.log(data[0]);
     if (data.data[0]) {
       dispatch({ type: GET_SINGLE_MEASUREMENT, payload: data.data[0] });
     }

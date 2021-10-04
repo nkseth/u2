@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { IconButton, Button, Grid, useMediaQuery } from '@material-ui/core';
-import cx from 'classnames';
-import Container from '../../utils/Container/container';
-import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
-import styles from './measurement.module.scss';
+import { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { IconButton, Button, Grid, useMediaQuery } from "@material-ui/core";
+import cx from "classnames";
+import Container from "../../utils/Container/container";
+import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
+import styles from "./measurement.module.scss";
 //icons
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 //image
-import img from './body.png';
-import { useDispatch, useSelector } from 'react-redux';
-import { SuccessPopUp } from '../Payment/payment';
+import img from "./body.png";
+import { useDispatch, useSelector } from "react-redux";
+import { SuccessPopUp } from "../Payment/payment";
 
-import { getSingleMeasurement } from '../../Redux/actions/measurement';
+import { getSingleMeasurement } from "../../Redux/actions/measurement";
 
 export default function ViewMeasurement({
   match: {
@@ -22,15 +22,15 @@ export default function ViewMeasurement({
 }) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const tabView = useMediaQuery('(max-width:768px)');
-  const tabViewPro = useMediaQuery('(max-width:835px)');
-  const mobileView = useMediaQuery('(max-width:550px)');
+  const tabView = useMediaQuery("(max-width:768px)");
+  const tabViewPro = useMediaQuery("(max-width:835px)");
+  const mobileView = useMediaQuery("(max-width:550px)");
   const { gender, upper_body, lower_body, basic_id } = useSelector(
-    state => state.root.measurement
+    (state) => state.root.measurement
   );
 
-  const { user } = useSelector(state => state.root.auth);
-  const { measurement } = useSelector(state => state.root.measurement);
+  const { user } = useSelector((state) => state.root.auth);
+  const { measurement } = useSelector((state) => state.root.measurement);
 
   console.log(measurement);
 
@@ -41,7 +41,7 @@ export default function ViewMeasurement({
   console.log(upper_body);
   const toggle = () => {
     SetOrderDone(false);
-    history.push('/measurement');
+    history.push("/measurement");
   };
 
   useEffect(() => {
@@ -59,16 +59,16 @@ export default function ViewMeasurement({
       {OrderDone ? (
         <SuccessPopUp
           toggle={toggle}
-          title={'Your measurement added successfully and your order is placed'}
+          title={"Your measurement added successfully and your order is placed"}
         />
       ) : (
         <></>
       )}
       <section className={styles.section}>
-        <div style={{ padding: mobileView && '0 1rem', marginTop: '1em' }}>
+        <div style={{ padding: mobileView && "0 1rem", marginTop: "1em" }}>
           <Breadcrumb
-            path={`Home / ${gender === 'male' ? 'Men' : 'Women'} /`}
-            activePath='Measurements'
+            path={`Home / ${gender === "male" ? "Men" : "Women"} /`}
+            activePath="Measurements"
           />
         </div>
 
@@ -77,20 +77,20 @@ export default function ViewMeasurement({
             container
             className={cx(styles.gridContainer, styles.mainGridContainer)}
           >
-            <Grid item xs={12} sm={12} md={5} style={{ height: '100%' }}>
+            <Grid item xs={12} sm={12} md={5} style={{ height: "100%" }}>
               <div className={styles.modelImgContainer}>
-                <img src={img} alt='all body details' />
+                <img src={img} alt="all body details" />
               </div>
             </Grid>
             {!tabView && !mobileView && (
-              <Grid item xs={0} sm={0} md={1} style={{ height: '100%' }}></Grid>
+              <Grid item xs={0} sm={0} md={1} style={{ height: "100%" }}></Grid>
             )}
             <Grid
               item
               xs={12}
               sm={12}
               md={6}
-              style={{ height: '100%' }}
+              style={{ height: "100%" }}
               className={styles.detailsDiv}
             >
               <Grid
@@ -103,24 +103,24 @@ export default function ViewMeasurement({
               >
                 <div className={styles.OtherInfoDiv}>
                   <span>
-                    {' '}
+                    {" "}
                     <h1>Name:</h1>
-                    <h3>{measurement?.name}</h3>{' '}
+                    <h3>{measurement?.name}</h3>{" "}
                   </span>
                   <span>
-                    {' '}
+                    {" "}
                     <h1>Gender:</h1>
-                    <h3>{measurement?.gender}</h3>{' '}
+                    <h3>{measurement?.gender}</h3>{" "}
                   </span>
                   <span>
-                    {' '}
+                    {" "}
                     <h1>Standard size:</h1>
-                    <h3>{measurement?.standard_size}</h3>{' '}
+                    <h3>{measurement?.standard_size}</h3>{" "}
                   </span>
                   <span>
-                    {' '}
+                    {" "}
                     <h1>Fitting:</h1>
-                    <h3>{measurement.fitting}</h3>{' '}
+                    <h3>{measurement.fitting}</h3>{" "}
                   </span>
                 </div>
                 <Grid item xs={12}>
@@ -128,7 +128,7 @@ export default function ViewMeasurement({
                 </Grid>
                 <Grid item xs={12}></Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>1. Neck</span>{' '}
+                  <span>1. Neck</span>{" "}
                   <div>
                     {measurement?.measurments[0]?.neck
                       ? measurement?.measurments[0]?.neck
@@ -136,7 +136,7 @@ export default function ViewMeasurement({
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>2. Shoulder</span>{' '}
+                  <span>2. Shoulder</span>{" "}
                   <div>
                     {measurement?.measurments[0]?.shoulder
                       ? measurement?.measurments[0]?.shoulder
@@ -144,7 +144,7 @@ export default function ViewMeasurement({
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>3. Chest</span>{' '}
+                  <span>3. Chest</span>{" "}
                   <div>
                     {measurement?.measurments[0]?.chest
                       ? measurement?.measurments[0]?.chest
@@ -152,7 +152,7 @@ export default function ViewMeasurement({
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>4. Arm Hole</span>{' '}
+                  <span>4. Arm Hole</span>{" "}
                   <div>
                     {measurement?.measurments[0]?.arm_hole
                       ? measurement?.measurments[0]?.arm_hole
@@ -160,7 +160,7 @@ export default function ViewMeasurement({
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>5. Sleeve Length</span>{' '}
+                  <span>5. Sleeve Length</span>{" "}
                   <div>
                     {measurement?.measurments[0]?.sleeve
                       ? measurement?.measurments[0]?.sleeve
@@ -168,7 +168,7 @@ export default function ViewMeasurement({
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>6. Wrist</span>{' '}
+                  <span>6. Wrist</span>{" "}
                   <div>
                     {measurement?.measurments[0]?.wrist
                       ? measurement?.measurments[0]?.wrist
@@ -195,7 +195,7 @@ export default function ViewMeasurement({
                 </Grid>
                 <Grid item xs={12}></Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>1. Waist</span>{' '}
+                  <span>1. Waist</span>{" "}
                   <div>
                     {measurement?.measurments[1]?.waist
                       ? measurement?.measurments[1]?.waist
@@ -203,7 +203,7 @@ export default function ViewMeasurement({
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>2. Full Length</span>{' '}
+                  <span>2. Full Length</span>{" "}
                   <div>
                     {measurement?.measurments[1]?.full_length
                       ? measurement?.measurments[1]?.full_length
@@ -211,7 +211,7 @@ export default function ViewMeasurement({
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>3. Hip Round</span>{' '}
+                  <span>3. Hip Round</span>{" "}
                   <div>
                     {measurement?.measurments[1]?.hip_round
                       ? measurement?.measurments[1]?.hip_round
@@ -219,7 +219,7 @@ export default function ViewMeasurement({
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>4. InSeam</span>{' '}
+                  <span>4. InSeam</span>{" "}
                   <div>
                     {measurement?.measurments[1]?.inseam
                       ? measurement?.measurments[1]?.inseam
@@ -227,7 +227,7 @@ export default function ViewMeasurement({
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>5. Thigh</span>{' '}
+                  <span>5. Thigh</span>{" "}
                   <div>
                     {measurement?.measurments[1]?.thigh
                       ? measurement?.measurments[1]?.thigh
@@ -235,7 +235,7 @@ export default function ViewMeasurement({
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>6. Calf</span>{' '}
+                  <span>6. Calf</span>{" "}
                   <div>
                     {measurement?.measurments[1]?.calf
                       ? measurement?.measurments[1]?.calf
@@ -243,7 +243,7 @@ export default function ViewMeasurement({
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} className={styles.gridItem}>
-                  <span>7. Ankle</span>{' '}
+                  <span>7. Ankle</span>{" "}
                   <div>
                     {measurement?.measurments[1]?.ankle
                       ? measurement?.measurments[1]?.ankle
@@ -257,18 +257,18 @@ export default function ViewMeasurement({
                 spacing={3}
               >
                 <Grid item xs={6} sm={6} md={6}>
-                  <Link to={'/measurement'}>
+                  <Link to={"/measurement"}>
                     <Button
                       className={cx(styles.button, styles.backBtn)}
-                      variant='contained'
-                      color='default'
+                      variant="contained"
+                      color="default"
                       startIcon={<ArrowBackIcon />}
                     >
                       Back
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item xs={6} sm={6} md={6}>
+                {/* <Grid item xs={6} sm={6} md={6}>
                   <Button
                     variant='contained'
                     className={cx(styles.button, styles.addToBagBtn)}
@@ -277,7 +277,7 @@ export default function ViewMeasurement({
                   >
                     Save
                   </Button>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Grid>
           </Grid>

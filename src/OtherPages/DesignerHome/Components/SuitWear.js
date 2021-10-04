@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { suitWears } from '../../../Redux/actions/designerHomePage';
 import c1 from '../Images/111.png';
 import c2 from '../Images/c2.jpg';
-import { LazyLoadingImg } from '../../../utils/LazyLoading';
+import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const SuitWear = () => {
   const dispatch = useDispatch();
@@ -72,21 +72,23 @@ const SuitWear = () => {
                     : { marginRight: '20px', marginLeft: '20px' }
                 }
               >
-                <Link
-                  to={{
-                    pathname: `/designers-product-page/${item.slug}`,
-                  }}
-                >
-                  <div>
-                    <div className={styles.SuitWear}>
-                      <div className={styles.SuitWear_Items}>
-                        <LazyLoadingImg image={item.cover_image} />
-                        {/* <img src={item.cover_image} alt={item.id} /> */}
-                        <Link>{item.name}</Link>
+                <LazyLoadingComp>
+                  <Link
+                    to={{
+                      pathname: `/designers-product-page/${item.slug}`,
+                    }}
+                  >
+                    <div>
+                      <div className={styles.SuitWear}>
+                        <div className={styles.SuitWear_Items}>
+                          {/* <LazyLoadingImg image={item.cover_image} /> */}
+                          <img src={item.cover_image} alt={item.id} />
+                          <Link>{item.name}</Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </LazyLoadingComp>
               </Slide>
             ))}
           </Slider>

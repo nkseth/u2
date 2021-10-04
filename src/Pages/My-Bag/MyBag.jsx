@@ -150,7 +150,7 @@ export default function MyBag() {
 
   const on_checkout = () => {
     dispatch(setOrderSumm(value));
-    history.push("/delivery-address");
+    history.push("/order-summary");
   };
 
   return (

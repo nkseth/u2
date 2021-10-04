@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SuccessPopUp } from "../Payment/payment";
 
 import { getSingleMeasurement } from "../../Redux/actions/measurement";
+
 export default function ViewMeasurement({
   match: {
     params: { id },
@@ -267,16 +268,16 @@ export default function ViewMeasurement({
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item xs={6} sm={6} md={6}>
+                {/* <Grid item xs={6} sm={6} md={6}>
                   <Button
-                    variant="contained"
+                    variant='contained'
                     className={cx(styles.button, styles.addToBagBtn)}
-                    color="default"
+                    color='default'
                     onClick={onSubmit}
                   >
                     Save
                   </Button>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Grid>
           </Grid>

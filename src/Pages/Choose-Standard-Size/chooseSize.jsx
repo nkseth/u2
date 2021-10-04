@@ -156,10 +156,7 @@ export default function ChooseStandardSize() {
     <Container bottomDivider footerOnTabMob>
       <div className={styles.Container}>
         <p style={{ marginLeft: "1em", marginTop: "2em" }}>
-          <Breadcrumb
-            path="Home / Men / Blazers / "
-            activePath="Add measurement"
-          />
+          <Breadcrumb path="Home / " activePath="Add measurement" />
         </p>
         <CustomStepper activeStep={2} />
         <h1 className={styles.h1}> Add Measurement</h1>

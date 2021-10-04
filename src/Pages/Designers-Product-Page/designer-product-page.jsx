@@ -6,6 +6,7 @@ import Filter from "./Components/Sections/Filter/filter";
 import styles from "./designer-product-page.module.scss";
 import ProductsSection from "./Components/Sections/Products/products";
 import { useLocation } from "react-router-dom";
+import Loader from "../../utils/Loader/Loader";
 
 //images
 
@@ -61,49 +62,54 @@ function DesignerProductPage({ match }) {
     }
   };
 
-  if (loading) {
-    return null;
-  }
+  // if (loading) {
+  //   return null;
+  // }
   const filterProduct = (filterData) => {
     dispatch(getFilteredProduct(slug, filterData));
   };
   return (
     <Container bottomDivider footerOnAllView>
-      <div className={styles.container}>
-        {!tabViewPro && (
-          <div className={styles.FilterBreadDiv}>
+      {product.length < 1 && <Loader />}
+      {product.length > 1 && (
+        <>
+          <div className={styles.container}>
             {!tabViewPro && (
-              <div style={{ width: "200%", marginLeft: 15 }}>
-                <Breadcrumb
-                  path={`Products / ${"Category"} /`}
-                  activePath={category?.name || "product"}
-                />
+              <div className={styles.FilterBreadDiv}>
+                {!tabViewPro && (
+                  <div style={{ width: "200%", marginLeft: 15 }}>
+                    <Breadcrumb
+                      path={`Products / ${"Category"} /`}
+                      activePath={category?.name || "product"}
+                    />
+                  </div>
+                )}
+                <div className={styles.firstSection}>
+                  <Filter filters={filters} filterProduct={filterProduct} />
+                </div>
               </div>
             )}
-            <div className={styles.firstSection}>
-              <Filter filters={filters} filterProduct={filterProduct} />
+            <div className={styles.secondSection}>
+              <div style={{ padding: "1rem 1rem 5rem" }}>
+                {tabViewPro && (
+                  <div className={styles.upperbread}>
+                    <Breadcrumb
+                      path={`Products / ${"Category"} /`}
+                      activePath={category?.name || "product"}
+                    />
+                  </div>
+                )}
+                <ProductsSection products={product} />
+              </div>
             </div>
           </div>
-        )}
-        <div className={styles.secondSection}>
-          <div style={{ padding: "1rem 1rem 5rem" }}>
-            {tabViewPro && (
-              <div className={styles.upperbread}>
-                <Breadcrumb
-                  path={`Products / ${"Category"} /`}
-                  activePath={category?.name || "product"}
-                />
-              </div>
-            )}
-            <ProductsSection products={product} />
+          <div className={styles.LoadMoreBtnContainer}>
+            <div className={styles.LoadMoreBtnDiv}>
+              <Button className={styles.LoadMoreBtn}>Load More</Button>
+            </div>
           </div>
-        </div>
-      </div>
-      <div className={styles.LoadMoreBtnContainer}>
-        <div className={styles.LoadMoreBtnDiv}>
-          <Button className={styles.LoadMoreBtn}>Load More</Button>
-        </div>
-      </div>
+        </>
+      )}
     </Container>
   );
 }

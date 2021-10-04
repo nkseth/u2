@@ -60,10 +60,7 @@ export default function OrderSummary() {
     <Container bottomDivider footerOnTabMob>
       {AddAddress ? <NewAddress setAddAddress={setAddAddress} /> : <></>}
       <CustomSection style={{ marginTop: "2em" }}>
-        <Breadcrumb
-          path="Home / Men / Blazers / My Bag / Executive Measurement / Address"
-          activePath="/ Order Summary"
-        />
+        <Breadcrumb path="Home / My Bag" activePath="/ Order Summary" />
         <div>
           <CustomStepper activeStep={0} />
         </div>

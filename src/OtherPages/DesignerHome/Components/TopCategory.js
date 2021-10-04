@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react';
-import CustomDivider from '../../../utils/Custom Divider/divider';
-import styles from '../Style/TopCategory.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { LazyLoadingImg } from '../../../utils/LazyLoading';
+import React, { useEffect } from "react";
+import CustomDivider from "../../../utils/Custom Divider/divider";
+import styles from "../Style/TopCategory.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { LazyLoadingImg } from "../../../utils/LazyLoading";
 
 const TopCategory = () => {
   const dispatch = useDispatch();
 
-  const { category_grp } = useSelector(state => state.root.main);
-  console.log(category_grp);
+  const { category_grp } = useSelector((state) => state.root.main);
+  // console.log(category_grp);
   const baseStyle = {};
   return (
     <div className={styles.main}>
       <h1 className={styles.top_category_title}>Top Categories 2021</h1>
       <div className={styles.TopCategory}>
         <div className={styles.TopCategory_Items}>
-          <h1 className='hidden_mobile'>Top Categories 2021</h1>
+          <h1 className="hidden_mobile">Top Categories 2021</h1>
         </div>
         {category_grp.men && (
           <CategoryItems
@@ -65,17 +65,17 @@ const CategoryItems = ({ heading, details, image, categories, slug }) => {
               {heading}
               <CustomDivider
                 style={{
-                  height: '1px',
-                  background: '#fff',
-                  marginleft: '-5px',
+                  height: "1px",
+                  background: "#fff",
+                  marginleft: "-5px",
                 }}
               />
               <div></div>
             </h2>
             <div className={styles.hover}>
-              {categories?.slice(0, 8).map(item => (
+              {categories?.slice(0, 8).map((item) => (
                 <Link
-                  style={{ padding: '1rem 0' }}
+                  style={{ padding: "1rem 0" }}
                   key={item.id.toString()}
                   to={{ pathname: `/designers-product-page/${item.slug}` }}
                 >

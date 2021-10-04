@@ -106,3 +106,9 @@ input {
 .image-gallery {
   background-color: white;
 }
+
+/* measurement Page Accordion */
+.MuiAccordionSummary-content {
+  flex-direction: column !important;
+  gap: 1rem;
+}

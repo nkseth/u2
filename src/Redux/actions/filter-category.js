@@ -5,7 +5,7 @@ export const getFilterList = () => async (dispatch) => {
   try {
     console.log("Filter Page");
     const { data } = await common_axios.get("/filterCategory");
-    console.log(data);
+    // console.log(data);
     if (data) {
       dispatch({ type: GET_FILTER_LIST, payload: data });
     }

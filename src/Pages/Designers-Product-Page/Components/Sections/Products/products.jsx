@@ -57,7 +57,7 @@ export default function ProductsSection(props) {
     if (isAuthenticated) dispatch(getWishList(user.api_token));
 
     setValue(props);
-  }, [props]);
+  }, [props, dispatch, isAuthenticated, user]);
 
   return (
     <>

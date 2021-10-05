@@ -20,7 +20,7 @@ import d4 from '../Images/d4.png';
 import { useEffect, useState } from 'react';
 import { topDesigner } from '../../../Redux/actions/designerHomePage';
 import { useDispatch, useSelector } from 'react-redux';
-import { LazyLoadingImg } from '../../../utils/LazyLoading';
+import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const Top_Designer = () => {
   const dispatch = useDispatch();
@@ -71,15 +71,22 @@ const Top_Designer = () => {
                       : { marginLeft: 25, marginRight: 25 }
                   }
                 >
-                  <Link to='designers-profile'>
-                    <div className={styles.Top_Designer}>
-                      <div className={styles.Top_Designer_Items}>
-                        <LazyLoadingImg image={cover_image} />
-                        {/* <img src={cover_image} alt={id} /> */}
-                        <Link to='designers-profile'>{name}</Link>
+                  <LazyLoadingComp>
+                    <Link to='designers-profile'>
+                      <div className={styles.Top_Designer}>
+                        <div className={styles.Top_Designer_Items}>
+                          {/* <LazyLoadingImg image={cover_image} /> */}
+                          <img
+                            src={
+                              'https://images.unsplash.com/photo-1545239351-ef35f43d514b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80'
+                            }
+                            alt={id}
+                          />
+                          <Link to='designers-profile'>{name}</Link>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                  </LazyLoadingComp>
                 </Slide>
               </>
             ))}

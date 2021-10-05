@@ -3,13 +3,14 @@
   position: relative;
   display: flex;
   gap: 2rem;
+  justify-content: center;
   .firstContainer {
-    width: 750px;
+    width: 75%;
 
     > div:first-child {
       height: 60px;
       padding: 1rem 1.7rem;
-      background: rgba(230, 227, 220, 1);
+      background: #e6e3dc;
       font-family: DM Serif Display;
       font-size: 20px;
       font-weight: 400;
@@ -309,11 +310,10 @@
     }
   }
 }
-
 .applyCouponDiv {
-  border: 1px solid rgba(206, 206, 206, 1) !important;
+  border: 1px solid #cecece !important;
   padding: 0 0.5rem !important;
-
+  margin: 0.5rem 0;
   .accordionHeader {
     display: flex;
     align-items: center;
@@ -328,6 +328,7 @@
   .couponInputDiv {
     display: grid;
     gap: 0.5rem;
+    margin-top: 0.5rem;
     width: 100%;
     > div:first-child {
       border: 1px solid rgba(133, 114, 80, 1);
@@ -350,13 +351,30 @@
         cursor: pointer;
       }
     }
-    > a {
+    > button {
+      cursor: pointer;
+      margin: 0.5rem 0;
+      border: none;
+      background: none;
+      text-align: left;
       font-size: 14px;
       font-weight: 400;
       line-height: 22px;
       color: rgba(0, 122, 185, 1);
     }
   }
+}
+
+.removeModelButton {
+  cursor: pointer;
+  width: 60%;
+  background: #857250;
+  border: none;
+  height: 50px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0.5rem 0;
 }
 
 .placeOrderBtnDiv {

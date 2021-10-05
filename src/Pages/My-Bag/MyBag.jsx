@@ -33,6 +33,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Product_Type, Product_Type_Change } from '../../Redux/MeasuremantData';
 import { addToWishlist } from '../../Redux/actions/wishlist';
 import { getCartItems } from '../../Redux/actions/myBag';
+import { SuccessPopUp } from '../../utils/Popups/SuccessPopup';
 
 export default function MyBag() {
   const history = useHistory();
@@ -49,6 +50,8 @@ export default function MyBag() {
 
   const { user } = useSelector(state => state.root.auth);
   const { cart } = useSelector(state => state.root.cartItems);
+  const [click, setClick] = useState(false);
+  // const [cartMessage, setCartMessage] = useState('Added To bag');
 
   // console.log(cart);
 
@@ -126,6 +129,7 @@ export default function MyBag() {
   };
 
   const remove_item = async item => {
+    console.log('🚀 ~ file: MyBag.jsx ~ line 130 ~ MyBag ~ item', item);
     try {
       console.log(value.id, item.id);
       const { data } = await common_axios.post(
@@ -171,6 +175,17 @@ export default function MyBag() {
     },
   }))(Tooltip);
 
+  const [modal, setModal] = useState(false);
+  const [removeModal, setRemoveModal] = useState(false);
+  const [removeItem, setRemoveItem] = useState();
+
+  const toggleModal = () => setModal(modal => !modal);
+
+  const toggleRemoveModal = item => {
+    setRemoveItem(item);
+    setRemoveModal(removeModal => !removeModal);
+  };
+
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection
@@ -206,6 +221,34 @@ export default function MyBag() {
 
                 return (
                   <>
+                    {removeModal && (
+                      <SuccessPopUp
+                        toggle={toggleRemoveModal}
+                        width={'500px'}
+                        height={'100px'}
+                      >
+                        <h2 style={{ margin: '1rem 0' }}>
+                          Are you sure you want to remove this Item?
+                        </h2>
+                        <Button
+                          class={styles.removeModelButton}
+                          onClick={() => {
+                            remove_item(removeItem);
+                            toggleRemoveModal();
+                          }}
+                        >
+                          Yes
+                        </Button>
+                        <Button
+                          class={styles.removeModelButton}
+                          onClick={() => {
+                            toggleRemoveModal();
+                          }}
+                        >
+                          No
+                        </Button>
+                      </SuccessPopUp>
+                    )}
                     <div className={styles.BorderContainer}>
                       <div className={styles.mainContainer}>
                         <img
@@ -228,11 +271,23 @@ export default function MyBag() {
                               )}
 
                               <HtmlTooltipButton
+                                open={click}
+                                onOpen={() => setClick(true)}
+                                onClose={() => setClick(false)}
+                                disableFocusListener
+                                disableHoverListener
                                 // className={styles.ProductSelectorHelpBtn}
                                 // style={{ color: '#6a5b40', backgroundColor: 'red' }}
                                 title={
                                   <React.Fragment>
-                                    <h3 style={{ padding: 10 }}>
+                                    <h3
+                                      style={{
+                                        padding: 10,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.2rem',
+                                      }}
+                                    >
                                       <FavoriteIcon /> Add To wishlist
                                     </h3>
                                   </React.Fragment>
@@ -241,7 +296,10 @@ export default function MyBag() {
                                 arrow
                               >
                                 <Button
-                                  onClick={() => move_to_wishlist(item)}
+                                  onClick={() => {
+                                    move_to_wishlist(item);
+                                    setClick(click => !click);
+                                  }}
                                   className={styles.MoveToWishListBtn}
                                 >
                                   Move to Wishlist
@@ -292,7 +350,8 @@ export default function MyBag() {
                                 </Button>
                               </div>
                               <Button
-                                onClick={() => remove_item(item)}
+                                // onClick={() => remove_item(item)}
+                                onClick={() => toggleRemoveModal(item)}
                                 className={styles.RemoveBTN}
                               >
                                 Remove item{' '}
@@ -355,70 +414,46 @@ export default function MyBag() {
               </div>
               <CustomDivider style={{ backgroundColor: '#CECECE' }} />
 
-              <Accordion>
+              <Accordion
+                style={{
+                  boxShadow: 'none',
+                  margin: '1rem 0',
+                  padding: 0,
+                }}
+                className={styles.applyCouponDiv}
+              >
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
-                  // aria-controls='panel1a-content'
-                  // className={styles.accordionSummary}
+                  IconButtonProps={{ size: 'small' }}
+                  aria-controls='panel1a-content'
+                  id='panel1a-header'
+                  style={{
+                    boxShadow: 'none',
+                    margin: 0,
+                    padding: 0,
+                  }}
                 >
-                  <span>Apply Coupon</span>
+                  <div className={styles.accordionHeader}>
+                    <CouponIcon />
+                    <span>Apply Coupon</span>
+                  </div>
                 </AccordionSummary>
-                <AccordionDetails className={styles.accordionDetials}>
-                  {/* <RadioGroup
-                    aria-label='Categories'
-                    onChange={e => handleFilterChange('price', e.target.value)}
-                    value={selectedFilter.categories}
-                  >
-                    <FormControlLabel
-                      value='All categories'
-                      checked={selectedFilter.categories === 'All categories'}
-                      control={<CustomRadio />}
-                      label={
-                        <p className={styles.radioBtnsLabels}>All categories</p>
-                      }
-                    />
-                  </RadioGroup> */}
-                  <div style={{ position: 'relative', width: '100%' }}>
-                    <input
-                      type='text'
-                      placeholder='Enter Coupon Code'
-                      style={{
-                        padding: '0.7rem',
-                        width: '100%',
-                        borderRadius: '5px',
-                        border: '1px solid  #857250',
-                      }}
-                    />
-                    <button
-                      style={{
-                        color: 'red',
-                        position: 'absolute',
-                        right: '13px',
-                        top: '12px',
-                        background: 'none',
-                        border: 'none',
-                        fontSize: '0.8rem',
-                        cursor: 'pointer',
-                        fontWeight: 'bold',
-                      }}
-                    >
-                      Apply
-                    </button>
+                <AccordionDetails
+                  style={{
+                    background: '#fff',
+                    padding: '.8rem 0',
+                  }}
+                >
+                  <div className={styles.couponInputDiv}>
                     <div>
-                      <button
-                        style={{
-                          background: 'none',
-                          border: 'none',
-                          fontSize: '0.8rem',
-                          cursor: 'pointer',
-                          color: '#007AB9',
-                          fontSize: '0.8rem',
-                          marginTop: '1rem',
-                        }}
-                      >
-                        View Offers
-                      </button>
+                      <input
+                        type='text'
+                        placeholder='Enter coupon code'
+                        name='coupon'
+                      />
+                      <span>Apply</span>
                     </div>
+                    <button onClick={toggleModal}>View offers</button>
                   </div>
                 </AccordionDetails>
               </Accordion>
@@ -434,6 +469,7 @@ export default function MyBag() {
           </div>
         </div>
       </CustomSection>
+      {modal && <SuccessPopUp toggle={toggleModal} />}
     </Container>
   );
 }

@@ -34,13 +34,16 @@
 @media screen and (max-width: 1070px) {
   .cardsDivOuterContainer {
     padding: 30px;
-    width: auto;
+    // width: auto;
   }
 }
-  @media screen and (max-width: 900px) {
-
+@media screen and (max-width: 900px) {
+  .cardsDivOuterContainer {
+    // padding: 0px;
+    width: 100%;
+  }
   .headerDiv {
-    width: auto;
+    width: 100%;
   }
   .section {
     display: flex;
@@ -50,10 +53,10 @@
   @media screen and (max-width: 550px) {
     .cardsDivOuterContainer {
       padding: 1rem;
-      width: auto;
+      width: 100%;
     }
-    .headerDiv{
-      .header{
+    .headerDiv {
+      .header {
         font-size: 25px;
       }
     }

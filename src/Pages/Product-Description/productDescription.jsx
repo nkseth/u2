@@ -30,7 +30,7 @@ import common_axios from '../../utils/axios.config';
 import { useSelector } from 'react-redux';
 import useLogin from '../../LoginSceens/useLogin';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
+import Bag from './addedbag.gif';
 // import {
 //   addToWishlist,
 //   clearUpdateWishlist,
@@ -106,7 +106,7 @@ const HtmlTooltipButton = withStyles(theme => ({
     // placement: "right-start",
     backgroundColor: '#857250',
     color: 'white',
-    width: 100,
+    width: 170,
     textAlign: 'center',
     // height: 100,
     fontSize: theme.typography.pxToRem(10),
@@ -124,6 +124,8 @@ export default function ProductDescription({ match }) {
 
   const [selectedColor, setSelectedColor] = useState('');
   const [ProductDrop, setProductDrop] = useState(false);
+  const [click, setClick] = useState(false);
+  const [cartMessage, setCartMessage] = useState('Added To bag');
 
   //const { data: val } = location.state;
   const {
@@ -199,7 +201,8 @@ export default function ProductDescription({ match }) {
           console.log(data);
         }
       } catch (e) {
-        alert(e.response.data.message);
+        // alert(e.response.data.message);
+        setCartMessage(e.response.data.message);
       }
     } else {
       login_Model_Show();
@@ -886,19 +889,41 @@ export default function ProductDescription({ match }) {
               >
                 Buy Now
               </Button>
+
               <HtmlTooltipButton
+                open={click}
+                onOpen={() => setClick(true)}
+                onClose={() => setClick(false)}
+                disableFocusListener
+                disableHoverListener
                 // className={styles.ProductSelectorHelpBtn}
                 // style={{ color: '#6a5b40', backgroundColor: 'red' }}
                 title={
                   <React.Fragment>
-                    <h3 style={{ padding: 10 }}>Add To bag</h3>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        fontSize: '0.7rem',
+                      }}
+                    >
+                      <img
+                        src={Bag}
+                        alt=''
+                        style={{ height: '40px', width: '40px' }}
+                      />
+                      <h3 style={{ padding: 10 }}> {cartMessage}</h3>
+                    </div>
                   </React.Fragment>
                 }
                 placement={'top'}
                 arrow
               >
                 <Button
-                  onClick={add_bag_handler}
+                  onClick={() => {
+                    add_bag_handler();
+                    setClick(click => !click);
+                  }}
                   variant='outlined'
                   color='default'
                   startIcon={<BagIcon />}

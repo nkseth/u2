@@ -1,0 +1,80 @@
+.heading {
+  font-family: DM Serif Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 54px;
+  line-height: 128%;
+  letter-spacing: 1.6px;
+  color: #6a5b40;
+  padding-left: 15%;
+}
+.text {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 164.8%;
+  color: #3b3b3b;
+  width: 324px;
+  padding-left: 15%;
+}
+.textTab {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 164.8%;
+  color: #3b3b3b;
+}
+.background {
+  background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.7) 5.1%,
+      rgba(53, 53, 53, 0.592404) 33.85%,
+      rgba(112, 112, 112, 0.345937) 61.98%,
+      rgba(154, 154, 154, 0.175305) 83.85%,
+      rgba(196, 196, 196, 0) 100%
+    ),
+    url(../../../../Images/collabrate/ARTWORK.png) no-repeat center;
+  height: 550px;
+  width: 267px;
+}
+.backgroundTab {
+  background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.7) 5.1%,
+      rgba(53, 53, 53, 0.592404) 33.85%,
+      rgba(112, 112, 112, 0.345937) 61.98%,
+      rgba(154, 154, 154, 0.175305) 83.85%,
+      rgba(196, 196, 196, 0) 100%
+    ),
+    url(../../../../Images/collabrate/product-tab.png) no-repeat;
+  height: 141px;
+  width: 100%;
+  margin-bottom: 2px;
+}
+.title {
+  color: white;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 150%;
+}
+.card {
+  display: flex;
+  margin-right: 51px;
+}
+.image3 {
+  margin-left: 145px;
+  position: relative;
+  bottom: 77px;
+}
+.image3Tab {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 62px;
+}

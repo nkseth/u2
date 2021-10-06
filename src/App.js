@@ -68,6 +68,8 @@ import {
 import { loadUser } from './Redux/actions/auth';
 import ViewMeasurement from './Pages/Measurement/ViewMeasurement';
 import UploadImage from './Pages/Upload-Measument-Image/UploadImage';
+import CollabrateLogin from './Pages/Collabrate/CollabrateLogin/collabrateLogin';
+import CollabrateAsFashionDesigner from './Pages/Collabrate/CollabrateAsFashionDesigner/collabrateAsFashionDesigner';
 
 //Start From Here
 
@@ -222,6 +224,18 @@ function App() {
         <Route exact path={'/designer-page'} component={DesignersPage} />
         <Route path={'/home/poll-question'} component={PollQuestion} />
         <Route path={'/home/poll-result'} component={PollResult} />
+        {/* Collabrate */}
+        <Route path={'/Collabrate-login'} component={CollabrateLogin} />
+        <Route
+          path={'/Collabrate-as-fashion-designer'}
+          component={CollabrateAsFashionDesigner}
+        />
+
+        {/* <Route path={'/Collabrate-as-vendor'} component={CollabrateAsVendor} />
+        <Route
+          path={'/Collabrate-as-influencer'}
+          component={CollabrateAsInfluencer}
+        /> */}
       </Switch>
     </div>
   );

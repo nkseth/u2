@@ -97,7 +97,10 @@ const Customer_Review = () => {
                 )
               )}
           </Slider>
-          <DotGroup style={{ display: 'flex' }} />
+          <DotGroup
+            // style={{ display: 'flex', background: 'black' }}
+            className={styles.dot_group}
+          />
           <div className={styles.NavigationContainer}>
             {/* <Link style={{ color: '#0A0A0A' }} to='/'>
               SEE All

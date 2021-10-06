@@ -1,0 +1,57 @@
+.heading{
+    font-family: DM Serif Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 54px;
+    line-height: 128%;
+    letter-spacing: 1.6px;
+    color: #6A5B40;
+}
+.text{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 164.8%;
+    color: #3B3B3B;
+    width:324px;
+}
+.textTab{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 164.8%;
+    color: #3B3B3B;
+}
+.background{
+    
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 5.1%, rgba(53, 53, 53, 0.592404) 33.85%, rgba(112, 112, 112, 0.345937) 61.98%, rgba(154, 154, 154, 0.175305) 83.85%, rgba(196, 196, 196, 0) 100%);
+    height:550px;
+    width:267px;
+}
+.backgroundTab{
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 5.1%, rgba(53, 53, 53, 0.592404) 33.85%, rgba(112, 112, 112, 0.345937) 61.98%, rgba(154, 154, 154, 0.175305) 83.85%, rgba(196, 196, 196, 0) 100%), url(../../../../Images/collabrate/creator-tab.png) no-repeat;
+    height: 141px;;
+    width:100%;
+    margin-bottom: 2px;
+}
+.title{
+    color: white;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 150%;
+}
+.image3{
+    margin-left:145px;
+    position:relative;
+    bottom:77px;
+}
+.image3Tab{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+}

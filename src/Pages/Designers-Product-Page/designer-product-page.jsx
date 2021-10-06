@@ -20,6 +20,7 @@ import {
 } from "../../Redux/actions/filter-category";
 import { useDispatch, useSelector } from "react-redux";
 import { getWishList } from "../../Redux/actions/wishlist";
+import { clearProductsErrors, getProducts } from "../../Redux/actions/products";
 
 function DesignerProductPage({ match }) {
   const dispatch = useDispatch();
@@ -33,83 +34,79 @@ function DesignerProductPage({ match }) {
   } = match;
 
   const [product, setProduct] = useState([]);
-  const [category, setCategory] = useState({});
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const { user, isAuthenticated } = useSelector((state) => state.root.auth);
+  const { productList, loading, error } = useSelector(
+    (state) => state.root.products
+  );
   useEffect(() => {
-    dispatch(getFilterList());
-    fetch_products(slug);
+    if (error) {
+      dispatch(clearProductsErrors());
+      return console.log(error);
+    }
+    // fetch_products(slug);
+    if (productList) setProduct(productList);
     if (isAuthenticated) {
       dispatch(getWishList(user.api_token));
     }
-  }, [slug, dispatch, isAuthenticated, user]);
-
-  const fetch_products = async (slug) => {
-    try {
-      let url = `/product_by_category`;
-      if (type) url = `/product_by_category/${type}`;
-      const { data } = await common_axios.post(url, {
-        slug,
-      });
-      console.log(data);
-      if (data.product) {
-        setProduct(data.product);
-        setCategory(data.category);
-      }
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // if (loading) {
-  //   return null;
-  // }
+    dispatch(getFilterList());
+  }, [slug, dispatch, isAuthenticated, user, error, productList, type]);
+  useEffect(() => {
+    dispatch(getProducts(type, { slug }));
+  }, []);
   const filterProduct = (filterData) => {
-    dispatch(getFilteredProduct(slug, filterData));
+    console.log(filterData);
+    dispatch(getProducts(type, { ...filterData, slug }));
   };
   return (
     <Container bottomDivider footerOnAllView>
-      {product.length < 1 && <Loader />}
-      {product.length > 1 && (
-        <>
-          <div className={styles.container}>
-            {!tabViewPro && (
-              <div className={styles.FilterBreadDiv}>
-                {!tabViewPro && (
-                  <div style={{ width: "200%", marginLeft: 15 }}>
-                    <Breadcrumb
-                      path={`Products / ${"Category"} /`}
-                      activePath={category?.name || "product"}
-                    />
-                  </div>
-                )}
-                <div className={styles.firstSection}>
-                  <Filter filters={filters} filterProduct={filterProduct} />
+      <>
+        <div className={styles.container}>
+          {!tabViewPro && (
+            <div className={styles.FilterBreadDiv}>
+              {!tabViewPro && (
+                <div style={{ width: "200%", marginLeft: 15 }}>
+                  <Breadcrumb
+                    path={`Products /`}
+                    activePath={`${type} / ${slug}` || "product"}
+                  />
                 </div>
-              </div>
-            )}
-            <div className={styles.secondSection}>
-              <div style={{ padding: "1rem 1rem 5rem" }}>
-                {tabViewPro && (
-                  <div className={styles.upperbread}>
-                    <Breadcrumb
-                      path={`Products / ${"Category"} /`}
-                      activePath={category?.name || "product"}
-                    />
-                  </div>
+              )}
+              <div className={styles.firstSection}>
+                {!filters ? (
+                  <Loader />
+                ) : (
+                  <Filter filters={filters} filterProduct={filterProduct} />
                 )}
-                <ProductsSection products={product} />
               </div>
             </div>
-          </div>
-          <div className={styles.LoadMoreBtnContainer}>
-            <div className={styles.LoadMoreBtnDiv}>
-              <Button className={styles.LoadMoreBtn}>Load More</Button>
+          )}
+          <div className={styles.secondSection}>
+            <div style={{ padding: "1rem 1rem 5rem" }}>
+              {tabViewPro && (
+                <div className={styles.upperbread}>
+                  <Breadcrumb
+                    path={`Products /`}
+                    activePath={`${type} / ${slug}` || "product"}
+                  />
+                </div>
+              )}
+              {loading ? (
+                <Loader />
+              ) : product.length > 1 ? (
+                <ProductsSection products={product} />
+              ) : (
+                <p>No Products to Show</p>
+              )}
             </div>
           </div>
-        </>
-      )}
+        </div>
+        <div className={styles.LoadMoreBtnContainer}>
+          <div className={styles.LoadMoreBtnDiv}>
+            <Button className={styles.LoadMoreBtn}>Load More</Button>
+          </div>
+        </div>
+      </>
     </Container>
   );
 }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { withStyles } from "@material-ui/core/styles";
+import React, { useState, useEffect } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import {
   Button,
   Dialog,
@@ -10,44 +10,44 @@ import {
   AccordionDetails,
   Radio,
   useMediaQuery,
-} from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
-import FabricSampleCard from "./Components/fabric-sample-card/card";
-import CustomSection from "../../utils/Custom Section/section";
-import Container from "../../utils/Container/container";
-import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
-import CustomDivider from "../../utils/Custom Divider/divider";
-import styles from "./deliveryAddress.module.scss";
+} from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
+import FabricSampleCard from './Components/fabric-sample-card/card';
+import CustomSection from '../../utils/Custom Section/section';
+import Container from '../../utils/Container/container';
+import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
+import CustomDivider from '../../utils/Custom Divider/divider';
+import styles from './deliveryAddress.module.scss';
 //icons
-import AddIcon from "@material-ui/icons/Add";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { ReactComponent as LocationIcon } from "../../Images/icons/location.svg";
-import { ReactComponent as CloseIcon } from "../../Images/icons/close.svg";
-import { ReactComponent as FilterIcon } from "../../Images/icons/filter.svg";
-import CustomStepper from "../../utils/Stepper/stepper";
-import common_axios from "../../utils/axios.config";
-import NewAddress from "./Components/fabric-sample-card/NewAddress";
+import AddIcon from '@material-ui/icons/Add';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { ReactComponent as LocationIcon } from '../../Images/icons/location.svg';
+import { ReactComponent as CloseIcon } from '../../Images/icons/close.svg';
+import { ReactComponent as FilterIcon } from '../../Images/icons/filter.svg';
+import CustomStepper from '../../utils/Stepper/stepper';
+import common_axios from '../../utils/axios.config';
+import NewAddress from './Components/fabric-sample-card/NewAddress';
 const CustomRadio = withStyles({
   root: {
-    color: "#9D9D9D",
-    "&$checked": {
-      color: "#857250",
+    color: '#9D9D9D',
+    '&$checked': {
+      color: '#857250',
     },
   },
   checked: {},
-})((props) => <Radio color="default" {...props} />);
+})(props => <Radio color='default' {...props} />);
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
+  return <Slide direction='up' ref={ref} {...props} />;
 });
 export default function DeliveryAddress() {
-  const tabView = useMediaQuery("(max-width:768px)");
-  const mobileView = useMediaQuery("(max-width:550px)");
+  const tabView = useMediaQuery('(max-width:768px)');
+  const mobileView = useMediaQuery('(max-width:550px)');
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const [NewAddressSection, setNewAddressSection] = useState(false);
-  const [selectedFabric, setSelectedFabric] = useState("");
-  const [selectedPlan, setSelectedPlan] = useState("vip");
+  const [selectedFabric, setSelectedFabric] = useState('');
+  const [selectedPlan, setSelectedPlan] = useState('vip');
   const [address, setAddress] = useState([]);
   const [SelectAddress, setSelectAddress] = useState(0);
 
@@ -56,7 +56,7 @@ export default function DeliveryAddress() {
   }, []);
 
   const fetch_address = async () => {
-    const { data } = await common_axios.get("/addresses");
+    const { data } = await common_axios.get('/addresses');
     if (data.data) {
       setAddress(data.data);
     }
@@ -82,16 +82,16 @@ export default function DeliveryAddress() {
 
   return (
     <Container bottomDivider footerOnTabMob>
-      <CustomSection style={{ marginTop: "1em" }}>
-        <Breadcrumb path="Home / My Bag" activePath="/ Delivery Address" />
+      <CustomSection style={{ marginTop: '1em' }}>
+        <Breadcrumb path='Home / My Bag' activePath='/ Delivery Address' />
         <CustomStepper activeStep={0} />
         {NewAddressSection ? (
-          <NewAddress />
+          <NewAddress setAddAddress={setNewAddressSection} />
         ) : (
           <div className={styles.container}>
             <div className={styles.firstContainer}>
               <div>Delivery Address</div>
-              {address.map((item) => {
+              {address.map(item => {
                 return (
                   <div className={styles.mainDiv}>
                     <div className={styles.radioDiv}>
@@ -116,15 +116,15 @@ export default function DeliveryAddress() {
 
                     <div>
                       <Button
-                        variant="contained"
-                        color="default"
+                        variant='contained'
+                        color='default'
                         className={styles.editBtn}
                       >
                         Edit
                       </Button>
                       <Button
-                        variant="contained"
-                        color="default"
+                        variant='contained'
+                        color='default'
                         className={styles.changeBtn}
                       >
                         change
@@ -136,8 +136,8 @@ export default function DeliveryAddress() {
               <div className={styles.btnDiv}>
                 <Button
                   className={styles.addNewAddressBtn}
-                  variant="contained"
-                  color="default"
+                  variant='contained'
+                  color='default'
                   endIcon={<AddIcon />}
                   onClick={() => setNewAddressSection(!NewAddressSection)}
                 >
@@ -145,11 +145,11 @@ export default function DeliveryAddress() {
                 </Button>
               </div>
 
-              <div className={styles.btnDiv} style={{ marginBottom: "2rem" }}>
+              <div className={styles.btnDiv} style={{ marginBottom: '2rem' }}>
                 <Button
                   className={styles.useCurrentLocationBtn}
-                  variant="contained"
-                  color="default"
+                  variant='contained'
+                  color='default'
                   startIcon={<LocationIcon />}
                 >
                   Use current location
@@ -158,8 +158,8 @@ export default function DeliveryAddress() {
             </div>
             <div className={styles.lastContainer}>
               <Button
-                variant="contained"
-                color="default"
+                variant='contained'
+                color='default'
                 className={styles.proceedBtn}
                 onClick={() => {
                   history.push(`/payment/${SelectAddress}`);

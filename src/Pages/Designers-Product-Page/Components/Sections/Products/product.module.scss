@@ -1,9 +1,9 @@
 .btn {
   text-transform: none !important;
-//   width: 84px !important;
+  //   width: 84px !important;
   background-color: #fff !important;
 
-  border: none!important;
+  border: none !important;
 }
 
 .filterBtn {
@@ -19,7 +19,31 @@
   font-weight: 400 !important;
   line-height: 18px !important;
   letter-spacing: 0.1599999964237213px;
-  color: #857250!important;
+  color: #857250 !important;
+}
+
+.productsGrid {
+  width: 100%;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  place-items: center;
+}
+
+@media screen and (max-width: 1060px) {
+  .productsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 580px) {
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 400px) {
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media screen and (max-width: 550px) {

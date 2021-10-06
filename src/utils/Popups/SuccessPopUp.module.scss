@@ -1,0 +1,63 @@
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 90;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  background: #00000066;
+
+  .CloseBtn {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+  }
+  .SecondLayer {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    cursor: pointer;
+  }
+  .Popup {
+    width: 90%;
+    position: absolute;
+    max-width: 645px;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.377);
+    background-color: #fff;
+    min-height: 288px;
+    display: flex;
+    text-align: center;
+    z-index: 99;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    h1 {
+      font-family: DM Serif Display;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 30px;
+      letter-spacing: 0px;
+      text-align: center;
+      margin-top: 1em;
+    }
+    p {
+      font-family: DM Sans;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 26px;
+      letter-spacing: 0px;
+      text-align: center;
+      margin-top: 0.5em;
+      width: 80%;
+    }
+  }
+}

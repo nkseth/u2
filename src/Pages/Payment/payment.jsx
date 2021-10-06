@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import { Button, Radio, IconButton } from "@material-ui/core";
-import Container from "../../utils/Container/container";
-import { Link, useHistory } from "react-router-dom";
-import InputField from "./Components/Input-Field/inputField";
-import CustomDivider from "../../utils/Custom Divider/divider";
-import CustomSection from "../../utils/Custom Section/section";
-import CustomStepper from "../../utils/Stepper/stepper";
-import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
-import styles from "./payment.module.scss";
+import React, { useState, useEffect } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { Button, Radio, IconButton } from '@material-ui/core';
+import Container from '../../utils/Container/container';
+import { Link, useHistory } from 'react-router-dom';
+import InputField from './Components/Input-Field/inputField';
+import CustomDivider from '../../utils/Custom Divider/divider';
+import CustomSection from '../../utils/Custom Section/section';
+import CustomStepper from '../../utils/Stepper/stepper';
+import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
+import styles from './payment.module.scss';
+
 //icons
-import AddIcon from "@material-ui/icons/Add";
-import { ReactComponent as PayPalIcon } from "../../Images/icons/paypal.svg";
-import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData";
-import tick from "./tick.svg";
-import close from "./close.svg";
-import { useSelector } from "react-redux";
-import common_axios from "../../utils/axios.config";
+import AddIcon from '@material-ui/icons/Add';
+import { ReactComponent as PayPalIcon } from '../../Images/icons/paypal.svg';
+import { Product_Type, Product_Type_Change } from '../../Redux/MeasuremantData';
+import tick from './success.gif';
+import close from './close.svg';
+import { useSelector } from 'react-redux';
+import common_axios from '../../utils/axios.config';
+
 const CustomRadio = withStyles({
   root: {
     color: "#9D9D9D",
@@ -72,6 +74,7 @@ export default function Payment({ match }) {
         <h1>LOGO</h1>
         <CustomDivider />
       </div>
+
       {PaymentDone ? (
         <SuccessPopUp
           history={history}

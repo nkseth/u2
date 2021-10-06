@@ -3,7 +3,6 @@ import { GET_FILTERED_PRODUCT, GET_FILTER_LIST } from "./types";
 
 export const getFilterList = () => async (dispatch) => {
   try {
-    console.log("Filter Page");
     const { data } = await common_axios.get("/filterCategory");
     // console.log(data);
     if (data) {

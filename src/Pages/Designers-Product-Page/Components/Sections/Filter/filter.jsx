@@ -112,47 +112,49 @@ export default function Filter(props) {
     });
   };
   const handleFilterChange = (filterName, value) => {
-    console.log(value);
+    console.log(filterName, value);
     setSelectedFilter((prevState) => ({
       ...prevState,
       [filterName]: value,
     }));
 
-    console.log(selectedFilter);
-    const newColor = colorFilter.filter(
-      ({ value }) => value === selectedFilter.color
-    )[0];
-    const newFabric = fabricFilter.filter(
-      ({ value }) => value === selectedFilter.fabric
-    )[0];
-    const newLength = length.filter(
-      ({ value }) => value === selectedFilter.length
-    )[0];
-    const newSize = sizeFilter.filter(
-      ({ value }) => value === selectedFilter.size
-    )[0];
+    console.log(selectedFilter[filterName]);
+    // const newColor = colorFilter.filter(
+    //   ({ value }) => value === selectedFilter.color
+    // )[0];
+    // const newFabric = fabricFilter.filter(
+    //   ({ value }) => value === selectedFilter.fabric
+    // )[0];
+    // const newLength = length.filter(
+    //   ({ value }) => value === selectedFilter.length
+    // )[0];
+    // const newSize = sizeFilter.filter(
+    //   ({ value }) => value === selectedFilter.size
+    // )[0];
 
-    const newSleeveLength = sleeveLength.filter(
-      ({ value }) => value === selectedFilter.sleeveLength
-    )[0];
+    // const newSleeveLength = sleeveLength.filter(
+    //   ({ value }) => value === selectedFilter.sleeveLength
+    // )[0];
     console.log(selectedFilter.itemType);
     if (selectedFilter.itemType === "customize") {
-      filterProduct({
+      const filterDataValue = {
         // attributeValue_id: `${newColor.attr_value_id},${newFabric.attr_value_id},${newLength.attr_value_id},${newSize.attr_value_id},${newSleeveLength.attr_value_id}`,
         // attribute_id: `${newColor.attribute_id},${newFabric.attribute_id},${newLength.attribute_id},${newSize.attribute_id},${newSleeveLength.attribute_id}`,
         // range: selectedFilter.price,
         // discount: selectedFilter.discount,
         // product_type: selectedFilter.itemType.toLowerCase(),
-        ...selectedFilter,
+        // ...selectedFilter,
         product_type: selectedFilter.itemType.toLowerCase(),
-      });
+      };
+      filterProduct(filterDataValue);
     } else {
-      filterProduct({
+      const filterDataValue = {
         // attributeValue_id: `${newColor.attr_value_id},${newFabric.attr_value_id},${newLength.attr_value_id},${newSize.attr_value_id},${newSleeveLength.attr_value_id}`,
         // attribute_id: `${newColor.attribute_id},${newFabric.attribute_id},${newLength.attribute_id},${newSize.attribute_id},${newSleeveLength.attribute_id}`,
         // range: selectedFilter.price,
         // discount: selectedFilter.discount,
-      });
+      };
+      filterProduct(filterDataValue);
     }
   };
 

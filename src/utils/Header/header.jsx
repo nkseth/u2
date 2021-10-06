@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useCallback } from "react";
 import {
   FormControl,
@@ -109,10 +108,10 @@ export default function Header() {
     setDrawerOpen(open);
   };
 
-  const profileFnc = () => {
+  const profileFnc = (route) => {
     // if (Object.keys(user)?.length !== 0) {
     if (user?.id) {
-      history.push("/profile");
+      history.push(route);
     } else {
       login_Model_Show();
     }
@@ -198,7 +197,7 @@ export default function Header() {
           <div>
             <IconButton aria-label="my account">
               <div
-                onClick={profileFnc}
+                onClick={() => profileFnc("/profile")}
                 style={{ display: "grid", placeContent: "center" }}
               >
                 <img
@@ -214,7 +213,7 @@ export default function Header() {
               <img
                 src={FavoriteIcon}
                 alt="favorites"
-                onClick={() => history.push("/wishlist")}
+                onClick={() => profileFnc("/wishlist")}
               />
             </IconButton>
             <IconButton

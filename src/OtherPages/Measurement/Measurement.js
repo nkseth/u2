@@ -64,6 +64,7 @@ const [measurement_data, set_measurement_data] = useState([]);
       )}
 
     </div>
+</div>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import Breadcrumb from "../../../../../utils/Breadcrumb/breadcrumb";
 
@@ -20,6 +20,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styles from "./filter.module.scss";
 import { style } from "@material-ui/system";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getProducts } from "../../../../../Redux/actions/products";
 
 const CustomRadio = withStyles({
   root: {
@@ -33,7 +35,8 @@ const CustomRadio = withStyles({
 
 export default function Filter(props) {
   // const { filters } = useSelector((state) => state.root.filterCategory);
-
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { filterProduct, filters } = props;
   const [isCategory, setIsCategory] = useState(false);
   const [priceRange, setPriceRange] = useState([]);
@@ -43,6 +46,7 @@ export default function Filter(props) {
   const [sizeFilter, setSize] = useState([]);
   const [sleeveLength, setSleeveLength] = useState([]);
   const [length, setLength] = useState([]);
+  const [occasionsFilter, setOccasionsFilter] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const tabViewPro = useMediaQuery("(max-width:835px)");
@@ -57,6 +61,7 @@ export default function Filter(props) {
       size,
       sleevs_length,
       length,
+      occasions,
     } = filters;
     setPriceRange(price_range);
     setColor(color);
@@ -65,11 +70,12 @@ export default function Filter(props) {
     setSleeveLength(sleevs_length);
     setLength(length);
     setSize(size);
+    setOccasionsFilter(occasions);
     setIsLoading(false);
   };
 
   const [selectedFilter, setSelectedFilter] = useState({
-    categories: "All categories",
+    // categories: "All categories",
     price: filters?.price_range[0].name || 0,
     itemType: "",
     color: filters?.color[0]?.value || null,
@@ -78,8 +84,8 @@ export default function Filter(props) {
     size: filters?.size[0]?.value || null,
     sleeveLength: filters?.sleevs_length[0]?.value || null,
     length: filters?.length[0]?.value || null,
-    design: "New",
-    shopByOccasion: "New",
+    // design: "New",
+    shopByOccasion: filters.occasions[0]?.value,
   });
 
   // const [selectedFilter, setSelectedFilter] = useState({
@@ -98,17 +104,17 @@ export default function Filter(props) {
 
   const clearFilter = () => {
     setSelectedFilter({
-      categories: "All categories",
-      price: filters?.price_range[0].name || 0,
-      itemType: "",
-      color: filters?.color[0]?.value || null,
-      discount: filters?.discount[0]?.discount || null,
-      fabric: filters?.fabric[0]?.value || null,
-      size: filters?.size[0]?.value || null,
-      sleeveLength: filters?.sleevs_length[0]?.value || null,
-      length: filters?.length[0]?.value || null,
-      design: "New",
-      shopByOccasion: "New",
+      // categories: "All categories",
+      price: filters?.price_range[0].name,
+      itemType: "readymade",
+      color: filters?.color[0]?.value,
+      discount: filters?.discount[0]?.discount,
+      fabric: filters?.fabric[0]?.value,
+      size: filters?.size[0]?.value,
+      sleeveLength: filters?.sleevs_length[0]?.value,
+      length: filters?.length[0]?.value,
+      // design: "New",
+      shopByOccasion: filters?.occasions[0]?.value,
     });
   };
   const handleFilterChange = (filterName, value) => {
@@ -118,44 +124,110 @@ export default function Filter(props) {
       [filterName]: value,
     }));
 
-    console.log(selectedFilter[filterName]);
-    // const newColor = colorFilter.filter(
-    //   ({ value }) => value === selectedFilter.color
-    // )[0];
-    // const newFabric = fabricFilter.filter(
-    //   ({ value }) => value === selectedFilter.fabric
-    // )[0];
-    // const newLength = length.filter(
-    //   ({ value }) => value === selectedFilter.length
-    // )[0];
-    // const newSize = sizeFilter.filter(
-    //   ({ value }) => value === selectedFilter.size
-    // )[0];
+    // if (filterName === "discount") filterProduct({ range: selectedFilter.price });
+    // if (filterName === "size") filterProduct({ range: selectedFilter.price });
+    // if (filterName === "sleeveLength") filterProduct({ range: selectedFilter.price });
+    // if (filterName === "length") filterProduct({ range: selectedFilter.price });
 
+    // console.log(selectedFilter[filterName]);
+    const newColor = colorFilter.filter(
+      ({ value }) => value === selectedFilter.color
+    )[0];
+    const newFabric = fabricFilter.filter(
+      ({ value }) => value === selectedFilter.fabric
+    )[0];
+    const newLength = length.filter(
+      ({ value }) => value === selectedFilter.length
+    )[0];
+    const newSize = sizeFilter.filter(
+      ({ value }) => value === selectedFilter.size
+    )[0];
+    const newShopByOccasion = occasionsFilter.filter(
+      ({ value }) => value === selectedFilter.shopByOccasion
+    )[0];
+
+    if (filterName === "price") filterProduct({ range: selectedFilter.price });
+    if (filterName === "itemType") {
+      if (value === "customize") filterProduct({ itemType: "customize" });
+      else filterProduct();
+    }
+
+    if (filterName === "discount") {
+      console.log(filterName, value);
+      filterProduct({ discount: selectedFilter.discount });
+    }
+
+    if (filterName === "color") {
+      console.log(filterName, value);
+      filterProduct({
+        attributeValue_id: `${newColor.attr_value_id}`,
+        attribute_id: `${newColor.attribute_id}`,
+      });
+    }
+
+    if (filterName === "fabric") {
+      console.log(filterName, value);
+      filterProduct({
+        attributeValue_id: `${newFabric.attr_value_id}`,
+        attribute_id: `${newFabric.attribute_id}`,
+      });
+    }
+
+    if (filterName === "size") {
+      console.log(filterName, value);
+      filterProduct({
+        attributeValue_id: `${newSize.attr_value_id}`,
+        attribute_id: `${newSize.attribute_id}`,
+      });
+    }
+
+    if (filterName === "sleeveLength") {
+      console.log(filterName, value);
+      filterProduct({
+        attributeValue_id: `${newLength.attr_value_id}`,
+        attribute_id: `${newLength.attribute_id}`,
+      });
+    }
+    if (filterName === "length") {
+      console.log(filterName, value);
+      filterProduct({
+        attributeValue_id: `${newLength.attr_value_id}`,
+        attribute_id: `${newLength.attribute_id}`,
+      });
+    }
+    if (filterName === "shopByOccasion") {
+      console.log(filterName, value);
+      history.push(`/designers-product-page/${props.type}/${value}`);
+      dispatch(getProducts(props.type, { slug: value }));
+      // filterProduct({
+      //   attributeValue_id: `${newShopByOccasion.attr_value_id}`,
+      //   attribute_id: `${newShopByOccasion.attribute_id}`,
+      // });
+    }
     // const newSleeveLength = sleeveLength.filter(
     //   ({ value }) => value === selectedFilter.sleeveLength
     // )[0];
-    console.log(selectedFilter.itemType);
-    if (selectedFilter.itemType === "customize") {
-      const filterDataValue = {
-        // attributeValue_id: `${newColor.attr_value_id},${newFabric.attr_value_id},${newLength.attr_value_id},${newSize.attr_value_id},${newSleeveLength.attr_value_id}`,
-        // attribute_id: `${newColor.attribute_id},${newFabric.attribute_id},${newLength.attribute_id},${newSize.attribute_id},${newSleeveLength.attribute_id}`,
-        // range: selectedFilter.price,
-        // discount: selectedFilter.discount,
-        // product_type: selectedFilter.itemType.toLowerCase(),
-        // ...selectedFilter,
-        product_type: selectedFilter.itemType.toLowerCase(),
-      };
-      filterProduct(filterDataValue);
-    } else {
-      const filterDataValue = {
-        // attributeValue_id: `${newColor.attr_value_id},${newFabric.attr_value_id},${newLength.attr_value_id},${newSize.attr_value_id},${newSleeveLength.attr_value_id}`,
-        // attribute_id: `${newColor.attribute_id},${newFabric.attribute_id},${newLength.attribute_id},${newSize.attribute_id},${newSleeveLength.attribute_id}`,
-        // range: selectedFilter.price,
-        // discount: selectedFilter.discount,
-      };
-      filterProduct(filterDataValue);
-    }
+    // console.log(selectedFilter.itemType);
+    // if (selectedFilter.itemType.toLowerCase() === "customize") {
+    //   const filterDataValue = {
+    //     attributeValue_id: `${newColor.attr_value_id},${newFabric.attr_value_id},${newLength.attr_value_id},${newSize.attr_value_id},${newSleeveLength.attr_value_id}`,
+    //     attribute_id: `${newColor.attribute_id},${newFabric.attribute_id},${newLength.attribute_id},${newSize.attribute_id},${newSleeveLength.attribute_id}`,
+    //     // range: selectedFilter.price,
+    //     discount: selectedFilter.discount,
+    //     product_type: selectedFilter.itemType,
+    //     // ...selectedFilter,
+    //     // product_type: selectedFilter.itemType.toLowerCase(),
+    //   };
+    //   filterProduct(filterDataValue);
+    // } else {
+    //   const filterDataValue = {
+    //     attributeValue_id: `${newColor.attr_value_id},${newFabric.attr_value_id},${newLength.attr_value_id},${newSize.attr_value_id},${newSleeveLength.attr_value_id}`,
+    //     attribute_id: `${newColor.attribute_id},${newFabric.attribute_id},${newLength.attribute_id},${newSize.attribute_id},${newSleeveLength.attribute_id}`,
+    //     range: selectedFilter.price,
+    //     discount: selectedFilter.discount,
+    //   };
+    //   filterProduct(filterDataValue);
+    // }
   };
 
   useEffect(() => {
@@ -246,12 +318,12 @@ export default function Filter(props) {
             <div style={{ position: "relative" }}>
               <p>From</p>
               <input type="text" value={value[0]} />
-              <span>$</span>
+              <span>₹</span>
             </div>
             <div style={{ position: "relative" }}>
               <p>To</p>
               <input type="text" value={value[1]} />
-              <span>$</span>
+              <span>₹</span>
             </div>
           </div>
 
@@ -540,12 +612,15 @@ export default function Filter(props) {
             }
             value={selectedFilter.shopByOccasion}
           >
-            <FormControlLabel
-              value="New"
-              checked={selectedFilter.shopByOccasion === "New"}
-              control={<CustomRadio />}
-              label={<p className={styles.radioBtnsLabels}>New</p>}
-            />
+            {occasionsFilter.map(({ name, slug, id }) => (
+              <FormControlLabel
+                key={id}
+                value={slug}
+                checked={selectedFilter.shopByOccasion === "New"}
+                control={<CustomRadio />}
+                label={<p className={styles.radioBtnsLabels}>{name}</p>}
+              />
+            ))}
           </RadioGroup>
         </AccordionDetails>
       </Accordion>

@@ -193,67 +193,6 @@ export default function SideNavbar({ main }) {
               </Accordion>
             </ListItem>
           )} */}
-
-          <ListItem>
-            <Accordion className={styles.accordion}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon size="small" />}
-                className={styles.accordionSummary}
-              >
-                <span className={styles.menuItem}>
-                  <Link to="/wear/mens">Men</Link>
-                </span>
-              </AccordionSummary>
-              <AccordionDetails className={styles.accordionDetials}>
-                <div className={styles.subMenuItems}>
-                  <Link>Indian fusion wear</Link>
-                  <Link>western wear</Link>
-                  <Link>Bottom wear</Link>
-                  <Link>Bottom wear</Link>
-                </div>
-              </AccordionDetails>
-            </Accordion>
-          </ListItem>
-          <ListItem>
-            <Accordion className={styles.accordion}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon size="small" />}
-                className={styles.accordionSummary}
-              >
-                <span className={styles.menuItem}>
-                  <Link to="/wear/womens">Women</Link>
-                </span>
-              </AccordionSummary>
-              <AccordionDetails className={styles.accordionDetials}>
-                <div className={styles.subMenuItems}>
-                  <Link>Indian fusion wear</Link>
-                  <Link>western wear</Link>
-                  <Link>Bottom wear</Link>
-                  <Link>Bottom wear</Link>
-                </div>
-              </AccordionDetails>
-            </Accordion>
-          </ListItem>
-          <ListItem>
-            <Accordion className={styles.accordion}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon size="small" />}
-                className={styles.accordionSummary}
-              >
-                <span className={styles.menuItem}>
-                  <Link to="/wear/kids">Kids</Link>
-                </span>
-              </AccordionSummary>
-              <AccordionDetails className={styles.accordionDetials}>
-                <div className={styles.subMenuItems}>
-                  <Link>Indian fusion wear</Link>
-                  <Link>western wear</Link>
-                  <Link>Bottom wear</Link>
-                  <Link>Bottom wear</Link>
-                </div>
-              </AccordionDetails>
-            </Accordion>
-          </ListItem>
           <ListItem>
             <Accordion className={styles.accordion}>
               <AccordionSummary
@@ -343,13 +282,13 @@ export default function SideNavbar({ main }) {
               {navItems?.map((item) => (
                 <div
                   className={styles.navItem}
-                  onClick={
-                    item.fun
-                      ? () => {
-                          setLogoutModal(!logoutModal);
-                        }
-                      : {}
-                  }
+                  // onClick={
+                  //   item.fun
+                  //     ? () => {
+                  //         setLogoutModal(!logoutModal);
+                  //       }
+                  //     : {}
+                  // }
                 >
                   <img src={item.icon} alt={item.name} />
                   <Link to={item.path}>{item.name}</Link>

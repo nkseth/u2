@@ -1,17 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './Profile.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./Profile.module.scss";
+import { useDispatch, useSelector } from "react-redux";
 
 const Profile = () => {
-  const { user_data } = useSelector(state => state.root.main);
-  const { user } = useSelector(state => state.root.auth);
+  const { user } = useSelector((state) => state.root.auth);
 
   return (
     <div className={styles.Profile}>
       <div className={styles.Profile_Image}>
-        <img src={user.avatar} alt='userAvatar' />
-        <Link to='/ProfileEdit'>Edit</Link>
+        <img src={user.avatar} alt="userAvatar" />
+        <Link to="/ProfileEdit">Edit</Link>
       </div>
       <div className={styles.Profile_Details}>
         <div>

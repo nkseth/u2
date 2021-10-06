@@ -1,19 +1,18 @@
-import { Button } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Button } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   deleteMeasurement,
   getAllMeasurements,
-
 } from "../../Redux/actions/measurement";
-  import { ReactComponent as MeasurementIcon } from './measurement.svg';
+import { ReactComponent as MeasurementIcon } from "./measurement.svg";
 import Loader from "../../utils/Loader/Loader";
 import styles from "./Measurement.module.scss";
-  import { SuccessPopUp } from '../../utils/Popups/SuccessPopup';
+import { SuccessPopUp } from "../../utils/Popups/SuccessPopup";
 const Measurement = () => {
   const dispatch = useDispatch();
-const [measurement_data, set_measurement_data] = useState([]);
+  const [measurement_data, set_measurement_data] = useState([]);
   const { measurements } = useSelector((state) => state.root.allMeasurements);
   const { user } = useSelector((state) => state.root.auth);
   console.log(measurements);
@@ -24,7 +23,6 @@ const [measurement_data, set_measurement_data] = useState([]);
 
   return (
     <div className={styles.Measurement}>
-
       {measurements.length < 1 ? (
         <Loader />
       ) : (
@@ -42,29 +40,28 @@ const [measurement_data, set_measurement_data] = useState([]);
             );
           })}
         </div>
-<div
+      )}
+      <div
         style={{
-          display: 'grid',
-          placeItems: 'center',
-          margin: '1rem 0',
+          display: "grid",
+          placeItems: "center",
+          margin: "1rem 0",
         }}
       >
         <Button
           style={{
-            background: '#857250',
-            color: 'white',
-            width: '220px',
-            height: '50px',
-            margin: 'auto',
+            background: "#857250",
+            color: "white",
+            width: "220px",
+            height: "50px",
+            margin: "auto",
           }}
         >
-          <MeasurementIcon style={{ marginRight: '0.4rem' }} />{' '}
+          <MeasurementIcon style={{ marginRight: "0.4rem" }} />
           <h5> Add Measurement </h5>
         </Button>
-      )}
-
+      </div>
     </div>
-</div>
   );
 };
 
@@ -72,26 +69,26 @@ export default Measurement;
 
 const MeasurementItems = ({ id, background, titlename, productname, date }) => {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.root.auth);
-  const deleteMeasurementDataHandle = e => {
+  const { user } = useSelector((state) => state.root.auth);
+  const deleteMeasurementDataHandle = (e) => {
     e.preventDefault();
     dispatch(deleteMeasurement(user.api_token, id));
     dispatch(getAllMeasurements(user.api_token));
   };
   const [deleteModal, setDeleteModal] = useState(false);
   const toggleModal = () => {
-    setDeleteModal(deleteModal => !deleteModal);
+    setDeleteModal((deleteModal) => !deleteModal);
   };
   return (
     <>
       {deleteModal && (
-        <SuccessPopUp toggle={toggleModal} width={'500px'} height={'100px'}>
-          <h2 style={{ margin: '1rem 0' }}>
+        <SuccessPopUp toggle={toggleModal} width={"500px"} height={"100px"}>
+          <h2 style={{ margin: "1rem 0" }}>
             Are you sure you want to remove this Item?
           </h2>
           <Button
             class={styles.removeModelButton}
-            onClick={e => {
+            onClick={(e) => {
               deleteMeasurementDataHandle(e);
               toggleModal();
             }}
@@ -129,4 +126,3 @@ const MeasurementItems = ({ id, background, titlename, productname, date }) => {
     </>
   );
 };
-

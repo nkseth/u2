@@ -46,7 +46,8 @@ export const get_reviews = () => async (dispatch) => {
 export const get_orders = () => async (dispatch) => {
   try {
     const { data } = await common_axios.get("/orders");
-    if (data) {
+    console.log(data);
+    if (data.data) {
       dispatch({
         type: ORDERS,
         payload: data.data,

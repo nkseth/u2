@@ -1,15 +1,22 @@
-import { LOAD_USER, LOGIN, LOGOUT } from "../actions/types";
+import { LOAD_USER, LOGIN, LOGIN_REQUEST, LOGOUT } from "../actions/types";
 
 export const authReducer = (
-  initialState = { isAuthenticated: false, user: {} },
+  initialState = { loading: false, isAuthenticated: false, user: {} },
   action
 ) => {
   const { type, payload } = action;
 
   switch (type) {
+    case LOGIN_REQUEST:
+      return { ...initialState, loading: true };
     case LOGIN:
     case LOAD_USER:
-      return { ...initialState, isAuthenticated: true, user: payload };
+      return {
+        ...initialState,
+        isAuthenticated: true,
+        user: payload,
+        loading: false,
+      };
     case LOGOUT:
       return { ...initialState, isAuthenticated: false, user: null };
 

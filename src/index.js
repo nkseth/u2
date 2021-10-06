@@ -1,27 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import reportWebVitals from './reportWebVitals';
-import store from './Redux/store';
-import { Provider } from 'react-redux';
-import { CookiesProvider } from 'react-cookie';
-import ScrollToTop from './utils/ScrollToTop/ScrollToTop';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import store from "./Redux/store";
+import { Provider } from "react-redux";
+import { CookiesProvider } from "react-cookie";
+import ScrollToTop from "./utils/ScrollToTop/ScrollToTop";
 
 ReactDOM.render(
   <CookiesProvider>
     <Provider store={store}>
-      <Router>
-        <ScrollToTop />
-        <React.StrictMode>
+      <React.StrictMode>
+        <BrowserRouter>
+          <ScrollToTop />
           <App />
-        </React.StrictMode>
-      </Router>
+        </BrowserRouter>
+      </React.StrictMode>
     </Provider>
   </CookiesProvider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 serviceWorker.register();

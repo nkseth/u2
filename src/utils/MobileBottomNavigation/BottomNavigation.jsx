@@ -19,6 +19,7 @@ import useLogin from "../../LoginSceens/useLogin";
 
 const BottomNavigation = () => {
   const dispatch = useDispatch();
+
   const details = [
     {
       title: "Home",
@@ -46,6 +47,8 @@ const BottomNavigation = () => {
   const mobileView = useMediaQuery("(max-width:550px)");
   const location = useLocation();
   const [currency, setCurrency] = useState("INR");
+  const [showUserOption, setShowUserOption] = useState(false);
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
@@ -66,7 +69,7 @@ const BottomNavigation = () => {
     setScroll(window.scrollY);
   };
 
-  const { isAuthenticated } = useSelector((state) => state.root.auth);
+  const { isAuthenticated, loading } = useSelector((state) => state.root.auth);
   const { login_Model_Show } = useLogin();
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -74,7 +77,8 @@ const BottomNavigation = () => {
 
   const profileFnc = () => {
     if (isAuthenticated) {
-      history.push("/profile");
+      setShowUserOption(true);
+      // history.push("/profile");
     } else {
       login_Model_Show();
     }
@@ -124,21 +128,18 @@ const BottomNavigation = () => {
       })}
 
       <>
-        {isAuthenticated ? (
-          <SwipeableDrawer
-            anchor={"right"}
-            open={isDrawerOpen2}
-            onClose={toggleDrawer("right", false)}
-            onOpen={toggleDrawer("right", true)}
-            transitionDuration={600}
-          >
-            <div>
-              <SideNavbar />
-            </div>
-          </SwipeableDrawer>
-        ) : (
-          <p></p>
-        )}
+        <SwipeableDrawer
+          anchor={"right"}
+          open={isDrawerOpen2}
+          onClose={toggleDrawer("right", false)}
+          onOpen={toggleDrawer("right", true)}
+          transitionDuration={600}
+        >
+          <div>
+            <SideNavbar />
+          </div>
+        </SwipeableDrawer>
+
         <SwipeableDrawer
           anchor={"left"}
           open={isDrawerOpen}

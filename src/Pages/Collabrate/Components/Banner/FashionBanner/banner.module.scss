@@ -1,0 +1,116 @@
+.heading {
+  font-family: 'DM Serif Display';
+  font-size: 54px;
+  line-height: 64px;
+  color: white;
+}
+.subHeading {
+  font-family: 'DM Sans';
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  color: white;
+  margin-top: 20px;
+  margin-top: 20px;
+  margin-bottom: 26px;
+}
+.textGroup {
+  background-color: #6a5b40;
+  opacity: 0.53;
+  width: 742px;
+  height: 302px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.subtext {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.textGroupTab {
+  background-color: #6a5b40;
+  opacity: 0.53;
+  width: 80%;
+  height: 260px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 22px;
+}
+.subtextTab {
+  position: absolute;
+  top: 50%;
+  left: 43%;
+  transform: translate(-39%, -50%);
+  text-align: center;
+}
+.subtextMobile {
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  transform: translate(-4%, -50%);
+  text-align: center;
+}
+.headingMobile {
+  font-family: DM Serif Display;
+  font-size: 35px;
+  line-height: 64px;
+  color: white;
+}
+.textGroupMobile {
+  background-color: #6a5b40;
+  opacity: 0.53;
+  width: 90%;
+  height: 260px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 22px;
+}
+.button {
+  font-size: 12px !important  ;
+  font-family: Inter !important;
+  font-feature-settings: 'tnum' on, 'lnum' on, 'zero' on !important;
+  font-weight: bold !important ;
+  background-color: transparent !important;
+  color: white !important;
+  border: 0.5px solid #ffffff !important;
+  width: 300px !important;
+  height: 48px !important;
+  border-radius: 0px !important;
+  margin-top: 26px;
+}
+.buttonMobile {
+  font-size: 12px !important  ;
+  font-family: Inter !important;
+  font-feature-settings: 'tnum' on, 'lnum' on, 'zero' on !important;
+  font-weight: bold !important ;
+  background-color: transparent !important;
+  color: white !important;
+  border: 0.5px solid #ffffff !important;
+  width: 263px !important;
+  height: 48px !important;
+  border-radius: 0px !important;
+  margin-top: 12px;
+}
+.buttonTab {
+  font-size: 12px !important  ;
+  font-family: Inter !important;
+  font-feature-settings: 'tnum' on, 'lnum' on, 'zero' on !important;
+  font-weight: bold !important ;
+  background-color: transparent !important;
+  color: white !important;
+  border: 0.5px solid #ffffff !important;
+  width: 269px !important;
+  height: 48px !important;
+  border-radius: 0px !important;
+  margin-top: 12px;
+}

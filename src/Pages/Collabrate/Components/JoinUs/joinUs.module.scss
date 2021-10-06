@@ -1,0 +1,68 @@
+.heading{
+    font-family: DM Serif Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 54px;
+    line-height: 120%;
+}
+.subHeading{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 164.8%;
+    margin-top: 35px;
+    margin-bottom:23px ;
+}
+.text{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 164.8%;
+    margin-top: 10px;
+}
+.headingMobile{
+    font-family: DM Serif Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 120%;
+    text-align: center;
+}
+.textMobile{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 164.8%;
+    margin-top: 16px;
+}
+.button{
+    background: #6A5B40 !important;
+    width: 300px !important;
+    height: 48px !important;
+    border-radius: 5px !important;
+    font-family: DM Sans !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    color: #FFFFFF !important;
+    text-transform: uppercase !important;
+    font-feature-settings: 'tnum' on, 'lnum' on, 'zero' on !important;
+}
+.buttonTab{
+    background: #6A5B40 !important;
+    width: 201px !important;
+    height: 48px !important;
+    border-radius: 5px !important;
+    font-family: DM Sans !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    color: #FFFFFF !important;
+    text-transform: uppercase !important;
+    font-feature-settings: 'tnum' on, 'lnum' on, 'zero' on !important;
+}

@@ -1,0 +1,49 @@
+.heading{
+    font-family:"DM Serif Display";
+    font-size:54px;
+    line-height:64px;
+    display: flex;
+    justify-content: center;
+}
+.subHeading{
+    font-family:"DM Sans";
+    font-size:18px;
+    line-height:174%;
+    text-align: center;
+    margin-top: 17px;
+    color: #3B3B3B;
+}
+.headingMobile{
+    font-family:"DM Serif Display";
+    font-size:25px;
+    line-height:64px;
+    display: flex;
+    justify-content: center;
+}
+.subHeadingMobile{
+    font-family:"DM Sans";
+    font-size:16px;
+    line-height:174%;
+    text-align: center;
+    color: #3B3B3B;
+}
+.cardGroup{
+    padding-right: 5%;
+    margin-top:140px;
+    display:flex;
+    background-color:rgba(133, 114, 80, 0.25)
+}
+.compo{
+    padding-left:5%;
+    padding-right:5%;
+    margin-top:110px;
+    background-color:#E7E6E2;
+    padding-top:88px;
+    padding-bottom:62px;
+}
+.cardGroupTab{
+    margin-top:110px;
+    display:flex;
+    flex-direction:column;
+    background-color:rgba(133, 114, 80, 0.25);
+}

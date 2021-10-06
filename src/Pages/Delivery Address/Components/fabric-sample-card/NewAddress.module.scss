@@ -1,25 +1,183 @@
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  background: #00000066;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  .CloseBtn {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+  }
+  .Popup {
+    width: 100%;
+    margin: 2em;
+    height: 90vh;
+    overflow-y: scroll;
+    position: relative;
+    max-width: 950px;
+    padding: 1em;
+    background-color: #fff;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
 
-.modal{
+.OverLay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.newAddressContainer {
+  width: 90%;
+  margin-top: 3em;
+  margin-bottom: 10em;
+  height: 100%;
+
+  .h1dividerdiv {
+    display: flex;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    h1 {
+      font-family: DM Serif Display;
+      font-size: 34px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 48px;
+      letter-spacing: 0.03em;
+      text-align: left;
+      color: #857250;
+      margin-right: 0.5em;
+    }
+  }
+
+  .formDiv {
+    // width: 100%;
+    display: flex;
+    margin-top: 1em;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    input {
+      width: 100% !important;
+    }
+  }
+}
+.addTypeDiv {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  p {
+    font-family: DM Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #0a0a0a;
+    width: 100%;
+  }
+  h3 {
+    //styleName: Body / Large;
+    font-family: DM Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .add1 {
+    display: flex;
+    align-items: center;
+  }
+  .add2 {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.DeliverBTN {
+  height: 56px !important;
+  width: 100% !important;
+  border-radius: 5px !important;
+  padding: 12px, 16px, 12px, 16px !important;
+  background-color: #6a5b40 !important;
+  color: #fff !important;
+  margin-top: 1em !important;
+  margin-bottom: 2em !important;
+}
+
+.UseLocationBtnDiv {
+  width: 100%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  .useCurrentLocationBtn {
+    text-transform: none !important;
+    font-family: DM Sans !important;
+    box-shadow: none !important;
+    border-radius: 5px !important;
+    border: none !important;
+    outline: none !important;
+    font-size: 16px !important;
+    height: 56px !important;
+    width: 330px !important;
+    background-color: var(--primary-color-dark) !important;
+    color: #fff !important;
+  }
+}
+
+.CloseBTN {
+  position: absolute;
+  right: 3%;
+  top: 3%;
+  img {
+    width: 1em;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .modal {
     position: fixed;
     width: 100vw;
     height: 100vh;
     z-index: 99;
-    overflow: hidden;  
+    overflow: hidden;
     top: 0;
     background: #00000066;
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    .CloseBtn{
+    cursor: pointer;
+
+    .CloseBtn {
       position: absolute;
       top: 2%;
       right: 2%;
     }
-    .Popup{
+    .Popup {
       width: 100%;
-      margin:2em;
+      margin: 0.2em;
       height: 90vh;
       overflow-y: scroll;
       position: relative;
@@ -29,219 +187,37 @@
       display: flex;
       align-items: flex-start;
       justify-content: center;
-    
     }
+  }
+  .UseLocationBtnDiv {
+    .useCurrentLocationBtn {
+      text-transform: none !important;
+      font-family: DM Sans !important;
+      box-shadow: none !important;
+      border-radius: 5px !important;
+      border: none !important;
+      outline: none !important;
+      font-size: 15px !important;
+      height: 56px !important;
+      width: 250px !important;
+      background-color: var(--primary-color-dark) !important;
+      color: #fff !important;
     }
-    
-.OverLay{
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    background: rgba(0, 0, 0, 0);
-    cursor: pointer;
+  }
 }
 
-.newAddressContainer{
-    width:90%;
-    margin-top: 3em;
-    margin-bottom: 10em;
-    height: 100%;
-
-    .h1dividerdiv{
-        display: flex;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: auto;
-        margin-right: auto;
-        h1{
-        font-family: DM Serif Display;
-        font-size: 34px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 48px;
-        letter-spacing: 0.03em;
-        text-align: left;
-        color: #857250;
-        margin-right: 0.5em;
-        }
-
-    }
-
-    .formDiv{
-        // width: 100%;
-        display: flex;
-        margin-top: 1em;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        input{
-            width: 100%!important;
-        }
-    }
-
-}
-.addTypeDiv{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    p{
-        font-family: DM Sans;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 18px;
-        letter-spacing: 0px;
-        text-align: left;
-        color:#0a0a0a;
-        width: 100%;
-    }
-    h3{
-      //styleName: Body / Large;
-font-family: DM Sans;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 22px;
-letter-spacing: 0em;
-text-align: left;
-      
-    }
-    .add1{
-        display: flex;
-        align-items: center;
-        
-    }
-    .add2{
-        display: flex;
-        align-items: center;
-    }
+@media screen and (max-width: 1200px) {
+  .newAddressContainer {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
-.DeliverBTN{
-    height: 56px!important;
-    width: 100%!important;
-    border-radius: 5px!important;
-    padding: 12px, 16px, 12px, 16px!important;
-    background-color: #6A5B40!important;
-    color: #fff!important;
-    margin-top: 1em!important;
-    margin-bottom: 2em!important;
-}
-
-
-.UseLocationBtnDiv{
-    width: 100%;
-    margin-top: 1em;
-    margin-bottom: 1em;
-
-    .useCurrentLocationBtn{
-        text-transform: none !important;
-        font-family: DM Sans !important;
-        box-shadow: none !important;
-        border-radius: 5px !important;
-        border: none !important;
-        outline: none !important;
-        font-size: 16px!important;
-        height: 56px !important;
-        width: 330px !important;
-        background-color: var(--primary-color-dark) !important;
-        color: #fff !important;
-    }
-}
-
-.CloseBTN{
-    position: absolute;
-    right: 3%;
-    top: 3%;
-    img{
-        width: 1em;
-    }
-}
-
-
-
-
-
-
-
-@media screen  and (max-width:560px) {
-    .modal{
-        position: fixed;
-        width: 100vw;
-        height: 100vh;
-        z-index: 99;
-        overflow: hidden;  
-        top: 0;
-        background: #00000066;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        
-        .CloseBtn{
-          position: absolute;
-          top: 2%;
-          right: 2%;
-        }
-        .Popup{
-          width: 100%;
-          margin:0.2em;
-          height: 90vh;
-          overflow-y: scroll;
-          position: relative;
-          max-width: 950px;
-          padding: 1em;
-          background-color: #fff;
-          display: flex;
-          align-items: flex-start;
-          justify-content: center;
-        
-        }
-        }
-.UseLocationBtnDiv{
-        
-        .useCurrentLocationBtn{
-            text-transform: none !important;
-            font-family: DM Sans !important;
-            box-shadow: none !important;
-            border-radius: 5px !important;
-            border: none !important;
-            outline: none !important;
-            font-size: 15px!important;
-            height: 56px !important;
-            width: 250px !important;
-            background-color: var(--primary-color-dark) !important;
-            color: #fff !important;
-        }
-    }
-    }
-
-
-
-@media screen and (max-width:1200px) {
-.newAddressContainer{
-
-width: 90%;
-margin-left: auto;
-margin-right: auto;
-
-}
-    
-}
-
-@media screen and (max-width:955px) {
-    .newAddressContainer{
-    
+@media screen and (max-width: 955px) {
+  .newAddressContainer {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    
-    }
-        
-    }
-
+  }
+}

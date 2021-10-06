@@ -459,9 +459,10 @@ export default function ProductDescription({ match }) {
                         ? product.custom_price >= 1
                           ? product.custom_price
                           : product.price
-                        : Product_Type === 'ready made'
-                        ? product.readymade_price1 >= 1
-                          ? product.readymade_price1
+
+                        : Product_Type === "ready made"
+                        ? product.readymade_price >= 1
+                          ? product.readymade_price
                           : product.price
                         : product.price}
                     </span>
@@ -605,9 +606,10 @@ export default function ProductDescription({ match }) {
                     ? product.custom_price >= 1
                       ? product.custom_price
                       : product.price
-                    : Product_Type === 'ready made'
-                    ? product.readymade_price1 >= 1
-                      ? product.readymade_price1
+
+                    : Product_Type === "ready made"
+                    ? product.readymade_price >= 1
+                      ? product.readymade_price
                       : product.price
                     : product.price}
                 </span>
@@ -738,9 +740,10 @@ export default function ProductDescription({ match }) {
                     ? product.custom_price >= 1
                       ? product.custom_price
                       : product.price
-                    : Product_Type === 'ready made'
-                    ? product.readymade_price1 >= 1
-                      ? product.readymade_price1
+
+                    : Product_Type === "ready made"
+                    ? product.readymade_price >= 1
+                      ? product.readymade_price
                       : product.price
                     : product.price}
                 </span>

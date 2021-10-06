@@ -157,6 +157,7 @@ export default function MyBag() {
 
   const on_checkout = () => {
     dispatch(setOrderSumm(value));
+
     history.push('/delivery-address');
   };
 
@@ -184,6 +185,7 @@ export default function MyBag() {
   const toggleRemoveModal = item => {
     setRemoveItem(item);
     setRemoveModal(removeModal => !removeModal);
+
   };
 
   return (

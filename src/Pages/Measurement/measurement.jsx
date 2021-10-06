@@ -72,7 +72,7 @@ export default function Measurement({
   };
 
   useEffect(() => {
-    if (id) dispatch(getSingleMeasurement(user.api_token, id));
+    dispatch(getSingleMeasurement(user.api_token, id));
   }, [dispatch, id, user]);
 
   const onSubmit = async () => {

@@ -18,14 +18,14 @@ import {
   TOP_DESIGNERS,
   TOP_OFFERS,
   USER_DATA,
-} from '../actions/types';
+} from "../actions/types";
 
 const inialState = {
   user_data: {},
   mens_wear_slider: [],
   mens_wear_cat: [],
   mens_wear_subgrp: [],
-  selected_sub_grp: 'all',
+  selected_sub_grp: "all",
   mens_active_product: [],
   new_collection: [],
   top_designers: {},
@@ -49,7 +49,7 @@ const mainreducer = (state = inialState, action) => {
         ...state,
         user_data: action.payload,
       };
-    case 'LOADING_DATA': {
+    case "LOADING_DATA": {
       return {
         ...state,
         loading: action.payload,

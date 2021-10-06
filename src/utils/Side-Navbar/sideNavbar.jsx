@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from "react";
 
 import Breadcrumb from '../Breadcrumb/breadcrumb';
 import styles from './sideNavBar.module.scss';
@@ -35,9 +36,7 @@ import {
   MenuItem,
   IconButton,
   useMediaQuery,
-  Drawer,
   List,
-  SwipeableDrawer,
   ListItem,
   Accordion,
   AccordionSummary,
@@ -53,6 +52,8 @@ import SearchIcon from '../../Images/icons/search.svg';
 import HamMenuIcon from '../../Images/icons/hamMenu.svg';
 import SearchDarkIcon from '../../Images/icons/searchDark.svg';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { getCategorySubGroup } from "../../Redux/actions/designerHomePage";
+
 const navItems = [
   { name: 'Designers', icon: designersIcon, path: '/designers/' },
   { name: 'Measurement', icon: mesurementIcon, path: '/measurement/' },
@@ -89,13 +90,20 @@ export default function SideNavbar({ main }) {
   const { user_data } = useSelector(state => state.root.main);
   const { user } = useSelector(state => state.root.auth);
 
+
+  useEffect(() => {
+    dispatch(getCategorySubGroup("mens"));
+    dispatch(getCategorySubGroup("womens"));
+    dispatch(getCategorySubGroup("kids"));
+  }, [dispatch]);
+
   const logoutHandler = () => {
     dispatch(logout());
     setLogoutModal(false);
     alert('Logout Successuful');
     history.push('/');
   };
-
+  console.log(category_subgrp);
   return (
     <>
       {main ? (
@@ -141,6 +149,53 @@ export default function SideNavbar({ main }) {
               New arrivals
             </Link>
           </ListItem>
+          {category_subgrp.mens && (
+            <SideMobileMenuAccordian
+              title="Men"
+              slug="mens"
+              category={category_subgrp.mens}
+            />
+          )}
+          {category_subgrp.womens && (
+            <SideMobileMenuAccordian
+              title="Women"
+              slug="womens"
+              category={category_subgrp.womens}
+            />
+          )}
+          {category_subgrp.kids && (
+            <SideMobileMenuAccordian
+              title="Kids"
+              slug="kids"
+              category={category_subgrp.kids}
+            />
+          )}
+          {/* {category_subgrp.mens && (
+            <ListItem>
+              <Accordion className={styles.accordion}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon size="small" />}
+                  className={styles.accordionSummary}
+                >
+                  <span className={styles.menuItem}>
+                    <Link to="wear/mens">Men</Link>
+                  </span>
+                </AccordionSummary>
+                <AccordionDetails className={styles.accordionDetials}>
+                  <div className={styles.subMenuItems}>
+                    {category_subgrp.mens.sub_grp.map(({ categories }, i) =>
+                      categories.map(({ name, id }) => (
+                        <Link key={id} to={`/`}>
+                          {name}
+                        </Link>
+                      ))
+                    )}
+                  </div>
+                </AccordionDetails>
+              </Accordion>
+            </ListItem>
+          )} */}
+
           <ListItem>
             <Accordion className={styles.accordion}>
               <AccordionSummary
@@ -148,7 +203,8 @@ export default function SideNavbar({ main }) {
                 className={styles.accordionSummary}
               >
                 <span className={styles.menuItem}>
-                  <Link to='wear/mens'>Men</Link>
+
+                  <Link to='/wear/mens'>Men</Link>
                 </span>
               </AccordionSummary>
               <AccordionDetails className={styles.accordionDetials}>
@@ -168,7 +224,7 @@ export default function SideNavbar({ main }) {
                 className={styles.accordionSummary}
               >
                 <span className={styles.menuItem}>
-                  <Link to='wear/womens'>Women</Link>
+                  <Link to='/wear/womens'>Women</Link>
                 </span>
               </AccordionSummary>
               <AccordionDetails className={styles.accordionDetials}>
@@ -188,7 +244,7 @@ export default function SideNavbar({ main }) {
                 className={styles.accordionSummary}
               >
                 <span className={styles.menuItem}>
-                  <Link to='wear/kids'>Kids</Link>
+                  <Link to='/wear/kids'>Kids</Link>
                 </span>
               </AccordionSummary>
               <AccordionDetails className={styles.accordionDetials}>
@@ -209,7 +265,8 @@ export default function SideNavbar({ main }) {
               >
                 <span className={styles.menuItem}>
                   {' '}
-                  <Link to='designers'>Designers</Link>
+                  <Link to="/designers">Designers</Link>
+
                 </span>
               </AccordionSummary>
               <AccordionDetails className={styles.accordionDetials}>
@@ -309,3 +366,35 @@ export default function SideNavbar({ main }) {
     </>
   );
 }
+
+const SideMobileMenuAccordian = ({ title, slug, category }) => {
+  console.log(category);
+  return (
+    <ListItem>
+      <Accordion className={styles.accordion}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon size="small" />}
+          className={styles.accordionSummary}
+        >
+          <span className={styles.menuItem}>
+            <Link to={`/wear/${slug}`}>{title}</Link>
+          </span>
+        </AccordionSummary>
+        <AccordionDetails className={styles.accordionDetials}>
+          <div className={styles.subMenuItems}>
+            {category.sub_grp.map(({ categories }, i) =>
+              categories.map(({ name, id }) => (
+                <Link
+                  key={id}
+                  to={`/designers-product-page/${slug}/${name.toLowerCase()}`}
+                >
+                  {name.toUpperCase()}
+                </Link>
+              ))
+            )}
+          </div>
+        </AccordionDetails>
+      </Accordion>
+    </ListItem>
+  );
+};

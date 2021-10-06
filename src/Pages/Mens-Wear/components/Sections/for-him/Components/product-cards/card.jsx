@@ -17,18 +17,16 @@ export default function ProductCard({ data }) {
       <div className={styles.imgContainer}>
         <Link to={{ pathname: `/product-description/${data.slug}` }}>
           <LazyLoadingImg image={data.feature_image} />
-          {/* <img src={data.feature_image} alt='product' /> */}
         </Link>
       </div>
       <div className={styles.productDetails}>
         <Link to={{ pathname: `/product-description/${data.slug}` }}>
           <span className={styles.productName}>{data.brand}</span>
         </Link>
-        <span className={styles.productDesc}>
-          {data.description ? data.description : data.title}
-        </span>
+        <span className={styles.productDesc}>{data.title}</span>
         <p className={styles.productPrice}>
           <span>
+            {data.currency_symbol}
             {data.has_offer
               ? data.offer_price
               : data.custom_price >= 1

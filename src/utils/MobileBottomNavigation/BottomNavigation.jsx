@@ -13,8 +13,12 @@ import { ReactComponent as Categories } from "../../Images/bottomNav/categories.
 import { ReactComponent as Measurement } from "../../Images/bottomNav/measurement.svg";
 import { ReactComponent as Explore } from "../../Images/bottomNav/explore.svg";
 import { ReactComponent as Profile } from "../../Images/bottomNav/profile.svg";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import useLogin from "../../LoginSceens/useLogin";
 
 const BottomNavigation = () => {
+  const dispatch = useDispatch();
   const details = [
     {
       title: "Home",
@@ -62,16 +66,19 @@ const BottomNavigation = () => {
     setScroll(window.scrollY);
   };
 
+  const { isAuthenticated } = useSelector((state) => state.root.auth);
+  const { login_Model_Show } = useLogin();
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
   }, [scroll]);
-  // const profileFnc = () => {
-  //   if (Object.keys(user_data)?.length != 0) {
-  //     history.push('/profile');
-  //   } else {
-  //     login_Model_Show();
-  //   }
-  // };
+
+  const profileFnc = () => {
+    if (isAuthenticated) {
+      history.push("/profile");
+    } else {
+      login_Model_Show();
+    }
+  };
   return (
     <div
       className={styles.NavContainer}
@@ -117,17 +124,21 @@ const BottomNavigation = () => {
       })}
 
       <>
-        <SwipeableDrawer
-          anchor={"right"}
-          open={isDrawerOpen2}
-          onClose={toggleDrawer("right", false)}
-          onOpen={toggleDrawer("right", true)}
-          transitionDuration={600}
-        >
-          <div>
-            <SideNavbar />
-          </div>
-        </SwipeableDrawer>
+        {isAuthenticated ? (
+          <SwipeableDrawer
+            anchor={"right"}
+            open={isDrawerOpen2}
+            onClose={toggleDrawer("right", false)}
+            onOpen={toggleDrawer("right", true)}
+            transitionDuration={600}
+          >
+            <div>
+              <SideNavbar />
+            </div>
+          </SwipeableDrawer>
+        ) : (
+          <p></p>
+        )}
         <SwipeableDrawer
           anchor={"left"}
           open={isDrawerOpen}

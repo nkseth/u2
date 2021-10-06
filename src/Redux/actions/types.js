@@ -84,3 +84,11 @@ export const GET_FILTERED_PRODUCT = "GET_FILTERED_PRODUCT";
 
 //Product Description Page
 export const GET_PRODUCT = "GET_PRODUCT";
+
+//Products
+export const GET_PRODUCTS_REQUEST = "GET_PRODUCTS_REQUEST";
+export const GET_PRODUCTS_SUCCESS = "GET_PRODUCTS_SUCCESS";
+export const GET_PRODUCTS_FAIL = "GET_PRODUCTS_FAIL";
+
+//errors
+export const CLEAR_ERRORS = "CLEAR_ERRORS";

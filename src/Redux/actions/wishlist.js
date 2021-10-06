@@ -26,7 +26,7 @@ export const getWishList = (token) => async (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(data.data);
+    // console.log(data.data);
     if (data.data) {
       dispatch({ type: GET_WISHLIST, payload: data.data });
     }

@@ -1,7 +1,7 @@
 import { GET_FILTERED_PRODUCT, GET_FILTER_LIST } from "../actions/types";
 
 export const filterCategoryReducer = (
-  initialState = { filters: {} },
+  initialState = { filters: null },
   action
 ) => {
   const { type, payload } = action;

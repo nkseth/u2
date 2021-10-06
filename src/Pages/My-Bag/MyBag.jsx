@@ -64,20 +64,21 @@ export default function MyBag() {
     } else dispatch(getCartItems());
   }, [dispatch, cart]);
 
-  const fetch_data = async () => {
-    try {
-      const { data: val } = await common_axios.get('/carts');
+  // const fetch_data = async () => {
+  //   try {
+  //     const { data: val } = await common_axios.get("/carts");
 
-      console.log(val);
-      if (val.data) {
-        setValue(val?.data[0]);
-        setData(val?.data[0]?.items);
-        dispatch(setOrderSumm(val?.data[0] ? val?.data[0] : {}));
-      }
-    } catch (e) {
-      console.log(e.response?.data);
-    }
-  };
+
+  //     console.log(val);
+  //     if (val.data) {
+  //       setValue(val?.data[0]);
+  //       setData(val?.data[0]?.items);
+  //       dispatch(setOrderSumm(val?.data[0] ? val?.data[0] : {}));
+  //     }
+  //   } catch (e) {
+  //     console.log(e.response?.data);
+  //   }
+  // };
 
   const add_quantity = async (item, index) => {
     setLoading(true);
@@ -356,7 +357,8 @@ export default function MyBag() {
                                 onClick={() => toggleRemoveModal(item)}
                                 className={styles.RemoveBTN}
                               >
-                                Remove item{' '}
+                                Remove item
+
                               </Button>
                             </div>
                           </div>
@@ -399,7 +401,9 @@ export default function MyBag() {
                   </div>
                   <div>
                     <label>Service charges</label>
-                    <span>{value?.taxes}</span>
+                    <span>
+                      {value?.taxes}({value?.taxrate})
+                    </span>
                   </div>
                   <div>
                     <label>Delivery charges</label>

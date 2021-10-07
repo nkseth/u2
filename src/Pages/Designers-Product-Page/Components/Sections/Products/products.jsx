@@ -10,7 +10,7 @@ import {
   Button,
   Drawer,
 } from '@material-ui/core';
-
+import Loader from '../../../../../utils/Loader/Loader';
 import cx from 'classnames';
 import ProductCard from '../../product-card/card';
 import Filter from '../Filter/filter';
@@ -20,9 +20,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getWishList } from '../../../../../Redux/actions/wishlist';
 export default function ProductsSection(props) {
   const dispatch = useDispatch();
+  const { products, loading } = props;
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [products, setProducts] = useState(true);
 
   const tabViewPro = useMediaQuery('(max-width:835px)');
   const tabView = useMediaQuery('(max-width:550px)');
@@ -30,16 +31,44 @@ export default function ProductsSection(props) {
   const [sortBy, setSortBy] = useState('');
   const [isFilterOpen, setFilterOpen] = useState(false);
 
-  const setValue = async props => {
-    setIsLoading(true);
-    setProducts(props.products);
-    setIsLoading(false);
-  };
+  // const setValue = async props => {
+  //   setIsLoading(true);
+  //   setProducts(props.products);
+  //   setIsLoading(false);
+  // };
   const { user, isAuthenticated } = useSelector(state => state.root.auth);
+  const [temp, setTemp] = useState();
 
   const handleSort = e => {
     setSortBy(e.target.value);
+    if (e.target.value === 'lowToHigh') {
+      setTemp(products.sort((a, b) => a.price - b.price));
+    }
+
+    if (e.target.value === 'highToLow') {
+      setTemp(
+        products.sort((a, b) => {
+          if (b.custom_price >= 1) {
+            return b.custom_price - a.custom_price;
+          }
+          if (b.readymade_price >= 1) {
+            return b.readymade_price - a.readymade_price;
+          }
+          return b.price - a.price;
+        })
+      );
+    } else {
+      return setTemp(
+        products.sort((a, b) => {
+          return b.title.localeCompare(a.name);
+        })
+      );
+    }
   };
+
+  useEffect(() => {
+    // setProducts(temp);
+  }, [sortBy]);
 
   const toggleDrawer = (anchor, open) => event => {
     if (
@@ -56,7 +85,7 @@ export default function ProductsSection(props) {
   useEffect(() => {
     if (isAuthenticated) dispatch(getWishList(user.api_token));
 
-    setValue(props);
+    // setValue(props);
   }, [props, dispatch, isAuthenticated, user]);
 
   return (
@@ -143,8 +172,10 @@ export default function ProductsSection(props) {
             </Select>
           </FormControl>
         </Grid>
-        {isLoading ? (
-          <p>Loading</p>
+        {loading ? (
+          <div style={{ margin: 'auto' }}>
+            <Loader height={'200px'} />
+          </div>
         ) : (
           <div className={styles.productsGrid}>
             {products?.map((value, index) => {

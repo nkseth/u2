@@ -74,6 +74,7 @@ export const ADD_TO_BAG = "ADD_TO_BAG";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 
 //User Authentication
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const LOAD_USER = "LOAD_USER";

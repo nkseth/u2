@@ -76,7 +76,11 @@ function DesignerProductPage({ match }) {
                 {!filters ? (
                   <Loader />
                 ) : (
-                  <Filter filters={filters} filterProduct={filterProduct} />
+                  <Filter
+                    filters={filters}
+                    filterProduct={filterProduct}
+                    type={type}
+                  />
                 )}
               </div>
             </div>

@@ -1,8 +1,9 @@
 import common_axios from "../../utils/axios.config";
-import { LOAD_USER, LOGIN, LOGOUT } from "./types";
+import { LOAD_USER, LOGIN, LOGIN_REQUEST, LOGOUT } from "./types";
 
 export const login = (userCreds) => async (dispatch) => {
   try {
+    dispatch({ type: LOGIN_REQUEST });
     const { data } = await common_axios.post("/auth/login", userCreds);
 
     if (data.data) {

@@ -19,6 +19,7 @@ import useLogin from '../../LoginSceens/useLogin';
 
 const BottomNavigation = () => {
   const dispatch = useDispatch();
+
   const details = [
     {
       title: 'Home',
@@ -45,8 +46,11 @@ const BottomNavigation = () => {
   const history = useHistory();
   const mobileView = useMediaQuery('(max-width:550px)');
   const location = useLocation();
-  const [currency, setCurrency] = useState('INR');
-  const toggleDrawer = (anchor, open) => event => {
+
+  const [currency, setCurrency] = useState("INR");
+  const [showUserOption, setShowUserOption] = useState(false);
+
+  const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
       event.type === 'keydown' &&
@@ -66,7 +70,8 @@ const BottomNavigation = () => {
     setScroll(window.scrollY);
   };
 
-  const { isAuthenticated } = useSelector(state => state.root.auth);
+
+  const { isAuthenticated, loading } = useSelector((state) => state.root.auth);
   const { login_Model_Show } = useLogin();
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -74,8 +79,9 @@ const BottomNavigation = () => {
 
   const profileFnc = () => {
     if (isAuthenticated) {
-      // history.push('/profile');
-      setDrawerOpen2(true);
+
+      setShowUserOption(true);
+      // history.push("/profile");
     } else {
       login_Model_Show();
     }
@@ -140,6 +146,7 @@ const BottomNavigation = () => {
         ) : (
           <p></p>
         )}
+
         <SwipeableDrawer
           anchor={'left'}
           open={isDrawerOpen}

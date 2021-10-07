@@ -25,6 +25,7 @@ export default function ProductCard({ image, item }) {
         <span className={styles.productDesc}>{item.title}</span>
         <p className={styles.productPrice}>
           <span>
+            {item.currency_symbol}
             {item.has_offer
               ? item.offer_price
               : item.custom_price >= 1

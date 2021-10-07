@@ -52,7 +52,8 @@ function DesignerProductPage({ match }) {
     dispatch(getFilterList());
   }, [slug, dispatch, isAuthenticated, user, error, productList, type]);
   useEffect(() => {
-    dispatch(getProducts(type, { slug }));
+    if (type) dispatch(getProducts(type, { slug }));
+    else dispatch(getProducts(null, { slug }));
   }, []);
   const filterProduct = (filterData) => {
     console.log(filterData);
@@ -68,7 +69,15 @@ function DesignerProductPage({ match }) {
                 <div style={{ width: "200%", marginLeft: 15 }}>
                   <Breadcrumb
                     path={`Products /`}
-                    activePath={`${type} / ${slug}` || "product"}
+                    activePath={
+                      type
+                        ? slug
+                          ? `${type} / ${slug}`
+                          : `${type}`
+                        : slug
+                        ? `${slug}`
+                        : "product"
+                    }
                   />
                 </div>
               )}

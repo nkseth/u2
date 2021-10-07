@@ -4,28 +4,42 @@ import { Link, useHistory } from "react-router-dom";
 import CustomDivider from "../../../../utils/Custom Divider/divider";
 import styles from "./card.module.scss";
 
-export default function OrdersCard({ order }) {
+export default function OrdersCard({ item, orderId }) {
+  // console.log(item);
   const history = useHistory();
   const mobileView = useMediaQuery("(max-width:550px)");
-  const img =
-    "https://www.figma.com/file/3feKLdzH2SEin23kTS0pjx/image/a96652a274f8f44a8fc9d72801987378591d2bc0";
   return (
     <div className={styles.mainContainer}>
       <CustomDivider />
       <div className={styles.cardContainer}>
-        <img src={img} alt="product" />
+        <img
+          src={item.product.image}
+          alt={item.title}
+          style={{ cursor: "pointer" }}
+          onClick={() => history.push(`/product-description/${item.slug}`)}
+        />
         <div className={styles.detailsDiv}>
           <div className={styles.detailTwo}>
             <span>Quantity:</span>
-            <span>01</span>
+            <span>{item.quantity}</span>
           </div>
           <div className={styles.detailOne}>
             <div>
-              <span>10 Current Fashion Trends You’ll Be Wearing in 2021</span>
-              <span>Solid Straight Kurta</span>
+              <span
+                style={{ cursor: "pointer" }}
+                onClick={() =>
+                  history.push(`/product-description/${item.slug}`)
+                }
+              >
+                {item.title}
+              </span>
+              {/* <span>Solid Straight Kurta</span> */}
             </div>
 
-            <div>{order.grand_total}</div>
+            <div>
+              {item.currency_symbol}
+              {item.total}
+            </div>
           </div>
           {mobileView && (
             <div
@@ -36,22 +50,28 @@ export default function OrdersCard({ order }) {
                 lineHeight: "36px",
               }}
             >
-              ₹559
+              {item.currency_symbol}
+              {item.total}
             </div>
           )}
 
-          <div className={styles.detailThree}>
-            {/* <span>Order Detail</span> */}
-            <span></span>
-            <Link>Cancel Order</Link>
-          </div>
           <Button
-            onClick={() => history.push(`/trackorder`)}
+            onClick={() => history.push(`/trackorder/${orderId}`)}
             className={styles.trackBtn}
             variant="contained"
           >
             Track Order
           </Button>
+          <div className={styles.detailThree}>
+            <span
+              style={{ cursor: "pointer" }}
+              // onClick={() => history.push(`/rate_order/${orderId}`)}
+            >
+              Order Detail
+            </span>
+            <span></span>
+            {/* <Link>Cancel Order</Link> */}
+          </div>
         </div>
       </div>
     </div>

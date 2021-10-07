@@ -8,13 +8,13 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     (state) => state.root.auth
   );
   return (
-    !loading && (
+    loading === false && (
       <div>
         <Route
           {...rest}
           render={(props) => {
-            if (loading) return <Loader />;
-            if (!isAuthenticated) return <Redirect to="/" />;
+            // if (loading) return <Loader />;
+            // if (!isAuthenticated) return <Redirect to="/" />;
             return <Component {...props} />;
           }}
         />

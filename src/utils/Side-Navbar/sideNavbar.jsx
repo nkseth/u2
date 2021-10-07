@@ -282,13 +282,15 @@ export default function SideNavbar({ main }) {
               {navItems?.map((item) => (
                 <div
                   className={styles.navItem}
-                  // onClick={
-                  //   item.fun
-                  //     ? () => {
-                  //         setLogoutModal(!logoutModal);
-                  //       }
-                  //     : {}
-                  // }
+                  onClick={
+                    item.fun
+                      ? () => {
+                          setLogoutModal(!logoutModal);
+                        }
+                      : (e) => {
+                          e.preventDefault();
+                        }
+                  }
                 >
                   <img src={item.icon} alt={item.name} />
                   <Link to={item.path}>{item.name}</Link>

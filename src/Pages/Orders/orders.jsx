@@ -8,19 +8,26 @@ import styles from "./orders.module.scss";
 import Rating from "./components/rating";
 import { useSelector, useDispatch } from "react-redux";
 import { get_orders } from "../../Redux/actions/profile";
+import { getOrderDetail } from "../../Redux/actions/order";
 
-export default function Orders() {
+export default function Orders({
+  match: {
+    params: { orderid },
+  },
+}) {
   const dispatch = useDispatch();
   const { orders } = useSelector((state) => state.root.profile);
+  const { order } = useSelector((state) => state.root.orderDetail);
+  console.log(order);
 
   useEffect(() => {
     dispatch(get_orders());
-  }, [dispatch]);
+    dispatch(getOrderDetail(orderid));
+  }, [dispatch, orderid]);
 
   const set_is_reviewed = (id) => {
     dispatch(get_orders());
   };
-  console.log(orders);
   const mobileView = useMediaQuery("(max-width:550px)");
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
@@ -54,7 +61,44 @@ export default function Orders() {
           }}
         >
           {tabView && <Breadcrumb path="Home /" activePath="Profile" />}
-          {orders.data?.map((item) => {
+          {orders?.map((item) => {
+            return (
+              <>
+                <div className={styles.productDiv}>
+                  <img src={productImg} alt="product" />
+                  <div>
+                    <span className={styles.productHeader}>
+                      {item.items?.length > 0
+                        ? item.items[0].title
+                        : "10 Current Fashion Trends You’ll Be Wearing in 2021"}
+                    </span>
+                    <span className={styles.productDescription}>
+                      {item.items?.length > 0
+                        ? item.items[0]?.description
+                        : "Solid Straight Kurta"}
+                    </span>
+                    <div className={styles.productQuantity}>
+                      <span>Quantity:</span>
+                      <span>{item.quantity}</span>
+                    </div>
+                    <span className={styles.price}>
+                      ₹{Math.round(parseFloat(item.grand_total_raw)).toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+                {!item.feedback_id ? (
+                  <Rating
+                    item={item}
+                    set_is_reviewed={set_is_reviewed}
+                    id={item.items?.length > 0 ? item.items[0].id : null}
+                  />
+                ) : null}
+              </>
+            );
+          })}
+
+          {/* delete */}
+          {orders?.map((item) => {
             return (
               <>
                 <div className={styles.productDiv}>

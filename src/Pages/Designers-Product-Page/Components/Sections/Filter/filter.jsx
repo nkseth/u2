@@ -85,7 +85,7 @@ export default function Filter(props) {
     sleeveLength: filters?.sleevs_length[0]?.value || null,
     length: filters?.length[0]?.value || null,
     // design: "New",
-    shopByOccasion: filters.occasions[0]?.value,
+    shopByOccasion: filters?.occasions[0]?.value,
   });
 
   // const [selectedFilter, setSelectedFilter] = useState({
@@ -149,7 +149,7 @@ export default function Filter(props) {
     if (filterName === "price") filterProduct({ range: selectedFilter.price });
     if (filterName === "itemType") {
       if (value === "customize") filterProduct({ product_type: "customize" });
-      else filterProduct();
+      else filterProduct({ product_type: "readymade" });
     }
 
     if (filterName === "discount") {

@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Breadcrumb from '../../../../../utils/Breadcrumb/breadcrumb';
 
 
+
 import {
   Accordion,
   AccordionSummary,
@@ -77,7 +78,6 @@ export default function Filter(props) {
   };
 
   const [selectedFilter, setSelectedFilter] = useState({
-
     // categories: "All categories",
     price: filters?.price_range[0].name || 0,
     itemType: '',
@@ -87,7 +87,6 @@ export default function Filter(props) {
     size: filters?.size[0]?.value || null,
     sleeveLength: filters?.sleevs_length[0]?.value || null,
     length: filters?.length[0]?.value || null,
-
     // design: "New",
     shopByOccasion: filters.occasions[0]?.value,
   });
@@ -108,7 +107,6 @@ export default function Filter(props) {
 
   const clearFilter = () => {
     setSelectedFilter({
-
       // categories: "All categories",
       price: filters?.price_range[0].name,
       itemType: "readymade",
@@ -177,6 +175,7 @@ export default function Filter(props) {
         attribute_id: `${newFabric.attribute_id}`,
       });
     }
+
 
     if (filterName === "size") {
       console.log(filterName, value);

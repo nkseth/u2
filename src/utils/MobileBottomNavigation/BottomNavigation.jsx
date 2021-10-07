@@ -147,6 +147,7 @@ const BottomNavigation = () => {
           <p></p>
         )}
 
+
         <SwipeableDrawer
           anchor={'left'}
           open={isDrawerOpen}

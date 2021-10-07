@@ -153,6 +153,7 @@ export default function Filter(props) {
     if (filterName === "itemType") {
       if (value === "customize") filterProduct({ product_type: "customize" });
       else filterProduct({ product_type: "readymade" });
+
     }
 
     if (filterName === "discount") {

@@ -12,8 +12,12 @@
     }
   }
 }
-.OverLay{
+.OverLay {
   width: 100vw;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
   height: 100vh;
   position: absolute;
   background: rgba(0, 0, 0, 0);
@@ -26,6 +30,10 @@
   width: 100%;
   z-index: 10;
   display: flex;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -53,10 +61,14 @@
 }
 
 @media screen and (max-width: 768px) {
+  .Container {
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
   .Container_Box {
     display: grid;
     width: 90vw;
-    height: 95vh;
+    height: 80vh;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
   }

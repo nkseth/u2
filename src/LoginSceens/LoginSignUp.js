@@ -1,33 +1,37 @@
-import Login from "./Login";
-import styles from "./style/Container.module.scss";
-import Image from "../Images/login/MaskGroup.png";
-import { IconButton } from "@material-ui/core";
-import { CloseRounded } from "@material-ui/icons";
-import ResetPassword from "./ResetPassword";
-import CreateNewPassword from "./CreateNewPassword";
-import EmailSent from "./EmailSent";
-import SignUp from "./SignUp";
-import SignUpVarify from "./SignUpVarify";
-import ForgotPasswordOtp from "./ForgotPasswordOtp";
-import LoginOtpVarify from "./LoginOtpVarify";
-import useLogin from "./useLogin";
-import { Switch, Route } from "react-router-dom";
-import { motion } from "framer-motion";
+import Login from './Login';
+import styles from './style/Container.module.scss';
+import Image from '../Images/login/MaskGroup.png';
+import { IconButton } from '@material-ui/core';
+import { CloseRounded } from '@material-ui/icons';
+import ResetPassword from './ResetPassword';
+import CreateNewPassword from './CreateNewPassword';
+import EmailSent from './EmailSent';
+import SignUp from './SignUp';
+import SignUpVarify from './SignUpVarify';
+import ForgotPasswordOtp from './ForgotPasswordOtp';
+import LoginOtpVarify from './LoginOtpVarify';
+import useLogin from './useLogin';
+import { Switch, Route } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 const Container = ({ children }) => {
   const { login_Model_Hide } = useLogin();
+  useEffect(() => {
+    // document.body.style.overflow = 'hidden';
+  }, []);
   return (
     <div className={styles.Container}>
       <motion.div
         initial={{ scale: 0, rotate: 10 }}
         animate={{ rotate: 0, scale: 1 }}
         transition={{
-          type: "spring",
+          type: 'spring',
           stiffness: 200,
-          damping: 18
+          damping: 18,
         }}
       >
-        <div className={styles.OverLay} onClick={login_Model_Hide}  ></div>
+        <div className={styles.OverLay} onClick={login_Model_Hide}></div>
         <div className={styles.Container_Box}>
           <div className={styles.Close_Button}>
             <IconButton onClick={login_Model_Hide}>
@@ -35,7 +39,7 @@ const Container = ({ children }) => {
             </IconButton>
           </div>
           <div className={styles.Container_Image}>
-            <img src={Image} alt="login" />
+            <img src={Image} alt='login' />
           </div>
           {children}
         </div>
@@ -48,21 +52,21 @@ const Page_Login = () => {
   const { loginMode } = useLogin();
   const Login_Mode = () => {
     switch (loginMode) {
-      case "Login":
+      case 'Login':
         return <Login />;
-      case "LoginOtpVarify":
+      case 'LoginOtpVarify':
         return <LoginOtpVarify />;
-      case "SignUp":
+      case 'SignUp':
         return <SignUp />;
-      case "SignUpVarify":
+      case 'SignUpVarify':
         return <SignUpVarify />;
-      case "ForgotPasswordOtp":
+      case 'ForgotPasswordOtp':
         return <ForgotPasswordOtp />;
-      case "ResetPassword":
+      case 'ResetPassword':
         return <ResetPassword />;
-      case "EmailSent":
+      case 'EmailSent':
         return <EmailSent />;
-      case "CreateNewPassword":
+      case 'CreateNewPassword':
         return <CreateNewPassword />;
       default:
         return null;

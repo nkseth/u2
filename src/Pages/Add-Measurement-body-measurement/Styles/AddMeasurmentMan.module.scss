@@ -87,6 +87,34 @@
 
 //Buttons
 
+.help {
+  color: #857250;
+  margin-left: auto;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  h1 {
+    font-family: DM Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 1px;
+    text-align: left;
+    text-align: center;
+  }
+}
+
+.help_btn {
+  width: 61px;
+  height: 61px;
+  border-radius: 50%;
+  background: white;
+
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 .TabsButtonActive2 {
   width: 50%;
   background-color: #857250 !important;

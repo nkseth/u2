@@ -4,7 +4,7 @@ import ProductCard from './Components/product-cards/card';
 import CustomSection from '../../../../../utils/Custom Section/section';
 import styles from './forHim.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-
+import Loader from '../../../../../utils/Loader/Loader';
 //Images
 import Main from './Components/Images/Main.jpg';
 
@@ -16,6 +16,7 @@ import { useHistory } from 'react-router-dom';
 import { LazyLoadingImg } from '../../../../../utils/LazyLoading';
 
 export default function ForHimSection({ type, loading }) {
+  // const loading = false;
   const customView = useMediaQuery('(max-width:1235px)');
   const tabView = useMediaQuery('(max-width:768px)');
   const tabViewPro = useMediaQuery('(max-width:835px)');
@@ -158,7 +159,9 @@ export default function ForHimSection({ type, loading }) {
                   sm={4}
                   md={4}
                   justifyContent={'space-between'}
-                ></Grid>
+                >
+                  <Loader products />
+                </Grid>
               ))
             : mens_active_product?.slice(0, 6).map(item => {
                 return (

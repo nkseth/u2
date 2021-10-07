@@ -36,8 +36,7 @@ export default function ProductCard(props) {
     await setIsLoading(false);
   };
 
-  const add_to_wishlist = (prod) => {
-
+  const add_to_wishlist = prod => {
     if (!user?.api_token)
       return alert('Login first to add the item to wishlist');
     dispatch(addToWishlist(prod.slug, user.api_token));
@@ -45,8 +44,7 @@ export default function ProductCard(props) {
     dispatch(getWishList(user.api_token));
   };
 
-  const remove_from_wishlist = (prod) => {
-
+  const remove_from_wishlist = prod => {
     if (!user?.api_token)
       return alert('Login first to add the item to wishlist');
     const id = prod.id;
@@ -57,7 +55,7 @@ export default function ProductCard(props) {
 
   useEffect(() => {
     if (isAuthenticated && list.length > 0) {
-      const item = list.filter((data) => data.product_id === props.product.id);
+      const item = list.filter(data => data.product_id === props.product.id);
 
       if (item[0]?.product_id) setAddToWishList(true);
     } else setAddToWishList(false);
@@ -105,7 +103,9 @@ export default function ProductCard(props) {
         <Link to={{ pathname: `/product-description/${product.slug}` }}>
           <span className={styles.productName}>{product?.brand}</span>
         </Link>
-        <span className={styles.productDesc}>{product?.title}</span>
+        <span className={styles.productDesc}>
+          {parse(product.description ? product?.title : '')}
+        </span>
 
         <p className={styles.productPrice}>
           {!product.has_offer ? (

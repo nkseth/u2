@@ -5,7 +5,6 @@
   flex-direction: column;
   gap: 0.5rem;
   background: #ffffff;
-  
 }
 
 .Screen_Login_Link {
@@ -115,7 +114,7 @@
     padding: 0.4rem;
     background: #fff;
     &::before {
-      content: "";
+      content: '';
       background-color: #6c6c6c7a;
       width: 150px;
       top: 50%;
@@ -124,7 +123,7 @@
       right: 38px;
     }
     &::after {
-      content: "";
+      content: '';
       background-color: #6c6c6c7a;
       width: 150px;
       top: 50%;
@@ -180,4 +179,3 @@
     color: #718096;
   }
 }
-

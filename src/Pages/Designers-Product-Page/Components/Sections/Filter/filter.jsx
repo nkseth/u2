@@ -148,7 +148,7 @@ export default function Filter(props) {
 
     if (filterName === "price") filterProduct({ range: selectedFilter.price });
     if (filterName === "itemType") {
-      if (value === "customize") filterProduct({ itemType: "customize" });
+      if (value === "customize") filterProduct({ product_type: "customize" });
       else filterProduct();
     }
 

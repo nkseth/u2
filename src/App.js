@@ -78,9 +78,9 @@ function App() {
   const { isLoginModel } = useLogin();
   const dispatch = useDispatch();
   const [cookies, setCookie] = useCookies(["user"]);
-  const { isAuthenticated } = useSelector((state) => state.root.auth);
+  const { isAuthenticated, loading } = useSelector((state) => state.root.auth);
   useEffect(() => {
-    if (!isAuthenticated) dispatch(loadUser());
+    if (!isAuthenticated && !loading) dispatch(loadUser());
   }, []);
 
   //const { category_grp } = useSelector(state => state.root.main)

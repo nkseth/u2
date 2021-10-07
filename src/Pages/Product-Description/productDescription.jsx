@@ -38,7 +38,13 @@ import Bag from "./addedbag.gif";
 // } from '../../../../Redux/actions/wishlist';
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 // Product Type
-import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData";
+import { Product_Type, Product_Type_Change } from '../../Redux/MeasuremantData';
+import ReactImageMagnify from 'react-image-magnify';
+// import {
+//   MagnifierContainer,
+//   MagnifierZoom,
+//   MagnifierPreview,
+// } from 'react-image-magnifiers';
 
 const CustomRadio = withStyles({
   root: {
@@ -211,7 +217,7 @@ export default function ProductDescription({ match }) {
 
   console.log(product);
   console.log(Product_Type);
-
+  const [imageIdx, setImageIdx] = useState(0);
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection style={{ marginTop: 10, marginBottom: 10 }}>
@@ -223,8 +229,8 @@ export default function ProductDescription({ match }) {
       </CustomSection>
       <div className={styles.container}>
         <div className={styles.firstContainer}>
-          <div style={{ width: "100%", position: "relative" }}>
-            <ImageGallery
+          <div style={{ width: '100%' }} className={styles.gallery_container}>
+            {/* <ImageGallery
               items={images}
               showNav={false}
               additionalClass={styles.imagegall}
@@ -234,39 +240,106 @@ export default function ProductDescription({ match }) {
               showFullscreenButton={false}
               useBrowserFullscreen={false}
               showPlayButton={false}
-            />
-            {isAddToWishList ? (
-              <IconButton
-                aria-label="product"
-                onClick={() => {
-                  setAddToWishList((addToWishlist) => !addToWishlist);
+            /> */}
+            <div className={styles.other_imgs}>
+              {images.map((image, i) => {
+                return (
+                  <img
+                    src={image.thumbnail}
+                    className={`${imageIdx === i ? 'active' : ''}`}
+                    style={{
+                      border: `${imageIdx === i ? '2px solid #857250' : ''}`,
+                    }}
+                    alt={image.url}
+                    key={i}
+                    onClick={() => setImageIdx(i)}
+                  />
+                );
+              })}
+            </div>
+            <div className={styles.main_img}>
+              <ReactImageMagnify
+                className={styles.magnifier}
+                {...{
+                  smallImage: {
+                    alt: 'Wristwatch by Ted Baker London',
+                    isFluidWidth: true,
+                    // src: `${imageBaseUrl}wristwatch_1033.jpg`,
+                    src: images[imageIdx]?.original,
+                    // srcSet: this.srcSet,
+                    sizes:
+                      '(min-width: 800px) 33.5vw, (min-width: 415px) 50vw, 100vw ',
+                  },
+                  largeImage: {
+                    alt: '',
+                    src: images[imageIdx]?.original,
+                    // src: `${imageBaseUrl}wristwatch_1200.jpg`,
+                    width: 1200,
+                    height: 1800,
+                  },
+                  // isHintEnabled: true,
                 }}
-                style={{
-                  backgroundColor: "#fff",
-                  position: "absolute",
-                  top: "30px",
-                  right: "20px",
-                }}
-              >
-                <FavoriteIcon style={{ color: "red" }} />
-              </IconButton>
-            ) : (
-              <IconButton
-                aria-label="product"
-                onClick={() => {
-                  setAddToWishList((addToWishlist) => !addToWishlist);
-                }}
-                // className={styles.icons}
-                style={{
-                  backgroundColor: "#fff",
-                  position: "absolute",
-                  top: "30px",
-                  right: "20px",
-                }}
-              >
-                <FavoriteBorderIcon />
-              </IconButton>
-            )}
+              />
+
+              {/* <MagnifierContainer>
+                <div className='example-class'>
+                  <MagnifierPreview imageSrc='https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmxvZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' />
+                </div>
+                <MagnifierZoom
+                  style={{ height: '400px' }}
+                  imageSrc='https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmxvZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+                />
+              </MagnifierContainer> */}
+              {/* <img src={images[imageIdx]?.original} alt='' /> */}
+              {isAddToWishList ? (
+                <IconButton
+                  aria-label='product'
+                  onClick={() => {
+                    setAddToWishList(addToWishlist => !addToWishlist);
+                  }}
+                  style={{
+                    backgroundColor: '#fff',
+                    position: 'absolute',
+                    top: '30px',
+                    right: '20px',
+                  }}
+                >
+                  <FavoriteIcon style={{ color: 'red' }} />
+                </IconButton>
+              ) : (
+                <IconButton
+                  aria-label='product'
+                  onClick={() => {
+                    setAddToWishList(addToWishlist => !addToWishlist);
+                  }}
+                  // className={styles.icons}
+                  style={{
+                    backgroundColor: '#fff',
+                    position: 'absolute',
+                    top: '30px',
+                    right: '20px',
+                  }}
+                >
+                  <FavoriteBorderIcon />
+                </IconButton>
+              )}
+            </div>
+            <div className={styles.other_imgs_tab}>
+              {images.map((image, i) => {
+                return (
+                  <img
+                    src={image.thumbnail}
+                    className={`${imageIdx === i ? 'active' : ''}`}
+                    style={{
+                      border: `${imageIdx === i ? '4px solid #857250' : ''}`,
+                    }}
+                    alt={image.url}
+                    key={i}
+                    onClick={() => setImageIdx(i)}
+                  />
+                );
+              })}
+            </div>
           </div>
           {!mobileView && !tabView && !customView ? (
             <div className={styles.deliveryDiv}>
@@ -283,7 +356,8 @@ export default function ProductDescription({ match }) {
                 variant="contained"
                 color="default"
                 className={styles.checkBtn}
-                onClick={() => history.push("/product-breakdown")}
+
+                // onClick={() => history.push('/product-breakdown')}
               >
                 Check
               </Button>
@@ -462,6 +536,7 @@ export default function ProductDescription({ match }) {
                         : Product_Type === "ready made"
                         ? product.readymade_price >= 1
                           ? product.readymade_price
+
                           : product.price
                         : product.price}
                     </span>
@@ -612,6 +687,7 @@ export default function ProductDescription({ match }) {
                     : Product_Type === "ready made"
                     ? product.readymade_price >= 1
                       ? product.readymade_price
+
                       : product.price
                     : product.price}
                 </span>
@@ -745,6 +821,7 @@ export default function ProductDescription({ match }) {
                     : Product_Type === "ready made"
                     ? product.readymade_price >= 1
                       ? product.readymade_price
+
                       : product.price
                     : product.price}
                 </span>
@@ -895,7 +972,7 @@ export default function ProductDescription({ match }) {
               </Button>
 
               <HtmlTooltipButton
-                open={click}
+                open={isAuthenticated && click}
                 onOpen={() => setClick(true)}
                 onClose={() => setClick(false)}
                 disableFocusListener
@@ -926,7 +1003,8 @@ export default function ProductDescription({ match }) {
                 <Button
                   onClick={() => {
                     add_bag_handler();
-                    setClick((click) => !click);
+
+                    setClick(click => isAuthenticated && !click);
                   }}
                   variant="outlined"
                   color="default"
@@ -960,7 +1038,8 @@ export default function ProductDescription({ match }) {
                     variant="contained"
                     color="default"
                     className={styles.checkBtn}
-                    onClick={() => history.push("/product-breakdown")}
+
+                    // onClick={() => history.push('/product-breakdown')}
                   >
                     Check
                   </Button>
@@ -987,7 +1066,8 @@ export default function ProductDescription({ match }) {
                     variant="contained"
                     color="default"
                     className={styles.checkBtn}
-                    onClick={() => history.push("/product-breakdown")}
+
+                    // onClick={() => history.push('/product-breakdown')}
                   >
                     Check
                   </Button>

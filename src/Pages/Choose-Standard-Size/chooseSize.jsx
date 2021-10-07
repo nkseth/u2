@@ -129,7 +129,7 @@ export default function ChooseStandardSize() {
       if (data)
         history.push(`/add-measurement-body-measurement-${Gender}/${data}`);
     } catch (e) {
-      console.log(e.response?.data);
+      console.log(e);
       return Promise.reject(e);
     }
   };

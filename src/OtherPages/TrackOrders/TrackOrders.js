@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./TrackOrders.module.scss";
 import { Button } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router";
+import { trackOrders } from "../../Redux/actions/order";
+
 const TrackOrders = () => {
+  const orderId = useLocation().pathname.slice(12);
+  console.log(orderId);
+  const { isAuthenticated, user } = useSelector((state) => state.root.auth);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(trackOrders(orderId, user.api_token));
+  }, [dispatch, user, orderId]);
   return (
     <div className={styles.TrackOrders}>
       <TimeLine

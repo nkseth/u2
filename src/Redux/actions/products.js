@@ -10,10 +10,10 @@ export const getProducts = (type, filter) => async (dispatch) => {
   try {
     console.log(type, filter);
     dispatch({ type: GET_PRODUCTS_REQUEST });
-    const { data } = await common_axios.post(
-      `/getCategoryByProduct/${type}`,
-      filter
-    );
+    let url = "";
+    if (type) url = `/getCategoryByProduct/${type}`;
+    else url = `/getCategoryByProduct`;
+    const { data } = await common_axios.post(url, filter);
     console.log(data.data);
     if (data.data) {
       dispatch({

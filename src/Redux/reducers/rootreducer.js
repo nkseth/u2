@@ -34,6 +34,7 @@ import {
 
 import { cartItemsReducer } from "./myBagReducer";
 import { productsReducer } from "./productsReducer";
+import { trackOrderReducer, orderDetailReducer } from "./orderReducer";
 
 const rootreducer = combineReducers({
   addToBag: addToBagReducer,
@@ -49,6 +50,7 @@ const rootreducer = combineReducers({
   login: loginreducer,
   main: mainreducer,
   measurement: measurement_reducer,
+  orderDetail: orderDetailReducer,
   popularCategory: popularCategoryReducer,
   productDetail: productDetailReducer,
   products: productsReducer,
@@ -58,6 +60,7 @@ const rootreducer = combineReducers({
   topCategory: topCategoryReducer,
   topDesigner: topDesignerReducer,
   topSeasonOffers: topSeasonOffersReducer,
+  trackOrder: trackOrderReducer,
   trending: trendingReducer,
   updateWishlist: updateWishlistReducer,
   wishlist: getWishListReducer,

@@ -9,7 +9,7 @@ const TopCategory = () => {
   const dispatch = useDispatch();
 
   const { category_grp } = useSelector((state) => state.root.main);
-  // console.log(category_grp);
+  console.log(category_grp);
   const baseStyle = {};
   return (
     <div className={styles.main}>
@@ -25,6 +25,7 @@ const TopCategory = () => {
             image={category_grp.men?.cover_image}
             categories={category_grp.men?.categories}
             slug={category_grp.men?.slug}
+            type="mens"
           />
         )}
         {category_grp.women && (
@@ -34,6 +35,7 @@ const TopCategory = () => {
             image={category_grp.women?.cover_image}
             categories={category_grp.women?.categories}
             slug={category_grp.women?.slug}
+            type="womens"
           />
         )}
         {category_grp.kids && (
@@ -43,6 +45,7 @@ const TopCategory = () => {
             image={category_grp.kids?.cover_image}
             categories={category_grp.kids?.categories}
             slug={category_grp.kids?.slug}
+            type="kids"
           />
         )}
       </div>
@@ -52,7 +55,7 @@ const TopCategory = () => {
 
 export default TopCategory;
 
-const CategoryItems = ({ heading, details, image, categories, slug }) => {
+const CategoryItems = ({ heading, details, image, categories, slug, type }) => {
   return (
     <>
       <div className={styles.TopCategory_Items}>
@@ -77,7 +80,9 @@ const CategoryItems = ({ heading, details, image, categories, slug }) => {
                 <Link
                   style={{ padding: "1rem 0" }}
                   key={item.id.toString()}
-                  to={{ pathname: `/designers-product-page/${item.slug}` }}
+                  to={{
+                    pathname: `/designers-product-page/${type}/${item.slug}`,
+                  }}
                 >
                   <p>{item.name}</p>
                 </Link>

@@ -8,6 +8,8 @@ import {
   GET_SINGLE_MEASUREMENT,
   LOWER_BODY,
   SAVE_MEASUREMENT,
+  SAVE_MEASUREMENT_REQUEST,
+  SAVE_MEASUREMENT_SUCCESS,
   UPPER_BODY,
 } from "./types";
 
@@ -30,6 +32,7 @@ export const getAllMeasurements = (token) => async (dispatch) => {
 
 export const saveMeasurement = (token, sizeData) => async (dispatch) => {
   try {
+    dispatch({ type: SAVE_MEASUREMENT_REQUEST });
     const headers = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -42,8 +45,8 @@ export const saveMeasurement = (token, sizeData) => async (dispatch) => {
     );
     console.log(data);
 
-    if (data) {
-      dispatch({ type: SAVE_MEASUREMENT, payload: data });
+    if (data.data) {
+      dispatch({ type: SAVE_MEASUREMENT_SUCCESS, payload: data.data });
     }
   } catch (err) {
     console.log(err?.response?.data);

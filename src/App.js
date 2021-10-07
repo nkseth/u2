@@ -78,9 +78,9 @@ function App() {
   const { isLoginModel } = useLogin();
   const dispatch = useDispatch();
   const [cookies, setCookie] = useCookies(["user"]);
-  const { isAuthenticated } = useSelector((state) => state.root.auth);
+  const { isAuthenticated, loading } = useSelector((state) => state.root.auth);
   useEffect(() => {
-    if (!isAuthenticated) dispatch(loadUser());
+    if (!isAuthenticated && !loading) dispatch(loadUser());
   }, []);
 
   //const { category_grp } = useSelector(state => state.root.main)
@@ -174,7 +174,7 @@ function App() {
         <Route path="/offers" component={Offers} />
 
         <ProtectedRoute path="/all-orders" component={AllOrders} />
-        <ProtectedRoute path="/orders" component={Orders} />
+        <ProtectedRoute path="/rate_order/:orderid" component={Orders} />
         {/* other dev pages */}
         {/* <Route path='/designers-home-page' component={DesignersHomePage} /> */}
         {/* <Route path='/about' component={AboutPage} /> */}
@@ -192,7 +192,11 @@ function App() {
         <ProtectedRoute path={"/wishlist"} component={Page_Wishlist} />
         <ProtectedRoute path={"/payments"} component={Page_Payments} />
         <ProtectedRoute path={"/editpayments"} component={Page_EditPayments} />
-        <ProtectedRoute path={"/trackorder"} component={Page_TrackOrders} />
+        <ProtectedRoute
+          path="/trackorder/:orderid"
+          component={Page_TrackOrders}
+          exact
+        />
         <ProtectedRoute path={"/review"} component={Page_Review} />
         <Route path={"/chatexpert"} component={Page_ChatExpert} />
         {/* Without Side Bar */}

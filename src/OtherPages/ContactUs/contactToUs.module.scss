@@ -1,0 +1,41 @@
+.headingGroup {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  grid-gap: 31px;
+  gap: 31px;
+  margin-top: 40px;
+}
+.heading {
+  font-family: DM Serif Display;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 48px;
+  letter-spacing: 0.03em;
+  color: #857250;
+}
+.horizontal {
+  height: 1px;
+  background-color: rgb(157, 142, 115);
+  flex: 1 1 0%;
+}
+.sectionHead {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #3b3b3b;
+}
+.sectionText {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #6c6c6c;
+}
+.textGroup {
+  display: flex;
+  margin-top: 20px;
+}

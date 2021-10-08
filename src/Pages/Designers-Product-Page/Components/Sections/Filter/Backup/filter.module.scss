@@ -77,8 +77,6 @@
 
 .accordionDetials {
   background: #fffffff2 !important;
-  display: flex;
-  flex-direction: column !important;
   //   padding: 0 !important;
   //   box-shadow: none !important;
   //   border-radius: 0 !important;
@@ -119,20 +117,6 @@
   }
 }
 
-.colorsLabel {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  span {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-  }
-  p {
-    text-transform: capitalize;
-  }
-}
 @media screen and (max-width: 768px) {
   .header {
     > span:last-child {

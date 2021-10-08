@@ -1,0 +1,48 @@
+.subheading{
+    font-family: DM Serif Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 36px;
+    color: #0A0A0A;
+}
+.subheadinggroup{
+    margin-top: 39px;
+    margin-bottom: 34px;
+}
+.labels{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.16px;
+    color: #0A0A0A;
+}
+.top{
+    margin-top: 30px;
+}
+.textfield{
+    width: 100%;
+}
+.textfieldgroup{
+    display: flex;
+}
+.flextextfield{
+    width: 50%;
+}
+.left{
+    margin-left: 25px;
+}
+.group{
+    width: 65%;
+}
+.groupTab{
+    width: 100%;
+}
+.textfieldgroupmobile{
+    display: unset;
+}
+.flextextfieldMobile{
+    width: 100%;
+}

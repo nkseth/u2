@@ -35,8 +35,10 @@ import {
 import { cartItemsReducer } from "./myBagReducer";
 import { productsReducer } from "./productsReducer";
 import { trackOrderReducer, orderDetailReducer } from "./orderReducer";
+import { addressReducer, paymentReducer } from "./checkoutReducer";
 
 const rootreducer = combineReducers({
+  address: addressReducer,
   addToBag: addToBagReducer,
   allMeasurements: allMeasurementsReducer,
   auth: authReducer,
@@ -51,6 +53,7 @@ const rootreducer = combineReducers({
   main: mainreducer,
   measurement: measurement_reducer,
   orderDetail: orderDetailReducer,
+  payment: paymentReducer,
   popularCategory: popularCategoryReducer,
   productDetail: productDetailReducer,
   products: productsReducer,

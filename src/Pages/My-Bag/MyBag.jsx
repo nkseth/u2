@@ -30,7 +30,6 @@ import { setOrderSumm } from "../../Redux/actions/homepage";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 // Product Type
-import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData";
 import { addToWishlist } from "../../Redux/actions/wishlist";
 import { getCartItems } from "../../Redux/actions/myBag";
 import { SuccessPopUp } from "../../utils/Popups/SuccessPopup";
@@ -42,81 +41,41 @@ export default function MyBag() {
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   const [quantity, setQuantity] = useState(1);
-  const [data, setData] = useState([]);
-  const [value, setValue] = useState({});
-  const [loading, setLoading] = useState(false);
-  const img =
-    "https://images.pexels.com/photos/1096849/pexels-photo-1096849.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=165";
-
   const { user } = useSelector((state) => state.root.auth);
   const { cart } = useSelector((state) => state.root.cartItems);
   const [click, setClick] = useState(false);
   // const [cartMessage, setCartMessage] = useState('Added To bag');
-
+  console.log(cart);
   // console.log(cart);
 
   useEffect(() => {
-    // fetch_data();
-    if (cart) {
-      setValue(cart);
-      setData(cart?.items);
-      dispatch(setOrderSumm(cart ? cart : {}));
-    } else dispatch(getCartItems());
-  }, [dispatch, cart]);
-
-  // const fetch_data = async () => {
-  //   try {
-  //     const { data: val } = await common_axios.get("/carts");
-
-  //     console.log(val);
-  //     if (val.data) {
-  //       setValue(val?.data[0]);
-  //       setData(val?.data[0]?.items);
-  //       dispatch(setOrderSumm(val?.data[0] ? val?.data[0] : {}));
-  //     }
-  //   } catch (e) {
-  //     console.log(e.response?.data);
-  //   }
-  // };
+    dispatch(getCartItems());
+  }, [dispatch]);
 
   const add_quantity = async (item, index) => {
-    setLoading(true);
-
-    console.log("running");
-
     try {
-      const { data: res } = await common_axios.put(`/cart/${value.id}/update`, {
+      const { data } = await common_axios.put(`/cart/${cart.id}/update`, {
         item: item.id,
         quantity: parseInt(item.quantity) + 1,
       });
-      console.log(res);
-      data[index].quantity = parseInt(data[index].quantity) + 1;
+      console.log(data);
       dispatch(getCartItems());
-      setLoading(false);
     } catch (e) {
-      setLoading(false);
       alert(e?.response?.data?.message);
       console.log(e?.response?.data);
     }
   };
 
   const substract_quantity = async (item, index) => {
-    setLoading(true);
     if (parseInt(item.quantity) > 1) {
       try {
-        const { data: res } = await common_axios.put(
-          `/cart/${value.id}/update`,
-          {
-            item: item.id,
-            quantity: parseInt(item.quantity) - 1,
-          }
-        );
-        let val = data;
-        val[index].quantity = parseInt(val[index].quantity) - 1;
+        const { data } = await common_axios.put(`/cart/${cart.id}/update`, {
+          item: item.id,
+          quantity: parseInt(item.quantity) - 1,
+        });
+        console.log(data);
         dispatch(getCartItems());
-        setLoading(false);
       } catch (e) {
-        setLoading(false);
         alert(e?.response?.data?.message);
         console.log(e?.response?.data);
       }
@@ -131,23 +90,16 @@ export default function MyBag() {
   const remove_item = async (item) => {
     console.log("🚀 ~ file: MyBag.jsx ~ line 130 ~ MyBag ~ item", item);
     try {
-      console.log(value.id, item.id);
-      const { data } = await common_axios.post(
-        "/cart/removeItem",
-        {
-          cart: value.id,
+      console.log(cart.id, item.id);
+      const { data } = await common_axios.delete("/cart/removeItem", {
+        data: {
+          cart: cart.id,
           item: item.id,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${user.api_token}`,
-          },
-        }
-      );
+      });
       console.log(data);
       if (data.message === "Item has been removed") {
-        setData(data.cart?.items);
-        setValue(data.cart);
+        dispatch(getCartItems());
       }
     } catch (error) {
       console.log(error.response);
@@ -156,8 +108,7 @@ export default function MyBag() {
   };
 
   const on_checkout = () => {
-    dispatch(setOrderSumm(value));
-
+    dispatch(setOrderSumm(cart));
     history.push("/order-summary");
   };
 
@@ -189,307 +140,293 @@ export default function MyBag() {
 
   return (
     <Container bottomDivider footerOnTabMob>
-      <CustomSection
-        style={mobileView ? { marginTop: "0" } : { marginTop: "3em" }}
-      >
-        <Breadcrumb path="Home" activePath="/ My Bag" />
+      {cart && (
+        <CustomSection
+          style={mobileView ? { marginTop: "0" } : { marginTop: "3em" }}
+        >
+          <Breadcrumb path="Home" activePath="/ My Bag" />
 
-        <div></div>
-        <div className={styles.container}>
-          {mobileView ? (
-            <>
-              <MobileProductMyBag
-                data={data}
-                img={img}
-                quantity={quantity}
-                setQuantity={setQuantity}
-                add_quantity={add_quantity}
-                substract_quantity={substract_quantity}
-                remove_item={remove_item}
-                move_to_wishlist={move_to_wishlist}
-                Product_Type={Product_Type}
-              />
-            </>
-          ) : (
-            //This component ⬆ is for mobile view dont itterate this component go inside it and ittetrate there
-            <div className={styles.firstContainer}>
-              <div>My Bag</div>
-              {data?.map((item, index) => {
-                var last = index + 1 === data.length;
-
-                if (item.product.isVariant) Product_Type_Change("Readymade");
-                else Product_Type_Change("Customized");
-
-                return (
-                  <>
-                    {removeModal && (
-                      <SuccessPopUp
-                        toggle={toggleRemoveModal}
-                        width={"500px"}
-                        height={"100px"}
-                      >
-                        <h2 style={{ margin: "1rem 0" }}>
-                          Are you sure you want to remove this Item?
-                        </h2>
-                        <Button
-                          class={styles.removeModelButton}
-                          onClick={() => {
-                            remove_item(removeItem);
-                            toggleRemoveModal();
-                          }}
+          <div></div>
+          <div className={styles.container}>
+            {mobileView ? (
+              <>
+                <MobileProductMyBag
+                  data={cart.items}
+                  quantity={quantity}
+                  setQuantity={setQuantity}
+                  add_quantity={add_quantity}
+                  substract_quantity={substract_quantity}
+                  remove_item={remove_item}
+                  move_to_wishlist={move_to_wishlist}
+                />
+              </>
+            ) : (
+              //This component ⬆ is for mobile view dont itterate this component go inside it and ittetrate there
+              <div className={styles.firstContainer}>
+                <div>My Bag</div>
+                {cart.items?.map((item, index) => {
+                  return (
+                    <>
+                      {removeModal && (
+                        <SuccessPopUp
+                          toggle={toggleRemoveModal}
+                          width={"500px"}
+                          height={"100px"}
                         >
-                          Yes
-                        </Button>
-                        <Button
-                          class={styles.removeModelButton}
-                          onClick={() => {
-                            toggleRemoveModal();
-                          }}
-                        >
-                          No
-                        </Button>
-                      </SuccessPopUp>
-                    )}
-                    <div className={styles.BorderContainer}>
-                      <div className={styles.mainContainer}>
-                        <img
-                          src={item.product?.image}
-                          alt="product"
-                          className={styles.image}
-                        />
-                        <div>
-                          <div style={{ alignItems: "flex-start" }}>
-                            <p className={styles.proName}>{item.title}</p>
-                            <p>{item.color}</p>
-
-                            <div>
-                              <h4>Product Type</h4>
-
-                              {item.product.isVariant ? (
-                                <p>Readymade</p>
-                              ) : (
-                                <p>Customized</p>
-                              )}
-
-                              <HtmlTooltipButton
-                                open={click}
-                                onOpen={() => setClick(true)}
-                                onClose={() => setClick(false)}
-                                disableFocusListener
-                                disableHoverListener
-                                // className={styles.ProductSelectorHelpBtn}
-                                // style={{ color: '#6a5b40', backgroundColor: 'red' }}
-                                title={
-                                  <React.Fragment>
-                                    <h3
-                                      style={{
-                                        padding: 10,
-                                        display: "flex",
-                                        alignItems: "center",
-                                        gap: "0.2rem",
-                                      }}
-                                    >
-                                      <FavoriteIcon /> Add To wishlist
-                                    </h3>
-                                  </React.Fragment>
-                                }
-                                placement={"top"}
-                                arrow
-                              >
-                                <Button
-                                  onClick={() => {
-                                    move_to_wishlist(item);
-                                    setClick((click) => !click);
-                                  }}
-                                  className={styles.MoveToWishListBtn}
-                                >
-                                  Move to Wishlist
-                                </Button>
-                              </HtmlTooltipButton>
-                            </div>
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "center",
+                          <h2 style={{ margin: "1rem 0" }}>
+                            Are you sure you want to remove this Item?
+                          </h2>
+                          <Button
+                            class={styles.removeModelButton}
+                            onClick={() => {
+                              remove_item(removeItem);
+                              toggleRemoveModal();
                             }}
                           >
-                            <p>
-                              {item.currency_symbol}
-                              {item.hasOffer
-                                ? item.offer_price
-                                : item.unit_price}
-                            </p>
-                            <p className={styles.priceSpanP}>
-                              <span className={styles.priceSpan}>
-                                {item.price}
-                              </span>
-                              <span className={styles.priceSpan1}>
-                                {item.discount}
-                              </span>
-                            </p>
-                            <div className={styles.quan}>
-                              <p>Quantity</p>
-                              <div style={{ display: "flex" }}>
-                                <Button
-                                  className={styles.addBtn}
-                                  onClick={() =>
-                                    substract_quantity(item, index)
+                            Yes
+                          </Button>
+                          <Button
+                            class={styles.removeModelButton}
+                            onClick={() => {
+                              toggleRemoveModal();
+                            }}
+                          >
+                            No
+                          </Button>
+                        </SuccessPopUp>
+                      )}
+                      <div className={styles.BorderContainer}>
+                        <div className={styles.mainContainer}>
+                          <img
+                            src={item.product?.image}
+                            alt="product"
+                            className={styles.image}
+                          />
+                          <div>
+                            <div style={{ alignItems: "flex-start" }}>
+                              <p className={styles.proName}>{item.title}</p>
+                              <p>{item.color}</p>
+
+                              <div>
+                                <h4>Product Type</h4>
+                                <p>{item.type.toUpperCase()}</p>
+                                <HtmlTooltipButton
+                                  open={click}
+                                  onOpen={() => setClick(true)}
+                                  onClose={() => setClick(false)}
+                                  disableFocusListener
+                                  disableHoverListener
+                                  // className={styles.ProductSelectorHelpBtn}
+                                  // style={{ color: '#6a5b40', backgroundColor: 'red' }}
+                                  title={
+                                    <React.Fragment>
+                                      <h3
+                                        style={{
+                                          padding: 10,
+                                          display: "flex",
+                                          alignItems: "center",
+                                          gap: "0.2rem",
+                                        }}
+                                      >
+                                        <FavoriteIcon /> Add To wishlist
+                                      </h3>
+                                    </React.Fragment>
                                   }
+                                  placement={"top"}
+                                  arrow
                                 >
-                                  <RemoveIcon style={{ width: "15px" }} />
-                                </Button>
-                                <div className={styles.quantity}>
-                                  {item.quantity}
+                                  <Button
+                                    onClick={() => {
+                                      move_to_wishlist(item);
+                                      setClick((click) => !click);
+                                    }}
+                                    className={styles.MoveToWishListBtn}
+                                  >
+                                    Move to Wishlist
+                                  </Button>
+                                </HtmlTooltipButton>
+                              </div>
+                            </div>
+
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                              }}
+                            >
+                              <p>
+                                {item.currency_symbol}
+                                {item.hasOffer
+                                  ? item.offer_price
+                                  : item.unit_price}
+                              </p>
+                              <p className={styles.priceSpanP}>
+                                <span className={styles.priceSpan}>
+                                  {item.price}
+                                </span>
+                                <span className={styles.priceSpan1}>
+                                  {item.discount}
+                                </span>
+                              </p>
+                              <div className={styles.quan}>
+                                <p>Quantity</p>
+                                <div style={{ display: "flex" }}>
+                                  <Button
+                                    className={styles.addBtn}
+                                    onClick={() =>
+                                      substract_quantity(item, index)
+                                    }
+                                  >
+                                    <RemoveIcon style={{ width: "15px" }} />
+                                  </Button>
+                                  <div className={styles.quantity}>
+                                    {item.quantity}
+                                  </div>
+                                  <Button
+                                    className={styles.removeBtn}
+                                    onClick={() => add_quantity(item, index)}
+                                  >
+                                    <AddIcon style={{ width: "15px" }} />
+                                  </Button>
                                 </div>
                                 <Button
-                                  className={styles.removeBtn}
-                                  onClick={() => add_quantity(item, index)}
+                                  // onClick={() => remove_item(item)}
+                                  onClick={() => toggleRemoveModal(item)}
+                                  className={styles.RemoveBTN}
                                 >
-                                  <AddIcon style={{ width: "15px" }} />
+                                  Remove item
                                 </Button>
                               </div>
-                              <Button
-                                // onClick={() => remove_item(item)}
-                                onClick={() => toggleRemoveModal(item)}
-                                className={styles.RemoveBTN}
-                              >
-                                Remove item
-                              </Button>
                             </div>
                           </div>
                         </div>
+                        {item.type === "customise" ? (
+                          <div
+                            style={{ marginLeft: "1em", marginBottom: "1em" }}
+                          >
+                            <CheckOutProcess />
+                          </div>
+                        ) : (
+                          <></>
+                        )}
                       </div>
-                      {Product_Type === "Customised" ? (
-                        <div style={{ marginLeft: "1em", marginBottom: "1em" }}>
-                          <CheckOutProcess />
-                        </div>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                  </>
-                );
-              })}
-              <div>
-                <div></div>
-              </div>
-            </div>
-          )}
-          <div className={styles.lastContainer}>
-            <div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <div>Price Details</div>
-                <div className={styles.BtnlIkediv}>{data?.length}</div>
-              </div>
-              <div>
-                <CustomDivider style={{ backgroundColor: "#CECECE" }} />
-                <div className={styles.selectedProductPrices}>
-                  <div>
-                    <label>Product Price</label>
-
-                    <span>
-                      {/* {value?.items[0].currency_symbol} */}
-                      {value?.total}
-                    </span>
-                  </div>
-                  <div>
-                    <label>Service charges</label>
-                    <span>
-                      {value?.taxes}({value?.taxrate})
-                    </span>
-                  </div>
-                  <div>
-                    <label>Delivery charges</label>
-                    <span>{value?.delivery_charge || "$0"}</span>
-                  </div>
-                </div>
-                <CustomDivider style={{ backgroundColor: "#CECECE" }} />
-              </div>
-              <div className={styles.totalAmtDiv}>
+                    </>
+                  );
+                })}
                 <div>
-                  <label>Total Amount</label>
-                  <span>{value?.grand_total}</span>
+                  <div></div>
                 </div>
               </div>
-              <CustomDivider style={{ backgroundColor: "#CECECE" }} />
+            )}
+            <div className={styles.lastContainer}>
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <div>Price Details</div>
+                  <div className={styles.BtnlIkediv}>{cart.items.length}</div>
+                </div>
+                <div>
+                  <CustomDivider style={{ backgroundColor: "#CECECE" }} />
+                  <div className={styles.selectedProductPrices}>
+                    <div>
+                      <label>Product Price</label>
 
-              <Accordion
-                style={{
-                  boxShadow: "none",
-                  margin: "1rem 0",
-                  padding: 0,
-                }}
-                className={styles.applyCouponDiv}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  IconButtonProps={{ size: "small" }}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
+                      <span>₹{cart?.total}</span>
+                    </div>
+                    <div>
+                      <label>Service charges</label>
+                      <span>
+                        ₹{cart?.taxes}({cart?.taxrate})
+                      </span>
+                    </div>
+                    <div>
+                      <label>Delivery charges</label>
+                      <span>₹{cart?.delivery_charge || "₹0"}</span>
+                    </div>
+                  </div>
+                  <CustomDivider style={{ backgroundColor: "#CECECE" }} />
+                </div>
+                <div className={styles.totalAmtDiv}>
+                  <div>
+                    <label>Total Amount</label>
+                    <span>₹{cart?.grand_total}</span>
+                  </div>
+                </div>
+                <CustomDivider style={{ backgroundColor: "#CECECE" }} />
+
+                <Accordion
                   style={{
                     boxShadow: "none",
-                    margin: 0,
+                    margin: "1rem 0",
                     padding: 0,
                   }}
+                  className={styles.applyCouponDiv}
                 >
-                  <div className={styles.accordionHeader}>
-                    <CouponIcon />
-                    <span>Apply Coupon</span>
-                  </div>
-                </AccordionSummary>
-                <AccordionDetails
-                  style={{
-                    background: "#fff",
-                    padding: ".8rem 0",
-                  }}
-                >
-                  <div className={styles.couponInputDiv}>
-                    <div>
-                      <input
-                        type="text"
-                        placeholder="Enter coupon code"
-                        name="coupon"
-                      />
-                      <span>Apply</span>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    IconButtonProps={{ size: "small" }}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                    style={{
+                      boxShadow: "none",
+                      margin: 0,
+                      padding: 0,
+                    }}
+                  >
+                    <div className={styles.accordionHeader}>
+                      <CouponIcon />
+                      <span>Apply Coupon</span>
                     </div>
-                    <button onClick={toggleModal}>View offers</button>
-                  </div>
-                </AccordionDetails>
-              </Accordion>
-              <Button
-                variant="text"
-                color="default"
-                className={styles.placeOrderBtn}
-                onClick={() => on_checkout()}
-              >
-                Checkout
-              </Button>
+                  </AccordionSummary>
+                  <AccordionDetails
+                    style={{
+                      background: "#fff",
+                      padding: ".8rem 0",
+                    }}
+                  >
+                    <div className={styles.couponInputDiv}>
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Enter coupon code"
+                          name="coupon"
+                        />
+                        <span>Apply</span>
+                      </div>
+                      <button onClick={toggleModal}>View offers</button>
+                    </div>
+                  </AccordionDetails>
+                </Accordion>
+                <Button
+                  variant="text"
+                  color="default"
+                  className={styles.placeOrderBtn}
+                  onClick={() => on_checkout()}
+                >
+                  Checkout
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      </CustomSection>
+        </CustomSection>
+      )}
       {modal && <SuccessPopUp toggle={toggleModal} />}
     </Container>
   );
 }
 
 const MobileProductMyBag = ({
-  img,
   substract_quantity,
   add_quantity,
   data,
   remove_item,
   move_to_wishlist,
-  Product_Type,
 }) => {
   console.log(data);
 
@@ -526,9 +463,7 @@ const MobileProductMyBag = ({
                       }}
                     >
                       <p className={styles.PType1}>Product Type</p>
-                      <p className={styles.PType2}>
-                        {item.product?.isVariant ? "Readymade" : "Customized"}
-                      </p>
+                      <p className={styles.PType2}>{item.type.toUpperCase()}</p>
                     </div>
                   </div>
                   <div className={styles.quan}>
@@ -552,7 +487,10 @@ const MobileProductMyBag = ({
 
                   <div className={styles.PriceMobile}>
                     <p className={styles.PriceMobileMain}>
-                      {item.hasOffer ? item.offer_price : item.unit_price}
+                      {item.currency_symbol}
+                      {item.type === "readymade"
+                        ? item.readymade_price
+                        : item.custom_price}
                     </p>
                     <p className={styles.PriceMobileOriginal}>
                       {item.unit_price}
@@ -572,12 +510,12 @@ const MobileProductMyBag = ({
                     onClick={() => remove_item(item)}
                     className={styles.RemoveBTNMobile}
                   >
-                    Remove item{" "}
+                    Remove item
                   </Button>
                 </div>
               </div>
             </div>
-            {Product_Type === "Customised" ? <CheckOutProcess /> : <></>}
+            {item.type === "customise" ? <CheckOutProcess /> : <></>}
           </div>
         );
       })}

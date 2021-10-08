@@ -38,8 +38,8 @@ import Bag from "./addedbag.gif";
 // } from '../../../../Redux/actions/wishlist';
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 // Product Type
-import { Product_Type, Product_Type_Change } from '../../Redux/MeasuremantData';
-import ReactImageMagnify from 'react-image-magnify';
+import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData";
+import ReactImageMagnify from "react-image-magnify";
 // import {
 //   MagnifierContainer,
 //   MagnifierZoom,
@@ -229,7 +229,7 @@ export default function ProductDescription({ match }) {
       </CustomSection>
       <div className={styles.container}>
         <div className={styles.firstContainer}>
-          <div style={{ width: '100%' }} className={styles.gallery_container}>
+          <div style={{ width: "100%" }} className={styles.gallery_container}>
             {/* <ImageGallery
               items={images}
               showNav={false}
@@ -246,9 +246,9 @@ export default function ProductDescription({ match }) {
                 return (
                   <img
                     src={image.thumbnail}
-                    className={`${imageIdx === i ? 'active' : ''}`}
+                    className={`${imageIdx === i ? "active" : ""}`}
                     style={{
-                      border: `${imageIdx === i ? '2px solid #857250' : ''}`,
+                      border: `${imageIdx === i ? "2px solid #857250" : ""}`,
                     }}
                     alt={image.url}
                     key={i}
@@ -262,16 +262,16 @@ export default function ProductDescription({ match }) {
                 className={styles.magnifier}
                 {...{
                   smallImage: {
-                    alt: 'Wristwatch by Ted Baker London',
+                    alt: "Wristwatch by Ted Baker London",
                     isFluidWidth: true,
                     // src: `${imageBaseUrl}wristwatch_1033.jpg`,
                     src: images[imageIdx]?.original,
                     // srcSet: this.srcSet,
                     sizes:
-                      '(min-width: 800px) 33.5vw, (min-width: 415px) 50vw, 100vw ',
+                      "(min-width: 800px) 33.5vw, (min-width: 415px) 50vw, 100vw ",
                   },
                   largeImage: {
-                    alt: '',
+                    alt: "",
                     src: images[imageIdx]?.original,
                     // src: `${imageBaseUrl}wristwatch_1200.jpg`,
                     width: 1200,
@@ -293,31 +293,31 @@ export default function ProductDescription({ match }) {
               {/* <img src={images[imageIdx]?.original} alt='' /> */}
               {isAddToWishList ? (
                 <IconButton
-                  aria-label='product'
+                  aria-label="product"
                   onClick={() => {
-                    setAddToWishList(addToWishlist => !addToWishlist);
+                    setAddToWishList((addToWishlist) => !addToWishlist);
                   }}
                   style={{
-                    backgroundColor: '#fff',
-                    position: 'absolute',
-                    top: '30px',
-                    right: '20px',
+                    backgroundColor: "#fff",
+                    position: "absolute",
+                    top: "30px",
+                    right: "20px",
                   }}
                 >
-                  <FavoriteIcon style={{ color: 'red' }} />
+                  <FavoriteIcon style={{ color: "red" }} />
                 </IconButton>
               ) : (
                 <IconButton
-                  aria-label='product'
+                  aria-label="product"
                   onClick={() => {
-                    setAddToWishList(addToWishlist => !addToWishlist);
+                    setAddToWishList((addToWishlist) => !addToWishlist);
                   }}
                   // className={styles.icons}
                   style={{
-                    backgroundColor: '#fff',
-                    position: 'absolute',
-                    top: '30px',
-                    right: '20px',
+                    backgroundColor: "#fff",
+                    position: "absolute",
+                    top: "30px",
+                    right: "20px",
                   }}
                 >
                   <FavoriteBorderIcon />
@@ -329,9 +329,9 @@ export default function ProductDescription({ match }) {
                 return (
                   <img
                     src={image.thumbnail}
-                    className={`${imageIdx === i ? 'active' : ''}`}
+                    className={`${imageIdx === i ? "active" : ""}`}
                     style={{
-                      border: `${imageIdx === i ? '4px solid #857250' : ''}`,
+                      border: `${imageIdx === i ? "4px solid #857250" : ""}`,
                     }}
                     alt={image.url}
                     key={i}
@@ -487,23 +487,39 @@ export default function ProductDescription({ match }) {
                         />
                       </MenuItem>
                     ) : null}
-                    {/* {ProductType === 'custom' ?
-                      product.product.isVariant?
-                      <MenuItem value={"ready made"}>
-                        <FormControlLabel
-                          className={ProductDrop ? styles.FormControlLabel : styles.FormControlLabelS}
-                          checked={ProductType === "ready made"}
-                          control={<CustomRadio />}
-                          label={
-                            <div className={styles.ProductSelector}>
-                              <p className={styles.ChoicesBtnsLabels}>Ready Made</p>
-                              {ProductDrop ? <h6 className={styles.ProductSelectorh6} >Lorem ipsum is placeholder text commonly used in the graphicer  text commonly used in the graphic</h6> : <></>}
-                            </div>}
-                        />
-                      </MenuItem> : null
-                      :
+                    {ProductType === "custom" ? (
+                      product.product.isVariant ? (
+                        <MenuItem value={"ready made"}>
+                          <FormControlLabel
+                            className={
+                              ProductDrop
+                                ? styles.FormControlLabel
+                                : styles.FormControlLabelS
+                            }
+                            checked={ProductType === "ready made"}
+                            control={<CustomRadio />}
+                            label={
+                              <div className={styles.ProductSelector}>
+                                <p className={styles.ChoicesBtnsLabels}>
+                                  Ready Made
+                                </p>
+                                {ProductDrop ? (
+                                  <h6 className={styles.ProductSelectorh6}>
+                                    Lorem ipsum is placeholder text commonly
+                                    used in the graphicer text commonly used in
+                                    the graphic
+                                  </h6>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                            }
+                          />
+                        </MenuItem>
+                      ) : null
+                    ) : (
                       <></>
-                    } */}
+                    )}
                   </Select>
                   <HtmlTooltip
                     // className={styles.ProductSelectorHelpBtn}
@@ -536,7 +552,6 @@ export default function ProductDescription({ match }) {
                         : Product_Type === "ready made"
                         ? product.readymade_price >= 1
                           ? product.readymade_price
-
                           : product.price
                         : product.price}
                     </span>
@@ -687,7 +702,6 @@ export default function ProductDescription({ match }) {
                     : Product_Type === "ready made"
                     ? product.readymade_price >= 1
                       ? product.readymade_price
-
                       : product.price
                     : product.price}
                 </span>
@@ -821,7 +835,6 @@ export default function ProductDescription({ match }) {
                     : Product_Type === "ready made"
                     ? product.readymade_price >= 1
                       ? product.readymade_price
-
                       : product.price
                     : product.price}
                 </span>
@@ -1004,7 +1017,7 @@ export default function ProductDescription({ match }) {
                   onClick={() => {
                     add_bag_handler();
 
-                    setClick(click => isAuthenticated && !click);
+                    setClick((click) => isAuthenticated && !click);
                   }}
                   variant="outlined"
                   color="default"

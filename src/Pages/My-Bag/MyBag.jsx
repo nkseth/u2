@@ -98,7 +98,7 @@ export default function MyBag() {
         },
       });
       console.log(data);
-      if (data.message === "Item has been removed") {
+      if (data.message) {
         dispatch(getCartItems());
       }
     } catch (error) {
@@ -140,13 +140,12 @@ export default function MyBag() {
 
   return (
     <Container bottomDivider footerOnTabMob>
-      {cart && (
-        <CustomSection
-          style={mobileView ? { marginTop: "0" } : { marginTop: "3em" }}
-        >
-          <Breadcrumb path="Home" activePath="/ My Bag" />
+      <CustomSection
+        style={mobileView ? { marginTop: "0" } : { marginTop: "3em" }}
+      >
+        <Breadcrumb path="Home" activePath="/ My Bag" />
 
-          <div></div>
+        {cart && (
           <div className={styles.container}>
             {mobileView ? (
               <>
@@ -414,8 +413,8 @@ export default function MyBag() {
               </div>
             </div>
           </div>
-        </CustomSection>
-      )}
+        )}
+      </CustomSection>
       {modal && <SuccessPopUp toggle={toggleModal} />}
     </Container>
   );

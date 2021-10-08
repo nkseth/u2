@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Button, Radio, IconButton } from "@material-ui/core";
 import Container from "../../utils/Container/container";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import InputField from "./Components/Input-Field/inputField";
 import CustomDivider from "../../utils/Custom Divider/divider";
 import CustomSection from "../../utils/Custom Section/section";
@@ -13,11 +13,9 @@ import styles from "./payment.module.scss";
 //icons
 import AddIcon from "@material-ui/icons/Add";
 import { ReactComponent as PayPalIcon } from "../../Images/icons/paypal.svg";
-import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData";
 import tick from "./success.gif";
 import close from "./close.svg";
 import { useDispatch, useSelector } from "react-redux";
-import common_axios from "../../utils/axios.config";
 import { getCartItems } from "../../Redux/actions/myBag";
 import Loader from "../../utils/Loader/Loader";
 import { clearCheckoutErrors, setPayment } from "../../Redux/actions/checkout";
@@ -56,45 +54,28 @@ export default function Payment({
       dispatch(clearCheckoutErrors());
     }
     dispatch(getCartItems());
-    const unsub = () => {
-      if (selectedPaymentMethod !== "upi") {
-        setSelectedUPIApp("");
-      }
-    };
-    unsub();
-    return unsub;
-  }, [selectedPaymentMethod]);
+    // unsub();
+    // return unsub;
+  }, [dispatch, info, error, loading]);
 
-  const { order_summ } = useSelector((state) => state.root.main);
-
-  console.log(order_summ);
+  const unsub = () => {
+    if (selectedPaymentMethod !== "upi") {
+      setSelectedUPIApp("");
+    }
+  };
 
   const initiate_payment = (e) => {
     e.preventDefault();
     console.log(info, error);
     const address = localStorage.getItem("primaryAddress");
-    dispatch(setPayment(cart.id, address));
-
-    // try {
-    //   const { data } = await common_axios.put(`/order/${order_summ.id}/save`, {
-    //     address_id: id,
-    //     payment_method_id: "3",
-    //   });
-    //   console.log(data);
-    //   setPaymentDone(!PaymentDone);
-    // } catch (e) {
-    //   console.log(e?.response?.data);
-    // }
+    console.log(cart.id);
+    if (cart || cart.id) dispatch(setPayment(cart.id, address));
+    else alert("You cart is empty.");
   };
 
   return (
     <Container bottomDivider footerOnTabMob>
       <div className={styles.PaymentHeader}>
-        {/* <div className={styles.Navbar}>
-          <h1>LOGO</h1>
-          <CustomDivider />
-        </div> */}
-
         {PaymentDone ? (
           <SuccessPopUp
             history={history}
@@ -128,7 +109,7 @@ export default function Payment({
                     />
                     <p>
                       <span>UPI</span>
-                      <span>( Phone pe / Payatm / Googlepay)</span>
+                      <span>( Phone pe / Paytm / Googlepay)</span>
                     </p>
                   </div>
                   <div>
@@ -286,9 +267,9 @@ export function SuccessPopUp({ toggle, title, text, history, payment }) {
       <div className={styles.SecondLayer} onClick={toggle}></div>
       <div className={styles.Popup}>
         <IconButton className={styles.CloseBtn} onClick={toggle}>
-          <img src={close} />
+          <img src={close} alt="close" />
         </IconButton>
-        <img src={tick} />
+        <img src={tick} alt="tick" />
         <h1>{title}</h1>
         <p>{text}</p>
         {payment ? (
@@ -301,7 +282,10 @@ export function SuccessPopUp({ toggle, title, text, history, payment }) {
             >
               Add measurement
             </Button>
-            <Button className={styles.LaterBTN} onClick={toggle}>
+            <Button
+              className={styles.LaterBTN}
+              onClick={() => history.push(`/all-orders`)}
+            >
               I’ll do it later
             </Button>
           </>

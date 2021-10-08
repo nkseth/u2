@@ -53,10 +53,39 @@ export default function OrderSummary() {
   console.log(cart);
 
   useEffect(() => {
-    // fetch_data();
     dispatch(getCartItems());
     dispatch(getAddress());
   }, [dispatch]);
+
+  const add_quantity = async (item, index) => {
+    try {
+      const { data } = await common_axios.put(`/cart/${cart.id}/update`, {
+        item: item.id,
+        quantity: parseInt(item.quantity) + 1,
+      });
+      console.log(data);
+      dispatch(getCartItems());
+    } catch (e) {
+      alert(e?.response?.data?.message);
+      console.log(e?.response?.data);
+    }
+  };
+
+  const substract_quantity = async (item, index) => {
+    if (parseInt(item.quantity) > 1) {
+      try {
+        const { data } = await common_axios.put(`/cart/${cart.id}/update`, {
+          item: item.id,
+          quantity: parseInt(item.quantity) - 1,
+        });
+        console.log(data);
+        dispatch(getCartItems());
+      } catch (e) {
+        alert(e?.response?.data?.message);
+        console.log(e?.response?.data);
+      }
+    } else alert("Quantity can't be less than 1");
+  };
 
   const checkout = (e) => {
     e.preventDefault();
@@ -96,7 +125,7 @@ export default function OrderSummary() {
                   <p>Order Details</p>
                   <CustomDivider />
                 </div>
-                {cart.items?.map((item) => {
+                {cart.items?.map((item, index) => {
                   return (
                     <>
                       <div className={styles.mainDiv}>
@@ -111,14 +140,16 @@ export default function OrderSummary() {
                             {/* <p>Solid colour</p> */}
                             <p className={styles.protype}>Product Type</p>
                             <p className={styles.protypetext}>
-                              {item.product.isVariant ? "Readymade" : "Custom"}
+                              {item.type.toUpperCase()}
                             </p>
                             <div className={styles.quan}>
                               <p>Quantity</p>
                               <div style={{ display: "flex" }}>
                                 <Button
                                   className={styles.addBtn}
-                                  // onClick={() => substract_quantity(item, index)}
+                                  onClick={() =>
+                                    substract_quantity(item, index)
+                                  }
                                 >
                                   <RemoveIcon style={{ width: "15px" }} />
                                 </Button>
@@ -127,7 +158,7 @@ export default function OrderSummary() {
                                 </div>
                                 <Button
                                   className={styles.removeBtn}
-                                  // onClick={() => add_quantity(item, index)}
+                                  onClick={() => add_quantity(item, index)}
                                 >
                                   <AddIcon style={{ width: "15px" }} />
                                 </Button>

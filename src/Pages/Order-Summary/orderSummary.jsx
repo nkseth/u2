@@ -53,6 +53,7 @@ export default function OrderSummary() {
   console.log(cart);
 
   useEffect(() => {
+
     dispatch(getCartItems());
     dispatch(getAddress());
   }, [dispatch]);
@@ -94,6 +95,7 @@ export default function OrderSummary() {
     else localStorage.setItem("primaryAddress", "Address");
     history.push(`/payment/${cart.id}`);
   };
+
   return (
     <Container bottomDivider footerOnTabMob>
       {AddAddress ? <NewAddress setAddAddress={setAddAddress} /> : <></>}
@@ -126,6 +128,7 @@ export default function OrderSummary() {
                   <CustomDivider />
                 </div>
                 {cart.items?.map((item, index) => {
+
                   return (
                     <>
                       <div className={styles.mainDiv}>
@@ -141,6 +144,7 @@ export default function OrderSummary() {
                             <p className={styles.protype}>Product Type</p>
                             <p className={styles.protypetext}>
                               {item.type.toUpperCase()}
+
                             </p>
                             <div className={styles.quan}>
                               <p>Quantity</p>
@@ -150,6 +154,7 @@ export default function OrderSummary() {
                                   onClick={() =>
                                     substract_quantity(item, index)
                                   }
+
                                 >
                                   <RemoveIcon style={{ width: "15px" }} />
                                 </Button>
@@ -159,6 +164,7 @@ export default function OrderSummary() {
                                 <Button
                                   className={styles.removeBtn}
                                   onClick={() => add_quantity(item, index)}
+
                                 >
                                   <AddIcon style={{ width: "15px" }} />
                                 </Button>

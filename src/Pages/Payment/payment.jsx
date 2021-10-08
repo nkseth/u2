@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Button, Radio, IconButton } from "@material-ui/core";
 import Container from "../../utils/Container/container";
 import { useHistory } from "react-router-dom";
+
 import InputField from "./Components/Input-Field/inputField";
 import CustomDivider from "../../utils/Custom Divider/divider";
 import CustomSection from "../../utils/Custom Section/section";
@@ -16,6 +17,7 @@ import { ReactComponent as PayPalIcon } from "../../Images/icons/paypal.svg";
 import tick from "./success.gif";
 import close from "./close.svg";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getCartItems } from "../../Redux/actions/myBag";
 import Loader from "../../utils/Loader/Loader";
 import { clearCheckoutErrors, setPayment } from "../../Redux/actions/checkout";
@@ -44,6 +46,7 @@ export default function Payment({
   const toggle = () => {
     setPaymentDone(false);
   };
+
 
   const { cart } = useSelector((state) => state.root.cartItems);
   const { info, loading, error } = useSelector((state) => state.root.payment);
@@ -76,6 +79,7 @@ export default function Payment({
   return (
     <Container bottomDivider footerOnTabMob>
       <div className={styles.PaymentHeader}>
+
         {PaymentDone ? (
           <SuccessPopUp
             history={history}
@@ -110,6 +114,7 @@ export default function Payment({
                     <p>
                       <span>UPI</span>
                       <span>( Phone pe / Paytm / Googlepay)</span>
+
                     </p>
                   </div>
                   <div>

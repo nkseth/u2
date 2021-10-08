@@ -12,7 +12,7 @@ const Collabrate_With_US = () => {
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's
         </p>
-        <Link to='/Collabrate-as-fashion-designer'>
+        <Link to='/Collabrate-as-vendor'>
           <Button>Learn More</Button>
         </Link>
       </div>

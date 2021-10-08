@@ -16,6 +16,7 @@ import {
   TextField,
   InputAdornment,
   OutlinedInput,
+  Checkbox
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styles from "./filter.module.scss";

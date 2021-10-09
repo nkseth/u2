@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Breadcrumb from "../../../../../utils/Breadcrumb/breadcrumb";
 
-
 import {
   Accordion,
   AccordionSummary,
@@ -61,7 +60,6 @@ export default function Filter(props) {
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const filterDataList = useSelector((state) => state.root.storefilter);
   const setFilters = async (filters) => {
-
     setIsLoading(true);
     const {
       price_range,
@@ -115,7 +113,6 @@ export default function Filter(props) {
       shopByOccasion: filters?.occasions[0]?.value,
     });
   };
-
 
   useEffect(() => {
     const setAllFilters = async () => {
@@ -337,6 +334,7 @@ export default function Filter(props) {
             <RadioGroup
               aria-label="Categories"
               // onChange={(e) => handleFilterChange("price", e.target.value)}
+
               value={selectedFilter.categories}
             >
               <FormControlLabel
@@ -687,7 +685,6 @@ export default function Filter(props) {
               />
             )
           )}
-
         </AccordionDetails>
       </Accordion>
     </div>

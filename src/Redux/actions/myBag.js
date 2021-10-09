@@ -1,5 +1,11 @@
 import common_axios from "../../utils/axios.config";
-import { GET_CART, REMOVE_FROM_CART } from "./types";
+import {
+  GET_CART,
+  REMOVE_FROM_CART,
+  REMOVE_FROM_CART_FAILED,
+  REMOVE_FROM_CART_REQUEST,
+  REMOVE_FROM_CART_SUCCESS,
+} from "./types";
 
 export const getCartItems = () => async (dispatch) => {
   try {
@@ -14,21 +20,22 @@ export const getCartItems = () => async (dispatch) => {
   }
 };
 
-export const removeFromBag = (item, cart, token) => async (dispatch) => {
+export const removeFromBag = (item, cart) => async (dispatch) => {
   try {
+    dispatch({ type: REMOVE_FROM_CART_REQUEST });
     const { data } = await common_axios.delete("/cart/removeItem", {
-      item,
-      cart,
-      headers: {
-        Authorization: `Bearer ${token}`,
+      data: {
+        cart: cart.id,
+        item: item.id,
       },
     });
     console.log(data);
-    if (data) {
-      dispatch({ type: REMOVE_FROM_CART, payload: data });
+    if (data.message) {
+      dispatch({ type: REMOVE_FROM_CART_SUCCESS, payload: data.message });
     }
   } catch (err) {
-    console.log(err?.response);
+    console.log(err?.response.data);
+    dispatch({ type: REMOVE_FROM_CART_FAILED, payload: err.response.data });
     return Promise.reject(err);
   }
 };

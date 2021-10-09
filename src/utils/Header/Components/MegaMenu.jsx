@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 function MegaMenu({ Close, visible, type }) {
   const { category_subgrp } = useSelector((state) => state.root.main);
   const arr = category_subgrp[type];
-  console.log(arr);
   return (
     <div
       className={visible ? styles.container : styles.hiddenContainer}

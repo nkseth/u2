@@ -61,6 +61,7 @@ export function Product({
   };
   const addToBagHandler = () => {
     dispatch(add_to_bag(slug));
+    dispatch(removeFromWishlist(id, user.api_token));
     if (message) alert(message);
   };
 

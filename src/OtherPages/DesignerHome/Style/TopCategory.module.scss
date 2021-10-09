@@ -1,6 +1,11 @@
 .top_category_title {
   display: none;
 }
+.main {
+  @media screen and (max-width: 420px) {
+    display: none;
+  }
+}
 .TopCategory {
   display: grid;
 
@@ -52,6 +57,10 @@
     }
     .main {
       margin-bottom: -2em !important;
+
+      @media screen and (max-width: 420px) {
+        display: none;
+      }
     }
     .TopCategory_Items_Layer {
       position: absolute;

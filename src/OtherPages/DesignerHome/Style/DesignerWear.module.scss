@@ -3,6 +3,9 @@
 .DesignerWear {
   height: 610px;
   width: 100%;
+  @media screen and (max-width: 420px) {
+    height: 300px;
+  }
 
   h1 {
     font-family: DM Serif Display;
@@ -59,6 +62,10 @@
   background-position: center;
   background-size: cover;
   position: relative;
+  @media screen and (max-width: 420px) {
+    height: 300px;
+    border-radius: 10px;
+  }
 }
 
 .button {

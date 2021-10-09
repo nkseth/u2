@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Breadcrumb from "../../../../../utils/Breadcrumb/breadcrumb";
 
+
 import {
   Accordion,
   AccordionSummary,
@@ -11,29 +12,27 @@ import {
   FormControlLabel,
   useMediaQuery,
   Slider,
+  TextField,
+  InputAdornment,
+  OutlinedInput,
   Checkbox,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import styles from "./filter.module.scss";
-import { style } from "@material-ui/system";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { getProducts } from "../../../../../Redux/actions/products";
-import {
-  clearFilterData,
-  storefilterData,
-} from "../../../../../Redux/actions/filter-category";
-import { keys } from "@material-ui/core/styles/createBreakpoints";
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import styles from './filter.module.scss';
+import { style } from '@material-ui/system';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getProducts } from '../../../../../Redux/actions/products';
 
 const CustomRadio = withStyles({
   root: {
-    color: "#9D9D9D",
-    "&$checked": {
-      color: "#857250",
+    color: '#9D9D9D',
+    '&$checked': {
+      color: '#857250',
     },
   },
   checked: {},
-})((props) => <Radio color="default" {...props} />);
+})(props => <Radio color='default' {...props} />);
 
 const CustomCheckbox = withStyles({
   root: {
@@ -62,6 +61,7 @@ export default function Filter(props) {
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const filterDataList = useSelector((state) => state.root.storefilter);
   const setFilters = async (filters) => {
+
     setIsLoading(true);
     const {
       price_range,
@@ -86,9 +86,9 @@ export default function Filter(props) {
   };
 
   const [selectedFilter, setSelectedFilter] = useState({
-    categories: "All categories",
+    categories: 'All categories',
     price: filters?.price_range[0].name || 0,
-    itemType: "",
+    itemType: '',
     color: filters?.color[0]?.value || null,
     discount: filters?.discount[0]?.discount || null,
     fabric: filters?.fabric[0]?.value || null,
@@ -115,6 +115,7 @@ export default function Filter(props) {
       shopByOccasion: filters?.occasions[0]?.value,
     });
   };
+
 
   useEffect(() => {
     const setAllFilters = async () => {
@@ -313,7 +314,7 @@ export default function Filter(props) {
         <>
           <div className={styles.header}>
             <span>Filter</span>
-            <span style={{ cursor: "pointer" }} onClick={clearFilter}>
+            <span style={{ cursor: 'pointer' }} onClick={clearFilter}>
               Clear all
             </span>
           </div>
@@ -324,7 +325,7 @@ export default function Filter(props) {
         <Accordion className={styles.accordion}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
+            aria-controls='panel1a-content'
             className={styles.accordionSummary}
           >
             <div className={styles.accordionSummaryInnerDiv}>
@@ -339,8 +340,8 @@ export default function Filter(props) {
               value={selectedFilter.categories}
             >
               <FormControlLabel
-                value="All categories"
-                checked={selectedFilter.categories === "All categories"}
+                value='All categories'
+                checked={selectedFilter.categories === 'All categories'}
                 control={<CustomRadio />}
                 label={<p className={styles.radioBtnsLabels}>All categories</p>}
               />
@@ -348,25 +349,25 @@ export default function Filter(props) {
           </AccordionDetails>
         </Accordion>
       ) : (
-        ""
+        ''
       )}
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
             <span>Price</span>
-            <span>{!isLoading && "Select price range"}</span>
+            <span>{!isLoading && 'Select price range'}</span>
           </div>
         </AccordionSummary>
         <AccordionDetails
           className={styles.accordionDetials}
-          style={{ flexDirection: "column" }}
+          style={{ flexDirection: 'column' }}
         >
           <Slider
-            style={{ color: "#6A5B40" }}
+            style={{ color: '#6A5B40' }}
             value={value}
             min={0}
             step={1}
@@ -380,7 +381,7 @@ export default function Filter(props) {
           />
           <br />
           <div className={styles.price}>
-            <div style={{ position: "relative" }}>
+            <div style={{ position: 'relative' }}>
               <p>From</p>
 
               <input
@@ -392,7 +393,7 @@ export default function Filter(props) {
               />
               <span>₹</span>
             </div>
-            <div style={{ position: "relative" }}>
+            <div style={{ position: 'relative' }}>
               <p>To</p>
 
               <input
@@ -410,7 +411,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -442,7 +443,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -485,7 +486,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -521,7 +522,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -560,7 +561,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -600,7 +601,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -631,7 +632,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -659,7 +660,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -686,6 +687,7 @@ export default function Filter(props) {
               />
             )
           )}
+
         </AccordionDetails>
       </Accordion>
     </div>

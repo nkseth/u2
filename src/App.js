@@ -73,13 +73,15 @@ import ViewMeasurement from "./Pages/Measurement/ViewMeasurement";
 import UploadImage from "./Pages/Upload-Measument-Image/UploadImage";
 import ProtectedRoute from "./utils/routes/ProtectedRoute";
 // COLLAB
-import CollabrateLogin from "./Pages/Collabrate/CollabrateLogin/collabrateLogin";
-import CollabrateRegister from "./Pages/Collabrate/CollabrateRegistrationAsVendor/registrationAsVendor";
-import CollabrateAsFashionDesigner from "./Pages/Collabrate/CollabrateAsFashionDesigner/collabrateAsFashionDesigner";
-import CollabrateAsVendor from "./Pages/Collabrate/CollabrateAsVendor/collabrateAsVendor";
-import CollabrateAsInfluencer from "./Pages/Collabrate/CollabrateAsInfluencer/collabrateAsInfluencer";
-import AboutUs from "./OtherPages/AboutUs/AboutUs";
+
 import store from "./Redux/store";
+import CollabrateLogin from './Pages/Collabrate/CollabrateLogin/collabrateLogin';
+import CollabrateRegister from './Pages/Collabrate/CollabrateRegistrationAsVendor/registrationAsVendor';
+import CollabrateAsFashionDesigner from './Pages/Collabrate/CollabrateAsFashionDesigner/collabrateAsFashionDesigner';
+import CollabrateAsVendor from './Pages/Collabrate/CollabrateAsVendor/collabrateAsVendor';
+import CollabrateAsInfluencer from './Pages/Collabrate/CollabrateAsInfluencer/collabrateAsInfluencer';
+import AboutUs from './OtherPages/AboutUs/AboutUs';
+import MobileCategory from './utils/MobileCategoryPage/MobileCategory';
 
 //Start From Here
 
@@ -263,6 +265,7 @@ function App() {
           path={"/Collabrate-as-influencer"}
           component={CollabrateAsInfluencer}
         />
+        <Route path={'/mobile-category'} component={MobileCategory} />
       </Switch>
     </div>
   );

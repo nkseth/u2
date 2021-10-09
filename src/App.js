@@ -79,6 +79,7 @@ import CollabrateAsFashionDesigner from './Pages/Collabrate/CollabrateAsFashionD
 import CollabrateAsVendor from './Pages/Collabrate/CollabrateAsVendor/collabrateAsVendor';
 import CollabrateAsInfluencer from './Pages/Collabrate/CollabrateAsInfluencer/collabrateAsInfluencer';
 import AboutUs from './OtherPages/AboutUs/AboutUs';
+import MobileCategory from './utils/MobileCategoryPage/MobileCategory';
 
 //Start From Here
 
@@ -261,6 +262,7 @@ function App() {
           path={'/Collabrate-as-influencer'}
           component={CollabrateAsInfluencer}
         />
+        <Route path={'/mobile-category'} component={MobileCategory} />
       </Switch>
     </div>
   );

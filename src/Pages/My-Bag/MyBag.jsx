@@ -31,7 +31,7 @@ import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 // Product Type
 import { addToWishlist } from "../../Redux/actions/wishlist";
-import { getCartItems } from "../../Redux/actions/myBag";
+import { getCartItems, removeFromBag } from "../../Redux/actions/myBag";
 import { SuccessPopUp } from "../../utils/Popups/SuccessPopup";
 
 export default function MyBag() {
@@ -43,12 +43,23 @@ export default function MyBag() {
   const [quantity, setQuantity] = useState(1);
   const { user } = useSelector((state) => state.root.auth);
   const { cart } = useSelector((state) => state.root.cartItems);
+  const { message, loading, error } = useSelector(
+    (state) => state.root.removeCartItem
+  );
+
   const [click, setClick] = useState(false);
   // const [cartMessage, setCartMessage] = useState('Added To bag');
   console.log(cart);
   // console.log(cart);
+  console.log(message);
 
   useEffect(() => {
+    if (message) {
+      alert(message);
+    }
+    if (error) {
+      alert(error);
+    }
     dispatch(getCartItems());
   }, [dispatch]);
 
@@ -88,23 +99,25 @@ export default function MyBag() {
   };
 
   const remove_item = async (item) => {
-    console.log("🚀 ~ file: MyBag.jsx ~ line 130 ~ MyBag ~ item", item);
-    try {
-      console.log(cart.id, item.id);
-      const { data } = await common_axios.delete("/cart/removeItem", {
-        data: {
-          cart: cart.id,
-          item: item.id,
-        },
-      });
-      console.log(data);
-      if (data.message) {
-        dispatch(getCartItems());
-      }
-    } catch (error) {
-      console.log(error.response);
-      alert(error.response?.data?.error);
-    }
+    dispatch(removeFromBag(item.id, cart.id));
+
+    // console.log("🚀 ~ file: MyBag.jsx ~ line 130 ~ MyBag ~ item", item);
+    // try {
+    //   console.log(cart.id, item.id);
+    //   const { data } = await common_axios.delete("/cart/removeItem", {
+    //     data: {
+    //       cart: cart.id,
+    //       item: item.id,
+    //     },
+    //   });
+    //   console.log(data);
+    //   if (data.message) {
+    //     dispatch(getCartItems());
+    //   }
+    // } catch (error) {
+    //   console.log(error.response);
+    //   alert(error.response?.data?.error);
+    // }
   };
 
   const on_checkout = () => {

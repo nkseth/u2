@@ -66,10 +66,16 @@ export default function MensWear({ match }) {
     loading,
     banner: { id, name, description, cover_image },
   } = useSelector(state => state.root.main);
+  const { banner } = useSelector(state => state.root.main);
+  console.log(
+    '🚀 ~ file: mensWear.jsx ~ line 70 ~ MensWear ~ banner',
+    banner.categories
+  );
 
   const theme = useTheme();
   const small = useMediaQuery(theme.breakpoints.down('xs'));
   const iPade = useMediaQuery(theme.breakpoints.down('sm'));
+  const mobile = useMediaQuery('(max-width:420px)');
 
   useEffect(() => {
     dispatch(get_mens_wear_slider(type));
@@ -79,6 +85,30 @@ export default function MensWear({ match }) {
 
   return (
     <Container footerOnAllView>
+      {mobile && (
+        <Swiper slidesPerView={3} style={{ padding: '0.5rem 0' }}>
+          {banner?.categories ? (
+            banner?.categories.map(cat => {
+              return (
+                <SwiperSlide style={{ margin: '0.1rem' }}>
+                  <Link
+                    to={`${
+                      type === 'kids'
+                        ? `/designers-product-page/${cat.slug}`
+                        : `/designers-product-page/${type}/${cat.slug}`
+                    }`}
+                    className={styles.ban_category}
+                  >
+                    <p>{cat.name.split(' ')[0]}</p>
+                  </Link>
+                </SwiperSlide>
+              );
+            })
+          ) : (
+            <p>Loading</p>
+          )}
+        </Swiper>
+      )}
       <section className={styles.heroSection}>
         <div
           className={styles.carouselItem}

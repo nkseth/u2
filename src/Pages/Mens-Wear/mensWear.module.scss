@@ -107,6 +107,24 @@
   width: 100%;
 }
 
+.ban_category {
+  border: 1px solid #857250;
+  border-radius: 10000px;
+
+  p {
+    padding: 0.7rem;
+    //styleName: Body extra small / Bold;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #857250;
+  }
+}
+
 @media screen and (max-width: 835px) {
 }
 @media screen and (max-width: 768px) {

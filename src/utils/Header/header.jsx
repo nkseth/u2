@@ -19,20 +19,22 @@ import CustomSection from "../Custom Section/section";
 import SideNavbar from "../Side-Navbar/sideNavbar";
 import styles from "./header.module.scss";
 //Icons
-import PersonIcon from "../../Images/icons/person.svg";
-import FavoriteIcon from "../../Images/icons/favorite.svg";
-import BagIcon from "../../Images/icons/bag.svg";
-import SearchIcon from "../../Images/icons/search.svg";
-import HamMenuIcon from "../../Images/icons/hamMenu.svg";
-import SearchDarkIcon from "../../Images/icons/searchDark.svg";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { LOGIN_MODEL } from "../../Redux/reducers/loginreducer";
-import { useDispatch, useSelector } from "react-redux";
-import useLogin from "../../LoginSceens/useLogin";
-import { useCookies } from "react-cookie";
-import MegaMenu from "./Components/MegaMenu";
-import { ReactComponent as Logo } from "../../Images/logo/u2.svg";
-import { getCategorySubGroup } from "../../Redux/actions/designerHomePage";
+import PersonIcon from '../../Images/icons/person.svg';
+import FavoriteIcon from '../../Images/icons/favorite.svg';
+import BagIcon from '../../Images/icons/bag.svg';
+import SearchIcon from '../../Images/icons/search.svg';
+import HamMenuIcon from '../../Images/icons/hamMenu.svg';
+import SearchDarkIcon from '../../Images/icons/searchDark.svg';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { LOGIN_MODEL } from '../../Redux/reducers/loginreducer';
+import { useDispatch, useSelector } from 'react-redux';
+import useLogin from '../../LoginSceens/useLogin';
+import { useCookies } from 'react-cookie';
+import MegaMenu from './Components/MegaMenu';
+import { ReactComponent as Logo } from '../../Images/logo/u2.svg';
+import { ReactComponent as LogoSM } from '../../Images/logo/U2icon.svg';
+import { getCategorySubGroup } from '../../Redux/actions/designerHomePage';
+
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -156,7 +158,7 @@ export default function Header() {
             <Link to="/">
               {/* LOGO */}
               {/* <img src={Logo} alt='' /> */}
-              <Logo />
+              {!mobile ? <Logo /> : <LogoSM />}
             </Link>
           </span>
         </div>

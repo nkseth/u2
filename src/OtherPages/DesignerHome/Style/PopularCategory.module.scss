@@ -350,16 +350,17 @@
   }
   .Category {
     grid-template-areas:
-      'one'
-      'two'
-      'three'
-      'four'
-      'five'
-      'six';
-    grid-template-rows: repeat(6, 250px);
+      'one one'
+      'two three'
+      'four four'
+      'five six' !important;
+    grid-template-rows: repeat(4, 200px);
   }
   .Category_item {
     background-position: center center;
+    a {
+      font-size: 16px;
+    }
   }
 }
 
@@ -375,10 +376,22 @@
       a {
         color: #fff;
         padding: 0.4rem;
-        font-size: 28px;
+        font-size: 20px !important;
         font-family: 'Quicksand';
         font-weight: 400;
       }
     }
+  }
+  .Category_item {
+    background-position: center center;
+    a {
+      font-size: 20px !important;
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .PopularCategory_header {
+    font-size: 35px;
   }
 }

@@ -53,6 +53,7 @@ const DesignerWear = () => {
           })}
         </Carousel> */}
         <Swiper
+          // direction={'vertical'}
           centeredSlides={true}
           autoplay={{
             delay: 4500,
@@ -78,9 +79,9 @@ const DesignerWear = () => {
                     <h1>{item.title || 'Categories'}</h1>
                     <p>{item.sub_title}</p>
                   </div>
-                  <Button className={styles.button}>
+                  {/* <Button className={styles.button}>
                     Switch To Branded <ArrowRightAltIcon />{' '}
-                  </Button>
+                  </Button> */}
                 </div>
               </SwiperSlide>
             );

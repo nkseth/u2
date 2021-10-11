@@ -1,5 +1,6 @@
 import common_axios from "../../utils/axios.config";
 import {
+  CLEAR_ALL_FILTERS,
   CLEAR_FILTER_DATA,
   GET_FILTERED_PRODUCT,
   GET_FILTER_LIST,
@@ -37,16 +38,22 @@ export const getFilteredProduct = (slug, fiteredData) => async (dispatch) => {
 };
 
 export const storefilterData =
-  (attribute_id, attributeValue_id, type) => (dispatch) => {
+  (attribute_id, attributeValue_id, ftype, discount) => (dispatch) => {
     dispatch({
       type: SET_FILTER_DATA,
-      payload: { [type]: { attribute_id, attributeValue_id } },
+      payload: { ftype: ftype, data: { attribute_id, attributeValue_id } },
     });
   };
 
-export const clearFilterData = (type) => (dispatch) => {
+export const clearFilterData = (type, data) => (dispatch) => {
   dispatch({
     type: CLEAR_FILTER_DATA,
-    payload: { [type]: null },
+    payload: { type, data },
+  });
+};
+
+export const clearAllFilter = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_ALL_FILTERS,
   });
 };

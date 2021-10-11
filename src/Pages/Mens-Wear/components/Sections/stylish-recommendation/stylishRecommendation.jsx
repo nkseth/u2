@@ -14,7 +14,7 @@ import {
   get_most_loved,
   get_stylish_recommend,
 } from "../../../../../Redux/actions/mensWear";
-
+import Loader from "../../../../../utils/Loader/Loader";
 export default function StylishRecommendationSection({ type }) {
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
@@ -24,11 +24,11 @@ export default function StylishRecommendationSection({ type }) {
 
   useEffect(() => {
     //const group = type == 'mens' ? 'men_group_2' : type == 'womens' ? 'women_group_2' : 'kid_group_2'
-    dispatch(get_stylish_recommend(type));
-  }, [type]);
+    dispatch(get_stylish_recommend(type, 2));
+  }, [type, dispatch]);
 
   const { stylish_recommend } = useSelector((state) => state.root.main);
-
+  console.log(stylish_recommend);
   return (
     <CustomSection
       style={{
@@ -41,100 +41,89 @@ export default function StylishRecommendationSection({ type }) {
         <span>Stylish</span>
         <span>Recommendation</span>
       </div>
-      <div className={styles.cardContainer}>
-        {mobileView && (
-          <div>
-            {stylish_recommend.length > 0 ? (
-              <StylishCard
-                type={type}
-                item={stylish_recommend[0]}
-                image={stylish_recommend[0].cover_image}
-              />
-            ) : null}
-            {stylish_recommend.length > 1 ? (
-              <StylishCard
-                type={type}
-                item={stylish_recommend[1]}
-                image={stylish_recommend[1].cover_image}
-              />
-            ) : null}
-            {stylish_recommend.length > 2 ? (
-              <StylishCard
-                type={type}
-                item={stylish_recommend[2]}
-                image={stylish_recommend[2].cover_image}
-              />
-            ) : null}
-            {stylish_recommend.length > 3 ? (
-              <StylishCard
-                type={type}
-                item={stylish_recommend[3]}
-                image={stylish_recommend[3].cover_image}
-              />
-            ) : null}
-            {stylish_recommend.length > 4 ? (
-              <StylishCard
-                type={type}
-                item={stylish_recommend[4]}
-                image={stylish_recommend[4].cover_image}
-              />
-            ) : null}
-          </div>
-        )}
-        {!mobileView && (
-          <>
-            <div className={styles.firstCon}>
-              {stylish_recommend.length > 0 ? (
-                <div>
+      {!stylish_recommend ? (
+        <Loader />
+      ) : (
+        <>
+          <div className={styles.cardContainer}>
+            {mobileView && (
+              <div>
+                {stylish_recommend.map((item, i) =>
+                  i < 4 ? <StylishCard type={type} item={item} /> : null
+                )}
+                {/* {stylish_recommend[0] ? (
                   <StylishCard
                     type={type}
                     item={stylish_recommend[0]}
-                    image={stylish_recommend[0].cover_image}
+                    image={stylish_recommend[0].image}
                   />
-                </div>
-              ) : null}
-              {stylish_recommend.length > 1 ? (
-                <div>
+                ) : null}
+                {stylish_recommend.length > 1 ? (
                   <StylishCard
                     type={type}
                     item={stylish_recommend[1]}
                     image={stylish_recommend[1].cover_image}
                   />
-                </div>
-              ) : null}
-            </div>
-            <div className={styles.secondCon}>
-              {stylish_recommend.length > 2 ? (
-                <div>
+                ) : null}
+                {stylish_recommend.length > 2 ? (
                   <StylishCard
                     type={type}
                     item={stylish_recommend[2]}
                     image={stylish_recommend[2].cover_image}
                   />
-                </div>
-              ) : null}
-              {stylish_recommend.length > 3 ? (
-                <div>
+                ) : null}
+                {stylish_recommend.length > 3 ? (
                   <StylishCard
                     type={type}
                     item={stylish_recommend[3]}
                     image={stylish_recommend[3].cover_image}
                   />
-                </div>
-              ) : null}
-              {stylish_recommend.length > 4 ? (
-                <div>
+                ) : null}
+                {stylish_recommend.length > 4 ? (
                   <StylishCard
                     type={type}
                     item={stylish_recommend[4]}
                     image={stylish_recommend[4].cover_image}
                   />
+                ) : null} */}
+              </div>
+            )}
+            {!mobileView && (
+              <>
+                <div className={styles.firstCon}>
+                  {stylish_recommend.length > 0 ? (
+                    <div>
+                      <StylishCard type={type} item={stylish_recommend[0]} />
+                    </div>
+                  ) : null}
+                  {stylish_recommend.length > 1 ? (
+                    <div>
+                      <StylishCard type={type} item={stylish_recommend[1]} />
+                    </div>
+                  ) : null}
                 </div>
-              ) : null}
-            </div>
-          </>
-        )}
-      </div>
+                <div className={styles.secondCon}>
+                  {stylish_recommend.length > 2 ? (
+                    <div>
+                      <StylishCard type={type} item={stylish_recommend[2]} />
+                    </div>
+                  ) : null}
+                  {stylish_recommend.length > 3 ? (
+                    <div>
+                      <StylishCard type={type} item={stylish_recommend[3]} />
+                    </div>
+                  ) : null}
+                  {stylish_recommend.length > 4 ? (
+                    <div>
+                      <StylishCard type={type} item={stylish_recommend[4]} />
+                    </div>
+                  ) : null}
+                </div>
+              </>
+            )}
+          </div>
+        </>
+      )}
     </CustomSection>
   );
 }

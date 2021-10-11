@@ -103,6 +103,7 @@ export const LOAD_USER = "LOAD_USER";
 //Filter
 export const GET_FILTER_LIST = "GET_FILTER_LIST";
 export const GET_FILTERED_PRODUCT = "GET_FILTERED_PRODUCT";
+export const CLEAR_ALL_FILTERS = "CLEAR_ALL_FILTERS";
 
 //Product Description Page
 export const GET_PRODUCT = "GET_PRODUCT";

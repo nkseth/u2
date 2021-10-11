@@ -1,4 +1,4 @@
-import common_axios from '../../utils/axios.config';
+import common_axios from "../../utils/axios.config";
 import {
   ALL_THAT_YOU_WANT,
   CELIBRITY_STYLE,
@@ -13,11 +13,11 @@ import {
   STYLISH_RECOMMEND,
   TOP_DESIGNERS,
   TOP_OFFERS,
-} from './types';
+} from "./types";
 
-export const get_mens_wear_slider = () => async dispatch => {
+export const get_mens_wear_slider = () => async (dispatch) => {
   try {
-    const { data } = await common_axios.get('/sliders');
+    const { data } = await common_axios.get("/sliders");
 
     if (data.data) {
       dispatch({ type: MENS_WEAR_SLIDER, payload: data.data });
@@ -28,7 +28,7 @@ export const get_mens_wear_slider = () => async dispatch => {
   }
 };
 
-export const getBanner = slug => async dispatch => {
+export const getBanner = (slug) => async (dispatch) => {
   try {
     const { data } = await common_axios.get(`/category-grps/${slug}`);
     if (data.data) {
@@ -40,19 +40,19 @@ export const getBanner = slug => async dispatch => {
   }
 };
 
-export const get_mens_wear_cat = type => async dispatch => {
+export const get_mens_wear_cat = (type) => async (dispatch) => {
   try {
-    dispatch({ type: 'LOADING_DATA', payload: true });
+    dispatch({ type: "LOADING_DATA", payload: true });
 
-    const { data } = await common_axios.post('/themeOption', {
-      dashboard_type: 'comman',
+    const { data } = await common_axios.post("/themeOption", {
+      dashboard_type: "comman",
       content_type: type,
-      group_name: 'category_to_bag',
+      group_name: "category_to_bag",
     });
 
     if (data.category_to_bag) {
       dispatch({ type: MENS_WEAR_CAT, payload: data.category_to_bag });
-      dispatch({ type: 'LOADING_DATA', payload: false });
+      dispatch({ type: "LOADING_DATA", payload: false });
     }
   } catch (err) {
     console.log(err?.response?.data);
@@ -60,7 +60,7 @@ export const get_mens_wear_cat = type => async dispatch => {
   }
 };
 
-export const get_mens_wear_subgrp = type => async dispatch => {
+export const get_mens_wear_subgrp = (type) => async (dispatch) => {
   try {
     console.log(type);
     const { data } = await common_axios.get(`/category-subgrps/${type}`);
@@ -74,18 +74,18 @@ export const get_mens_wear_subgrp = type => async dispatch => {
   }
 };
 
-export const setSelectedSubGrp = val => ({
+export const setSelectedSubGrp = (val) => ({
   type: SELECTED_SUB_GRP,
   payload: val,
 });
 
-export const get_mens_active_product = (type, active) => async dispatch => {
-  console.log(type, '===', active);
-  if (active === 'all') {
+export const get_mens_active_product = (type, active) => async (dispatch) => {
+  console.log(type, "===", active);
+  if (active === "all") {
     console.log("It's All");
     try {
       const { data } = await common_axios.post(`/product_by_category/${type}`, {
-        slug: 'all',
+        slug: "all",
       });
       console.log(data);
       if (data.product) {
@@ -111,13 +111,13 @@ export const get_mens_active_product = (type, active) => async dispatch => {
   }
 };
 
-export const get_new_collection = (type, group) => async dispatch => {
+export const get_new_collection = (type, group) => async (dispatch) => {
   try {
     // console.log(type, group);
     const { data } = await common_axios.get(`/banners/${type}/${group}`);
-    console.log(data);
-    if (data[group]) {
-      dispatch({ type: NEW_COLLECTION, payload: data[group] });
+    // console.log(data);
+    if (data.data) {
+      dispatch({ type: NEW_COLLECTION, payload: data.data });
     }
   } catch (err) {
     console.log(err?.response?.data);
@@ -126,10 +126,10 @@ export const get_new_collection = (type, group) => async dispatch => {
 };
 
 //done
-export const get_top_designers = () => async dispatch => {
+export const get_top_designers = () => async (dispatch) => {
   try {
     const { data } = await common_axios.post(`/themeOptionDesigner`, {
-      dashboard_type: 'designer_home',
+      dashboard_type: "designer_home",
     });
     if (data[0]) {
       dispatch({ type: TOP_DESIGNERS, payload: data[0] });
@@ -140,31 +140,37 @@ export const get_top_designers = () => async dispatch => {
   }
 };
 
-export const get_stylish_recommend = type => async dispatch => {
+export const get_stylish_recommend = (type, group) => async (dispatch) => {
   try {
-    const { data } = await common_axios.post(`/themeOption`, {
-      dashboard_type: 'comman',
-      content_type: type,
-      group_name: 'stylish_recommendation',
-    });
-    if (data.stylish_recommendation) {
-      dispatch({
-        type: STYLISH_RECOMMEND,
-        payload: data.stylish_recommendation,
-      });
+    console.log(group, type);
+    const { data } = await common_axios.get(`/banners/${type}/${group}`);
+    console.log(data);
+    if (data.data) {
+      dispatch({ type: STYLISH_RECOMMEND, payload: data.data });
     }
+    // const { data } = await common_axios.post(`/themeOption`, {
+    //   dashboard_type: "comman",
+    //   content_type: type,
+    //   group_name: "stylish_recommendation",
+    // });
+    // if (data.stylish_recommendation) {
+    //   dispatch({
+    //     type: STYLISH_RECOMMEND,
+    //     payload: data.stylish_recommendation,
+    //   });
+    // }
   } catch (err) {
     console.log(err?.response?.data);
     return Promise.reject(err);
   }
 };
 
-export const get_most_loved = type => async dispatch => {
+export const get_most_loved = (type) => async (dispatch) => {
   try {
     const { data } = await common_axios.post(`/themeOption`, {
-      dashboard_type: 'comman',
+      dashboard_type: "comman",
       content_type: type,
-      group_name: 'hand_made_cloth',
+      group_name: "hand_made_cloth",
     });
 
     if (data.hand_made_cloth) {
@@ -176,10 +182,10 @@ export const get_most_loved = type => async dispatch => {
   }
 };
 
-export const get_all_that_you_want = (type, group) => async dispatch => {
+export const get_all_that_you_want = (type, group) => async (dispatch) => {
   try {
     const { data } = await common_axios.get(`/banners/${type}/${group}`);
-
+    console.log(data);
     if (data.data) {
       dispatch({
         type: ALL_THAT_YOU_WANT,
@@ -193,12 +199,12 @@ export const get_all_that_you_want = (type, group) => async dispatch => {
 };
 
 //done
-export const get_top_offers = type => async dispatch => {
+export const get_top_offers = (type) => async (dispatch) => {
   try {
     const { data } = await common_axios.post(`/themeOption`, {
-      dashboard_type: 'comman',
+      dashboard_type: "comman",
       content_type: type,
-      group_name: 'top_offer_of_the_season',
+      group_name: "top_offer_of_the_season",
     });
 
     if (data.top_offer_of_the_season) {
@@ -210,7 +216,7 @@ export const get_top_offers = type => async dispatch => {
   }
 };
 
-export const get_celibrity_style = type => async dispatch => {
+export const get_celibrity_style = (type) => async (dispatch) => {
   try {
     const { data } = await common_axios.get(`/CelebrityStyle`);
     if (data) {

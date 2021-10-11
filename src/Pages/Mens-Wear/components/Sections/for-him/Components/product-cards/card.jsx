@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { IconButton } from '@material-ui/core';
-import styles from './card.module.scss';
-import parse from 'html-react-parser';
+import React, { useState } from "react";
+import { IconButton } from "@material-ui/core";
+import styles from "./card.module.scss";
+import parse from "html-react-parser";
 
 //icon
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import { Link } from 'react-router-dom';
-import { LazyLoadingImg } from '../../../../../../../utils/LazyLoading';
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { Link } from "react-router-dom";
+import { LazyLoadingImg } from "../../../../../../../utils/LazyLoading";
 
 export default function ProductCard({ data }) {
   const [isAddToWishList, setAddToWishList] = useState(false);
-  console.log(data);
+  // console.log(data);
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
@@ -38,7 +38,7 @@ export default function ProductCard({ data }) {
           {data.has_offer ? (
             <span>
               {data.price}
-              <span style={{ color: '#9D8E73 ' }}>{data.discount}</span>
+              <span style={{ color: "#9D8E73 " }}>{data.discount}</span>
             </span>
           ) : null}
         </p>

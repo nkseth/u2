@@ -8,7 +8,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 
 export default function ProductCard({ image, item }) {
   const [isAddToWishList, setAddToWishList] = useState(false);
-  console.log(item);
+  // console.log(item);
 
   return (
     <div className={styles.container}>

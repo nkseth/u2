@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { get_top_designers } from "../../../../../Redux/actions/mensWear";
-
+import { topDesigner } from "../../../../../Redux/actions/designerHomePage";
 export default function ExploreTopDesignersSection({ type }) {
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
@@ -27,10 +27,12 @@ export default function ExploreTopDesignersSection({ type }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(get_top_designers());
+    // dispatch(get_top_designers());
+    dispatch(topDesigner());
   }, []);
 
-  const { top_designers } = useSelector((state) => state.root.main);
+  // const { top_designers } = useSelector((state) => state.root.main);
+  const { designers } = useSelector((state) => state.root.topDesigner);
   // console.log(top_designers);
 
   return (
@@ -45,7 +47,7 @@ export default function ExploreTopDesignersSection({ type }) {
         isIntrinsicHeight
       >
         <Slider>
-          {top_designers?.get_designer?.map(
+          {designers?.get_designer?.map(
             ({ id, cover_image, get_merchant }, index) => {
               return (
                 <Slide index={index}>

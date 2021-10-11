@@ -477,17 +477,18 @@
 }
 @media screen and(max-width:420px) {
   .Trending_header {
-    font-size: 42px;
+    font-size: 20px;
+    margin-bottom: 20px;
   }
   .trending_content {
-    padding: 2rem 1rem !important;
+    padding: 1rem 1rem !important;
   }
   .Trending_Items {
-    width: 165px !important;
-    height: 180px !important;
+    width: 150px !important;
+    height: 160px !important;
     img {
-      width: 165px !important;
-      height: 120px !important;
+      width: 150px !important;
+      height: 110px !important;
     }
     div {
       a {

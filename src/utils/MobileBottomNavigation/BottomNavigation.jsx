@@ -29,7 +29,7 @@ const BottomNavigation = () => {
     {
       title: 'category',
       icon: <Categories />,
-      to: '/',
+      to: '/mobile-category',
     },
     {
       title: 'measurement',
@@ -47,10 +47,10 @@ const BottomNavigation = () => {
   const mobileView = useMediaQuery('(max-width:550px)');
   const location = useLocation();
 
-  const [currency, setCurrency] = useState("INR");
+  const [currency, setCurrency] = useState('INR');
   const [showUserOption, setShowUserOption] = useState(false);
 
-  const toggleDrawer = (anchor, open) => (event) => {
+  const toggleDrawer = (anchor, open) => event => {
     if (
       event &&
       event.type === 'keydown' &&
@@ -70,8 +70,7 @@ const BottomNavigation = () => {
     setScroll(window.scrollY);
   };
 
-
-  const { isAuthenticated, loading } = useSelector((state) => state.root.auth);
+  const { isAuthenticated, loading } = useSelector(state => state.root.auth);
   const { login_Model_Show } = useLogin();
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -79,7 +78,6 @@ const BottomNavigation = () => {
 
   const profileFnc = () => {
     if (isAuthenticated) {
-
       setShowUserOption(true);
       // history.push("/profile");
     } else {
@@ -96,9 +94,9 @@ const BottomNavigation = () => {
           <Button
             onClick={() => {
               setActiveNav(i);
-              if (i === 1) {
-                setDrawerOpen(true);
-              }
+              // if (i === 1) {
+              //   setDrawerOpen(true);
+              // }
               if (i === 4) {
                 profileFnc(true);
               }
@@ -110,6 +108,7 @@ const BottomNavigation = () => {
             }}
           >
             <Link
+              to={item.to}
               className={`${
                 activeNav === i && activeNav !== 1 && activeNav !== 4
                   ? styles.active
@@ -146,7 +145,6 @@ const BottomNavigation = () => {
         ) : (
           <p></p>
         )}
-
 
         <SwipeableDrawer
           anchor={'left'}

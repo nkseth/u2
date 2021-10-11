@@ -32,6 +32,7 @@ import useLogin from '../../LoginSceens/useLogin';
 import { useCookies } from 'react-cookie';
 import MegaMenu from './Components/MegaMenu';
 import { ReactComponent as Logo } from '../../Images/logo/u2.svg';
+import { ReactComponent as LogoSM } from '../../Images/logo/U2icon.svg';
 import { getCategorySubGroup } from '../../Redux/actions/designerHomePage';
 
 export default function Header() {
@@ -157,7 +158,7 @@ export default function Header() {
             <Link to='/'>
               {/* LOGO */}
               {/* <img src={Logo} alt='' /> */}
-              <Logo />
+              {!mobile ? <Logo /> : <LogoSM />}
             </Link>
           </span>
         </div>

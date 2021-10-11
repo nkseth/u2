@@ -3,16 +3,20 @@ import {
   AccordionDetails,
   AccordionSummary,
 } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './MobileCategory.scss';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import { useSelector } from 'react-redux';
+import { popularCategories } from '../../Redux/actions/designerHomePage';
+import { useDispatch } from 'react-redux';
+import Category from './Component/Category';
+import Container from '../Container/container';
+import Mens from './images/mens.svg';
 const MobileCategory = () => {
   const category = [
     {
       name: 'Men',
-      image:
-        'https://images.unsplash.com/photo-1549037173-e3b717902c57?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8bWVucyUyMHdlYXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      image: Mens,
       sub_cat: [
         {
           name: 'Suit Wear',
@@ -38,8 +42,33 @@ const MobileCategory = () => {
     },
     {
       name: 'Women',
-      image:
-        'https://images.unsplash.com/photo-1549037173-e3b717902c57?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8bWVucyUyMHdlYXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      image: Mens,
+      sub_cat: [
+        {
+          name: 'Suit Wear',
+          id: 1,
+        },
+        {
+          name: 'Ethnic & Fusion Wear',
+          id: 2,
+        },
+        {
+          name: 'Western Wear',
+          id: 3,
+        },
+        {
+          name: 'Bottom Wear',
+          id: 4,
+        },
+        {
+          name: 'Casual Wear',
+          id: 5,
+        },
+      ],
+    },
+    {
+      name: 'Kids',
+      image: Mens,
       sub_cat: [
         {
           name: 'Suit Wear',
@@ -65,53 +94,61 @@ const MobileCategory = () => {
     },
   ];
 
-  const [click, setClick] = useState();
+  const [click0, setClick0] = useState(false);
+  const [click1, setClick1] = useState(false);
+  const [click2, setClick2] = useState(false);
   const [clickIdx, setClickIdx] = useState();
+
+  const { category_grp } = useSelector(state => state.root.main);
+
+  const handleExpand = i => {
+    if (i === 0) {
+      setClick0(!click0);
+
+      setClickIdx(i);
+    }
+    if (i === 1) {
+      setClick1(!click1);
+      setClickIdx(i);
+    }
+    if (i === 2) {
+      setClick2(!click2);
+      setClickIdx(i);
+    }
+  };
+
   return (
-    <>
-      {category.map((cat, i) => {
-        return (
-          <div
-            style={{
-              backgroundImage: `url(${cat.image})`,
-              position: 'relative',
-              height: `${click && clickIdx === i ? '330px' : '144px'}`,
-            }}
-            className={`main main-${i}`}
-          >
-            <Accordion className='cat_accordion'>
-              <AccordionSummary
-                expandIcon={
-                  <ExpandMoreIcon
-                    onClick={() => {
-                      setClick(!click);
-                      setClickIdx(i);
-                    }}
-                  />
-                }
-                IconButtonProps={{ size: 'small' }}
-                aria-controls='panel1a-content'
-                id='panel1a-header'
-                className='accordionSummary'
-                onClick={() => {
-                  setClick(!click);
-                  setClickIdx(i);
-                }}
-              >
-                <span className='accordionHeader'>{cat.name}</span>
-              </AccordionSummary>
-              <AccordionDetails>
-                <div className='accordion_details'>
-                  {cat.sub_cat.map(sub => {
-                    return <p>{sub.name}</p>;
-                  })}
-                </div>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-        );
-      })}
-    </>
+    <Container footerOnTabMob>
+      {category_grp?.men && (
+        <Category
+          category={category[0]}
+          index={0}
+          click={click0}
+          handleExpand={handleExpand}
+          sub_cat={category_grp.men?.categories.slice(0, 8)}
+        />
+      )}
+
+      {category_grp?.women && (
+        <Category
+          category={category[1]}
+          index={1}
+          click={click1}
+          handleExpand={handleExpand}
+          sub_cat={category_grp.women?.categories.slice(0, 8)}
+        />
+      )}
+
+      {category_grp?.kids && (
+        <Category
+          category={category[2]}
+          index={2}
+          click={click2}
+          handleExpand={handleExpand}
+          sub_cat={category_grp.kids?.categories.slice(0, 8)}
+        />
+      )}
+    </Container>
   );
 };
 

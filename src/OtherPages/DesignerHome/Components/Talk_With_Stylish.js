@@ -12,9 +12,7 @@ const Talk_With_Stylish = () => {
           <h1>Talk With Stylist</h1>
           <p style={{ fontSize: '16px' }}>
             Lorem ipspushum dolor sit amet consectetur adipisicing elit. Maxime
-            obcaecati nihil repellendus, ab ducimus dolorum eaque accusantium
-            similique perferendis architecto pariatur quo, libero illo eos
-            consectetur debitis ea sunt inventore.
+            obcaecati nihil repellendus
           </p>
           <Button
             onClick={() => push('/talk-with-stylish')}

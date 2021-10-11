@@ -1,4 +1,7 @@
+import { keys } from "@material-ui/core/styles/createBreakpoints";
+import { AirlineSeatLegroomNormal } from "@material-ui/icons";
 import {
+  CLEAR_ALL_FILTERS,
   CLEAR_FILTER_DATA,
   GET_FILTERED_PRODUCT,
   GET_FILTER_LIST,
@@ -37,34 +40,50 @@ export const filteredProductReducer = (
 
 export const storefilterReducer = (
   state = {
-    color: null,
-    size: null,
-    sleeve: null,
-    length: null,
-    price: null,
-    itemType: null,
-    fabric: null,
-    occasion: null,
-    design: null,
-    discount: null,
+    color: [],
+    size: [],
+    sleeve: [],
+    length: [],
+    price: [],
+    itemType: [],
+    fabric: [],
+    occasion: [],
+    design: [],
+    discount: [],
   },
   action
 ) => {
   const { type, payload } = action;
   switch (type) {
     case SET_FILTER_DATA: {
-      Object.assign(state, payload);
+      // Object.assign(state, state[payload.ftype]);
+      state[payload.ftype].push(payload.data);
       return {
         ...state,
-        ...payload,
       };
     }
 
     case CLEAR_FILTER_DATA: {
-      Object.assign(state, payload);
+      // Object.assign(state, payload.data);
+      state[payload.type] = payload.data;
       return {
         ...state,
-        ...payload,
+      };
+    }
+    case CLEAR_ALL_FILTERS: {
+      // Object.assign(state, {});
+      return {
+        ...state,
+        color: [],
+        size: [],
+        sleeve: [],
+        length: [],
+        price: [],
+        itemType: [],
+        fabric: [],
+        occasion: [],
+        design: [],
+        discount: [],
       };
     }
 

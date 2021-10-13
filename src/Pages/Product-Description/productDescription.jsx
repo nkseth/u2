@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Button,
   IconButton,
@@ -11,33 +11,36 @@ import {
   FormControlLabel,
   useMediaQuery,
   Tooltip,
-} from "@material-ui/core";
-import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/scss/image-gallery.scss";
-import CustomSection from "../../utils/Custom Section/section";
-import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
-import Container from "../../utils/Container/container";
-import DetailTabs from "./Components/Details-Tabs/tabs";
-import styles from "./productDescription.module.scss";
+} from '@material-ui/core';
+import ImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/scss/image-gallery.scss';
+import CustomSection from '../../utils/Custom Section/section';
+import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
+import Container from '../../utils/Container/container';
+import DetailTabs from './Components/Details-Tabs/tabs';
+import styles from './productDescription.module.scss';
 //icons
-import deliveryTruckIcon from "../../Images/icons/deliveryTruck.svg";
-import clockIcon from "../../Images/icons/clock.svg";
-import { ReactComponent as BagIcon } from "../../Images/icons/bag-primary.svg";
-import HelpIcon from "@material-ui/icons/Help";
-import SelectSize from "./Components/SelectSize/SelectSize";
-import { useLocation } from "react-router-dom";
-import common_axios from "../../utils/axios.config";
-import { useSelector } from "react-redux";
-import useLogin from "../../LoginSceens/useLogin";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import Bag from "./addedbag.gif";
+import deliveryTruckIcon from '../../Images/icons/deliveryTruck.svg';
+import clockIcon from '../../Images/icons/clock.svg';
+import { ReactComponent as BagIcon } from '../../Images/icons/bag-primary.svg';
+import HelpIcon from '@material-ui/icons/Help';
+import SelectSize from './Components/SelectSize/SelectSize';
+import { useLocation } from 'react-router-dom';
+import common_axios from '../../utils/axios.config';
+import { useSelector } from 'react-redux';
+import useLogin from '../../LoginSceens/useLogin';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import Bag from './addedbag.gif';
+import { ReactComponent as Heart } from './images/heart.svg';
+import { ReactComponent as Share } from './images/share.svg';
 // import {
 //   addToWishlist,
 //   clearUpdateWishlist,
 //   removeFromWishlist,
 // } from '../../../../Redux/actions/wishlist';
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 // Product Type
+
 import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData";
 import ReactImageMagnify from "react-image-magnify";
 import { useDispatch } from "react-redux";
@@ -51,95 +54,106 @@ import Loader from "../../utils/Loader/Loader";
 
 const CustomRadio = withStyles({
   root: {
-    color: "transparent",
-    "&$checked": {
-      color: "#857250",
+    color: 'transparent',
+    '&$checked': {
+      color: '#857250',
     },
   },
   checked: {},
-})((props) => <></>);
+})(props => <></>);
 
 const CustomRadio1 = withStyles({
   root: {
-    color: "#9D9D9D",
-    "&$checked": {
-      color: "#857250",
+    color: '#9D9D9D',
+    '&$checked': {
+      color: '#857250',
     },
   },
   checked: {},
-})((props) => <Radio color="default" {...props} />);
+})(props => <Radio color='default' {...props} />);
 
-const BootstrapInput = withStyles((theme) => ({
+const BootstrapInput = withStyles(theme => ({
   root: {
-    "label + &": {
+    'label + &': {
       marginTop: theme.spacing(3),
     },
   },
   input: {
-    width: "343px",
+    width: '343px',
     borderRadius: 0,
-    position: "relative",
-    backgroundColor: theme.palette.background.paper,
-    border: "1px solid #ced4da",
+    position: 'relative',
+    // backgroundColor: theme.palette.background.paper,
+    border: '1px solid #ced4da',
     fontSize: 16,
-    padding: "3px 8px",
-    transition: theme.transitions.create(["border-color", "box-shadow"]),
-    "&:focus": {
+    padding: '3px 8px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    '&:focus': {
       borderRadius: 4,
-      borderColor: "#80bdff",
-      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)",
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
     },
-    "@media (max-width:835px)": {
-      width: "calc(100vw - 102px)",
+    '@media (max-width:835px)': {
+      width: 'calc(100vw - 102px)',
     },
-    "@media (max-width:550px)": {
-      width: "calc(100vw - 67px)",
+    '@media (max-width:550px)': {
+      width: 'calc(100vw - 67px)',
     },
   },
 }))(InputBase);
 
-const HtmlTooltip = withStyles((theme) => ({
+const HtmlTooltip = withStyles(theme => ({
   tooltip: {
     // placement: "right-start",
-    backgroundColor: "#f5f5f9",
-    color: "rgba(0, 0, 0, 0.87)",
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
     width: 200,
     // height: 100,
     fontSize: theme.typography.pxToRem(10),
-    border: "1px solid #dadde9",
+    border: '1px solid #dadde9',
   },
 }))(Tooltip);
 
-const HtmlTooltipButton = withStyles((theme) => ({
+const HtmlTooltipButton = withStyles(theme => ({
   tooltip: {
     // placement: "right-start",
-    backgroundColor: "#857250",
-    color: "white",
+    backgroundColor: '#857250',
+    color: 'white',
     width: 170,
-    textAlign: "center",
+    textAlign: 'center',
     // height: 100,
     fontSize: theme.typography.pxToRem(10),
-    border: "none",
+    border: 'none',
   },
 }))(Tooltip);
+const toIndianCurrency = num => {
+  const curr = num.toLocaleString('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+  return curr;
+};
 
 export default function ProductDescription({ match }) {
   const history = useHistory();
-  const dispatch = useDispatch();
-  const customView = useMediaQuery("(max-width:1044px)");
-  const tabView = useMediaQuery("(max-width:768px)");
-  const tabViewPro = useMediaQuery("(min-width:768px) and (max-width:1044px");
-  const mobileView = useMediaQuery("(max-width:550px)");
+  const location = useLocation();
+  const customView = useMediaQuery('(max-width:1044px)');
+  const tabView = useMediaQuery('(max-width:768px)');
+  const tabViewPro = useMediaQuery('(min-width:768px) and (max-width:1044px');
+  const mobileView = useMediaQuery('(max-width:550px)');
 
-  const [selectedColor, setSelectedColor] = useState("");
+
+  const [selectedColor, setSelectedColor] = useState('');
   const [ProductDrop, setProductDrop] = useState(false);
   const [click, setClick] = useState(false);
-  const [cartMessage, setCartMessage] = useState("Added To bag");
+  const [cartMessage, setCartMessage] = useState('Added To bag');
 
   //const { data: val } = location.state;
   const {
     params: { slug },
   } = match;
+
 
   const [images, setImages] = useState([]);
   const [ProductType, setProductType] = useState(null);
@@ -149,6 +163,7 @@ export default function ProductDescription({ match }) {
   console.log(ProductType);
 
   const { login_Model_Show } = useLogin();
+
   const { isAuthenticated } = useSelector((state) => state.root.auth);
   const { details, error, loading, attributes } = useSelector(
     (state) => state.root.productDetails
@@ -170,23 +185,24 @@ export default function ProductDescription({ match }) {
 
   const buy_now_handler = async () => {
     if (isAuthenticated) {
+
       if (details.hasOwnProperty("title")) {
         try {
-          const type = ProductType === "ready made" ? "readymade" : "customise";
+          const type = ProductType === 'ready made' ? 'readymade' : 'customise';
           const { data } = await common_axios.post(`/addToCart/${slug}`, {
             type,
           });
           console.log(data);
           if (data) {
-            history.push("/my-bag");
+            history.push('/my-bag');
           }
         } catch (e) {
           console.log(e?.response?.data?.message);
-          if (e?.response?.data?.message === "Item alrealy in your cart") {
-            history.push("/my-bag");
+          if (e?.response?.data?.message === 'Item alrealy in your cart') {
+            history.push('/my-bag');
           }
 
-          if (e?.response?.data?.message === "Login first") {
+          if (e?.response?.data?.message === 'Login first') {
             login_Model_Show();
           }
         }
@@ -199,7 +215,7 @@ export default function ProductDescription({ match }) {
   const add_bag_handler = async () => {
     if (isAuthenticated) {
       try {
-        const type = ProductType === "ready made" ? "readymade" : "customise";
+        const type = ProductType === 'ready made' ? 'readymade' : 'customise';
         const { data } = await common_axios.post(`/addToCart/${slug}`, {
           type,
         });
@@ -220,6 +236,7 @@ export default function ProductDescription({ match }) {
   console.log(Product_Type);
   const [imageIdx, setImageIdx] = useState(0);
   return (
+
     <Container bottomDivider footerOnTabMob>
       {!details ? (
         <Loader />
@@ -434,6 +451,7 @@ export default function ProductDescription({ match }) {
                                     ? styles.FormControlLabel
                                     : styles.FormControlLabelS
                                 }
+
                                 checked={ProductType === "ready made"}
                                 control={<CustomRadio />}
                                 label={
@@ -454,6 +472,7 @@ export default function ProductDescription({ match }) {
                                 }
                               />
                             </MenuItem>
+
                           ) : null}
                           {details.product?.isCustomise === "on" ? (
                             <MenuItem value={"custom"}>
@@ -873,6 +892,7 @@ export default function ProductDescription({ match }) {
                   </div>
                 )}
 
+
                 {mobileView && (
                   <div>
                     {details.stock_quantity < 10 ? (
@@ -890,6 +910,7 @@ export default function ProductDescription({ match }) {
                 <div className={styles.selectColor}>
                   <div>Select colour</div>
                   <br />
+
                   <div className={styles.SelectColorCard}>
                     <IconButton
                       className={styles.ColorBTN}
@@ -1008,7 +1029,8 @@ export default function ProductDescription({ match }) {
                           </div>
                         </React.Fragment>
                       }
-                      placement={"top"}
+                      placement={'bottom'}
+
                       arrow
                     >
                       <Button
@@ -1027,6 +1049,7 @@ export default function ProductDescription({ match }) {
                     </HtmlTooltipButton>
                   </div>
                 </div>
+
                 <div></div>
                 {tabView || mobileView ? (
                   <div

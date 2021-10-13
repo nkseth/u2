@@ -1,9 +1,12 @@
 .container {
   position: relative;
   display: flex;
+  height: 631px;
+
   > img:first-child {
     width: 350px;
     margin-left: 1em;
+    object-fit: cover;
   }
   > img:last-child {
     height: 300px;

@@ -9,10 +9,11 @@
   //   url(https://anima-uploads.s3.amazonaws.com/projects/60a8e4bb63b3840740d1ac98/img/mask-group-18@1x.png);
   transition: height 0.3s ease-in;
   // background-position:  center;
-  background-repeat: no-repeat;
-
+  // background-repeat: no-repeat;
+  width: 420px;
   @media screen and(max-width:420px) {
     display: block;
+    width: 100%;
   }
   .MuiPaper-root {
     background: none !important;

@@ -75,11 +75,13 @@ export const allMeasurementsReducer = (
   action
 ) => {
   switch (action.type) {
-    case GET_ALL_MEASUREMENTS:
+    case GET_ALL_MEASUREMENTS: {
+      Object.assign(inialState, action.payload);
       return {
         ...inialState,
         measurements: action.payload,
       };
+    }
     default:
       return inialState;
   }

@@ -128,7 +128,7 @@ export default function ChooseStandardSize({
         standard_size: Size,
         fitting: Fitting,
         user_id: user.id,
-        // order_id: orderId,
+        order_id: orderId,
       });
       console.log(data);
       dispatch(set_basic_id(data));
@@ -171,7 +171,7 @@ export default function ChooseStandardSize({
           <div className={styles.videoDiv}>
             <div className={styles.video}>
               <div className={styles.overlay}>
-                <img src={playBtn} />
+                <img src={playBtn} alt="playbtn" />
                 <span>9:57</span>
                 <h4>Introductory video on measurement</h4>
                 <p>

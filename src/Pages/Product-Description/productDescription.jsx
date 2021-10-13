@@ -708,7 +708,10 @@ export default function ProductDescription({ match }) {
                     <div className={styles.price}>
                       <span>
                         {details.currency_symbol}
-                        {details.has_offer
+                        {ProductType === "ready made"
+                          ? details.readymade_price
+                          : details.custom_price}
+                        {/* {details.has_offer
                           ? details.offer_price
                           : Product_Type === "custom"
                           ? details.custom_price >= 1
@@ -718,7 +721,7 @@ export default function ProductDescription({ match }) {
                           ? details.readymade_price >= 1
                             ? details.readymade_price
                             : details.price
-                          : details.price}
+                          : details.price} */}
                       </span>
                       <br />
                       {details.has_offer ? (
@@ -841,7 +844,10 @@ export default function ProductDescription({ match }) {
                     <div className={styles.price}>
                       <span>
                         {details.currency_symbol}
-                        {details.has_offer
+                        {ProductType === "ready made"
+                          ? details.readymade_price
+                          : details.custom_price}
+                        {/* {details.has_offer
                           ? details.offer_price
                           : Product_Type === "custom"
                           ? details.custom_price >= 1
@@ -851,7 +857,7 @@ export default function ProductDescription({ match }) {
                           ? details.readymade_price >= 1
                             ? details.readymade_price
                             : details.price
-                          : details.price}
+                          : details.price} */}
                       </span>
                       <br />
                       {details.has_offer ? (

@@ -30,3 +30,5 @@ firebase-debug.json
 firebase-debug.log
 .firebase
 .firebaserc
+
+.env

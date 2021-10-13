@@ -30,7 +30,7 @@ export const getAddress = () => async (dispatch) => {
   }
 };
 
-export const setPayment = (id, address) => async (dispatch) => {
+export const setPayment = (id) => async (dispatch) => {
   try {
     dispatch({ type: PLACE_ORDER_REQUEST });
     const { data } = await common_axios.put(`/order/${id}/save`);

@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import CustomDivider from "../../../../utils/Custom Divider/divider";
 import styles from "./card.module.scss";
 
-export default function OrdersCard({ item, orderId }) {
+export default function OrdersCard({ pending, item, orderId }) {
   // console.log(item);
   const history = useHistory();
   const mobileView = useMediaQuery("(max-width:550px)");
@@ -54,14 +54,27 @@ export default function OrdersCard({ item, orderId }) {
               {item.total}
             </div>
           )}
-
-          <Button
-            onClick={() => history.push(`/trackorder/${orderId}`)}
-            className={styles.trackBtn}
-            variant="contained"
-          >
-            Track Order
-          </Button>
+          {pending ? (
+            <Button
+              onClick={() =>
+                history.push(`/add-measurement-choose-standard-size/${orderId}`)
+              }
+              className={styles.trackBtn}
+              variant="contained"
+              style={{ whiteSpace: "nowrap" }}
+            >
+              Add Measurement
+            </Button>
+          ) : (
+            <Button
+              onClick={() => history.push(`/trackorder/${orderId}`)}
+              className={styles.trackBtn}
+              variant="contained"
+              style={{ whiteSpace: "nowrap" }}
+            >
+              Track Order
+            </Button>
+          )}
           <div className={styles.detailThree}>
             <span
               style={{ cursor: "pointer" }}

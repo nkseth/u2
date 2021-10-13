@@ -3,7 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Button, Radio, IconButton } from "@material-ui/core";
 import Container from "../../utils/Container/container";
 import { useHistory } from "react-router-dom";
-
+import Logo from "../../Images/logo/U2icon.svg";
 import InputField from "./Components/Input-Field/inputField";
 import CustomDivider from "../../utils/Custom Divider/divider";
 import CustomSection from "../../utils/Custom Section/section";
@@ -50,7 +50,7 @@ export default function Payment({
   const { cart } = useSelector((state) => state.root.cartItems);
   const { info, loading, error } = useSelector((state) => state.root.payment);
   useEffect(() => {
-    if (!loading && info) setPaymentDone(!PaymentDone);
+    // if (!loading && info) setPaymentDone(!PaymentDone);
     if (error) {
       alert("Error - Payment can't be processed now. Try again later");
       dispatch(clearCheckoutErrors());
@@ -58,6 +58,7 @@ export default function Payment({
     dispatch(getCartItems());
     // unsub();
     // return unsub;
+    if (!loading && info) razorPayment();
   }, [dispatch, info, error, loading]);
 
   const unsub = () => {
@@ -66,13 +67,73 @@ export default function Payment({
     }
   };
 
-  const initiate_payment = (e) => {
+  const loadRazorPay = () => {
+    return new Promise((resolve) => {
+      const razorPayScript = document.createElement("script");
+      razorPayScript.src = "https://checkout.razorpay.com/v1/checkout.js";
+      razorPayScript.onload = () => resolve(true);
+      razorPayScript.onerror = () => resolve(false);
+      console.log("pay", razorPayScript);
+      document.body.appendChild(razorPayScript);
+    });
+  };
+  const razorPayment = async () => {
+    const res = await loadRazorPay();
+    if (!res) {
+      alert(
+        "Razorpay SDK failed to load. Check your internet connection or try later."
+      );
+    }
+
+    if (res) {
+      const options = {
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+        amount: "50000", //=Rs500, String In Paise(smallest currency of India)
+        currency: "INR",
+        name: "U2 Unique & Universal",
+        description: "Test Transaction",
+        image: Logo, //"https://example.com/your_logo"
+        // order_id: "12349dsfsfs_efewrriewf_dfrfd", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        handler: function (response) {
+          alert(response.razorpay_payment_id);
+          alert(response.razorpay_order_id);
+          alert(response.razorpay_signature);
+          setPaymentDone(!PaymentDone);
+        },
+        prefill: {
+          name: "User",
+          email: "vishal@example.com",
+          contact: "9999999999", //cart.shipping_address.phone, // "9999999999",
+        },
+        // notes: {
+        //   address: "Razorpay Corporate Office",
+        // },
+        theme: {
+          color: "#6a5b40",
+        },
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+      // paymentObject.on("payment.failed", function (response) {
+      //   alert(response.error.code);
+      //   alert(response.error.description);
+      //   alert(response.error.source);
+      //   alert(response.error.step);
+      //   alert(response.error.reason);
+      //   alert(response.error.metadata.order_id);
+      //   alert(response.error.metadata.payment_id);
+      // });
+      // document.getElementById("rzp-button1").onclick = function (e) {
+      //   paymentObject.open();
+      //   e.preventDefault();
+      // };
+    }
+  };
+  const initiate_payment = async (e) => {
     e.preventDefault();
-    console.log(info, error);
-    const address = localStorage.getItem("primaryAddress");
-    console.log(cart.id);
-    if (cart || cart.id) dispatch(setPayment(cart.id, address));
-    else alert("You cart is empty.");
+    if (!cart) return alert("You cart is empty.");
+    dispatch(setPayment(cart.id));
   };
 
   return (
@@ -283,13 +344,14 @@ export function SuccessPopUp({ toggle, title, text, history, payment }) {
               onClick={() =>
                 history.push(`/add-measurement-choose-standard-size/${info.id}`)
               }
-              disabled={!loading && !info}
+              disabled={!info}
             >
               Add measurement
             </Button>
             <Button
               className={styles.LaterBTN}
               onClick={() => history.push(`/all-orders`)}
+              disabled={!info}
             >
               I’ll do it later
             </Button>

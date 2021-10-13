@@ -23,6 +23,8 @@ export const getMyAddresses = () => async (dispatch) => {
   }
 };
 
+export const addAddress = () => (dispatch) => {};
+
 export const clearErrors = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
 };

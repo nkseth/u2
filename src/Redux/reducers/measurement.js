@@ -90,11 +90,12 @@ export const deleteMeasurementReducer = (
   action
 ) => {
   switch (action.type) {
-    case DELETE_MEASUREMENT:
+    case DELETE_MEASUREMENT: {
       return {
         ...inialState,
         message: action.payload,
       };
+    }
     default:
       return inialState;
   }

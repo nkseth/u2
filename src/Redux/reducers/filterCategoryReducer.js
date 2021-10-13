@@ -1,12 +1,12 @@
-import { keys } from "@material-ui/core/styles/createBreakpoints";
-import { AirlineSeatLegroomNormal } from "@material-ui/icons";
+import { keys } from '@material-ui/core/styles/createBreakpoints';
+import { AirlineSeatLegroomNormal } from '@material-ui/icons';
 import {
   CLEAR_ALL_FILTERS,
   CLEAR_FILTER_DATA,
   GET_FILTERED_PRODUCT,
   GET_FILTER_LIST,
   SET_FILTER_DATA,
-} from "../actions/types";
+} from '../actions/types';
 
 export const filterCategoryReducer = (
   initialState = { filters: null },
@@ -50,6 +50,7 @@ export const storefilterReducer = (
     occasion: [],
     design: [],
     discount: [],
+    fit: [],
   },
   action
 ) => {
@@ -84,6 +85,7 @@ export const storefilterReducer = (
         occasion: [],
         design: [],
         discount: [],
+        fit: [],
       };
     }
 

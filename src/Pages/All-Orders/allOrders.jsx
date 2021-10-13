@@ -24,6 +24,28 @@ export default function AllOrders() {
   }, [dispatch]);
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
+  let pendingOrders = [],
+    confirmedOrders = [],
+    deliverdOrders = [];
+  if (orders) {
+    orders.forEach((order) => {
+      if (
+        order.order_status.toLowerCase() === "pending" ||
+        order.order_status.toLowerCase() === "pending"
+      )
+        pendingOrders.push(order);
+      if (order.order_status.toLowerCase() === "confirmed")
+        confirmedOrders.push(order);
+      if (order.order_status.toLowerCase() === "delivered")
+        deliverdOrders.push(order);
+    });
+
+    // pendingOrders = orders.filter(
+    //   (order) =>
+    //     order.order_status.toLowerCase() === "pending" ||
+    //     order.order_status.toLowerCase() === ""
+    // );
+  }
   return (
     <Container bottomDivider pBottom="0" footerOnTabMob>
       {!orders ? (
@@ -39,14 +61,147 @@ export default function AllOrders() {
               <span className={styles.header}>Orders</span>
               <CustomDivider />
             </div>
-            {orders.map(
+            {confirmedOrders.length > 0 && (
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: "1rem",
+                    padding: "1rem 0",
+                  }}
+                >
+                  <img src={DeliveryVanIcon} alt="Delivery Van" />
+                  {"On the way"}
+                </div>
+                <CustomDivider />
+                {confirmedOrders.map(
+                  ({ id, customer, items, order_number }) => (
+                    <div className={styles.ordersCardDiv}>
+                      {/* {console.log(order)} */}
+                      {items.map((item) => (
+                        <OrdersCard item={item} key={item.id} orderId={id} />
+                      ))}
+
+                      <div className={styles.deliveryAddress}>
+                        <span>Delivery Address</span>
+                        <p>
+                          <span>{customer.name}</span>
+                          <span>{customer.phone_no}</span>
+                        </p>
+                        <p>
+                          No 167, 2nd floor, 3rd cross RK garden behind gowri
+                          appatment mathikere bengaluru, Mathikere, Bengaluru -
+                          560054
+                        </p>
+                        <p>
+                          <span>Order ID</span>
+                          <span>{order_number}</span>
+                        </p>
+                      </div>
+                      <CustomDivider />
+                    </div>
+                  )
+                )}
+              </div>
+            )}
+            {pendingOrders.length > 0 && (
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: "1rem",
+                    padding: "1rem 0",
+                  }}
+                >
+                  <img src={DeliveryVanIcon} alt="Delivery Van" />
+                  {"Pending"}
+                </div>
+                <CustomDivider />
+                {pendingOrders.map(({ id, customer, items, order_number }) => (
+                  <div className={styles.ordersCardDiv}>
+                    {/* {console.log(order)} */}
+                    {items.map((item) => (
+                      <OrdersCard item={item} key={item.id} orderId={id} />
+                    ))}
+
+                    <div className={styles.deliveryAddress}>
+                      <span>Delivery Address</span>
+                      <p>
+                        <span>{customer.name}</span>
+                        <span>{customer.phone_no}</span>
+                      </p>
+                      <p>
+                        No 167, 2nd floor, 3rd cross RK garden behind gowri
+                        appatment mathikere bengaluru, Mathikere, Bengaluru -
+                        560054
+                      </p>
+                      <p>
+                        <span>Order ID</span>
+                        <span>{order_number}</span>
+                      </p>
+                    </div>
+                    <CustomDivider />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {deliverdOrders.length > 0 && (
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: "1rem",
+                    padding: "1rem 0",
+                  }}
+                >
+                  <img src={PackageIcon} alt="orders" />
+                  {"Past Orders"}
+                </div>
+                <CustomDivider />
+                {deliverdOrders.map(({ id, customer, items, order_number }) => (
+                  <div className={styles.ordersCardDiv}>
+                    {items.map((item) => (
+                      <PastOrdersCard item={item} key={item.id} orderId={id} />
+                    ))}
+
+                    <div className={styles.deliveryAddress}>
+                      <span>Delivery Address</span>
+                      <p>
+                        <span>{customer.name}</span>
+                        <span>{customer.phone_no}</span>
+                      </p>
+                      <p>
+                        No 167, 2nd floor, 3rd cross RK garden behind gowri
+                        appatment mathikere bengaluru, Mathikere, Bengaluru -
+                        560054
+                      </p>
+                      <p>
+                        <span>Order ID</span>
+                        <span>{order_number}</span>
+                      </p>
+                    </div>
+                    <CustomDivider />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* {orders.map(
               ({ id, customer, items, order_status, order_number }) => (
                 <div className={styles.ordersCardDiv}>
                   <div>
                     <img src={DeliveryVanIcon} alt="Delivery Van" />
-                    {order_status}
+                    {order_status !== ""
+                      ? order_status
+                      : "Pending".toUpperCase()}
                   </div>
-                  {/* {console.log(order)} */}
                   {items.map((item) => (
                     <OrdersCard item={item} key={item.id} orderId={id} />
                   ))}
@@ -68,17 +223,17 @@ export default function AllOrders() {
                     </p>
                   </div>
                   <CustomDivider />
-                  {/* <div className={styles.pastOrdersDiv}>
-                  <div>
-                    <img src={PackageIcon} alt="orders" />
-                    Past Orders
+                  <div className={styles.pastOrdersDiv}>
+                    <div>
+                      <img src={PackageIcon} alt="orders" />
+                      Past Orders
+                    </div>
+                    <PastOrdersCard />
+                    <CustomDivider />
                   </div>
-                  <PastOrdersCard />
-                  <CustomDivider />
-                </div> */}
                 </div>
               )
-            )}
+            )} */}
           </div>
         </section>
       )}

@@ -168,7 +168,36 @@
   }
 }
 
+.wishlistBtn {
+  background-color: #857250;
+  color: #fff;
+  margin-left: auto;
+  height: 35px;
+  margin-top: -1rem;
+  right: 100px;
+
+  text-transform: capitalize;
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: center;
+
+  &:hover {
+    background-color: #857250;
+  }
+}
+
+.shareBtn {
+  position: absolute;
+  right: 100px;
+  top: 100px;
+}
+
 .lastContainer {
+  position: relative;
   border-left: 1px solid #000;
   border-top: 1px solid #000;
   padding: 2rem 1rem;
@@ -248,6 +277,27 @@
 
       > span:last-child {
         color: var(--primary-color);
+      }
+    }
+  }
+  .fabric {
+    h1 {
+      font-family: DM Sans;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0px;
+      text-align: left;
+      span {
+        //styleName: Headline / H5;
+        font-family: DM Sans;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0px;
+        text-align: left;
       }
     }
   }

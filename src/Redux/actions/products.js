@@ -4,15 +4,13 @@ import {
   GET_PRODUCTS_FAIL,
   GET_PRODUCTS_REQUEST,
   GET_PRODUCTS_SUCCESS,
+  GET_PRODUCT_DETAILS_FAILED,
+  GET_PRODUCT_DETAILS_REQUEST,
+  GET_PRODUCT_DETAILS_SUCCESS,
 } from "./types";
 
 export const getProducts = (type, filter) => async (dispatch) => {
-  // console.log(
-  //   "🚀 ~ file: products.js ~ line 10 ~ getProducts ~ filter",
-  //   filter
-  // );
   try {
-    // console.log(type, filter);
     dispatch({ type: GET_PRODUCTS_REQUEST });
     let url = "";
     if (type) url = `/getCategoryByProduct/${type}`;
@@ -28,6 +26,23 @@ export const getProducts = (type, filter) => async (dispatch) => {
   } catch (err) {
     console.log(err);
     dispatch({ type: GET_PRODUCTS_FAIL, payload: err });
+    return Promise.reject(err);
+  }
+};
+export const getProductDetails = (slug) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_PRODUCT_DETAILS_REQUEST });
+    const { data } = await common_axios.get(`/productDetail/${slug}`);
+    console.log(data);
+    if (data) {
+      dispatch({
+        type: GET_PRODUCT_DETAILS_SUCCESS,
+        payload: data,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: GET_PRODUCT_DETAILS_FAILED, payload: err });
     return Promise.reject(err);
   }
 };

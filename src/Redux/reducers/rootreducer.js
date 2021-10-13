@@ -25,7 +25,6 @@ import {
   storefilterReducer,
 } from "./filterCategoryReducer";
 
-import { productDetailReducer } from "./productDescriptionReducer";
 import {
   allMeasurementsReducer,
   deleteMeasurementReducer,
@@ -33,10 +32,16 @@ import {
   saveMeasurementReducer,
 } from "./measurement";
 
-import { cartItemsReducer, removeCartItemReducer } from "./myBagReducer";
-import { productsReducer } from "./productsReducer";
+import {
+  cartItemsReducer,
+  removeCartItemReducer,
+  couponsReducer,
+} from "./myBagReducer";
+import { productsReducer, productDetailsReducer } from "./productsReducer";
 import { trackOrderReducer, orderDetailReducer } from "./orderReducer";
 import { addressReducer, paymentReducer } from "./checkoutReducer";
+
+import { myAddressesReducer } from "./adrressReducer";
 
 const rootreducer = combineReducers({
   address: addressReducer,
@@ -44,6 +49,7 @@ const rootreducer = combineReducers({
   allMeasurements: allMeasurementsReducer,
   auth: authReducer,
   cartItems: cartItemsReducer,
+  coupons: couponsReducer,
   customerReviews: customerReviewsReducer,
   deleteMeasurement: deleteMeasurementReducer,
   filterCategory: filterCategoryReducer,
@@ -53,10 +59,11 @@ const rootreducer = combineReducers({
   login: loginreducer,
   main: mainreducer,
   measurement: measurement_reducer,
+  myAddresses: myAddressesReducer,
   orderDetail: orderDetailReducer,
   payment: paymentReducer,
   popularCategory: popularCategoryReducer,
-  productDetail: productDetailReducer,
+  productDetails: productDetailsReducer,
   products: productsReducer,
   profile: profile_reducer,
   removeCartItem: removeCartItemReducer,

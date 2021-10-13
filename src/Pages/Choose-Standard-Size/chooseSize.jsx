@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import {
   Button,
@@ -44,6 +44,7 @@ import {
   Customer_Fitting,
   Customer_Fitting_Change,
 } from "../../Redux/MeasuremantData";
+import { getOrderDetail } from "../../Redux/actions/order";
 
 const CustomRadio1 = withStyles({
   root: {
@@ -79,7 +80,12 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-export default function ChooseStandardSize() {
+export default function ChooseStandardSize({
+  match: {
+    params: { orderId },
+  },
+}) {
+  console.log(orderId);
   const history = useHistory();
   const dispatch = useDispatch();
   const tabView = useMediaQuery("(max-width:769px)");
@@ -91,13 +97,13 @@ export default function ChooseStandardSize() {
   const [Fitting, SetFitting] = useState(Customer_Fitting);
   const [Names, setName] = useState(Customer_Name);
 
-  const { gender, basic_details } = useSelector(
-    (state) => state.root.measurement
-  );
+  const { gender } = useSelector((state) => state.root.measurement);
   console.log(gender);
   const { user } = useSelector((state) => state.root.auth);
 
-  const { name, fitting, standard_size } = basic_details;
+  useEffect(() => {
+    dispatch(getOrderDetail(orderId));
+  }, [dispatch, orderId]);
 
   const onSubmit = async () => {
     if (Names.length === 0) {
@@ -122,6 +128,7 @@ export default function ChooseStandardSize() {
         standard_size: Size,
         fitting: Fitting,
         user_id: user.id,
+        // order_id: orderId,
       });
       console.log(data);
       dispatch(set_basic_id(data));

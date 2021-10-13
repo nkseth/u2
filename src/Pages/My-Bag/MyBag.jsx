@@ -31,7 +31,12 @@ import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 // Product Type
 import { addToWishlist } from "../../Redux/actions/wishlist";
-import { getCartItems, removeFromBag } from "../../Redux/actions/myBag";
+import {
+  getCartItems,
+  getCoupons,
+  removeFromBag,
+  clearCartError,
+} from "../../Redux/actions/myBag";
 import { SuccessPopUp } from "../../utils/Popups/SuccessPopup";
 
 export default function MyBag() {
@@ -56,12 +61,18 @@ export default function MyBag() {
   useEffect(() => {
     if (message) {
       alert(message);
+      dispatch(clearCartError());
+      dispatch(getCartItems());
+      history.push("/my-bag");
     }
     if (error) {
       alert(error);
+      dispatch(clearCartError());
+      dispatch(getCartItems());
     }
-    dispatch(getCartItems());
-  }, [dispatch]);
+    if (!cart && !loading) dispatch(getCartItems());
+    dispatch(getCoupons());
+  }, [dispatch, message, error]);
 
   const add_quantity = async (item, index) => {
     try {
@@ -93,35 +104,20 @@ export default function MyBag() {
     } else alert("Quantity can't be less than 1");
   };
 
-  const move_to_wishlist = async (item) => {
+  const move_to_wishlist = async (item, e) => {
+    if (e) e.preventDefault();
     dispatch(addToWishlist(item.slug, user.api_token));
     remove_item(item);
   };
 
-  const remove_item = async (item) => {
+  const remove_item = async (item, e) => {
+    if (e) e.preventDefault();
+    console.log(item.id, cart.id);
     dispatch(removeFromBag(item.id, cart.id));
-
-    // console.log("🚀 ~ file: MyBag.jsx ~ line 130 ~ MyBag ~ item", item);
-    // try {
-    //   console.log(cart.id, item.id);
-    //   const { data } = await common_axios.delete("/cart/removeItem", {
-    //     data: {
-    //       cart: cart.id,
-    //       item: item.id,
-    //     },
-    //   });
-    //   console.log(data);
-    //   if (data.message) {
-    //     dispatch(getCartItems());
-    //   }
-    // } catch (error) {
-    //   console.log(error.response);
-    //   alert(error.response?.data?.error);
-    // }
   };
 
   const on_checkout = () => {
-    dispatch(setOrderSumm(cart));
+    // dispatch(setOrderSumm(cart));
     history.push("/order-summary");
   };
 
@@ -190,8 +186,8 @@ export default function MyBag() {
                           </h2>
                           <Button
                             class={styles.removeModelButton}
-                            onClick={() => {
-                              remove_item(removeItem);
+                            onClick={(e) => {
+                              remove_item(removeItem, e);
                               toggleRemoveModal();
                             }}
                           >
@@ -304,7 +300,7 @@ export default function MyBag() {
                                 </div>
                                 <Button
                                   // onClick={() => remove_item(item)}
-                                  onClick={() => toggleRemoveModal(item)}
+                                  onClick={(e) => toggleRemoveModal(item, e)}
                                   className={styles.RemoveBTN}
                                 >
                                   Remove item
@@ -513,13 +509,13 @@ const MobileProductMyBag = ({
                   </div>
 
                   <Button
-                    onClick={() => move_to_wishlist(item)}
+                    onClick={(e) => move_to_wishlist(item, e)}
                     className={styles.MoveToWishListBtnMobile}
                   >
                     Move to Whishlist
                   </Button>
                   <Button
-                    onClick={() => remove_item(item)}
+                    onClick={(e) => remove_item(item, e)}
                     className={styles.RemoveBTNMobile}
                   >
                     Remove item

@@ -75,13 +75,13 @@ import ProtectedRoute from "./utils/routes/ProtectedRoute";
 // COLLAB
 
 import store from "./Redux/store";
-import CollabrateLogin from './Pages/Collabrate/CollabrateLogin/collabrateLogin';
-import CollabrateRegister from './Pages/Collabrate/CollabrateRegistrationAsVendor/registrationAsVendor';
-import CollabrateAsFashionDesigner from './Pages/Collabrate/CollabrateAsFashionDesigner/collabrateAsFashionDesigner';
-import CollabrateAsVendor from './Pages/Collabrate/CollabrateAsVendor/collabrateAsVendor';
-import CollabrateAsInfluencer from './Pages/Collabrate/CollabrateAsInfluencer/collabrateAsInfluencer';
-import AboutUs from './OtherPages/AboutUs/AboutUs';
-import MobileCategory from './utils/MobileCategoryPage/MobileCategory';
+import CollabrateLogin from "./Pages/Collabrate/CollabrateLogin/collabrateLogin";
+import CollabrateRegister from "./Pages/Collabrate/CollabrateRegistrationAsVendor/registrationAsVendor";
+import CollabrateAsFashionDesigner from "./Pages/Collabrate/CollabrateAsFashionDesigner/collabrateAsFashionDesigner";
+import CollabrateAsVendor from "./Pages/Collabrate/CollabrateAsVendor/collabrateAsVendor";
+import CollabrateAsInfluencer from "./Pages/Collabrate/CollabrateAsInfluencer/collabrateAsInfluencer";
+import AboutUs from "./OtherPages/AboutUs/AboutUs";
+import MobileCategory from "./utils/MobileCategoryPage/MobileCategory";
 
 //Start From Here
 
@@ -138,8 +138,9 @@ function App() {
         <ProtectedRoute path="/add-measurement" component={AddMeasurement} />
         <ProtectedRoute path="/my-measurements" component={MyMeasurements} />
         <ProtectedRoute
-          path="/add-measurement-choose-standard-size"
+          path="/add-measurement-choose-standard-size/:orderId"
           component={ChooseStandardSize}
+          exact
         />
         <ProtectedRoute
           path="/add-measurement-gender"
@@ -178,11 +179,14 @@ function App() {
         {/* New page added here */}
         <Route path="/my-bag" component={MyBag} />
         {/* New page added here */}
-        <ProtectedRoute path="/delivery-address" component={DeliveryAddress} />
+        <ProtectedRoute
+          path="/delivery-address/:cartId"
+          component={DeliveryAddress}
+        />
         <ProtectedRoute path="/payment/:id" component={Payment} />
         <Route path="/offers" component={Offers} />
         <ProtectedRoute path="/all-orders" component={AllOrders} />
-        <ProtectedRoute path="/rate_order/:orderid" component={Orders} />
+        <ProtectedRoute path="/rate_order/:orderId" component={Orders} />
         {/* other dev pages */}
         {/* <Route path='/designers-home-page' component={DesignersHomePage} /> */}
         {/* <Route path='/about' component={AboutPage} /> */}
@@ -265,7 +269,7 @@ function App() {
           path={"/Collabrate-as-influencer"}
           component={CollabrateAsInfluencer}
         />
-        <Route path={'/mobile-category'} component={MobileCategory} />
+        <Route path={"/mobile-category"} component={MobileCategory} />
       </Switch>
     </div>
   );

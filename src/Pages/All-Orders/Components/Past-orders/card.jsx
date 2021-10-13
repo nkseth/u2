@@ -5,42 +5,51 @@ import CustomDivider from "../../../../utils/Custom Divider/divider";
 import styles from "./card.module.scss";
 import { ReactComponent as StarIcon } from "../../../../Images/icons/star.svg";
 
-export default function PastOrdersCard() {
+export default function PastOrdersCard({ item, orderId }) {
   const history = useHistory();
   const mobileView = useMediaQuery("(max-width:550px)");
-  const img =
-    "https://www.figma.com/file/3feKLdzH2SEin23kTS0pjx/image/a96652a274f8f44a8fc9d72801987378591d2bc0";
+
   return (
     <div className={styles.mainContainer}>
       <CustomDivider />
       <div className={styles.cardContainer}>
-        <img src={img} alt='product' />
+        <img
+          src={item.product.image}
+          alt={item.title}
+          style={{ cursor: "pointer" }}
+          onClick={() => history.push(`/product-description/${item.slug}`)}
+        />
         <div className={styles.detailsDiv}>
           <div className={styles.detailOne}>
             <div>
-              <span>10 Current Fashion Trends You’ll Be Wearing in 2021</span>
-              <span>Solid Straight Kurta</span>
+              <span>{item.title}</span>
+              {/* <span>Solid Straight Kurta</span> */}
             </div>
-            <div>Delivered on Jan 13</div>
+            {/* <div>Delivered on Jan 13</div> */}
           </div>
           <div className={styles.detailTwo}>
             <span>Quantity:</span>
-            <span>01</span>
+            <span>{item.quantity}</span>
           </div>
-          <div>₹559</div>
+          <div>
+            {item.currency_symbol}
+            {item.total}
+          </div>
           <div className={styles.detailThree}>
-            
             {!mobileView && (
-              <Button startIcon={<StarIcon />} className={styles.rateBtn}>
+              <Button
+                startIcon={<StarIcon />}
+                className={styles.rateBtn}
+                onClick={() => history.push(`/rate_order/${orderId}`)}
+              >
                 Rate &amp; Review Product
               </Button>
             )}
-            <div>            
-              <span style={{color:'#6a5b40'}}>Order Detail</span>
-              </div>
-
+            <div>
+              <span style={{ color: "#6a5b40" }}>Order Detail</span>
+            </div>
           </div>
-          
+
           {mobileView && (
             <div style={{ display: "grid", gap: "1rem" }}>
               <div
@@ -56,10 +65,7 @@ export default function PastOrdersCard() {
               <Button
                 startIcon={<StarIcon />}
                 className={styles.rateBtn}
-                onClick={() => {
-                  history.push("/orders");
-                  console.log("test");
-                }}
+                onClick={() => history.push(`/rate_order/${orderId}`)}
               >
                 Rate &amp; Review Product
               </Button>

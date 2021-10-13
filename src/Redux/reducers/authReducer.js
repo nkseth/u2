@@ -1,7 +1,12 @@
 import { LOAD_USER, LOGIN, LOGIN_REQUEST, LOGOUT } from "../actions/types";
 
 export const authReducer = (
-  initialState = { loading: false, isAuthenticated: false, user: {} },
+  initialState = {
+    loading: false,
+    isAuthenticated: false,
+    user: {},
+    error: null,
+  },
   action
 ) => {
   const { type, payload } = action;

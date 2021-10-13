@@ -9,24 +9,27 @@ import Rating from "./components/rating";
 import { useSelector, useDispatch } from "react-redux";
 import { get_orders } from "../../Redux/actions/profile";
 import { getOrderDetail } from "../../Redux/actions/order";
+import { getProductDetails } from "../../Redux/actions/products";
+import Loader from "../../utils/Loader/Loader";
 
 export default function Orders({
   match: {
-    params: { orderid },
+    params: { orderId },
   },
 }) {
   const dispatch = useDispatch();
   const { orders } = useSelector((state) => state.root.profile);
-  const { order } = useSelector((state) => state.root.orderDetail);
+  const { order, loading } = useSelector((state) => state.root.orderDetail);
   console.log(order);
 
   useEffect(() => {
-    dispatch(get_orders());
-    dispatch(getOrderDetail(orderid));
-  }, [dispatch, orderid]);
+    // dispatch(getProductDetails(slug));
+    dispatch(getOrderDetail(orderId));
+  }, [dispatch, orderId]);
 
   const set_is_reviewed = (id) => {
-    dispatch(get_orders());
+    // dispatch(get_orders());
+    dispatch(getOrderDetail(id));
   };
   const mobileView = useMediaQuery("(max-width:550px)");
   const tabView = useMediaQuery("(max-width:768px)");
@@ -61,44 +64,42 @@ export default function Orders({
           }}
         >
           {tabView && <Breadcrumb path="Home /" activePath="Profile" />}
-          {orders?.map((item) => {
-            return (
-              <>
-                <div className={styles.productDiv}>
-                  <img src={productImg} alt="product" />
-                  <div>
-                    <span className={styles.productHeader}>
-                      {item.items?.length > 0
-                        ? item.items[0].title
-                        : "10 Current Fashion Trends You’ll Be Wearing in 2021"}
-                    </span>
-                    <span className={styles.productDescription}>
-                      {item.items?.length > 0
-                        ? item.items[0]?.description
-                        : "Solid Straight Kurta"}
-                    </span>
-                    <div className={styles.productQuantity}>
-                      <span>Quantity:</span>
-                      <span>{item.quantity}</span>
+          {loading ? (
+            <Loader />
+          ) : (
+            order?.items.map(({ item }) => {
+              return (
+                <>
+                  <div className={styles.productDiv}>
+                    <img src={productImg} alt="product" />
+                    <div>
+                      <span className={styles.productHeader}>{item.title}</span>
+                      <span className={styles.productDescription}>
+                        {item.description}
+                      </span>
+                      <div className={styles.productQuantity}>
+                        <span>Quantity:</span>
+                        <span>{item.quantity}</span>
+                      </div>
+                      <span className={styles.price}>
+                        ₹{Math.round(parseFloat(item.total)).toFixed(2)}
+                      </span>
                     </div>
-                    <span className={styles.price}>
-                      ₹{Math.round(parseFloat(item.grand_total_raw)).toFixed(2)}
-                    </span>
                   </div>
-                </div>
-                {!item.feedback_id ? (
-                  <Rating
-                    item={item}
-                    set_is_reviewed={set_is_reviewed}
-                    id={item.items?.length > 0 ? item.items[0].id : null}
-                  />
-                ) : null}
-              </>
-            );
-          })}
+                  {!item.feedback_id ? (
+                    <Rating
+                      item={item}
+                      set_is_reviewed={set_is_reviewed}
+                      id={item.items?.length > 0 ? item.items[0].id : null}
+                    />
+                  ) : null}
+                </>
+              );
+            })
+          )}
 
           {/* delete */}
-          {orders?.map((item) => {
+          {/* {orders?.map((item) => {
             return (
               <>
                 <div className={styles.productDiv}>
@@ -132,7 +133,7 @@ export default function Orders({
                 ) : null}
               </>
             );
-          })}
+          })} */}
         </div>
       </div>
     </Container>

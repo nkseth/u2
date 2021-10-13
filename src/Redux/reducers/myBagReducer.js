@@ -3,6 +3,10 @@ import {
   REMOVE_FROM_CART_FAILED,
   REMOVE_FROM_CART_REQUEST,
   REMOVE_FROM_CART_SUCCESS,
+  GET_COUPONS_REQUEST,
+  GET_COUPONS_SUCCESS,
+  GET_COUPONS_FAILED,
+  CLEAR_ERRORS,
 } from "../actions/types";
 
 export const cartItemsReducer = (initialState = { cart: null }, action) => {
@@ -30,8 +34,31 @@ export const removeCartItemReducer = (
       return { ...initialState, loading: true };
 
     case REMOVE_FROM_CART_SUCCESS: {
-      // Object.assign(initialState.cart, payload);
+      // Object.assign(initialState, payload);
       return { ...initialState, message: payload, loading: false };
+    }
+    case REMOVE_FROM_CART_FAILED:
+      return { ...initialState, error: payload, loading: false };
+    case CLEAR_ERRORS:
+      return { ...initialState, error: null, message: null };
+    default:
+      return initialState;
+  }
+};
+
+export const couponsReducer = (
+  initialState = { couponList: null, loading: false, error: null },
+  action
+) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case REMOVE_FROM_CART_REQUEST:
+      return { ...initialState, loading: true };
+
+    case REMOVE_FROM_CART_SUCCESS: {
+      // Object.assign(initialState, payload);
+      return { ...initialState, couponList: payload, loading: false };
     }
     case REMOVE_FROM_CART_FAILED:
       return { ...initialState, error: payload, loading: false };

@@ -47,7 +47,6 @@ export default function Payment({
     setPaymentDone(false);
   };
 
-
   const { cart } = useSelector((state) => state.root.cartItems);
   const { info, loading, error } = useSelector((state) => state.root.payment);
   useEffect(() => {
@@ -79,11 +78,11 @@ export default function Payment({
   return (
     <Container bottomDivider footerOnTabMob>
       <div className={styles.PaymentHeader}>
-
         {PaymentDone ? (
           <SuccessPopUp
             history={history}
             payment
+            orderId={id}
             toggle={toggle}
             title={"Your payment is successfully done"}
             text={
@@ -114,7 +113,6 @@ export default function Payment({
                     <p>
                       <span>UPI</span>
                       <span>( Phone pe / Paytm / Googlepay)</span>
-
                     </p>
                   </div>
                   <div>
@@ -267,6 +265,7 @@ export default function Payment({
 }
 
 export function SuccessPopUp({ toggle, title, text, history, payment }) {
+  const { info, loading, error } = useSelector((state) => state.root.payment);
   return (
     <div className={styles.modal}>
       <div className={styles.SecondLayer} onClick={toggle}></div>
@@ -282,8 +281,9 @@ export function SuccessPopUp({ toggle, title, text, history, payment }) {
             <Button
               className={styles.AddmeasureBTN}
               onClick={() =>
-                history.push("/add-measurement-choose-standard-size")
+                history.push(`/add-measurement-choose-standard-size/${info.id}`)
               }
+              disabled={!loading && !info}
             >
               Add measurement
             </Button>

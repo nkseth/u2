@@ -33,10 +33,7 @@ export const getAddress = () => async (dispatch) => {
 export const setPayment = (id, address) => async (dispatch) => {
   try {
     dispatch({ type: PLACE_ORDER_REQUEST });
-    const { data } = await common_axios.put(`/order/${id}/save`, {
-      shipping_address: address,
-      // payment_method_id: "3",
-    });
+    const { data } = await common_axios.put(`/order/${id}/save`);
     console.log(data.data);
     if (data.data) {
       dispatch({

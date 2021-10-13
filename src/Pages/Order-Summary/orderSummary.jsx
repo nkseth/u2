@@ -32,6 +32,7 @@ import { useSelector } from "react-redux";
 import { getAddress } from "../../Redux/actions/checkout";
 import { getCartItems } from "../../Redux/actions/myBag";
 import Loader from "../../utils/Loader/Loader";
+import { getMyAddresses } from "../../Redux/actions/address";
 
 export default function OrderSummary() {
   const history = useHistory();
@@ -44,18 +45,12 @@ export default function OrderSummary() {
   const [priceDetails, setPriceDetails] = useState({});
   const [AddAddress, setAddAddress] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  const img =
-    "https://images.pexels.com/photos/1096849/pexels-photo-1096849.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=165";
 
-  const { addressList, loading } = useSelector((state) => state.root.address);
-  const { cart } = useSelector((state) => state.root.cartItems);
-  console.log(addressList);
+  const { cart, loading } = useSelector((state) => state.root.cartItems);
   console.log(cart);
 
   useEffect(() => {
-
     dispatch(getCartItems());
-    dispatch(getAddress());
   }, [dispatch]);
 
   const add_quantity = async (item, index) => {
@@ -90,9 +85,9 @@ export default function OrderSummary() {
 
   const checkout = (e) => {
     e.preventDefault();
-    if (addressList.length > 0)
-      localStorage.setItem("primaryAddress", addressList[0].address_line_1);
-    else localStorage.setItem("primaryAddress", "Address");
+    // if (addressList.length > 0)
+    //   localStorage.setItem("primaryAddress", addressList[0].address_line_1);
+    // else localStorage.setItem("primaryAddress", "Address");
     history.push(`/payment/${cart.id}`);
   };
 
@@ -115,20 +110,16 @@ export default function OrderSummary() {
                   <p>Delivery address</p>
                   <CustomDivider />
                 </div>
-                {loading ? (
-                  <Loader />
-                ) : addressList ? (
-                  <DeliveryAddress
-                    setAddAddress={setAddAddress}
-                    addresses={addressList}
-                  />
-                ) : null}
+                <DeliveryAddress
+                  setAddAddress={setAddAddress}
+                  address={cart.shipping_address}
+                  cartId={cart.id}
+                />
                 <div className={styles.OrderLine}>
                   <p>Order Details</p>
                   <CustomDivider />
                 </div>
                 {cart.items?.map((item, index) => {
-
                   return (
                     <>
                       <div className={styles.mainDiv}>
@@ -144,7 +135,6 @@ export default function OrderSummary() {
                             <p className={styles.protype}>Product Type</p>
                             <p className={styles.protypetext}>
                               {item.type.toUpperCase()}
-
                             </p>
                             <div className={styles.quan}>
                               <p>Quantity</p>
@@ -154,7 +144,6 @@ export default function OrderSummary() {
                                   onClick={() =>
                                     substract_quantity(item, index)
                                   }
-
                                 >
                                   <RemoveIcon style={{ width: "15px" }} />
                                 </Button>
@@ -164,7 +153,6 @@ export default function OrderSummary() {
                                 <Button
                                   className={styles.removeBtn}
                                   onClick={() => add_quantity(item, index)}
-
                                 >
                                   <AddIcon style={{ width: "15px" }} />
                                 </Button>
@@ -243,17 +231,17 @@ export default function OrderSummary() {
                   <div className={styles.selectedProductPrices}>
                     <div>
                       <label>Product Price</label>
-                      <span>{cart.total}</span>
+                      <span>₹{cart.total}</span>
                     </div>
                     <div>
                       <label>Service charges</label>
                       <span>
-                        {cart.taxes}({cart.taxrate})
+                        ₹{cart.taxes}({cart.taxrate})
                       </span>
                     </div>
                     <div>
                       <label>Delivery charges</label>
-                      <span>{cart?.deliveryCharge}</span>
+                      <span>₹{cart?.delivery_charge}</span>
                     </div>
                   </div>
                   <CustomDivider style={{ backgroundColor: "#CECECE" }} />
@@ -261,7 +249,7 @@ export default function OrderSummary() {
                 <div className={styles.totalAmtDiv}>
                   <div>
                     <label>Total Amount</label>
-                    <span>{cart.grand_total}</span>
+                    <span>₹{cart.grand_total}</span>
                   </div>
                   <CustomDivider style={{ backgroundColor: "#CECECE" }} />
                 </div>
@@ -330,7 +318,7 @@ export default function OrderSummary() {
   );
 }
 
-export function DeliveryAddress({ addresses, setAddAddress }) {
+export function DeliveryAddress({ address, setAddAddress, cartId }) {
   const routerHistory = useHistory();
   return (
     <div className={styles.DeliveryAddress}>
@@ -338,12 +326,12 @@ export function DeliveryAddress({ addresses, setAddAddress }) {
         <div className={styles.firstAftermain}>
           <div>
             <span>John Hamilton</span>
-            <div className={styles.badge}>{addresses[0].address_type}</div>
+            <div className={styles.badge}>{address.address_type}</div>
           </div>
-          <p>{`${addresses[0].address_line_1} - ${addresses[0].zip_code}`}</p>
+          <p>{`${address.address_line_1} - ${address.zip_code}`}</p>
           <p>
             <span>Contact:</span>&nbsp;
-            <span>{addresses[0].phone}</span>
+            <span>{address.phone}</span>
           </p>
         </div>
 
@@ -359,7 +347,7 @@ export function DeliveryAddress({ addresses, setAddAddress }) {
             variant="contained"
             color="default"
             className={styles.changeBtn}
-            onClick={() => routerHistory.push("/myaddresses")}
+            onClick={() => routerHistory.push(`/delivery-address/${cartId}`)}
           >
             Change
           </Button>

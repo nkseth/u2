@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCartItems } from "../../Redux/actions/myBag";
 import Loader from "../../utils/Loader/Loader";
 import { clearCheckoutErrors, setPayment } from "../../Redux/actions/checkout";
-
+import common_axios from "../../utils/axios.config";
 const CustomRadio = withStyles({
   root: {
     color: "#9D9D9D",
@@ -78,56 +78,70 @@ export default function Payment({
     });
   };
   const razorPayment = async () => {
-    const res = await loadRazorPay();
-    if (!res) {
-      alert(
-        "Razorpay SDK failed to load. Check your internet connection or try later."
-      );
-    }
+    try {
+      const res = await loadRazorPay();
+      if (!res) {
+        alert(
+          "Razorpay SDK failed to load. Check your internet connection or try later."
+        );
+      }
 
-    if (res) {
-      const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
-        amount: "50000", //=Rs500, String In Paise(smallest currency of India)
-        currency: "INR",
-        name: "U2 Unique & Universal",
-        description: "Test Transaction",
-        image: Logo, //"https://example.com/your_logo"
-        // order_id: "12349dsfsfs_efewrriewf_dfrfd", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        handler: function (response) {
-          alert(response.razorpay_payment_id);
-          alert(response.razorpay_order_id);
-          alert(response.razorpay_signature);
-          setPaymentDone(!PaymentDone);
-        },
-        prefill: {
-          name: "User",
-          email: "vishal@example.com",
-          contact: "9999999999", //cart.shipping_address.phone, // "9999999999",
-        },
-        // notes: {
-        //   address: "Razorpay Corporate Office",
-        // },
-        theme: {
-          color: "#6a5b40",
-        },
-      };
+      if (res) {
+        const options = {
+          key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+          amount: info.grand_total * 100, //=Rs500, String In Paise(smallest currency of India)
+          currency: "INR",
+          name: "U2 Unique & Universal",
+          description: "Test Transaction",
+          image: Logo,
+          id: info.id,
 
-      const paymentObject = new window.Razorpay(options);
-      paymentObject.open();
-      // paymentObject.on("payment.failed", function (response) {
-      //   alert(response.error.code);
-      //   alert(response.error.description);
-      //   alert(response.error.source);
-      //   alert(response.error.step);
-      //   alert(response.error.reason);
-      //   alert(response.error.metadata.order_id);
-      //   alert(response.error.metadata.payment_id);
-      // });
-      // document.getElementById("rzp-button1").onclick = function (e) {
-      //   paymentObject.open();
-      //   e.preventDefault();
-      // };
+          handler: async function (response) {
+            try {
+              // alert(response.razorpay_payment_id);
+              // alert(response.razorpay_order_id);
+              // alert(response.razorpay_signature);
+              console.log(response);
+              const { data } = await common_axios.post("/transaction_create", {
+                transaction_id: response.razorpay_payment_id,
+                order_id: info.id,
+                status: "SUCCESS",
+              });
+              if (data) setPaymentDone(!PaymentDone);
+            } catch (error) {
+              console.log(error);
+              alert("Payment failed");
+            }
+          },
+          prefill: {
+            name: info.customer.name,
+            email: info.customer.email,
+            contact: info.customer.phone_no,
+          },
+
+          theme: {
+            color: "#6a5b40",
+          },
+        };
+
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+        // paymentObject.on("payment.failed", function (response) {
+        //   alert(response.error.code);
+        //   alert(response.error.description);
+        //   alert(response.error.source);
+        //   alert(response.error.step);
+        //   alert(response.error.reason);
+        //   alert(response.error.metadata.order_id);
+        //   alert(response.error.metadata.payment_id);
+        // });
+        // document.getElementById("rzp-button1").onclick = function (e) {
+        //   paymentObject.open();
+        //   e.preventDefault();
+        // };
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
   const initiate_payment = async (e) => {

@@ -11,7 +11,9 @@
   gap: 14px;
   > img:first-child {
     height: 100%;
-    width: 165px;
+    min-width: 165px;
+    object-fit: cover;
+    object-position: top;
   }
 }
 
@@ -26,6 +28,15 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    h1 {
+      font-family: DM Sans;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0px;
+      text-align: left;
+    }
     > div:first-child {
       width: 50%;
       display: flex;

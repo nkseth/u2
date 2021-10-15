@@ -16,6 +16,7 @@ import AboutUs from './AboutUs/AboutUs';
 import ContactUs from './ContactUs/ContactUs';
 import WriteToUs from './ContactUs/component/WriteToUs';
 import OrderDetails from './OrderDetails/OrderDetails';
+import OrderReview from './OrderReview/OrderReview';
 
 export const Page_Profile = () => {
   return (
@@ -99,6 +100,13 @@ export const Order_details_page = () => {
   return (
     <Layout title={'Orders'}>
       <OrderDetails />
+    </Layout>
+  );
+};
+export const Add_Review_Page = () => {
+  return (
+    <Layout title={'Review'}>
+      <OrderReview />
     </Layout>
   );
 };

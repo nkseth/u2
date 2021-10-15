@@ -6,11 +6,11 @@
   margin: 1rem 0;
   position: relative;
   width: 100%;
-  height: 178px;
+  // height: 178px;
   display: flex;
   gap: 14px;
   > img:first-child {
-    height: 100%;
+    height: 178px;
     min-width: 165px;
     object-fit: cover;
     object-position: top;
@@ -36,56 +36,86 @@
       line-height: 20px;
       letter-spacing: 0px;
       text-align: left;
+      color: #0a0a0a;
     }
-    > div:first-child {
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      > span:first-child {
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 20px;
-      }
+    span {
+      margin: 0.4rem 0;
+      display: inline-block;
+    }
+  }
 
-      > span:last-child {
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 16px;
-        letter-spacing: 0.3199999928474426px;
-        color: #6c6c6c;
-      }
-    }
-    > div:last-child {
+  .priceDetails {
+    h1 {
+      //styleName: Headline / H3;
       font-family: DM Serif Display;
       font-size: 28px;
+      font-style: normal;
       font-weight: 400;
       line-height: 36px;
+      letter-spacing: 0em;
+      text-align: left;
+      color: #0a0a0a;
     }
   }
 
   .detailTwo {
+    margin: 0.2rem 0;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
+
     gap: 4px;
-    > span:first-child {
-      font-size: 12px;
-      font-weight: 700;
+    font-family: DM Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    h5 {
       line-height: 16px;
       letter-spacing: 0.3199999928474426px;
+      text-align: left;
+      color: #3b3b3b;
+      margin: 0.5rem 0;
+      span {
+        line-height: 18px;
+        letter-spacing: 0px;
+        text-align: center;
+        color: #0a0a0a;
+      }
+    }
+    h2 {
+      font-size: 16px;
+      font-style: normal;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+      text-align: left;
       color: #3b3b3b;
     }
-    > span:last-child {
-      font-size: 14px;
+    .productType {
+      font-family: DM Sans;
+      font-size: 16px;
+      font-style: normal;
       font-weight: 700;
-      line-height: 18px;
+      line-height: 20px;
+      letter-spacing: 0px;
+      text-align: left;
+      h5 {
+        margin: 0.5rem 0;
+      }
+      p {
+        font-weight: 500;
+        line-height: 18px;
+        letter-spacing: 0.1599999964237213px;
+
+        color: #6c6c6c;
+      }
     }
   }
 
   .detailThree {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
     > span:first-child {
       font-size: 12px;
       font-weight: 700;
@@ -95,10 +125,19 @@
     }
 
     a {
+      text-decoration: none;
+
+      font-family: DM Sans;
       font-size: 12px;
+      font-style: normal;
       font-weight: 700;
       line-height: 16px;
       letter-spacing: 0.3199999928474426px;
+
+      // color: #da1e28;
+    }
+
+    .cancelBtn {
       color: #da1e28;
       text-decoration: underline;
     }
@@ -106,6 +145,7 @@
 }
 
 .trackBtn {
+  margin: 0.5rem 0;
   height: 40px !important;
   width: 164px !important;
   border-radius: 5px;
@@ -115,6 +155,24 @@
   text-transform: none !important;
   background-color: #6a5b40 !important;
   color: #fff !important;
+}
+.rating {
+  background-color: #6a5b40 !important;
+  color: #fff !important;
+  margin-right: auto !important;
+  //styleName: Body / Label-bold;
+  font-family: DM Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.3199999928474426px;
+  text-align: center;
+
+  height: 35px;
+  img {
+    margin-right: 0.4rem;
+  }
 }
 
 @media screen and (max-width: 550px) {

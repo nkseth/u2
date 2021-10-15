@@ -3,15 +3,16 @@ import { Button, useMediaQuery } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import CustomDivider from '../../../../utils/Custom Divider/divider';
 import styles from './card.module.scss';
+import Star from './image/star.svg';
 
-export default function OrdersCard({ item, orderId, detail }) {
+export default function OrdersCard({ item, orderId, detailsPage, status }) {
   console.log('🚀 ~ file: card.jsx ~ line 8 ~ OrdersCard ~ item', item);
 
   const history = useHistory();
   const mobileView = useMediaQuery('(max-width:550px)');
   return (
     <div className={styles.mainContainer}>
-      {!detail && <CustomDivider />}
+      {!detailsPage && <CustomDivider />}
       <div className={styles.cardContainer}>
         <img
           src={item.product.image}
@@ -33,14 +34,28 @@ export default function OrdersCard({ item, orderId, detail }) {
               <span>Solid Straight Kurta</span>
             </div>
 
-            <div>
-              {item.currency_symbol}
-              {item.total}
+            <div className={styles.priceDetails}>
+              <h1>
+                {item.currency_symbol}
+                {item.total}
+              </h1>
             </div>
           </div>
           <div className={styles.detailTwo}>
-            <span>Quantity:</span>
-            <span>{item.quantity}</span>
+            <div>
+              <h2>Size: L</h2>
+              <h5>
+                Quantity:
+                <span>
+                  {' '}
+                  {item.quantity < 9 ? `0${item.quantity}` : `${item.quantity}`}
+                </span>
+              </h5>
+            </div>
+            <div className={styles.productType}>
+              <h5>Product Type</h5>
+              <p>Customised</p>
+            </div>
           </div>
           {mobileView && (
             <div
@@ -56,23 +71,39 @@ export default function OrdersCard({ item, orderId, detail }) {
             </div>
           )}
 
-          <Button
-            onClick={() => history.push(`/trackorder/${orderId}`)}
-            className={styles.trackBtn}
-            variant='contained'
-          >
-            Track Order
-          </Button>
-          <div className={styles.detailThree}>
-            <Link
-              to={`/order-details/${orderId}`}
-              style={{ cursor: 'pointer' }}
-              // onClick={() => history.push(`/rate_order/${orderId}`)}
+          {status === 'delivered' ? (
+            <Button
+              onClick={() => history.push(`/order-review/${orderId}`)}
+              className={styles.rating}
             >
-              Order Detail
+              <img src={Star} alt='' /> Rate & Review Product
+            </Button>
+          ) : (
+            <Button
+              onClick={() => history.push(`/trackorder/${orderId}`)}
+              className={styles.trackBtn}
+              variant='contained'
+            >
+              Track Order
+            </Button>
+          )}
+          <div className={styles.detailThree}>
+            {!detailsPage && (
+              <Link
+                to={`/order-details/${orderId}`}
+                style={{ cursor: 'pointer' }}
+                // onClick={() => history.push(`/rate_order/${orderId}`)}
+              >
+                Order Detail
+              </Link>
+            )}
+
+            <Link
+              style={{ marginLeft: `${detailsPage ? 'auto' : ''}` }}
+              className={styles.cancelBtn}
+            >
+              Cancel Order
             </Link>
-            <span></span>
-            {/* <Link>Cancel Order</Link> */}
           </div>
         </div>
       </div>

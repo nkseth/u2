@@ -7,46 +7,40 @@ import useLogin from "./useLogin";
 import { useSelector, useDispatch } from "react-redux";
 import common_axios from "../utils/axios.config";
 import { setUserData } from "../Redux/actions/homepage";
-import { useCookies } from 'react-cookie';
-/*
-OtpInput not work properly
- */
-const LoginOtpVarify = () => {
 
-  const dispatch = useDispatch()
+const LoginOtpVarify = () => {
+  const dispatch = useDispatch();
 
   const { login_Model_Hide } = useLogin();
-  const [text, setText] = useState('')
-  const [cookies, setCookie] = useCookies(['user']);
-  const { name, password, email } = useSelector(state => state.root.login.login_creds)
+  const [text, setText] = useState("");
+  const { name, password, email } = useSelector(
+    (state) => state.root.login.login_creds
+  );
 
   const getStarted = async () => {
     if (text?.length !== 4) {
-      alert('Enter a valid OTP');
+      alert("Enter a valid OTP");
       return;
     }
 
-
     try {
-      const { data } = await common_axios.post('/auth/otp_varify', {
+      const { data } = await common_axios.post("/auth/otp_varify", {
         email,
         password,
-        otp: text
+        otp: text,
       });
 
-      console.log(data)
+      console.log(data);
 
       if (data.data) {
-        setCookie('data', data.data, { path: '/' })
-        localStorage.setItem('token', JSON.stringify(data.data.api_token))
-        dispatch(setUserData(data.data))
-        login_Model_Hide()
+        localStorage.setItem("token", JSON.stringify(data.data.api_token));
+        dispatch(setUserData(data.data));
+        login_Model_Hide();
       }
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
-
+  };
 
   return (
     <form className={styles.LoginOtpVarify}>
@@ -82,7 +76,7 @@ const LoginOtpVarify = () => {
       </div>
       <div className={styles.LoginOtpVarify_Bottom_Link_1}>
         <Link>
-          Didn't receive code? <b style={{ color: '#0000EE' }}>Resend code</b>
+          Didn't receive code? <b style={{ color: "#0000EE" }}>Resend code</b>
         </Link>
       </div>
     </form>

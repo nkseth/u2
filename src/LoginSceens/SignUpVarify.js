@@ -70,7 +70,7 @@ const SignUpVarify = () => {
   return (
     <form className={styles.SignUpVarify}>
       <div className={styles.SignUpVarify_Input}>
-        <label>Email</label>
+        <label>Email ID</label>
         <input
           value={otpEmail}
           onChange={(e) => setOtpEmail(e.target.value)}

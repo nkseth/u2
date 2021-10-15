@@ -305,7 +305,7 @@ export default function ProductDescription({ match }) {
                       onClick={() => setImageIdx(i)}
                     />
                   );
-                })}
+                
               </div>
               <div className={styles.main_img}>
                 <ReactImageMagnify
@@ -491,7 +491,7 @@ export default function ProductDescription({ match }) {
                         onClose={() => setProductDrop(false)}
                         onChange={e => setProductType(e.target.value)}
                       >
-                        {product.product?.isVariant ? (
+                        {details.product?.isVariant ? (
                           <MenuItem value={'ready made'}>
                             <FormControlLabel
                               className={
@@ -520,7 +520,7 @@ export default function ProductDescription({ match }) {
                             />
                           </MenuItem>
                         ) : null}
-                        {product.product?.isCustomise === 'on' ? (
+                        {details.product?.isCustomise === 'on' ? (
                           <MenuItem value={'custom'}>
                             <FormControlLabel
                               className={
@@ -550,7 +550,7 @@ export default function ProductDescription({ match }) {
                           </MenuItem>
                         ) : null}
                         {ProductType === 'custom' ? (
-                          product.product.isVariant ? (
+                          details.product.isVariant ? (
                             <MenuItem value={'ready made'}>
                               <FormControlLabel
                                 className={
@@ -580,8 +580,8 @@ export default function ProductDescription({ match }) {
                               />
                             </MenuItem>
 
-                          ) : null}
-                          {details.product?.isCustomise === "on" ? (
+                          ) : 
+                          details.product?.isCustomise === "on" ? (
                             <MenuItem value={"custom"}>
                               <FormControlLabel
                                 className={
@@ -609,8 +609,8 @@ export default function ProductDescription({ match }) {
                                 }
                               />
                             </MenuItem>
-                          ) : null}
-                          {ProductType === "custom" ? (
+                          ) :
+                          ProductType === "custom" ? (
                             details.product.isVariant ? (
                               <MenuItem value={"ready made"}>
                                 <FormControlLabel

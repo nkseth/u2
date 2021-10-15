@@ -18,7 +18,7 @@ import {
   getWishListReducer,
   updateWishlistReducer,
 } from "./wishlistReducer";
-import { authReducer } from "./authReducer";
+import { authReducer, registerUserReducer } from "./authReducer";
 import {
   filterCategoryReducer,
   filteredProductReducer,
@@ -66,6 +66,7 @@ const rootreducer = combineReducers({
   productDetails: productDetailsReducer,
   products: productsReducer,
   profile: profile_reducer,
+  registerUser: registerUserReducer,
   removeCartItem: removeCartItemReducer,
   saveMeasurement: saveMeasurementReducer,
   storefilter: storefilterReducer,

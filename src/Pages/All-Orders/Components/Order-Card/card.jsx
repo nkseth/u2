@@ -1,39 +1,34 @@
-import React from "react";
-import { Button, useMediaQuery } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
-import CustomDivider from "../../../../utils/Custom Divider/divider";
-import styles from "./card.module.scss";
+import React from 'react';
+import { Button, useMediaQuery } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
+import CustomDivider from '../../../../utils/Custom Divider/divider';
+import styles from './card.module.scss';
 
 export default function OrdersCard({ pending, item, orderId }) {
-  // console.log(item);
   const history = useHistory();
-  const mobileView = useMediaQuery("(max-width:550px)");
+  const mobileView = useMediaQuery('(max-width:550px)');
   return (
     <div className={styles.mainContainer}>
-      <CustomDivider />
+      {!detail && <CustomDivider />}
       <div className={styles.cardContainer}>
         <img
           src={item.product.image}
           alt={item.title}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => history.push(`/product-description/${item.slug}`)}
         />
         <div className={styles.detailsDiv}>
-          <div className={styles.detailTwo}>
-            <span>Quantity:</span>
-            <span>{item.quantity}</span>
-          </div>
           <div className={styles.detailOne}>
             <div>
-              <span
-                style={{ cursor: "pointer" }}
+              <h1
+                style={{ cursor: 'pointer' }}
                 onClick={() =>
                   history.push(`/product-description/${item.slug}`)
                 }
               >
                 {item.title}
-              </span>
-              {/* <span>Solid Straight Kurta</span> */}
+              </h1>
+              <span>Solid Straight Kurta</span>
             </div>
 
             <div>
@@ -41,19 +36,24 @@ export default function OrdersCard({ pending, item, orderId }) {
               {item.total}
             </div>
           </div>
+          <div className={styles.detailTwo}>
+            <span>Quantity:</span>
+            <span>{item.quantity}</span>
+          </div>
           {mobileView && (
             <div
               style={{
-                fontFamily: "DM Serif Display",
-                fontSize: "28px",
+                fontFamily: 'DM Serif Display',
+                fontSize: '28px',
                 fontWeight: 400,
-                lineHeight: "36px",
+                lineHeight: '36px',
               }}
             >
               {item.currency_symbol}
               {item.total}
             </div>
           )}
+
           {pending ? (
             <Button
               onClick={() =>
@@ -76,12 +76,13 @@ export default function OrdersCard({ pending, item, orderId }) {
             </Button>
           )}
           <div className={styles.detailThree}>
-            <span
-              style={{ cursor: "pointer" }}
+            <Link
+              to={`/order-details/${orderId}`}
+              style={{ cursor: 'pointer' }}
               // onClick={() => history.push(`/rate_order/${orderId}`)}
             >
               Order Detail
-            </span>
+            </Link>
             <span></span>
             {/* <Link>Cancel Order</Link> */}
           </div>

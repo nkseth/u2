@@ -11,9 +11,11 @@
   // background-position:  center;
   // background-repeat: no-repeat;
   width: 420px;
-  @media screen and(max-width:420px) {
+  @media screen and(max-width:480px) {
     display: block;
     width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   .MuiPaper-root {
     background: none !important;

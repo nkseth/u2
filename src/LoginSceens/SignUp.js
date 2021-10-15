@@ -41,8 +41,7 @@ const SignUp = () => {
 
   const getStarted = async (e) => {
     e.preventDefault();
-    localStorage.setItem("OTPemail", "vishal111@gmail.com");
-    return login_Mode_Handler("SignUpVarify");
+    // return login_Mode_Handler("SignUpVarify");
     // const email_regex = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
     const email_regex = /\S+@\S+\.\S+/;
     const password_regex = new RegExp(
@@ -99,6 +98,7 @@ const SignUp = () => {
       phone_no: contact,
       password: password,
     };
+    localStorage.setItem("OTPemail", email);
     dispatch(registerUser(userCreds));
     // try {
     //   const { data } = await common_axios.post("/auth/register", {

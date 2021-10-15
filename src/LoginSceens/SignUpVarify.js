@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import common_axios from "../utils/axios.config";
 import { setUserData } from "../Redux/actions/homepage";
 import { useCookies } from "react-cookie";
-import { registOtpVerify } from "../Redux/actions/auth";
+import { clearAuth, registOtpVerify } from "../Redux/actions/auth";
 /**
  * 
 OtpInput not work properly
@@ -23,10 +23,24 @@ const SignUpVarify = () => {
   const { name, password, email, phone_no } = useSelector(
     (state) => state.root.login.signup_creds
   );
+  const { message, error } = useSelector((state) => state.root.registerUser);
   console.log(editPhone);
   useEffect(() => {
     setOtpEmail(localStorage.getItem("OTPemail"));
   }, []);
+
+  useEffect(() => {
+    if (message) {
+      alert(message);
+      localStorage.removeItem("OTPemail");
+      dispatch(clearAuth());
+      login_Model_Hide();
+    }
+    if (error) {
+      alert("Invalid OTP.");
+      dispatch(clearAuth());
+    }
+  }, [dispatch, message, error]);
 
   const getStarted = async () => {
     if (text?.length !== 4) {
@@ -35,25 +49,6 @@ const SignUpVarify = () => {
     }
 
     dispatch(registOtpVerify(text, otpEmail));
-    // try {
-    //   const { data } = await common_axios.post("/auth/otp_varify", {
-    //     email,
-    //     password,
-    //     name,
-    //     otp: text,
-    //   });
-
-    //   console.log(data);
-
-    //   if (data.data) {
-    //     setCookie("data", data.data, { path: "/" });
-    //     localStorage.setItem("token", JSON.stringify(data.data.api_token));
-    //     dispatch(setUserData(data.data));
-    //     login_Model_Hide();
-    //   }
-    // } catch (e) {
-    //   alert("Invalid OTP");
-    // }
   };
 
   const resend = async () => {

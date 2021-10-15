@@ -82,12 +82,12 @@ export const registerUser = (userCreds) => async (dispatch) => {
 export const registOtpVerify = (otp, email) => async (dispatch) => {
   try {
     dispatch({ type: VERIFY_OTP_REQUEST });
-    const { data } = await common_axios.post("/api/auth/otp_varify_for_web", {
+    const { data } = await common_axios.post("/auth/otp_varify_for_web", {
       otp,
       email,
     });
-    console.log(data);
-    if (data) dispatch({ type: VERIFY_OTP_SUCCESS, payload: data });
+    console.log(data.message);
+    if (data) dispatch({ type: VERIFY_OTP_SUCCESS, payload: data.message });
   } catch (e) {
     console.log(e);
     dispatch({ type: VERIFY_OTP_FAILED, payload: e.response.data });

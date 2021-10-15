@@ -91,7 +91,7 @@ function App() {
   const [cookies, setCookie] = useCookies(["user"]);
   const { isAuthenticated, loading } = useSelector((state) => state.root.auth);
   useEffect(() => {
-    // if (!isAuthenticated && !loading) dispatch(loadUser());
+    if (!isAuthenticated && !loading) dispatch(loadUser());
     store.dispatch(loadUser());
   }, []);
 
@@ -177,7 +177,7 @@ function App() {
         />
         <ProtectedRoute path="/order-summary" component={OrderSummary} />
         {/* New page added here */}
-        <Route path="/my-bag" component={MyBag} />
+        <ProtectedRoute path="/my-bag" component={MyBag} />
         {/* New page added here */}
         <ProtectedRoute
           path="/delivery-address/:cartId"
@@ -191,7 +191,7 @@ function App() {
         {/* <Route path='/designers-home-page' component={DesignersHomePage} /> */}
         {/* <Route path='/about' component={AboutPage} /> */}
         {/* Here New Pages Added */}
-        <Route path={"/profile"} component={Page_Profile} />
+        <ProtectedRoute path={"/profile"} component={Page_Profile} />
         <ProtectedRoute path={"/profileEdit"} component={Page_ProfileEdit} />
         <ProtectedRoute path={"/designers"} component={Page_Designers} />
         <ProtectedRoute path={"/measurement"} component={Page_Measurement} />

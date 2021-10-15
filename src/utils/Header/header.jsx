@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import {
   FormControl,
   Select,
@@ -19,22 +19,23 @@ import CustomSection from "../Custom Section/section";
 import SideNavbar from "../Side-Navbar/sideNavbar";
 import styles from "./header.module.scss";
 //Icons
-import PersonIcon from '../../Images/icons/person.svg';
-import FavoriteIcon from '../../Images/icons/favorite.svg';
-import BagIcon from '../../Images/icons/bag.svg';
-import SearchIcon from '../../Images/icons/search.svg';
-import HamMenuIcon from '../../Images/icons/hamMenu.svg';
-import SearchDarkIcon from '../../Images/icons/searchDark.svg';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { LOGIN_MODEL } from '../../Redux/reducers/loginreducer';
-import { useDispatch, useSelector } from 'react-redux';
-import useLogin from '../../LoginSceens/useLogin';
-import { useCookies } from 'react-cookie';
-import MegaMenu from './Components/MegaMenu';
-import { ReactComponent as Logo } from '../../Images/logo/u2.svg';
-import { ReactComponent as LogoSM } from '../../Images/logo/U2icon.svg';
-import { getCategorySubGroup } from '../../Redux/actions/designerHomePage';
-
+import PersonIcon from "../../Images/icons/person.svg";
+import FavoriteIcon from "../../Images/icons/favorite.svg";
+import BagIcon from "../../Images/icons/bag.svg";
+import SearchIcon from "../../Images/icons/search.svg";
+import HamMenuIcon from "../../Images/icons/hamMenu.svg";
+import SearchDarkIcon from "../../Images/icons/searchDark.svg";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { LOGIN_MODEL } from "../../Redux/reducers/loginreducer";
+import { useDispatch, useSelector } from "react-redux";
+import useLogin from "../../LoginSceens/useLogin";
+import { useCookies } from "react-cookie";
+import MegaMenu from "./Components/MegaMenu";
+import { ReactComponent as Logo } from "../../Images/logo/u2.svg";
+import { ReactComponent as LogoSM } from "../../Images/logo/U2icon.svg";
+import { getCategorySubGroup } from "../../Redux/actions/designerHomePage";
+import { loadUser } from "../../Redux/actions/auth";
+import store from "../../Redux/store";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -94,7 +95,7 @@ export default function Header() {
   const mobileView = useMediaQuery("(max-width:550px)");
   const mobile = useMediaQuery("(max-width:460px)");
   const [megaMenuType, setMegaMenuType] = useState("");
-  const { user } = useSelector((state) => state.root.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.root.auth);
 
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
@@ -111,12 +112,8 @@ export default function Header() {
   };
 
   const profileFnc = (route) => {
-    // if (Object.keys(user)?.length !== 0) {
-    if (user?.id) {
-      history.push(route);
-    } else {
-      login_Model_Show();
-    }
+    if (isAuthenticated) history.push(route);
+    else login_Model_Show();
   };
   // const LogedIn = Object.keys(user)?.length !== 0;
   const LogedIn = user?.id ? true : false;
@@ -182,7 +179,8 @@ export default function Header() {
               />
             </IconButton>
             <IconButton
-              onClick={() => history.push("/my-bag")}
+              onClick={() => profileFnc("/my-bag")}
+              // onClick={() => history.push("/my-bag")}
               aria-label="my bag"
               style={{ marginRight: "-12px" }}
             >
@@ -219,7 +217,7 @@ export default function Header() {
               />
             </IconButton>
             <IconButton
-              onClick={() => history.push("/my-bag")}
+              onClick={() => profileFnc("/my-bag")}
               aria-label="my bag"
             >
               <img src={BagIcon} alt="my bag" />

@@ -561,17 +561,6 @@ export default function ProductDescription({ match }) {
                             {ProductType === "ready made"
                               ? details.readymade_price
                               : details.custom_price}
-                            {/* {details.has_offer
-                              ? details.offer_price
-                              : Product_Type === "custom"
-                              ? details.custom_price >= 1
-                                ? details.custom_price
-                                : details.price
-                              : Product_Type === "ready made"
-                              ? details.readymade_price >= 1
-                                ? details.readymade_price
-                                : details.price
-                              : details.price} */}
                           </span>
                           <br />
                           {details.has_offer ? (
@@ -711,17 +700,6 @@ export default function ProductDescription({ match }) {
                         {ProductType === "ready made"
                           ? details.readymade_price
                           : details.custom_price}
-                        {/* {details.has_offer
-                          ? details.offer_price
-                          : Product_Type === "custom"
-                          ? details.custom_price >= 1
-                            ? details.custom_price
-                            : details.price
-                          : Product_Type === "ready made"
-                          ? details.readymade_price >= 1
-                            ? details.readymade_price
-                            : details.price
-                          : details.price} */}
                       </span>
                       <br />
                       {details.has_offer ? (
@@ -847,17 +825,6 @@ export default function ProductDescription({ match }) {
                         {ProductType === "ready made"
                           ? details.readymade_price
                           : details.custom_price}
-                        {/* {details.has_offer
-                          ? details.offer_price
-                          : Product_Type === "custom"
-                          ? details.custom_price >= 1
-                            ? details.custom_price
-                            : details.price
-                          : Product_Type === "ready made"
-                          ? details.readymade_price >= 1
-                            ? details.readymade_price
-                            : details.price
-                          : details.price} */}
                       </span>
                       <br />
                       {details.has_offer ? (

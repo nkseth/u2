@@ -15,6 +15,7 @@ import WishListPage from './Wishlist/WishList';
 import AboutUs from './AboutUs/AboutUs';
 import ContactUs from './ContactUs/ContactUs';
 import WriteToUs from './ContactUs/component/WriteToUs';
+import OrderDetails from './OrderDetails/OrderDetails';
 
 export const Page_Profile = () => {
   return (
@@ -91,6 +92,13 @@ export const Page_TrackOrders = () => {
   return (
     <Layout title={'Track Order'}>
       <TrackOrders />
+    </Layout>
+  );
+};
+export const Order_details_page = () => {
+  return (
+    <Layout title={'Orders'}>
+      <OrderDetails />
     </Layout>
   );
 };

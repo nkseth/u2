@@ -1,24 +1,39 @@
-import React, { useState } from "react";
-import styles from "./SelectSize.module.scss";
+import React, { useState } from 'react';
+import styles from './SelectSize.module.scss';
 import {
   Button,
   IconButton,
   Radio,
   Select,
   useMediaQuery,
-} from "@material-ui/core";
+} from '@material-ui/core';
 function SelectSize({ variant }) {
-  console.log(variant);
-  const [size, setSize] = useState("xs");
-  const customView = useMediaQuery("(max-width:1044px)");
-  const tabView = useMediaQuery("(max-width:768px)");
-  const mobileView = useMediaQuery("(max-width:550px)");
+  console.log(
+    '🚀 ~ file: SelectSize.js ~ line 11 ~ SelectSize ~ variant',
+    variant
+  );
+
+  const [size, setSize] = useState('xs');
+  const customView = useMediaQuery('(max-width:1044px)');
+  const tabView = useMediaQuery('(max-width:768px)');
+  const mobileView = useMediaQuery('(max-width:550px)');
 
   return (
     <div className={styles.container}>
       <h4>Select Size</h4>
       <div className={styles.radioBtnDiv}>
-        <IconButton
+        {variant?.map(({ name, id }) => (
+          <IconButton
+            key={id}
+            className={
+              size === name ? styles.BtnSelected : styles.radioBtnOutline
+            }
+            onClick={() => setSize(name)}
+          >
+            {name}
+          </IconButton>
+        ))}
+        {/* <IconButton
           className={
             size === "xs" ? styles.BtnSelected : styles.radioBtnOutline
           }
@@ -59,7 +74,7 @@ function SelectSize({ variant }) {
           onClick={() => setSize("xxl")}
         >
           XXL
-        </IconButton>
+        </IconButton> */}
       </div>
     </div>
   );

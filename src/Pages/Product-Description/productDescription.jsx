@@ -40,17 +40,13 @@ import { ReactComponent as Share } from "./images/share.svg";
 // } from '../../../../Redux/actions/wishlist';
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 // Product Type
-
-import { Product_Type, Product_Type_Change } from "../../Redux/MeasuremantData";
-import ReactImageMagnify from "react-image-magnify";
-import { useDispatch } from "react-redux";
-import { getProductDetails } from "../../Redux/actions/products";
+import { Product_Type, Product_Type_Change } from '../../Redux/MeasuremantData';
+import ReactImageMagnify from 'react-image-magnify';
 // import {
 //   MagnifierContainer,
 //   MagnifierZoom,
 //   MagnifierPreview,
 // } from 'react-image-magnifiers';
-import Loader from "../../utils/Loader/Loader";
 
 const CustomRadio = withStyles({
   root: {
@@ -143,6 +139,7 @@ export default function ProductDescription({ match }) {
   const tabViewPro = useMediaQuery("(min-width:768px) and (max-width:1044px");
   const mobileView = useMediaQuery("(max-width:550px)");
 
+
   const [selectedColor, setSelectedColor] = useState("");
   const [ProductDrop, setProductDrop] = useState(false);
   const [click, setClick] = useState(false);
@@ -153,20 +150,26 @@ export default function ProductDescription({ match }) {
     params: { slug },
   } = match;
 
+  const [productAttributes, setProductAttributes] = useState(null);
+  console.log(
+    '🚀 ~ file: productDescription.jsx ~ line 154 ~ ProductDescription ~ productAttributes',
+    productAttributes
+  );
+
+
   const [images, setImages] = useState([]);
-  const [ProductType, setProductType] = useState(null);
+  const [ProductType, setProductType] = useState('');
   const [isAddToWishList, setAddToWishList] = useState(false);
 
-  // Product_Type_Change(ProductType);
+  Product_Type_Change(ProductType);
   console.log(ProductType);
 
   const { login_Model_Show } = useLogin();
-
-  const { isAuthenticated } = useSelector((state) => state.root.auth);
-  const { details, error, loading, attributes } = useSelector(
+  const { isAuthenticated } = useSelector(state => state.root.auth);
+   const { details, error, loading, attributes } = useSelector(
     (state) => state.root.productDetails
   );
-  console.log(details, attributes);
+
   useEffect(() => {
     if (details) {
       setProductType(
@@ -180,12 +183,14 @@ export default function ProductDescription({ match }) {
     }
     if (!details && !loading) dispatch(getProductDetails(slug));
   }, [slug, dispatch, details]);
+  
 
   useEffect(() => {
     dispatch(getProductDetails(slug));
   }, []);
   const buy_now_handler = async () => {
     if (isAuthenticated) {
+
       if (details.hasOwnProperty("title")) {
         try {
           const type = ProductType === "ready made" ? "readymade" : "customise";
@@ -232,9 +237,10 @@ export default function ProductDescription({ match }) {
     }
   };
 
-  // console.log(product);
+  console.log(product);
   console.log(Product_Type);
   const [imageIdx, setImageIdx] = useState(0);
+
   return (
     <Container bottomDivider footerOnTabMob>
       {!details ? (
@@ -294,162 +300,265 @@ export default function ProductDescription({ match }) {
                           height: 1800,
                         },
                       }}
+                      alt={image.url}
+                      key={i}
+                      onClick={() => setImageIdx(i)}
                     />
-
-                    {isAddToWishList ? (
-                      <IconButton
-                        aria-label="product"
-                        onClick={() => {
-                          setAddToWishList((addToWishlist) => !addToWishlist);
-                        }}
-                        style={{
-                          backgroundColor: "#fff",
-                          position: "absolute",
-                          top: "30px",
-                          right: "20px",
-                        }}
-                      >
-                        <FavoriteIcon style={{ color: "red" }} />
-                      </IconButton>
-                    ) : (
-                      <IconButton
-                        aria-label="product"
-                        onClick={() => {
-                          setAddToWishList((addToWishlist) => !addToWishlist);
-                        }}
-                        // className={styles.icons}
-                        style={{
-                          backgroundColor: "#fff",
-                          position: "absolute",
-                          top: "30px",
-                          right: "20px",
-                        }}
-                      >
-                        <FavoriteBorderIcon />
-                      </IconButton>
-                    )}
-                  </div>
-                  <div className={styles.other_imgs_tab}>
-                    {images.map((image, i) => {
-                      return (
-                        <img
-                          src={image.thumbnail}
-                          className={`${imageIdx === i ? "active" : ""}`}
-                          style={{
-                            border: `${
-                              imageIdx === i ? "4px solid #857250" : ""
-                            }`,
-                          }}
-                          alt={image.url}
-                          key={i}
-                          onClick={() => setImageIdx(i)}
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
-                {!mobileView && !tabView && !customView ? (
-                  <div className={styles.deliveryDiv}>
-                    <div>
-                      <span>Delivery option</span>
-                      <img src={deliveryTruckIcon} alt="deliver truck" />:
-                    </div>
-                    <div>
-                      <label>Enter pincode*</label>
-                      <input type="text" name="pincode/zipcode" />
-                    </div>
-                    <span>
-                      Please enter the pincode to check delivery time{" "}
-                    </span>
-                    <Button
-                      variant="contained"
-                      color="default"
-                      className={styles.checkBtn}
-
-                      // onClick={() => history.push('/product-breakdown')}
-                    >
-                      Check
-                    </Button>
-                  </div>
-                ) : (
-                  <></>
-                )}
+                  );
+                })}
               </div>
-              <div className={styles.lastContainer}>
-                {/*tab view */}
-                {customView && !mobileView && (
-                  <div
+              <div className={styles.main_img}>
+                <ReactImageMagnify
+                  className={styles.magnifier}
+                  {...{
+                    smallImage: {
+                      alt: 'Wristwatch by Ted Baker London',
+                      isFluidWidth: true,
+                      // src: `${imageBaseUrl}wristwatch_1033.jpg`,
+                      src: images[imageIdx]?.original,
+                      // srcSet: this.srcSet,
+                      sizes:
+                        '(min-width: 800px) 33.5vw, (min-width: 415px) 50vw, 100vw ',
+                    },
+                    largeImage: {
+                      alt: '',
+                      src: images[imageIdx]?.original,
+                      // src: `${imageBaseUrl}wristwatch_1200.jpg`,
+                      width: 1200,
+                      height: 1800,
+                    },
+                    // isHintEnabled: true,
+                  }}
+                />
+
+                {/* <MagnifierContainer>
+                <div className='example-class'>
+                  <MagnifierPreview imageSrc='https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmxvZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' />
+                </div>
+                <MagnifierZoom
+                  style={{ height: '400px' }}
+                  imageSrc='https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmxvZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+                />
+              </MagnifierContainer> */}
+                {/* <img src={images[imageIdx]?.original} alt='' /> */}
+                {isAddToWishList ? (
+                  <IconButton
+                    aria-label='product'
+                    onClick={() => {
+                      setAddToWishList(addToWishlist => !addToWishlist);
+                    }}
                     style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start",
-                      width: "100%",
-                      maxWidth: "700px",
+                      backgroundColor: '#fff',
+                      position: 'absolute',
+                      top: '30px',
+                      right: '20px',
                     }}
                   >
+                    <FavoriteIcon style={{ color: 'red' }} />
+                  </IconButton>
+                ) : (
+                  <IconButton
+                    aria-label='product'
+                    onClick={() => {
+                      setAddToWishList(addToWishlist => !addToWishlist);
+                    }}
+                    // className={styles.icons}
+                    style={{
+                      backgroundColor: '#fff',
+                      position: 'absolute',
+                      top: '30px',
+                      right: '20px',
+                    }}
+                  >
+                    <FavoriteBorderIcon />
+                  </IconButton>
+                )}
+              </div>
+              <div className={styles.other_imgs_tab}>
+                {images.map((image, i) => {
+                  return (
+                    <img
+                      src={image.thumbnail}
+                      className={`${imageIdx === i ? 'active' : ''}`}
+                      style={{
+                        border: `${imageIdx === i ? '4px solid #857250' : ''}`,
+                      }}
+                      alt={image.url}
+                      key={i}
+                      onClick={() => setImageIdx(i)}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+            {!mobileView && !tabView && !customView ? (
+              <div className={styles.deliveryDiv}>
+                <div>
+                  <span>Delivery option</span>
+                  <img src={deliveryTruckIcon} alt='deliver truck' />:
+                </div>
+                <div>
+                  <label>Enter pincode*</label>
+                  <input type='text' name='pincode/zipcode' />
+                </div>
+                <span>Please enter the pincode to check delivery time </span>
+                <Button
+                  variant='contained'
+                  color='default'
+                  className={styles.checkBtn}
+
+                  // onClick={() => history.push('/product-breakdown')}
+                >
+                  Check
+                </Button>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+          <div className={styles.lastContainer}>
+            {/*tab view */}
+            {customView && !mobileView && (
+              <>
+                {/* {isAddToWishList && (
+                  <Button className={styles.wishlistBtn}>
+                    <Heart />
+                    Added to Whishlist
+                  </Button>
+                )} */}
+
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    width: '100%',
+                    maxWidth: '700px',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '100%',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-start',
+                    }}
+                  >
+                    <div className={styles.productDetails}>
+                      <span>{product.brand}</span>
+                      <span>{product.title}</span>
+                    </div>
+                    {product.stock_quantity < 10 ? (
+                      <div className={styles.alert}>
+                        <img src={clockIcon} alt='clock' />
+                        <span
+                          style={{
+                            fontSize: 14,
+                            marginLeft: -10,
+                            marginRight: 0,
+                          }}
+                        >
+                          Hurry up! Only 5 left in stock
+                        </span>
+                        <div>58:00</div>
+                      </div>
+                    ) : null}
+                  </div>
+                  <div className={styles.selectProduct}>
                     <div
                       style={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "flex-start",
+                        marginTop: 25,
+                        fontWeight: 'bolder',
+                        marginBottom: -10,
                       }}
                     >
-                      <div className={styles.productDetails}>
-                        <span>{details.brand}</span>
-                        <span>{details.title}</span>
-                      </div>
-                      {details.stock_quantity < 10 ? (
-                        <div className={styles.alert}>
-                          <img src={clockIcon} alt="clock" />
-                          <span
-                            style={{
-                              fontSize: 14,
-                              marginLeft: -10,
-                              marginRight: 0,
-                            }}
-                          >
-                            Hurry up! Only 5 left in stock
-                          </span>
-                          <div>58:00</div>
-                        </div>
-                      ) : null}
+                      Product Type
                     </div>
-                    <div className={styles.selectProduct}>
-                      <div
-                        style={{
-                          marginTop: 25,
-                          fontWeight: "bolder",
-                          marginBottom: -10,
-                        }}
+                    <br />
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '100%',
+                      }}
+                    >
+                      <Select
+                        style={{ width: '35%' }}
+                        input={<BootstrapInput />}
+                        value={ProductType}
+                        onOpen={() => setProductDrop(true)}
+                        onClose={() => setProductDrop(false)}
+                        onChange={e => setProductType(e.target.value)}
                       >
-                        Product Type
-                      </div>
-                      <br />
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          width: "100%",
-                        }}
-                      >
-                        <Select
-                          style={{ width: "35%" }}
-                          input={<BootstrapInput />}
-                          value={ProductType}
-                          onOpen={() => setProductDrop(true)}
-                          onClose={() => setProductDrop(false)}
-                          onChange={(e) => setProductType(e.target.value)}
-                        >
-                          {details.product?.isVariant ? (
-                            <MenuItem value={"ready made"}>
+                        {product.product?.isVariant ? (
+                          <MenuItem value={'ready made'}>
+                            <FormControlLabel
+                              className={
+                                ProductDrop
+                                  ? styles.FormControlLabel
+                                  : styles.FormControlLabelS
+                              }
+                              checked={ProductType === 'ready made'}
+                              control={<CustomRadio />}
+                              label={
+                                <div className={styles.ProductSelector}>
+                                  <p className={styles.ChoicesBtnsLabels}>
+                                    Ready Made
+                                  </p>
+                                  {ProductDrop ? (
+                                    <h6 className={styles.ProductSelectorh6}>
+                                      Lorem ipsum is placeholder text commonly
+                                      used in the graphicer text commonly used
+                                      in the graphic
+                                    </h6>
+                                  ) : (
+                                    <></>
+                                  )}
+                                </div>
+                              }
+                            />
+                          </MenuItem>
+                        ) : null}
+                        {product.product?.isCustomise === 'on' ? (
+                          <MenuItem value={'custom'}>
+                            <FormControlLabel
+                              className={
+                                ProductDrop
+                                  ? styles.FormControlLabel
+                                  : styles.FormControlLabelS
+                              }
+                              checked={ProductType === 'custom'}
+                              control={<CustomRadio />}
+                              label={
+                                <div className={styles.ProductSelector}>
+                                  <p className={styles.ChoicesBtnsLabels}>
+                                    Customised
+                                  </p>
+                                  {ProductDrop ? (
+                                    <h6 className={styles.ProductSelectorh6}>
+                                      Lorem ipsum is placeholder text commonly
+                                      used in the graphic er text commonly used
+                                      in the graphic
+                                    </h6>
+                                  ) : (
+                                    <></>
+                                  )}
+                                </div>
+                              }
+                            />
+                          </MenuItem>
+                        ) : null}
+                        {ProductType === 'custom' ? (
+                          product.product.isVariant ? (
+                            <MenuItem value={'ready made'}>
                               <FormControlLabel
                                 className={
                                   ProductDrop
                                     ? styles.FormControlLabel
                                     : styles.FormControlLabelS
                                 }
+
                                 checked={ProductType === "ready made"}
                                 control={<CustomRadio />}
                                 label={
@@ -470,6 +579,7 @@ export default function ProductDescription({ match }) {
                                 }
                               />
                             </MenuItem>
+
                           ) : null}
                           {details.product?.isCustomise === "on" ? (
                             <MenuItem value={"custom"}>
@@ -585,125 +695,41 @@ export default function ProductDescription({ match }) {
                           ) : null}
                         </div>
                       </div>
-                      {ProductType === "ready made" ? (
-                        <SelectSize variant={details.variant} />
-                      ) : (
-                        <></>
-                      )}
                     </div>
+                    {ProductType === 'ready made' ? (
+                      <SelectSize variant={productAttributes.Size} />
+                    ) : (
+                      <></>
+                    )}
                   </div>
+                </div>
+              </>
+            )}
+            {/* desktop view */}
+            {!customView && (
+              <>
+                {isAddToWishList && (
+                  <Button
+                    style={{
+                      background: '#857250',
+                      color: '#fff',
+                      marginLeft: 'auto',
+                      height: '35px',
+                      position: 'absolute',
+                      right: 0,
+                      top: '20px',
+                    }}
+                  >
+                    <Heart />
+                    Added to Whishlist
+                  </Button>
                 )}
-                {/* desktop view */}
-                {!customView && (
-                  <>
-                    <div className={styles.productDetails}>
-                      <span>{details.brand}</span>
-                      <span>{details.title}</span>
-                    </div>
-                    <div className={styles.selectProduct}>
-                      <div
-                        style={{
-                          fontWeight: "bolder",
-                          marginTop: 5,
-                          marginBottom: -10,
-                        }}
-                      >
-                        Product Type
-                      </div>
-                      <br />
-                      <div
-                        style={{
-                          width: "100%",
-                          display: "flex",
-                          alignItems: "center",
-                          position: "relative",
-                        }}
-                      >
-                        <Select
-                          input={<BootstrapInput />}
-                          value={ProductType}
-                          onOpen={() => setProductDrop(true)}
-                          onClose={() => setProductDrop(false)}
-                          onChange={(e) => setProductType(e.target.value)}
-                        >
-                          {details.product?.isVariant ? (
-                            <MenuItem value={"ready made"}>
-                              <FormControlLabel
-                                className={
-                                  ProductDrop
-                                    ? styles.FormControlLabel
-                                    : styles.FormControlLabelS
-                                }
-                                checked={ProductType === "ready made"}
-                                control={<CustomRadio />}
-                                label={
-                                  <div className={styles.ProductSelector}>
-                                    <p className={styles.ChoicesBtnsLabels}>
-                                      Ready Made
-                                    </p>
-                                    {ProductDrop ? (
-                                      <h6 className={styles.ProductSelectorh6}>
-                                        Lorem ipsum is placeholder text commonly
-                                        used in the graphicer text commonly used
-                                        in the graphic
-                                      </h6>
-                                    ) : (
-                                      <></>
-                                    )}
-                                  </div>
-                                }
-                              />
-                            </MenuItem>
-                          ) : null}
-                          {details.product?.isCustomise === "on" ? (
-                            <MenuItem value={"custom"}>
-                              <FormControlLabel
-                                className={
-                                  ProductDrop
-                                    ? styles.FormControlLabel
-                                    : styles.FormControlLabelS
-                                }
-                                checked={ProductType === "custom"}
-                                control={<CustomRadio />}
-                                label={
-                                  <div className={styles.ProductSelector}>
-                                    <p className={styles.ChoicesBtnsLabels}>
-                                      Customised
-                                    </p>
-                                    {ProductDrop ? (
-                                      <h6 className={styles.ProductSelectorh6}>
-                                        Lorem ipsum is placeholder text commonly
-                                        used in the graphic er text commonly
-                                        used in the graphic
-                                      </h6>
-                                    ) : (
-                                      <></>
-                                    )}
-                                  </div>
-                                }
-                              />
-                            </MenuItem>
-                          ) : null}
-                        </Select>
-                        <HtmlTooltip
-                          className={styles.ProductSelectorHelpBtn}
-                          title={
-                            <React.Fragment>
-                              <h3 style={{ padding: 10 }}>
-                                Lorem ipsum is placeholder text used in the
-                                graphic er text commonly used in the graphic
-                              </h3>
-                            </React.Fragment>
-                          }
-                          placement={"right"}
-                          arrow
-                        >
-                          <IconButton>
-                            <HelpIcon />
-                          </IconButton>
-                        </HtmlTooltip>
-                      </div>
-                    </div>
+                <IconButton
+                  style={{ position: 'absolute', top: '80px', right: 0 }}
+                >
+                  <Share />
+                </IconButton>
+
 
                     <div className={styles.price}>
                       <span>
@@ -875,10 +901,11 @@ export default function ProductDescription({ match }) {
                 {customView && !mobileView && (
                   <div
                     style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
+                      fontWeight: 'bolder',
+                      marginTop: 5,
+                      marginBottom: -10,
                     }}
+
                   ></div>
                 )}
 
@@ -911,223 +938,569 @@ export default function ProductDescription({ match }) {
                     ) : null}
                     {ProductType === "ready made" ? <SelectSize /> : <></>}
                   </div>
-                )}
-                <div className={styles.selectColor}>
-                  <div>Select colour</div>
                   <br />
-
-                  <div className={styles.SelectColorCard}>
-                    <IconButton
-                      className={styles.ColorBTN}
-                      onClick={() => setSelectedColor("#DAD3C1")}
-                      style={{
-                        backgroundColor: "#DAD3C1",
-                        borderColor:
-                          selectedColor === "#DAD3C1" ? "#DAD3C1" : "white",
-                      }}
+                  <div
+                    style={{
+                      width: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      position: 'relative',
+                    }}
+                  >
+                    <Select
+                      input={<BootstrapInput />}
+                      value={ProductType}
+                      onOpen={() => setProductDrop(true)}
+                      onClose={() => setProductDrop(false)}
+                      onChange={e => setProductType(e.target.value)}
                     >
-                      <IconButton
-                        className={styles.ColorInnerBTN}
-                        style={{
-                          borderColor:
-                            selectedColor === "#DAD3C1"
-                              ? "#fff"
-                              : "transparent",
-                        }}
-                      ></IconButton>
-                    </IconButton>
-                    <IconButton
-                      className={styles.ColorBTN}
-                      onClick={() => setSelectedColor("#FF543E")}
-                      style={{
-                        backgroundColor: "#FF543E",
-                        borderColor:
-                          selectedColor === "#FF543E" ? "#FF543E" : "white",
-                      }}
-                    >
-                      <IconButton
-                        className={styles.ColorInnerBTN}
-                        style={{
-                          borderColor:
-                            selectedColor === "#FF543E"
-                              ? "#fff"
-                              : "transparent",
-                        }}
-                      ></IconButton>
-                    </IconButton>
-                    <IconButton
-                      className={styles.ColorBTN}
-                      onClick={() => setSelectedColor("#D1AA67")}
-                      style={{
-                        backgroundColor: "#D1AA67",
-                        borderColor:
-                          selectedColor === "#D1AA67" ? "#D1AA67" : "white",
-                      }}
-                    >
-                      <IconButton
-                        className={styles.ColorInnerBTN}
-                        style={{
-                          borderColor:
-                            selectedColor === "#D1AA67"
-                              ? "#fff"
-                              : "transparent",
-                        }}
-                      ></IconButton>
-                    </IconButton>
-                    <IconButton
-                      className={styles.ColorBTN}
-                      onClick={() => setSelectedColor("#000000")}
-                      style={{
-                        backgroundColor: "#000000",
-                        borderColor:
-                          selectedColor === "#000000" ? "#000000" : "white",
-                      }}
-                    >
-                      <IconButton
-                        className={styles.ColorInnerBTN}
-                        style={{
-                          borderColor:
-                            selectedColor === "#000000"
-                              ? "#fff"
-                              : "transparent",
-                        }}
-                      ></IconButton>
-                    </IconButton>
-                  </div>
-                </div>
-                <div className={styles.btnDiv}>
-                  <div style={{ marginBottom: "2em", marginTop: "0em" }}>
-                    <Button
-                      variant="contained"
-                      onClick={buy_now_handler}
-                      color="default"
-                      // startIcon={<ScissorsIcon />}
-                      fullWidth
-                      className={styles.customiseBtn}
-                    >
-                      Buy Now
-                    </Button>
-
-                    <HtmlTooltipButton
-                      open={isAuthenticated && click}
-                      onOpen={() => setClick(true)}
-                      onClose={() => setClick(false)}
-                      disableFocusListener
-                      disableHoverListener
-                      // className={styles.ProductSelectorHelpBtn}
-                      // style={{ color: '#6a5b40', backgroundColor: 'red' }}
+                      {product.product?.isVariant ? (
+                        <MenuItem value={'ready made'}>
+                          <FormControlLabel
+                            className={
+                              ProductDrop
+                                ? styles.FormControlLabel
+                                : styles.FormControlLabelS
+                            }
+                            checked={ProductType === 'ready made'}
+                            control={<CustomRadio />}
+                            label={
+                              <div className={styles.ProductSelector}>
+                                <p className={styles.ChoicesBtnsLabels}>
+                                  Ready Made
+                                </p>
+                                {ProductDrop ? (
+                                  <h6>
+                                    Lorem ipsum is placeholder text commonly
+                                    used in the graphicer text commonly used in
+                                    the graphic
+                                  </h6>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                            }
+                          />
+                        </MenuItem>
+                      ) : null}
+                      {product.product?.isCustomise === 'on' ? (
+                        <MenuItem value={'custom'}>
+                          <FormControlLabel
+                            className={
+                              ProductDrop
+                                ? styles.FormControlLabel
+                                : styles.FormControlLabelS
+                            }
+                            checked={ProductType === 'custom'}
+                            control={<CustomRadio />}
+                            label={
+                              <div className={styles.ProductSelector}>
+                                <p className={styles.ChoicesBtnsLabels}>
+                                  Customised
+                                </p>
+                                {ProductDrop ? (
+                                  <h6 className={styles.ProductSelector}>
+                                    Lorem ipsum is placeholder text commonly
+                                    used in the graphic er text commonly used in
+                                    the graphic
+                                  </h6>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                            }
+                          />
+                        </MenuItem>
+                      ) : null}
+                    </Select>
+                    <HtmlTooltip
+                      className={styles.ProductSelectorHelpBtn}
                       title={
                         <React.Fragment>
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              fontSize: "0.7rem",
-                            }}
-                          >
-                            <img
-                              src={Bag}
-                              alt=""
-                              style={{ height: "40px", width: "40px" }}
-                            />
-                            <h3 style={{ padding: 10 }}> {cartMessage}</h3>
-                          </div>
+                          <h3 style={{ padding: 10 }}>
+                            Lorem ipsum is placeholder text used in the graphic
+                            er text commonly used in the graphic
+                          </h3>
                         </React.Fragment>
                       }
+                      placement={'right'}
+                      arrow
+                    >
+                      <IconButton>
+                        <HelpIcon />
+                      </IconButton>
+                    </HtmlTooltip>
+                    {/* <IconButton className={styles.ProductSelectorHelpBtn} aria-label="add to shopping cart" size={'medium'} ><HelpIcon color="#6a5b40" /></IconButton> */}
+                  </div>
+                </div>
+                {/* ========================================== */}
+
+                <div className={styles.price}>
+                  <span>
+                    {/* {product.currency_symbol} */}
+                    {product.has_offer
+                      ? product.offer_price
+                      : Product_Type === 'custom'
+                      ? product.custom_price >= 1
+                        ? toIndianCurrency(product.custom_price)
+                        : toIndianCurrency(product.price)
+                      : Product_Type === 'ready made'
+                      ? product.readymade_price >= 1
+                        ? toIndianCurrency(product.readymade_price)
+                        : toIndianCurrency(product.price)
+                      : toIndianCurrency(product.price)}
+                  </span>
+                  <br />
+                  {product.has_offer ? (
+                    <p>
+                      <span>
+                        {product.currency_symbol}
+                        {/* {product.price}
+                         */}
+                        {toIndianCurrency(product.price)}
+                      </span>{' '}
+                      {/* <span>{product.discount}</span> */}
+                    </p>
+                  ) : null}
+                </div>
+              </>
+            )}
+            {mobileView && (
+              <>
+                <div className={styles.productDetails}>
+                  <span>{product.brand}</span>
+                  <span>{product.title}</span>
+                </div>
+                <div className={styles.selectProduct}>
+                  <div
+                    style={{
+                      marginTop: 10,
+                      marginBottom: -10,
+                      fontWeight: 'bolder',
+                    }}
+                  >
+                    Product Type
+                  </div>
+                  <br />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <Select
+                      style={{ width: '80%' }}
+                      input={<BootstrapInput />}
+                      value={ProductType}
+                      onOpen={() => setProductDrop(true)}
+                      onClose={() => setProductDrop(false)}
+                      onChange={e => setProductType(e.target.value)}
+                    >
+                      {product.product?.isVariant ? (
+                        <MenuItem value={'ready made'}>
+                          <FormControlLabel
+                            className={
+                              ProductDrop
+                                ? styles.FormControlLabel
+                                : styles.FormControlLabelS
+                            }
+                            checked={ProductType === 'ready made'}
+                            control={<CustomRadio />}
+                            label={
+                              <div className={styles.ProductSelector}>
+                                <p className={styles.ChoicesBtnsLabels}>
+                                  Ready Made
+                                </p>
+                                {ProductDrop ? (
+                                  <h6 className={styles.ProductSelectorh6}>
+                                    Lorem ipsum is placeholder text commonly
+                                    used in the graphicer text commonly used in
+                                    the graphic
+                                  </h6>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                            }
+                          />
+                        </MenuItem>
+                      ) : null}
+                      {product.product?.isCustomise === 'on' ? (
+                        <MenuItem value={'custom'}>
+                          <FormControlLabel
+                            className={
+                              ProductDrop
+                                ? styles.FormControlLabel
+                                : styles.FormControlLabelS
+                            }
+                            checked={ProductType === 'custom'}
+                            control={<CustomRadio />}
+                            label={
+                              <div className={styles.ProductSelector}>
+                                <p className={styles.ChoicesBtnsLabels}>
+                                  Customised
+                                </p>
+                                {ProductDrop ? (
+                                  <h6 className={styles.ProductSelectorh6}>
+                                    Lorem ipsum is placeholder text commonly
+                                    used in the graphic er text commonly used in
+                                    the graphic
+                                  </h6>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                            }
+                          />
+                        </MenuItem>
+                      ) : null}
+                    </Select>
+                    <HtmlTooltip
+                      className={styles.ProductSelectorHelpBtn}
+                      style={{ marginLeft: 0 }}
+                      title={
+                        <React.Fragment>
+                          <h3 style={{ padding: 10 }}>
+                            Lorem ipsum is plaer text commonly used in the
+                            graphic er text commonly used in the graphic
+                          </h3>
+                        </React.Fragment>
+                      }
+
                       placement={"bottom"}
                       arrow
                     >
-                      <Button
-                        onClick={() => {
-                          add_bag_handler();
-                          setClick((click) => isAuthenticated && !click);
-                        }}
-                        variant="outlined"
-                        color="default"
-                        startIcon={<BagIcon />}
-                        fullWidth
-                        className={styles.addToBagBtn}
-                      >
-                        Add to bag
-                      </Button>
-                    </HtmlTooltipButton>
+                      <IconButton>
+                        <HelpIcon />
+                      </IconButton>
+                    </HtmlTooltip>
                   </div>
                 </div>
-
-                <div></div>
-                {tabView || mobileView ? (
-                  <div
-                    className={styles.container}
-                    style={
-                      mobileView ? { marginLeft: -10 } : { marginLeft: -30 }
-                    }
-                  >
-                    <div className={styles.firstContainer}>
-                      <div className={styles.deliveryDiv}>
-                        <div>
-                          <span>Delivery option</span>
-                          <img src={deliveryTruckIcon} alt="deliver truck" />:
-                        </div>
-                        <div>
-                          <label>Enter pincode*</label>
-                          <input type="text" name="pincode/zipcode" />
-                        </div>
-                        <span>
-                          Please enter the pincode to check delivery time{" "}
-                        </span>
-                        <Button
-                          variant="contained"
-                          color="default"
-                          className={styles.checkBtn}
-
-                          // onClick={() => history.push('/product-breakdown')}
-                        >
-                          Check
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                ) : tabViewPro ? (
-                  <div
-                    className={styles.container}
-                    style={{ marginLeft: -50, marginTop: "-2em" }}
-                  >
-                    <div className={styles.firstContainer}>
-                      <div className={styles.deliveryDiv}>
-                        <div>
-                          <span>Delivery option</span>
-                          <img src={deliveryTruckIcon} alt="deliver truck" />:
-                        </div>
-                        <div>
-                          <label>Enter pincode*</label>
-                          <input type="text" name="pincode/zipcode" />
-                        </div>
-                        <span>
-                          Please enter the pincode to check delivery time{" "}
-                        </span>
-                        <Button
-                          variant="contained"
-                          color="default"
-                          className={styles.checkBtn}
-
-                          // onClick={() => history.push('/product-breakdown')}
-                        >
-                          Check
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <></>
-                )}
-                <div>
-                  <DetailTabs product={details} type={ProductType} />
+                <div className={styles.price}>
+                  <span>
+                    {product.currency_symbol}
+                    {product.has_offer
+                      ? product.offer_price
+                      : Product_Type === 'custom'
+                      ? product.custom_price >= 1
+                        ? product.custom_price
+                        : product.price
+                      : Product_Type === 'ready made'
+                      ? product.readymade_price >= 1
+                        ? product.readymade_price
+                        : product.price
+                      : product.price}
+                  </span>
+                  <br />
+                  {product.has_offer ? (
+                    <p>
+                      <span>
+                        {product.currency_symbol}
+                        {product.price}
+                      </span>{' '}
+                      <span>{product.discount}</span>
+                    </p>
+                  ) : null}
+                </div>
+              </>
+            )}
+            {customView && !mobileView && (
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <div className={styles.fabric}>
+                  <h1>
+                    Fabric : <span>{productAttributes?.Fabric[0].name}</span>{' '}
+                  </h1>
                 </div>
               </div>
+            )}
+
+            {!customView && (
+              <>
+                <div className={styles.fabric}>
+                  <h1>
+                    Fabric : <span>{productAttributes?.Fabric[0].name}</span>{' '}
+                  </h1>
+                </div>
+                <div>
+                  {product.stock_quantity < 10 ? (
+                    <div className={styles.alert}>
+                      <img src={clockIcon} alt='clock' />
+                      <span>
+                        Hurry up! Only {product.stock_quantity} left in stock
+                      </span>
+                      <div>50:00</div>
+                    </div>
+                  ) : null}
+
+                  {ProductType === 'ready made' ? (
+                    <SelectSize variant={productAttributes.Size} />
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </>
+            )}
+
+            {mobileView && (
+              <>
+                <div className={styles.fabric}>
+                  <h1>
+                    Fabric : <span>Cotton</span>{' '}
+                  </h1>
+                </div>
+                <div>
+                  {product.stock_quantity < 10 ? (
+                    <div className={styles.alert}>
+                      <img src={clockIcon} alt='clock' />
+                      <span>
+                        Hurry up! Only {product.stock_quantity} left in stock
+                      </span>
+                      <div>50:00</div>
+                    </div>
+                  ) : null}
+                  {ProductType === 'ready made' ? (
+                    <SelectSize variant={productAttributes.Size} />
+                  ) : (
+                    <></>
+                  )}
+
+                  {/* <div className={styles.sizeDiv}>
+                <img src={measuringTapeIcon} alt='' />
+                <span>Not sure which size to buy?</span>
+                <Link to='/'>Try size finder</Link>
+              </div> */}
+                </div>
+              </>
+            )}
+            <div className={styles.selectColor}>
+              <div>Select colour</div>
+              <br />
+              <div className={styles.SelectColorCard}>
+                {productAttributes?.Color?.map((color, i) => (
+                  <IconButton
+                    className={styles.ColorBTN}
+                    onClick={() => setSelectedColor(color.name)}
+                    style={{
+                      backgroundColor: `${color.name}`,
+                      borderColor:
+                        selectedColor === `${color.name}`
+                          ? `${color.name}`
+                          : 'white',
+                    }}
+                  >
+                    <IconButton
+                      className={styles.ColorInnerBTN}
+                      style={{
+                        borderColor:
+                          selectedColor === `${color.name}`
+                            ? '#fff'
+                            : 'transparent',
+                      }}
+                    ></IconButton>
+                  </IconButton>
+                ))}
+                {/* <IconButton
+                  className={styles.ColorBTN}
+                  onClick={() => setSelectedColor('#DAD3C1')}
+                  style={{
+                    backgroundColor: '#DAD3C1',
+                    borderColor:
+                      selectedColor === '#DAD3C1' ? '#DAD3C1' : 'white',
+                  }}
+                >
+                  <IconButton
+                    className={styles.ColorInnerBTN}
+                    style={{
+                      borderColor:
+                        selectedColor === '#DAD3C1' ? '#fff' : 'transparent',
+                    }}
+                  ></IconButton>
+                </IconButton>
+                <IconButton
+                  className={styles.ColorBTN}
+                  onClick={() => setSelectedColor('#FF543E')}
+                  style={{
+                    backgroundColor: '#FF543E',
+                    borderColor:
+                      selectedColor === '#FF543E' ? '#FF543E' : 'white',
+                  }}
+                >
+                  <IconButton
+                    className={styles.ColorInnerBTN}
+                    style={{
+                      borderColor:
+                        selectedColor === '#FF543E' ? '#fff' : 'transparent',
+                    }}
+                  ></IconButton>
+                </IconButton>
+                <IconButton
+                  className={styles.ColorBTN}
+                  onClick={() => setSelectedColor('#D1AA67')}
+                  style={{
+                    backgroundColor: '#D1AA67',
+                    borderColor:
+                      selectedColor === '#D1AA67' ? '#D1AA67' : 'white',
+                  }}
+                >
+                  <IconButton
+                    className={styles.ColorInnerBTN}
+                    style={{
+                      borderColor:
+                        selectedColor === '#D1AA67' ? '#fff' : 'transparent',
+                    }}
+                  ></IconButton>
+                </IconButton>
+                <IconButton
+                  className={styles.ColorBTN}
+                  onClick={() => setSelectedColor('#000000')}
+                  style={{
+                    backgroundColor: '#000000',
+                    borderColor:
+                      selectedColor === '#000000' ? '#000000' : 'white',
+                  }}
+                >
+                  <IconButton
+                    className={styles.ColorInnerBTN}
+                    style={{
+                      borderColor:
+                        selectedColor === '#000000' ? '#fff' : 'transparent',
+                    }}
+                  ></IconButton>
+                </IconButton> */}
+              </div>
             </div>
-          )}
-        </>
-      )}
-    </Container>
+            <div className={styles.btnDiv}>
+              <div style={{ marginBottom: '2em', marginTop: '0em' }}>
+                <Button
+                  variant='contained'
+                  onClick={buy_now_handler}
+                  color='default'
+                  // startIcon={<ScissorsIcon />}
+                  fullWidth
+                  className={styles.customiseBtn}
+                >
+                  Buy Now
+                </Button>
+
+                <HtmlTooltipButton
+                  open={isAuthenticated && click}
+                  onOpen={() => {
+                    setClick(true);
+                  }}
+                  onClose={() => setClick(false)}
+                  disableFocusListener
+                  disableHoverListener
+                  // className={styles.ProductSelectorHelpBtn}
+                  // style={{ color: '#6a5b40', backgroundColor: 'red' }}
+                  title={
+                    <React.Fragment>
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          fontSize: '0.7rem',
+                        }}
+                      >
+                        <img
+                          src={Bag}
+                          alt=''
+                          style={{ height: '40px', width: '40px' }}
+                        />
+                        <h3 style={{ padding: 10 }}> {cartMessage}</h3>
+                      </div>
+                    </React.Fragment>
+                  }
+                  placement={'top'}
+                  arrow
+                >
+                  <Button
+                    onClick={() => {
+                      add_bag_handler();
+                      setClick(click => isAuthenticated && !click);
+                      setTimeout(() => setClick(false), 3000);
+                    }}
+                    variant='outlined'
+                    color='default'
+                    startIcon={<BagIcon />}
+                    fullWidth
+                    className={styles.addToBagBtn}
+                  >
+                    Add to bag
+                  </Button>
+                </HtmlTooltipButton>
+              </div>
+            </div>
+            <div></div>
+            {tabView || mobileView ? (
+              <div
+                className={styles.container}
+                style={mobileView ? { marginLeft: -10 } : { marginLeft: -30 }}
+              >
+                <div className={styles.firstContainer}>
+                  <div className={styles.deliveryDiv}>
+                    <div>
+                      <span>Delivery option</span>
+                      <img src={deliveryTruckIcon} alt='deliver truck' />:
+                    </div>
+                    <div>
+                      <label>Enter pincode*</label>
+                      <input type='text' name='pincode/zipcode' />
+                    </div>
+                    <span>
+                      Please enter the pincode to check delivery time{' '}
+                    </span>
+                    <Button
+                      variant='contained'
+                      color='default'
+                      className={styles.checkBtn}
+
+                      // onClick={() => history.push('/product-breakdown')}
+                    >
+                      Check
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ) : tabViewPro ? (
+              <div
+                className={styles.container}
+                style={{ marginLeft: -50, marginTop: '-2em' }}
+              >
+                <div className={styles.firstContainer}>
+                  <div className={styles.deliveryDiv}>
+                    <div>
+                      <span>Delivery option</span>
+                      <img src={deliveryTruckIcon} alt='deliver truck' />:
+                    </div>
+                    <div>
+                      <label>Enter pincode*</label>
+                      <input type='text' name='pincode/zipcode' />
+                    </div>
+                    <span>
+                      Please enter the pincode to check delivery time{' '}
+                    </span>
+                    <Button
+                      variant='contained'
+                      color='default'
+                      className={styles.checkBtn}
+
+                      // onClick={() => history.push('/product-breakdown')}
+                    >
+                      Check
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
+            <div>
+              <DetailTabs product={product} type={ProductType} />
+            </div>
+          </div>
+        </div>
+      </Container>
+    )
   );
 }

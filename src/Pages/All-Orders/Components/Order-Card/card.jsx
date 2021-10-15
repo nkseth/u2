@@ -1,27 +1,27 @@
-import React from 'react';
-import { Button, useMediaQuery } from '@material-ui/core';
-import { Link, useHistory } from 'react-router-dom';
-import CustomDivider from '../../../../utils/Custom Divider/divider';
-import styles from './card.module.scss';
+import React from "react";
+import { Button, useMediaQuery } from "@material-ui/core";
+import { Link, useHistory } from "react-router-dom";
+import CustomDivider from "../../../../utils/Custom Divider/divider";
+import styles from "./card.module.scss";
 
 export default function OrdersCard({ pending, item, orderId }) {
   const history = useHistory();
-  const mobileView = useMediaQuery('(max-width:550px)');
+  const mobileView = useMediaQuery("(max-width:550px)");
   return (
     <div className={styles.mainContainer}>
-      {!detail && <CustomDivider />}
+      {!item && <CustomDivider />}
       <div className={styles.cardContainer}>
         <img
           src={item.product.image}
           alt={item.title}
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           onClick={() => history.push(`/product-description/${item.slug}`)}
         />
         <div className={styles.detailsDiv}>
           <div className={styles.detailOne}>
             <div>
               <h1
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
                 onClick={() =>
                   history.push(`/product-description/${item.slug}`)
                 }
@@ -43,10 +43,10 @@ export default function OrdersCard({ pending, item, orderId }) {
           {mobileView && (
             <div
               style={{
-                fontFamily: 'DM Serif Display',
-                fontSize: '28px',
+                fontFamily: "DM Serif Display",
+                fontSize: "28px",
                 fontWeight: 400,
-                lineHeight: '36px',
+                lineHeight: "36px",
               }}
             >
               {item.currency_symbol}
@@ -78,7 +78,7 @@ export default function OrdersCard({ pending, item, orderId }) {
           <div className={styles.detailThree}>
             <Link
               to={`/order-details/${orderId}`}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
               // onClick={() => history.push(`/rate_order/${orderId}`)}
             >
               Order Detail

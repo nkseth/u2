@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
   Button,
   IconButton,
@@ -11,34 +11,34 @@ import {
   FormControlLabel,
   useMediaQuery,
   Tooltip,
-} from '@material-ui/core';
-import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/scss/image-gallery.scss';
-import CustomSection from '../../utils/Custom Section/section';
-import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
-import Container from '../../utils/Container/container';
-import DetailTabs from './Components/Details-Tabs/tabs';
-import styles from './productDescription.module.scss';
+} from "@material-ui/core";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/scss/image-gallery.scss";
+import CustomSection from "../../utils/Custom Section/section";
+import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
+import Container from "../../utils/Container/container";
+import DetailTabs from "./Components/Details-Tabs/tabs";
+import styles from "./productDescription.module.scss";
 //icons
-import deliveryTruckIcon from '../../Images/icons/deliveryTruck.svg';
-import clockIcon from '../../Images/icons/clock.svg';
-import { ReactComponent as BagIcon } from '../../Images/icons/bag-primary.svg';
-import HelpIcon from '@material-ui/icons/Help';
-import SelectSize from './Components/SelectSize/SelectSize';
-import { useLocation } from 'react-router-dom';
-import common_axios from '../../utils/axios.config';
-import { useSelector } from 'react-redux';
-import useLogin from '../../LoginSceens/useLogin';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import Bag from './addedbag.gif';
-import { ReactComponent as Heart } from './images/heart.svg';
-import { ReactComponent as Share } from './images/share.svg';
+import deliveryTruckIcon from "../../Images/icons/deliveryTruck.svg";
+import clockIcon from "../../Images/icons/clock.svg";
+import { ReactComponent as BagIcon } from "../../Images/icons/bag-primary.svg";
+import HelpIcon from "@material-ui/icons/Help";
+import SelectSize from "./Components/SelectSize/SelectSize";
+import { useLocation } from "react-router-dom";
+import common_axios from "../../utils/axios.config";
+import { useSelector } from "react-redux";
+import useLogin from "../../LoginSceens/useLogin";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import Bag from "./addedbag.gif";
+import { ReactComponent as Heart } from "./images/heart.svg";
+import { ReactComponent as Share } from "./images/share.svg";
 // import {
 //   addToWishlist,
 //   clearUpdateWishlist,
 //   removeFromWishlist,
 // } from '../../../../Redux/actions/wishlist';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 // Product Type
 import { Product_Type, Product_Type_Change } from '../../Redux/MeasuremantData';
 import ReactImageMagnify from 'react-image-magnify';
@@ -50,81 +50,81 @@ import ReactImageMagnify from 'react-image-magnify';
 
 const CustomRadio = withStyles({
   root: {
-    color: 'transparent',
-    '&$checked': {
-      color: '#857250',
+    color: "transparent",
+    "&$checked": {
+      color: "#857250",
     },
   },
   checked: {},
-})(props => <></>);
+})((props) => <></>);
 
 const CustomRadio1 = withStyles({
   root: {
-    color: '#9D9D9D',
-    '&$checked': {
-      color: '#857250',
+    color: "#9D9D9D",
+    "&$checked": {
+      color: "#857250",
     },
   },
   checked: {},
-})(props => <Radio color='default' {...props} />);
+})((props) => <Radio color="default" {...props} />);
 
-const BootstrapInput = withStyles(theme => ({
+const BootstrapInput = withStyles((theme) => ({
   root: {
-    'label + &': {
+    "label + &": {
       marginTop: theme.spacing(3),
     },
   },
   input: {
-    width: '343px',
+    width: "343px",
     borderRadius: 0,
-    position: 'relative',
+    position: "relative",
     // backgroundColor: theme.palette.background.paper,
-    border: '1px solid #ced4da',
+    border: "1px solid #ced4da",
     fontSize: 16,
-    padding: '3px 8px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
-    '&:focus': {
+    padding: "3px 8px",
+    transition: theme.transitions.create(["border-color", "box-shadow"]),
+    "&:focus": {
       borderRadius: 4,
-      borderColor: '#80bdff',
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+      borderColor: "#80bdff",
+      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)",
     },
-    '@media (max-width:835px)': {
-      width: 'calc(100vw - 102px)',
+    "@media (max-width:835px)": {
+      width: "calc(100vw - 102px)",
     },
-    '@media (max-width:550px)': {
-      width: 'calc(100vw - 67px)',
+    "@media (max-width:550px)": {
+      width: "calc(100vw - 67px)",
     },
   },
 }))(InputBase);
 
-const HtmlTooltip = withStyles(theme => ({
+const HtmlTooltip = withStyles((theme) => ({
   tooltip: {
     // placement: "right-start",
-    backgroundColor: '#f5f5f9',
-    color: 'rgba(0, 0, 0, 0.87)',
+    backgroundColor: "#f5f5f9",
+    color: "rgba(0, 0, 0, 0.87)",
     width: 200,
     // height: 100,
     fontSize: theme.typography.pxToRem(10),
-    border: '1px solid #dadde9',
+    border: "1px solid #dadde9",
   },
 }))(Tooltip);
 
-const HtmlTooltipButton = withStyles(theme => ({
+const HtmlTooltipButton = withStyles((theme) => ({
   tooltip: {
     // placement: "right-start",
-    backgroundColor: '#857250',
-    color: 'white',
+    backgroundColor: "#857250",
+    color: "white",
     width: 170,
-    textAlign: 'center',
+    textAlign: "center",
     // height: 100,
     fontSize: theme.typography.pxToRem(10),
-    border: 'none',
+    border: "none",
   },
 }))(Tooltip);
-const toIndianCurrency = num => {
-  const curr = num.toLocaleString('en-IN', {
-    style: 'currency',
-    currency: 'INR',
+const toIndianCurrency = (num) => {
+  const curr = num.toLocaleString("en-IN", {
+    style: "currency",
+    currency: "INR",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
@@ -133,28 +133,29 @@ const toIndianCurrency = num => {
 
 export default function ProductDescription({ match }) {
   const history = useHistory();
-  const location = useLocation();
-  const customView = useMediaQuery('(max-width:1044px)');
-  const tabView = useMediaQuery('(max-width:768px)');
-  const tabViewPro = useMediaQuery('(min-width:768px) and (max-width:1044px');
-  const mobileView = useMediaQuery('(max-width:550px)');
+  const dispatch = useDispatch();
+  const customView = useMediaQuery("(max-width:1044px)");
+  const tabView = useMediaQuery("(max-width:768px)");
+  const tabViewPro = useMediaQuery("(min-width:768px) and (max-width:1044px");
+  const mobileView = useMediaQuery("(max-width:550px)");
 
-  const [selectedColor, setSelectedColor] = useState('');
+
+  const [selectedColor, setSelectedColor] = useState("");
   const [ProductDrop, setProductDrop] = useState(false);
   const [click, setClick] = useState(false);
-  const [cartMessage, setCartMessage] = useState('Added To bag');
+  const [cartMessage, setCartMessage] = useState("Added To bag");
 
   //const { data: val } = location.state;
   const {
     params: { slug },
   } = match;
 
-  const [product, setProduct] = useState(null);
   const [productAttributes, setProductAttributes] = useState(null);
   console.log(
     '🚀 ~ file: productDescription.jsx ~ line 154 ~ ProductDescription ~ productAttributes',
     productAttributes
   );
+
 
   const [images, setImages] = useState([]);
   const [ProductType, setProductType] = useState('');
@@ -165,56 +166,48 @@ export default function ProductDescription({ match }) {
 
   const { login_Model_Show } = useLogin();
   const { isAuthenticated } = useSelector(state => state.root.auth);
+   const { details, error, loading, attributes } = useSelector(
+    (state) => state.root.productDetails
+  );
 
   useEffect(() => {
-    fetch_data(slug);
-  }, [slug]);
-
-  const fetch_data = async slug => {
-    try {
-      const { data } = await common_axios.get(`/productDetail/${slug}`);
-      console.log(
-        '🚀 ~ file: productDescription.jsx ~ line 174 ~ ProductDescription ~ data',
-        data
+    if (details) {
+      setProductType(
+        details.product.isCustomise === "on" ? "custom" : "ready made"
       );
-      if (data?.attribute_details) {
-        setProductAttributes(data.attribute_details);
-      }
-      if (data.data) {
-        setProduct(data.data);
-        setProductType(
-          data.data.product.isCustomise === 'on' ? 'custom' : 'ready made'
-        );
-        const img = [];
-        data.data?.images?.forEach(item => {
-          img.push({ thumbnail: item.path, original: item.path });
-        });
-        setImages(img);
-      }
-    } catch (e) {
-      console.log(e);
+      const img = [];
+      details.images.forEach((item) => {
+        img.push({ thumbnail: item.path, original: item.path });
+      });
+      setImages(img);
     }
-  };
+    if (!details && !loading) dispatch(getProductDetails(slug));
+  }, [slug, dispatch, details]);
+  
 
+  useEffect(() => {
+    dispatch(getProductDetails(slug));
+  }, []);
   const buy_now_handler = async () => {
     if (isAuthenticated) {
-      if (product.hasOwnProperty('title')) {
+
+      if (details.hasOwnProperty("title")) {
         try {
-          const type = ProductType === 'ready made' ? 'readymade' : 'customise';
+          const type = ProductType === "ready made" ? "readymade" : "customise";
           const { data } = await common_axios.post(`/addToCart/${slug}`, {
             type,
           });
           console.log(data);
           if (data) {
-            history.push('/my-bag');
+            history.push("/my-bag");
           }
         } catch (e) {
           console.log(e?.response?.data?.message);
-          if (e?.response?.data?.message === 'Item alrealy in your cart') {
-            history.push('/my-bag');
+          if (e?.response?.data?.message === "Item alrealy in your cart") {
+            history.push("/my-bag");
           }
 
-          if (e?.response?.data?.message === 'Login first') {
+          if (e?.response?.data?.message === "Login first") {
             login_Model_Show();
           }
         }
@@ -227,7 +220,7 @@ export default function ProductDescription({ match }) {
   const add_bag_handler = async () => {
     if (isAuthenticated) {
       try {
-        const type = ProductType === 'ready made' ? 'readymade' : 'customise';
+        const type = ProductType === "ready made" ? "readymade" : "customise";
         const { data } = await common_axios.post(`/addToCart/${slug}`, {
           type,
         });
@@ -249,38 +242,63 @@ export default function ProductDescription({ match }) {
   const [imageIdx, setImageIdx] = useState(0);
 
   return (
-    product && (
-      <Container bottomDivider footerOnTabMob>
-        <CustomSection style={{ marginTop: 10, marginBottom: 10 }}>
-          <Breadcrumb
-            path={`Home / ${product.brand} /`}
-            activePath={product.title}
-            style={{ padding: '1rem 0' }}
-          />
-        </CustomSection>
-
-        <div className={styles.container}>
-          <div className={styles.firstContainer}>
-            <div style={{ width: '100%' }} className={styles.gallery_container}>
-              {/* <ImageGallery
-              items={images}
-              showNav={false}
-              additionalClass={styles.imagegall}
-              thumbnailPosition={
-                mobileView ? "bottom" : customView ? "right" : "left"
-              }
-              showFullscreenButton={false}
-              useBrowserFullscreen={false}
-              showPlayButton={false}
-            /> */}
-              <div className={styles.other_imgs}>
-                {images.map((image, i) => {
-                  return (
-                    <img
-                      src={image.thumbnail}
-                      className={`${imageIdx === i ? 'active' : ''}`}
-                      style={{
-                        border: `${imageIdx === i ? '2px solid #857250' : ''}`,
+    <Container bottomDivider footerOnTabMob>
+      {!details ? (
+        <Loader />
+      ) : (
+        <>
+          <CustomSection style={{ marginTop: 10, marginBottom: 10 }}>
+            <Breadcrumb
+              path={`Home / ${details?.brand} /`}
+              activePath={details?.title}
+              style={{ padding: "1rem 0" }}
+            />
+          </CustomSection>
+          {details && (
+            <div className={styles.container}>
+              <div className={styles.firstContainer}>
+                <div
+                  style={{ width: "100%" }}
+                  className={styles.gallery_container}
+                >
+                  <div className={styles.other_imgs}>
+                    {images.map((image, i) => {
+                      return (
+                        <img
+                          src={image.thumbnail}
+                          className={`${imageIdx === i ? "active" : ""}`}
+                          style={{
+                            border: `${
+                              imageIdx === i ? "2px solid #857250" : ""
+                            }`,
+                          }}
+                          alt={image.url}
+                          key={i}
+                          onClick={() => setImageIdx(i)}
+                        />
+                      );
+                    })}
+                  </div>
+                  <div className={styles.main_img}>
+                    <ReactImageMagnify
+                      className={styles.magnifier}
+                      {...{
+                        smallImage: {
+                          alt: "Wristwatch by Ted Baker London",
+                          isFluidWidth: true,
+                          // src: `${imageBaseUrl}wristwatch_1033.jpg`,
+                          src: images[imageIdx]?.original,
+                          // srcSet: this.srcSet,
+                          sizes:
+                            "(min-width: 800px) 33.5vw, (min-width: 415px) 50vw, 100vw ",
+                        },
+                        largeImage: {
+                          alt: "",
+                          src: images[imageIdx]?.original,
+                          // src: `${imageBaseUrl}wristwatch_1200.jpg`,
+                          width: 1200,
+                          height: 1800,
+                        },
                       }}
                       alt={image.url}
                       key={i}
@@ -540,7 +558,8 @@ export default function ProductDescription({ match }) {
                                     ? styles.FormControlLabel
                                     : styles.FormControlLabelS
                                 }
-                                checked={ProductType === 'ready made'}
+
+                                checked={ProductType === "ready made"}
                                 control={<CustomRadio />}
                                 label={
                                   <div className={styles.ProductSelector}>
@@ -560,56 +579,121 @@ export default function ProductDescription({ match }) {
                                 }
                               />
                             </MenuItem>
-                          ) : null
-                        ) : (
-                          <></>
-                        )}
-                      </Select>
-                      <HtmlTooltip
-                        // className={styles.ProductSelectorHelpBtn}
-                        style={{ color: '#6a5b40' }}
-                        title={
-                          <React.Fragment>
-                            <h3 style={{ padding: 10 }}>
-                              Lorem ipsum is place used in the graphic er text
-                              commonly used in the graphic
-                            </h3>
-                          </React.Fragment>
-                        }
-                        placement={'right'}
-                        arrow
-                      >
-                        <IconButton>
-                          <HelpIcon />
-                        </IconButton>
-                      </HtmlTooltip>
-                      {/* <IconButton className={styles.ProductSelectorHelpBtn} aria-label="add to shopping cart" size={'medium'} ><HelpIcon color="#6a5b40" /></IconButton> */}
-                      <div className={styles.priceTab}>
-                        <span>
-                          {product.currency_symbol}
-                          {product.has_offer
-                            ? product.offer_price
-                            : Product_Type === 'custom'
-                            ? product.custom_price >= 1
-                              ? product.custom_price
-                              : product.price
-                            : Product_Type === 'ready made'
-                            ? product.readymade_price >= 1
-                              ? product.readymade_price
-                              : product.price
-                            : product.price}
-                        </span>
-                        <br />
-                        {product.has_offer ? (
-                          <p>
-                            <span>
-                              {product.currency_symbol}
-                              {/* {product.price} */}
-                              {toIndianCurrency(product.price)}
-                            </span>
-                            <span>{product.discount}</span>
-                          </p>
-                        ) : null}
+
+                          ) : null}
+                          {details.product?.isCustomise === "on" ? (
+                            <MenuItem value={"custom"}>
+                              <FormControlLabel
+                                className={
+                                  ProductDrop
+                                    ? styles.FormControlLabel
+                                    : styles.FormControlLabelS
+                                }
+                                checked={ProductType === "custom"}
+                                control={<CustomRadio />}
+                                label={
+                                  <div className={styles.ProductSelector}>
+                                    <p className={styles.ChoicesBtnsLabels}>
+                                      Customised
+                                    </p>
+                                    {ProductDrop ? (
+                                      <h6 className={styles.ProductSelectorh6}>
+                                        Lorem ipsum is placeholder text commonly
+                                        used in the graphic er text commonly
+                                        used in the graphic
+                                      </h6>
+                                    ) : (
+                                      <></>
+                                    )}
+                                  </div>
+                                }
+                              />
+                            </MenuItem>
+                          ) : null}
+                          {ProductType === "custom" ? (
+                            details.product.isVariant ? (
+                              <MenuItem value={"ready made"}>
+                                <FormControlLabel
+                                  className={
+                                    ProductDrop
+                                      ? styles.FormControlLabel
+                                      : styles.FormControlLabelS
+                                  }
+                                  checked={ProductType === "ready made"}
+                                  control={<CustomRadio />}
+                                  label={
+                                    <div className={styles.ProductSelector}>
+                                      <p className={styles.ChoicesBtnsLabels}>
+                                        Ready Made
+                                      </p>
+                                      {ProductDrop ? (
+                                        <h6
+                                          className={styles.ProductSelectorh6}
+                                        >
+                                          Lorem ipsum is placeholder text
+                                          commonly used in the graphicer text
+                                          commonly used in the graphic
+                                        </h6>
+                                      ) : (
+                                        <></>
+                                      )}
+                                    </div>
+                                  }
+                                />
+                              </MenuItem>
+                            ) : null
+                          ) : (
+                            <></>
+                          )}
+                        </Select>
+                        <HtmlTooltip
+                          // className={styles.ProductSelectorHelpBtn}
+                          style={{ color: "#6a5b40" }}
+                          title={
+                            <React.Fragment>
+                              <h3 style={{ padding: 10 }}>
+                                Lorem ipsum is place used in the graphic er text
+                                commonly used in the graphic
+                              </h3>
+                            </React.Fragment>
+                          }
+                          placement={"right"}
+                          arrow
+                        >
+                          <IconButton>
+                            <HelpIcon />
+                          </IconButton>
+                        </HtmlTooltip>
+                        {/* <IconButton className={styles.ProductSelectorHelpBtn} aria-label="add to shopping cart" size={'medium'} ><HelpIcon color="#6a5b40" /></IconButton> */}
+                        <div className={styles.priceTab}>
+                          <span>
+                            {details.currency_symbol}
+                            {ProductType === "ready made"
+                              ? details.readymade_price
+                              : details.custom_price}
+                            {/* {details.has_offer
+                              ? details.offer_price
+                              : Product_Type === "custom"
+                              ? details.custom_price >= 1
+                                ? details.custom_price
+                                : details.price
+                              : Product_Type === "ready made"
+                              ? details.readymade_price >= 1
+                                ? details.readymade_price
+                                : details.price
+                              : details.price} */}
+                          </span>
+                          <br />
+                          {details.has_offer ? (
+                            <p>
+                              <span>
+                                {details.currency_symbol}
+                                {details.price}
+                              </span>
+                              <span>{details.discount}</span>
+                            </p>
+                          ) : null}
+                        </div>
                       </div>
                     </div>
                     {ProductType === 'ready made' ? (
@@ -646,20 +730,213 @@ export default function ProductDescription({ match }) {
                   <Share />
                 </IconButton>
 
-                <div className={styles.productDetails}>
-                  <span>{product.brand}</span>
-                  <span>{product.title}</span>
-                </div>
-                {/* ========================================== */}
-                <div className={styles.selectProduct}>
+
+                    <div className={styles.price}>
+                      <span>
+                        {details.currency_symbol}
+                        {ProductType === "ready made"
+                          ? details.readymade_price
+                          : details.custom_price}
+                        {/* {details.has_offer
+                          ? details.offer_price
+                          : Product_Type === "custom"
+                          ? details.custom_price >= 1
+                            ? details.custom_price
+                            : details.price
+                          : Product_Type === "ready made"
+                          ? details.readymade_price >= 1
+                            ? details.readymade_price
+                            : details.price
+                          : details.price} */}
+                      </span>
+                      <br />
+                      {details.has_offer ? (
+                        <p>
+                          <span>
+                            {details.currency_symbol}
+                            {details.price}
+                          </span>{" "}
+                          <span>{details.discount}</span>
+                        </p>
+                      ) : null}
+                    </div>
+                  </>
+                )}
+                {mobileView && (
+                  <>
+                    <div className={styles.productDetails}>
+                      <span>{details.brand}</span>
+                      <span>{details.title}</span>
+                    </div>
+                    <div className={styles.selectProduct}>
+                      <div
+                        style={{
+                          marginTop: 10,
+                          marginBottom: -10,
+                          fontWeight: "bolder",
+                        }}
+                      >
+                        Product Type
+                      </div>
+                      <br />
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <Select
+                          style={{ width: "80%" }}
+                          input={<BootstrapInput />}
+                          value={ProductType}
+                          onOpen={() => setProductDrop(true)}
+                          onClose={() => setProductDrop(false)}
+                          onChange={(e) => setProductType(e.target.value)}
+                        >
+                          {details.product?.isVariant ? (
+                            <MenuItem value={"ready made"}>
+                              <FormControlLabel
+                                className={
+                                  ProductDrop
+                                    ? styles.FormControlLabel
+                                    : styles.FormControlLabelS
+                                }
+                                checked={ProductType === "ready made"}
+                                control={<CustomRadio />}
+                                label={
+                                  <div className={styles.ProductSelector}>
+                                    <p className={styles.ChoicesBtnsLabels}>
+                                      Ready Made
+                                    </p>
+                                    {ProductDrop ? (
+                                      <h6 className={styles.ProductSelectorh6}>
+                                        Lorem ipsum is placeholder text commonly
+                                        used in the graphicer text commonly used
+                                        in the graphic
+                                      </h6>
+                                    ) : (
+                                      <></>
+                                    )}
+                                  </div>
+                                }
+                              />
+                            </MenuItem>
+                          ) : null}
+                          {details.product?.isCustomise === "on" ? (
+                            <MenuItem value={"custom"}>
+                              <FormControlLabel
+                                className={
+                                  ProductDrop
+                                    ? styles.FormControlLabel
+                                    : styles.FormControlLabelS
+                                }
+                                checked={ProductType === "custom"}
+                                control={<CustomRadio />}
+                                label={
+                                  <div className={styles.ProductSelector}>
+                                    <p className={styles.ChoicesBtnsLabels}>
+                                      Customised
+                                    </p>
+                                    {ProductDrop ? (
+                                      <h6 className={styles.ProductSelectorh6}>
+                                        Lorem ipsum is placeholder text commonly
+                                        used in the graphic er text commonly
+                                        used in the graphic
+                                      </h6>
+                                    ) : (
+                                      <></>
+                                    )}
+                                  </div>
+                                }
+                              />
+                            </MenuItem>
+                          ) : null}
+                        </Select>
+                        <HtmlTooltip
+                          className={styles.ProductSelectorHelpBtn}
+                          style={{ marginLeft: 0 }}
+                          title={
+                            <React.Fragment>
+                              <h3 style={{ padding: 10 }}>
+                                Lorem ipsum is plaer text commonly used in the
+                                graphic er text commonly used in the graphic
+                              </h3>
+                            </React.Fragment>
+                          }
+                          placement={"bottom"}
+                          arrow
+                        >
+                          <IconButton>
+                            <HelpIcon />
+                          </IconButton>
+                        </HtmlTooltip>
+                      </div>
+                    </div>
+                    <div className={styles.price}>
+                      <span>
+                        {details.currency_symbol}
+                        {ProductType === "ready made"
+                          ? details.readymade_price
+                          : details.custom_price}
+                        {/* {details.has_offer
+                          ? details.offer_price
+                          : Product_Type === "custom"
+                          ? details.custom_price >= 1
+                            ? details.custom_price
+                            : details.price
+                          : Product_Type === "ready made"
+                          ? details.readymade_price >= 1
+                            ? details.readymade_price
+                            : details.price
+                          : details.price} */}
+                      </span>
+                      <br />
+                      {details.has_offer ? (
+                        <p>
+                          <span>
+                            {details.currency_symbol}
+                            {details.price}
+                          </span>{" "}
+                          <span>{details.discount}</span>
+                        </p>
+                      ) : null}
+                    </div>
+                  </>
+                )}
+                {customView && !mobileView && (
                   <div
                     style={{
                       fontWeight: 'bolder',
                       marginTop: 5,
                       marginBottom: -10,
                     }}
-                  >
-                    Product Type
+
+                  ></div>
+                )}
+
+                {!customView && (
+                  <div>
+                    {details.stock_quantity < 10 ? (
+                      <div className={styles.alert}>
+                        <img src={clockIcon} alt="clock" />
+                        <span>
+                          Hurry up! Only {details.stock_quantity} left in stock
+                        </span>
+                        <div>50:00</div>
+                      </div>
+                    ) : null}
+
+                    {ProductType === "ready made" ? <SelectSize /> : <></>}
+                  </div>
+                )}
+
+                {mobileView && (
+                  <div>
+                    {details.stock_quantity < 10 ? (
+                      <div className={styles.alert}>
+                        <img src={clockIcon} alt="clock" />
+                        <span>
+                          Hurry up! Only {details.stock_quantity} left in stock
+                        </span>
+                        <div>50:00</div>
+                      </div>
+                    ) : null}
+                    {ProductType === "ready made" ? <SelectSize /> : <></>}
                   </div>
                   <br />
                   <div
@@ -884,7 +1161,8 @@ export default function ProductDescription({ match }) {
                           </h3>
                         </React.Fragment>
                       }
-                      placement={'bottom'}
+
+                      placement={"bottom"}
                       arrow
                     >
                       <IconButton>

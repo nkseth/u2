@@ -127,8 +127,14 @@ export default function AllOrders() {
                 {pendingOrders.map(({ id, customer, items, order_number }) => (
                   <div className={styles.ordersCardDiv}>
                     {/* {console.log(order)} */}
-                    {items.map(item => (
-                      <OrdersCard item={item} key={item.id} orderId={id} />
+
+                    {items.map((item) => (
+                      <OrdersCard
+                        pending
+                        item={item}
+                        key={item.id}
+                        orderId={id}
+                      />
                     ))}
 
                     <div className={styles.deliveryAddress}>

@@ -82,7 +82,7 @@ const OrderDetails = (props) => {
         <p>Arriving on 16 Jan 2021</p>
       </div>
       <div className={style.orderCard}>
-        <OrdersCard item={item} orderId={orderid} detail />
+        <OrdersCard item={item} orderId={orderid} detailsPage status={status} />
       </div>
       <div className={style.measurement}>
         <h5>Your measurement details</h5>

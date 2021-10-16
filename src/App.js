@@ -53,13 +53,14 @@ import {
   Contact_Us,
   Write_to_us,
   Order_details_page,
-} from "./OtherPages/AllComponents";
-import DesignerHome from "./OtherPages/DesignerHome/DesignerHome";
-import { Page_Login } from "./LoginSceens/LoginSignUp";
-import useLogin from "./LoginSceens/useLogin";
-import MeasurementAndSimulation from "./OtherPages/MeasurementAndSimulation/MeasurementAndSimulation";
-import { setUserData } from "./Redux/actions/homepage";
-import { useCookies } from "react-cookie";
+  Add_Review_Page,
+} from './OtherPages/AllComponents';
+import DesignerHome from './OtherPages/DesignerHome/DesignerHome';
+import { Page_Login } from './LoginSceens/LoginSignUp';
+import useLogin from './LoginSceens/useLogin';
+import MeasurementAndSimulation from './OtherPages/MeasurementAndSimulation/MeasurementAndSimulation';
+import { setUserData } from './Redux/actions/homepage';
+import { useCookies } from 'react-cookie';
 
 import styles from "./App.module.scss";
 import AddManMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentMan";
@@ -218,12 +219,13 @@ function App() {
           component={Order_details_page}
           exact
         />
-        <ProtectedRoute path={"/review"} component={Page_Review} />
-        <Route path={"/chatexpert"} component={Page_ChatExpert} />
-        <Route path={"/about-us"} component={About_Us} />
-        <Route path={"/contact-us"} component={Contact_Us} />
-        <Route path={"/write-to-us"} component={Write_to_us} />
 
+        <ProtectedRoute path={'/review'} component={Page_Review} />
+        <Route path={'/chatexpert'} component={Page_ChatExpert} />
+        <Route path={'/about-us'} component={About_Us} />
+        <Route path={'/contact-us'} component={Contact_Us} />
+        <Route path={'/write-to-us'} component={Write_to_us} />
+        <Route path={'/add-review/:id'} component={Add_Review_Page} />
         {/* <Route path={'/chatexpert'} component={Page_ChatExpert} /> */}
         {/* Without Side Bar */}
         <Route path={"/designers-profile"} component={Designers_Profile_Page} />

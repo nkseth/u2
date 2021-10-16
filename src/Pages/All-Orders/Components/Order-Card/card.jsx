@@ -8,23 +8,25 @@ import Star from './image/star.svg';
 export default function OrdersCard({ item, orderId, detailsPage, status }) {
   console.log('🚀 ~ file: card.jsx ~ line 8 ~ OrdersCard ~ item', item);
 
+
   const history = useHistory();
-  const mobileView = useMediaQuery('(max-width:550px)');
+  const mobileView = useMediaQuery("(max-width:550px)");
   return (
     <div className={styles.mainContainer}>
       {!detailsPage && <CustomDivider />}
+
       <div className={styles.cardContainer}>
         <img
           src={item.product.image}
           alt={item.title}
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           onClick={() => history.push(`/product-description/${item.slug}`)}
         />
         <div className={styles.detailsDiv}>
           <div className={styles.detailOne}>
             <div>
               <h1
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
                 onClick={() =>
                   history.push(`/product-description/${item.slug}`)
                 }
@@ -60,10 +62,10 @@ export default function OrdersCard({ item, orderId, detailsPage, status }) {
           {mobileView && (
             <div
               style={{
-                fontFamily: 'DM Serif Display',
-                fontSize: '28px',
+                fontFamily: "DM Serif Display",
+                fontSize: "28px",
                 fontWeight: 400,
-                lineHeight: '36px',
+                lineHeight: "36px",
               }}
             >
               {item.currency_symbol}
@@ -101,6 +103,7 @@ export default function OrdersCard({ item, orderId, detailsPage, status }) {
             <Link
               style={{ marginLeft: `${detailsPage ? 'auto' : ''}` }}
               className={styles.cancelBtn}
+
             >
               Cancel Order
             </Link>

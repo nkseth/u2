@@ -499,8 +499,7 @@ export default function ProductDescription({ match }) {
                                 }
                               />
                             </MenuItem>
-                          ) : null}
-                          {ProductType === "custom" ? (
+                          ) : ProductType === "custom" ? (
                             details.product.isVariant ? (
                               <MenuItem value={"ready made"}>
                                 <FormControlLabel

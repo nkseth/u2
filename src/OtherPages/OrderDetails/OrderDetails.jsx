@@ -1,28 +1,37 @@
-import React from 'react';
-import { useParams } from 'react-router';
-import OrdersCard from '../../Pages/All-Orders/Components/Order-Card/card';
-import CustomDivider from '../../utils/Custom Divider/divider';
-import Truck from './images/truck.svg';
-import Pending from './images/pending.svg';
-import Delivered from './images/delivered.svg';
-import style from './OrderDetails.module.scss';
+import React, { useEffect } from "react";
+import { useParams } from "react-router";
+import OrdersCard from "../../Pages/All-Orders/Components/Order-Card/card";
+import CustomDivider from "../../utils/Custom Divider/divider";
+import Truck from "./images/truck.svg";
+import Pending from "./images/pending.svg";
+import Delivered from "./images/delivered.svg";
+import style from "./OrderDetails.module.scss";
+import { getOrderDetail } from "../../Redux/actions/order";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-const OrderDetails = props => {
-  const status = 'delivered';
+const OrderDetails = (props) => {
+  const dispatch = useDispatch();
+  const status = "delivered";
   const { orderid } = useParams();
+  const { order } = useSelector((state) => state.root.orderDetail);
+  console.log(order);
+  useEffect(() => {
+    dispatch(getOrderDetail(orderid));
+  }, [dispatch, orderid]);
 
   const item = {
     brand: null,
     category_id: 0,
-    condition: 'New',
+    condition: "New",
     condition_note: null,
-    currency: 'INR',
-    currency_symbol: '₹',
+    currency: "INR",
+    currency_symbol: "₹",
     custom_price: 0,
     description:
       '<ul class="a-unordered-list a-vertical a-spacing-mini" amazon="" ember",="" arial,="" sans-serif;"="" style="margin-right: 0px; margin-bottom: 0px; margin-left: 18px; color: rgb(15, 17, 17); padding: 0px;"><li style="list-style: disc; overflow-wrap: break-word; margin: 0px;"><span class="a-list-item" style="overflow-wrap: break-word; display: block;">Care Instructions: Machine Wash</span></li><li style="list-style: disc; overflow-wrap: break-word; margin: 0px;"><span class="a-list-item" style="overflow-wrap: break-word; display: block;">Fit Type: slim fit</span></li><li style="list-style: disc; overflow-wrap: break-word; margin: 0px;"><span class="a-list-item" style="overflow-wrap: break-word; display: block;">100% premium Cotton, pre washed for an extremely soft finish and rich look</span></li><li style="list-style: disc; overflow-wrap: break-word; margin: 0px;"><span class="a-list-item" style="overflow-wrap: break-word; display: block;">Stylish full sleeve checkered casual shirt</span></li><li style="list-style: disc; overflow-wrap: break-word; margin: 0px;"><span class="a-list-item" style="overflow-wrap: break-word; display: block;">Modern slim fit ( we have updated our size chart, please refer the size chart for new measurements before ordering)</span></li><li style="list-style: disc; overflow-wrap: break-word; margin: 0px;"><span class="a-list-item" style="overflow-wrap: break-word; display: block;">Best for casual &amp; smart casual wear</span></li></ul>',
     feature_image:
-      'https://dhaatri.info/storage/images/61434a7369ee5.jpg?p=null',
+      "https://dhaatri.info/storage/images/61434a7369ee5.jpg?p=null",
     free_shipping: null,
     id: 130,
     key_features: false,
@@ -31,22 +40,22 @@ const OrderDetails = props => {
     price: 0,
     product: {
       id: 73,
-      slug: 'stripped-white-shirt-666',
-      mpn: '777',
-      brand: 'Trend 5',
+      slug: "stripped-white-shirt-666",
+      mpn: "777",
+      brand: "Trend 5",
       image:
-        'https://dhaatri.info/storage/images/OfNfwuuKoxZV9UWYH4iQgjFGhzfcSzEdtyvn72Mi.jpg?p=small',
+        "https://dhaatri.info/storage/images/OfNfwuuKoxZV9UWYH4iQgjFGhzfcSzEdtyvn72Mi.jpg?p=small",
       description: `<p><span style="color: rgb(40, 44, 63); font-famil…model (height 5'8") is wearing a size S</li></ul>`,
     },
     quantity: 1,
     readymade_price: 900,
     shipping_address: null,
     shipping_weight: null,
-    sku: '1890',
-    slug: 'stripped-white-shirt-666',
+    sku: "1890",
+    slug: "stripped-white-shirt-666",
     stock_quantity: 73,
     stuff_pick: null,
-    title: 'Stripped White Shirt',
+    title: "Stripped White Shirt",
     total: 900,
     type: null,
     unit_price: 900,
@@ -56,19 +65,19 @@ const OrderDetails = props => {
     <div className={style.container}>
       <div
         className={`${style.deliveryTime}  ${
-          status === 'on going'
+          status === "on going"
             ? style.onGoing
-            : status === 'pending'
+            : status === "pending"
             ? style.pending
             : style.delivered
         } `}
       >
-        {status === 'on going' ? (
-          <img src={Truck} alt='' />
-        ) : status === 'pending' ? (
-          <img src={Pending} alt='' />
+        {status === "on going" ? (
+          <img src={Truck} alt="" />
+        ) : status === "pending" ? (
+          <img src={Pending} alt="" />
         ) : (
-          <img src={Delivered} alt='' />
+          <img src={Delivered} alt="" />
         )}
         <p>Arriving on 16 Jan 2021</p>
       </div>

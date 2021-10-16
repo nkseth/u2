@@ -34,15 +34,15 @@ const BottomNavigation = () => {
     {
       title: 'measurement',
       icon: <Measurement style={{}} />,
-      to: '/',
+      to: '/measurement',
     },
     { title: 'date', icon: <Explore />, to: '/' },
-    { title: 'time', icon: <Profile />, to: '/' },
+    { title: 'time', icon: <Profile /> },
   ];
 
   const [activeNav, setActiveNav] = useState(0);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const [isDrawerOpen2, setDrawerOpen2] = useState(false);
+  const [isUserDrawerOpen, setUserDrawerOpen] = useState(false);
   const history = useHistory();
   const mobileView = useMediaQuery('(max-width:550px)');
   const location = useLocation();
@@ -60,7 +60,7 @@ const BottomNavigation = () => {
     }
 
     setDrawerOpen(open);
-    setDrawerOpen2(open);
+    setUserDrawerOpen(open);
   };
 
   const [scroll, setScroll] = useState(0);
@@ -79,6 +79,7 @@ const BottomNavigation = () => {
   const profileFnc = () => {
     if (isAuthenticated) {
       setShowUserOption(true);
+      setUserDrawerOpen(true);
       // history.push("/profile");
     } else {
       login_Model_Show();
@@ -129,11 +130,11 @@ const BottomNavigation = () => {
         );
       })}
 
-      <>
+      {/* <>
         {isAuthenticated ? (
           <SwipeableDrawer
             anchor={'right'}
-            open={isDrawerOpen2}
+            open={isUserDrawerOpen}
             onClose={toggleDrawer('right', false)}
             onOpen={toggleDrawer('right', true)}
             transitionDuration={600}
@@ -146,6 +147,28 @@ const BottomNavigation = () => {
           <p></p>
         )}
 
+        <SwipeableDrawer
+          anchor={'left'}
+          open={isDrawerOpen}
+          onClose={toggleDrawer('left', false)}
+          onOpen={toggleDrawer('left', true)}
+          transitionDuration={600}
+        >
+          <SideNavbar main />
+        </SwipeableDrawer>
+      </> */}
+      <>
+        <SwipeableDrawer
+          anchor={'right'}
+          open={isUserDrawerOpen}
+          onClose={toggleDrawer('right', false)}
+          onOpen={toggleDrawer('right', true)}
+          transitionDuration={600}
+        >
+          <div>
+            <SideNavbar />
+          </div>
+        </SwipeableDrawer>
         <SwipeableDrawer
           anchor={'left'}
           open={isDrawerOpen}

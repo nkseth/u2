@@ -1,16 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import OrdersCard from '../../Pages/All-Orders/Components/Order-Card/card';
-import CustomDivider from '../../utils/Custom Divider/divider';
-import Truck from './images/truck.svg';
-import Pending from './images/pending.svg';
-import Delivered from './images/delivered.svg';
-import style from './OrderDetails.module.scss';
-
-const OrderDetails = props => {
-  const status = 'delivered';
-  const { orderid } = useParams();
-
+import styles from './OrderReview.module.scss';
+import ReactStars from 'react-rating-stars-component';
+const OrderReview = () => {
   const item = {
     brand: null,
     category_id: 0,
@@ -51,65 +44,24 @@ const OrderDetails = props => {
     type: null,
     unit_price: 900,
   };
+  const firstExample = {
+    size: 40,
+    value: 2.5,
 
+    onChange: newValue => {
+      console.log(`Example 2: new value is ${newValue}`);
+    },
+  };
+  const { orderid } = useParams();
   return (
-    <div className={style.container}>
-      <div
-        className={`${style.deliveryTime}  ${
-          status === 'on going'
-            ? style.onGoing
-            : status === 'pending'
-            ? style.pending
-            : style.delivered
-        } `}
-      >
-        {status === 'on going' ? (
-          <img src={Truck} alt='' />
-        ) : status === 'pending' ? (
-          <img src={Pending} alt='' />
-        ) : (
-          <img src={Delivered} alt='' />
-        )}
-        <p>Arriving on 16 Jan 2021</p>
+    <>
+      <OrdersCard item={item} orderId={orderid} />
+      <div className={styles.review}>
+        {/* <h1>Review this product</h1> */}
+        <ReactStars {...firstExample} />
       </div>
-      <div className={style.orderCard}>
-        <OrdersCard item={item} orderId={orderid} detailsPage status={status} />
-      </div>
-      <div className={style.measurement}>
-        <h5>Your measurement details</h5>
-        <p>Mallikarjun</p>
-      </div>
-      <div className={style.deliveryAddress}>
-        <h5>Delivery Address</h5>
-        <p>
-          Mallikarrjun <span> 6363048850</span>
-        </p>
-        <h6>
-          No 167, 2nd floor, 3rd cross RK garden behind gowri appatment
-          mathikere bengaluru, Mathikere, Bengaluru - 560054
-        </h6>
-        <p className={style.orderId}>
-          Order ID
-          <span> # 1160972 05791041240101</span>
-        </p>
-      </div>
-      <div className={style.paymentDetails}>
-        <div className={style.priceDetails}>
-          <div>
-            <h5>Total order price</h5>
-            <p>You saved ₹400.00 on this order</p>
-          </div>
-          <div>
-            <h1>$999.00</h1>
-          </div>
-        </div>
-        <CustomDivider />
-        <div className={style.paid}>
-          <h5>Paid by UPI</h5>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 
-export default OrderDetails;
+export default OrderReview;

@@ -1,4 +1,4 @@
-import common_axios from "../../utils/axios.config";
+import common_axios from '../../utils/axios.config';
 import {
   CLEAR_ERRORS,
   GET_ADDRESS_FAILED,
@@ -7,12 +7,12 @@ import {
   PLACE_ORDER_FAILED,
   PLACE_ORDER_REQUEST,
   PLACE_ORDER_SUCCESS,
-} from "./types";
+} from './types';
 
-export const getAddress = () => async (dispatch) => {
+export const getAddress = () => async dispatch => {
   try {
     dispatch({ type: GET_ADDRESS_REQUEST });
-    const { data } = await common_axios.get("/addresses");
+    const { data } = await common_axios.get('/addresses');
     console.log(data.data);
     if (data.data) {
       dispatch({
@@ -30,11 +30,11 @@ export const getAddress = () => async (dispatch) => {
   }
 };
 
-export const setPayment = (id) => async (dispatch) => {
+export const setPayment = (id, address) => async dispatch => {
   try {
     dispatch({ type: PLACE_ORDER_REQUEST });
     const { data } = await common_axios.put(`/order/${id}/save`);
-    console.log(data.data);
+
     if (data.data) {
       dispatch({
         type: PLACE_ORDER_SUCCESS,
@@ -51,5 +51,5 @@ export const setPayment = (id) => async (dispatch) => {
   }
 };
 
-export const clearCheckoutErrors = () => async (dispatch) =>
+export const clearCheckoutErrors = () => async dispatch =>
   dispatch({ type: CLEAR_ERRORS });

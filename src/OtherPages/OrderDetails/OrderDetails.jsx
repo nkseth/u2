@@ -88,6 +88,7 @@ const OrderDetails = (props) => {
             <div>
               <h1>₹{order.grand_total}</h1>
             </div>
+
           </div>
           <CustomDivider />
           <div className={style.paid}>

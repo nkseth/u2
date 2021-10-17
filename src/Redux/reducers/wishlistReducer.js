@@ -4,6 +4,8 @@ import {
   CLEAR_WISHLIST_UPDATE,
   GET_WISHLIST,
   REMOVE_FROM_WISHLIST,
+  REMOVE_FROM_WISHLIST_REQUEST,
+  REMOVE_FROM_WISHLIST_SUCCESS,
 } from "../actions/types";
 
 export const getWishListReducer = (initialState = { list: [] }, action) => {
@@ -19,18 +21,20 @@ export const getWishListReducer = (initialState = { list: [] }, action) => {
 };
 
 export const updateWishlistReducer = (
-  initialState = { added: false, removed: false },
+  initialState = { added: null, loading: false, removed: null },
   action
 ) => {
   const { type, payload } = action;
 
   switch (type) {
+    case REMOVE_FROM_WISHLIST_REQUEST:
+      return { ...initialState, loading: true };
     case ADD_TO_WISHLIST:
-      return { ...initialState, added: payload };
-    case REMOVE_FROM_WISHLIST:
-      return { ...initialState, removed: payload };
+      return { ...initialState, added: payload, loading: false };
+    case REMOVE_FROM_WISHLIST_SUCCESS:
+      return { ...initialState, removed: payload, loading: false };
     case CLEAR_WISHLIST_UPDATE:
-      return { ...initialState, ...payload };
+      return { ...initialState, added: null, removed: null, loading: false };
     default:
       return initialState;
   }

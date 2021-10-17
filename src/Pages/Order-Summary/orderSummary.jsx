@@ -40,18 +40,24 @@ export default function OrderSummary() {
   const tabView = useMediaQuery("(max-width:769px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
-  const [data, setData] = useState([]);
-
-  const [priceDetails, setPriceDetails] = useState({});
   const [AddAddress, setAddAddress] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const [customType, setCustomType] = useState(false);
 
   const { cart, loading } = useSelector((state) => state.root.cartItems);
   console.log(cart);
 
   useEffect(() => {
-    dispatch(getCartItems());
-  }, [dispatch]);
+    if (cart?.items?.length > 0) {
+      for (let i = 0; i < cart.items.length; i++) {
+        if (cart.items[i].product.isCustomise === "on") {
+          console.log(cart.items[i].product.isCustomise);
+          setCustomType(true);
+          break;
+        }
+      }
+    }
+    if (!cart) dispatch(getCartItems());
+  }, [dispatch, cart]);
 
   const add_quantity = async (item, index) => {
     try {
@@ -85,9 +91,6 @@ export default function OrderSummary() {
 
   const checkout = (e) => {
     e.preventDefault();
-    // if (addressList.length > 0)
-    //   localStorage.setItem("primaryAddress", addressList[0].address_line_1);
-    // else localStorage.setItem("primaryAddress", "Address");
     history.push(`/payment/${cart.id}`);
   };
 
@@ -97,7 +100,7 @@ export default function OrderSummary() {
       <CustomSection style={{ marginTop: "2em" }}>
         <Breadcrumb path="Home / My Bag" activePath="/ Order Summary" />
         <div>
-          <CustomStepper activeStep={0} />
+          <CustomStepper activeStep={0} customType={customType} />
         </div>
         {!cart ? (
           <Loader />
@@ -107,7 +110,7 @@ export default function OrderSummary() {
               <div className={styles.mainHeader}>Order Summary</div>
               <div className={styles.borderDiv}>
                 <div className={styles.OrderLine}>
-                  <p>Delivery address</p>
+                  <p>Delivery Address</p>
                   <CustomDivider />
                 </div>
                 <DeliveryAddress
@@ -193,7 +196,7 @@ export default function OrderSummary() {
                     </>
                   );
                 })}
-                {Product_Type === "Customised" ? (
+                {customType ? (
                   <div
                     style={{
                       margin: mobileView ? "0" : "1em",

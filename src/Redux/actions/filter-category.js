@@ -10,7 +10,6 @@ import {
 export const getFilterList = () => async (dispatch) => {
   try {
     const { data } = await common_axios.get("/filterCategory");
-    console.log(data);
     if (data) {
       dispatch({ type: GET_FILTER_LIST, payload: data });
     }

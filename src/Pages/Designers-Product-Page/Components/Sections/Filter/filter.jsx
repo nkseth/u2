@@ -49,7 +49,6 @@ const CustomCheckbox = withStyles({
 })((props) => <Checkbox color="default" {...props} />);
 
 export default function Filter(props) {
-  console.log("🚀 ~ file: filter.jsx ~ line 51 ~ Filter ~ props", props);
   const dispatch = useDispatch();
   const { filterProduct, filters } = props;
 

@@ -1,20 +1,15 @@
-import React from 'react';
-import { Button, useMediaQuery } from '@material-ui/core';
-import { Link, useHistory } from 'react-router-dom';
-import CustomDivider from '../../../../utils/Custom Divider/divider';
-import styles from './card.module.scss';
-import Star from './image/star.svg';
+import React from "react";
+import { Button, useMediaQuery } from "@material-ui/core";
+import { Link, useHistory } from "react-router-dom";
+import CustomDivider from "../../../../utils/Custom Divider/divider";
+import styles from "./card.module.scss";
 
-export default function OrdersCard({ item, orderId, detailsPage, status }) {
-  console.log('🚀 ~ file: card.jsx ~ line 8 ~ OrdersCard ~ item', item);
-
-
+export default function OrdersCard({ pending, item, orderId }) {
   const history = useHistory();
   const mobileView = useMediaQuery("(max-width:550px)");
   return (
     <div className={styles.mainContainer}>
-      {!detailsPage && <CustomDivider />}
-
+      {!item && <CustomDivider />}
       <div className={styles.cardContainer}>
         <img
           src={item.product.image}
@@ -36,28 +31,14 @@ export default function OrdersCard({ item, orderId, detailsPage, status }) {
               <span>Solid Straight Kurta</span>
             </div>
 
-            <div className={styles.priceDetails}>
-              <h1>
-                {item.currency_symbol}
-                {item.total}
-              </h1>
+            <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+              {item.currency_symbol}
+              {item.total}
             </div>
           </div>
           <div className={styles.detailTwo}>
-            <div>
-              <h2>Size: L</h2>
-              <h5>
-                Quantity:
-                <span>
-                  {' '}
-                  {item.quantity < 9 ? `0${item.quantity}` : `${item.quantity}`}
-                </span>
-              </h5>
-            </div>
-            <div className={styles.productType}>
-              <h5>Product Type</h5>
-              <p>Customised</p>
-            </div>
+            <span>Quantity:</span>
+            <span>{item.quantity}</span>
           </div>
           {mobileView && (
             <div
@@ -73,40 +54,37 @@ export default function OrdersCard({ item, orderId, detailsPage, status }) {
             </div>
           )}
 
-          {status === 'delivered' ? (
+          {pending ? (
             <Button
-              onClick={() => history.push(`/order-review/${orderId}`)}
-              className={styles.rating}
+              onClick={() =>
+                history.push(`/add-measurement-choose-standard-size/${orderId}`)
+              }
+              className={styles.trackBtn}
+              variant="contained"
+              style={{ whiteSpace: "nowrap" }}
             >
-              <img src={Star} alt='' /> Rate & Review Product
+              Add Measurement
             </Button>
           ) : (
             <Button
               onClick={() => history.push(`/trackorder/${orderId}`)}
               className={styles.trackBtn}
-              variant='contained'
+              variant="contained"
+              style={{ whiteSpace: "nowrap" }}
             >
               Track Order
             </Button>
           )}
           <div className={styles.detailThree}>
-            {!detailsPage && (
-              <Link
-                to={`/order-details/${orderId}`}
-                style={{ cursor: 'pointer' }}
-                // onClick={() => history.push(`/rate_order/${orderId}`)}
-              >
-                Order Detail
-              </Link>
-            )}
-
             <Link
-              style={{ marginLeft: `${detailsPage ? 'auto' : ''}` }}
-              className={styles.cancelBtn}
-
+              to={`/order-details/${orderId}`}
+              style={{ cursor: "pointer" }}
+              // onClick={() => history.push(`/rate_order/${orderId}`)}
             >
-              Cancel Order
+              Order Detail
             </Link>
+            <span></span>
+            {/* <Link>Cancel Order</Link> */}
           </div>
         </div>
       </div>

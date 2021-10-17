@@ -31,7 +31,7 @@ export default function OrdersCard({ pending, item, orderId }) {
               <span>Solid Straight Kurta</span>
             </div>
 
-            <div>
+            <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
               {item.currency_symbol}
               {item.total}
             </div>

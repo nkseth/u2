@@ -17,6 +17,8 @@ import styles from "./NewAddress.module.scss";
 import { Button } from "@material-ui/core";
 import { ReactComponent as LocationIcon } from "../../../../Images/icons/location.svg";
 import close from "../../../Payment/close.svg";
+import { useDispatch } from "react-redux";
+import { addAddress } from "../../../../Redux/actions/address";
 
 const CustomRadio = withStyles({
   root: {
@@ -39,16 +41,58 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NewAddress({ setAddAddress }) {
+  const dispatch = useDispatch();
   const BreakPoint = useMediaQuery("(max-width:900px)");
   const BreakPointSmall = useMediaQuery("(max-width:830px)");
   const BreakPointExtraSmall = useMediaQuery("(max-width:750px)");
   const BreakPointMobile = useMediaQuery("(max-width:610px)");
   const [AddressType, SetAddressType] = useState(0);
   const [State, SetState] = useState();
+  const [name, setName] = useState("");
+  const [mobile, setMobile] = useState();
+  const [alternateMobile, setAlternateMobile] = useState();
+  const [pincode, setPincode] = useState();
+  const [locality, setLocality] = useState();
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [landmark, setLandmark] = useState("");
+
   const classes = useStyles();
 
-  const handleChange = (event) => {
-    SetState(event.target.value);
+  const createNewAddressHandler = (e) => {
+    e.preventDefault();
+    console.log(
+      AddressType,
+      "Delhi",
+      name,
+      mobile,
+      alternateMobile,
+      pincode,
+      locality,
+      address,
+      city,
+      landmark
+    );
+    if (
+      (name === "" || address === "" || mobile === "",
+      pincode === "" || locality === "" || city === "")
+    )
+      return alert("All fields are required except optional");
+    dispatch(
+      addAddress({
+        address_type: AddressType === 0 ? "primary" : "secondary",
+        address_line_1: address,
+        city,
+        zip_code: pincode,
+        phone: mobile,
+        name,
+        locality,
+        state: "Delhi",
+        country_id: 91,
+      })
+    );
+    // ,landmark,alternate_phone
+    // address_type,address_line_1,city,zip_code,address_type,city,zip_code,phone,name,locality,state,landmark,alternate_phone
   };
 
   return (
@@ -111,8 +155,9 @@ function NewAddress({ setAddAddress }) {
                     }
               }
               label="Name"
+              value={name}
               placeholder="Enter your Name here "
-              onChange={(e) => console.log(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
             <InputField
               notimp
@@ -145,8 +190,9 @@ function NewAddress({ setAddAddress }) {
                     }
               }
               label="Mobile"
+              value={mobile}
               placeholder="Enter your Mobile number here "
-              onChange={(e) => console.log(e.target.value)}
+              onChange={(e) => setMobile(e.target.value)}
             />
             <InputField
               notimp
@@ -179,8 +225,9 @@ function NewAddress({ setAddAddress }) {
                     }
               }
               label="Pincode"
+              value={pincode}
               placeholder="Enter your area pincode here "
-              onChange={(e) => console.log(e.target.value)}
+              onChange={(e) => setPincode(e.target.value)}
             />
             <InputField
               notimp
@@ -214,7 +261,8 @@ function NewAddress({ setAddAddress }) {
               }
               label="Locality"
               placeholder="Enter your locality here "
-              onChange={(e) => console.log(e.target.value)}
+              value={locality}
+              onChange={(e) => setLocality(e.target.value)}
             />
           </div>
           <InputField
@@ -228,7 +276,8 @@ function NewAddress({ setAddAddress }) {
             }}
             label="Address area and street"
             placeholder="Enter your Address area and street here "
-            onChange={(e) => console.log(e.target.value)}
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
           />
           <div className={styles.formDiv}>
             <InputField
@@ -262,16 +311,17 @@ function NewAddress({ setAddAddress }) {
                     }
               }
               label="City / District / Town"
-              placeholder="Enter your Name here "
-              onChange={(e) => console.log(e.target.value)}
+              placeholder="Enter your City/District/Town here "
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
             />
             <InputField
               IsState
               StatesName={IndianStates}
               notimp
               label="State"
-              placeholder="Enter your Mobile number here "
-              onChange={(e) => console.log(e.target.value)}
+              placeholder="Select Your State"
+              onChange={(e) => SetState(e.target.value)}
             />
 
             <InputField
@@ -305,8 +355,8 @@ function NewAddress({ setAddAddress }) {
                     }
               }
               label="Landmark (optional)"
-              placeholder="Enter your area pincode here "
-              onChange={(e) => console.log(e.target.value)}
+              placeholder="Enter your area landmark or nearby famous place here "
+              onChange={(e) => setLandmark(e.target.value)}
             />
             <InputField
               notimp
@@ -339,8 +389,9 @@ function NewAddress({ setAddAddress }) {
                     }
               }
               label="Alternate phone no (optional)"
-              placeholder="Enter your locality here "
-              onChange={(e) => console.log(e.target.value)}
+              placeholder="Enter your alternate number here"
+              value={alternateMobile}
+              onChange={(e) => setAlternateMobile(e.target.value)}
             />
           </div>
           <div className={styles.addTypeDiv}>
@@ -360,7 +411,12 @@ function NewAddress({ setAddAddress }) {
               <h3>Office (Delivery between 10am to 5pm)</h3>
             </div>
           </div>
-          <Button className={styles.DeliverBTN}>Save and deliver here</Button>
+          <Button
+            onClick={createNewAddressHandler}
+            className={styles.DeliverBTN}
+          >
+            Save and deliver here
+          </Button>
         </div>
       </div>
     </div>

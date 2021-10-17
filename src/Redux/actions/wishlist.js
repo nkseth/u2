@@ -5,6 +5,8 @@ import {
   CLEAR_WISHLIST_UPDATE,
   GET_WISHLIST,
   REMOVE_FROM_WISHLIST,
+  REMOVE_FROM_WISHLIST_REQUEST,
+  REMOVE_FROM_WISHLIST_SUCCESS,
 } from "./types";
 
 export const add_to_bag = (slug) => async (dispatch) => {
@@ -55,6 +57,7 @@ export const addToWishlist = (slug, token) => async (dispatch) => {
 
 export const removeFromWishlist = (id, token) => async (dispatch) => {
   try {
+    dispatch({ type: REMOVE_FROM_WISHLIST_REQUEST });
     console.log(id, token);
     const { data } = await common_axios.delete(`/wishlist/${id}/remove`, {
       headers: {
@@ -63,7 +66,7 @@ export const removeFromWishlist = (id, token) => async (dispatch) => {
     });
     console.log(data);
     if (data) {
-      dispatch({ type: REMOVE_FROM_WISHLIST, payload: data.message });
+      dispatch({ type: REMOVE_FROM_WISHLIST_SUCCESS, payload: data.message });
     }
   } catch (err) {
     console.log(err?.response?.data);
@@ -74,6 +77,5 @@ export const removeFromWishlist = (id, token) => async (dispatch) => {
 export const clearUpdateWishlist = () => async (dispatch) => {
   dispatch({
     type: CLEAR_WISHLIST_UPDATE,
-    payload: { added: false, removed: false },
   });
 };

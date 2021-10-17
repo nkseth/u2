@@ -43,6 +43,8 @@ export function Product({
     image,
     title,
     currency_symbol,
+    custom_price,
+    readymade_price,
     discount,
     offer_price,
     price,
@@ -64,7 +66,7 @@ export function Product({
     dispatch(removeFromWishlist(id, user.api_token));
     if (message) alert(message);
   };
-
+  const itemPrice = custom_price > 0 ? custom_price : readymade_price;
   return (
     <div className={styles.Product}>
       <div className={styles.main}>
@@ -73,13 +75,16 @@ export function Product({
           <h1>{title}</h1>
           <p>Solid colour</p>
           <div className={styles.PriceDivMobile}>
-            <h3 className={styles.PriceMobile}>{offer_price}</h3>
+            <h3 className={styles.PriceMobile}>
+              {currency_symbol}
+              {itemPrice}
+            </h3>
             <div className={styles.PriceInfoMobile}>
               <p>{price}</p>
               <span>{discount}</span>
             </div>
           </div>
-          <>
+          {/* <>
             <p className={styles.QuanTitleMobile}>Quanity</p>
 
             <div className={styles.quanDivMobile}>
@@ -91,7 +96,7 @@ export function Product({
                 <AddIcon style={{ width: "15px" }} />
               </Button>
             </div>
-          </>
+          </> */}
           <h5>Product type</h5>
           <h6>Readymade</h6>
 
@@ -130,12 +135,15 @@ export function Product({
           </div>
         </div>
         <div className={styles.PriceDiv}>
-          <h3 className={styles.Price}>{offer_price}</h3>
+          <h3 className={styles.Price}>
+            {currency_symbol}
+            {itemPrice}
+          </h3>
           <div className={styles.PriceInfo}>
             <p>{price}</p>
             <span>{discount}</span>
           </div>
-          <p className={styles.QuanTitle}>Quanity</p>
+          {/* <p className={styles.QuanTitle}>Quanity</p>
 
           <div className={styles.quanDiv}>
             <Button className={styles.removeBtn}>
@@ -145,7 +153,7 @@ export function Product({
             <Button className={styles.addBtn}>
               <AddIcon style={{ width: "15px" }} />
             </Button>
-          </div>
+          </div> */}
           <Button className={styles.RemoveItemBTN} onClick={removeHandler}>
             Remove Item
           </Button>

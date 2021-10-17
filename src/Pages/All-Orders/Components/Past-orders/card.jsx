@@ -46,7 +46,12 @@ export default function PastOrdersCard({ item, orderId }) {
               </Button>
             )}
             <div>
-              <span style={{ color: "#6a5b40" }}>Order Detail</span>
+              <span
+                onClick={() => history.push(`/order-details/${orderId}`)}
+                style={{ color: "#6a5b40", cursor: "pointer" }}
+              >
+                Order Detail
+              </span>
             </div>
           </div>
 

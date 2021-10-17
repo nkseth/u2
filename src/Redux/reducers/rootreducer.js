@@ -41,7 +41,7 @@ import { productsReducer, productDetailsReducer } from "./productsReducer";
 import { trackOrderReducer, orderDetailReducer } from "./orderReducer";
 import { addressReducer, paymentReducer } from "./checkoutReducer";
 
-import { myAddressesReducer } from "./adrressReducer";
+import { myAddressesReducer, userAddressReducer } from "./adrressReducer";
 
 const rootreducer = combineReducers({
   address: addressReducer,
@@ -77,6 +77,7 @@ const rootreducer = combineReducers({
   trackOrder: trackOrderReducer,
   trending: trendingReducer,
   updateWishlist: updateWishlistReducer,
+  userAddress: userAddressReducer,
   wishlist: getWishListReducer,
 });
 

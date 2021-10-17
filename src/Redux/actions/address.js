@@ -1,5 +1,8 @@
 import common_axios from "../../utils/axios.config";
 import {
+  ADD_ADDRESS_FAILED,
+  ADD_ADDRESS_REQUEST,
+  ADD_ADDRESS_SUCCESS,
   CLEAR_ERRORS,
   GET_MY_ADDRESSES_FAILED,
   GET_MY_ADDRESSES_REQUEST,
@@ -23,7 +26,19 @@ export const getMyAddresses = () => async (dispatch) => {
   }
 };
 
-export const addAddress = () => (dispatch) => {};
+export const addAddress = (address) => async (dispatch) => {
+  try {
+    dispatch({ type: ADD_ADDRESS_REQUEST });
+    const { data } = await common_axios.post("/address/store", { ...address });
+    if (data) {
+      console.log(data);
+      dispatch({ type: ADD_ADDRESS_SUCCESS, payload: data });
+    }
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: ADD_ADDRESS_FAILED, payload: error.response.data });
+  }
+};
 
 export const clearErrors = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });

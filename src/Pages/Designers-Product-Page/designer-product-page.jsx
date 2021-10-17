@@ -46,15 +46,17 @@ function DesignerProductPage({ match }) {
     }
     // fetch_products(slug);
     if (productList) setProduct(productList);
-    if (isAuthenticated) {
-      dispatch(getWishList(user.api_token));
-    }
     dispatch(getFilterList());
-  }, [slug, dispatch, isAuthenticated, user, error, productList, type]);
+  }, [slug, dispatch, error, productList, type]);
+
   useEffect(() => {
     if (type) dispatch(getProducts(type, { slug }));
     else dispatch(getProducts(null, { slug }));
-  }, []);
+    if (isAuthenticated) {
+      dispatch(getWishList(user.api_token));
+    }
+  }, [dispatch, isAuthenticated, user, slug, type]);
+
   const filterProduct = (filterData) => {
     console.log(filterData);
     dispatch(getProducts(type, { ...filterData, slug }));

@@ -57,23 +57,16 @@ export default function DeliveryAddress({
   const [selectedFabric, setSelectedFabric] = useState("");
   const [selectedPlan, setSelectedPlan] = useState("vip");
   const [address, setAddress] = useState([]);
-  const [selectAddress, setSelectAddress] = useState(0);
+  const [selectAddress, setSelectAddress] = useState(null);
   const { addressList } = useSelector((state) => state.root.myAddresses);
   console.log(addressList);
   useEffect(() => {
-    // fetch_address();
     dispatch(getMyAddresses());
   }, [dispatch]);
-  // console.log(selectAddress);
-  // const fetch_address = async () => {
-  //   const { data } = await common_axios.get("/addresses");
-  //   if (data.data) {
-  //     setAddress(data.data);
-  //   }
-  //   console.log(data);
-  // };
+
   const confirmAddress = async () => {
     try {
+      if (!selectAddress) return alert("Select an address before proceeding.");
       const { data } = await common_axios.get(
         `/assign_address/${cartId}/${selectAddress}`
       );
@@ -92,15 +85,6 @@ export default function DeliveryAddress({
   const handleClose = () => {
     setOpen(false);
   };
-
-  // const nav_to_payment = () => {
-  //   if (SelectAddress) {
-  //     const selected_address = address.filter(function (item) { return item.id == SelectAddress });
-  //     history.push({ 'pathname': "/payment", state: { selected_address: selected_address[0] } });
-  //   } else {
-  //     alert("Choose an address")
-  //   }
-  // }
 
   return (
     <Container bottomDivider footerOnTabMob>

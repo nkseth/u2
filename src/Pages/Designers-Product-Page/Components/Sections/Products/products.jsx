@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   FormControl,
@@ -9,43 +9,32 @@ import {
   ButtonGroup,
   Button,
   Drawer,
-} from '@material-ui/core';
-import Loader from '../../../../../utils/Loader/Loader';
-import cx from 'classnames';
-import ProductCard from '../../product-card/card';
-import Filter from '../Filter/filter';
-import styles from './product.module.scss';
-import Breadcrumb from '../../../../../utils/Breadcrumb/breadcrumb';
-import { useDispatch, useSelector } from 'react-redux';
-import { getWishList } from '../../../../../Redux/actions/wishlist';
-export default function ProductsSection(props) {
+} from "@material-ui/core";
+import Loader from "../../../../../utils/Loader/Loader";
+import cx from "classnames";
+import ProductCard from "../../product-card/card";
+import Filter from "../Filter/filter";
+import styles from "./product.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { getWishList } from "../../../../../Redux/actions/wishlist";
+export default function ProductsSection({ products, loading }) {
   const dispatch = useDispatch();
-  const { products, loading } = props;
-
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [products, setProducts] = useState(true);
-
-  const tabViewPro = useMediaQuery('(max-width:835px)');
-  const tabView = useMediaQuery('(max-width:550px)');
-  const mobileView = useMediaQuery('(max-width:550px)');
-  const [sortBy, setSortBy] = useState('');
+  const tabViewPro = useMediaQuery("(max-width:835px)");
+  const tabView = useMediaQuery("(max-width:550px)");
+  const mobileView = useMediaQuery("(max-width:550px)");
+  const [sortBy, setSortBy] = useState("");
   const [isFilterOpen, setFilterOpen] = useState(false);
 
-  // const setValue = async props => {
-  //   setIsLoading(true);
-  //   setProducts(props.products);
-  //   setIsLoading(false);
-  // };
-  const { user, isAuthenticated } = useSelector(state => state.root.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.root.auth);
   const [temp, setTemp] = useState();
 
-  const handleSort = e => {
+  const handleSort = (e) => {
     setSortBy(e.target.value);
-    if (e.target.value === 'lowToHigh') {
+    if (e.target.value === "lowToHigh") {
       setTemp(products.sort((a, b) => a.price - b.price));
     }
 
-    if (e.target.value === 'highToLow') {
+    if (e.target.value === "highToLow") {
       setTemp(
         products.sort((a, b) => {
           if (b.custom_price >= 1) {
@@ -66,15 +55,15 @@ export default function ProductsSection(props) {
     }
   };
 
-  useEffect(() => {
-    // setProducts(temp);
-  }, [sortBy]);
+  // useEffect(() => {
+  //   // setProducts(temp);
+  // }, [sortBy]);
 
-  const toggleDrawer = (anchor, open) => event => {
+  const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
     }
@@ -84,18 +73,16 @@ export default function ProductsSection(props) {
 
   useEffect(() => {
     if (isAuthenticated) dispatch(getWishList(user.api_token));
-
-    // setValue(props);
-  }, [props, dispatch, isAuthenticated, user]);
+  }, [dispatch, isAuthenticated, user]);
 
   return (
     <>
       {tabViewPro && (
         <Drawer
-          anchor={'left'}
+          anchor={"left"}
           open={isFilterOpen}
-          onClose={toggleDrawer('left', false)}
-          onOpen={toggleDrawer('left', true)}
+          onClose={toggleDrawer("left", false)}
+          onOpen={toggleDrawer("left", true)}
           transitionDuration={600}
         >
           <Filter />
@@ -104,8 +91,8 @@ export default function ProductsSection(props) {
 
       <Grid
         container
-        style={{ width: '100%', margin: 0 }}
-        justifyContent='flex-start'
+        style={{ width: "100%", margin: 0 }}
+        justifyContent="flex-start"
         spacing={mobileView ? 1 : 3}
       >
         <Grid
@@ -113,15 +100,15 @@ export default function ProductsSection(props) {
           xs={12}
           md={12}
           style={{
-            display: 'flex',
-            justifyContent: tabViewPro ? 'space-between' : 'flex-end',
-            alignItems: 'center',
-            marginBottom: '1rem',
+            display: "flex",
+            justifyContent: tabViewPro ? "space-between" : "flex-end",
+            alignItems: "center",
+            marginBottom: "1rem",
           }}
         >
           {tabViewPro && (
             <div className={styles.filterDiv}>
-              <ButtonGroup variant='contained' color='default' aria-label=''>
+              <ButtonGroup variant="contained" color="default" aria-label="">
                 <Button
                   onClick={() => setFilterOpen(true)}
                   className={cx(styles.btn, styles.filterBtn)}
@@ -136,36 +123,36 @@ export default function ProductsSection(props) {
           )}
 
           <FormControl
-            size='small'
-            variant='outlined'
-            style={{ minWidth: '130px' }}
+            size="small"
+            variant="outlined"
+            style={{ minWidth: "130px" }}
           >
             <InputLabel
-              color={'secondary'}
-              style={{ fontWeight: '700', color: '#6A5B40', fontSize: '16px' }}
+              color={"secondary"}
+              style={{ fontWeight: "700", color: "#6A5B40", fontSize: "16px" }}
             >
               Sort by
             </InputLabel>
             <Select
               value={sortBy}
-              onChange={e => handleSort(e)}
-              label='Sort by'
+              onChange={(e) => handleSort(e)}
+              label="Sort by"
             >
               <MenuItem
-                value={'relavence'}
-                style={{ fontSize: mobileView && '15px' }}
+                value={"relavence"}
+                style={{ fontSize: mobileView && "15px" }}
               >
                 Relavence
               </MenuItem>
               <MenuItem
-                value={'lowToHigh'}
-                style={{ fontSize: mobileView && '15px' }}
+                value={"lowToHigh"}
+                style={{ fontSize: mobileView && "15px" }}
               >
                 Low to High
               </MenuItem>
               <MenuItem
-                value={'highToLow'}
-                style={{ fontSize: mobileView && '15px' }}
+                value={"highToLow"}
+                style={{ fontSize: mobileView && "15px" }}
               >
                 High to Low
               </MenuItem>
@@ -173,8 +160,8 @@ export default function ProductsSection(props) {
           </FormControl>
         </Grid>
         {loading ? (
-          <div style={{ margin: 'auto' }}>
-            <Loader height={'200px'} />
+          <div style={{ margin: "auto" }}>
+            <Loader height={"200px"} />
           </div>
         ) : (
           <div className={styles.productsGrid}>

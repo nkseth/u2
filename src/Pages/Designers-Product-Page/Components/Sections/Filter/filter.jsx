@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Breadcrumb from "../../../../../utils/Breadcrumb/breadcrumb";
+import React, { useState, useEffect } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Breadcrumb from '../../../../../utils/Breadcrumb/breadcrumb';
 
 import {
   Accordion,
@@ -15,38 +15,38 @@ import {
   InputAdornment,
   OutlinedInput,
   Checkbox,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import styles from "./filter.module.scss";
-import { style } from "@material-ui/system";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import styles from './filter.module.scss';
+import { style } from '@material-ui/system';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   clearAllFilter,
   clearFilterData,
   storefilterData,
-} from "../../../../../Redux/actions/filter-category";
-import CheckboxComponents from "./Components/CheckBox";
+} from '../../../../../Redux/actions/filter-category';
+import CheckboxComponents from './Components/CheckBox';
 
 const CustomRadio = withStyles({
   root: {
-    color: "#9D9D9D",
-    "&$checked": {
-      color: "#857250",
+    color: '#9D9D9D',
+    '&$checked': {
+      color: '#857250',
     },
   },
   checked: {},
-})((props) => <Radio color="default" {...props} />);
+})(props => <Radio color='default' {...props} />);
 
 const CustomCheckbox = withStyles({
   root: {
-    color: "#9D9D9D",
-    "&$checked": {
-      color: "#857250",
+    color: '#9D9D9D',
+    '&$checked': {
+      color: '#857250',
     },
   },
   checked: {},
-})((props) => <Checkbox color="default" {...props} />);
+})(props => <Checkbox color='default' {...props} />);
 
 export default function Filter(props) {
   const dispatch = useDispatch();
@@ -65,9 +65,9 @@ export default function Filter(props) {
   const [fit, setFit] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const tabViewPro = useMediaQuery("(max-width:835px)");
-  const filterDataList = useSelector((state) => state.root.storefilter);
-  const setFilters = async (filters) => {
+  const tabViewPro = useMediaQuery('(max-width:835px)');
+  const filterDataList = useSelector(state => state.root.storefilter);
+  const setFilters = async filters => {
     setIsLoading(true);
     const {
       price_range,
@@ -97,9 +97,9 @@ export default function Filter(props) {
   };
 
   const [selectedFilter, setSelectedFilter] = useState({
-    categories: "All categories",
+    categories: 'All categories',
     price: filters?.price_range[0].name || 0,
-    itemType: "All",
+    itemType: 'All',
     color: filters?.color[0]?.value || null,
     discount: filters?.discount[0]?.discount || null,
     fabric: filters?.fabric[0]?.value || null,
@@ -145,7 +145,16 @@ export default function Filter(props) {
   const [checkedFit, setCheckedFit] = useState([]);
 
   const handleFilterChange = (filterName, value) => {
-    setSelectedFilter((prevState) => ({
+    console.log(
+      '🚀 ~ file: filter.jsx ~ line 148 ~ handleFilterChange ~ filterName, value',
+      filterName,
+      value
+    );
+    console.log(
+      '🚀 ~ file: filter.jsx ~ line 149 ~ handleFilterChange ~ selectedFilter.discount',
+      selectedFilter.discount
+    );
+    setSelectedFilter(prevState => ({
       ...prevState,
       [filterName]: value,
     }));
@@ -153,7 +162,7 @@ export default function Filter(props) {
 
   const handleValue = (items, e, item) => {
     let values = [...items];
-    const ids = values.map((ele) => ele.id);
+    const ids = values.map(ele => ele.id);
     if (e.target.checked) values.push(item);
     else {
       const index = ids.indexOf(item.id);
@@ -169,18 +178,18 @@ export default function Filter(props) {
     return () => clearTimeout(debounce);
   }, [value]);
 
-  const priceInputHandler = (e) => {
-    if (e.target.name === "startPrice") {
-      if (e.target.value === "") return;
+  const priceInputHandler = e => {
+    if (e.target.name === 'startPrice') {
+      if (e.target.value === '') return;
       if (e.target.value < 0)
-        return alert("Min price range cannot be less than 0");
-      setValue((val) => [e.target.value, val[1]]);
+        return alert('Min price range cannot be less than 0');
+      setValue(val => [e.target.value, val[1]]);
     }
-    if (e.target.name === "endPrice") {
-      if (e.target.value === "") return;
+    if (e.target.name === 'endPrice') {
+      if (e.target.value === '') return;
       if (e.target.value < 1)
-        return alert("Max price range cannot be less than 1");
-      setValue((val) => [val[0], e.target.value]);
+        return alert('Max price range cannot be less than 1');
+      setValue(val => [val[0], e.target.value]);
     }
   };
 
@@ -188,9 +197,9 @@ export default function Filter(props) {
     let attributeValue_id = [],
       attribute_id = [];
     console.log(filterDataList);
-    Object.values(filterDataList).forEach((values) => {
+    Object.values(filterDataList).forEach(values => {
       if (values.length > 0) {
-        values.forEach((value) => {
+        values.forEach(value => {
           attributeValue_id.push(value.attributeValue_id);
           attribute_id.push(value.attribute_id);
         });
@@ -200,7 +209,7 @@ export default function Filter(props) {
     if (product_type) {
       console.log(product_type);
       if (attributeValue_id.length > 0 && attribute_id.length > 0) {
-        if (product_type === "all")
+        if (product_type === 'all')
           filterProduct({
             discount,
             range,
@@ -216,7 +225,7 @@ export default function Filter(props) {
             attribute_id: attribute_id.toString(),
           });
       } else {
-        if (product_type === "all")
+        if (product_type === 'all')
           filterProduct({
             discount,
             range,
@@ -252,7 +261,7 @@ export default function Filter(props) {
     let product_type = null,
       range = null,
       discount = null;
-    if (cat === "color") {
+    if (cat === 'color') {
       if (e.target.checked) {
         dispatch(
           storefilterData(item.attribute_id, item.attributeValue_id, cat)
@@ -261,7 +270,7 @@ export default function Filter(props) {
       const colors = handleValue(checkedColors, e, item);
       setCheckedColors(colors);
     }
-    if (cat === "size") {
+    if (cat === 'size') {
       if (e.target.checked) {
         dispatch(
           storefilterData(item.attribute_id, item.attributeValue_id, cat)
@@ -270,7 +279,7 @@ export default function Filter(props) {
       const sizes = handleValue(checkedSize, e, item);
       setCheckedSize(sizes);
     }
-    if (cat === "sleeve") {
+    if (cat === 'sleeve') {
       if (e.target.checked) {
         dispatch(
           storefilterData(item.attribute_id, item.attributeValue_id, cat)
@@ -279,13 +288,13 @@ export default function Filter(props) {
       const sleevs = handleValue(checkedSleeveLength, e, item);
       setCheckedSleeveLength(sleevs);
     }
-    if (cat === "price") {
+    if (cat === 'price') {
       range = `${value[0]}-${value[1]}`;
       const prices = handleValue(checkedPrice, e, item);
       setCheckedPrice(prices);
     }
 
-    if (cat === "discount") {
+    if (cat === 'discount') {
       if (e.target.checked) {
         const discountData = handleValue(checkedDiscount, e, item.value);
         setCheckedDiscount(discountData);
@@ -296,7 +305,7 @@ export default function Filter(props) {
       const discounts = handleValue(checkedDiscount, e, item);
       setCheckedDiscount(discounts);
     }
-    if (cat === "fabric") {
+    if (cat === 'fabric') {
       if (e.target.checked) {
         dispatch(
           storefilterData(item.attribute_id, item.attributeValue_id, cat)
@@ -305,7 +314,7 @@ export default function Filter(props) {
       const fabrics = handleValue(checkedFabric, e, item);
       setCheckedFabric(fabrics);
     }
-    if (cat === "design") {
+    if (cat === 'design') {
       if (e.target.checked) {
         dispatch(
           storefilterData(item.attribute_id, item.attributeValue_id, cat)
@@ -314,7 +323,7 @@ export default function Filter(props) {
       const designs = handleValue(checkedDesign, e, item);
       setCheckedDesign(designs);
     }
-    if (cat === "occasion") {
+    if (cat === 'occasion') {
       if (e.target.checked) {
         dispatch(
           storefilterData(item.attribute_id, item.attributeValue_id, cat)
@@ -324,7 +333,7 @@ export default function Filter(props) {
       setCheckedShopOccasion(occasion);
     }
 
-    if (cat === "itemType") {
+    if (cat === 'itemType') {
       if (item.checked) {
         const itemType = handleValue(checkedItemType, e, item.value);
         setCheckedItemType(itemType);
@@ -336,7 +345,7 @@ export default function Filter(props) {
           checkedItemType[checkedItemType.length - 1].toLowerCase();
     }
 
-    if (cat === "fit") {
+    if (cat === 'fit') {
       if (e.target.checked) {
         dispatch(
           storefilterData(item.attribute_id, item.attributeValue_id, cat)
@@ -357,7 +366,7 @@ export default function Filter(props) {
           <div className={styles.header}>
             <span>Filter</span>
             <span
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
               onClick={clearAllFilterFromReducer}
             >
               Clear all
@@ -369,7 +378,7 @@ export default function Filter(props) {
         <Accordion className={styles.accordion}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
+            aria-controls='panel1a-content'
             className={styles.accordionSummary}
           >
             <div className={styles.accordionSummaryInnerDiv}>
@@ -379,12 +388,12 @@ export default function Filter(props) {
           </AccordionSummary>
           <AccordionDetails className={styles.accordionDetials}>
             <RadioGroup
-              aria-label="Categories"
+              aria-label='Categories'
               value={selectedFilter.categories}
             >
               <FormControlLabel
-                value="All categories"
-                checked={selectedFilter.categories === "All categories"}
+                value='All categories'
+                checked={selectedFilter.categories === 'All categories'}
                 control={<CustomRadio />}
                 label={<p className={styles.radioBtnsLabels}>All Categories</p>}
               />
@@ -392,25 +401,25 @@ export default function Filter(props) {
           </AccordionDetails>
         </Accordion>
       ) : (
-        ""
+        ''
       )}
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
             <span>Price</span>
-            <span>{!isLoading && "Select price range"}</span>
+            <span>{!isLoading && 'Select price range'}</span>
           </div>
         </AccordionSummary>
         <AccordionDetails
           className={styles.accordionDetials}
-          style={{ flexDirection: "column" }}
+          style={{ flexDirection: 'column' }}
         >
           <Slider
-            style={{ color: "#6A5B40" }}
+            style={{ color: '#6A5B40' }}
             value={value}
             min={0}
             step={1}
@@ -424,25 +433,25 @@ export default function Filter(props) {
           />
           <br />
           <div className={styles.price}>
-            <div style={{ position: "relative" }}>
+            <div style={{ position: 'relative' }}>
               <p>From</p>
               <input
-                type="number"
-                min="0"
+                type='number'
+                min='0'
                 value={value[0]}
-                name="startPrice"
+                name='startPrice'
                 onChange={priceInputHandler}
               />
               <span>₹</span>
             </div>
-            <div style={{ position: "relative" }}>
+            <div style={{ position: 'relative' }}>
               <p>To</p>
 
               <input
-                type="number"
-                min="1"
+                type='number'
+                min='1'
                 value={value[1]}
-                name="endPrice"
+                name='endPrice'
                 onChange={priceInputHandler}
               />
               <span>₹</span>
@@ -453,7 +462,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -463,11 +472,11 @@ export default function Filter(props) {
         </AccordionSummary>
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
-            aria-label="Item type"
-            onChange={(e) => handleFilterChange("itemType", e.target.value)}
+            aria-label='Item type'
+            onChange={e => handleFilterChange('itemType', e.target.value)}
             value={selectedFilter.itemType}
           >
-            {["All", "Readymade", "Customize"].map((value) => {
+            {['All', 'Readymade', 'Customize'].map(value => {
               return (
                 // <FormControlLabel
                 //   // value="readymade"
@@ -483,12 +492,12 @@ export default function Filter(props) {
                 //   label={<p className={styles.radioBtnsLabels}>{value}</p>}
                 // />
                 <FormControlLabel
-                  onChange={(e) => {
+                  onChange={e => {
                     const item = {
                       value: e.target.value,
                       checked: e.target.checked,
                     };
-                    handleCheckBoxValues(e, "itemType", item);
+                    handleCheckBoxValues(e, 'itemType', item);
                   }}
                   value={value}
                   control={<CustomRadio />}
@@ -502,7 +511,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -515,13 +524,13 @@ export default function Filter(props) {
             return (
               <FormControlLabel
                 control={<CustomCheckbox />}
-                onChange={(e) => {
+                onChange={e => {
                   const item = {
                     attributeValue_id: attr_value_id,
                     attribute_id: attribute_id,
                     value: e.target.value,
                   };
-                  handleCheckBoxValues(e, "color", item);
+                  handleCheckBoxValues(e, 'color', item);
                 }}
                 value={value}
                 label={
@@ -540,7 +549,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -550,8 +559,8 @@ export default function Filter(props) {
         </AccordionSummary>
         <AccordionDetails className={styles.accordionDetials}>
           <RadioGroup
-            aria-label="Discount"
-            onChange={(e) => handleFilterChange("discount", e.target.value)}
+            aria-label='Discount'
+            onChange={e => handleFilterChange('discount', e.target.value)}
             value={selectedFilter.discount}
           >
             {discountFilter?.map(({ discount }, key) => (
@@ -568,13 +577,20 @@ export default function Filter(props) {
               // />
               <FormControlLabel
                 value={discount}
-                onChange={(e) => {
-                  const item = {
-                    value: e.target.value,
-                  };
-                  handleCheckBoxValues(e, "discount", item);
-                }}
-                control={<CustomRadio />}
+                // onChange={e => {
+                //   const item = {
+                //     value: e.target.value,
+                //   };
+                //   handleCheckBoxValues(e, 'discount', item);
+                // }}
+                control={
+                  <CustomRadio
+                    onChange={e =>
+                      handleFilterChange('discount', e.target.value)
+                    }
+                    value={selectedFilter.discount}
+                  />
+                }
                 label={<p className={styles.radioBtnsLabels}>{discount}%</p>}
               />
             ))}
@@ -584,7 +600,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -596,13 +612,13 @@ export default function Filter(props) {
           {fabricFilter?.map(({ attr_value_id, attribute_id, value }, key) => (
             <FormControlLabel
               control={<CustomCheckbox />}
-              onChange={(e) => {
+              onChange={e => {
                 const item = {
                   attributeValue_id: attr_value_id,
                   attribute_id: attribute_id,
                   value: e.target.value,
                 };
-                handleCheckBoxValues(e, "fabric", item);
+                handleCheckBoxValues(e, 'fabric', item);
               }}
               value={value}
               label={<p className={styles.radioBtnsLabels}>{value}</p>}
@@ -613,7 +629,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -625,13 +641,13 @@ export default function Filter(props) {
           {sizeFilter?.map(({ attr_value_id, attribute_id, value }, key) => (
             <FormControlLabel
               control={<CustomCheckbox />}
-              onChange={(e) => {
+              onChange={e => {
                 const item = {
                   attributeValue_id: attr_value_id,
                   attribute_id: attribute_id,
                   value: e.target.value,
                 };
-                handleCheckBoxValues(e, "size", item);
+                handleCheckBoxValues(e, 'size', item);
               }}
               value={value}
               label={
@@ -645,7 +661,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -657,13 +673,13 @@ export default function Filter(props) {
           {sleeveLength.map(({ value, attr_value_id, attribute_id }) => (
             <FormControlLabel
               control={<CustomCheckbox />}
-              onChange={(e) => {
+              onChange={e => {
                 const item = {
                   attributeValue_id: attr_value_id,
                   attribute_id: attribute_id,
                   value: e.target.value,
                 };
-                handleCheckBoxValues(e, "sleeve", item);
+                handleCheckBoxValues(e, 'sleeve', item);
               }}
               value={value}
               label={<p className={styles.radioBtnsLabels}>{value}</p>}
@@ -675,7 +691,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -687,14 +703,14 @@ export default function Filter(props) {
           {designFilter.map(
             ({ attr_value_id, attribute_id, category_id, value }) => (
               <FormControlLabel
-                value="New"
-                onChange={(e) => {
+                value='New'
+                onChange={e => {
                   const item = {
                     attributeValue_id: attr_value_id,
                     attribute_id: attribute_id,
                     value: e.target.value,
                   };
-                  handleCheckBoxValues(e, "design", item);
+                  handleCheckBoxValues(e, 'design', item);
                 }}
                 control={<CustomCheckbox />}
                 label={<p className={styles.radioBtnsLabels}>{value}</p>}
@@ -707,7 +723,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -720,13 +736,13 @@ export default function Filter(props) {
             ({ attr_value_id, attribute_id, name, value, id }) => (
               <FormControlLabel
                 control={<CustomCheckbox />}
-                onChange={(e) => {
+                onChange={e => {
                   const item = {
                     attributeValue_id: attr_value_id,
                     attribute_id: attribute_id,
                     value: e.target.value,
                   };
-                  handleCheckBoxValues(e, "occasion", item);
+                  handleCheckBoxValues(e, 'occasion', item);
                 }}
                 value={value}
                 label={<p className={styles.radioBtnsLabels}>{value}</p>}
@@ -738,7 +754,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -750,13 +766,13 @@ export default function Filter(props) {
           {fit.map(({ attr_value_id, attribute_id, name, value, id }) => (
             <FormControlLabel
               control={<CustomCheckbox />}
-              onChange={(e) => {
+              onChange={e => {
                 const item = {
                   attributeValue_id: attr_value_id,
                   attribute_id: attribute_id,
                   value: e.target.value,
                 };
-                handleCheckBoxValues(e, "fit", item);
+                handleCheckBoxValues(e, 'fit', item);
               }}
               value={value}
               label={<p className={styles.radioBtnsLabels}>{value}</p>}
@@ -767,7 +783,7 @@ export default function Filter(props) {
       <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
+          aria-controls='panel1a-content'
           className={styles.accordionSummary}
         >
           <div className={styles.accordionSummaryInnerDiv}>
@@ -779,13 +795,13 @@ export default function Filter(props) {
           {length.map(({ attr_value_id, attribute_id, name, value, id }) => (
             <FormControlLabel
               control={<CustomCheckbox />}
-              onChange={(e) => {
+              onChange={e => {
                 const item = {
                   attributeValue_id: attr_value_id,
                   attribute_id: attribute_id,
                   value: e.target.value,
                 };
-                handleCheckBoxValues(e, "length", item);
+                handleCheckBoxValues(e, 'length', item);
               }}
               value={value}
               label={<p className={styles.radioBtnsLabels}>{value}</p>}

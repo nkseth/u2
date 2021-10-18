@@ -16,7 +16,6 @@ export const getProducts = (type, filter) => async (dispatch) => {
     if (type) url = `/getCategoryByProduct/${type}`;
     else url = `/getCategoryByProduct`;
     const { data } = await common_axios.post(url, filter);
-    // console.log(data.data);
     if (data.data) {
       dispatch({
         type: GET_PRODUCTS_SUCCESS,

@@ -154,7 +154,8 @@ function AccordionS({
       </motion.div>
       {AllDone === true ? (
         <Link
-          to={`/viewmeasurement/save/${basicId}`}
+          // to={`/viewmeasurement/save/${basicId}`}
+          to={`/add-measurement-image/${basicId}`}
           style={{ color: "#fff", display: "flex", alignItems: "center" }}
         >
           <Button

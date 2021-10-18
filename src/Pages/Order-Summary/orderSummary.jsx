@@ -91,6 +91,7 @@ export default function OrderSummary() {
 
   const checkout = (e) => {
     e.preventDefault();
+    if (!cart.shipping_address) return alert("Add address to proceed..");
     history.push(`/payment/${cart.id}`);
   };
 
@@ -113,11 +114,13 @@ export default function OrderSummary() {
                   <p>Delivery Address</p>
                   <CustomDivider />
                 </div>
+
                 <DeliveryAddress
                   setAddAddress={setAddAddress}
                   address={cart.shipping_address}
                   cartId={cart.id}
                 />
+
                 <div className={styles.OrderLine}>
                   <p>Order Details</p>
                   <CustomDivider />
@@ -325,37 +328,39 @@ export function DeliveryAddress({ address, setAddAddress, cartId }) {
   const routerHistory = useHistory();
   return (
     <div className={styles.DeliveryAddress}>
-      <div className={styles.mainDiv}>
-        <div className={styles.firstAftermain}>
-          <div>
-            <span>John Hamilton</span>
-            <div className={styles.badge}>{address.address_type}</div>
+      {address && (
+        <div className={styles.mainDiv}>
+          <div className={styles.firstAftermain}>
+            <div>
+              <span>John Hamilton</span>
+              <div className={styles.badge}>{address.address_type}</div>
+            </div>
+            <p>{`${address.address_line_1} - ${address.zip_code}`}</p>
+            <p>
+              <span>Contact:</span>&nbsp;
+              <span>{address.phone}</span>
+            </p>
           </div>
-          <p>{`${address.address_line_1} - ${address.zip_code}`}</p>
-          <p>
-            <span>Contact:</span>&nbsp;
-            <span>{address.phone}</span>
-          </p>
-        </div>
 
-        <div>
-          <Button
-            variant="contained"
-            color="default"
-            className={styles.editBtn}
-          >
-            Edit
-          </Button>
-          <Button
-            variant="contained"
-            color="default"
-            className={styles.changeBtn}
-            onClick={() => routerHistory.push(`/delivery-address/${cartId}`)}
-          >
-            Change
-          </Button>
+          <div>
+            <Button
+              variant="contained"
+              color="default"
+              className={styles.editBtn}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="contained"
+              color="default"
+              className={styles.changeBtn}
+              onClick={() => routerHistory.push(`/delivery-address/${cartId}`)}
+            >
+              Change
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
       <div className={styles.ActionBtnDiv}>
         <div className={styles.btnDiv} style={{ marginBottom: "1rem" }}>
           <Button

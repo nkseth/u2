@@ -554,7 +554,7 @@ export default function Filter(props) {
             onChange={(e) => handleFilterChange("discount", e.target.value)}
             value={selectedFilter.discount}
           >
-            {discountFilter?.map(({ discount }, key) => (
+            {discountFilter?.map(({ name, value }, key) => (
               // <FormControlLabel
               //   control={<CustomCheckbox />}
               //   onChange={e => {
@@ -567,15 +567,15 @@ export default function Filter(props) {
               //   label={<p className={styles.radioBtnsLabels}>{discount}%</p>}
               // />
               <FormControlLabel
-                value={discount}
+                value={name}
                 onChange={(e) => {
                   const item = {
-                    value: e.target.value,
+                    value: value,
                   };
                   handleCheckBoxValues(e, "discount", item);
                 }}
                 control={<CustomRadio />}
-                label={<p className={styles.radioBtnsLabels}>{discount}%</p>}
+                label={<p className={styles.radioBtnsLabels}>{name}</p>}
               />
             ))}
           </RadioGroup>

@@ -78,9 +78,11 @@ function NewAddress({ setAddAddress }) {
       pincode === "" || locality === "" || city === "")
     )
       return alert("All fields are required except optional");
+    if (mobile === alternateMobile)
+      return alert("Provide different alternate contact.");
     dispatch(
       addAddress({
-        address_type: AddressType === 0 ? "primary" : "secondary",
+        address_type: AddressType === 0 ? "Primary" : "Secondary",
         address_line_1: address,
         city,
         zip_code: pincode,
@@ -88,11 +90,11 @@ function NewAddress({ setAddAddress }) {
         name,
         locality,
         state: "Delhi",
-        country_id: 91,
+        country: "India",
+        landmark,
+        alternate_phone: alternateMobile,
       })
     );
-    // ,landmark,alternate_phone
-    // address_type,address_line_1,city,zip_code,address_type,city,zip_code,phone,name,locality,state,landmark,alternate_phone
   };
 
   return (

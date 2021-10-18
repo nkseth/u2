@@ -17,7 +17,8 @@ import Filter from "../Filter/filter";
 import styles from "./product.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getWishList } from "../../../../../Redux/actions/wishlist";
-export default function ProductsSection({ products, loading }) {
+import { getSortedProduct } from "../../../../../Redux/actions/filter-category";
+export default function ProductsSection({ products, loading, group, slug }) {
   const dispatch = useDispatch();
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:550px)");
@@ -30,29 +31,31 @@ export default function ProductsSection({ products, loading }) {
 
   const handleSort = (e) => {
     setSortBy(e.target.value);
-    if (e.target.value === "lowToHigh") {
-      setTemp(products.sort((a, b) => a.price - b.price));
-    }
+    console.log(e.target.value);
+    dispatch(getSortedProduct(slug, group, e.target.value));
+    // if (e.target.value === "lowToHigh") {
+    //   setTemp(products.sort((a, b) => a.price - b.price));
+    // }
 
-    if (e.target.value === "highToLow") {
-      setTemp(
-        products.sort((a, b) => {
-          if (b.custom_price >= 1) {
-            return b.custom_price - a.custom_price;
-          }
-          if (b.readymade_price >= 1) {
-            return b.readymade_price - a.readymade_price;
-          }
-          return b.price - a.price;
-        })
-      );
-    } else {
-      return setTemp(
-        products.sort((a, b) => {
-          return b.title.localeCompare(a.name);
-        })
-      );
-    }
+    // if (e.target.value === "highToLow") {
+    //   setTemp(
+    //     products.sort((a, b) => {
+    //       if (b.custom_price >= 1) {
+    //         return b.custom_price - a.custom_price;
+    //       }
+    //       if (b.readymade_price >= 1) {
+    //         return b.readymade_price - a.readymade_price;
+    //       }
+    //       return b.price - a.price;
+    //     })
+    //   );
+    // } else {
+    //   return setTemp(
+    //     products.sort((a, b) => {
+    //       return b.title.localeCompare(a.name);
+    //     })
+    //   );
+    // }
   };
 
   // useEffect(() => {
@@ -71,9 +74,9 @@ export default function ProductsSection({ products, loading }) {
     setFilterOpen(open);
   };
 
-  useEffect(() => {
-    if (isAuthenticated) dispatch(getWishList(user.api_token));
-  }, [dispatch, isAuthenticated, user]);
+  // useEffect(() => {
+  //   if (isAuthenticated) dispatch(getWishList(user.api_token));
+  // }, [dispatch, isAuthenticated, user]);
 
   return (
     <>
@@ -138,23 +141,29 @@ export default function ProductsSection({ products, loading }) {
               onChange={(e) => handleSort(e)}
               label="Sort by"
             >
-              <MenuItem
+              {/* <MenuItem
                 value={"relavence"}
                 style={{ fontSize: mobileView && "15px" }}
               >
                 Relavence
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem
-                value={"lowToHigh"}
+                value={"new"}
                 style={{ fontSize: mobileView && "15px" }}
               >
-                Low to High
+                New
               </MenuItem>
               <MenuItem
-                value={"highToLow"}
+                value={"lowToHeigh"}
                 style={{ fontSize: mobileView && "15px" }}
               >
-                High to Low
+                Price Low to High
+              </MenuItem>
+              <MenuItem
+                value={"heighTolow"}
+                style={{ fontSize: mobileView && "15px" }}
+              >
+                Price High to Low
               </MenuItem>
             </Select>
           </FormControl>
@@ -168,7 +177,7 @@ export default function ProductsSection({ products, loading }) {
             {products?.map((value, index) => {
               return (
                 <>
-                  <ProductCard key={index.id?.toString()} product={value} />
+                  <ProductCard key={value.id} product={value} />
                 </>
               );
             })}

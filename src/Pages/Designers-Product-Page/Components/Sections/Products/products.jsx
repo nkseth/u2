@@ -9,6 +9,7 @@ import {
   ButtonGroup,
   Button,
   Drawer,
+
 } from '@material-ui/core';
 import Loader, { ProductLoader } from '../../../../../utils/Loader/Loader';
 import cx from 'classnames';
@@ -17,6 +18,7 @@ import Filter from '../Filter/filter';
 import styles from './product.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getWishList } from '../../../../../Redux/actions/wishlist';
+  import { getSortedProduct } from "../../../../../Redux/actions/filter-category";
 export default function ProductsSection({ products, loading }) {
   const dispatch = useDispatch();
   const tabViewPro = useMediaQuery('(max-width:835px)');
@@ -30,29 +32,32 @@ export default function ProductsSection({ products, loading }) {
 
   const handleSort = e => {
     setSortBy(e.target.value);
-    if (e.target.value === 'lowToHigh') {
-      setTemp(products.sort((a, b) => a.price - b.price));
-    }
+    console.log(e.target.value);
+    dispatch(getSortedProduct(slug, group, e.target.value));
+    // if (e.target.value === "lowToHigh") {
+    //   setTemp(products.sort((a, b) => a.price - b.price));
+    // }
 
-    if (e.target.value === 'highToLow') {
-      setTemp(
-        products.sort((a, b) => {
-          if (b.custom_price >= 1) {
-            return b.custom_price - a.custom_price;
-          }
-          if (b.readymade_price >= 1) {
-            return b.readymade_price - a.readymade_price;
-          }
-          return b.price - a.price;
-        })
-      );
-    } else {
-      return setTemp(
-        products.sort((a, b) => {
-          return b.title.localeCompare(a.name);
-        })
-      );
-    }
+    // if (e.target.value === "highToLow") {
+    //   setTemp(
+    //     products.sort((a, b) => {
+    //       if (b.custom_price >= 1) {
+    //         return b.custom_price - a.custom_price;
+    //       }
+    //       if (b.readymade_price >= 1) {
+    //         return b.readymade_price - a.readymade_price;
+    //       }
+    //       return b.price - a.price;
+    //     })
+    //   );
+    // } else {
+    //   return setTemp(
+    //     products.sort((a, b) => {
+    //       return b.title.localeCompare(a.name);
+    //     })
+    //   );
+    // }
+
   };
 
   // useEffect(() => {
@@ -71,9 +76,9 @@ export default function ProductsSection({ products, loading }) {
     setFilterOpen(open);
   };
 
-  useEffect(() => {
-    if (isAuthenticated) dispatch(getWishList(user.api_token));
-  }, [dispatch, isAuthenticated, user]);
+  // useEffect(() => {
+  //   if (isAuthenticated) dispatch(getWishList(user.api_token));
+  // }, [dispatch, isAuthenticated, user]);
 
   const PRODUCT_COUNT = 9;
 
@@ -140,41 +145,52 @@ export default function ProductsSection({ products, loading }) {
               onChange={e => handleSort(e)}
               label='Sort by'
             >
-              <MenuItem
-                value={'relavence'}
-                style={{ fontSize: mobileView && '15px' }}
+              {/* <MenuItem
+                value={"relavence"}
+                style={{ fontSize: mobileView && "15px" }}
+
               >
                 Relavence
+              </MenuItem> */}
+              <MenuItem
+                value={"new"}
+                style={{ fontSize: mobileView && "15px" }}
+              >
+                New
               </MenuItem>
               <MenuItem
-                value={'lowToHigh'}
-                style={{ fontSize: mobileView && '15px' }}
+                value={"lowToHeigh"}
+                style={{ fontSize: mobileView && "15px" }}
+
               >
-                Low to High
+                Price Low to High
               </MenuItem>
               <MenuItem
-                value={'highToLow'}
-                style={{ fontSize: mobileView && '15px' }}
+                value={"heighTolow"}
+                style={{ fontSize: mobileView && "15px" }}
+
               >
-                High to Low
+                Price High to Low
               </MenuItem>
             </Select>
           </FormControl>
         </Grid>
+        {loading ? (
+          <div style={{ margin: "auto" }}>
+            <Loader height={"200px"} />
+          </div>
+        ) : (
+          <div className={styles.productsGrid}>
+            {products?.map((value, index) => {
+              return (
+                <>
+                  <ProductCard key={value.id} product={value} />
+                </>
+              );
+            })}
+          </div>
+        )}
 
-        <div className={styles.productsGrid}>
-          {loading
-            ? [...Array(PRODUCT_COUNT)].map(item => {
-                return <ProductLoader width='100%' height='400px' />;
-              })
-            : products?.map((value, index) => {
-                return (
-                  <>
-                    <ProductCard key={index.id?.toString()} product={value} />
-                  </>
-                );
-              })}
-        </div>
 
         {/* {tabView && (
           <>

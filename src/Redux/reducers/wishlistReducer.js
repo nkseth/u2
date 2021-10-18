@@ -12,8 +12,10 @@ export const getWishListReducer = (initialState = { list: [] }, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_WISHLIST:
+    case GET_WISHLIST: {
+      Object.assign(initialState.list, payload);
       return { ...initialState, list: payload };
+    }
 
     default:
       return initialState;
@@ -29,12 +31,15 @@ export const updateWishlistReducer = (
   switch (type) {
     case REMOVE_FROM_WISHLIST_REQUEST:
       return { ...initialState, loading: true };
-    case ADD_TO_WISHLIST:
+    case ADD_TO_WISHLIST: {
       return { ...initialState, added: payload, loading: false };
-    case REMOVE_FROM_WISHLIST_SUCCESS:
+    }
+    case REMOVE_FROM_WISHLIST_SUCCESS: {
       return { ...initialState, removed: payload, loading: false };
-    case CLEAR_WISHLIST_UPDATE:
+    }
+    case CLEAR_WISHLIST_UPDATE: {
       return { ...initialState, added: null, removed: null, loading: false };
+    }
     default:
       return initialState;
   }

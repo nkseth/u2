@@ -19,7 +19,7 @@ import {
   getFilterList,
 } from "../../Redux/actions/filter-category";
 import { useDispatch, useSelector } from "react-redux";
-import { getWishList } from "../../Redux/actions/wishlist";
+import { clearUpdateWishlist, getWishList } from "../../Redux/actions/wishlist";
 import { clearProductsErrors, getProducts } from "../../Redux/actions/products";
 
 function DesignerProductPage({ match }) {
@@ -39,7 +39,24 @@ function DesignerProductPage({ match }) {
   const { productList, loading, error } = useSelector(
     (state) => state.root.products
   );
+  const {
+    added,
+    removed,
+    loading: updating,
+  } = useSelector((state) => state.root.updateWishlist);
   useEffect(() => {
+    if (!updating) {
+      if (added) {
+        console.log(added);
+        dispatch(clearUpdateWishlist());
+        alert(added);
+      }
+      if (removed) {
+        console.log(removed);
+        alert(removed);
+        dispatch(clearUpdateWishlist());
+      }
+    }
     if (error) {
       dispatch(clearProductsErrors());
       return console.log(error);
@@ -52,9 +69,8 @@ function DesignerProductPage({ match }) {
   useEffect(() => {
     if (type) dispatch(getProducts(type, { slug }));
     else dispatch(getProducts(null, { slug }));
-    if (isAuthenticated) {
-      dispatch(getWishList(user.api_token));
-    }
+    if (!isAuthenticated) return;
+    dispatch(getWishList(user.api_token));
   }, [dispatch, isAuthenticated, user, slug, type]);
 
   const filterProduct = (filterData) => {
@@ -106,15 +122,12 @@ function DesignerProductPage({ match }) {
                   />
                 </div>
               )}
-              {/* {loading ? (
-                <Loader />
-              ) : product.length > 1 ? (
-                <ProductsSection products={product} />
-              ) : (
-                <p>No Products to Show</p>
-              )} */}
-
-              <ProductsSection products={product} loading={loading} />
+              <ProductsSection
+                products={product}
+                loading={loading}
+                slug={slug}
+                group={type}
+              />
             </div>
           </div>
         </div>

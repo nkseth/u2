@@ -85,7 +85,6 @@ export default function ChooseStandardSize({
     params: { orderId },
   },
 }) {
-  console.log(orderId);
   const history = useHistory();
   const dispatch = useDispatch();
   const tabView = useMediaQuery("(max-width:769px)");
@@ -133,6 +132,10 @@ export default function ChooseStandardSize({
       console.log(data);
       dispatch(set_basic_id(data));
       set_basic_id(data);
+      if (data === "Order Id wrong...") {
+        alert("Measurement Save failed try again...");
+        return;
+      }
       if (data)
         history.push(`/add-measurement-body-measurement-${Gender}/${data}`);
     } catch (e) {

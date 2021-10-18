@@ -8,23 +8,40 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import BagIcon from "./icon.svg";
 import ScissorIcon from "./scissor.svg";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../utils/Loader/Loader";
 import {
   getWishList,
   removeFromWishlist,
   add_to_bag,
+  clearUpdateWishlist,
 } from "../../Redux/actions/wishlist";
 import { useHistory } from "react-router-dom";
 
 function WishListPage() {
+  const history = useHistory();
   const dispatch = useDispatch();
 
+  const { added, removed, loading } = useSelector(
+    (state) => state?.root.updateWishlist
+  );
   const { list } = useSelector((state) => state?.root.wishlist);
   const { user, isAuthenticated } = useSelector((state) => state?.root.auth);
   console.log(list);
 
   useEffect(() => {
-    if (isAuthenticated) dispatch(getWishList(user.api_token));
-  }, [isAuthenticated, user, dispatch]);
+    if (!isAuthenticated) return;
+    if (!loading) {
+      if (added) {
+        // alert(added);
+        dispatch(clearUpdateWishlist());
+      }
+      if (removed) {
+        // alert(added);
+        dispatch(clearUpdateWishlist());
+      }
+    }
+    dispatch(getWishList(user.api_token));
+  }, [isAuthenticated, user, added, removed, history, loading, dispatch]);
   return (
     <div className={styles.WishList}>
       <div className={styles.Container}>
@@ -49,6 +66,7 @@ export function Product({
     offer_price,
     price,
     slug,
+    product_id,
   },
 }) {
   const history = useHistory();
@@ -57,14 +75,14 @@ export function Product({
   const MobileView = useMediaQuery("(max-width:450px)");
   const { message } = useSelector((state) => state.root.addToBag);
   const { user } = useSelector((state) => state.root.auth);
+
   const removeHandler = () => {
-    dispatch(removeFromWishlist(id, user.api_token));
-    dispatch(getWishList(user.api_token));
+    dispatch(removeFromWishlist(product_id, user.api_token));
   };
+  const type = custom_price > 0 ? "customise" : "readymade";
   const addToBagHandler = () => {
-    dispatch(add_to_bag(slug));
-    dispatch(removeFromWishlist(id, user.api_token));
-    if (message) alert(message);
+    dispatch(add_to_bag(slug, type));
+    dispatch(removeFromWishlist(product_id, user.api_token));
   };
   const itemPrice = custom_price > 0 ? custom_price : readymade_price;
   return (
@@ -98,7 +116,7 @@ export function Product({
             </div>
           </> */}
           <h5>Product type</h5>
-          <h6>Readymade</h6>
+          <h6>{type.toUpperCase()}</h6>
 
           <div className={styles.quantityDiv}>
             <div className={styles.BtnDiv}>

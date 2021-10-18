@@ -32,6 +32,7 @@ export default function OrdersCard({ pending, item, orderId }) {
             </div>
 
             <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+
               {item.currency_symbol}
               {item.total}
             </div>

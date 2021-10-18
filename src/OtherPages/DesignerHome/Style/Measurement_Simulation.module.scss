@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../Images//m1.png");
+    url('../Images//m1.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,31 +24,29 @@
       color: #fff;
     }
     button {
-      background: rgba(0, 0, 0, 0)!important;
-      color: #fff!important;
+      background: rgba(0, 0, 0, 0) !important;
+      color: #fff !important;
       text-transform: capitalize;
       margin-top: 15px;
       width: 160px;
-    border: 2px solid #ffffff;
+      border: 2px solid #ffffff;
 
       &:hover {
-        background-color: #857250!important;
-    border: 2px solid #857250;
+        background-color: #857250 !important;
+        border: 2px solid #857250;
       }
     }
-
   }
 }
 
-
-.buttons{
+.buttons {
   width: 165px;
   height: 50px;
   font-weight: 700;
-  font-family: DM Sans!important;
+  font-family: DM Sans !important;
   font-size: 14px;
-  background-color: #ffffff!important;
-  color: #857250!important;
+  background-color: #ffffff !important;
+  color: #857250 !important;
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .Measurement_Simulation {
@@ -65,10 +63,11 @@
   }
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 450px) {
   .Measurement_Simulation {
     height: 360px;
     position: relative;
+
     div {
       margin-left: 1em;
       h1 {
@@ -80,13 +79,12 @@
     }
   }
 }
-@media screen and (max-width:769px){
-  .Measurement_Simulation{
-    div{
-      h1{
-        text-align: left!important;
+@media screen and (max-width: 769px) {
+  .Measurement_Simulation {
+    div {
+      h1 {
+        text-align: left !important;
       }
     }
   }
-
 }

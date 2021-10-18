@@ -11,7 +11,9 @@ import { popularCategories } from '../../Redux/actions/designerHomePage';
 import { useDispatch } from 'react-redux';
 import Category from './Component/Category';
 import Container from '../Container/container';
-import Mens from './images/mens.svg';
+import Mens from './images/mens.jpg';
+import Women from './images/women.jpg';
+import Kids from './images/kids.jpg';
 const MobileCategory = () => {
   const category = [
     {
@@ -42,7 +44,7 @@ const MobileCategory = () => {
     },
     {
       name: 'Women',
-      image: Mens,
+      image: Women,
       sub_cat: [
         {
           name: 'Suit Wear',
@@ -68,7 +70,7 @@ const MobileCategory = () => {
     },
     {
       name: 'Kids',
-      image: Mens,
+      image: Kids,
       sub_cat: [
         {
           name: 'Suit Wear',

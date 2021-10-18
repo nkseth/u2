@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { IconButton } from "@material-ui/core";
-import styles from "./card.module.scss";
-import { Link } from "react-router-dom";
-import parse from "html-react-parser";
+import React, { useState, useEffect } from 'react';
+import { IconButton } from '@material-ui/core';
+import styles from './card.module.scss';
+import { Link } from 'react-router-dom';
+import parse from 'html-react-parser';
 //icon
 
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import common_axios from "../../../../utils/axios.config";
-import { useDispatch, useSelector } from "react-redux";
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import common_axios from '../../../../utils/axios.config';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addToWishlist,
   clearUpdateWishlist,
   removeFromWishlist,
-} from "../../../../Redux/actions/wishlist";
-import { getWishList } from "../../../../Redux/actions/wishlist";
+} from '../../../../Redux/actions/wishlist';
+import { getWishList } from '../../../../Redux/actions/wishlist';
 
-import { LazyLoadingImg } from "../../../../utils/LazyLoading";
-import { CLEAR_WISHLIST_UPDATE } from "../../../../Redux/actions/types";
+import { LazyLoadingImg } from '../../../../utils/LazyLoading';
+import { CLEAR_WISHLIST_UPDATE } from '../../../../Redux/actions/types';
 
 export default function ProductCard(props) {
+  console.log('🚀 ~ file: card.jsx ~ line 23 ~ ProductCard ~ props', props);
   const dispatch = useDispatch();
   const [isAddToWishList, setAddToWishList] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -30,25 +31,26 @@ export default function ProductCard(props) {
     (state) => state.root.updateWishlist
   );
   const { list } = useSelector((state) => state.root.wishlist);
+
   // console.log(props.product);
 
-  const setValue = async (product) => {
+  const setValue = async product => {
     await setIsLoading(true);
     await setProduct(product);
     await setIsLoading(false);
   };
 
-  const add_to_wishlist = (prod) => {
+  const add_to_wishlist = prod => {
     if (!user?.api_token)
-      return alert("Login first to add the item to wishlist");
+      return alert('Login first to add the item to wishlist');
     dispatch(addToWishlist(prod.slug, user.api_token));
     setAddToWishList(true);
     // dispatch(getWishList(user.api_token));
   };
 
-  const remove_from_wishlist = (prod) => {
+  const remove_from_wishlist = prod => {
     if (!user?.api_token)
-      return alert("Login first to add the item to wishlist");
+      return alert('Login first to add the item to wishlist');
     const id = prod.id;
     dispatch(removeFromWishlist(id, user.api_token));
     // dispatch(getWishList(user.api_token));
@@ -63,6 +65,7 @@ export default function ProductCard(props) {
         console.log(item[0]);
         setAddToWishList(true);
       }
+
     } else setAddToWishList(false);
 
     // if (added) {
@@ -82,21 +85,22 @@ export default function ProductCard(props) {
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <Link to={{ pathname: `/product-description/${product.slug}` }}>
-          <LazyLoadingImg image={product.feature_image} />
+          {/* <LazyLoadingImg image={product.feature_image} /> */}
+          <img src={product.feature_image} alt='' />
         </Link>
         {isAddToWishList ? (
           <IconButton
-            aria-label="product"
+            aria-label='product'
             onClick={() => {
               remove_from_wishlist(product);
             }}
             className={styles.icons}
           >
-            <FavoriteIcon style={{ color: "red" }} />
+            <FavoriteIcon style={{ color: 'red' }} />
           </IconButton>
         ) : (
           <IconButton
-            aria-label="product"
+            aria-label='product'
             onClick={() => add_to_wishlist(product)}
             className={styles.icons}
           >
@@ -105,11 +109,11 @@ export default function ProductCard(props) {
         )}
       </div>
       <div className={styles.productDetails}>
-        <Link to={{ pathname: `/product-description/${product.slug}` }}>
+        <Link to={{ pathname: `/product-description/${product?.slug}` }}>
           <span className={styles.productName}>{product?.brand}</span>
         </Link>
         <span className={styles.productDesc}>
-          {parse(product.description ? product?.title : "")}
+          {parse(product.description ? product?.title : '')}
         </span>
 
         <p className={styles.productPrice}>

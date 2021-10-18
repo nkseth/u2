@@ -71,6 +71,7 @@ const SuitWear = () => {
                     ? { marginRight: '10px', marginLeft: '10px' }
                     : { marginRight: '20px', marginLeft: '20px' }
                 }
+                className={styles.items}
               >
                 <LazyLoadingComp>
                   <Link

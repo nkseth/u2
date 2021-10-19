@@ -5,7 +5,7 @@ import CustomDivider from "../../../../utils/Custom Divider/divider";
 import styles from "./card.module.scss";
 import { ReactComponent as StarIcon } from "../../../../Images/icons/star.svg";
 
-export default function PastOrdersCard({ item, orderId }) {
+export default function PastOrdersCard({ item, orderId, deliveryDate }) {
   const history = useHistory();
   const mobileView = useMediaQuery("(max-width:550px)");
 
@@ -23,9 +23,9 @@ export default function PastOrdersCard({ item, orderId }) {
           <div className={styles.detailOne}>
             <div>
               <span>{item.title}</span>
-              {/* <span>Solid Straight Kurta</span> */}
+              <span>{item.fabric}</span>
             </div>
-            {/* <div>Delivered on Jan 13</div> */}
+            <div>Delivered on {deliveryDate}</div>
           </div>
           <div className={styles.detailTwo}>
             <span>Quantity:</span>

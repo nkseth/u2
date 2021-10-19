@@ -67,6 +67,7 @@ export function Product({
     price,
     slug,
     product_id,
+    type,
   },
 }) {
   const history = useHistory();
@@ -79,12 +80,11 @@ export function Product({
   const removeHandler = () => {
     dispatch(removeFromWishlist(product_id, user.api_token));
   };
-  const type = custom_price > 0 ? "customise" : "readymade";
   const addToBagHandler = () => {
     dispatch(add_to_bag(slug, type));
     dispatch(removeFromWishlist(product_id, user.api_token));
   };
-  const itemPrice = custom_price > 0 ? custom_price : readymade_price;
+  const itemPrice = type === "readymade" ? readymade_price : custom_price;
   return (
     <div className={styles.Product}>
       <div className={styles.main}>
@@ -155,10 +155,10 @@ export function Product({
         <div className={styles.PriceDiv}>
           <h3 className={styles.Price}>
             {currency_symbol}
-            {itemPrice}
+            {offer_price}
           </h3>
           <div className={styles.PriceInfo}>
-            <p>{price}</p>
+            <p>{itemPrice}</p>
             <span>{discount}</span>
           </div>
           {/* <p className={styles.QuanTitle}>Quanity</p>

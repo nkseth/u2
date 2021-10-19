@@ -38,18 +38,15 @@ export const getFilteredProduct = (slug, fiteredData) => async (dispatch) => {
 export const getSortedProduct = (slug, group, type) => async (dispatch) => {
   try {
     console.log("Filter Data", slug, group, type);
-    const { data } = await common_axios.post(
-      `/productSorting`,
-      { type, slug, group }
-
-      // category_slug,
-      // type,
-      // group: "mens",
-    );
+    const { data } = await common_axios.post(`/productSorting`, {
+      type,
+      slug,
+      group,
+    });
     console.log(data);
     if (data) {
       console.log(data);
-      // dispatch({ type: GET_FILTERED_PRODUCT, payload: data });
+      dispatch({ type: GET_FILTERED_PRODUCT, payload: data });
     }
   } catch (err) {
     console.log(err?.response?.data);

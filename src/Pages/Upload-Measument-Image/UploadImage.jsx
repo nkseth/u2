@@ -9,6 +9,7 @@ import Main from "./images/main.svg";
 import Back from "./images/back.svg";
 import Front from "./images/front.svg";
 import { useHistory } from "react-router";
+import common_axios from "../../utils/axios.config";
 
 const UploadImage = ({
   match: {
@@ -31,7 +32,6 @@ const UploadImage = ({
   const [image1, setImage1] = useState(null);
 
   const [image2, setImage2] = useState(null);
-  console.log(image1, image2);
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
     if (file) {
@@ -59,14 +59,27 @@ const UploadImage = ({
     }
   };
 
-  const imageUploadHandler = (e) => {
+  const imageUploadHandler = async (e) => {
     e.preventDefault();
     if (!image1) return alert("Upload Front Image.");
     if (!image2) return alert("Upload Back Image.");
     if (image1 === image2)
-      alert("Cannot have same image for both front and back");
-    alert("Upload Successfull...");
-    history.push(`/viewmeasurement/${basic_id}`);
+      return alert("Cannot have same image for both front and back");
+
+    try {
+      const { data } = await common_axios.post(`/save_measurment_image`, {
+        measurements_basic_id: basic_id,
+        image: image1,
+        back_image: image2,
+      });
+      console.log(data);
+      if (data) {
+        alert("Upload Successfull...");
+        history.push(`/viewmeasurement/save/${basic_id}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

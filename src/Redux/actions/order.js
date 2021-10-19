@@ -49,7 +49,7 @@ export const getOrderDetail = (orderId) => async (dispatch) => {
       });
     }
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data);
     dispatch({
       type: ORDER_DETAIL_FAILED,
       payload: err,

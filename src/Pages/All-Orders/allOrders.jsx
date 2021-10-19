@@ -102,38 +102,36 @@ export default function AllOrders() {
                   {"Pending"}
                 </div>
                 <CustomDivider />
-                {pendingOrders.map(({ id, customer, items, order_number }) => (
-                  <div className={styles.ordersCardDiv}>
-                    {/* {console.log(order)} */}
+                {pendingOrders.map(
+                  ({ id, customer, items, order_number, delivery_address }) => (
+                    <div className={styles.ordersCardDiv}>
+                      {/* {console.log(order)} */}
 
-                    {items.map((item) => (
-                      <OrdersCard
-                        pending
-                        item={item}
-                        key={item.id}
-                        orderId={id}
-                      />
-                    ))}
+                      {items.map((item) => (
+                        <OrdersCard
+                          pending
+                          item={item}
+                          key={item.id}
+                          orderId={id}
+                        />
+                      ))}
 
-                    <div className={styles.deliveryAddress}>
-                      <span>Delivery Address</span>
-                      <p>
-                        <span>{customer.name}</span>
-                        <span>{customer.phone_no}</span>
-                      </p>
-                      <p>
-                        No 167, 2nd floor, 3rd cross RK garden behind gowri
-                        appatment mathikere bengaluru, Mathikere, Bengaluru -
-                        560054
-                      </p>
-                      <p>
-                        <span>Order ID</span>
-                        <span>{order_number}</span>
-                      </p>
+                      <div className={styles.deliveryAddress}>
+                        <span>Delivery Address</span>
+                        <p>
+                          <span>{customer.name}</span>
+                          <span>{customer.phone_no}</span>
+                        </p>
+                        <p>{delivery_address}</p>
+                        <p>
+                          <span>Order ID</span>
+                          <span>{order_number}</span>
+                        </p>
+                      </div>
+                      <CustomDivider />
                     </div>
-                    <CustomDivider />
-                  </div>
-                ))}
+                  )
+                )}
               </div>
             )}
 
@@ -152,31 +150,41 @@ export default function AllOrders() {
                   {"Past Orders"}
                 </div>
                 <CustomDivider />
-                {deliverdOrders.map(({ id, customer, items, order_number }) => (
-                  <div className={styles.ordersCardDiv}>
-                    {items.map((item) => (
-                      <PastOrdersCard item={item} key={item.id} orderId={id} />
-                    ))}
+                {deliverdOrders.map(
+                  ({
+                    id,
+                    customer,
+                    items,
+                    order_number,
+                    delivery_date,
+                    delivery_address,
+                  }) => (
+                    <div className={styles.ordersCardDiv}>
+                      {items.map((item) => (
+                        <PastOrdersCard
+                          deliveryDate={delivery_date}
+                          item={item}
+                          key={item.id}
+                          orderId={id}
+                        />
+                      ))}
 
-                    <div className={styles.deliveryAddress}>
-                      <span>Delivery Address</span>
-                      <p>
-                        <span>{customer.name}</span>
-                        <span>{customer.phone_no}</span>
-                      </p>
-                      <p>
-                        No 167, 2nd floor, 3rd cross RK garden behind gowri
-                        appatment mathikere bengaluru, Mathikere, Bengaluru -
-                        560054
-                      </p>
-                      <p>
-                        <span>Order ID</span>
-                        <span>{order_number}</span>
-                      </p>
+                      <div className={styles.deliveryAddress}>
+                        <span>Delivery Address</span>
+                        <p>
+                          <span>{customer.name}</span>
+                          <span>{customer.phone_no}</span>
+                        </p>
+                        <p>{delivery_address}</p>
+                        <p>
+                          <span>Order ID</span>
+                          <span>{order_number}</span>
+                        </p>
+                      </div>
+                      <CustomDivider />
                     </div>
-                    <CustomDivider />
-                  </div>
-                ))}
+                  )
+                )}
               </div>
             )}
           </div>

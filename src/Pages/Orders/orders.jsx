@@ -18,9 +18,7 @@ export default function Orders({
   },
 }) {
   const dispatch = useDispatch();
-  const { orders } = useSelector((state) => state.root.profile);
   const { order, loading } = useSelector((state) => state.root.orderDetail);
-  console.log(order);
 
   useEffect(() => {
     // dispatch(getProductDetails(slug));
@@ -34,8 +32,6 @@ export default function Orders({
   const mobileView = useMediaQuery("(max-width:550px)");
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
-  const productImg =
-    "https://images.pexels.com/photos/2882694/pexels-photo-2882694.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
 
   return (
     <Container
@@ -67,13 +63,16 @@ export default function Orders({
           {loading ? (
             <Loader />
           ) : (
-            order?.items.map(({ item }) => {
+            order &&
+            order.items.map((item) => {
               return (
                 <>
                   <div className={styles.productDiv}>
-                    <img src={productImg} alt="product" />
+                    <img src={item.product.image} alt="product" />
                     <div>
-                      <span className={styles.productHeader}>{item.title}</span>
+                      <span className={styles.productHeader}>
+                        {item?.title}
+                      </span>
                       <span className={styles.productDescription}>
                         {item.description}
                       </span>

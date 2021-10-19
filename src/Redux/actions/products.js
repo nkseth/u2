@@ -7,6 +7,9 @@ import {
   GET_PRODUCT_DETAILS_FAILED,
   GET_PRODUCT_DETAILS_REQUEST,
   GET_PRODUCT_DETAILS_SUCCESS,
+  GET_SIMILAR_PRODUCTS_FAILED,
+  GET_SIMILAR_PRODUCTS_REQUEST,
+  GET_SIMILAR_PRODUCTS_SUCCESS,
 } from "./types";
 
 export const getProducts = (type, filter) => async (dispatch) => {
@@ -32,7 +35,6 @@ export const getProductDetails = (slug) => async (dispatch) => {
   try {
     dispatch({ type: GET_PRODUCT_DETAILS_REQUEST });
     const { data } = await common_axios.get(`/productDetail/${slug}`);
-    console.log(data);
     if (data) {
       dispatch({
         type: GET_PRODUCT_DETAILS_SUCCESS,
@@ -42,6 +44,23 @@ export const getProductDetails = (slug) => async (dispatch) => {
   } catch (err) {
     console.log(err);
     dispatch({ type: GET_PRODUCT_DETAILS_FAILED, payload: err });
+    return Promise.reject(err);
+  }
+};
+
+export const getSimilarProducts = (tags) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_SIMILAR_PRODUCTS_REQUEST });
+    const { data } = await common_axios.post(`/similar_product`, { tags });
+    if (data.data) {
+      dispatch({
+        type: GET_SIMILAR_PRODUCTS_SUCCESS,
+        payload: data.data,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: GET_SIMILAR_PRODUCTS_FAILED, payload: err });
     return Promise.reject(err);
   }
 };

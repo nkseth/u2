@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
-import SkeletonArticle from '../../../../utils/skeletons/SkeletonArticle';
-import ProductCard from '../../../Designers-Product-Page/Components/product-card/card';
-import styles from './SimilarProducts.module.scss';
-import Loader from '../../../../utils/Loader/Loader';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import ContentLoader from 'react-content-loader';
+import React, { useEffect, useState } from "react";
+import SkeletonArticle from "../../../../utils/skeletons/SkeletonArticle";
+import ProductCard from "../../../Designers-Product-Page/Components/product-card/card";
+import styles from "./SimilarProducts.module.scss";
+import Loader from "../../../../utils/Loader/Loader";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import ContentLoader from "react-content-loader";
+import { useDispatch, useSelector } from "react-redux";
+import { getSimilarProducts } from "../../../../Redux/actions/products";
 
-const SimilarProducts = () => {
-  const [loading, setLoading] = useState(true);
+const SimilarProducts = ({ tags }) => {
+  const dispatch = useDispatch();
   const item = {
     brand: null,
     category_id: 0,
-    condition: 'New',
+    condition: "New",
     condition_note: null,
-    currency: 'INR',
-    currency_symbol: '₹',
+    currency: "INR",
+    currency_symbol: "₹",
     custom_price: 0,
     description:
       '<ul class="a-unordered-list a-vertical a-spacing-mini" amazon="" ember",="" arial,="" sans-serif;"="" style="margin-right: 0px; margin-bottom: 0px; margin-left: 18px; color: rgb(15, 17, 17); padding: 0px;"><li style="list-style: disc; overflow-wrap: break-word; margin: 0px;"><span class="a-list-item" style="overflow-wrap: break-word; display: block;">Care Instructions: Machine Wash</span></li><li style="list-style: disc; overflow-wrap: break-word; margin: 0px;"><span class="a-list-item" style="overflow-wrap: break-word; display: block;">Fit Type: slim fit</span></li><li style="list-style: disc; overflow-wrap: break-word; margin: 0px;"><span class="a-list-item" style="overflow-wrap: break-word; display: block;">100% premium Cotton, pre washed for an extremely soft finish and rich look</span></li><li style="list-style: disc; overflow-wrap: break-word; margin: 0px;"><span class="a-list-item" style="overflow-wrap: break-word; display: block;">Stylish full sleeve checkered casual shirt</span></li><li style="list-style: disc; overflow-wrap: break-word; margin: 0px;"><span class="a-list-item" style="overflow-wrap: break-word; display: block;">Modern slim fit ( we have updated our size chart, please refer the size chart for new measurements before ordering)</span></li><li style="list-style: disc; overflow-wrap: break-word; margin: 0px;"><span class="a-list-item" style="overflow-wrap: break-word; display: block;">Best for casual &amp; smart casual wear</span></li></ul>',
     feature_image:
-      'https://dhaatri.info/storage/images/61434a7369ee5.jpg?p=null',
+      "https://dhaatri.info/storage/images/61434a7369ee5.jpg?p=null",
     free_shipping: null,
     id: 130,
     key_features: false,
@@ -28,56 +30,64 @@ const SimilarProducts = () => {
     price: 0,
     product: {
       id: 73,
-      slug: 'stripped-white-shirt-666',
-      mpn: '777',
-      brand: 'Trend 5',
+      slug: "stripped-white-shirt-666",
+      mpn: "777",
+      brand: "Trend 5",
       image:
-        'https://dhaatri.info/storage/images/OfNfwuuKoxZV9UWYH4iQgjFGhzfcSzEdtyvn72Mi.jpg?p=small',
+        "https://dhaatri.info/storage/images/OfNfwuuKoxZV9UWYH4iQgjFGhzfcSzEdtyvn72Mi.jpg?p=small",
       description: `<p><span style="color: rgb(40, 44, 63); font-famil…model (height 5'8") is wearing a size S</li></ul>`,
     },
     quantity: 1,
     readymade_price: 900,
     shipping_address: null,
     shipping_weight: null,
-    sku: '1890',
-    slug: 'stripped-white-shirt-666',
+    sku: "1890",
+    slug: "stripped-white-shirt-666",
     stock_quantity: 73,
     stuff_pick: null,
-    title: 'Stripped White Shirt',
+    title: "Stripped White Shirt",
     total: 900,
     type: null,
     unit_price: 900,
   };
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 1000);
+  const { products, loading, error } = useSelector(
+    (state) => state.root.similarProducts
+  );
+  console.log(products);
+  useEffect(() => {
+    dispatch(getSimilarProducts(tags));
+  }, [tags, dispatch]);
 
   return (
     <>
       <h1>Similar Products</h1>
-      <div className={styles.similarProduct}>
-        {[...Array(4)].map(items => {
-          if (!loading) return <ProductCard product={item} />;
-          if (loading)
-            return (
-              <ContentLoader
-                speed={2}
-                width={400}
-                height={500}
-                viewBox='0 0 400 500'
-                backgroundColor='#f3f3f3'
-                foregroundColor='#ecebeb'
-              >
-                <rect x='15%' y='0' rx='0' ry='0' width='300' height='320' />
-                <rect x='15%' y='330' rx='0' ry='0' width='200' height='20' />
-                <rect x='15%' y='360' rx='0' ry='0' width='150' height='15' />
-                <rect x='15%' y='385' rx='0' ry='0' width='250' height='18' />
-                {/* <rect x='25%' y='0' rx='0' ry='0' width='10' height='320' /> */}
-              </ContentLoader>
-            );
-        })}
-      </div>
+      {!loading && products && products.length > 0 && (
+        <div className={styles.similarProduct}>
+          {products.map((product) => (
+            <ProductCard product={product} />
+          ))}
+          {/* {products.map((product) => {
+            if (products) return <ProductCard product={product} />;
+            else
+              return (
+                <ContentLoader
+                  speed={2}
+                  width={400}
+                  height={500}
+                  viewBox="0 0 400 500"
+                  backgroundColor="#f3f3f3"
+                  foregroundColor="#ecebeb"
+                >
+                  <rect x="15%" y="0" rx="0" ry="0" width="300" height="320" />
+                  <rect x="15%" y="330" rx="0" ry="0" width="200" height="20" />
+                  <rect x="15%" y="360" rx="0" ry="0" width="150" height="15" />
+                  <rect x="15%" y="385" rx="0" ry="0" width="250" height="18" />
+                </ContentLoader>
+              );
+          })} */}
+        </div>
+      )}
     </>
   );
 };

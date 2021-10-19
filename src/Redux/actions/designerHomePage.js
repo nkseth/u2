@@ -68,7 +68,7 @@ export const topDesigner = () => async (dispatch) => {
   try {
     const { data } = await DesignerHomePageDataService.topDesigner();
     console.log(data);
-    if (data[0].get_designer) {
+    if (data[0]?.get_designer) {
       dispatch({ type: GET_TOP_DESIGNERS, payload: data[0].get_designer });
     }
   } catch (err) {

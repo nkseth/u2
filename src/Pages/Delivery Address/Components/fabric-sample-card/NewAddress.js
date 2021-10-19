@@ -57,8 +57,6 @@ function NewAddress({ setAddAddress }) {
   const [city, setCity] = useState("");
   const [landmark, setLandmark] = useState("");
 
-  const classes = useStyles();
-
   const createNewAddressHandler = (e) => {
     e.preventDefault();
     console.log(
@@ -82,7 +80,7 @@ function NewAddress({ setAddAddress }) {
       return alert("Provide different alternate contact.");
     dispatch(
       addAddress({
-        address_type: AddressType === 0 ? "Primary" : "Secondary",
+        address_type: AddressType === 0 ? "Home" : "Office",
         address_line_1: address,
         city,
         zip_code: pincode,
@@ -95,6 +93,8 @@ function NewAddress({ setAddAddress }) {
         alternate_phone: alternateMobile,
       })
     );
+
+    setAddAddress(false);
   };
 
   return (

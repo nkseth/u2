@@ -8,11 +8,6 @@ import ProductsSection from "./Components/Sections/Products/products";
 import { useLocation } from "react-router-dom";
 import Loader from "../../utils/Loader/Loader";
 
-//images
-
-// import AllenSolly from "./Components/Sections/Products/Images/AllenSolly.png";
-// import PeterEngland from "./Components/Sections/Products/Images/PeterEngland.png";
-// import BeneKleed from "./Components/Sections/Products/Images/BeneKleed.png";
 import common_axios from "../../utils/axios.config";
 import {
   getFilteredProduct,

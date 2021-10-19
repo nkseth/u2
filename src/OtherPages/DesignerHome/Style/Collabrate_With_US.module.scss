@@ -36,6 +36,7 @@
     text-align: center;
     font-family: 'DM Serif Display';
     padding-bottom: 20px;
+    z-index: 2;
   }
   p {
     color: #fff;
@@ -45,6 +46,7 @@
     width: 70%;
     text-align: center;
     margin: 0 auto;
+    z-index: 2;
   }
   // button {
   //   height: 200px;
@@ -66,12 +68,35 @@
 }
 
 .collabrate_bgg {
-  background: #392d169a !important;
-  padding: 3rem 2rem !important;
+  background: #6a5b4052;
+
+  // padding: 3rem 2rem !important;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .Collabrate_With_US {
+    h2 {
+      font-family: DM Serif Display;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 36px;
+      letter-spacing: 0em;
+    }
+    p {
+      font-family: DM Sans;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 19px;
+      letter-spacing: 0em;
+      text-align: center;
+
+      margin-bottom: 5px !important;
+      width: 95%;
+      text-align: center;
+      margin: 0 auto;
+    }
     height: 50vh;
     button {
       font-size: 14px;
@@ -82,17 +107,43 @@
 }
 
 @media screen and (max-width: 420px) {
-  .collabrate_bg {
-    padding: 3rem 7rem;
+  .collabrate_bgg {
+    padding: 1rem 1rem;
   }
   .Collabrate_With_US {
+    height: 220px;
+    button {
+      font-family: DM Sans;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0em;
+      text-align: left;
+
+      &:hover {
+        background-color: #fff;
+        color: #857250;
+      }
+    }
     h2 {
-      font-size: 35px;
-      padding-bottom: 10px;
-      line-height: 33px;
+      font-family: DM Serif Display;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 36px;
+      letter-spacing: 0em;
     }
     p {
-      margin-bottom: 35px !important;
+      font-family: DM Sans;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 19px;
+      letter-spacing: 0em;
+      text-align: center;
+
+      margin-bottom: 5px !important;
       width: 95%;
       text-align: center;
       margin: 0 auto;

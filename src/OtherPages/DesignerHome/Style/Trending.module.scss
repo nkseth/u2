@@ -480,15 +480,25 @@
     font-size: 20px;
     margin-bottom: 20px;
   }
+  .SuitWear_header {
+    font-family: DM Serif Display;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #1a202c;
+  }
   .trending_content {
     padding: 1rem 1rem !important;
   }
   .Trending_Items {
     width: 150px !important;
-    height: 160px !important;
+    height: 180px !important;
     img {
       width: 150px !important;
-      height: 110px !important;
+      height: 125px !important;
     }
     div {
       a {

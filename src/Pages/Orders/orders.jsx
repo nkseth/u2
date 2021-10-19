@@ -67,7 +67,7 @@ export default function Orders({
           {loading ? (
             <Loader />
           ) : (
-            order?.items.map(({ item }) => {
+            order && order.items.map((item) => {
               return (
                 <>
                   <div className={styles.productDiv}>

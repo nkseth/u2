@@ -43,7 +43,7 @@ export const productsReducer = (
 export const productDetailsReducer = (
   state = {
     loading: false,
-    details: null,
+    details: false,
     attributes: null,
     tags: null,
     error: null,
@@ -55,7 +55,7 @@ export const productDetailsReducer = (
     case GET_PRODUCT_DETAILS_REQUEST:
       return { ...state, loading: true };
     case GET_PRODUCT_DETAILS_SUCCESS: {
-      // Object.assign(state, payload);
+      Object.assign(state.details, payload);
       return {
         ...state,
         loading: false,

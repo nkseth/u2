@@ -31,7 +31,9 @@ const PopularCategory = () => {
         {categories?.slice(0, 6).map((category, i) => {
           return (
             <div
-              onClick={() => history.push("/designers-product-page/shirts")}
+              onClick={() =>
+                history.push(`/designers-product-page/${category.link}`)
+              }
               className={`${styles.Category_item}   Category_item-${i}`}
               style={{
                 backgroundImage: "url(" + category?.image + ")",

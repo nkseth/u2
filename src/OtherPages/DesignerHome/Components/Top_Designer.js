@@ -7,22 +7,21 @@ import {
   ButtonBack,
   ButtonNext,
   DotGroup,
-} from 'pure-react-carousel';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import CustomSection from '../../../utils/Custom Section/section';
-import CustomDivider from '../../../utils/Custom Divider/divider';
-import styles from '../Style/Top_Designer.module.scss';
-import d1 from '../Images/d1.png';
-import d2 from '../Images/d2.png';
-import d3 from '../Images/d3.png';
-import d4 from '../Images/d4.png';
-import { useEffect, useState } from 'react';
-import { topDesigner } from '../../../Redux/actions/designerHomePage';
-import { useDispatch, useSelector } from 'react-redux';
-import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
+} from "pure-react-carousel";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import CustomSection from "../../../utils/Custom Section/section";
+import CustomDivider from "../../../utils/Custom Divider/divider";
+import styles from "../Style/Top_Designer.module.scss";
+import d1 from "../Images/d1.png";
+import d2 from "../Images/d2.png";
+import d3 from "../Images/d3.png";
+import d4 from "../Images/d4.png";
+import { useEffect, useState } from "react";
+import { topDesigner } from "../../../Redux/actions/designerHomePage";
+import { useDispatch, useSelector } from "react-redux";
+import { LazyLoadingComp, LazyLoadingImg } from "../../../utils/LazyLoading";
 import Loader from "../../../utils/Loader/Loader";
-
 
 const Top_Designer = () => {
   const dispatch = useDispatch();
@@ -59,47 +58,46 @@ const Top_Designer = () => {
             <CustomDivider style={{ height: "2px", background: "#fff" }} />
           </div>
 
-
-        <CarouselProvider
-          visibleSlides={match ? 1 : iPade ? 2 : visible}
-          totalSlides={designers?.length}
-          isIntrinsicHeight
-        >
-          <Slider>
-            {designers?.map(({ id, name, cover_image }, i) => (
-              <>
-                <Slide
-                  index={i}
-                  key={id}
-                  style={
-                    CustomView
-                      ? { marginRight: 0, marginLeft: 0 }
-                      : { marginLeft: 25, marginRight: 25 }
-                  }
-                >
-                  <LazyLoadingComp>
-                    <Link to='designers-profile'>
-                      <div className={styles.Top_Designer}>
-                        <div className={styles.Top_Designer_Items}>
-                          {/* <LazyLoadingImg image={cover_image} /> */}
-                          <img
+          <CarouselProvider
+            visibleSlides={match ? 1 : iPade ? 2 : visible}
+            totalSlides={designers?.length}
+            isIntrinsicHeight
+          >
+            <Slider>
+              {designers?.map(({ id, name, cover_image }, i) => (
+                <>
+                  <Slide
+                    index={i}
+                    key={id}
+                    style={
+                      CustomView
+                        ? { marginRight: 0, marginLeft: 0 }
+                        : { marginLeft: 25, marginRight: 25 }
+                    }
+                  >
+                    <LazyLoadingComp>
+                      <Link to="designers-profile">
+                        <div className={styles.Top_Designer}>
+                          <div className={styles.Top_Designer_Items}>
+                            <LazyLoadingImg image={cover_image} />
+                            {/* <img
                             src={
                               'https://images.unsplash.com/photo-1545239351-ef35f43d514b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80'
                             }
                             alt={id}
-                          />
-                          <Link to='designers-profile'>{name}</Link>
+                          /> */}
+                            <Link to="designers-profile">{name}</Link>
+                          </div>
                         </div>
-                      </div>
-                    </Link>
-                  </LazyLoadingComp>
-                </Slide>
-              </>
-            ))}          
-          </Slider>
-          <DotGroup style={{ display: 'flex', marginTop: '1rem' }} />
-          <div className={styles.NavigationContainer}>
-            {/* <Link to='designers-profile' style={{ color: '#0A0A0A' }}>
+                      </Link>
+                    </LazyLoadingComp>
+                  </Slide>
+                </>
+              ))}
+            </Slider>
+            <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
+            <div className={styles.NavigationContainer}>
+              {/* <Link to='designers-profile' style={{ color: '#0A0A0A' }}>
 
               SEE All
             </Link> */}

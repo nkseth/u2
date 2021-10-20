@@ -1,5 +1,5 @@
-import common_axios from "../../utils/axios.config";
-import DesignerHomePageDataService from "../services/designerHomePage.service";
+import common_axios from '../../utils/axios.config';
+import DesignerHomePageDataService from '../services/designerHomePage.service';
 import {
   GET_CATEGORY_GROUP,
   GET_CATEGORY_SUBGROUP,
@@ -11,9 +11,9 @@ import {
   GET_TOP_DESIGNERS,
   GET_TOP_SEASON_OFFERS,
   GET_TOP_TRENDING,
-} from "./types";
+} from './types';
 
-export const topTrending = () => async (dispatch) => {
+export const topTrending = () => async dispatch => {
   try {
     const { data } = await DesignerHomePageDataService.getTrending();
     if (data.trending_categories) {
@@ -28,7 +28,7 @@ export const topTrending = () => async (dispatch) => {
   }
 };
 
-export const topCategories = (params) => async (dispatch) => {
+export const topCategories = params => async dispatch => {
   try {
     const { data } = await DesignerHomePageDataService.topCategories(params);
     if (data.data) {
@@ -40,7 +40,7 @@ export const topCategories = (params) => async (dispatch) => {
   }
 };
 
-export const suitWears = () => async (dispatch) => {
+export const suitWears = () => async dispatch => {
   try {
     const { data } = await DesignerHomePageDataService.suitWear();
     if (data.suit_wear) {
@@ -52,7 +52,7 @@ export const suitWears = () => async (dispatch) => {
   }
 };
 
-export const popularCategories = () => async (dispatch) => {
+export const popularCategories = () => async dispatch => {
   try {
     const { data } = await DesignerHomePageDataService.popularCategory();
     if (data.data) {
@@ -64,7 +64,7 @@ export const popularCategories = () => async (dispatch) => {
   }
 };
 
-export const topDesigner = () => async (dispatch) => {
+export const topDesigner = () => async dispatch => {
   try {
     const { data } = await DesignerHomePageDataService.topDesigner();
     console.log(data);
@@ -77,7 +77,7 @@ export const topDesigner = () => async (dispatch) => {
   }
 };
 
-export const topSeasonOffers = () => async (dispatch) => {
+export const topSeasonOffers = () => async dispatch => {
   try {
     const { data } = await DesignerHomePageDataService.topSeasonOffers();
     if (data.data) {
@@ -89,7 +89,7 @@ export const topSeasonOffers = () => async (dispatch) => {
   }
 };
 
-export const handMadeClothes = () => async (dispatch) => {
+export const handMadeClothes = () => async dispatch => {
   try {
     const { data } = await DesignerHomePageDataService.handMadeClothes();
     if (data.hand_made_cloth) {
@@ -101,11 +101,11 @@ export const handMadeClothes = () => async (dispatch) => {
   }
 };
 
-export const getCategoryGroup = (val) => async (dispatch) => {
+export const getCategoryGroup = val => async dispatch => {
   try {
     let type = val;
-    if (type === "men") type = "mens";
-    if (type === "women") type = "womens";
+    if (type === 'men') type = 'mens';
+    if (type === 'women') type = 'womens';
     const { data } = await common_axios.get(`/category-grps/${type}`);
 
     if (data.data?.length > 0) {
@@ -120,7 +120,7 @@ export const getCategoryGroup = (val) => async (dispatch) => {
   }
 };
 
-export const getCategorySubGroup = (val) => async (dispatch) => {
+export const getCategorySubGroup = val => async dispatch => {
   try {
     console.log(val);
     const { data } = await common_axios.get(`/category_sub_grp/${val}/10`);
@@ -135,7 +135,7 @@ export const getCategorySubGroup = (val) => async (dispatch) => {
   }
 };
 
-export const getCustomerReviews = () => async (dispatch) => {
+export const getCustomerReviews = () => async dispatch => {
   try {
     const { data } = await common_axios.get(`/product_review_list`);
     if (data.data) {

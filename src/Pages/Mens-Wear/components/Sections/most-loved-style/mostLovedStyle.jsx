@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IconButton, useMediaQuery } from '@material-ui/core';
+import { IconButton, useMediaQuery, useTheme } from '@material-ui/core';
 import {
   CarouselProvider,
   Slider,
@@ -24,6 +24,13 @@ export default function MostLovedStyleSection({ type }) {
   const tabViewPro = useMediaQuery('(max-width:835px)');
   const mobileView = useMediaQuery('(max-width:550px)');
 
+  const [visible, setvisible] = useState(3);
+  const theme = useTheme();
+
+  const match = useMediaQuery('(max-width:630px)');
+  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
+  const large = useMediaQuery(theme.breakpoints.down('1330px'));
+  const CustomView = useMediaQuery('(max-width:400px)');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,8 +48,9 @@ export default function MostLovedStyleSection({ type }) {
       }}
     >
       <CarouselProvider
-        naturalSlideWidth={100}
-        totalSlides={most_loved.length / 2}
+        visibleSlides={match ? 1.4 : iPade ? 2 : large ? 3 : visible}
+        // naturalSlideWidth={100}
+        totalSlides={most_loved.length}
         isIntrinsicHeight
       >
         {mobileView ? (

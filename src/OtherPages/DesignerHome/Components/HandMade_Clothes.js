@@ -36,10 +36,10 @@ const HandMade_Clothes = () => {
   }, []);
 
   const theme = useTheme();
-  const match = useMediaQuery(theme.breakpoints.down('xs'));
-  const small = useMediaQuery(theme.breakpoints.down('sm'));
-  const iPade = useMediaQuery(theme.breakpoints.down('1330'));
-  const CustomView = useMediaQuery('(max-width:550px)');
+  const match = useMediaQuery('(max-width:630px)');
+  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
+  const large = useMediaQuery(theme.breakpoints.down('1330px'));
+  const CustomView = useMediaQuery('(max-width:400px)');
 
   if (!clothes) {
     return null;
@@ -58,8 +58,8 @@ const HandMade_Clothes = () => {
           />
         </div>
         <CarouselProvider
-          visibleSlides={match ? 1 : small ? 2 : iPade ? 3 : 4}
-          totalSlides={clothes?.length}
+          visibleSlides={match ? 1.4 : iPade ? 2 : large ? 3 : visible}
+          totalSlides={clothes?.length + 0.8}
           isIntrinsicHeight
         >
           <Slider>
@@ -69,9 +69,10 @@ const HandMade_Clothes = () => {
                 key={id}
                 style={
                   CustomView
-                    ? { marginLeft: 0, marginRight: 0 }
-                    : { marginLeft: 20, marginRight: 20 }
+                    ? { marginRight: '40px', marginLeft: '10px' }
+                    : { marginRight: '20px', marginLeft: '20px' }
                 }
+                className={styles.items}
               >
                 <LazyLoadingComp>
                   <div className={styles.SuitWear}>
@@ -87,24 +88,34 @@ const HandMade_Clothes = () => {
               </Slide>
             ))}
           </Slider>
-          <DotGroup style={{ display: 'flex', marginTop: '2rem' }} />
-          <div className={styles.NavigationContainer}>
-            {/* <Link style={{ color: '#fff' }} to='designers-product-page'>
+          {!mobile && (
+            <>
+              <DotGroup style={{ display: 'flex', marginTop: '2rem' }} />
+              <div className={styles.NavigationContainer}>
+                {/* <Link style={{ color: '#fff' }} to='designers-product-page'>
               SEE All
             </Link> */}
-            <div className={styles.Carousel_SliderButtonBox}>
-              <ButtonBack className={styles.Carousel_SliderButtons}>
-                <IconButton size='small' className={styles.Carousel_iconBtn}>
-                  <NavigateBeforeIcon />
-                </IconButton>
-              </ButtonBack>
-              <ButtonNext className={styles.Carousel_SliderButtons}>
-                <IconButton size='small' className={styles.Carousel_iconBtn}>
-                  <NavigateNextIcon />
-                </IconButton>
-              </ButtonNext>
-            </div>
-          </div>
+                <div className={styles.Carousel_SliderButtonBox}>
+                  <ButtonBack className={styles.Carousel_SliderButtons}>
+                    <IconButton
+                      size='small'
+                      className={styles.Carousel_iconBtn}
+                    >
+                      <NavigateBeforeIcon />
+                    </IconButton>
+                  </ButtonBack>
+                  <ButtonNext className={styles.Carousel_SliderButtons}>
+                    <IconButton
+                      size='small'
+                      className={styles.Carousel_iconBtn}
+                    >
+                      <NavigateNextIcon />
+                    </IconButton>
+                  </ButtonNext>
+                </div>
+              </div>
+            </>
+          )}
         </CarouselProvider>
       </CustomSection>
     </div>

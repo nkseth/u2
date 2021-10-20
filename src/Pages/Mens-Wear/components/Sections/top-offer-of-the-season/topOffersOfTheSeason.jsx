@@ -37,6 +37,10 @@ export default function TopOffersOfTheSeasonSection({ type }) {
 
   const dispatch = useDispatch();
   const { top_offers } = useSelector(state => state.root.main);
+  console.log(
+    '🚀 ~ file: topOffersOfTheSeason.jsx ~ line 40 ~ TopOffersOfTheSeasonSection ~ top_offers',
+    top_offers
+  );
 
   useEffect(() => {
     dispatch(get_top_offers(`${type}-fashion`));
@@ -56,8 +60,8 @@ export default function TopOffersOfTheSeasonSection({ type }) {
       </div>
       <CarouselProvider
         naturalSlideWidth={100}
-        visibleSlides={match ? 1 : iPade ? 3 : small ? 2 : 4}
-        totalSlides={top_offers.length}
+        visibleSlides={match ? 1.5 : iPade ? 3 : small ? 2 : 4}
+        totalSlides={top_offers.length + 0.3}
         isIntrinsicHeight
       >
         <Slider>

@@ -139,9 +139,9 @@ export default function MensWear({ match }) {
 
           <CarouselProvider
             naturalSlideWidth={100}
-            visibleSlides={small ? 1 : customView ? 2 : iPade ? 1 : 3}
-            totalSlides={mens_wear_cat.length}
-            infinite
+            visibleSlides={small ? 1.5 : customView ? 2 : iPade ? 1 : 3}
+            totalSlides={mens_wear_cat.length + 0.45}
+            // infinite
             isIntrinsicHeight
             className={styles.carousel}
           >

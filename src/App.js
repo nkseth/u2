@@ -54,13 +54,13 @@ import {
   Write_to_us,
   Order_details_page,
   Add_Review_Page,
-} from './OtherPages/AllComponents';
-import DesignerHome from './OtherPages/DesignerHome/DesignerHome';
-import { Page_Login } from './LoginSceens/LoginSignUp';
-import useLogin from './LoginSceens/useLogin';
-import MeasurementAndSimulation from './OtherPages/MeasurementAndSimulation/MeasurementAndSimulation';
-import { setUserData } from './Redux/actions/homepage';
-import { useCookies } from 'react-cookie';
+} from "./OtherPages/AllComponents";
+import DesignerHome from "./OtherPages/DesignerHome/DesignerHome";
+import { Page_Login } from "./LoginSceens/LoginSignUp";
+import useLogin from "./LoginSceens/useLogin";
+import MeasurementAndSimulation from "./OtherPages/MeasurementAndSimulation/MeasurementAndSimulation";
+import { setUserData } from "./Redux/actions/homepage";
+import { useCookies } from "react-cookie";
 
 import styles from "./App.module.scss";
 import AddManMeasurement from "./Pages/Add-Measurement-body-measurement/AddMeasurmentMan";
@@ -169,7 +169,7 @@ function App() {
           exact
         />
         <ProtectedRoute
-          path="/add-measurement-image"
+          path="/add-measurement-image/:basic_id"
           component={UploadImage}
           exact
         />
@@ -220,12 +220,12 @@ function App() {
           exact
         />
 
-        <ProtectedRoute path={'/review'} component={Page_Review} />
-        <Route path={'/chatexpert'} component={Page_ChatExpert} />
-        <Route path={'/about-us'} component={About_Us} />
-        <Route path={'/contact-us'} component={Contact_Us} />
-        <Route path={'/write-to-us'} component={Write_to_us} />
-        <Route path={'/add-review/:id'} component={Add_Review_Page} />
+        <ProtectedRoute path={"/review"} component={Page_Review} />
+        <Route path={"/chatexpert"} component={Page_ChatExpert} />
+        <Route path={"/about-us"} component={About_Us} />
+        <Route path={"/contact-us"} component={Contact_Us} />
+        <Route path={"/write-to-us"} component={Write_to_us} />
+        <Route path={"/add-review/:id"} component={Add_Review_Page} />
         {/* <Route path={'/chatexpert'} component={Page_ChatExpert} /> */}
         {/* Without Side Bar */}
         <Route path={"/designers-profile"} component={Designers_Profile_Page} />

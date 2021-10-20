@@ -8,23 +8,40 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import BagIcon from "./icon.svg";
 import ScissorIcon from "./scissor.svg";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../utils/Loader/Loader";
 import {
   getWishList,
   removeFromWishlist,
   add_to_bag,
+  clearUpdateWishlist,
 } from "../../Redux/actions/wishlist";
 import { useHistory } from "react-router-dom";
 
 function WishListPage() {
+  const history = useHistory();
   const dispatch = useDispatch();
 
+  const { added, removed, loading } = useSelector(
+    (state) => state?.root.updateWishlist
+  );
   const { list } = useSelector((state) => state?.root.wishlist);
   const { user, isAuthenticated } = useSelector((state) => state?.root.auth);
   console.log(list);
 
   useEffect(() => {
-    if (isAuthenticated) dispatch(getWishList(user.api_token));
-  }, [isAuthenticated, user, dispatch]);
+    if (!isAuthenticated) return;
+    if (!loading) {
+      if (added) {
+        // alert(added);
+        dispatch(clearUpdateWishlist());
+      }
+      if (removed) {
+        // alert(added);
+        dispatch(clearUpdateWishlist());
+      }
+    }
+    dispatch(getWishList(user.api_token));
+  }, [isAuthenticated, user, added, removed, history, loading, dispatch]);
   return (
     <div className={styles.WishList}>
       <div className={styles.Container}>
@@ -44,11 +61,18 @@ export function Product({
     title,
     currency_symbol,
     custom_price,
+    custom_offer_price,
+    custom_discount,
     readymade_price,
+    readymade_offer_price,
+    readymade_discount,
     discount,
     offer_price,
     price,
     slug,
+    product_id,
+    type,
+    fabric,
   },
 }) {
   const history = useHistory();
@@ -57,33 +81,61 @@ export function Product({
   const MobileView = useMediaQuery("(max-width:450px)");
   const { message } = useSelector((state) => state.root.addToBag);
   const { user } = useSelector((state) => state.root.auth);
+
   const removeHandler = () => {
-    dispatch(removeFromWishlist(id, user.api_token));
-    dispatch(getWishList(user.api_token));
+    dispatch(removeFromWishlist(product_id, user.api_token));
   };
   const addToBagHandler = () => {
-    dispatch(add_to_bag(slug));
-    dispatch(removeFromWishlist(id, user.api_token));
-    if (message) alert(message);
+    dispatch(add_to_bag(slug, type));
+    dispatch(removeFromWishlist(product_id, user.api_token));
   };
-  const itemPrice = custom_price > 0 ? custom_price : readymade_price;
+  const itemPrice = type === "readymade" ? readymade_price : custom_price;
   return (
     <div className={styles.Product}>
       <div className={styles.main}>
         <img src={image} className={styles.mainImg} alt={title} />
         <div className={styles.mainInfodiv}>
           <h1>{title}</h1>
-          <p>Solid colour</p>
-          <div className={styles.PriceDivMobile}>
-            <h3 className={styles.PriceMobile}>
-              {currency_symbol}
-              {itemPrice}
-            </h3>
-            <div className={styles.PriceInfoMobile}>
-              <p>{price}</p>
-              <span>{discount}</span>
+          <p>{fabric}</p>
+          {type === "readymade" ? (
+            readymade_offer_price > 0 ? (
+              <div className={styles.PriceDivMobile}>
+                <h3 className={styles.PriceMobile}>
+                  {currency_symbol}
+                  {readymade_offer_price}
+                </h3>
+                <div className={styles.PriceInfoMobile}>
+                  <p>{readymade_price}</p>
+                  <span>{readymade_discount}% off</span>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.PriceDivMobile}>
+                <h3 className={styles.PriceMobile}>
+                  {currency_symbol}
+                  {readymade_price}
+                </h3>
+              </div>
+            )
+          ) : custom_offer_price > 0 ? (
+            <div className={styles.PriceDivMobile}>
+              <h3 className={styles.PriceMobile}>
+                {currency_symbol}
+                {custom_offer_price}
+              </h3>
+              <div className={styles.PriceInfoMobile}>
+                <p>{custom_price}</p>
+                <span>{custom_discount}% off</span>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className={styles.PriceDivMobile}>
+              <h3 className={styles.PriceMobile}>
+                {currency_symbol}
+                {custom_price}
+              </h3>
+            </div>
+          )}
           {/* <>
             <p className={styles.QuanTitleMobile}>Quanity</p>
 
@@ -98,14 +150,16 @@ export function Product({
             </div>
           </> */}
           <h5>Product type</h5>
-          <h6>Readymade</h6>
+          <h6>{type.toUpperCase()}</h6>
 
           <div className={styles.quantityDiv}>
             <div className={styles.BtnDiv}>
               <Button
                 onClick={addToBagHandler}
                 className={styles.AddToBagBtn}
-                startIcon={<img src={BagIcon} style={{ color: "#fff" }} />}
+                startIcon={
+                  <img src={BagIcon} style={{ color: "#fff" }} alt="bagIcon" />
+                }
               >
                 Add to Bag
               </Button>
@@ -113,7 +167,11 @@ export function Product({
                 <Button
                   className={styles.CustomisedBtn}
                   startIcon={
-                    <img src={ScissorIcon} style={{ color: "#fff" }} />
+                    <img
+                      src={ScissorIcon}
+                      style={{ color: "#fff" }}
+                      alt="ScissorIcon"
+                    />
                   }
                 >
                   Customised
@@ -134,15 +192,87 @@ export function Product({
             </div>
           </div>
         </div>
-        <div className={styles.PriceDiv}>
-          <h3 className={styles.Price}>
-            {currency_symbol}
-            {itemPrice}
-          </h3>
-          <div className={styles.PriceInfo}>
-            <p>{price}</p>
-            <span>{discount}</span>
+        {type === "readymade" ? (
+          readymade_offer_price > 0 ? (
+            <div className={styles.PriceDivMobile}>
+              <h3 className={styles.PriceMobile}>
+                {currency_symbol}
+                {readymade_offer_price}
+              </h3>
+              <div className={styles.PriceInfoMobile}>
+                <p>{readymade_price}</p>
+                <span>{readymade_discount}% off</span>
+              </div>
+            </div>
+          ) : (
+            <div className={styles.PriceDivMobile}>
+              <h3 className={styles.PriceMobile}>
+                {currency_symbol}
+                {readymade_price}
+              </h3>
+            </div>
+          )
+        ) : custom_offer_price > 0 ? (
+          <div className={styles.PriceDivMobile}>
+            <h3 className={styles.PriceMobile}>
+              {currency_symbol}
+              {custom_offer_price}
+            </h3>
+            <div className={styles.PriceInfoMobile}>
+              <p>{custom_price}</p>
+              <span>{custom_discount}% off</span>
+            </div>
           </div>
+        ) : (
+          <div className={styles.PriceDivMobile}>
+            <h3 className={styles.PriceMobile}>
+              {currency_symbol}
+              {custom_price}
+            </h3>
+          </div>
+        )}
+        <div className={styles.PriceDiv}>
+          {type === "readymade" ? (
+            readymade_offer_price > 0 ? (
+              <>
+                <h3 className={styles.Price}>
+                  {currency_symbol}
+                  {readymade_offer_price}
+                </h3>
+                <div className={styles.PriceInfo}>
+                  <p>
+                    {currency_symbol}
+                    {readymade_price}
+                  </p>
+                  <span>{readymade_discount}% off</span>
+                </div>
+              </>
+            ) : (
+              <h3 className={styles.Price}>
+                {currency_symbol}
+                {readymade_price}
+              </h3>
+            )
+          ) : custom_offer_price > 0 ? (
+            <>
+              <h3 className={styles.Price}>
+                {currency_symbol}
+                {custom_offer_price}
+              </h3>
+              <div className={styles.PriceInfo}>
+                <p>
+                  {currency_symbol}
+                  {custom_price}
+                </p>
+                <span>{custom_discount}% off</span>
+              </div>
+            </>
+          ) : (
+            <h3 className={styles.Price}>
+              {currency_symbol}
+              {custom_price}
+            </h3>
+          )}
           {/* <p className={styles.QuanTitle}>Quanity</p>
 
           <div className={styles.quanDiv}>

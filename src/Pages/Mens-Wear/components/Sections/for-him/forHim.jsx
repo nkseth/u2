@@ -75,10 +75,6 @@ export default function ForHimSection({ type, loading }) {
                   All
                 </span>
                 {banner.categories?.map((item, index) => {
-                  console.log(
-                    '🚀 ~ file: forHim.jsx ~ line 78 ~ {banner.categories?.map ~ item',
-                    item
-                  );
                   if (index > 3) {
                     return null;
                   }

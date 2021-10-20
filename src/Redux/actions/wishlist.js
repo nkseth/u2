@@ -9,9 +9,11 @@ import {
   REMOVE_FROM_WISHLIST_SUCCESS,
 } from "./types";
 
-export const add_to_bag = (slug) => async (dispatch) => {
+export const add_to_bag = (slug, type) => async (dispatch) => {
   try {
-    const { data } = await common_axios.post(`/addToCart/${slug}`);
+    const { data } = await common_axios.post(`/addToCart/${slug}`, {
+      type,
+    });
     if (data.message) {
       dispatch({ type: ADD_TO_BAG, payload: data.message });
     }

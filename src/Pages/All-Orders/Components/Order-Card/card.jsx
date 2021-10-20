@@ -28,7 +28,7 @@ export default function OrdersCard({ pending, item, orderId }) {
               >
                 {item.title}
               </h1>
-              <span>Solid Straight Kurta</span>
+              <span>{item.fabric}</span>
             </div>
 
             <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>

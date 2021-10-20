@@ -37,7 +37,11 @@ import {
   removeCartItemReducer,
   couponsReducer,
 } from "./myBagReducer";
-import { productsReducer, productDetailsReducer } from "./productsReducer";
+import {
+  productsReducer,
+  productDetailsReducer,
+  similarProductsReducer,
+} from "./productsReducer";
 import { trackOrderReducer, orderDetailReducer } from "./orderReducer";
 import { addressReducer, paymentReducer } from "./checkoutReducer";
 
@@ -69,6 +73,7 @@ const rootreducer = combineReducers({
   registerUser: registerUserReducer,
   removeCartItem: removeCartItemReducer,
   saveMeasurement: saveMeasurementReducer,
+  similarProducts: similarProductsReducer,
   storefilter: storefilterReducer,
   suitWears: suitWearReducer,
   topCategory: topCategoryReducer,

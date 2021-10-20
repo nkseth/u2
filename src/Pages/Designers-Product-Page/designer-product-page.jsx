@@ -8,18 +8,13 @@ import ProductsSection from "./Components/Sections/Products/products";
 import { useLocation } from "react-router-dom";
 import Loader from "../../utils/Loader/Loader";
 
-//images
-
-// import AllenSolly from "./Components/Sections/Products/Images/AllenSolly.png";
-// import PeterEngland from "./Components/Sections/Products/Images/PeterEngland.png";
-// import BeneKleed from "./Components/Sections/Products/Images/BeneKleed.png";
 import common_axios from "../../utils/axios.config";
 import {
   getFilteredProduct,
   getFilterList,
 } from "../../Redux/actions/filter-category";
 import { useDispatch, useSelector } from "react-redux";
-import { getWishList } from "../../Redux/actions/wishlist";
+import { clearUpdateWishlist, getWishList } from "../../Redux/actions/wishlist";
 import { clearProductsErrors, getProducts } from "../../Redux/actions/products";
 
 function DesignerProductPage({ match }) {
@@ -36,10 +31,27 @@ function DesignerProductPage({ match }) {
   const [product, setProduct] = useState([]);
   // const [loading, setLoading] = useState(true);
   const { user, isAuthenticated } = useSelector((state) => state.root.auth);
-  const { productList, loading, error } = useSelector(
+  const { productList, loading, error, sorted } = useSelector(
     (state) => state.root.products
   );
+  const {
+    added,
+    removed,
+    loading: updating,
+  } = useSelector((state) => state.root.updateWishlist);
   useEffect(() => {
+    if (!updating) {
+      if (added) {
+        console.log(added);
+        dispatch(clearUpdateWishlist());
+        alert(added);
+      }
+      if (removed) {
+        console.log(removed);
+        alert(removed);
+        dispatch(clearUpdateWishlist());
+      }
+    }
     if (error) {
       dispatch(clearProductsErrors());
       return console.log(error);
@@ -52,9 +64,8 @@ function DesignerProductPage({ match }) {
   useEffect(() => {
     if (type) dispatch(getProducts(type, { slug }));
     else dispatch(getProducts(null, { slug }));
-    if (isAuthenticated) {
-      dispatch(getWishList(user.api_token));
-    }
+    if (!isAuthenticated) return;
+    dispatch(getWishList(user.api_token));
   }, [dispatch, isAuthenticated, user, slug, type]);
 
   const filterProduct = (filterData) => {
@@ -106,15 +117,13 @@ function DesignerProductPage({ match }) {
                   />
                 </div>
               )}
-              {/* {loading ? (
-                <Loader />
-              ) : product.length > 1 ? (
-                <ProductsSection products={product} />
-              ) : (
-                <p>No Products to Show</p>
-              )} */}
-
-              <ProductsSection products={product} loading={loading} />
+              <ProductsSection
+                products={product}
+                loading={loading}
+                slug={slug}
+                group={type}
+                sorted={sorted}
+              />
             </div>
           </div>
         </div>

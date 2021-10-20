@@ -15,6 +15,7 @@ export default function DesignersCard({ image, title, description }) {
       <Link to='offers'>
         <div className={styles.imgContainer}>
           <img src={image} alt='product' />
+          {description && <div className='overlay'></div>}
           <span>{description}</span>
         </div>
       </Link>

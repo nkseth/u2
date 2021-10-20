@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SkeletonArticle from '../../../../utils/skeletons/SkeletonArticle';
 import ProductCard from '../../../Designers-Product-Page/Components/product-card/card';
 import styles from './SimilarProducts.module.scss';
 import Loader from '../../../../utils/Loader/Loader';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import ContentLoader from 'react-content-loader';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSimilarProducts } from '../../../../Redux/actions/products';
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext,
+  DotGroup,
+} from 'pure-react-carousel';
+import { useMediaQuery, useTheme } from '@material-ui/core';
 
-const SimilarProducts = () => {
-  const [loading, setLoading] = useState(true);
+const SimilarProducts = ({ tags }) => {
+  const dispatch = useDispatch();
   const item = {
     brand: null,
     category_id: 0,
@@ -49,35 +60,70 @@ const SimilarProducts = () => {
     unit_price: 900,
   };
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 1000);
+  const { products, loading, error } = useSelector(
+    state => state.root.similarProducts
+  );
+  console.log(products);
+  useEffect(() => {
+    dispatch(getSimilarProducts(tags));
+  }, [tags, dispatch]);
+
+  const visible = 4;
+  const theme = useTheme();
+
+  const match = useMediaQuery('(max-width:630px)');
+  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
+  const large = useMediaQuery(theme.breakpoints.down('1330px'));
+  const CustomView = useMediaQuery('(max-width:400px)');
 
   return (
     <>
       <h1>Similar Products</h1>
-      <div className={styles.similarProduct}>
-        {[...Array(4)].map(items => {
-          if (!loading) return <ProductCard product={item} />;
-          if (loading)
-            return (
-              <ContentLoader
-                speed={2}
-                width={400}
-                height={500}
-                viewBox='0 0 400 500'
-                backgroundColor='#f3f3f3'
-                foregroundColor='#ecebeb'
-              >
-                <rect x='15%' y='0' rx='0' ry='0' width='300' height='320' />
-                <rect x='15%' y='330' rx='0' ry='0' width='200' height='20' />
-                <rect x='15%' y='360' rx='0' ry='0' width='150' height='15' />
-                <rect x='15%' y='385' rx='0' ry='0' width='250' height='18' />
-                {/* <rect x='25%' y='0' rx='0' ry='0' width='10' height='320' /> */}
-              </ContentLoader>
-            );
-        })}
-      </div>
+      {!loading && products && products.length > 0 && (
+        <div className={styles.similarProduct}>
+          <CarouselProvider
+            visibleSlides={match ? 1.4 : iPade ? 2 : large ? 3 : visible}
+            totalSlides={products?.length + 0.3}
+            isIntrinsicHeight
+          >
+            <Slider>
+              {products.map((product, i) => (
+                <Slide
+                  index={i}
+                  key={item.id.toString()}
+                  style={
+                    CustomView
+                      ? { marginRight: '10px', marginLeft: '10px' }
+                      : { marginRight: '20px', marginLeft: '20px' }
+                  }
+                  className={styles.items}
+                >
+                  <ProductCard product={product} />
+                </Slide>
+              ))}
+            </Slider>
+          </CarouselProvider>
+          {/* {products.map((product) => {
+            if (products) return <ProductCard product={product} />;
+            else
+              return (
+                <ContentLoader
+                  speed={2}
+                  width={400}
+                  height={500}
+                  viewBox="0 0 400 500"
+                  backgroundColor="#f3f3f3"
+                  foregroundColor="#ecebeb"
+                >
+                  <rect x="15%" y="0" rx="0" ry="0" width="300" height="320" />
+                  <rect x="15%" y="330" rx="0" ry="0" width="200" height="20" />
+                  <rect x="15%" y="360" rx="0" ry="0" width="150" height="15" />
+                  <rect x="15%" y="385" rx="0" ry="0" width="250" height="18" />
+                </ContentLoader>
+              );
+          })} */}
+        </div>
+      )}
     </>
   );
 };

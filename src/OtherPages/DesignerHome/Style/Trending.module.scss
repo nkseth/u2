@@ -350,7 +350,7 @@
       justify-content: center;
       p {
         font-weight: 600;
-        margin: 1rem 0;
+        margin-bottom: 0.7rem;
       }
       a {
         font-size: 16px;
@@ -477,9 +477,17 @@
 }
 @media screen and(max-width:420px) {
   .Trending_header {
-    font-size: 20px;
     margin-bottom: 20px;
+    font-family: DM Serif Display;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #1a202c;
   }
+
   .SuitWear_header {
     font-family: DM Serif Display;
     font-size: 20px;
@@ -494,19 +502,30 @@
     padding: 1rem 1rem !important;
   }
   .Trending_Items {
-    width: 150px !important;
-    height: 180px !important;
+    width: 164px !important;
+    height: 208px !important;
     img {
-      width: 150px !important;
-      height: 125px !important;
+      width: 164px !important;
+      height: 156px !important;
+      object-fit: cover;
     }
     div {
+      p {
+        font-family: DM Sans;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0px;
+        text-align: center;
+        color: #0a0a0a !important;
+      }
       a {
         font-size: 16px !important;
         font-weight: 400;
         text-align: center;
-        padding: 10px 0px;
-        color: black !important;
+
+        color: #0a0a0a !important;
         font-weight: 500;
       }
     }

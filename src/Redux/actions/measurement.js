@@ -21,8 +21,8 @@ export const getAllMeasurements = (token) => async (dispatch) => {
       },
     });
     console.log(data);
-    if (data) {
-      dispatch({ type: GET_ALL_MEASUREMENTS, payload: data });
+    if (data.data) {
+      dispatch({ type: GET_ALL_MEASUREMENTS, payload: data.data });
     }
   } catch (err) {
     console.log(err?.response?.data);

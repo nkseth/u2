@@ -34,23 +34,43 @@ export default function DesignerSlide({
         </>
       ) : mobileViewPro ? (
         <>
-          <DesignersCard image={image1} title={title} />
+          <DesignersCard
+            image={image1}
+            title={title}
+            description={description}
+          />
         </>
       ) : tabView ? (
         <>
-          <DesignersCard image={image1} title={title} />
+          <DesignersCard
+            image={image1}
+            title={title}
+            description={description}
+          />
         </>
       ) : tabViewPro ? (
         <>
-          <DesignersCard image={image1} title={title} />
+          <DesignersCard
+            image={image1}
+            title={title}
+            description={description}
+          />
         </>
       ) : CustomView ? (
         <>
-          <DesignersCard image={image1} title={title} />
+          <DesignersCard
+            image={image1}
+            title={title}
+            description={description}
+          />
         </>
       ) : (
         <>
-          <DesignersCard image={image1} title={title} />
+          <DesignersCard
+            image={image1}
+            title={title}
+            description={description}
+          />
         </>
       )}
     </div>

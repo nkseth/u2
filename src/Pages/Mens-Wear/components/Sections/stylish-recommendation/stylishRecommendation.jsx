@@ -1,24 +1,26 @@
-import React, { useEffect } from "react";
-import { useMediaQuery } from "@material-ui/core";
-import CustomSection from "../../../../../utils/Custom Section/section";
-import StylishCard from "./Components/stylish-cards/card";
-import styles from "./stylishRecommendation.module.scss";
+import React, { useEffect } from 'react';
+import { useMediaQuery } from '@material-ui/core';
+import CustomSection from '../../../../../utils/Custom Section/section';
+import StylishCard from './Components/stylish-cards/card';
+import styles from './stylishRecommendation.module.scss';
 //images
-import stylish1 from "../../../Images/stylish-1.png";
-import stylish2 from "../../../Images/stylish-2.png";
-import stylish3 from "../../../Images/stylish-3.png";
-import stylish4 from "../../../Images/stylish-4.png";
-import stylish5 from "../../../Images/stylish-5.png";
-import { useDispatch, useSelector } from "react-redux";
+import stylish1 from '../../../Images/stylish-1.png';
+import stylish2 from '../../../Images/stylish-2.png';
+import stylish3 from '../../../Images/stylish-3.png';
+import stylish4 from '../../../Images/stylish-4.png';
+import stylish5 from '../../../Images/stylish-5.png';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   get_most_loved,
   get_stylish_recommend,
-} from "../../../../../Redux/actions/mensWear";
-import Loader from "../../../../../utils/Loader/Loader";
+} from '../../../../../Redux/actions/mensWear';
+import Loader from '../../../../../utils/Loader/Loader';
+import CustomDivider from '../../../../../utils/Custom Divider/divider';
 export default function StylishRecommendationSection({ type }) {
-  const tabView = useMediaQuery("(max-width:768px)");
-  const tabViewPro = useMediaQuery("(max-width:835px)");
-  const mobileView = useMediaQuery("(max-width:550px)");
+  const tabView = useMediaQuery('(max-width:768px)');
+  const tabViewPro = useMediaQuery('(max-width:835px)');
+  const mobileView = useMediaQuery('(max-width:550px)');
+  const mobile = useMediaQuery('(max-width:420px)');
 
   const dispatch = useDispatch();
 
@@ -27,20 +29,28 @@ export default function StylishRecommendationSection({ type }) {
     dispatch(get_stylish_recommend(type, 2));
   }, [type, dispatch]);
 
-  const { stylish_recommend } = useSelector((state) => state.root.main);
+  const { stylish_recommend } = useSelector(state => state.root.main);
   console.log(stylish_recommend);
   return (
     <CustomSection
       style={{
-        backgroundColor: "#E6E3DC36",
-        paddingTop: "43px",
-        paddingBottom: "43px",
+        backgroundColor: '#E6E3DC36',
+        paddingTop: '43px',
+        paddingBottom: '43px',
       }}
     >
-      <div className={styles.header}>
-        <span>Stylish</span>
-        <span>Recommendation</span>
-      </div>
+      {mobile ? (
+        <div className={styles.stylish_header}>
+          Stylish Recommendation
+          <CustomDivider style={{ height: '1px', background: '#857250' }} />
+        </div>
+      ) : (
+        <div className={styles.header}>
+          <span>Stylish</span>
+          <span>Recommendation</span>
+        </div>
+      )}
+
       {!stylish_recommend ? (
         <Loader />
       ) : (

@@ -129,6 +129,7 @@ export default function ChooseStandardSize({
         user_id: user.id,
         order_id: orderId,
       });
+      setTimeout(() => {}, 150000);
       console.log(data);
       dispatch(set_basic_id(data));
       set_basic_id(data);

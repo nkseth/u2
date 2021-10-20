@@ -24,11 +24,11 @@ const Measurement = () => {
 
   return (
     <div className={styles.Measurement}>
-      {measurements.length < 1 ? (
+      {!measurements ? (
         <Loader />
       ) : (
         <div className={styles.Measurement_Box}>
-          {measurements?.map((measurement) => {
+          {measurements.map((measurement) => {
             return (
               <MeasurementItems
                 key={measurement.id}
@@ -116,7 +116,7 @@ const MeasurementItems = ({ id, background, titlename, productname, date }) => {
       >
         <div>
           <h2>{titlename}</h2>
-          <h3>{productname}</h3>
+          {/* <h3>{productname}</h3> */}
           <p>Date: {date}</p>
         </div>
         <div>

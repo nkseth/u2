@@ -26,9 +26,11 @@ import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const SuitWear = () => {
   const dispatch = useDispatch();
+  const mobile = useMediaQuery('(max-width:420px)');
+
   const customStyle = {
     padding: '5rem 3rem 4rem  3rem',
-    background: '#938368',
+    background: mobile ? '#F3F1EE' : '#938368',
   };
 
   const { suitWearItems } = useSelector(state => state.root.suitWears);
@@ -52,9 +54,14 @@ const SuitWear = () => {
   return (
     <div>
       <CustomSection class={styles.suitwear_content} style={customStyle}>
-        <div className={`${styles.SuitWear_header}`}>
+        <div
+          className={`${styles.SuitWear_header}`}
+          style={{ color: mobile ? '#000' : '#fff' }}
+        >
           Suit Wear{' '}
-          <CustomDivider style={{ height: '2px', background: '#fff' }} />
+          <CustomDivider
+            style={{ height: '2px', background: mobile ? '#000' : '#fff' }}
+          />
         </div>
         <CarouselProvider
           visibleSlides={match ? 1 : iPade ? 2 : large ? 3 : visible}

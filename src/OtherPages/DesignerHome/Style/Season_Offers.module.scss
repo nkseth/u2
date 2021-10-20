@@ -354,3 +354,37 @@
     background-size: cover;
   }
 }
+
+@media screen and(max-width:420px) {
+  .Season_Offers {
+    display: grid;
+    grid-template-areas:
+      'one one two'
+      'one one two'
+      'three three three';
+    grid-template-rows: repeat(2, 150px);
+    gap: 0.1rem;
+    div {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+    }
+  }
+
+  .h2_div {
+    h2 {
+      font-family: DM Serif Display;
+      font-size: 20px !important;
+      font-style: normal;
+      font-weight: 400;
+
+      line-height: 24px;
+
+      text-align: center;
+    }
+
+    button {
+      display: none;
+    }
+  }
+}

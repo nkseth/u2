@@ -28,12 +28,11 @@
       width: 80%;
       color: #fff;
       font-size: 16px;
-
     }
     button {
       margin-top: 15px;
-      background: rgba(0, 0, 0, 0)!important;
-      color: #fff!important;
+      background: rgba(0, 0, 0, 0) !important;
+      color: #fff !important;
       text-transform: capitalize;
       border: 2px solid #ffffff;
       width: 160px;
@@ -41,16 +40,13 @@
       font-weight: 700;
       padding: 10px;
       &:hover {
-        background-color: #857250!important;
-      border: 2px solid #857250;
-
+        background-color: #857250 !important;
+        border: 2px solid #857250;
       }
     }
   }
 }
 @media only screen and (max-width: 768px) {
-
-
   .Talk_With_Stylish {
     div {
       margin-right: 0;
@@ -95,9 +91,9 @@
   }
 }
 
-
-@media screen and (max-width: 420px){
+@media screen and (max-width: 420px) {
   .Talk_With_Stylish {
+    height: 350px;
     div {
       margin-right: 0;
       justify-content: center;

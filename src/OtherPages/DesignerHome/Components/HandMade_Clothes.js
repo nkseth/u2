@@ -22,9 +22,11 @@ import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const HandMade_Clothes = () => {
   const dispatch = useDispatch();
+  const mobile = useMediaQuery('(max-width:420px)');
+
   const customStyle = {
     padding: '5rem 3rem 4rem  3rem',
-    background: '#938368',
+    background: mobile ? '#F3F1EE' : '#938368',
   };
   const { clothes } = useSelector(state => state.root.handMadeClothes);
 
@@ -46,9 +48,14 @@ const HandMade_Clothes = () => {
   return (
     <div>
       <CustomSection class={styles.suitwear_content} style={customStyle}>
-        <div className={`${styles.SuitWear_header}`}>
+        <div
+          className={`${styles.SuitWear_header}`}
+          style={{ color: mobile ? '#000' : '#fff' }}
+        >
           Hand Made Clothes
-          <CustomDivider style={{ height: '2px', background: '#fff' }} />
+          <CustomDivider
+            style={{ height: '2px', background: mobile ? '#000' : '#fff' }}
+          />
         </div>
         <CarouselProvider
           visibleSlides={match ? 1 : small ? 2 : iPade ? 3 : 4}

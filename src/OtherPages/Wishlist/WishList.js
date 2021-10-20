@@ -61,13 +61,18 @@ export function Product({
     title,
     currency_symbol,
     custom_price,
+    custom_offer_price,
+    custom_discount,
     readymade_price,
+    readymade_offer_price,
+    readymade_discount,
     discount,
     offer_price,
     price,
     slug,
     product_id,
     type,
+    fabric,
   },
 }) {
   const history = useHistory();
@@ -91,17 +96,46 @@ export function Product({
         <img src={image} className={styles.mainImg} alt={title} />
         <div className={styles.mainInfodiv}>
           <h1>{title}</h1>
-          <p>Solid colour</p>
-          <div className={styles.PriceDivMobile}>
-            <h3 className={styles.PriceMobile}>
-              {currency_symbol}
-              {itemPrice}
-            </h3>
-            <div className={styles.PriceInfoMobile}>
-              <p>{price}</p>
-              <span>{discount}</span>
+          <p>{fabric}</p>
+          {type === "readymade" ? (
+            readymade_offer_price > 0 ? (
+              <div className={styles.PriceDivMobile}>
+                <h3 className={styles.PriceMobile}>
+                  {currency_symbol}
+                  {readymade_offer_price}
+                </h3>
+                <div className={styles.PriceInfoMobile}>
+                  <p>{readymade_price}</p>
+                  <span>{readymade_discount}% off</span>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.PriceDivMobile}>
+                <h3 className={styles.PriceMobile}>
+                  {currency_symbol}
+                  {readymade_price}
+                </h3>
+              </div>
+            )
+          ) : custom_offer_price > 0 ? (
+            <div className={styles.PriceDivMobile}>
+              <h3 className={styles.PriceMobile}>
+                {currency_symbol}
+                {custom_offer_price}
+              </h3>
+              <div className={styles.PriceInfoMobile}>
+                <p>{custom_price}</p>
+                <span>{custom_discount}% off</span>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className={styles.PriceDivMobile}>
+              <h3 className={styles.PriceMobile}>
+                {currency_symbol}
+                {custom_price}
+              </h3>
+            </div>
+          )}
           {/* <>
             <p className={styles.QuanTitleMobile}>Quanity</p>
 
@@ -123,7 +157,9 @@ export function Product({
               <Button
                 onClick={addToBagHandler}
                 className={styles.AddToBagBtn}
-                startIcon={<img src={BagIcon} style={{ color: "#fff" }} />}
+                startIcon={
+                  <img src={BagIcon} style={{ color: "#fff" }} alt="bagIcon" />
+                }
               >
                 Add to Bag
               </Button>
@@ -131,7 +167,11 @@ export function Product({
                 <Button
                   className={styles.CustomisedBtn}
                   startIcon={
-                    <img src={ScissorIcon} style={{ color: "#fff" }} />
+                    <img
+                      src={ScissorIcon}
+                      style={{ color: "#fff" }}
+                      alt="ScissorIcon"
+                    />
                   }
                 >
                   Customised
@@ -152,15 +192,87 @@ export function Product({
             </div>
           </div>
         </div>
-        <div className={styles.PriceDiv}>
-          <h3 className={styles.Price}>
-            {currency_symbol}
-            {offer_price}
-          </h3>
-          <div className={styles.PriceInfo}>
-            <p>{itemPrice}</p>
-            <span>{discount}</span>
+        {type === "readymade" ? (
+          readymade_offer_price > 0 ? (
+            <div className={styles.PriceDivMobile}>
+              <h3 className={styles.PriceMobile}>
+                {currency_symbol}
+                {readymade_offer_price}
+              </h3>
+              <div className={styles.PriceInfoMobile}>
+                <p>{readymade_price}</p>
+                <span>{readymade_discount}% off</span>
+              </div>
+            </div>
+          ) : (
+            <div className={styles.PriceDivMobile}>
+              <h3 className={styles.PriceMobile}>
+                {currency_symbol}
+                {readymade_price}
+              </h3>
+            </div>
+          )
+        ) : custom_offer_price > 0 ? (
+          <div className={styles.PriceDivMobile}>
+            <h3 className={styles.PriceMobile}>
+              {currency_symbol}
+              {custom_offer_price}
+            </h3>
+            <div className={styles.PriceInfoMobile}>
+              <p>{custom_price}</p>
+              <span>{custom_discount}% off</span>
+            </div>
           </div>
+        ) : (
+          <div className={styles.PriceDivMobile}>
+            <h3 className={styles.PriceMobile}>
+              {currency_symbol}
+              {custom_price}
+            </h3>
+          </div>
+        )}
+        <div className={styles.PriceDiv}>
+          {type === "readymade" ? (
+            readymade_offer_price > 0 ? (
+              <>
+                <h3 className={styles.Price}>
+                  {currency_symbol}
+                  {readymade_offer_price}
+                </h3>
+                <div className={styles.PriceInfo}>
+                  <p>
+                    {currency_symbol}
+                    {readymade_price}
+                  </p>
+                  <span>{readymade_discount}% off</span>
+                </div>
+              </>
+            ) : (
+              <h3 className={styles.Price}>
+                {currency_symbol}
+                {readymade_price}
+              </h3>
+            )
+          ) : custom_offer_price > 0 ? (
+            <>
+              <h3 className={styles.Price}>
+                {currency_symbol}
+                {custom_offer_price}
+              </h3>
+              <div className={styles.PriceInfo}>
+                <p>
+                  {currency_symbol}
+                  {custom_price}
+                </p>
+                <span>{custom_discount}% off</span>
+              </div>
+            </>
+          ) : (
+            <h3 className={styles.Price}>
+              {currency_symbol}
+              {custom_price}
+            </h3>
+          )}
           {/* <p className={styles.QuanTitle}>Quanity</p>
 
           <div className={styles.quanDiv}>

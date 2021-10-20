@@ -12,23 +12,26 @@ import {
 } from "../actions/types";
 
 export const productsReducer = (
-  state = { loading: false, productList: null, error: null },
+  state = { loading: false, productList: null, error: null, sorted: false },
   action
 ) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case GET_PRODUCTS_REQUEST:
       return { ...state, loading: true };
     case GET_PRODUCTS_SUCCESS:
       return {
         ...state,
         loading: false,
-        productList: action.payload,
+        productList: payload.data,
+        sorted: payload.sorted,
       };
     case GET_PRODUCTS_FAIL:
       return {
         ...state,
         loading: false,
         error: action.payload,
+        sorted: false,
       };
     case CLEAR_ERRORS:
       return { ...state, error: null };

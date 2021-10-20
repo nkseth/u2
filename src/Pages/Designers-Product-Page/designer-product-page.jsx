@@ -31,7 +31,7 @@ function DesignerProductPage({ match }) {
   const [product, setProduct] = useState([]);
   // const [loading, setLoading] = useState(true);
   const { user, isAuthenticated } = useSelector((state) => state.root.auth);
-  const { productList, loading, error } = useSelector(
+  const { productList, loading, error, sorted } = useSelector(
     (state) => state.root.products
   );
   const {
@@ -122,6 +122,7 @@ function DesignerProductPage({ match }) {
                 loading={loading}
                 slug={slug}
                 group={type}
+                sorted={sorted}
               />
             </div>
           </div>

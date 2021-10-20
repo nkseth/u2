@@ -32,7 +32,6 @@ export default function OrdersCard({ pending, item, orderId }) {
             </div>
 
             <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-
               {item.currency_symbol}
               {item.total}
             </div>
@@ -56,31 +55,66 @@ export default function OrdersCard({ pending, item, orderId }) {
           )}
 
           {pending ? (
-            <Button
-              onClick={() =>
-                history.push(`/add-measurement-choose-standard-size/${orderId}`)
-              }
-              className={styles.trackBtn}
-              variant="contained"
-              style={{ whiteSpace: "nowrap" }}
-            >
-              Add Measurement
-            </Button>
+            item.type === "readymade" ? (
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <Button
+                  // onClick={() =>
+                  //   history.push(
+                  //     `/add-measurement-choose-standard-size/${orderId}`
+                  //   )
+                  // }
+                  className={styles.trackBtn}
+                  variant="contained"
+                  style={{ whiteSpace: "nowrap" }}
+                >
+                  Confirm Payment
+                </Button>
+                <div>
+                  <h3>Product Type</h3>
+                  <span>{item.type.toUpperCase()}</span>
+                </div>
+              </div>
+            ) : (
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <Button
+                  onClick={() =>
+                    history.push(
+                      `/add-measurement-choose-standard-size/${orderId}`
+                    )
+                  }
+                  className={styles.trackBtn}
+                  variant="contained"
+                  style={{ whiteSpace: "nowrap" }}
+                >
+                  Add Measurement
+                </Button>
+                <div>
+                  <h3>Product Type</h3>
+                  <span>{item.type.toUpperCase()}</span>
+                </div>
+              </div>
+            )
           ) : (
-            <Button
-              onClick={() => history.push(`/trackorder/${orderId}`)}
-              className={styles.trackBtn}
-              variant="contained"
-              style={{ whiteSpace: "nowrap" }}
-            >
-              Track Order
-            </Button>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <Button
+                onClick={() => history.push(`/trackorder/${orderId}`)}
+                className={styles.trackBtn}
+                variant="contained"
+                style={{ whiteSpace: "nowrap" }}
+              >
+                Track Order
+              </Button>
+              <div>
+                <h3>Product Type</h3>
+                <span>{item.type.toUpperCase()}</span>
+              </div>
+            </div>
           )}
+
           <div className={styles.detailThree}>
             <Link
               to={`/order-details/${orderId}`}
               style={{ cursor: "pointer" }}
-              // onClick={() => history.push(`/rate_order/${orderId}`)}
             >
               Order Detail
             </Link>

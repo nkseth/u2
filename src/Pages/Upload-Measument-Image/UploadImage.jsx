@@ -65,13 +65,17 @@ const UploadImage = ({
     if (!image2) return alert("Upload Back Image.");
     if (image1 === image2)
       return alert("Cannot have same image for both front and back");
-
+    const formData = new FormData();
+    formData.set("measurements_basic_id", basic_id);
+    formData.set("image", image1);
+    formData.set("back_image", image2);
     try {
-      const { data } = await common_axios.post(`/save_measurment_image`, {
-        measurements_basic_id: basic_id,
-        image: image1,
-        back_image: image2,
-      });
+      const config = { headers: { "Content-Type": "multipart/form-data" } };
+      const { data } = await common_axios.post(
+        `/save_measurment_image`,
+        formData,
+        config
+      );
       console.log(data);
       if (data) {
         alert("Upload Successfull...");

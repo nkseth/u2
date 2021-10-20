@@ -26,7 +26,7 @@ import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const SuitWear = () => {
   const dispatch = useDispatch();
-  const mobile = useMediaQuery('(max-width:420px)');
+  const mobile = useMediaQuery('(max-width:450px)');
 
   const customStyle = {
     padding: '5rem 3rem 4rem  3rem',
@@ -40,7 +40,7 @@ const SuitWear = () => {
 
   const match = useMediaQuery('(max-width:630px)');
   const iPade = useMediaQuery(theme.breakpoints.down('sm'));
-  const large = useMediaQuery(theme.breakpoints.down('1330'));
+  const large = useMediaQuery(theme.breakpoints.down('1330px'));
   const CustomView = useMediaQuery('(max-width:400px)');
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const SuitWear = () => {
       <CustomSection class={styles.suitwear_content} style={customStyle}>
         <div
           className={`${styles.SuitWear_header}`}
-          style={{ color: mobile ? '#000' : '#fff' }}
+          style={{ color: mobile ? '#1A202C' : '#fff' }}
         >
           Suit Wear{' '}
           <CustomDivider
@@ -64,8 +64,8 @@ const SuitWear = () => {
           />
         </div>
         <CarouselProvider
-          visibleSlides={match ? 1 : iPade ? 2 : large ? 3 : visible}
-          totalSlides={suitWearItems?.length}
+          visibleSlides={match ? 1.4 : iPade ? 2 : large ? 3 : visible}
+          totalSlides={suitWearItems?.length + 0.3}
           isIntrinsicHeight
         >
           <Slider>
@@ -102,24 +102,35 @@ const SuitWear = () => {
               </Slide>
             ))}
           </Slider>
-          <DotGroup style={{ display: 'flex', marginTop: '2rem' }} />
-          <div className={styles.NavigationContainer}>
-            {/* <Link style={{ color: '#fff' }} to='designers-product-page'>
+          {!mobile && (
+            <>
+              <DotGroup style={{ display: 'flex', marginTop: '2rem' }} />
+              <div className={styles.NavigationContainer}>
+                {/* <Link style={{ color: '#fff' }} to='designers-product-page'>
               SEE All
             </Link> */}
-            <div className={styles.Carousel_SliderButtonBox}>
-              <ButtonBack className={styles.Carousel_SliderButtons}>
-                <IconButton size='small' className={styles.Carousel_iconBtn}>
-                  <NavigateBeforeIcon />
-                </IconButton>
-              </ButtonBack>
-              <ButtonNext className={styles.Carousel_SliderButtons}>
-                <IconButton size='small' className={styles.Carousel_iconBtn}>
-                  <NavigateNextIcon />
-                </IconButton>
-              </ButtonNext>
-            </div>
-          </div>
+
+                <div className={styles.Carousel_SliderButtonBox}>
+                  <ButtonBack className={styles.Carousel_SliderButtons}>
+                    <IconButton
+                      size='small'
+                      className={styles.Carousel_iconBtn}
+                    >
+                      <NavigateBeforeIcon />
+                    </IconButton>
+                  </ButtonBack>
+                  <ButtonNext className={styles.Carousel_SliderButtons}>
+                    <IconButton
+                      size='small'
+                      className={styles.Carousel_iconBtn}
+                    >
+                      <NavigateNextIcon />
+                    </IconButton>
+                  </ButtonNext>
+                </div>
+              </div>
+            </>
+          )}
         </CarouselProvider>
       </CustomSection>
     </div>

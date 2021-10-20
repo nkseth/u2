@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import Loader from "../../utils/Loader/Loader";
 import PastOrdersCard from "../../Pages/All-Orders/Components/Past-orders/card";
+import { Link } from "react-router-dom";
 
 const OrderDetails = (props) => {
   const dispatch = useDispatch();
@@ -66,7 +67,9 @@ const OrderDetails = (props) => {
           </>
         )}
         <div className={style.measurement}>
-          <h5>Your measurement details</h5>
+          <Link to={`/viewmeasurement/view/${order.basic_measurement_id}`}>
+            <h5>Your measurement details</h5>
+          </Link>
           <p>{order.customer.name}</p>
         </div>
         <div className={style.deliveryAddress}>
@@ -88,7 +91,6 @@ const OrderDetails = (props) => {
             <div>
               <h1>₹{order.grand_total}</h1>
             </div>
-
           </div>
           <CustomDivider />
           <div className={style.paid}>

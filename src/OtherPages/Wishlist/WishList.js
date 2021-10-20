@@ -15,7 +15,7 @@ import {
   add_to_bag,
   clearUpdateWishlist,
 } from "../../Redux/actions/wishlist";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function WishListPage() {
   const history = useHistory();
@@ -93,7 +93,9 @@ export function Product({
   return (
     <div className={styles.Product}>
       <div className={styles.main}>
-        <img src={image} className={styles.mainImg} alt={title} />
+        <Link to={`/product-description/${slug}`}>
+          <img src={image} className={styles.mainImg} alt={title} />
+        </Link>
         <div className={styles.mainInfodiv}>
           <h1>{title}</h1>
           <p>{fabric}</p>

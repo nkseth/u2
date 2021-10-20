@@ -10,7 +10,7 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomDivider from "../../../../utils/Custom Divider/divider";
 import InputField from "../../../Payment/Components/Input-Field/inputField";
 import styles from "./NewAddress.module.scss";
@@ -80,7 +80,7 @@ function NewAddress({ setAddAddress }) {
       return alert("Provide different alternate contact.");
     dispatch(
       addAddress({
-        address_type: AddressType === 0 ? "Home" : "Office",
+        address_type: AddressType === 0 ? "Primary" : "Secondary",
         address_line_1: address,
         city,
         zip_code: pincode,
@@ -96,6 +96,8 @@ function NewAddress({ setAddAddress }) {
 
     setAddAddress(false);
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div className={styles.modal}>

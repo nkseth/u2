@@ -22,7 +22,7 @@ export const getProducts = (type, filter) => async (dispatch) => {
     if (data.data) {
       dispatch({
         type: GET_PRODUCTS_SUCCESS,
-        payload: data.data,
+        payload: { data: data.data, sorted: false },
       });
     }
   } catch (err) {
@@ -61,6 +61,30 @@ export const getSimilarProducts = (tags) => async (dispatch) => {
   } catch (err) {
     console.log(err);
     dispatch({ type: GET_SIMILAR_PRODUCTS_FAILED, payload: err });
+    return Promise.reject(err);
+  }
+};
+
+export const getSortedProduct = (slug, group, type) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_PRODUCTS_REQUEST });
+    console.log("Filter Data", slug, group, type);
+    const { data } = await common_axios.post(`/productSorting`, {
+      type,
+      slug,
+      group,
+    });
+    console.log(data.data);
+    if (data.data) {
+      console.log(data);
+      dispatch({
+        type: GET_PRODUCTS_SUCCESS,
+        payload: { data: data.data, sorted: true },
+      });
+    }
+  } catch (err) {
+    console.log(err?.response?.data);
+    dispatch({ type: GET_PRODUCTS_FAIL, payload: err });
     return Promise.reject(err);
   }
 };

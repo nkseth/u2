@@ -30,8 +30,8 @@ const UploadImage = ({
   const imageUploader2 = React.useRef(null);
 
   const [image1, setImage1] = useState(null);
-
   const [image2, setImage2] = useState(null);
+  console.log(image1, image2);
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
     if (file) {

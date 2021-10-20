@@ -42,7 +42,7 @@ export const getWishList = (token) => async (dispatch) => {
 
 export const addToWishlist = (slug, token) => async (dispatch) => {
   try {
-    const { data } = await common_axios.post(`/wishlist/${slug}/add`, {
+    const { data } = await common_axios.get(`/wishlist/${slug}/add`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

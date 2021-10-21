@@ -19,7 +19,7 @@ import { getWishList } from "../../../../Redux/actions/wishlist";
 import { LazyLoadingImg } from "../../../../utils/LazyLoading";
 import { CLEAR_WISHLIST_UPDATE } from "../../../../Redux/actions/types";
 
-import { useMediaQuery } from '@material-ui/core';
+import { useMediaQuery } from "@material-ui/core";
 export default function ProductCard(props) {
   const dispatch = useDispatch();
   const [isAddToWishList, setAddToWishList] = useState(false);
@@ -57,10 +57,10 @@ export default function ProductCard(props) {
     setAddToWishList(false);
   };
 
-  const customView = useMediaQuery('(max-width:1044px)');
-  const tabView = useMediaQuery('(max-width:768px)');
-  const tabViewPro = useMediaQuery('(min-width:768px) and (max-width:1044px');
-  const mobileView = useMediaQuery('(max-width:550px)');
+  const customView = useMediaQuery("(max-width:1044px)");
+  const tabView = useMediaQuery("(max-width:768px)");
+  const tabViewPro = useMediaQuery("(min-width:768px) and (max-width:1044px");
+  const mobileView = useMediaQuery("(max-width:550px)");
 
   useEffect(() => {
     if (isAuthenticated && list && list.length > 0) {
@@ -89,7 +89,6 @@ export default function ProductCard(props) {
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <Link to={{ pathname: `/product-description/${product.slug}` }}>
-
           <LazyLoadingImg image={product.cover_image} />
           {/* <img src={product.feature_image} alt='' /> */}
         </Link>
@@ -103,45 +102,65 @@ export default function ProductCard(props) {
           >
             <FavoriteIcon
               style={{
-                color: 'red',
-                display: mobileView ? ' none' : 'unset',
+                color: "red",
+                display: mobileView ? " none" : "unset",
               }}
             />
           </IconButton>
         ) : (
           <IconButton
-            aria-label='product'
+            aria-label="product"
             onClick={() => add_to_wishlist(product)}
             className={styles.icons}
           >
             <FavoriteBorderIcon
               style={{
-                display: mobileView ? ' none' : 'unset',
+                display: mobileView ? " none" : "unset",
               }}
             />
           </IconButton>
         )}
       </div>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: "flex" }}>
         <div className={styles.productDetails}>
           <Link to={{ pathname: `/product-description/${product?.slug}` }}>
             <span className={styles.productName}>{product?.brand}</span>
           </Link>
           <span className={styles.productDesc}>{product?.title}</span>
-        {product.isCustomise === "on" ? (
-          product.custom_offer_price > 0 ? (
-            <p className={styles.productPrice}>
-              <span>
-                {product.currency_symbol}
-                {product.custom_offer_price}
-              </span>
-              <span style={{ display: "flex", gap: "5px" }}>
-                {product.currency_symbol}
-                {product.custom_price}
-                <span>{product.custom_discount.toFixed(0)}% OFF</span>
-              </span>
-            </p>
-          ) : product.has_variant ? (
+          {product.isCustomise === "on" ? (
+            product.custom_offer_price > 0 ? (
+              <p className={styles.productPrice}>
+                <span>
+                  {product.currency_symbol}
+                  {product.custom_offer_price}
+                </span>
+                <span style={{ display: "flex", gap: "5px" }}>
+                  {product.currency_symbol}
+                  {product.custom_price}
+                  <span>{product.custom_discount.toFixed(0)}% OFF</span>
+                </span>
+              </p>
+            ) : product.has_variant ? (
+              <p className={styles.productPrice}>
+                <span>
+                  {product.currency_symbol}
+                  {product.readymade_offer_price}
+                </span>
+                <span style={{ display: "flex", gap: "5px" }}>
+                  {product.currency_symbol}
+                  {product.readymade_price}
+                  <span>{product.readymade_discount.toFixed(0)}% OFF</span>
+                </span>
+              </p>
+            ) : (
+              <p className={styles.productPrice}>
+                <span>
+                  {product.currency_symbol}
+                  {product.custom_price}
+                </span>
+              </p>
+            )
+          ) : product.readymade_offer_price > 0 ? (
             <p className={styles.productPrice}>
               <span>
                 {product.currency_symbol}
@@ -157,35 +176,15 @@ export default function ProductCard(props) {
             <p className={styles.productPrice}>
               <span>
                 {product.currency_symbol}
-                {product.custom_price}
+                {product.readymade_price}
               </span>
             </p>
-          )
-        ) : product.readymade_offer_price > 0 ? (
-          <p className={styles.productPrice}>
-            <span>
-              {product.currency_symbol}
-              {product.readymade_offer_price}
-            </span>
-            <span style={{ display: "flex", gap: "5px" }}>
-              {product.currency_symbol}
-              {product.readymade_price}
-              <span>{product.readymade_discount.toFixed(0)}% OFF</span>
-            </span>
-          </p>
-        ) : (
-          <p className={styles.productPrice}>
-            <span>
-              {product.currency_symbol}
-              {product.readymade_price}
-            </span>
-          </p>
+          )}
         </div>
         <span className={styles.mobilewishlist}>
-          {' '}
-          <FavoriteBorderIcon style={{ width: '18.94px', height: '18.15px' }} />
+          {" "}
+          <FavoriteBorderIcon style={{ width: "18.94px", height: "18.15px" }} />
         </span>
-
       </div>
     </div>
   );

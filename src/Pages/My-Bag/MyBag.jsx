@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Accordion,
@@ -7,50 +7,50 @@ import {
   useMediaQuery,
   withStyles,
   Tooltip,
-} from '@material-ui/core';
+} from "@material-ui/core";
 // import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import SelectedFabricSample from './Components/Selected-Fabric-Sample/index';
-import SelectedSubscriptionPlans from './Components/Selected-Subscription-plan';
-import Container from '../../utils/Container/container';
-import { Link, useHistory } from 'react-router-dom';
-import CustomDivider from '../../utils/Custom Divider/divider';
-import CustomSection from '../../utils/Custom Section/section';
-import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
-import CustomStepper from '../../utils/Stepper/stepper';
-import styles from './MyBag.module.scss';
+import SelectedFabricSample from "./Components/Selected-Fabric-Sample/index";
+import SelectedSubscriptionPlans from "./Components/Selected-Subscription-plan";
+import Container from "../../utils/Container/container";
+import { Link, useHistory } from "react-router-dom";
+import CustomDivider from "../../utils/Custom Divider/divider";
+import CustomSection from "../../utils/Custom Section/section";
+import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
+import CustomStepper from "../../utils/Stepper/stepper";
+import styles from "./MyBag.module.scss";
 //icons
 
-import AddIcon from '@material-ui/icons/Add';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import RemoveIcon from '@material-ui/icons/Remove';
-import { ReactComponent as CouponIcon } from '../../Images/icons/coupon.svg';
-import common_axios from '../../utils/axios.config';
-import { useSelector, useDispatch } from 'react-redux';
-import { setOrderSumm } from '../../Redux/actions/homepage';
-import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import AddIcon from "@material-ui/icons/Add";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import RemoveIcon from "@material-ui/icons/Remove";
+import { ReactComponent as CouponIcon } from "../../Images/icons/coupon.svg";
+import common_axios from "../../utils/axios.config";
+import { useSelector, useDispatch } from "react-redux";
+import { setOrderSumm } from "../../Redux/actions/homepage";
+import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 // Product Type
-import { addToWishlist } from '../../Redux/actions/wishlist';
+import { addToWishlist } from "../../Redux/actions/wishlist";
 import {
   getCartItems,
   getCoupons,
   removeFromBag,
   clearCartError,
-} from '../../Redux/actions/myBag';
-import { SuccessPopUp } from '../../utils/Popups/SuccessPopup';
-import EmptyBag from './Components/Empty-Bag';
+} from "../../Redux/actions/myBag";
+import { SuccessPopUp } from "../../utils/Popups/SuccessPopup";
+import EmptyBag from "./Components/Empty-Bag";
 
 export default function MyBag() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const tabView = useMediaQuery('(max-width:768px)');
-  const tabViewPro = useMediaQuery('(max-width:835px)');
-  const mobileView = useMediaQuery('(max-width:550px)');
+  const tabView = useMediaQuery("(max-width:768px)");
+  const tabViewPro = useMediaQuery("(max-width:835px)");
+  const mobileView = useMediaQuery("(max-width:550px)");
   const [quantity, setQuantity] = useState(1);
-  const { user } = useSelector(state => state.root.auth);
-  const { cart } = useSelector(state => state.root.cartItems);
+  const { user } = useSelector((state) => state.root.auth);
+  const { cart } = useSelector((state) => state.root.cartItems);
   const { message, loading, error } = useSelector(
-    state => state.root.removeCartItem
+    (state) => state.root.removeCartItem
   );
   const {
     couponList,
@@ -60,7 +60,7 @@ export default function MyBag() {
 
   const [click, setClick] = useState(false);
   // const [cartMessage, setCartMessage] = useState('Added To bag');
-  console.log(cart, '123456');
+  console.log(cart, "123456");
 
   // console.log(cart);
 
@@ -123,21 +123,21 @@ export default function MyBag() {
 
   const on_checkout = () => {
     // dispatch(setOrderSumm(cart));
-    history.push('/order-summary');
+    history.push("/order-summary");
   };
 
-  const HtmlTooltipButton = withStyles(theme => ({
+  const HtmlTooltipButton = withStyles((theme) => ({
     tooltip: {
       // placement: "right-start",
-      backgroundColor: '#857250',
-      color: 'white',
+      backgroundColor: "#857250",
+      color: "white",
       width: 150,
-      display: 'flex',
-      textAlign: 'center',
-      alignItems: 'center',
+      display: "flex",
+      textAlign: "center",
+      alignItems: "center",
       height: 50,
       fontSize: theme.typography.pxToRem(10),
-      border: 'none',
+      border: "none",
     },
   }))(Tooltip);
 
@@ -145,11 +145,11 @@ export default function MyBag() {
   const [removeModal, setRemoveModal] = useState(false);
   const [removeItem, setRemoveItem] = useState();
 
-  const toggleModal = () => setModal(modal => !modal);
+  const toggleModal = () => setModal((modal) => !modal);
 
-  const toggleRemoveModal = item => {
+  const toggleRemoveModal = (item) => {
     setRemoveItem(item);
-    setRemoveModal(removeModal => !removeModal);
+    setRemoveModal((removeModal) => !removeModal);
   };
 
   if (!cart) {
@@ -160,9 +160,9 @@ export default function MyBag() {
     <Container bottomDivider footerOnTabMob>
       {
         <CustomSection
-          style={mobileView ? { marginTop: '0' } : { marginTop: '3em' }}
+          style={mobileView ? { marginTop: "0" } : { marginTop: "3em" }}
         >
-          <Breadcrumb path='Home' activePath='/ My Bag' />
+          <Breadcrumb path="Home" activePath="/ My Bag" />
           {cart && (
             <div className={styles.container}>
               {mobileView ? (
@@ -188,15 +188,15 @@ export default function MyBag() {
                         {removeModal && (
                           <SuccessPopUp
                             toggle={toggleRemoveModal}
-                            width={'500px'}
-                            height={'100px'}
+                            width={"500px"}
+                            height={"100px"}
                           >
-                            <h2 style={{ margin: '1rem 0' }}>
+                            <h2 style={{ margin: "1rem 0" }}>
                               Are you sure you want to remove this Item?
                             </h2>
                             <Button
                               class={styles.removeModelButton}
-                              onClick={e => {
+                              onClick={(e) => {
                                 remove_item(removeItem, e);
                                 toggleRemoveModal();
                               }}
@@ -216,19 +216,18 @@ export default function MyBag() {
                         <div className={styles.BorderContainer}>
                           <div className={styles.mainContainer}>
                             <Link
-                            to={`/product-description/${item.product.slug}`}
-                          >
-                            <img
-                              src={item.product?.image}
-                              alt="product"
-                              className={styles.image}
-                            />
-                          </Link>
+                              to={`/product-description/${item.product.slug}`}
+                            >
+                              <img
+                                src={item.product?.image}
+                                alt="product"
+                                className={styles.image}
+                              />
+                            </Link>
                             <div>
-                              <div style={{ alignItems: 'flex-start' }}>
+                              <div style={{ alignItems: "flex-start" }}>
                                 <p className={styles.proName}>{item.title}</p>
                                 <p>{item.fabric}</p>
-
 
                                 <div>
                                   <h4>Product Type</h4>
@@ -246,22 +245,22 @@ export default function MyBag() {
                                         <h3
                                           style={{
                                             padding: 10,
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '0.2rem',
+                                            display: "flex",
+                                            alignItems: "center",
+                                            gap: "0.2rem",
                                           }}
                                         >
                                           <FavoriteIcon /> Add To wishlist
                                         </h3>
                                       </React.Fragment>
                                     }
-                                    placement={'top'}
+                                    placement={"top"}
                                     arrow
                                   >
                                     <Button
                                       onClick={() => {
                                         move_to_wishlist(item);
-                                        setClick(click => !click);
+                                        setClick((click) => !click);
                                       }}
                                       className={styles.MoveToWishListBtn}
                                     >
@@ -270,7 +269,7 @@ export default function MyBag() {
                                   </HtmlTooltipButton>
                                 </div>
                               </div>
-
+                            </div>
 
                             <div
                               style={{
@@ -289,7 +288,7 @@ export default function MyBag() {
                                     <p className={styles.priceSpanP}>
                                       <span className={styles.priceSpan}>
                                         {item.currency_symbol}
-                                        {item.custom_price}
+                                        {item.readymade_price}
                                       </span>
                                       <span className={styles.priceSpan1}>
                                         {item.readymade_discount.toFixed(0)}%
@@ -318,48 +317,59 @@ export default function MyBag() {
                                       {item.custom_discount.toFixed(0)}% off
                                     </span>
                                   </p>
-                                )}
-                                <div className={styles.quan}>
-                                  <p>Quantity</p>
-                                  <div style={{ display: 'flex' }}>
-                                    <Button
-                                      className={styles.addBtn}
-                                      onClick={() =>
-                                        substract_quantity(item, index)
-                                      }
-                                    >
-                                      <RemoveIcon style={{ width: '15px' }} />
-                                    </Button>
-                                    <div className={styles.quantity}>
-                                      {item.quantity}
-                                    </div>
-                                    <Button
-                                      className={styles.removeBtn}
-                                      onClick={() => add_quantity(item, index)}
-                                    >
-                                      <AddIcon style={{ width: '15px' }} />
-                                    </Button>
-                                  </div>
-                                  <Button
-                                    // onClick={() => remove_item(item)}
-                                    onClick={e => toggleRemoveModal(item, e)}
-                                    className={styles.RemoveBTN}
-                                  >
-                                    Remove item
-                                  </Button>
+                                </>
+                              ) : (
+                                <p>
+                                  {item.currency_symbol}
+                                  {item.custom_price}
+                                </p>
+                              )}
+                            </div>
+                            <div className={styles.quan}>
+                              <p>Quantity</p>
+                              <div style={{ display: "flex" }}>
+                                <Button
+                                  className={styles.addBtn}
+                                  onClick={() =>
+                                    substract_quantity(item, index)
+                                  }
+                                >
+                                  <RemoveIcon style={{ width: "15px" }} />
+                                </Button>
+                                <div className={styles.quantity}>
+                                  {item.quantity}
                                 </div>
+                                <Button
+                                  className={styles.removeBtn}
+                                  onClick={() => add_quantity(item, index)}
+                                >
+                                  <AddIcon style={{ width: "15px" }} />
+                                </Button>
                               </div>
+                              <Button
+                                // onClick={() => remove_item(item)}
+                                onClick={(e) => toggleRemoveModal(item, e)}
+                                className={styles.RemoveBTN}
+                              >
+                                Remove item
+                              </Button>
                             </div>
+                            {/* </div> */}
+                            {/* </div> */}
+                            {/* </div> */}
+                            {item.type === "customise" ? (
+                              <div
+                                style={{
+                                  marginLeft: "1em",
+                                  marginBottom: "1em",
+                                }}
+                              >
+                                <CheckOutProcess />
+                              </div>
+                            ) : (
+                              <></>
+                            )}
                           </div>
-                          {item.type === 'customise' ? (
-                            <div
-                              style={{ marginLeft: '1em', marginBottom: '1em' }}
-                            >
-                              <CheckOutProcess />
-                            </div>
-                          ) : (
-                            <></>
-                          )}
                         </div>
                       </>
                     );
@@ -373,16 +383,16 @@ export default function MyBag() {
                 <div>
                   <div
                     style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
                     }}
                   >
                     <div>Price Details</div>
                     <div className={styles.BtnlIkediv}>{cart.items.length}</div>
                   </div>
                   <div>
-                    <CustomDivider style={{ backgroundColor: '#CECECE' }} />
+                    <CustomDivider style={{ backgroundColor: "#CECECE" }} />
                     <div className={styles.selectedProductPrices}>
                       <div>
                         <label>Product Price</label>
@@ -397,10 +407,10 @@ export default function MyBag() {
                       </div>
                       <div>
                         <label>Delivery charges</label>
-                        <span>₹{cart?.delivery_charge || '₹0'}</span>
+                        <span>₹{cart?.delivery_charge || "₹0"}</span>
                       </div>
                     </div>
-                    <CustomDivider style={{ backgroundColor: '#CECECE' }} />
+                    <CustomDivider style={{ backgroundColor: "#CECECE" }} />
                   </div>
                   <div className={styles.totalAmtDiv}>
                     <div>
@@ -408,23 +418,23 @@ export default function MyBag() {
                       <span>₹{cart?.grand_total}</span>
                     </div>
                   </div>
-                  <CustomDivider style={{ backgroundColor: '#CECECE' }} />
+                  <CustomDivider style={{ backgroundColor: "#CECECE" }} />
 
                   <Accordion
                     style={{
-                      boxShadow: 'none',
-                      margin: '1rem 0',
+                      boxShadow: "none",
+                      margin: "1rem 0",
                       padding: 0,
                     }}
                     className={styles.applyCouponDiv}
                   >
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
-                      IconButtonProps={{ size: 'small' }}
-                      aria-controls='panel1a-content'
-                      id='panel1a-header'
+                      IconButtonProps={{ size: "small" }}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
                       style={{
-                        boxShadow: 'none',
+                        boxShadow: "none",
                         margin: 0,
                         padding: 0,
                       }}
@@ -436,16 +446,16 @@ export default function MyBag() {
                     </AccordionSummary>
                     <AccordionDetails
                       style={{
-                        background: '#fff',
-                        padding: '.8rem 0',
+                        background: "#fff",
+                        padding: ".8rem 0",
                       }}
                     >
                       <div className={styles.couponInputDiv}>
                         <div>
                           <input
-                            type='text'
-                            placeholder='Enter coupon code'
-                            name='coupon'
+                            type="text"
+                            placeholder="Enter coupon code"
+                            name="coupon"
                           />
                           <span>Apply</span>
                         </div>
@@ -454,8 +464,8 @@ export default function MyBag() {
                     </AccordionDetails>
                   </Accordion>
                   <Button
-                    variant='text'
-                    color='default'
+                    variant="text"
+                    color="default"
                     className={styles.placeOrderBtn}
                     onClick={() => on_checkout()}
                   >
@@ -500,23 +510,23 @@ const MobileProductMyBag = ({
               </div>
               <div className={styles.InfoDiv}>
                 <div className={styles.mainInfo}>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
                     <div>
                       <h1>{item.title}</h1>
-                      <p style={{ marginTop: '-24px' }}>{item.fabric}</p>
+                      <p style={{ marginTop: "-24px" }}>{item.fabric}</p>
                       <div
                         style={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          justifyContent: 'space-between',
-                          width: '100%',
+                          display: "flex",
+                          alignItems: "flex-start",
+                          justifyContent: "space-between",
+                          width: "100%",
                         }}
                       >
                         <div
                           style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            width: '80%',
+                            display: "flex",
+                            flexDirection: "column",
+                            width: "80%",
                           }}
                         >
                           <p className={styles.PType1}>Product Type</p>
@@ -525,25 +535,11 @@ const MobileProductMyBag = ({
                           </p>
                         </div>
                       </div>
-                      <div className={styles.PriceMobile}>
-                        <p className={styles.PriceMobileMain}>
-                          {item.currency_symbol}
-                          {item.type === 'readymade'
-                            ? item.readymade_price
-                            : item.custom_price}
-                        </p>
-                        <p className={styles.PriceMobileOriginal}>
-                          {item.unit_price}
-                        </p>
-                        <p className={styles.PriceMobileDiscount}>
-                          {item.discount}
-                        </p>
-                      </div>
                     </div>
                     <div>
                       <div className={styles.quan}>
                         <div
-                          style={{ display: 'flex', flexDirection: 'column' }}
+                          style={{ display: "flex", flexDirection: "column" }}
                         >
                           <Button
                             className={styles.addBtn1}
@@ -551,13 +547,13 @@ const MobileProductMyBag = ({
                           >
                             <RemoveIcon
                               style={{
-                                width: '15px',
-                                transform: 'rotate(90deg)',
+                                width: "15px",
+                                transform: "rotate(90deg)",
                               }}
                             />
                           </Button>
                           <div className={styles.quantity1}>
-                            <span style={{ transform: 'rotate(270deg)' }}>
+                            <span style={{ transform: "rotate(270deg)" }}>
                               {item.quantity}
                             </span>
                           </div>
@@ -565,13 +561,12 @@ const MobileProductMyBag = ({
                             className={styles.removeBtn1}
                             onClick={() => add_quantity(item, index)}
                           >
-                            <AddIcon style={{ width: '15px' }} />
+                            <AddIcon style={{ width: "15px" }} />
                           </Button>
                         </div>
                       </div>
                     </div>
                   </div>
-
 
                   {item.type === "readymade" ? (
                     item.readymade_offer_price > 0 ? (
@@ -636,20 +631,20 @@ const MobileProductMyBag = ({
             </div>
             <div className={styles.mobileButton}>
               <Button
-                onClick={e => move_to_wishlist(item, e)}
+                onClick={(e) => move_to_wishlist(item, e)}
                 className={styles.MoveToWishListBtnMobile}
               >
                 Move to Whishlist
               </Button>
               <Button
-                onClick={e => remove_item(item, e)}
+                onClick={(e) => remove_item(item, e)}
                 className={styles.RemoveBTNMobile}
               >
                 Remove item
               </Button>
               <hr />
             </div>
-            {item.type === 'customise' ? <CheckOutProcess /> : <></>}
+            {item.type === "customise" ? <CheckOutProcess /> : <></>}
           </div>
         );
       })}
@@ -666,8 +661,8 @@ export function CheckOutProcess() {
         body measurement. You can add the measurement after the payment.
       </li>
       <Button
-        variant='contained'
-        color='secondary'
+        variant="contained"
+        color="secondary"
         className={styles.CheckOutProcessBtn}
         startIcon={<PlayCircleFilledIcon />}
       >

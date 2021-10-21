@@ -16,9 +16,9 @@ const TrackOrders = () => {
   }, [dispatch, user, orderId]);
   return (
     <div className={styles.TrackOrders}>
-      <TimeLine
+      <TimeLine 
         date={'Oct, 23 2020'}
-        time={'2:00 PM '}
+        time={'2:00 PM IST '}
         OrderInfo={'Order confirmed'}
         InfoDescription={'The seller has confirmed your order'}
         className={styles.TrackOrders_Timeline_Dot_First}
@@ -97,10 +97,10 @@ const TimeLine = ({
           ></span>
         </div>
         <div className={styles.TrackOrders_Timeline_info}>
-          <h4 style={{ color: `${completed ? '#857250' : '#6C6C6C'}` }}>
+          <h4 style={{ color: `${completed ? '#0A0A0A' : '#6C6C6C'}` }}>
             {OrderInfo}
           </h4>
-          <p style={{ color: `${completed ? '#857250' : '#6C6C6C'}` }}>
+          <p style={{ color: `${completed ? '#6C6C6C' : '#6C6C6C'}` }}>
             {InfoDescription}
           </p>
           {button}

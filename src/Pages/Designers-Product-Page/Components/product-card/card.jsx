@@ -19,6 +19,7 @@ import { getWishList } from "../../../../Redux/actions/wishlist";
 import { LazyLoadingImg } from "../../../../utils/LazyLoading";
 import { CLEAR_WISHLIST_UPDATE } from "../../../../Redux/actions/types";
 
+import { useMediaQuery } from '@material-ui/core';
 export default function ProductCard(props) {
   const dispatch = useDispatch();
   const [isAddToWishList, setAddToWishList] = useState(false);
@@ -56,6 +57,11 @@ export default function ProductCard(props) {
     setAddToWishList(false);
   };
 
+  const customView = useMediaQuery('(max-width:1044px)');
+  const tabView = useMediaQuery('(max-width:768px)');
+  const tabViewPro = useMediaQuery('(min-width:768px) and (max-width:1044px');
+  const mobileView = useMediaQuery('(max-width:550px)');
+
   useEffect(() => {
     if (isAuthenticated && list && list.length > 0) {
       const item = list.filter((data) => data?.product_id === props.product.id);
@@ -83,6 +89,7 @@ export default function ProductCard(props) {
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <Link to={{ pathname: `/product-description/${product.slug}` }}>
+
           <LazyLoadingImg image={product.cover_image} />
           {/* <img src={product.feature_image} alt='' /> */}
         </Link>
@@ -94,24 +101,33 @@ export default function ProductCard(props) {
             }}
             className={styles.icons}
           >
-            <FavoriteIcon style={{ color: "red" }} />
+            <FavoriteIcon
+              style={{
+                color: 'red',
+                display: mobileView ? ' none' : 'unset',
+              }}
+            />
           </IconButton>
         ) : (
           <IconButton
-            aria-label="product"
+            aria-label='product'
             onClick={() => add_to_wishlist(product)}
             className={styles.icons}
           >
-            <FavoriteBorderIcon />
+            <FavoriteBorderIcon
+              style={{
+                display: mobileView ? ' none' : 'unset',
+              }}
+            />
           </IconButton>
         )}
       </div>
-      <div className={styles.productDetails}>
-        <Link to={{ pathname: `/product-description/${product?.slug}` }}>
-          <span className={styles.productName}>{product?.brand}</span>
-        </Link>
-        <span className={styles.productDesc}>{product?.title}</span>
-
+      <div style={{ display: 'flex' }}>
+        <div className={styles.productDetails}>
+          <Link to={{ pathname: `/product-description/${product?.slug}` }}>
+            <span className={styles.productName}>{product?.brand}</span>
+          </Link>
+          <span className={styles.productDesc}>{product?.title}</span>
         {product.isCustomise === "on" ? (
           product.custom_offer_price > 0 ? (
             <p className={styles.productPrice}>
@@ -164,7 +180,12 @@ export default function ProductCard(props) {
               {product.readymade_price}
             </span>
           </p>
-        )}
+        </div>
+        <span className={styles.mobilewishlist}>
+          {' '}
+          <FavoriteBorderIcon style={{ width: '18.94px', height: '18.15px' }} />
+        </span>
+
       </div>
     </div>
   );

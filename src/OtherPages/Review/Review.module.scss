@@ -80,7 +80,7 @@
         }
         &:nth-of-type(2) {
           order: 2;
-          width: 29%;
+          width: 28%;
         }
         &:nth-of-type(3) {
           width: 69%;
@@ -88,7 +88,7 @@
         }
         &:nth-of-type(4) {
           order: 3;
-          width: 29%;
+          width: 28%;
         }
       }
     }
@@ -146,7 +146,7 @@
           font-size: 1rem;
         }
         p {
-          font-size: 0.9rem;
+          font-size: 14px;
           color: #444;
         }
       }
@@ -160,7 +160,7 @@
           }
           &:nth-of-type(2) {
             order: 2;
-            width: 29%;
+            width: 28%;
           }
           &:nth-of-type(3) {
             width: 69%;
@@ -168,7 +168,7 @@
           }
           &:nth-of-type(4) {
             order: 3;
-            width: 29%;
+            width: 28%;
           }
         }
       }
@@ -196,12 +196,73 @@
           color: #444;
         }
       }
+      // &:nth-child(2) {
+      //   display: grid;
+      //   gap: 0.5rem;
+      //   img {
+      //     height: 280px;
+      //     width: 100% !important;
+      //   }
+      // }
       &:nth-child(2) {
-        display: grid;
         gap: 0.5rem;
         img {
           height: 280px;
-          width: 100% !important;
+          &:nth-of-type(1) {
+            width: 60%;
+            order: 1;
+          }
+          &:nth-of-type(2) {
+            order: 2;
+            width: 37%;
+          }
+          &:nth-of-type(3) {
+            width: 60%;
+            order: 4;
+          }
+          &:nth-of-type(4) {
+            order: 3;
+            width: 37%;
+          }
+        }
+      }
+    }
+  }
+  .Review_Button {
+    div {
+      &:nth-child(1) {
+        display: none;
+      }
+      &:nth-child(2) {
+        margin-top: 50px;
+      }
+    }
+  }
+
+  .Review_Video {
+    margin-top: 10px;
+    div {
+      &:nth-child(1) {
+        display: unset;
+        padding: 0.5rem 0;
+        h2 {
+          font-size: 20px;
+        }
+        h3 {
+          font-size: 14px;
+          font-weight: 400;
+        }
+        div {
+          display: flex;
+          margin: 0;
+          padding-bottom: 0.6rem;
+        }
+      }
+      &:nth-child(2) {
+        iframe {
+          width: 100%;
+          height: 400px;
+          border-radius: 4px;
         }
       }
     }

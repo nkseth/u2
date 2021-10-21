@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Review.module.scss';
 import CustomDivider from '../../utils/Custom Divider/divider';
-import { Button } from '@material-ui/core';
+import { Button, useMediaQuery } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { get_reviews } from '../../Redux/actions/profile';
 
 const Review = () => {
+  const mobileView = useMediaQuery('(max-width:550px)');
   const dispatch = useDispatch();
   const { review } = useSelector(state => state.root.profile);
 
@@ -54,10 +55,22 @@ const Review = () => {
           );
         })} */}
       <div className={styles.Review_Video}>
-        <div>
-          <h2>Watch Video</h2>
-          <CustomDivider />
-        </div>
+        {mobileView ? (
+          <div>
+            <div>
+              <h2>Product Name</h2>
+              <h3>Order Date</h3>
+            </div>
+            <div>
+              <span>Designer Name</span>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <h2>Watch Video</h2>
+            <CustomDivider />
+          </div>
+        )}
         <div>
           <iframe
             src='https://www.youtube.com/embed/DkN9VG1HEIM'

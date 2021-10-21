@@ -52,6 +52,10 @@ import { getProductDetails } from "../../Redux/actions/products";
 // } from 'react-image-magnifiers';
 import Loader from "../../utils/Loader/Loader";
 import DescriptionLoader from "./Components/Loader/DescriptionLoader";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Pagination } from 'swiper/core';
+import 'swiper/swiper.min.css';
+import 'swiper/components/pagination/pagination.min.css';
 
 const CustomRadio = withStyles({
   root: {
@@ -262,9 +266,8 @@ export default function ProductDescription({ match }) {
                           src={image.thumbnail}
                           className={`${imageIdx === i ? "active" : ""}`}
                           style={{
-                            border: `${
-                              imageIdx === i ? "2px solid #857250" : ""
-                            }`,
+                            border: `${imageIdx === i ? "2px solid #857250" : ""
+                              }`,
                           }}
                           alt={image.url}
                           key={i}
@@ -273,80 +276,101 @@ export default function ProductDescription({ match }) {
                       );
                     })}
                   </div>
-                  <div className={styles.main_img}>
-                    <ReactImageMagnify
-                      className={styles.magnifier}
-                      {...{
-                        smallImage: {
-                          alt: "Wristwatch by Ted Baker London",
-                          isFluidWidth: true,
-                          // src: `${imageBaseUrl}wristwatch_1033.jpg`,
-                          src: images[imageIdx]?.original,
-                          // srcSet: this.srcSet,
-                          sizes:
-                            "(min-width: 800px) 33.5vw, (min-width: 415px) 50vw, 100vw ",
-                        },
-                        largeImage: {
-                          alt: "",
-                          src: images[imageIdx]?.original,
-                          // src: `${imageBaseUrl}wristwatch_1200.jpg`,
-                          width: 1200,
-                          height: 1800,
-                        },
-                      }}
-                    />
+                  {
+                    !mobileView ? (<div className={styles.main_img}>
+                      <ReactImageMagnify
+                        className={styles.magnifier}
+                        {...{
+                          smallImage: {
+                            alt: "Wristwatch by Ted Baker London",
+                            isFluidWidth: true,
+                            // src: `${imageBaseUrl}wristwatch_1033.jpg`,
+                            src: images[imageIdx]?.original,
+                            // srcSet: this.srcSet,
+                            sizes:
+                              "(min-width: 800px) 33.5vw, (min-width: 415px) 50vw, 100vw ",
+                          },
+                          largeImage: {
+                            alt: "",
+                            src: images[imageIdx]?.original,
+                            // src: `${imageBaseUrl}wristwatch_1200.jpg`,
+                            width: 1200,
+                            height: 1800,
+                          },
+                        }}
+                      />
 
-                    {isAddToWishList ? (
-                      <IconButton
-                        aria-label="product"
-                        onClick={() => {
-                          setAddToWishList((addToWishlist) => !addToWishlist);
-                        }}
-                        style={{
-                          backgroundColor: "#fff",
-                          position: "absolute",
-                          top: "30px",
-                          right: "20px",
-                        }}
-                      >
-                        <FavoriteIcon style={{ color: "red" }} />
-                      </IconButton>
-                    ) : (
-                      <IconButton
-                        aria-label="product"
-                        onClick={() => {
-                          setAddToWishList((addToWishlist) => !addToWishlist);
-                        }}
-                        // className={styles.icons}
-                        style={{
-                          backgroundColor: "#fff",
-                          position: "absolute",
-                          top: "30px",
-                          right: "20px",
-                        }}
-                      >
-                        <FavoriteBorderIcon />
-                      </IconButton>
-                    )}
-                  </div>
-                  <div className={styles.other_imgs_tab}>
-                    {images.map((image, i) => {
-                      return (
-                        <img
-                          src={image.thumbnail}
-                          className={`${imageIdx === i ? "active" : ""}`}
-                          style={{
-                            border: `${
-                              imageIdx === i ? "4px solid #857250" : ""
-                            }`,
+                      {isAddToWishList ? (
+                        <IconButton
+                          aria-label="product"
+                          onClick={() => {
+                            setAddToWishList((addToWishlist) => !addToWishlist);
                           }}
-                          alt={image.url}
-                          key={i}
-                          onClick={() => setImageIdx(i)}
-                        />
-                      );
-                    })}
-                  </div>
+                          style={{
+                            backgroundColor: "#fff",
+                            position: "absolute",
+                            top: "30px",
+                            right: "20px",
+                            display:
+                              mobileView ? " none" : "unset"
+                          }}
+                        >
+                          <FavoriteIcon style={{ color: "red" }} />
+                        </IconButton>
+                      ) : (
+                        <IconButton
+                          aria-label="product"
+                          onClick={() => {
+                            setAddToWishList((addToWishlist) => !addToWishlist);
+                          }}
+                          // className={styles.icons}
+                          style={{
+                            backgroundColor: "#fff",
+                            position: "absolute",
+                            top: "30px",
+                            right: "20px",
+                            display:
+                              mobileView ? " none" : "unset"
+                          }}
+                        >
+                          <FavoriteBorderIcon />
+                        </IconButton>
+                      )}
+                    </div>
+                    ) : (
+                      <Swiper>
+                        <SwiperSlide>
+                          <img src={images[imageIdx]?.original}/>
+                          <img src={images[imageIdx]?.original}/>
+                          <img src={images[imageIdx]?.original}/>
+                    
+                        </SwiperSlide>
+                      </Swiper>
+                    )
+                  }
+
+                  {
+                    !mobileView && (
+                      <div className={styles.other_imgs_tab}>
+                        {images.map((image, i) => {
+                          return (
+                            <img
+                              src={image.thumbnail}
+                              className={`${imageIdx === i ? "active" : ""}`}
+                              style={{
+                                border: `${imageIdx === i ? "4px solid #857250" : ""
+                                  }`,
+                              }}
+                              alt={image.url}
+                              key={i}
+                              onClick={() => setImageIdx(i)}
+                            />
+                          );
+                        })}
+                      </div>
+                    )
+                  }
+
                 </div>
                 {!mobileView && !tabView && !customView ? (
                   <div className={styles.deliveryDiv}>
@@ -366,7 +390,7 @@ export default function ProductDescription({ match }) {
                       color="default"
                       className={styles.checkBtn}
 
-                      // onClick={() => history.push('/product-breakdown')}
+                    // onClick={() => history.push('/product-breakdown')}
                     >
                       Check
                     </Button>
@@ -790,7 +814,11 @@ export default function ProductDescription({ match }) {
                 {mobileView && (
                   <>
                     <div className={styles.productDetails}>
-                      <span>{details.brand}</span>
+                      <div>
+                        <span>{details.brand}</span>
+                        <span style={{ float: "right" }}><FavoriteIcon style={{ color: "red", height: "24px", width: "24px" }} />
+                          <Share style={{ height: "24px", width: "24px" }} /></span>
+                      </div>
                       <span>{details.title}</span>
                     </div>
                     <div className={styles.selectProduct}>
@@ -1157,7 +1185,7 @@ export default function ProductDescription({ match }) {
                           color="default"
                           className={styles.checkBtn}
 
-                          // onClick={() => history.push('/product-breakdown')}
+                        // onClick={() => history.push('/product-breakdown')}
                         >
                           Check
                         </Button>
@@ -1187,7 +1215,7 @@ export default function ProductDescription({ match }) {
                           color="default"
                           className={styles.checkBtn}
 
-                          // onClick={() => history.push('/product-breakdown')}
+                        // onClick={() => history.push('/product-breakdown')}
                         >
                           Check
                         </Button>

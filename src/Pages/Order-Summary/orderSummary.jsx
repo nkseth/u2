@@ -97,7 +97,7 @@ export default function OrderSummary() {
 
   return (
     <Container bottomDivider footerOnTabMob>
-      {AddAddress ? <NewAddress setAddAddress={setAddAddress} /> : <></>}
+      {AddAddress && <NewAddress setAddAddress={setAddAddress} />}
       <CustomSection style={{ marginTop: "2em" }}>
         <Breadcrumb path="Home / My Bag" activePath="/ Order Summary" />
         <div>
@@ -137,7 +137,7 @@ export default function OrderSummary() {
                         <div style={{ padding: "0" }}>
                           <div>
                             <p className={styles.Itemname}>{item.title}</p>
-                            {/* <p>Solid colour</p> */}
+                            <p>{item.fabric}</p>
                             <p className={styles.protype}>Product Type</p>
                             <p className={styles.protypetext}>
                               {item.type.toUpperCase()}
@@ -166,32 +166,91 @@ export default function OrderSummary() {
                             </div>
                             {mobileView && (
                               <div className={styles.PriceMobile}>
-                                <p className={styles.PriceMobileMain}>
-                                  {item.currency_symbol}
-                                  {item.readymade_price}
-                                  <span className={styles.PriceMobileOriginal}>
+                                {item.type === "readymade" ? (
+                                  item.readymade_offer_price > 0 ? (
+                                    <p className={styles.PriceMobileMain}>
+                                      {item.currency_symbol}
+                                      {item.readymade_offer_price}
+                                      <span
+                                        className={styles.PriceMobileOriginal}
+                                      >
+                                        {item.currency_symbol}
+                                        {item.readymade_price}
+                                      </span>
+                                      <span
+                                        className={styles.PriceMobileDiscount}
+                                      >
+                                        {item.readymade_discount}% OFF
+                                      </span>
+                                    </p>
+                                  ) : (
+                                    <p className={styles.PriceMobileMain}>
+                                      {item.currency_symbol}
+                                      {item.readymade_price}
+                                    </p>
+                                  )
+                                ) : item.custom_offer_price > 0 ? (
+                                  <p className={styles.PriceMobileMain}>
                                     {item.currency_symbol}
-                                    {item.readymade_price}
-                                  </span>
-                                  <span className={styles.PriceMobileDiscount}>
-                                    {/* 13% OFF */}
-                                  </span>
-                                </p>
+                                    {item.custom_offer_price}
+                                    <span
+                                      className={styles.PriceMobileOriginal}
+                                    >
+                                      {item.currency_symbol}
+                                      {item.custom_price}
+                                    </span>
+                                    <span
+                                      className={styles.PriceMobileDiscount}
+                                    >
+                                      {item.custom_discount.toFixed(0)}% OFF
+                                    </span>
+                                  </p>
+                                ) : (
+                                  <p className={styles.PriceMobileMain}>
+                                    {item.currency_symbol}
+                                    {item.custom_price}
+                                  </p>
+                                )}
                               </div>
                             )}
                           </div>
-                          {mobileView ? (
-                            <></>
-                          ) : (
+                          {!mobileView && (
                             <div className={styles.proMoney}>
-                              <p>
-                                {item.currency_symbol}
-                                {item.readymade_price}
-                              </p>
-                              <p>
-                                {/* <span>₹1499</span>
-                              <span>63% OFF</span> */}
-                              </p>
+                              {item.type === "readymade" ? (
+                                item.readymade_offer_price > 0 ? (
+                                  <p>
+                                    {item.currency_symbol}
+                                    {item.readymade_offer_price}
+                                    <span>
+                                      {item.currency_symbol}
+                                      {item.readymade_price}
+                                    </span>
+                                    <span>{item.readymade_discount}% OFF</span>
+                                  </p>
+                                ) : (
+                                  <p>
+                                    {item.currency_symbol}
+                                    {item.readymade_price}
+                                  </p>
+                                )
+                              ) : item.custom_offer_price > 0 ? (
+                                <p>
+                                  {item.currency_symbol}
+                                  {item.custom_offer_price}
+                                  <span>
+                                    {item.currency_symbol}
+                                    {item.custom_price}
+                                  </span>
+                                  <span>
+                                    {item.custom_discount.toFixed(0)}% OFF
+                                  </span>
+                                </p>
+                              ) : (
+                                <p>
+                                  {item.currency_symbol}
+                                  {item.custom_price}
+                                </p>
+                              )}
                             </div>
                           )}
                         </div>
@@ -199,7 +258,7 @@ export default function OrderSummary() {
                     </>
                   );
                 })}
-                {customType ? (
+                {customType && (
                   <div
                     style={{
                       margin: mobileView ? "0" : "1em",
@@ -209,8 +268,6 @@ export default function OrderSummary() {
                   >
                     <CheckOutProcess />
                   </div>
-                ) : (
-                  <></>
                 )}
               </div>
 
@@ -332,7 +389,7 @@ export function DeliveryAddress({ address, setAddAddress, cartId }) {
         <div className={styles.mainDiv}>
           <div className={styles.firstAftermain}>
             <div>
-              <span>John Hamilton</span>
+              <span>{address.name}</span>
               <div className={styles.badge}>{address.address_type}</div>
             </div>
             <p>{`${address.address_line_1} - ${address.zip_code}`}</p>

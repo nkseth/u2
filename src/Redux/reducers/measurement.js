@@ -71,7 +71,7 @@ export const measurement_reducer = (state = inialState, action) => {
 };
 
 export const allMeasurementsReducer = (
-  inialState = { measurements: [] },
+  inialState = { measurements: null },
   action
 ) => {
   switch (action.type) {

@@ -47,22 +47,20 @@ export default function ExploreTopDesignersSection({ type }) {
         isIntrinsicHeight
       >
         <Slider>
-          {designers?.get_designer?.map(
-            ({ id, cover_image, get_merchant }, index) => {
-              return (
-                <Slide index={index}>
-                  <div className={styles.Top_Designer}>
-                    <Link to="/designers-profile">
-                      <div className={styles.Top_Designer_Items}>
-                        <img src={cover_image} alt={id} />
-                        <span>{get_merchant?.name}</span>
-                      </div>
-                    </Link>
-                  </div>
-                </Slide>
-              );
-            }
-          )}
+          {designers?.map(({ id, cover_image, get_merchant }, index) => {
+            return (
+              <Slide index={index}>
+                <div className={styles.Top_Designer}>
+                  <Link to="/designers-profile">
+                    <div className={styles.Top_Designer_Items}>
+                      <img src={cover_image} alt={id} />
+                      <span>{get_merchant?.name}</span>
+                    </div>
+                  </Link>
+                </div>
+              </Slide>
+            );
+          })}
         </Slider>
         <DotGroup style={{ display: "flex" }} />
         <div className={styles.carouselNavigationDiv}>

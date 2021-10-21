@@ -79,7 +79,7 @@ function AddManMeasurement({
   console.log(basic_id);
 
   const { measurements } = useSelector((state) => state.root.allMeasurements);
-  console.log(measurements[measurements.length - 1]);
+  // console.log(measurements[measurements.length - 1]);
   const { user } = useSelector((state) => state.root.auth);
   console.log("body");
   const { neck, chest, wrist, shoulder, arm_hole, sleeve } = upper_body;
@@ -87,9 +87,8 @@ function AddManMeasurement({
     lower_body;
 
   useEffect(() => {
-    if (measurements.length > 0) return;
+    if (measurements && measurements.length > 0) return;
     // if (basic_id === "Order Id" || !basic_id) return;
-    console.log(`basic_id`, basic_id);
     dispatch(getAllMeasurements(user.api_token));
   }, [user, dispatch, measurements, basic_id]);
 
@@ -498,7 +497,7 @@ function AddManMeasurement({
             basicId={basic_id}
           />
           <div className={styles.help}>
-            <h1> Help</h1>
+            <h1>Help</h1>
             <IconButton className={styles.help_btn}>
               <img src={help_img} alt="" />
             </IconButton>

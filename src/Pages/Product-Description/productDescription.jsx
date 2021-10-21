@@ -592,10 +592,7 @@ export default function ProductDescription({ match }) {
                                     {details.currency_symbol}
                                     {details.readymade_price}
                                   </span>
-                                  <span>
-                                    {"  "}
-                                    {details.readymade_discount}%
-                                  </span>
+                                  <span>{details.readymade_discount}%</span>
                                 </p>
                               </>
                             ) : (

@@ -18,7 +18,7 @@ export const getCartItems = () => async (dispatch) => {
     console.log(data);
     if (data.data[0]) {
       dispatch({ type: GET_CART, payload: data.data[0] });
-    }
+    } else dispatch({ type: GET_CART, payload: false });
   } catch (e) {
     console.log(e.response);
   }

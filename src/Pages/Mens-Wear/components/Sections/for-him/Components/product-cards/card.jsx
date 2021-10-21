@@ -16,7 +16,7 @@ export default function ProductCard({ data }) {
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <Link to={{ pathname: `/product-description/${data.slug}` }}>
-          <LazyLoadingImg image={data.feature_image} />
+          <LazyLoadingImg image={data.cover_image} />
         </Link>
       </div>
       <div className={styles.productDetails}>

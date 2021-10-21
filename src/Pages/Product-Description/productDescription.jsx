@@ -180,7 +180,7 @@ export default function ProductDescription({ match }) {
 
   useEffect(() => {
     dispatch(getProductDetails(slug));
-  }, []);
+  }, [slug, dispatch]);
 
   const buy_now_handler = async () => {
     if (isAuthenticated) {
@@ -568,7 +568,10 @@ export default function ProductDescription({ match }) {
                                     {details.currency_symbol}
                                     {details.readymade_price}
                                   </span>
-                                  <span>{details.readymade_discount}%</span>
+                                  <span>
+                                    {" "}
+                                    {details.readymade_discount.toFixed(0)}% OFF
+                                  </span>
                                 </p>
                               </>
                             ) : (
@@ -593,8 +596,8 @@ export default function ProductDescription({ match }) {
                                     {details.custom_price}
                                   </span>
                                   <span>
-                                    {"  "}
-                                    {details.custom_discount}%
+                                    {" "}
+                                    {details.custom_discount.toFixed(0)}% OFF
                                   </span>
                                 </p>
                               </>
@@ -606,6 +609,15 @@ export default function ProductDescription({ match }) {
                             )}
                           </div>
                         )}
+                      </div>
+                      <div
+                        style={{
+                          marginTop: "10px",
+                          display: "flex",
+                          gap: "3px",
+                        }}
+                      >
+                        <b>Fabric Name:</b> <p>{details.fabric}</p>
                       </div>
                       {ProductType === "ready made" ? (
                         <SelectSize variant={details.variant} />
@@ -742,8 +754,8 @@ export default function ProductDescription({ match }) {
                                 {details.readymade_price}
                               </span>
                               <span>
-                                {"  "}
-                                {details.readymade_discount}%
+                                {" "}
+                                {details.readymade_discount.toFixed(0)}% OFF
                               </span>
                             </p>
                           </>
@@ -769,8 +781,8 @@ export default function ProductDescription({ match }) {
                                 {details.custom_price}
                               </span>
                               <span>
-                                {"  "}
-                                {details.custom_discount}%
+                                {" "}
+                                {details.custom_discount.toFixed(0)}% OFF
                               </span>
                             </p>
                           </>
@@ -782,6 +794,15 @@ export default function ProductDescription({ match }) {
                         )}
                       </div>
                     )}
+                    <div
+                      style={{
+                        marginTop: "10px",
+                        display: "flex",
+                        gap: "3px",
+                      }}
+                    >
+                      <b>Fabric Name:</b> <p>{details.fabric}</p>
+                    </div>
                   </>
                 )}
                 {mobileView && (
@@ -904,8 +925,8 @@ export default function ProductDescription({ match }) {
                                 {details.readymade_price}
                               </span>
                               <span>
-                                {"  "}
-                                {details.readymade_discount}%
+                                {" "}
+                                {details.readymade_discount.toFixed(0)}% OFF
                               </span>
                             </p>
                           </>
@@ -931,8 +952,8 @@ export default function ProductDescription({ match }) {
                                 {details.custom_price}
                               </span>
                               <span>
-                                {"  "}
-                                {details.custom_discount}%
+                                {" "}
+                                {details.custom_discount.toFixed(0)}% OFF
                               </span>
                             </p>
                           </>
@@ -944,6 +965,15 @@ export default function ProductDescription({ match }) {
                         )}
                       </div>
                     )}
+                    <div
+                      style={{
+                        marginTop: "10px",
+                        display: "flex",
+                        gap: "3px",
+                      }}
+                    >
+                      <b>Fabric Name:</b> <p>{details.fabric}</p>
+                    </div>
                   </>
                 )}
                 {customView && !mobileView && (

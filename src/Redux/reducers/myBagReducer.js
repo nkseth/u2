@@ -9,12 +9,12 @@ import {
   CLEAR_ERRORS,
 } from "../actions/types";
 
-export const cartItemsReducer = (initialState = { cart: null }, action) => {
+export const cartItemsReducer = (initialState = { cart: false }, action) => {
   const { type, payload } = action;
 
   switch (type) {
     case GET_CART: {
-      // Object.assign(initialState.cart, payload);
+      Object.assign(initialState.cart, payload);
       return { ...initialState, cart: payload };
     }
 

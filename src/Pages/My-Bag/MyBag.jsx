@@ -61,18 +61,17 @@ export default function MyBag() {
   useEffect(() => {
     if (message) {
       alert(message);
-      dispatch(clearCartError());
       dispatch(getCartItems());
-      history.push("/my-bag");
+      dispatch(clearCartError());
     }
     if (error) {
       alert(error);
       dispatch(clearCartError());
       dispatch(getCartItems());
     }
-    if (!cart && !loading) dispatch(getCartItems());
+    dispatch(getCartItems());
     dispatch(getCoupons());
-  }, [dispatch, message, error]);
+  }, [dispatch, message, error, history]);
 
   const add_quantity = async (item, index) => {
     try {
@@ -264,11 +263,11 @@ export default function MyBag() {
                               }}
                             >
                               {item.type === "readymade" ? (
-                                item.offer_price > 0 ? (
+                                item.readymade_offer_price > 0 ? (
                                   <>
                                     <p>
                                       {item.currency_symbol}
-                                      {item.offer_price}
+                                      {item.readymade_offer_price}
                                     </p>
                                     <p className={styles.priceSpanP}>
                                       <span className={styles.priceSpan}>
@@ -276,7 +275,8 @@ export default function MyBag() {
                                         {item.readymade_price}
                                       </span>
                                       <span className={styles.priceSpan1}>
-                                        {item.discount}% off
+                                        {item.readymade_discount.toFixed(0)}%
+                                        OFF
                                       </span>
                                     </p>
                                   </>
@@ -298,7 +298,7 @@ export default function MyBag() {
                                       {item.custom_price}
                                     </span>
                                     <span className={styles.priceSpan1}>
-                                      {item.discount}% off
+                                      {item.custom_discount.toFixed(0)}% off
                                     </span>
                                   </p>
                                 </>
@@ -525,20 +525,51 @@ const MobileProductMyBag = ({
                     </div>
                   </div>
 
-                  <div className={styles.PriceMobile}>
-                    <p className={styles.PriceMobileMain}>
-                      {item.currency_symbol}
-                      {item.type === "readymade"
-                        ? item.readymade_price
-                        : item.custom_price}
-                    </p>
-                    <p className={styles.PriceMobileOriginal}>
-                      {item.unit_price}
-                    </p>
-                    <p className={styles.PriceMobileDiscount}>
-                      {item.discount}
-                    </p>
-                  </div>
+                  {item.type === "readymade" ? (
+                    item.readymade_offer_price > 0 ? (
+                      <div className={styles.PriceMobile}>
+                        <p className={styles.PriceMobileMain}>
+                          {item.currency_symbol}
+                          {item.readymade_offer_price}
+                        </p>
+                        <p className={styles.PriceMobileOriginal}>
+                          {item.currency_symbol}
+                          {item.readymade_price}
+                        </p>
+                        <p className={styles.PriceMobileDiscount}>
+                          {item.readymade_discount.toFixed(0)}% OFF
+                        </p>
+                      </div>
+                    ) : (
+                      <div className={styles.PriceMobile}>
+                        <p className={styles.PriceMobileMain}>
+                          {item.currency_symbol}
+                          {item.readymade_price}
+                        </p>
+                      </div>
+                    )
+                  ) : item.custom_offer_price > 0 ? (
+                    <div className={styles.PriceMobile}>
+                      <p className={styles.PriceMobileMain}>
+                        {item.currency_symbol}
+                        {item.custom_offer_price}
+                      </p>
+                      <p className={styles.PriceMobileOriginal}>
+                        {item.currency_symbol}
+                        {item.custom_price}
+                      </p>
+                      <p className={styles.PriceMobileDiscount}>
+                        {item.custom_discount.toFixed(0)}% OFF
+                      </p>
+                    </div>
+                  ) : (
+                    <div className={styles.PriceMobile}>
+                      <p className={styles.PriceMobileMain}>
+                        {item.currency_symbol}
+                        {item.custom_price}
+                      </p>
+                    </div>
+                  )}
 
                   <Button
                     onClick={(e) => move_to_wishlist(item, e)}

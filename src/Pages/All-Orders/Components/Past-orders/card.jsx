@@ -5,7 +5,12 @@ import CustomDivider from "../../../../utils/Custom Divider/divider";
 import styles from "./card.module.scss";
 import { ReactComponent as StarIcon } from "../../../../Images/icons/star.svg";
 
-export default function PastOrdersCard({ item, orderId, deliveryDate }) {
+export default function PastOrdersCard({
+  item,
+  orderId,
+  deliveryDate,
+  detail,
+}) {
   const history = useHistory();
   const mobileView = useMediaQuery("(max-width:550px)");
 
@@ -45,14 +50,17 @@ export default function PastOrdersCard({ item, orderId, deliveryDate }) {
                 Rate &amp; Review Product
               </Button>
             )}
-            <div>
-              <span
-                onClick={() => history.push(`/order-details/${orderId}`)}
-                style={{ color: "#6a5b40", cursor: "pointer" }}
-              >
-                Order Detail
-              </span>
-            </div>
+
+            {!detail && (
+              <div>
+                <span
+                  onClick={() => history.push(`/order-details/${orderId}`)}
+                  style={{ color: "#6a5b40", cursor: "pointer" }}
+                >
+                  Order Detail
+                </span>
+              </div>
+            )}
           </div>
 
           {mobileView && (

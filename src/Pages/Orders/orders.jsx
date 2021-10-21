@@ -65,7 +65,6 @@ export default function Orders({
           ) : (
             order &&
             order.items.map((item) => {
-
               return (
                 <>
                   <div className={styles.productDiv}>
@@ -97,43 +96,6 @@ export default function Orders({
               );
             })
           )}
-
-          {/* delete */}
-          {/* {orders?.map((item) => {
-            return (
-              <>
-                <div className={styles.productDiv}>
-                  <img src={productImg} alt="product" />
-                  <div>
-                    <span className={styles.productHeader}>
-                      {item.items?.length > 0
-                        ? item.items[0].title
-                        : "10 Current Fashion Trends You’ll Be Wearing in 2021"}
-                    </span>
-                    <span className={styles.productDescription}>
-                      {item.items?.length > 0
-                        ? item.items[0]?.description
-                        : "Solid Straight Kurta"}
-                    </span>
-                    <div className={styles.productQuantity}>
-                      <span>Quantity:</span>
-                      <span>{item.quantity}</span>
-                    </div>
-                    <span className={styles.price}>
-                      ₹{Math.round(parseFloat(item.grand_total_raw)).toFixed(2)}
-                    </span>
-                  </div>
-                </div>
-                {!item.feedback_id ? (
-                  <Rating
-                    item={item}
-                    set_is_reviewed={set_is_reviewed}
-                    id={item.items?.length > 0 ? item.items[0].id : null}
-                  />
-                ) : null}
-              </>
-            );
-          })} */}
         </div>
       </div>
     </Container>

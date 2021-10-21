@@ -52,28 +52,32 @@ export default function MyBag() {
   const { message, loading, error } = useSelector(
     state => state.root.removeCartItem
   );
+  const {
+    couponList,
+    loading: couponLoading,
+    error: couponError,
+  } = useSelector((state) => state.root.coupons);
 
   const [click, setClick] = useState(false);
   // const [cartMessage, setCartMessage] = useState('Added To bag');
   console.log(cart, '123456');
+
   // console.log(cart);
-  console.log(message);
 
   useEffect(() => {
     if (message) {
       alert(message);
-      dispatch(clearCartError());
       dispatch(getCartItems());
-      history.push('/my-bag');
+      dispatch(clearCartError());
     }
     if (error) {
       alert(error);
       dispatch(clearCartError());
       dispatch(getCartItems());
     }
-    if (!cart && !loading) dispatch(getCartItems());
+    dispatch(getCartItems());
     dispatch(getCoupons());
-  }, [dispatch, message, error]);
+  }, [dispatch, message, error, history]);
 
   const add_quantity = async (item, index) => {
     try {
@@ -211,15 +215,20 @@ export default function MyBag() {
                         )}
                         <div className={styles.BorderContainer}>
                           <div className={styles.mainContainer}>
+                            <Link
+                            to={`/product-description/${item.product.slug}`}
+                          >
                             <img
                               src={item.product?.image}
-                              alt='product'
+                              alt="product"
                               className={styles.image}
                             />
+                          </Link>
                             <div>
                               <div style={{ alignItems: 'flex-start' }}>
                                 <p className={styles.proName}>{item.title}</p>
                                 <p>{item.fabric}</p>
+
 
                                 <div>
                                   <h4>Product Type</h4>
@@ -262,41 +271,20 @@ export default function MyBag() {
                                 </div>
                               </div>
 
-                              <div
-                                style={{
-                                  display: 'flex',
-                                  flexDirection: 'column',
-                                  alignItems: 'center',
-                                }}
-                              >
-                                {item.type === 'readymade' ? (
-                                  item.offer_price > 0 ? (
-                                    <>
-                                      <p>
-                                        {item.currency_symbol}
-                                        {item.offer_price}
-                                      </p>
-                                      <p className={styles.priceSpanP}>
-                                        <span className={styles.priceSpan}>
-                                          {item.currency_symbol}
-                                          {item.readymade_price}
-                                        </span>
-                                        <span className={styles.priceSpan1}>
-                                          {item.discount}% off
-                                        </span>
-                                      </p>
-                                    </>
-                                  ) : (
-                                    <p>
-                                      {item.currency_symbol}
-                                      {item.readymade_price}
-                                    </p>
-                                  )
-                                ) : item.custom_offer_price > 0 ? (
+
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                              }}
+                            >
+                              {item.type === "readymade" ? (
+                                item.readymade_offer_price > 0 ? (
                                   <>
                                     <p>
                                       {item.currency_symbol}
-                                      {item.custom_offer_price}
+                                      {item.readymade_offer_price}
                                     </p>
                                     <p className={styles.priceSpanP}>
                                       <span className={styles.priceSpan}>
@@ -304,14 +292,31 @@ export default function MyBag() {
                                         {item.custom_price}
                                       </span>
                                       <span className={styles.priceSpan1}>
-                                        {item.discount}% off
+                                        {item.readymade_discount.toFixed(0)}%
+                                        OFF
                                       </span>
                                     </p>
                                   </>
                                 ) : (
                                   <p>
                                     {item.currency_symbol}
-                                    {item.custom_price}
+                                    {item.readymade_price}
+                                  </p>
+                                )
+                              ) : item.custom_offer_price > 0 ? (
+                                <>
+                                  <p>
+                                    {item.currency_symbol}
+                                    {item.custom_offer_price}
+                                  </p>
+                                  <p className={styles.priceSpanP}>
+                                    <span className={styles.priceSpan}>
+                                      {item.currency_symbol}
+                                      {item.custom_price}
+                                    </span>
+                                    <span className={styles.priceSpan1}>
+                                      {item.custom_discount.toFixed(0)}% off
+                                    </span>
                                   </p>
                                 )}
                                 <div className={styles.quan}>
@@ -485,11 +490,13 @@ const MobileProductMyBag = ({
           <div className={styles.MobileborderDiv}>
             <div className={styles.mainDiv}>
               <div className={styles.ImageQuanDiv}>
-                <img
-                  src={item.product?.image}
-                  className={styles.mainimg}
-                  alt={data.id}
-                />
+                <Link to={`/product-description/${item.product.slug}`}>
+                  <img
+                    src={item.product?.image}
+                    className={styles.mainimg}
+                    alt={data.id}
+                  />
+                </Link>
               </div>
               <div className={styles.InfoDiv}>
                 <div className={styles.mainInfo}>
@@ -564,6 +571,66 @@ const MobileProductMyBag = ({
                       </div>
                     </div>
                   </div>
+
+
+                  {item.type === "readymade" ? (
+                    item.readymade_offer_price > 0 ? (
+                      <div className={styles.PriceMobile}>
+                        <p className={styles.PriceMobileMain}>
+                          {item.currency_symbol}
+                          {item.readymade_offer_price}
+                        </p>
+                        <p className={styles.PriceMobileOriginal}>
+                          {item.currency_symbol}
+                          {item.readymade_price}
+                        </p>
+                        <p className={styles.PriceMobileDiscount}>
+                          {item.readymade_discount.toFixed(0)}% OFF
+                        </p>
+                      </div>
+                    ) : (
+                      <div className={styles.PriceMobile}>
+                        <p className={styles.PriceMobileMain}>
+                          {item.currency_symbol}
+                          {item.readymade_price}
+                        </p>
+                      </div>
+                    )
+                  ) : item.custom_offer_price > 0 ? (
+                    <div className={styles.PriceMobile}>
+                      <p className={styles.PriceMobileMain}>
+                        {item.currency_symbol}
+                        {item.custom_offer_price}
+                      </p>
+                      <p className={styles.PriceMobileOriginal}>
+                        {item.currency_symbol}
+                        {item.custom_price}
+                      </p>
+                      <p className={styles.PriceMobileDiscount}>
+                        {item.custom_discount.toFixed(0)}% OFF
+                      </p>
+                    </div>
+                  ) : (
+                    <div className={styles.PriceMobile}>
+                      <p className={styles.PriceMobileMain}>
+                        {item.currency_symbol}
+                        {item.custom_price}
+                      </p>
+                    </div>
+                  )}
+
+                  <Button
+                    onClick={(e) => move_to_wishlist(item, e)}
+                    className={styles.MoveToWishListBtnMobile}
+                  >
+                    Move to Whishlist
+                  </Button>
+                  <Button
+                    onClick={(e) => remove_item(item, e)}
+                    className={styles.RemoveBTNMobile}
+                  >
+                    Remove item
+                  </Button>
                 </div>
               </div>
             </div>

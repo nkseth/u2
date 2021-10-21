@@ -56,16 +56,8 @@ export default function Payment({
       dispatch(clearCheckoutErrors());
     }
     dispatch(getCartItems());
-    // unsub();
-    // return unsub;
     if (!loading && info) razorPayment();
   }, [dispatch, info, error, loading]);
-
-  const unsub = () => {
-    if (selectedPaymentMethod !== "upi") {
-      setSelectedUPIApp("");
-    }
-  };
 
   const loadRazorPay = () => {
     return new Promise((resolve) => {
@@ -252,12 +244,7 @@ export default function Payment({
                         variant="contained"
                         color="default"
                         className={styles.payBtn}
-                        onClick={
-                          initiate_payment
-                          //   () => {
-                          //   setPaymentDone(!PaymentDone);
-                          // }
-                        }
+                        onClick={initiate_payment}
                       >
                         Pay
                       </Button>

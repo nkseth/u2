@@ -51,12 +51,15 @@ export default function MyBag() {
   const { message, loading, error } = useSelector(
     (state) => state.root.removeCartItem
   );
+  const {
+    couponList,
+    loading: couponLoading,
+    error: couponError,
+  } = useSelector((state) => state.root.coupons);
 
   const [click, setClick] = useState(false);
   // const [cartMessage, setCartMessage] = useState('Added To bag');
-  console.log(cart);
   // console.log(cart);
-  console.log(message);
 
   useEffect(() => {
     if (message) {
@@ -204,11 +207,15 @@ export default function MyBag() {
                       )}
                       <div className={styles.BorderContainer}>
                         <div className={styles.mainContainer}>
-                          <img
-                            src={item.product?.image}
-                            alt="product"
-                            className={styles.image}
-                          />
+                          <Link
+                            to={`/product-description/${item.product.slug}`}
+                          >
+                            <img
+                              src={item.product?.image}
+                              alt="product"
+                              className={styles.image}
+                            />
+                          </Link>
                           <div>
                             <div style={{ alignItems: "flex-start" }}>
                               <p className={styles.proName}>{item.title}</p>
@@ -477,11 +484,13 @@ const MobileProductMyBag = ({
           <div className={styles.MobileborderDiv}>
             <div className={styles.mainDiv}>
               <div className={styles.ImageQuanDiv}>
-                <img
-                  src={item.product?.image}
-                  className={styles.mainimg}
-                  alt={data.id}
-                />
+                <Link to={`/product-description/${item.product.slug}`}>
+                  <img
+                    src={item.product?.image}
+                    className={styles.mainimg}
+                    alt={data.id}
+                  />
+                </Link>
               </div>
               <div className={styles.InfoDiv}>
                 <div className={styles.mainInfo}>

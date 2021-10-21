@@ -32,13 +32,14 @@ export default function ForHimSection({ type, loading }) {
     mens_active_product,
     banner,
   } = useSelector((state) => state.root.main);
-  const { user } = useSelector((state) => state.root.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.root.auth);
   const grp = type;
 
   useEffect(() => {
     dispatch(get_mens_active_product(type, "all"));
-    if (user) dispatch(getWishList(user.api_token));
-  }, [type, dispatch, user]);
+    if (!isAuthenticated) return;
+    dispatch(getWishList(user.api_token));
+  }, [type, dispatch, isAuthenticated, user]);
 
   const setActiveNav = (type, active) => {
     dispatch(setSelectedSubGrp(type));

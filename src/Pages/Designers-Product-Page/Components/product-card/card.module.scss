@@ -72,11 +72,33 @@
     }
   }
 }
+.mobilewishlist {
+  display: none;
+}
 
 @media screen and (max-width: 550px) {
+  .container {
+    height: 240px;
+    .imgContainer {
+      img {
+        height: 165px;
+      }
+    }
+  }
   .imgContainer {
     > img {
       height: 180px !important;
+    }
+  }
+  .mobilewishlist {
+    display: unset;
+  }
+  .productDetails {
+    padding: 0.3rem;
+    .productName {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 16px;
     }
   }
 }

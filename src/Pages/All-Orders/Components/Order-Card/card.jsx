@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import CustomDivider from "../../../../utils/Custom Divider/divider";
 import styles from "./card.module.scss";
 
-export default function OrdersCard({ pending, item, orderId }) {
+export default function OrdersCard({ pending, item, orderId, detail }) {
   const history = useHistory();
   const mobileView = useMediaQuery("(max-width:550px)");
   return (
@@ -111,16 +111,18 @@ export default function OrdersCard({ pending, item, orderId }) {
             </div>
           )}
 
-          <div className={styles.detailThree}>
-            <Link
-              to={`/order-details/${orderId}`}
-              style={{ cursor: "pointer" }}
-            >
-              Order Detail
-            </Link>
-            <span></span>
-            {/* <Link>Cancel Order</Link> */}
-          </div>
+          {!detail && (
+            <div className={styles.detailThree}>
+              <Link
+                to={`/order-details/${orderId}`}
+                style={{ cursor: "pointer" }}
+              >
+                Order Detail
+              </Link>
+              <span></span>
+              {/* <Link>Cancel Order</Link> */}
+            </div>
+          )}
         </div>
       </div>
     </div>

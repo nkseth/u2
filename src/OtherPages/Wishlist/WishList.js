@@ -108,7 +108,7 @@ export function Product({
                 </h3>
                 <div className={styles.PriceInfoMobile}>
                   <p>{readymade_price}</p>
-                  <span>{readymade_discount}% off</span>
+                  <span>{readymade_discount.toFixed(0)}% OFF</span>
                 </div>
               </div>
             ) : (
@@ -127,7 +127,7 @@ export function Product({
               </h3>
               <div className={styles.PriceInfoMobile}>
                 <p>{custom_price}</p>
-                <span>{custom_discount}% off</span>
+                <span>{custom_discount.toFixed(0)}% OFF</span>
               </div>
             </div>
           ) : (
@@ -203,7 +203,7 @@ export function Product({
               </h3>
               <div className={styles.PriceInfoMobile}>
                 <p>{readymade_price}</p>
-                <span>{readymade_discount}% off</span>
+                <span>{readymade_discount.toFixed(0)}% OFF</span>
               </div>
             </div>
           ) : (
@@ -222,7 +222,7 @@ export function Product({
             </h3>
             <div className={styles.PriceInfoMobile}>
               <p>{custom_price}</p>
-              <span>{custom_discount}% off</span>
+              <span>{custom_discount.toFixed(0)}% OFF</span>
             </div>
           </div>
         ) : (
@@ -246,7 +246,7 @@ export function Product({
                     {currency_symbol}
                     {readymade_price}
                   </p>
-                  <span>{readymade_discount}% off</span>
+                  <span>{readymade_discount.toFixed(0)}% OFF</span>
                 </div>
               </>
             ) : (
@@ -266,7 +266,7 @@ export function Product({
                   {currency_symbol}
                   {custom_price}
                 </p>
-                <span>{custom_discount}% off</span>
+                <span>{custom_discount.toFixed(0)}% OFF</span>
               </div>
             </>
           ) : (

@@ -24,12 +24,14 @@ const SimilarProducts = ({ tags }) => {
   const { products, loading, error } = useSelector(
     (state) => state.root.similarProducts
   );
-  const { user } = useSelector((state) => state.root.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.root.auth);
+  console.log(isAuthenticated);
   console.log(products);
   useEffect(() => {
     dispatch(getSimilarProducts(tags));
-    if (user) dispatch(getWishList(user));
-  }, [tags, dispatch, user]);
+    if (!isAuthenticated) return;
+    dispatch(getWishList(user.api_token));
+  }, [tags, dispatch, isAuthenticated, user]);
 
   const visible = 4;
   const theme = useTheme();

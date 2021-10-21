@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Grid,
   FormControl,
@@ -9,42 +9,64 @@ import {
   ButtonGroup,
   Button,
   Drawer,
-} from "@material-ui/core";
-import Loader, { ProductLoader } from "../../../../../utils/Loader/Loader";
-import cx from "classnames";
-import ProductCard from "../../product-card/card";
-import Filter from "../Filter/filter";
-import styles from "./product.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { getWishList } from "../../../../../Redux/actions/wishlist";
-import { getSortedProduct } from "../../../../../Redux/actions/products";
-export default function ProductsSection({
-  products,
-  loading,
-  slug,
-  group,
-  sorted,
-}) {
+} from '@material-ui/core';
+import Loader, { ProductLoader } from '../../../../../utils/Loader/Loader';
+import cx from 'classnames';
+import ProductCard from '../../product-card/card';
+import Filter from '../Filter/filter';
+import styles from './product.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { getWishList } from '../../../../../Redux/actions/wishlist';
+// import { getSortedProduct } from "../../../../../Redux/actions/filter-category";
+export default function ProductsSection({ products, loading, slug, group }) {
   const dispatch = useDispatch();
-  const tabViewPro = useMediaQuery("(max-width:835px)");
-  const tabView = useMediaQuery("(max-width:550px)");
-  const mobileView = useMediaQuery("(max-width:550px)");
-  const [sortBy, setSortBy] = useState("");
+  const tabViewPro = useMediaQuery('(max-width:835px)');
+  const tabView = useMediaQuery('(max-width:550px)');
+  const mobileView = useMediaQuery('(max-width:550px)');
+  const [sortBy, setSortBy] = useState('');
   const [isFilterOpen, setFilterOpen] = useState(false);
 
-  const { user, isAuthenticated } = useSelector((state) => state.root.auth);
+  const { user, isAuthenticated } = useSelector(state => state.root.auth);
   const [temp, setTemp] = useState();
 
-  const handleSort = (e) => {
+  const handleSort = e => {
     setSortBy(e.target.value);
-    dispatch(getSortedProduct(slug, group, e.target.value));
+    console.log(e.target.value);
+    // dispatch(getSortedProduct(slug, group, e.target.value));
+    // if (e.target.value === "lowToHigh") {
+    //   setTemp(products.sort((a, b) => a.price - b.price));
+    // }
+
+    // if (e.target.value === "highToLow") {
+    //   setTemp(
+    //     products.sort((a, b) => {
+    //       if (b.custom_price >= 1) {
+    //         return b.custom_price - a.custom_price;
+    //       }
+    //       if (b.readymade_price >= 1) {
+    //         return b.readymade_price - a.readymade_price;
+    //       }
+    //       return b.price - a.price;
+    //     })
+    //   );
+    // } else {
+    //   return setTemp(
+    //     products.sort((a, b) => {
+    //       return b.title.localeCompare(a.name);
+    //     })
+    //   );
+    // }
   };
 
-  const toggleDrawer = (anchor, open) => (event) => {
+  // useEffect(() => {
+  //   // setProducts(temp);
+  // }, [sortBy]);
+
+  const toggleDrawer = (anchor, open) => event => {
     if (
       event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }
@@ -52,18 +74,20 @@ export default function ProductsSection({
     setFilterOpen(open);
   };
 
-  useEffect(() => {
-    if (!sorted) setSortBy("");
-  }, [sorted]);
+  // useEffect(() => {
+  //   if (isAuthenticated) dispatch(getWishList(user.api_token));
+  // }, [dispatch, isAuthenticated, user]);
+
+  const PRODUCT_COUNT = 9;
 
   return (
     <>
       {tabViewPro && (
         <Drawer
-          anchor={"left"}
+          anchor={'left'}
           open={isFilterOpen}
-          onClose={toggleDrawer("left", false)}
-          onOpen={toggleDrawer("left", true)}
+          onClose={toggleDrawer('left', false)}
+          onOpen={toggleDrawer('left', true)}
           transitionDuration={600}
         >
           <Filter />
@@ -71,25 +95,25 @@ export default function ProductsSection({
       )}
 
       <Grid
-        container
-        style={{ width: "100%", margin: 0 }}
-        justifyContent="flex-start"
-        spacing={mobileView ? 1 : 3}
+      // container
+      // style={{ width: '100%', margin: 0 }}
+      // justifyContent='flex-start'
+      // spacing={mobileView ? 1 : 3}
       >
         <Grid
           item
           xs={12}
           md={12}
           style={{
-            display: "flex",
-            justifyContent: tabViewPro ? "space-between" : "flex-end",
-            alignItems: "center",
-            marginBottom: "1rem",
+            display: 'flex',
+            justifyContent: tabViewPro ? 'space-between' : 'flex-end',
+            alignItems: 'center',
+            marginBottom: '1rem',
           }}
         >
           {tabViewPro && (
             <div className={styles.filterDiv}>
-              <ButtonGroup variant="contained" color="default" aria-label="">
+              <ButtonGroup variant='contained' color='default' aria-label=''>
                 <Button
                   onClick={() => setFilterOpen(true)}
                   className={cx(styles.btn, styles.filterBtn)}
@@ -104,20 +128,20 @@ export default function ProductsSection({
           )}
 
           <FormControl
-            size="small"
-            variant="outlined"
-            style={{ minWidth: "130px" }}
+            size='small'
+            variant='outlined'
+            style={{ minWidth: '130px' }}
           >
             <InputLabel
-              color={"secondary"}
-              style={{ fontWeight: "700", color: "#6A5B40", fontSize: "16px" }}
+              color={'secondary'}
+              style={{ fontWeight: '700', color: '#6A5B40', fontSize: '16px' }}
             >
               Sort by
             </InputLabel>
             <Select
               value={sortBy}
-              onChange={(e) => handleSort(e)}
-              label="Sort by"
+              onChange={e => handleSort(e)}
+              label='Sort by'
             >
               {/* <MenuItem
                 value={"relavence"}
@@ -127,20 +151,20 @@ export default function ProductsSection({
                 Relavence
               </MenuItem> */}
               <MenuItem
-                value={"new"}
-                style={{ fontSize: mobileView && "15px" }}
+                value={'new'}
+                style={{ fontSize: mobileView && '15px' }}
               >
                 New
               </MenuItem>
               <MenuItem
-                value={"lowToHeigh"}
-                style={{ fontSize: mobileView && "15px" }}
+                value={'lowToHeigh'}
+                style={{ fontSize: mobileView && '15px' }}
               >
                 Price Low to High
               </MenuItem>
               <MenuItem
-                value={"heighTolow"}
-                style={{ fontSize: mobileView && "15px" }}
+                value={'heighTolow'}
+                style={{ fontSize: mobileView && '15px' }}
               >
                 Price High to Low
               </MenuItem>
@@ -148,8 +172,10 @@ export default function ProductsSection({
           </FormControl>
         </Grid>
         {loading ? (
-          <div style={{ margin: "auto" }}>
-            <Loader height={"200px"} />
+          <div className={styles.productsGrid}>
+            {[...Array(9)].map(item => {
+              return <ProductLoader width={'100%'} height={'350px'} />;
+            })}
           </div>
         ) : (
           <div className={styles.productsGrid}>

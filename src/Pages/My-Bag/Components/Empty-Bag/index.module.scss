@@ -1,0 +1,68 @@
+.mainContainer {
+    margin-top: 178px;
+}
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h4 {
+        margin-top: 66px;
+        text-align: center;
+        font-family: DM Serif Display;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 28px;
+        margin-bottom: 8px;
+    }
+    p {
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: 0.16px;
+        color: #6c6c6c;
+        width: 80% !important;
+    }
+}
+
+.emptyBag {
+    border: 1px solid #cecece;
+    height: 76px;
+    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    img {
+        margin-left: 20px;
+    }
+}
+.line1 {
+    height: 16px;
+    width: 119px;
+    border-radius: 12px;
+    background-color: #cec7b9;
+    margin-bottom: 8px;
+}
+.line2 {
+    height: 16px;
+    width: 195px;
+    border-radius: 12px;
+    background-color: #f0eeea;
+}
+
+.mobileButton {
+    height: 48px !important;
+    background-color: #857250 !important;
+    border-radius: 5px !important;
+    color: white !important;
+    width: 100% !important;
+    text-transform: initial !important;
+    font-family: DM Sans !important;
+    font-weight: bold !important; 
+    font-size: 16px !important;
+    line-height: 20px !important;
+    text-align: center;
+}

@@ -4,6 +4,7 @@ import CustomSection from "../../../../../utils/Custom Section/section";
 import TopOffersCard from "./components/offers-card/card";
 import styles from "./allThatYouWant.module.scss";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 //Images
 import All1 from "./components/Images/All1.jpg";
 import All2 from "./components/Images/All2.jpg";
@@ -70,13 +71,15 @@ export default function AllThatYouWantSection({ type }) {
       <div className={styles.topOffersCardContainer}>
         {all_that_you_want?.slice(0, 3).map((item) => {
           return (
-            <div key={item.id} className={styles.item}>
-              <LazyLoadingImg image={item.image} height={"225px"} />
+            <Link to={`/designers-product-page/${type}/${item.link}`}>
+              <div key={item.id} className={styles.item}>
+                <LazyLoadingImg image={item.image} height={"225px"} />
 
-              {/* <img src={item.image} alt={item.name} /> */}
+                {/* <img src={item.image} alt={item.name} /> */}
 
-              <h1>{item.title}</h1>
-            </div>
+                <h1>{item.title}</h1>
+              </div>
+            </Link>
           );
         })}
       </div>

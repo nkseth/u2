@@ -1,7 +1,6 @@
-
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { IconButton, useMediaQuery, useTheme } from '@material-ui/core';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { IconButton, useMediaQuery, useTheme } from "@material-ui/core";
 
 import {
   CarouselProvider,
@@ -29,14 +28,14 @@ export default function MostLovedStyleSection({ type }) {
   const [visible, setvisible] = useState(3);
   const theme = useTheme();
 
-  const match = useMediaQuery('(max-width:630px)');
-  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
-  const large = useMediaQuery(theme.breakpoints.down('1330px'));
-  const CustomView = useMediaQuery('(max-width:400px)');
+  const match = useMediaQuery("(max-width:630px)");
+  const iPade = useMediaQuery(theme.breakpoints.down("sm"));
+  const large = useMediaQuery(theme.breakpoints.down("1330px"));
+  const CustomView = useMediaQuery("(max-width:400px)");
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(get_most_loved(`${type}-fashion`));
+    dispatch(get_most_loved(`${type}`));
   }, [type]);
 
   const { most_loved } = useSelector((state) => state.root.main);

@@ -30,9 +30,15 @@ import NewAddress from "../Delivery Address/Components/fabric-sample-card/NewAdd
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getAddress } from "../../Redux/actions/checkout";
-import { getCartItems } from "../../Redux/actions/myBag";
+import {
+  applyCoupons,
+  getCartItems,
+  getCoupons,
+} from "../../Redux/actions/myBag";
 import Loader from "../../utils/Loader/Loader";
 import { getMyAddresses } from "../../Redux/actions/address";
+import { SuccessPopUp } from "../../utils/Popups/SuccessPopup";
+import CartOffers from "../My-Bag/Components/Offers/CartOffers";
 
 export default function OrderSummary() {
   const history = useHistory();
@@ -42,6 +48,9 @@ export default function OrderSummary() {
   const mobileView = useMediaQuery("(max-width:550px)");
   const [AddAddress, setAddAddress] = useState(false);
   const [customType, setCustomType] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [coupon, setCoupon] = useState(null);
+  const toggleModal = () => setModal((modal) => !modal);
 
   const { cart, loading } = useSelector((state) => state.root.cartItems);
   console.log(cart);
@@ -57,6 +66,7 @@ export default function OrderSummary() {
       }
     }
     if (!cart) dispatch(getCartItems());
+    dispatch(getCoupons());
   }, [dispatch, cart]);
 
   const add_quantity = async (item, index) => {
@@ -87,6 +97,12 @@ export default function OrderSummary() {
         console.log(e?.response?.data);
       }
     } else alert("Quantity can't be less than 1");
+  };
+
+  const applyCartCoupon = (e) => {
+    e.preventDefault();
+    if (!coupon) return alert("Select coupon first.");
+    dispatch(applyCoupons(cart.id, coupon.id, cart.shop_id));
   };
 
   const checkout = (e) => {
@@ -353,16 +369,30 @@ export default function OrderSummary() {
                             type="text"
                             placeholder="Enter coupon code"
                             name="coupon"
+                            value={coupon ? coupon.code : ""}
                           />
-                          <span>Apply</span>
+                          <span onClick={applyCartCoupon}>Apply</span>
                         </div>
-                        <Link to="/">View offers</Link>
+                        <span
+                          style={{ color: "red", cursor: "pointer" }}
+                          onClick={toggleModal}
+                        >
+                          View offers
+                        </span>
                       </div>
                     </AccordionDetails>
                   </Accordion>
                 </div>
               </div>
-
+              {modal && (
+                <SuccessPopUp toggle={toggleModal}>
+                  <CartOffers
+                    coupon={coupon}
+                    setCoupon={setCoupon}
+                    toggle={toggleModal}
+                  />
+                </SuccessPopUp>
+              )}
               <div className={styles.placeOrderBtnDiv}>
                 <Button
                   variant="text"

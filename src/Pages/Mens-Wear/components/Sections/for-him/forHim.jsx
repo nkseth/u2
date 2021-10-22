@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom";
 import { LazyLoadingImg } from "../../../../../utils/LazyLoading";
 import { getWishList } from "../../../../../Redux/actions/wishlist";
 
-export default function ForHimSection({ type, loading }) {
+export default function ForHimSection({ type, coverImage }) {
   // const loading = false;
   const customView = useMediaQuery("(max-width:1235px)");
   const tabView = useMediaQuery("(max-width:768px)");
@@ -101,7 +101,7 @@ export default function ForHimSection({ type, loading }) {
               </div>
             </nav>
           )}
-          <LazyLoadingImg image={Main} />
+          <LazyLoadingImg image={coverImage} />
           {/* <img src={Main} alt='for him' /> */}
         </div>
         <Grid
@@ -156,7 +156,7 @@ export default function ForHimSection({ type, loading }) {
             );
           })} */}
 
-          {loading
+          {!mens_active_product
             ? [...Array(6)].map((item) => (
                 <Grid
                   item

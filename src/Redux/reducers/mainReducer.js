@@ -26,7 +26,7 @@ const inialState = {
   mens_wear_cat: [],
   mens_wear_subgrp: [],
   selected_sub_grp: "all",
-  mens_active_product: [],
+  mens_active_product: null,
   new_collection: null,
   top_designers: {},
   stylish_recommend: null,

@@ -84,6 +84,7 @@ import CollabrateAsVendor from "./Pages/Collabrate/CollabrateAsVendor/collabrate
 import CollabrateAsInfluencer from "./Pages/Collabrate/CollabrateAsInfluencer/collabrateAsInfluencer";
 import AboutUs from "./OtherPages/AboutUs/AboutUs";
 import MobileCategory from "./utils/MobileCategoryPage/MobileCategory";
+import ProductsByDesigner from "./Pages/Designers-Product-Page/ProductsByDesigner";
 // import OrderDetails from "./OtherPages/OrderDetails/OrderDetails";
 
 //Start From Here
@@ -126,6 +127,11 @@ function App() {
         <Route
           path="/designers-product-page/:type/:slug"
           component={DesignersProductPage}
+          exact
+        />
+        <Route
+          path="/designer-products/:designerId"
+          component={ProductsByDesigner}
           exact
         />
         <Route
@@ -247,7 +253,11 @@ function App() {
         />
         <Route path={"/home/explore"} component={HomeExplore} />
         <Route path={"/visual-search"} component={VisualSearch} />
-        <Route exact path={"/designer-page"} component={DesignersPage} />
+        <Route
+          exact
+          path={"/designer-page/:designerId"}
+          component={DesignersPage}
+        />
         <Route path={"/home/poll-question"} component={PollQuestion} />
         <Route path={"/home/poll-result"} component={PollResult} />
         <Route path={"/designer-posts"} component={DesignerPosts} />
@@ -263,7 +273,11 @@ function App() {
         />
         <Route path={"/home/explore"} component={HomeExplore} />
         <Route path={"/visual-search"} component={VisualSearch} />
-        <Route exact path={"/designer-page"} component={DesignersPage} />
+        <Route
+          exact
+          path={"/designer-page/:designerId"}
+          component={DesignersPage}
+        />
         <Route path={"/home/poll-question"} component={PollQuestion} />
         <Route path={"/home/poll-result"} component={PollResult} />
         {/* Collabrate */}

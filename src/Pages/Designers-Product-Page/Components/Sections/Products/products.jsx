@@ -19,7 +19,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getWishList } from "../../../../../Redux/actions/wishlist";
 import { getSortedProduct } from "../../../../../Redux/actions/products";
 // import { getSortedProduct } from "../../../../../Redux/actions/filter-category";
-export default function ProductsSection({ products, loading, slug, group }) {
+export default function ProductsSection({
+  products,
+  loading,
+  slug,
+  group,
+  clearAll,
+  setClearAll,
+}) {
   const dispatch = useDispatch();
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:550px)");
@@ -33,12 +40,9 @@ export default function ProductsSection({ products, loading, slug, group }) {
   const handleSort = (e) => {
     setSortBy(e.target.value);
     console.log(e.target.value);
+    setClearAll(false);
     dispatch(getSortedProduct(slug, group, e.target.value));
   };
-
-  // useEffect(() => {
-  //   // setProducts(temp);
-  // }, [sortBy]);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -52,12 +56,10 @@ export default function ProductsSection({ products, loading, slug, group }) {
     setFilterOpen(open);
   };
 
-  // useEffect(() => {
-  //   if (isAuthenticated) dispatch(getWishList(user.api_token));
-  // }, [dispatch, isAuthenticated, user]);
-
   const PRODUCT_COUNT = 9;
-
+  useEffect(() => {
+    if (clearAll) setSortBy("");
+  }, [clearAll]);
   return (
     <>
       {tabViewPro && (

@@ -31,6 +31,27 @@ export const getProducts = (type, filter) => async (dispatch) => {
     return Promise.reject(err);
   }
 };
+
+export const getDesignerProducts = (designerId, filter) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_PRODUCTS_REQUEST });
+    const { data } = await common_axios.post(
+      `/getProductByDesigner/${designerId}`,
+      filter
+    );
+    if (data.data) {
+      dispatch({
+        type: GET_PRODUCTS_SUCCESS,
+        payload: { data: data.data, sorted: false },
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: GET_PRODUCTS_FAIL, payload: err });
+    return Promise.reject(err);
+  }
+};
+
 export const getProductDetails = (slug) => async (dispatch) => {
   try {
     dispatch({ type: GET_PRODUCT_DETAILS_REQUEST });

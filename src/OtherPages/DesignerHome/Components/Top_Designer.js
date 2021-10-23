@@ -64,7 +64,7 @@ const Top_Designer = () => {
             isIntrinsicHeight
           >
             <Slider>
-              {designers?.map(({ id, name, cover_image }, i) => (
+              {designers?.map(({ id, name, cover_image, marchent_id }, i) => (
                 <>
                   <Slide
                     index={i}
@@ -76,17 +76,13 @@ const Top_Designer = () => {
                     }
                   >
                     <LazyLoadingComp>
-                      <Link to="designers-profile">
+                      <Link to={`/designer-products/${marchent_id}`}>
                         <div className={styles.Top_Designer}>
                           <div className={styles.Top_Designer_Items}>
                             <LazyLoadingImg image={cover_image} />
-                            {/* <img
-                            src={
-                              'https://images.unsplash.com/photo-1545239351-ef35f43d514b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80'
-                            }
-                            alt={id}
-                          /> */}
-                            <Link to="designers-profile">{name}</Link>
+                            <Link to={`/designer-products/${marchent_id}`}>
+                              {name}
+                            </Link>
                           </div>
                         </div>
                       </Link>
@@ -122,79 +118,3 @@ const Top_Designer = () => {
 };
 
 export default Top_Designer;
-
-const CarouselSlide = () => {
-  const media = useMediaQuery(`(max-width:768px)`);
-  const imageSrc =
-    "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  return (
-    <>
-      <div className={styles.Top_Designer}>
-        <div className={styles.Top_Designer_Items}>
-          <img src={d1} alt="items" />
-          <Link to="designers-profile">Designer Name</Link>
-        </div>
-      </div>
-    </>
-  );
-};
-const CarouselSlide2 = () => {
-  const media = useMediaQuery(`(max-width:768px)`);
-  const imageSrc =
-    "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  return (
-    <>
-      <div className={styles.Top_Designer}>
-        <div className={styles.Top_Designer_Items}>
-          <img src={d4} alt="items" />
-          <Link to="designers-profile">Designer's Name</Link>
-        </div>{" "}
-      </div>
-    </>
-  );
-};
-const CarouselSlide3 = () => {
-  const media = useMediaQuery(`(max-width:768px)`);
-  const imageSrc =
-    "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  return (
-    <>
-      <div className={styles.Top_Designer}>
-        <div className={styles.Top_Designer_Items}>
-          <img src={d2} alt="items" />
-          <Link to="designers-profile">Designer Name</Link>
-        </div>{" "}
-      </div>
-    </>
-  );
-};
-const CarouselSlide4 = () => {
-  const media = useMediaQuery(`(max-width:768px)`);
-  const imageSrc =
-    "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  return (
-    <>
-      <div className={styles.Top_Designer}>
-        <div className={styles.Top_Designer_Items}>
-          <img src={d3} alt="items" />
-          <Link to="designers-profile">Designer Name</Link>
-        </div>{" "}
-      </div>
-    </>
-  );
-};
-const CarouselSlide5 = () => {
-  const media = useMediaQuery(`(max-width:768px)`);
-  const imageSrc =
-    "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-  return (
-    <>
-      <div className={styles.Top_Designer}>
-        <div className={styles.Top_Designer_Items}>
-          <img src={d4} alt="items" />
-          <Link to="designers-profile">Designer Name</Link>
-        </div>{" "}
-      </div>
-    </>
-  );
-};

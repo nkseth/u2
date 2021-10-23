@@ -8,96 +8,141 @@
     width: 100%;
     border-right: 1px solid rgb(236, 236, 236);
   }
-  .firstSection :first-child{
+  .firstSection :first-child {
     border-right: none;
   }
-.FilterBreadDiv{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 20%;
-}
+  .FilterBreadDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 20%;
+  }
   .secondSection {
     width: 80%;
     // margin-top: -5em;
   }
 }
-.LoadMoreBtnContainer{
+.LoadMoreBtnContainer {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   margin-top: -5em;
   margin-bottom: 5em;
 
-  .LoadMoreBtnDiv{
+  .LoadMoreBtnDiv {
     width: 80%;
     justify-content: center;
     display: flex;
-    .LoadMoreBtn{
-      background: #6A5B40;
+    .LoadMoreBtn {
+      background: #6a5b40;
       color: #fff;
       padding: 1em 2em;
     }
-    
   }
-  
- 
 }
 
-.upperbread{
+.upperbread {
   width: 150%;
   margin-left: -2em;
   // margin-right: auto;
   padding-left: 2em;
   // padding-top: 0.5em;
-  padding-bottom:1em;
+  padding-bottom: 1em;
   margin-bottom: 1em;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #6A5B40;
+  border-bottom: 1px solid #6a5b40;
 }
-@media only screen and (min-width: 550px) and (max-width:835px) {
-
-  .upperbread{
+@media only screen and (min-width: 550px) and (max-width: 835px) {
+  .upperbread {
     width: 150%;
     margin-left: -2em;
     padding-left: 2em;
     padding-top: 1em;
-    padding-bottom:0em;
+    padding-bottom: 0em;
     margin-bottom: 1em;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #6A5B40;
+    border-bottom: 1px solid #6a5b40;
   }
-
-
 }
-  @media screen and (max-width: 835px) {
+@media screen and (max-width: 835px) {
   .container {
     padding-top: 0;
     .secondSection {
       width: 100%;
     }
   }
-  .LoadMoreBtnContainer{
+  .LoadMoreBtnContainer {
     width: 100%;
     display: flex;
     justify-content: flex-end;
     margin-top: -7em;
     margin-bottom: 5em;
-    .LoadMoreBtnDiv{
+    .LoadMoreBtnDiv {
       width: 100%;
       justify-content: center;
       display: flex;
-      .LoadMoreBtn{
-        background: #6A5B40;
+      .LoadMoreBtn {
+        background: #6a5b40;
         color: #fff;
         padding: 1em 2em;
       }
-      
     }
-    
-   
   }
-  
+}
+
+//desginer product section
+.banner {
+  width: 100%;
+  background-color: gray;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__body {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0 4rem;
+    gap: 3rem;
+
+    &__frame {
+      border: 10px solid #9d8e73;
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 300px;
+
+      &__image {
+        width: 100%;
+        height: 300px;
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 2rem;
+      gap: 2rem;
+
+      &__name {
+        font-weight: normal;
+        font-size: 61px;
+        line-height: 150%;
+        letter-spacing: 0.006em;
+        color: #ffffff;
+      }
+
+      &__description {
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 183.5%;
+        color: #ffffff;
+      }
+    }
+  }
 }

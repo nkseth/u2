@@ -139,6 +139,7 @@ const ProductsByDesigner = ({ match }) => {
                   setClearAll={setClearAll}
                 />
               </div>
+
             </div>
           </div>
         </div>

@@ -224,7 +224,6 @@
 .addBtn {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
-
 }
 .RemoveBTN {
   color: red !important;
@@ -510,11 +509,9 @@
 }
 
 .mainDiv {
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  padding: 0.2rem 1rem 1rem 1rem;
 }
 .mainimg {
   height: 130px;
@@ -524,7 +521,6 @@
   object-position: top;
   object-fit: cover;
   margin-top: 15px;
-
 }
 
 .ImageQuanDiv {
@@ -574,7 +570,7 @@
 }
 
 .mainInfo {
-  display: flex;
+  // display: flex;
   flex-direction: column;
   width: 100%;
   align-items: flex-start;
@@ -664,8 +660,7 @@
   letter-spacing: 0.3199999928474426px !important;
   text-align: center !important;
   text-transform: inherit !important;
- 
-  
+
   border-top: 1px solid #cecece !important;
   border-bottom: 1px solid #cecece !important;
   border-right: 1px solid #cecece !important;
@@ -690,14 +685,13 @@
   width: 100%;
 }
 
-.mobileButton{
+.mobileButton {
   display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    // padding: 0.5em;
-    // border-bottom: 1px solid #cecece;
-    // border-top: 1px solid #cecece;
-   
+  justify-content: space-evenly;
+  align-items: center;
+  // padding: 0.5em;
+  // border-bottom: 1px solid #cecece;
+  // border-top: 1px solid #cecece;
 }
 
 .CheckOutProcess {
@@ -729,7 +723,7 @@
     line-height: 20px;
     letter-spacing: 0px;
     text-align: left;
-    
+
     color: #3b3b3b;
   }
   .CheckOutProcessBtn {

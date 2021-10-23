@@ -39,8 +39,9 @@ const SuitWear = () => {
   const theme = useTheme();
 
   const match = useMediaQuery('(max-width:630px)');
-  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
-  const large = useMediaQuery(theme.breakpoints.down('1330px'));
+  const iPade = useMediaQuery('(max-width:900px)');
+
+  const large = useMediaQuery('(max-width:1330px)');
   const CustomView = useMediaQuery('(max-width:400px)');
 
   useEffect(() => {
@@ -60,12 +61,14 @@ const SuitWear = () => {
         >
           Suit Wear{' '}
           <CustomDivider
-            style={{ height: '2px', background: mobile ? '#000' : '#fff' }}
+            style={{ height: '1px', background: mobile ? '#000' : '#fff' }}
           />
         </div>
         <CarouselProvider
-          visibleSlides={match ? 1.4 : iPade ? 2 : large ? 3 : visible}
-          totalSlides={suitWearItems?.length + 0.3}
+          visibleSlides={match ? 1.4 : iPade ? 2.5 : large ? 3 : visible}
+          totalSlides={
+            match ? suitWearItems?.length + 0.3 : suitWearItems?.length
+          }
           isIntrinsicHeight
         >
           <Slider>

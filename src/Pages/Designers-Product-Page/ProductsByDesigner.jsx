@@ -101,20 +101,45 @@ const ProductsByDesigner = ({ match }) => {
               </div>
             </div>
           )}
-          <div className={styles.secondSection}>
-            <div style={{ padding: "1rem 1rem 5rem" }}>
-              {tabViewPro && (
-                <div className={styles.upperbread}>
-                  <Breadcrumb path={`Products /`} activePath={`Designer`} />
+          <div>
+            <div className={styles.banner}>
+              <div className={styles.banner__body}>
+                <div className={styles.banner__body__frame}>
+                  <img
+                    src=""
+                    alt=""
+                    className={styles.banner__body__frame__image}
+                  />
                 </div>
-              )}
-              <ProductsSection
-                products={product}
-                loading={loading}
-                designerId={designerId}
-                clearAll={clearAll}
-                setClearAll={setClearAll}
-              />
+                <div className={styles.banner__body__info}>
+                  <span className={styles.banner__body__info__name}>
+                    Designer's Name
+                  </span>
+                  <span className={styles.banner__body__info__description}>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div style={{ width: "100%" }} className={styles.secondSection}>
+              <div style={{ padding: "1rem 1rem 5rem" }}>
+                {tabViewPro && (
+                  <div className={styles.upperbread}>
+                    <Breadcrumb path={`Products /`} activePath={`Designer`} />
+                  </div>
+                )}
+                <ProductsSection
+                  products={product}
+                  loading={loading}
+                  designerId={designerId}
+                  clearAll={clearAll}
+                  setClearAll={setClearAll}
+                />
+              </div>
+
             </div>
           </div>
         </div>

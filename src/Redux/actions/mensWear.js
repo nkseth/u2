@@ -170,11 +170,11 @@ export const get_most_loved = (type) => async (dispatch) => {
     const { data } = await common_axios.post(`/themeOption`, {
       dashboard_type: "comman",
       content_type: type,
-      group_name: "hand_made_cloth",
+      group_name: "most_loved_style",
     });
 
-    if (data.hand_made_cloth) {
-      dispatch({ type: MOST_LOVED, payload: data.hand_made_cloth });
+    if (data.most_loved_style) {
+      dispatch({ type: MOST_LOVED, payload: data.most_loved_style });
     }
   } catch (err) {
     console.log(err?.response?.data);

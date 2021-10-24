@@ -36,9 +36,11 @@ import {
   getCoupons,
   removeFromBag,
   clearCartError,
-} from '../../Redux/actions/myBag';
-import { SuccessPopUp } from '../../utils/Popups/SuccessPopup';
-import EmptyBag from './Components/Empty-Bag';
+  applyCoupons,
+} from "../../Redux/actions/myBag";
+import { SuccessPopUp } from "../../utils/Popups/SuccessPopup";
+import EmptyBag from "./Components/Empty-Bag";
+import CartOffers from "./Components/Offers/CartOffers";
 
 export default function MyBag() {
   const history = useHistory();
@@ -52,15 +54,10 @@ export default function MyBag() {
   const { message, loading, error } = useSelector(
     state => state.root.removeCartItem
   );
-  const {
-    couponList,
-    loading: couponLoading,
-    error: couponError,
-  } = useSelector(state => state.root.coupons);
 
   const [click, setClick] = useState(false);
+  const [coupon, setCoupon] = useState(null);
   // const [cartMessage, setCartMessage] = useState('Added To bag');
-  console.log(cart, '123456');
 
   // console.log(cart);
 
@@ -155,6 +152,12 @@ export default function MyBag() {
   if (!cart) {
     return <EmptyBag />;
   }
+
+  const applyCartCoupon = (e) => {
+    e.preventDefault();
+    if (!coupon) return alert("Select coupon first.");
+    dispatch(applyCoupons(cart.id, coupon.code, cart.shop_id));
+  };
 
   return (
     <Container bottomDivider footerOnTabMob>
@@ -453,11 +456,13 @@ export default function MyBag() {
                       <div className={styles.couponInputDiv}>
                         <div>
                           <input
-                            type='text'
-                            placeholder='Enter coupon code'
-                            name='coupon'
+
+                            type="text"
+                            placeholder="Enter coupon code"
+                            name="coupon"
+                            value={coupon ? coupon.code : ""}
                           />
-                          <span>Apply</span>
+                          <span onClick={applyCartCoupon}>Apply</span>
                         </div>
                         <button onClick={toggleModal}>View offers</button>
                       </div>
@@ -478,7 +483,15 @@ export default function MyBag() {
         </CustomSection>
       }
 
-      {modal && <SuccessPopUp toggle={toggleModal} />}
+      {modal && (
+        <SuccessPopUp toggle={toggleModal}>
+          <CartOffers
+            coupon={coupon}
+            setCoupon={setCoupon}
+            toggle={toggleModal}
+          />
+        </SuccessPopUp>
+      )}
     </Container>
   );
 }

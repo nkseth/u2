@@ -36,6 +36,7 @@ import {
   cartItemsReducer,
   removeCartItemReducer,
   couponsReducer,
+  applyCouponsReducer,
 } from "./myBagReducer";
 import {
   productsReducer,
@@ -47,15 +48,19 @@ import { addressReducer, paymentReducer } from "./checkoutReducer";
 
 import { myAddressesReducer, userAddressReducer } from "./adrressReducer";
 
+import { designerProfileReducer } from "./designerReducer";
+
 const rootreducer = combineReducers({
   address: addressReducer,
   addToBag: addToBagReducer,
   allMeasurements: allMeasurementsReducer,
+  applyCoupons: applyCouponsReducer,
   auth: authReducer,
   cartItems: cartItemsReducer,
   coupons: couponsReducer,
   customerReviews: customerReviewsReducer,
   deleteMeasurement: deleteMeasurementReducer,
+  designerProfile: designerProfileReducer,
   filterCategory: filterCategoryReducer,
   filteredProduct: filteredProductReducer,
   handMadeClothes: handMadeClothesReducer,

@@ -13,7 +13,7 @@
     height: 45px;
     width: 170px;
     font-size: 14px;
-    margin: 0 auto;
+    margin: 1 auto;
     color: #ffffff;
     background-color: rgba(255, 255, 255, 0);
     border: 2px solid #ffffff;
@@ -23,30 +23,43 @@
     align-items: center;
     font-family: 'DM Serif Display';
     text-transform: capitalize;
+    font-family: DM Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+
     // box-shadow: 0px 6px 10px #0000007d;
     &:hover {
-      background: #857250;
-      color: #fff;
-      border: 2px solid #857250;
+      background: #fff;
+      color: #857250;
     }
   }
   h2 {
     color: #fff;
+
+    font-family: DM Serif Display;
     font-size: 54px;
-    text-align: center;
-    font-family: 'DM Serif Display';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 64px;
+    letter-spacing: 0em;
     padding-bottom: 20px;
-    z-index: 2;
   }
   p {
     color: #fff;
-    font-family: Quicksand;
+    font-family: DM Sans;
     font-size: 16px;
-    margin-bottom: 20px !important;
-    width: 70%;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0em;
     text-align: center;
-    margin: 0 auto;
-    z-index: 2;
+    padding-bottom: 20px;
+
+    width: 70%;
   }
   // button {
   //   height: 200px;
@@ -69,6 +82,11 @@
 
 .collabrate_bgg {
   background: #6a5b4052;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 
   // padding: 3rem 2rem !important;
 }
@@ -105,10 +123,36 @@
     }
   }
 }
+@media only screen and (max-width: 768px) {
+  .Collabrate_With_US {
+    height: 300px;
+  }
+  .collabrate_bgg {
+    height: 150px;
+    padding: 0 2rem;
+    button {
+      display: none;
+    }
+
+    h2 {
+      font-family: DM Serif Display;
+      font-size: 54px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 64px;
+      letter-spacing: 0em;
+      text-align: center;
+    }
+    p {
+      display: none;
+    }
+  }
+}
 
 @media screen and (max-width: 420px) {
   .collabrate_bgg {
     padding: 1rem 1rem;
+    height: 95px !important;
   }
   .Collabrate_With_US {
     height: 220px;
@@ -128,11 +172,12 @@
     }
     h2 {
       font-family: DM Serif Display;
-      font-size: 20px;
+      font-size: 35px;
       font-style: normal;
       font-weight: 400;
-      line-height: 36px;
+      line-height: 48px;
       letter-spacing: 0em;
+      text-align: center;
     }
     p {
       font-family: DM Sans;

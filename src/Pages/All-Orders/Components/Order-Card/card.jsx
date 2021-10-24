@@ -1,12 +1,12 @@
-import React from "react";
-import { Button, useMediaQuery } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
-import CustomDivider from "../../../../utils/Custom Divider/divider";
-import styles from "./card.module.scss";
+import React from 'react';
+import { Button, useMediaQuery } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
+import CustomDivider from '../../../../utils/Custom Divider/divider';
+import styles from './card.module.scss';
 
 export default function OrdersCard({ pending, item, orderId, detail }) {
   const history = useHistory();
-  const mobileView = useMediaQuery("(max-width:550px)");
+  const mobileView = useMediaQuery('(max-width:550px)');
   return (
     <div className={styles.mainContainer}>
       {!item && <CustomDivider />}
@@ -14,14 +14,14 @@ export default function OrdersCard({ pending, item, orderId, detail }) {
         <img
           src={item.product.image}
           alt={item.title}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => history.push(`/product-description/${item.slug}`)}
         />
         <div className={styles.detailsDiv}>
           <div className={styles.detailOne}>
             <div>
               <h1
-                style={{ cursor: "pointer" }}
+                style={{ cursor: 'pointer' }}
                 onClick={() =>
                   history.push(`/product-description/${item.slug}`)
                 }
@@ -31,7 +31,7 @@ export default function OrdersCard({ pending, item, orderId, detail }) {
               <span>{item.fabric}</span>
             </div>
 
-            <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+            <div style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
               {item.currency_symbol}
               {item.total}
             </div>
@@ -43,10 +43,10 @@ export default function OrdersCard({ pending, item, orderId, detail }) {
           {mobileView && (
             <div
               style={{
-                fontFamily: "DM Serif Display",
-                fontSize: "28px",
+                fontFamily: 'DM Serif Display',
+                fontSize: '28px',
                 fontWeight: 400,
-                lineHeight: "36px",
+                lineHeight: '36px',
               }}
             >
               {item.currency_symbol}
@@ -55,8 +55,8 @@ export default function OrdersCard({ pending, item, orderId, detail }) {
           )}
 
           {pending ? (
-            item.type === "readymade" ? (
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
+            item.type === 'readymade' ? (
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button
                   // onClick={() =>
                   //   history.push(
@@ -64,8 +64,8 @@ export default function OrdersCard({ pending, item, orderId, detail }) {
                   //   )
                   // }
                   className={styles.trackBtn}
-                  variant="contained"
-                  style={{ whiteSpace: "nowrap" }}
+                  variant='contained'
+                  style={{ whiteSpace: 'nowrap' }}
                 >
                   Confirm Payment
                 </Button>
@@ -75,7 +75,7 @@ export default function OrdersCard({ pending, item, orderId, detail }) {
                 </div>
               </div>
             ) : (
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button
                   onClick={() =>
                     history.push(
@@ -83,30 +83,30 @@ export default function OrdersCard({ pending, item, orderId, detail }) {
                     )
                   }
                   className={styles.trackBtn}
-                  variant="contained"
-                  style={{ whiteSpace: "nowrap" }}
+                  variant='contained'
+                  style={{ whiteSpace: 'nowrap' }}
                 >
                   Add Measurement
                 </Button>
                 <div>
                   <h3>Product Type</h3>
-                  <span>{item.type.toUpperCase()}</span>
+                  {/* <span>{item.type.toUpperCase()}</span> */}
                 </div>
               </div>
             )
           ) : (
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button
                 onClick={() => history.push(`/trackorder/${orderId}`)}
                 className={styles.trackBtn}
-                variant="contained"
-                style={{ whiteSpace: "nowrap" }}
+                variant='contained'
+                style={{ whiteSpace: 'nowrap' }}
               >
                 Track Order
               </Button>
               <div>
                 <h3>Product Type</h3>
-                <span>{item.type.toUpperCase()}</span>
+                {/* <span>{item.type.toUpperCase()}</span> */}
               </div>
             </div>
           )}
@@ -115,7 +115,7 @@ export default function OrdersCard({ pending, item, orderId, detail }) {
             <div className={styles.detailThree}>
               <Link
                 to={`/order-details/${orderId}`}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: 'pointer' }}
               >
                 Order Detail
               </Link>

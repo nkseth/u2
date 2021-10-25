@@ -15,9 +15,13 @@ import {
 } from "../../Redux/actions/filter-category";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUpdateWishlist, getWishList } from "../../Redux/actions/wishlist";
-import { clearProductsErrors, getProducts } from "../../Redux/actions/products";
+import {
+  clearProductsErrors,
+  getDesignerProducts,
+  getProducts,
+} from "../../Redux/actions/products";
 
-function DesignerProductPage({ match }) {
+const ProductsByDesigner = ({ match }) => {
   const dispatch = useDispatch();
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:768px)");
@@ -25,9 +29,9 @@ function DesignerProductPage({ match }) {
   const location = useLocation();
   const { filters } = useSelector((state) => state.root.filterCategory);
   const {
-    params: { slug, type },
+    params: { designerId },
   } = match;
-
+  console.log(designerId);
   const [product, setProduct] = useState([]);
   // const [loading, setLoading] = useState(true);
   const { user, isAuthenticated } = useSelector((state) => state.root.auth);
@@ -40,6 +44,7 @@ function DesignerProductPage({ match }) {
     removed,
     loading: updating,
   } = useSelector((state) => state.root.updateWishlist);
+
   useEffect(() => {
     if (!updating) {
       if (added) {
@@ -57,21 +62,19 @@ function DesignerProductPage({ match }) {
       dispatch(clearProductsErrors());
       return console.log(error);
     }
-    // fetch_products(slug);
     if (productList) setProduct(productList);
     dispatch(getFilterList());
-  }, [slug, dispatch, error, productList, type]);
+  }, [dispatch, error, productList]);
 
   useEffect(() => {
-    if (type) dispatch(getProducts(type, { slug }));
-    else dispatch(getProducts(null, { slug }));
+    dispatch(getDesignerProducts(designerId));
     if (!isAuthenticated) return;
     dispatch(getWishList(user.api_token));
-  }, [dispatch, isAuthenticated, user, slug, type]);
+  }, [dispatch, isAuthenticated, user, designerId]);
 
   const filterProduct = (filterData) => {
     console.log(filterData);
-    dispatch(getProducts(type, { ...filterData, slug }));
+    dispatch(getDesignerProducts(designerId, { ...filterData }));
   };
   return (
     <Container bottomDivider footerOnAllView>
@@ -81,18 +84,7 @@ function DesignerProductPage({ match }) {
             <div className={styles.FilterBreadDiv}>
               {!tabViewPro && (
                 <div style={{ width: "200%", marginLeft: 15 }}>
-                  <Breadcrumb
-                    path={`Products /`}
-                    activePath={
-                      type
-                        ? slug
-                          ? `${type} / ${slug}`
-                          : `${type}`
-                        : slug
-                        ? `${slug}`
-                        : "product"
-                    }
-                  />
+                  <Breadcrumb path={`Products /`} activePath={`Designer`} />
                 </div>
               )}
               <div className={styles.firstSection}>
@@ -102,7 +94,6 @@ function DesignerProductPage({ match }) {
                   <Filter
                     filters={filters}
                     filterProduct={filterProduct}
-                    type={type}
                     setClearAll={setClearAll}
                     clearAll={clearAll}
                   />
@@ -110,24 +101,45 @@ function DesignerProductPage({ match }) {
               </div>
             </div>
           )}
-          <div className={styles.secondSection}>
-            <div style={{ padding: "1rem 1rem 5rem" }}>
-              {tabViewPro && (
-                <div className={styles.upperbread}>
-                  <Breadcrumb
-                    path={`Products /`}
-                    activePath={`${type} / ${slug}` || "product"}
+          <div>
+            <div className={styles.banner}>
+              <div className={styles.banner__body}>
+                <div className={styles.banner__body__frame}>
+                  <img
+                    src=""
+                    alt=""
+                    className={styles.banner__body__frame__image}
                   />
                 </div>
-              )}
-              <ProductsSection
-                products={product}
-                loading={loading}
-                slug={slug}
-                group={type}
-                clearAll={clearAll}
-                setClearAll={setClearAll}
-              />
+                <div className={styles.banner__body__info}>
+                  <span className={styles.banner__body__info__name}>
+                    Designer's Name
+                  </span>
+                  <span className={styles.banner__body__info__description}>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div style={{ width: "100%" }} className={styles.secondSection}>
+              <div style={{ padding: "1rem 1rem 5rem" }}>
+                {tabViewPro && (
+                  <div className={styles.upperbread}>
+                    <Breadcrumb path={`Products /`} activePath={`Designer`} />
+                  </div>
+                )}
+                <ProductsSection
+                  products={product}
+                  loading={loading}
+                  designerId={designerId}
+                  clearAll={clearAll}
+                  setClearAll={setClearAll}
+                />
+              </div>
+
             </div>
           </div>
         </div>
@@ -139,6 +151,6 @@ function DesignerProductPage({ match }) {
       </>
     </Container>
   );
-}
+};
 
-export default DesignerProductPage;
+export default ProductsByDesigner;

@@ -48,6 +48,8 @@ import { addressReducer, paymentReducer } from "./checkoutReducer";
 
 import { myAddressesReducer, userAddressReducer } from "./adrressReducer";
 
+import { designerProfileReducer } from "./designerReducer";
+
 const rootreducer = combineReducers({
   address: addressReducer,
   addToBag: addToBagReducer,
@@ -58,6 +60,7 @@ const rootreducer = combineReducers({
   coupons: couponsReducer,
   customerReviews: customerReviewsReducer,
   deleteMeasurement: deleteMeasurementReducer,
+  designerProfile: designerProfileReducer,
   filterCategory: filterCategoryReducer,
   filteredProduct: filteredProductReducer,
   handMadeClothes: handMadeClothesReducer,

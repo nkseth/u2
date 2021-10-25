@@ -33,6 +33,8 @@ const SuitWear = () => {
     background: mobile ? '#F3F1EE' : '#938368',
   };
 
+  const customImg = {borderTopRightRadius: 5, borderTopLeftRadius: 5}
+
   const { suitWearItems } = useSelector(state => state.root.suitWears);
 
   const [visible, setvisible] = useState(4);
@@ -93,7 +95,7 @@ const SuitWear = () => {
                       <div className={styles.SuitWear}>
                         <div className={styles.SuitWear_Items}>
                           {/* <LazyLoadingImg image={item.cover_image} /> */}
-                          <img src={item.cover_image} alt={item.id} />
+                          <img src={item.cover_image} alt={item.id} style={customImg} />
                           <Link to={`/designers-product-page/${item.slug}`}>
                             {item.name}
                           </Link>

@@ -20,6 +20,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handMadeClothes } from '../../../Redux/actions/designerHomePage';
 import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
 
+const customImg = {borderTopRightRadius: 5, borderTopLeftRadius: 5}
+
 const HandMade_Clothes = () => {
   const dispatch = useDispatch();
   const mobile = useMediaQuery('(max-width:420px)');
@@ -78,7 +80,7 @@ const HandMade_Clothes = () => {
                   <div className={styles.SuitWear}>
                     <div className={styles.SuitWear_Items}>
                       {/* <LazyLoadingImg image={cover_image} /> */}
-                      <img src={cover_image} alt={name} />
+                      <img src={cover_image} alt={id} style={customImg} />
                       <Link to={`/designers-product-page/${slug}`}>
                         <a>{name}</a>
                       </Link>

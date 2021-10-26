@@ -50,7 +50,7 @@ export default function CollabrateAsFashionDesigner() {
                         </Grid>
 
                         <Grid className={styles.cardGroup}>
-                            <Post toggle={toggle} open={open}/>
+                            <Post toggle={toggle} open={open} />
                             <Products toggle={toggle} open={open} />
                             <Creators toggle={toggle} open={open} />
                         </Grid>
@@ -68,8 +68,8 @@ export default function CollabrateAsFashionDesigner() {
                             <JoinUs />
                         </Grid>
 
-                        <Grid style={{marginTop:"108px"}}>
-                            <Footer/>
+                        <Grid style={{ marginTop: "108px" }}>
+                            <Footer />
                         </Grid>
 
                     </Grid>
@@ -77,6 +77,10 @@ export default function CollabrateAsFashionDesigner() {
                     :
 
                     <Grid>
+
+                        <Grid>
+                            <Header />
+                        </Grid>
 
                         <Grid>
                             <FashionBanner />
@@ -87,7 +91,7 @@ export default function CollabrateAsFashionDesigner() {
                                 <Breadcrumb path="Home /" activePath="Collabrate" />
                             </Grid>
 
-                            <Grid style={{ marginTop: mobileView ? "23px" : "56px" }}>
+                            <Grid style={{ marginTop: mobileView ? "23px" : "35px" }}>
                                 <p className={mobileView ? styles.headingMobile : styles.heading}>About U2</p>
                                 <p className={mobileView ? styles.subHeadingMobile : styles.subHeading}>U2 is going to be a digital ecosystem which connects among vendors and to customers in
                                     the fashion and lifestyle segment.</p>
@@ -96,28 +100,36 @@ export default function CollabrateAsFashionDesigner() {
                             <Grid style={{ marginTop: mobileView ? "50px" : "70px" }}>
                                 <WhyU2 />
                             </Grid>
+                        </Container>
 
-                            <Grid className={styles.cardGroupTab}>
-                                <Post toggle={toggle} open={open} />
-                                <Products toggle={toggle} open={open} />
-                                <Creators toggle={toggle} open={open} />
-                            </Grid>
+                        <Grid className={styles.cardGroupTab}>
+                            <Post toggle={toggle} open={open} />
+                            <Products toggle={toggle} open={open} />
+                            <Creators toggle={toggle} open={open} />
+                        </Grid>
 
+                        <Container>
                             <Grid style={{ marginTop: mobileView ? "60px" : "93px" }}>
                                 <DiscoverSucess />
                             </Grid>
+                        </Container>
 
-                            <Grid style={{ marginTop: mobileView ? "60px" : "100px" }}>
-                                <WhatIsThere />
-                            </Grid>
+                        <Grid className={mobileView? styles.compomobile : styles.compotab}>
+                            <WhatIsThere />
+                        </Grid>
 
+                        <Container>
                             <Grid style={{ marginTop: mobileView ? "62px" : "96px" }}>
                                 <JoinUs />
+                            </Grid>
+
+                            <Grid style={{ marginTop: "88px" }}>
+                                <Footer />
                             </Grid>
                         </Container>
                     </Grid>
             }
-        </Grid>
+        </Grid >
 
     );
 }

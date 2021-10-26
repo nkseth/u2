@@ -128,15 +128,15 @@
     height: 300px;
   }
   .collabrate_bgg {
-    height: 150px;
+    height: 190px;
     padding: 0 2rem;
-    button {
-      display: none;
-    }
+    // button {
+    //   display: none;
+    // }
 
     h2 {
       font-family: DM Serif Display;
-      font-size: 54px;
+      font-size: 44px;
       font-style: normal;
       font-weight: 400;
       line-height: 64px;
@@ -152,7 +152,7 @@
 @media screen and (max-width: 420px) {
   .collabrate_bgg {
     padding: 1rem 1rem;
-    height: 95px !important;
+    height: 125px !important;
   }
   .Collabrate_With_US {
     height: 220px;

@@ -68,8 +68,8 @@ export default function CollabrateAsInfluencer() {
                             <JoinUs />
                         </Grid>
 
-                        <Grid style={{marginTop:"108px"}}>
-                            <Footer/>
+                        <Grid style={{ marginTop: "108px" }}>
+                            <Footer />
                         </Grid>
 
                     </Grid>
@@ -77,6 +77,10 @@ export default function CollabrateAsInfluencer() {
                     :
 
                     <Grid>
+
+                        <Grid>
+                            <Header />
+                        </Grid>
 
                         <Grid>
                             <InfluencerBanner />
@@ -96,23 +100,31 @@ export default function CollabrateAsInfluencer() {
                             <Grid style={{ marginTop: mobileView ? "50px" : "70px" }}>
                                 <WhyU2 />
                             </Grid>
+                        </Container>
 
-                            <Grid className={styles.cardGroupTab}>
-                                <Post toggle={toggle} open={open} />
-                                <Products toggle={toggle} open={open} />
-                                <Creators toggle={toggle} open={open} />
-                            </Grid>
+                        <Grid className={styles.cardGroupTab}>
+                            <Post toggle={toggle} open={open} />
+                            <Products toggle={toggle} open={open} />
+                            <Creators toggle={toggle} open={open} />
+                        </Grid>
 
+                        <Container>
                             <Grid style={{ marginTop: mobileView ? "60px" : "93px" }}>
                                 <DiscoverSucess />
                             </Grid>
+                        </Container>
 
-                            <Grid style={{ marginTop: mobileView ? "60px" : "100px" }}>
-                                <WhatIsThere />
-                            </Grid>
-
+                        <Grid className={mobileView ? styles.compomobile : styles.compotab}>
+                            <WhatIsThere />
+                        </Grid>
+                        
+                        <Container>
                             <Grid style={{ marginTop: mobileView ? "62px" : "96px" }}>
                                 <JoinUs />
+                            </Grid>
+
+                            <Grid style={{ marginTop: "88px" }}>
+                                <Footer />
                             </Grid>
                         </Container>
                     </Grid>

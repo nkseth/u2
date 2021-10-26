@@ -18,14 +18,15 @@ import {
   ListItemText,
   styled,
   InputBase,
+  FormGroup,
 } from '@material-ui/core';
 import InputField from '../../Payment/Components/Input-Field/inputField';
 import Logo from '../../../Images/logo/u2.svg';
 import { Link } from 'react-router-dom';
 import useForm from '../../../utils/useForm/useForm';
 import common_axios from '../../../utils/axios.config';
-// import { SuccessPopUp } from '../../../utils/Popups/SuccessPopup';
-
+import { SuccessPopUp } from '../../../utils/Popups/SuccessPopup';
+import Confirm from './confirm.svg';
 export default function VendorRegistration() {
   const tabView = useMediaQuery('(max-width:769px)');
   const tabViewPro = useMediaQuery('(max-width:835px)');
@@ -44,9 +45,24 @@ export default function VendorRegistration() {
     phone: '',
     designerName: '',
     operationCity: '',
+
     website: '',
     instagram: '',
     otherPlatform: '',
+  });
+  const [error, setError] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    designerName: '',
+    operationCity: '',
+    website: '',
+    instagram: '',
+    otherPlatform: '',
+    operation: '',
+    catalogue: '',
+    turnOver: '',
+    categories: '',
   });
 
   const handleChangeForState = event => {
@@ -58,11 +74,91 @@ export default function VendorRegistration() {
       [type]: e.target.value === 'yes' ? true : false,
     }));
   };
+
+  function validateEmail(email) {
+    const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  const ErrorClearTimeOut = 3500;
+  const [popupMessage, setPopupMessage] = useState('');
+  const [disableBtn, setDisableBtn] = useState(false);
   const handleSubmit = async e => {
+    // setDisableBtn(true);
     e.preventDefault();
 
+    if (!values.name) {
+      setError({ name: '* Please Enter your Name' });
+      setTimeout(() => setError({ name: '' }), ErrorClearTimeOut);
+      return;
+    }
+
+    if (!values.email) {
+      setError({ email: '* Please Enter your Email' });
+      setTimeout(() => setError({ email: '' }), ErrorClearTimeOut);
+      return;
+    }
+    if (!validateEmail(values.email)) {
+      setError({ email: '* Provide a valid Email' });
+      setTimeout(() => setError({ email: '' }), ErrorClearTimeOut);
+      return;
+    }
+
+    if (!values.phone || values.phone.toString().length < 10) {
+      setError({ phone: '* Please Enter your Phone Number / Valid Number' });
+      setTimeout(() => setError({ phone: '' }), ErrorClearTimeOut);
+      return;
+    }
+    if (!values.designerName) {
+      setError({ designerName: '* Please Enter designerName' });
+      setTimeout(() => setError({ designerName: '' }), ErrorClearTimeOut);
+      return;
+    }
+    if (!values.operationCity) {
+      setError({ operationCity: '* Please Enter operationCity' });
+      setTimeout(() => setError({ operationCity: '' }), ErrorClearTimeOut);
+      return;
+    }
+    if (showInputField.website && !values.website) {
+      setError({ website: '* Please Enter Website Url' });
+      setTimeout(() => setError({ website: '' }), ErrorClearTimeOut);
+      return;
+    }
+    if (showInputField.instagram && !values.instagram) {
+      setError({ instagram: '* Please Enter Instagram ID' });
+      setTimeout(() => setError({ instagram: '' }), ErrorClearTimeOut);
+      return;
+    }
+    if (showInputField.others && !values.others) {
+      setError({ otherPlatform: '* Please Provide the details' });
+      setTimeout(() => setError({ otherPlatform: '' }), ErrorClearTimeOut);
+      return;
+    }
+
+    if (!dropDownOptions.operation) {
+      setError({ operation: '* Please Provide the details' });
+      setTimeout(() => setError({ operation: '' }), ErrorClearTimeOut);
+      return;
+    }
+    if (!dropDownOptions.catalogue) {
+      setError({ catalogue: '* Please Provide the details' });
+      setTimeout(() => setError({ catalogue: '' }), ErrorClearTimeOut);
+      return;
+    }
+    if (!dropDownOptions.turnOver) {
+      setError({ turnOver: '* Please Provide the details' });
+      setTimeout(() => setError({ turnOver: '' }), ErrorClearTimeOut);
+      return;
+    }
+    if (!dropDownOptions.categories) {
+      setError({ categories: '* Please Provide the details' });
+      setTimeout(() => setError({ categories: '' }), ErrorClearTimeOut);
+      return;
+    }
+
     const formData = new FormData();
-    const data = {
+    const dataInfo = {
       full_name: values.name,
       email: values.email,
       phone: values.phone,
@@ -73,30 +169,21 @@ export default function VendorRegistration() {
       categories: ['dropDownOptions.category', 'asdasd'],
       turn_over: dropDownOptions.turnOver,
       catalogues_images: catalogueImages,
+      website: showInputField.website,
       website_url: values.website,
       instagram: values.instagram,
-      other_platform: values.otherPlatform,
+      other_platform_url: values.otherPlatform,
+      other_platform: showInputField.others,
     };
-    console.log(
-      '🚀 ~ file: registrationAsVendor.jsx ~ line 80 ~ VendorRegistration ~ data',
-      data
-    );
 
-    Object.entries(data).map(([k, v]) => {
+    Object.entries(dataInfo).map(([k, v]) => {
       formData.append(k, v);
     });
 
-    // formData.append('email', values.email);
+    const { data } = await common_axios.post(`/merchant_register`, formData);
 
-    // const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-
-    const { back } = await common_axios.post(
-      `/merchant_register`,
-      formData
-      // config
-    );
-
-    // console.log(back);
+    setPopupMessage(data.message);
+    // setDisableBtn(false);
   };
   const BootstrapInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
@@ -107,7 +194,7 @@ export default function VendorRegistration() {
       position: 'relative',
       height: '28px',
       //   backgroundColor: theme.palette.background.paper,
-      border: '1px solid #6A5B40',
+      // border: '1px solid #6A5B40',
       fontSize: 16,
       padding: '10px 26px 10px 12px',
       transition: theme.transitions.create(['border-color', 'box-shadow']),
@@ -132,9 +219,9 @@ export default function VendorRegistration() {
       },
     },
   }));
-  const handlePopup = () => {
-    //   <SuccessPopUp children />;
-  };
+  // const handlePopup = data => {
+  //   <SuccessPopUp children />;
+  // };
 
   const [dropDownOptions, setDropDownOptions] = useState({
     operation: '',
@@ -154,6 +241,8 @@ export default function VendorRegistration() {
   const certificateUploader = React.useRef(null);
   const [catalogueImages, setCatalogueImages] = useState([]);
   const [certificateImages, setCertificateImages] = useState([]);
+
+  const toggleModal = () => setPopupMessage('');
 
   const [catalogueName, setCatalogName] = useState([]);
   const [certificateName, setCertificateName] = useState('');
@@ -186,6 +275,27 @@ export default function VendorRegistration() {
 
   return (
     <Container bottomDivider footerOnTabMob footerOnAllView>
+      <>
+        {popupMessage && (
+          <SuccessPopUp toggle={toggleModal} width={'500px'} height={'150px'}>
+            <img src={Confirm} alt='' />
+            <h2 style={{ margin: '1rem 0', fontSize: '10px' }}>
+              {popupMessage}
+            </h2>
+            <a
+              target='_blank'
+              href='https://www.u2.dhaatri.store/'
+              class={styles.removeModelButton}
+              onClick={e => {
+                toggleModal();
+              }}
+              rel='noreferrer noopener'
+            >
+              Learn More
+            </a>
+          </SuccessPopUp>
+        )}
+      </>
       <CustomSection>
         <div className={styles.mainContainer}>
           <div className={styles.logo}>
@@ -201,28 +311,41 @@ export default function VendorRegistration() {
             <Grid container spacing={4} style={{ marginTop: '11px' }}>
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <input
-                  className={styles.inputField}
+                  className={`${styles.inputField} ${
+                    error.name && styles.errorInput
+                  }`}
                   type='text'
                   name='name'
                   placeholder='First name'
                   value={values.name}
                   onChange={updateValues}
+                  style={{ borderColor: `${error.name ? 'red' : ''}` }}
                 />
+                {error.name && (
+                  <span className={styles.errorMsg}>{error.name}</span>
+                )}
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <input
-                  className={styles.inputField}
+                  className={`${styles.inputField} ${
+                    error.email && styles.errorInput
+                  }`}
                   type='text'
                   name='email'
                   value={values.email}
                   placeholder='Email Id'
                   onChange={updateValues}
                 />
+                {error.email && (
+                  <span className={styles.errorMsg}>{error.email}</span>
+                )}
               </Grid>
               {!tabView ? (
                 <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                   <input
-                    className={styles.inputField}
+                    className={`${styles.inputField} ${
+                      error.phone && styles.errorInput
+                    }`}
                     type='number'
                     placeholder='Phone Number'
                     name='phone'
@@ -230,12 +353,17 @@ export default function VendorRegistration() {
                     onChange={updateValues}
                     // onChange={onChange}
                   />
+                  {error.phone && (
+                    <span className={styles.errorMsg}>{error.phone}</span>
+                  )}
                 </Grid>
               ) : (
                 <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
                   <>
                     <input
-                      className={styles.inputField}
+                      className={`${styles.inputField} ${
+                        error.phone && styles.errorInput
+                      }`}
                       type='number'
                       name='phone'
                       placeholder='Phone Number'
@@ -243,6 +371,9 @@ export default function VendorRegistration() {
                       value={values.phone}
                       onChange={updateValues}
                     />
+                    {error.phone && (
+                      <span className={styles.errorMsg}>{error.phone}</span>
+                    )}
                   </>
                 </Grid>
               )}
@@ -255,13 +386,20 @@ export default function VendorRegistration() {
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <>
                   <input
-                    className={styles.inputField}
+                    className={`${styles.inputField} ${
+                      error.designerName && styles.errorInput
+                    }`}
                     type='text'
                     name='designerName'
                     placeholder='Designer name'
                     value={values.designerName}
                     onChange={updateValues}
                   />
+                  {error.designerName && (
+                    <span className={styles.errorMsg}>
+                      {error.designerName}
+                    </span>
+                  )}
                 </>
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
@@ -308,6 +446,11 @@ export default function VendorRegistration() {
                     input={<BootstrapInput />}
                     value={dropDownOptions.operation}
                     onChange={e => handleDropDown(e, 'operation')}
+                    style={{
+                      border: `1px solid ${
+                        error.operations ? 'red' : '#6A5B40'
+                      }`,
+                    }}
                   >
                     <option disabled selected aria-label='None' value=''>
                       Total years of operations
@@ -322,13 +465,18 @@ export default function VendorRegistration() {
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <input
-                  className={styles.inputField}
+                  className={`${styles.inputField} ${
+                    error.operationCity && styles.errorInput
+                  }`}
                   type='text'
                   name='operationCity'
                   placeholder='Operation city'
                   value={values.operationCity}
                   onChange={updateValues}
                 />
+                {error.operationCity && (
+                  <span className={styles.errorMsg}>{error.operationCity}</span>
+                )}
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <FormControl style={{ width: '100%' }}>
@@ -340,6 +488,11 @@ export default function VendorRegistration() {
                     input={<BootstrapInput />}
                     value={dropDownOptions.catalogue}
                     onChange={e => handleDropDown(e, 'catalogue')}
+                    style={{
+                      border: `1px solid ${
+                        error.catalogue ? 'red' : '#6A5B40'
+                      }`,
+                    }}
                   >
                     <option disabled selected aria-label='None' value=''>
                       Catalogue size
@@ -349,6 +502,9 @@ export default function VendorRegistration() {
                     <option value={'100-200'}>100 - 200</option>
                     <option value={'200 above'}>200 and above</option>
                   </NativeSelect>
+                  {error.catalogue && (
+                    <span className={styles.errorMsg}>{error.catalogue}</span>
+                  )}
                 </FormControl>
               </Grid>
 
@@ -359,9 +515,15 @@ export default function VendorRegistration() {
                     className={styles.selectInput}
                     onChange={handleChangeForState}
                     input={<BootstrapInput />}
-                    style={{ marginBottom: '8px' }}
                     value={dropDownOptions.categories}
                     onChange={e => handleDropDown(e, 'categories')}
+                    multiple
+                    style={{
+                      border: `1px solid ${
+                        error.categories ? 'red' : '#6A5B40'
+                      }`,
+                      marginBottom: '8px',
+                    }}
                   >
                     <option disabled selected aria-label='None' value=''>
                       Categories
@@ -370,8 +532,12 @@ export default function VendorRegistration() {
                     <option value={'30-100'}>30 - 100</option>
                     <option value={'100-200'}>100 - 200</option>
                     <option value={'200 above'}>200 and above</option>
+                    have
                   </NativeSelect>
-                  You can select multiple
+                  {/* You can select multiple */}
+                  {error.categories && (
+                    <span className={styles.errorMsg}>{error.categories}</span>
+                  )}
                 </FormControl>
               </Grid>
 
@@ -384,6 +550,9 @@ export default function VendorRegistration() {
                     placeholder='Average monthly turn over'
                     input={<BootstrapInput />}
                     value={dropDownOptions.turnOver}
+                    style={{
+                      border: `1px solid ${error.turnOver ? 'red' : '#6A5B40'}`,
+                    }}
                     onChange={e => handleDropDown(e, 'turnOver')}
                   >
                     <option disabled selected aria-label='None' value={''}>
@@ -397,6 +566,9 @@ export default function VendorRegistration() {
                       More than 20 years
                     </option>
                   </NativeSelect>
+                  {error.turnOver && (
+                    <span className={styles.errorMsg}>{error.turnOver}</span>
+                  )}
                 </FormControl>
               </Grid>
               <Grid
@@ -423,13 +595,15 @@ export default function VendorRegistration() {
                         }}
                       />
                       <p>
-                        {catalogueName.length
-                          ? catalogueName.map(name => (
-                              <span>
-                                {name} {catalogueName.length > 1 && ','}
-                              </span>
-                            ))
-                          : 'Catalogue sample'}
+                        {catalogueName.length ? (
+                          <span>
+                            {catalogueName[0]}{' '}
+                            {catalogueName.length > 1 &&
+                              `, + ${catalogueName.length - 1}`}
+                          </span>
+                        ) : (
+                          'Catalogue sample'
+                        )}
                       </p>
                       <Button
                         variant='contained'
@@ -454,7 +628,7 @@ export default function VendorRegistration() {
                 >
                   <FormControlLabel
                     value='yes'
-                    control={<Radio style={{ color: '#857250' }} />}
+                    control={<Radio style={{ color: '#6A5B40' }} />}
                     label='Yes'
                   />
                   <FormControlLabel
@@ -464,15 +638,23 @@ export default function VendorRegistration() {
                   />
                 </RadioGroup>
                 {showInputField.website && (
-                  <input
-                    className={styles.inputFieldRadio}
-                    type='text'
-                    placeholder='Website'
-                    name='website'
-                    onChange={updateValues}
-                    style={{ marginLeft: !mobileView && '121px' }}
-                    // onChange={onChange}
-                  />
+                  <>
+                    <input
+                      className={`${styles.inputFieldRadio} ${
+                        error.Website && styles.errorInput
+                      }`}
+                      type='text'
+                      placeholder='Website'
+                      name='website'
+                      onChange={updateValues}
+                      style={{ marginLeft: !mobileView && '121px' }}
+                    />
+                    <div>
+                      {error.website && (
+                        <span className={styles.errorMsg}>{error.website}</span>
+                      )}
+                    </div>
+                  </>
                 )}
               </div>
             </FormControl>
@@ -496,14 +678,25 @@ export default function VendorRegistration() {
                   />
                 </RadioGroup>
                 {showInputField.instagram && (
-                  <input
-                    className={styles.inputFieldRadio}
-                    type='text'
-                    placeholder='Instagram'
-                    name='instagram'
-                    onChange={updateValues}
-                    style={{ marginLeft: !mobileView && '121px' }}
-                  />
+                  <>
+                    <input
+                      className={`${styles.inputFieldRadio} ${
+                        error.Website && styles.errorInput
+                      }`}
+                      type='text'
+                      placeholder='Instagram'
+                      name='instagram'
+                      onChange={updateValues}
+                      style={{ marginLeft: !mobileView && '121px' }}
+                    />
+                    <div>
+                      {error.instagram && (
+                        <span className={styles.errorMsg}>
+                          {error.instagram}
+                        </span>
+                      )}
+                    </div>
+                  </>
                 )}
               </div>
             </FormControl>
@@ -543,7 +736,12 @@ export default function VendorRegistration() {
                       // className={styles.inputFieldRadio}
                       onChange={handleChangeForState}
                       input={<BootstrapInput />}
-                      style={{ marginBottom: '10px' }}
+                      style={{
+                        border: `1px solid ${
+                          error.otherPlatform ? 'red' : '#6A5B40'
+                        }`,
+                        marginBottom: '10px',
+                      }}
                     >
                       <option disabled selected hidden>
                         Total years of operations
@@ -570,9 +768,10 @@ export default function VendorRegistration() {
                 type='submit'
                 variant='contained'
                 className={styles.nextButton}
-                onClick={handlePopup}
+                disabled={disableBtn}
+                // onClick={handlePopup}
               >
-                Next
+                Submit
               </Button>
             </div>
           </form>

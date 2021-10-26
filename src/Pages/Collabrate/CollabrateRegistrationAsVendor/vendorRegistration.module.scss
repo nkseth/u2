@@ -3,8 +3,14 @@
     margin-top: 61px;
     text-align: center;
   }
+  .errorMsg {
+    color: red;
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+
   h2 {
-    margin-top: 49px;
+    margin-top: 30px;
     text-align: center;
     font-family: DM Serif Display;
     font-style: normal;
@@ -49,6 +55,9 @@
     color: #0a0a0a;
   }
 
+  .errorInput {
+    border-color: red !important;
+  }
   .inputField {
     position: relative;
     border-radius: 5px !important;
@@ -139,6 +148,20 @@
   background-color: #857250 !important ;
 }
 
+.removeModelButton {
+  height: 48px;
+  width: 300px;
+  left: 229px;
+  top: 985px;
+  border-radius: 5px;
+  padding: 12px, 16px, 12px, 16px;
+  border: none;
+  background-color: #857250;
+  color: white !important;
+  padding: 0.7rem;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 550px) {
   .mainContainer {
     .logo {
@@ -170,7 +193,7 @@
     }
     p {
       font-family: DM Sans;
-      margin-top: 0;
+      // margin-top: 0;
       font-style: normal;
       font-weight: 400;
       text-align: unset;

@@ -43,7 +43,7 @@ const SimilarProducts = ({ tags }) => {
 
   return (
     <>
-      <h1>Similar Products</h1>
+    <h1>Similar Products</h1>
       {!loading && products && products.length > 0 && (
         <div className={styles.similarProduct}>
           <CarouselProvider

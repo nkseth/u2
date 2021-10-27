@@ -73,6 +73,9 @@
       top: -4px;
     }
   }
+  .inputFieldDrop {
+    border-radius: 5px !important;
+  }
   .selectInput {
     // border-radius: 5px !important;
     // height: 48px;
@@ -108,6 +111,14 @@
     padding: 8px;
     width: 310px !important;
     border: 1px solid #6a5b40;
+  }
+  .platform {
+    border-radius: 5px !important;
+    height: 48px;
+    font-size: 14px;
+    font-family: 'DM Sans';
+    padding: 8px;
+    width: 310px !important;
   }
   .helpText {
     font-family: DM Sans;

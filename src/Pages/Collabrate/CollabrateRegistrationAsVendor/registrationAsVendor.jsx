@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../../../utils/Container/container';
 import CustomSection from '../../../utils/Custom Section/section';
 import styles from './vendorRegistration.module.scss';
+import { makeStyles } from '@material-ui/core/styles';
+
 import {
   useMediaQuery,
   Button,
@@ -19,6 +21,7 @@ import {
   styled,
   InputBase,
   FormGroup,
+  ListItemIcon,
 } from '@material-ui/core';
 import InputField from '../../Payment/Components/Input-Field/inputField';
 import Logo from '../../../Images/logo/u2.svg';
@@ -27,6 +30,7 @@ import useForm from '../../../utils/useForm/useForm';
 import common_axios from '../../../utils/axios.config';
 import { SuccessPopUp } from '../../../utils/Popups/SuccessPopup';
 import Confirm from './confirm.svg';
+import { withStyles } from '@material-ui/styles';
 export default function VendorRegistration() {
   const tabView = useMediaQuery('(max-width:769px)');
   const tabViewPro = useMediaQuery('(max-width:835px)');
@@ -45,11 +49,11 @@ export default function VendorRegistration() {
     phone: '',
     designerName: '',
     operationCity: '',
-
     website: '',
     instagram: '',
     otherPlatform: '',
   });
+
   const [error, setError] = useState({
     name: '',
     email: '',
@@ -63,6 +67,8 @@ export default function VendorRegistration() {
     catalogue: '',
     turnOver: '',
     categories: '',
+    catalogueImages: '',
+    certificateImages: '',
   });
 
   const handleChangeForState = event => {
@@ -75,6 +81,13 @@ export default function VendorRegistration() {
     }));
   };
 
+  const handleCategories = (e, type) => {
+    console.log(
+      '🚀 ~ file: registrationAsVendor.jsx ~ line 87 ~ handleCategories ~ e',
+      e
+    );
+  };
+
   function validateEmail(email) {
     const re =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -83,6 +96,7 @@ export default function VendorRegistration() {
 
   const ErrorClearTimeOut = 3500;
   const [popupMessage, setPopupMessage] = useState('');
+  const [errorResponse, setErrorResponse] = useState('');
   const [disableBtn, setDisableBtn] = useState(false);
   const handleSubmit = async e => {
     // setDisableBtn(true);
@@ -151,9 +165,25 @@ export default function VendorRegistration() {
       setTimeout(() => setError({ turnOver: '' }), ErrorClearTimeOut);
       return;
     }
-    if (!dropDownOptions.categories) {
-      setError({ categories: '* Please Provide the details' });
-      setTimeout(() => setError({ categories: '' }), ErrorClearTimeOut);
+    // if (!dropDownOptions.categories) {
+    //   setError({ categories: '* Please Provide the details' });
+    //   setTimeout(() => setError({ categories: '' }), ErrorClearTimeOut);
+    //   return;
+    // }
+    // if (certificateImages) {
+    //   setError({ certificateImages: '* Please Provide the details' });
+    //   setTimeout(() => setError({ certificateImages: '' }), ErrorClearTimeOut);
+    //   return;
+    // }
+    if (!catalogueImages.length || catalogueImages.length < 1) {
+      setError({
+        catalogueImages: `${
+          catalogueImages.length < 1
+            ? '* Please Provide 2 or more image'
+            : '* Please Provide the details'
+        }`,
+      });
+      setTimeout(() => setError({ catalogueImages: '' }), ErrorClearTimeOut);
       return;
     }
 
@@ -166,9 +196,9 @@ export default function VendorRegistration() {
       certificate: certificateImages,
       year_of_operation: dropDownOptions.operation,
       operation_city: values.operationCity,
-      categories: ['dropDownOptions.category', 'asdasd'],
+      categories: selected,
       turn_over: dropDownOptions.turnOver,
-      catalogues_images: catalogueImages,
+      catalogues_image_count: catalogueImages.length,
       website: showInputField.website,
       website_url: values.website,
       instagram: values.instagram,
@@ -176,23 +206,48 @@ export default function VendorRegistration() {
       other_platform: showInputField.others,
     };
 
+    catalogueImages.map((img, i) => {
+      formData.append(`catalogues_image${i}`, img);
+    });
+
     Object.entries(dataInfo).map(([k, v]) => {
       formData.append(k, v);
     });
+    try {
+      const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+      const { data } = await common_axios.post(
+        `/merchant_register`,
+        formData,
+        config
+      );
 
-    const { data } = await common_axios.post(`/merchant_register`, formData);
-
-    setPopupMessage(data.message);
-    // setDisableBtn(false);
+      setPopupMessage(data.message);
+    } catch (error) {
+      console.log(
+        '🚀 ~ file: registrationAsVendor.jsx ~ line 209 ~ VendorRegistration ~ error',
+        error?.response?.data
+      );
+      setErrorResponse(error.response.data);
+    }
   };
+  const CustomCheckbox = withStyles({
+    root: {
+      color: '#9D9D9D',
+      '&$checked': {
+        color: '#857250',
+      },
+    },
+    checked: {},
+  })(props => <Checkbox color='default' {...props} />);
   const BootstrapInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
       //   marginTop: theme.spacing(3),
     },
     '& .MuiInputBase-input': {
-      borderRadius: 4,
+      borderRadius: 5,
       position: 'relative',
       height: '28px',
+      color: '#6c6c6c',
       //   backgroundColor: theme.palette.background.paper,
       // border: '1px solid #6A5B40',
       fontSize: 16,
@@ -212,7 +267,7 @@ export default function VendorRegistration() {
       //     '"Segoe UI Symbol"',
       //   ].join(','),
       '&:focus': {
-        // borderRadius: 4,
+        borderRadius: 4,
 
         borderColor: '#6a5b4044',
         boxShadow: '0 0 0 0.2rem #6a5b402f',
@@ -228,6 +283,7 @@ export default function VendorRegistration() {
     catalogue: '',
     turnOver: '',
     category: '',
+    platform: '',
   });
 
   const handleDropDown = (e, type) => {
@@ -240,9 +296,11 @@ export default function VendorRegistration() {
   const imageUploader = React.useRef(null);
   const certificateUploader = React.useRef(null);
   const [catalogueImages, setCatalogueImages] = useState([]);
+
   const [certificateImages, setCertificateImages] = useState([]);
 
   const toggleModal = () => setPopupMessage('');
+  const toggleModalError = () => setErrorResponse('');
 
   const [catalogueName, setCatalogName] = useState([]);
   const [certificateName, setCertificateName] = useState('');
@@ -255,31 +313,105 @@ export default function VendorRegistration() {
 
       // const { current } = uploadedImage;
       // current.file = file;
-      reader.onload = e => {
-        // current.src = e.target.result;
-        if (name === 'catalogue') {
-          setCatalogName(catalogueName => [...catalogueName, file.name]);
-          setCatalogueImages(catalogueImages => [
-            ...catalogueImages,
-            e.target.result,
-          ]);
-        }
-        if (name === 'certificate') {
-          setCertificateName(file.name);
-          setCertificateImages(e.target.result);
-        }
-      };
-      reader.readAsDataURL(file);
+      if (name === 'catalogue') {
+        setCatalogName(catalogueName => [...catalogueName, file.name]);
+        setCatalogueImages(catalogueImages => [
+          ...catalogueImages,
+          ...e.target.files,
+        ]);
+      }
+      if (name === 'certificate') {
+        setCertificateName(file.name);
+        setCertificateImages(...e.target.files);
+      }
+      // reader.onload = e => {
+      //   // current.src = e.target.result;
+
+      // };
+      // reader.readAsDataURL(file);
     }
   };
 
+  const [platformCount, setPlatformCount] = useState([1]);
+
+  const handlePlatform = () => {
+    setPlatformCount(platformCount => [...platformCount, platformCount[0] + 1]);
+  };
+
+  const useStyles = makeStyles(theme => ({
+    formControl: {
+      margin: theme.spacing(1),
+      width: 300,
+    },
+    indeterminateColor: {
+      color: '#857250',
+    },
+    selectAllText: {
+      fontWeight: 500,
+    },
+    selectedAll: {
+      backgroundColor: 'rgba(0, 0, 0, 0.08)',
+      '&:hover': {
+        backgroundColor: 'rgba(0, 0, 0, 0.08)',
+      },
+    },
+  }));
+  const options = [
+    'Oliver Hansen',
+    'Van Henry',
+    'April Tucker',
+    'Ralph Hubbard',
+    'Omar Alexander',
+    'Carlos Abbott',
+    'Miriam Wagner',
+    'Bradley Wilkerson',
+    'Virginia Andrews',
+    'Kelly Snyder',
+  ];
+
+  const classes = useStyles();
+  const [selected, setSelected] = useState([]);
+
+  const isAllSelected =
+    options.length > 0 && selected.length === options.length;
+
+  const handleChange = event => {
+    console.log(
+      '🚀 ~ file: registrationAsVendor.jsx ~ line 372 ~ VendorRegistration ~ event',
+      event
+    );
+    const value = event.target.value;
+
+    if (value[value.length - 1] === 'all') {
+      setSelected(selected.length === options.length ? [] : options);
+      return;
+    }
+    setSelected(value);
+  };
+  const [category, setCategory] = useState([]);
+
+  const getCategory = async () => {
+    const { data } = await common_axios.post(
+      `/category_for_merchant_register/`
+    );
+    console.log(
+      '🚀 ~ file: registrationAsVendor.jsx ~ line 384 ~ getCategory ~ data',
+      data
+    );
+
+    setCategory(data?.data.map(item => item.categories).flat());
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
   return (
     <Container bottomDivider footerOnTabMob footerOnAllView>
       <>
         {popupMessage && (
           <SuccessPopUp toggle={toggleModal} width={'500px'} height={'150px'}>
             <img src={Confirm} alt='' />
-            <h2 style={{ margin: '1rem 0', fontSize: '10px' }}>
+            <h2 style={{ margin: '1rem 0', fontSize: '16px' }}>
               {popupMessage}
             </h2>
             <a
@@ -293,6 +425,30 @@ export default function VendorRegistration() {
             >
               Learn More
             </a>
+          </SuccessPopUp>
+        )}
+        {errorResponse && (
+          <SuccessPopUp
+            toggle={toggleModalError}
+            width={'500px'}
+            height={'150px'}
+          >
+            {/* <img src={Confirm} alt='' /> */}
+            <h2 style={{ margin: '1rem 0', fontSize: '16px' }}>
+              {errorResponse.message}
+            </h2>
+            <p style={{ margin: '1rem 0' }}>
+              {JSON.stringify(errorResponse.errors)}
+            </p>
+            <button
+              class={styles.removeModelButton}
+              onClick={e => {
+                toggleModalError();
+              }}
+              rel='noreferrer noopener'
+            >
+              Fix It
+            </button>
           </SuccessPopUp>
         )}
       </>
@@ -316,7 +472,7 @@ export default function VendorRegistration() {
                   }`}
                   type='text'
                   name='name'
-                  placeholder='First name'
+                  placeholder='Full name'
                   value={values.name}
                   onChange={updateValues}
                   style={{ borderColor: `${error.name ? 'red' : ''}` }}
@@ -422,10 +578,18 @@ export default function VendorRegistration() {
                           display: 'none',
                         }}
                       />
-                      {certificateName && <span>{certificateName}</span>}
+                      {certificateName && (
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            marginTop: '0.3rem',
+                          }}
+                        >
+                          {certificateName}
+                        </span>
+                      )}
                       {!certificateName && <p>Professional certificate</p>}
                     </div>
-
                     <Button
                       variant='contained'
                       onClick={() => certificateUploader.current.click()}
@@ -433,6 +597,11 @@ export default function VendorRegistration() {
                     >
                       Browse
                     </Button>
+                    {error.certificateImages && (
+                      <span className={styles.errorMsg}>
+                        {error.certificateImages}
+                      </span>
+                    )}
                   </div>
                 </FormControl>
               </Grid>
@@ -440,8 +609,8 @@ export default function VendorRegistration() {
                 <FormControl style={{ width: '100%' }}>
                   <NativeSelect
                     disableUnderline
-                    //   className={styles.inputField}
-                    onChange={handleChangeForState}
+                    className={styles.inputFieldDrop}
+                    // onChange={handleChangeForState}
                     placeholder='Total years of operations'
                     input={<BootstrapInput />}
                     value={dropDownOptions.operation}
@@ -482,7 +651,7 @@ export default function VendorRegistration() {
                 <FormControl style={{ width: '100%' }}>
                   <NativeSelect
                     disableUnderline
-                    //   className={styles.inputField}
+                    className={styles.inputFieldDrop}
                     onChange={handleChangeForState}
                     placeholder='Catalogue size'
                     input={<BootstrapInput />}
@@ -510,9 +679,9 @@ export default function VendorRegistration() {
 
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <FormControl style={{ width: '100%' }}>
-                  <NativeSelect
+                  {/* <NativeSelect
                     disableUnderline
-                    className={styles.selectInput}
+                    className={styles.inputFieldDrop}
                     onChange={handleChangeForState}
                     input={<BootstrapInput />}
                     value={dropDownOptions.categories}
@@ -533,7 +702,80 @@ export default function VendorRegistration() {
                     <option value={'100-200'}>100 - 200</option>
                     <option value={'200 above'}>200 and above</option>
                     have
-                  </NativeSelect>
+                  </NativeSelect> */}
+                  {/* <InputLabel
+                    id='mutiple-select-label'
+                    style={{ margin: '-0.4rem 1rem' }}
+                  >
+                    Category
+                  </InputLabel> */}
+                  <Select
+                    labelId='mutiple-select-label'
+                    className={styles.inputFieldDrop}
+                    multiple
+                    input={<BootstrapInput />}
+                    value={selected.length ? selected : ['Categories']}
+                    onChange={handleChange}
+                    renderValue={selected => selected[0]}
+                    MenuProps={MenuProps}
+                    style={{
+                      border: `1px solid ${
+                        error.categories ? 'red' : '#6A5B40'
+                      }`,
+                      // marginBottom: '8px',
+                    }}
+                  >
+                    <option disabled selected aria-label='None' value=''>
+                      Categories
+                    </option>
+                    {/* <MenuItem
+                      value='all'
+                      classes={{
+                        root: isAllSelected ? classes.selectedAll : '',
+                      }}
+                    >
+                      <ListItemIcon>
+                        <Checkbox
+                          classes={{
+                            indeterminate: classes.indeterminateColor,
+                          }}
+                          checked={isAllSelected}
+                          indeterminate={
+                            selected.length > 0 &&
+                            selected.length < options.length
+                          }
+                        />
+                      </ListItemIcon>
+                      <ListItemText
+                        classes={{ primary: classes.selectAllText }}
+                        primary='Select All'
+                      />
+                    </MenuItem>{' '} */}
+                    *
+                    {category.slice(0, 20).map((option, i) => {
+                      return (
+                        <MenuItem
+                          key={option.id}
+                          // value={`${
+                          //   i <= 10 ? 'Kids' : i <= 53 ? 'Mens' : 'Womens'
+                          // } - ${option.name}`}
+                          value={`${option.id}`}
+                        >
+                          <ListItemIcon>
+                            <Checkbox
+                              checked={selected.indexOf(option.id) > -1}
+                            />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={`${option.name}`}
+                            // primary={`${
+                            //   i <= 10 ? 'Kids' : i <= 53 ? 'Mens' : 'Womens'
+                            // } - ${option.name}`}
+                          />
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
                   {/* You can select multiple */}
                   {error.categories && (
                     <span className={styles.errorMsg}>{error.categories}</span>
@@ -545,7 +787,7 @@ export default function VendorRegistration() {
                 <FormControl style={{ width: '100%' }}>
                   <NativeSelect
                     disableUnderline
-                    // className={styles.inputField}
+                    className={styles.inputFieldDrop}
                     onChange={handleChangeForState}
                     placeholder='Average monthly turn over'
                     input={<BootstrapInput />}
@@ -613,12 +855,17 @@ export default function VendorRegistration() {
                         Browse
                       </Button>
                     </div>
+                    {error.catalogueImages && (
+                      <span className={styles.errorMsg}>
+                        {error.catalogueImages}
+                      </span>
+                    )}
                   </div>
                 </FormControl>
               </Grid>
             </Grid>
             <h3>Online presence</h3>
-            <h5> Website</h5>
+            <h5> Website URL</h5>
             <FormControl>
               <div style={{ display: !mobileView ? 'flex' : 'unset' }}>
                 <RadioGroup
@@ -644,7 +891,7 @@ export default function VendorRegistration() {
                         error.Website && styles.errorInput
                       }`}
                       type='text'
-                      placeholder='Website'
+                      placeholder='Website URL'
                       name='website'
                       onChange={updateValues}
                       style={{ marginLeft: !mobileView && '121px' }}
@@ -658,7 +905,7 @@ export default function VendorRegistration() {
                 )}
               </div>
             </FormControl>
-            <h5> Instagram</h5>
+            <h5> Instagram ID</h5>
             <FormControl component='fieldset'>
               <div style={{ display: !mobileView ? 'flex' : 'unset' }}>
                 <RadioGroup
@@ -684,7 +931,7 @@ export default function VendorRegistration() {
                         error.Website && styles.errorInput
                       }`}
                       type='text'
-                      placeholder='Instagram'
+                      placeholder='Instagram ID'
                       name='instagram'
                       onChange={updateValues}
                       style={{ marginLeft: !mobileView && '121px' }}
@@ -730,29 +977,36 @@ export default function VendorRegistration() {
                       color: '#6A5B40',
                     }}
                   >
-                    <NativeSelect
-                      disableUnderline
-                      label='Total years of operations'
-                      // className={styles.inputFieldRadio}
-                      onChange={handleChangeForState}
-                      input={<BootstrapInput />}
-                      style={{
-                        border: `1px solid ${
-                          error.otherPlatform ? 'red' : '#6A5B40'
-                        }`,
-                        marginBottom: '10px',
-                      }}
+                    {platformCount.map(platform => {
+                      return (
+                        <NativeSelect
+                          disableUnderline
+                          label='Total years of operations'
+                          className={styles.platform}
+                          // onChange={handleChangeForState}
+                          value={dropDownOptions.platform}
+                          onChange={e => handleDropDown(e, 'platform')}
+                          input={<BootstrapInput />}
+                          style={{
+                            border: `1px solid ${
+                              error.otherPlatform ? 'red' : '#6A5B40'
+                            }`,
+                            marginBottom: '10px',
+                          }}
+                        >
+                          <option value={'Amazon'}>Amazon</option>
+                          <option value={'Flipkart'}>Flipkart</option>
+                          <option value={'Myntra'}>Myntra</option>
+                          <option value={'Rare Rabit'}>Rare Rabit</option>
+                        </NativeSelect>
+                      );
+                    })}
+                    <span
+                      onClick={handlePlatform}
+                      style={{ cursor: 'pointer' }}
                     >
-                      <option disabled selected hidden>
-                        Total years of operations
-                      </option>
-                      <option>0-1 years</option>
-                      <option>1-5 years</option>
-                      <option>5-10 years</option>
-                      <option>10-15 years</option>
-                      <option>More than 20 years</option>
-                    </NativeSelect>
-                    +Add platform
+                      +Add platform
+                    </span>
                   </FormControl>
                 )}
               </div>

@@ -16,6 +16,7 @@ import {
   OutlinedInput,
   Checkbox,
 } from "@material-ui/core";
+import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styles from "./filter.module.scss";
 import { style } from "@material-ui/system";
@@ -95,6 +96,12 @@ export default function Filter(props) {
     setIsLoading(false);
     setFit(fit);
   };
+
+  const AccordionDetails = withStyles((theme) => ({
+    root: {
+      padding: theme.spacing(0)
+    },
+  }))(MuiAccordionDetails);
 
   const [selectedFilter, setSelectedFilter] = useState({
     categories: "All categories",

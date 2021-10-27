@@ -9,6 +9,7 @@ import {
   ButtonGroup,
   Button,
   Drawer,
+  useTheme,
 } from "@material-ui/core";
 import Loader, { ProductLoader } from "../../../../../utils/Loader/Loader";
 import cx from "classnames";
@@ -19,6 +20,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getWishList } from "../../../../../Redux/actions/wishlist";
 import { getSortedProduct } from "../../../../../Redux/actions/products";
 // import { getSortedProduct } from "../../../../../Redux/actions/filter-category";
+
+import configObject from "../../../../../Configurations/objectConfig";
+import defaultFunctions from "../../../../../Configurations/defaultFunctions";
+const { productSortByOptions } = configObject;
+const { sortByOrder } = defaultFunctions;
+
 export default function ProductsSection({
   products,
   loading,
@@ -37,9 +44,29 @@ export default function ProductsSection({
   const { user, isAuthenticated } = useSelector((state) => state.root.auth);
   const [temp, setTemp] = useState();
 
+  const theme = useTheme();
+  const xs = useMediaQuery(theme.breakpoints.down("xs"));
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
+  const md = useMediaQuery(theme.breakpoints.down("md"));
+  const lg = useMediaQuery(theme.breakpoints.down("lg"));
+  const xl = useMediaQuery(theme.breakpoints.down("xl"));
+
+  const getScreenView = () => {
+    return xs
+      ? false
+      : sm
+      ? false
+      : md
+      ? true
+      : lg
+      ? true
+      : xl
+      ? true
+      : true;
+  }
+
   const handleSort = (e) => {
     setSortBy(e.target.value);
-    console.log(e.target.value);
     setClearAll(false);
     dispatch(getSortedProduct(slug, group, e.target.value));
   };
@@ -57,9 +84,44 @@ export default function ProductsSection({
   };
 
   const PRODUCT_COUNT = 9;
+
   useEffect(() => {
     if (clearAll) setSortBy("");
   }, [clearAll]);
+
+  const SortByFilter = ({ listArray }) => {
+    const sortedList = sortByOrder(listArray);
+    return (
+      <FormControl
+        size="small"
+        variant="outlined"
+        style={{ minWidth: "130px" }}
+      >
+        <InputLabel
+          color={"secondary"}
+          style={{ fontWeight: "700", color: "#6A5B40", fontSize: "16px" }}
+        >
+          Sort by
+        </InputLabel>
+        <Select value={sortBy} onChange={(e) => handleSort(e)} label="Sort by">
+          {sortedList.map(({ id, value, text, visibility }, index) => {
+            return (
+              visibility && (
+                <MenuItem
+                  key={value+id+index}
+                  value={value}
+                  style={{ fontSize: mobileView && "15px" }}
+                >
+                  {text}
+                </MenuItem>
+              )
+            );
+          })}
+        </Select>
+      </FormControl>
+    );
+  };
+
   return (
     <>
       {tabViewPro && (
@@ -73,7 +135,6 @@ export default function ProductsSection({
           <Filter />
         </Drawer>
       )}
-
       <Grid
       // container
       // style={{ width: '100%', margin: 0 }}
@@ -107,49 +168,9 @@ export default function ProductsSection({
             </div>
           )}
 
-          <FormControl
-            size="small"
-            variant="outlined"
-            style={{ minWidth: "130px" }}
-          >
-            <InputLabel
-              color={"secondary"}
-              style={{ fontWeight: "700", color: "#6A5B40", fontSize: "16px" }}
-            >
-              Sort by
-            </InputLabel>
-            <Select
-              value={sortBy}
-              onChange={(e) => handleSort(e)}
-              label="Sort by"
-            >
-              {/* <MenuItem
-                value={"relavence"}
-                style={{ fontSize: mobileView && "15px" }}
-
-              >
-                Relavence
-              </MenuItem> */}
-              <MenuItem
-                value={"new"}
-                style={{ fontSize: mobileView && "15px" }}
-              >
-                New
-              </MenuItem>
-              <MenuItem
-                value={"lowToHeigh"}
-                style={{ fontSize: mobileView && "15px" }}
-              >
-                Price Low to High
-              </MenuItem>
-              <MenuItem
-                value={"heighTolow"}
-                style={{ fontSize: mobileView && "15px" }}
-              >
-                Price High to Low
-              </MenuItem>
-            </Select>
-          </FormControl>
+          <div style={getScreenView() ? {position: 'relative', marginTop: '-25px', marginBottom: getScreenView() ? '70px' : '15px'}: {}} >
+          <SortByFilter listArray={productSortByOptions} />
+          </div>
         </Grid>
         {loading ? (
           <div className={styles.productsGrid}>

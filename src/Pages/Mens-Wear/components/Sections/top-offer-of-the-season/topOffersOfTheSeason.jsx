@@ -26,14 +26,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { get_top_offers } from "../../../../../Redux/actions/mensWear";
 
 export default function TopOffersOfTheSeasonSection({ type }) {
-  const mobileView = useMediaQuery("(max-width:550px)");
-  const tabView = useMediaQuery("(max-width:768px)");
-  const tabViewPro = useMediaQuery("(max-width:835px)");
-  const CustomView = useMediaQuery("(max-width:1050px)");
   const theme = useTheme();
-  const match = useMediaQuery(theme.breakpoints.down("xs"));
+  const extraSmall = useMediaQuery(theme.breakpoints.down("xs"));
   const small = useMediaQuery(theme.breakpoints.down("sm"));
-  const iPade = useMediaQuery(theme.breakpoints.down("lg"));
+  const width550 = useMediaQuery("(max-width:550px)");
+  const width768 = useMediaQuery("(max-width:768px)");
+  const width835 = useMediaQuery("(max-width:835px)");
+  const width910 = useMediaQuery("(max-width:910px)");
+  const width1125 = useMediaQuery("(max-width:1125px)");
+
+  const getVisibleCardCount = () => {
+    return extraSmall
+      ? 1
+      : small
+      ? 1.5
+      : width550
+      ? 2
+      : width768
+      ? 2
+      : width835
+      ? 2
+      : width910
+      ? 3
+      : width1125
+      ? 3
+      : 4;
+  };
 
   const dispatch = useDispatch();
   const { top_offers } = useSelector((state) => state.root.main);
@@ -56,7 +74,7 @@ export default function TopOffersOfTheSeasonSection({ type }) {
       </div>
       <CarouselProvider
         naturalSlideWidth={100}
-        visibleSlides={match ? 1.5 : iPade ? 3 : small ? 2 : 4}
+        visibleSlides={getVisibleCardCount()}
         totalSlides={top_offers.length + 0.3}
         isIntrinsicHeight
       >

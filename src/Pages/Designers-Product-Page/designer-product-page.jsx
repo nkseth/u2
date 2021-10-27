@@ -18,7 +18,6 @@ import { clearUpdateWishlist, getWishList } from "../../Redux/actions/wishlist";
 import { clearProductsErrors, getProducts } from "../../Redux/actions/products";
 
 function DesignerProductPage({ match }, props) {
-  console.log("sa", match)
   const dispatch = useDispatch();
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:768px)");

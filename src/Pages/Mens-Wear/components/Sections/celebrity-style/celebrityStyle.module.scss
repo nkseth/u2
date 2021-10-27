@@ -30,6 +30,11 @@
   .sliderBtn {
     background: none;
     border: none;
+    :hover {
+      background: #6A5B40 !important;
+      border-radius: 50%;
+      border: #6A5B40!important;;
+    }
   }
 }
 

@@ -100,6 +100,8 @@ export default function VendorRegistration() {
     e.preventDefault();
     let categoriesId = [];
 
+    const platForm = selectedPlatform.filter(plat => plat !== 'Platform');
+
     if (
       categories[0] === `Men's Wear` ||
       categories[1] === `Men's Wear` ||
@@ -167,11 +169,11 @@ export default function VendorRegistration() {
       setTimeout(() => setError({ instagram: '' }), ErrorClearTimeOut);
       return;
     }
-    // if (showInputField.others && !values.others) {
-    //   setError({ otherPlatform: '* Please Provide the details' });
-    //   setTimeout(() => setError({ otherPlatform: '' }), ErrorClearTimeOut);
-    //   return;
-    // }
+    if (showInputField.others && !selectedPlatform.length) {
+      setError({ otherPlatform: '* Please Provide the details' });
+      setTimeout(() => setError({ otherPlatform: '' }), ErrorClearTimeOut);
+      return;
+    }
 
     if (!dropDownOptions.operation) {
       setError({ operation: '* Please Provide the details' });
@@ -188,16 +190,17 @@ export default function VendorRegistration() {
       setTimeout(() => setError({ turnOver: '' }), ErrorClearTimeOut);
       return;
     }
-    // if (!dropDownOptions.categories) {
-    //   setError({ categories: '* Please Provide the details' });
-    //   setTimeout(() => setError({ categories: '' }), ErrorClearTimeOut);
-    //   return;
-    // }
-    // if (certificateImages) {
-    //   setError({ certificateImages: '* Please Provide the details' });
-    //   setTimeout(() => setError({ certificateImages: '' }), ErrorClearTimeOut);
-    //   return;
-    // }
+    if (!categoriesId.length) {
+      setError({ categories: '* Please Provide the details' });
+      setTimeout(() => setError({ categories: '' }), ErrorClearTimeOut);
+      return;
+    }
+
+    if (!certificateImages) {
+      setError({ certificateImages: '* Please Provide the details' });
+      setTimeout(() => setError({ certificateImages: '' }), ErrorClearTimeOut);
+      return;
+    }
     if (!catalogueImages.length || catalogueImages.length < 1) {
       setError({
         catalogueImages: `${
@@ -227,7 +230,7 @@ export default function VendorRegistration() {
       website_url: values.website,
       instagram: values.instagram,
       other_platform_url: values.otherPlatform,
-      other_platform: selectedPlatform,
+      other_platform: platForm,
     };
 
     catalogueImages.map((img, i) => {
@@ -248,10 +251,6 @@ export default function VendorRegistration() {
 
       setPopupMessage(data.message);
     } catch (error) {
-      console.log(
-        '🚀 ~ file: registrationAsVendor.jsx ~ line 251 ~ VendorRegistration ~ error',
-        error
-      );
       setErrorResponse(error.response.data);
     }
   };
@@ -357,24 +356,34 @@ export default function VendorRegistration() {
   const imageUploader = React.useRef(null);
   const certificateUploader = React.useRef(null);
   const [catalogueImages, setCatalogueImages] = useState([]);
+  // console.log(
+  //   '🚀 ~ file: registrationAsVendor.jsx ~ line 360 ~ VendorRegistration ~ catalogueImages',
+  //   catalogueImages.map(
+  //     img => `${img.name.split('.')[0].slice(0, 10)}.${img.name.split('.')[1]}`
+  //   )
+  // );
 
-  const [certificateImages, setCertificateImages] = useState([]);
+  const [certificateImages, setCertificateImages] = useState();
+  console.log(
+    '🚀 ~ file: registrationAsVendor.jsx ~ line 364 ~ VendorRegistration ~ certificateImages',
+    certificateImages
+  );
 
   const toggleModal = () => setPopupMessage('');
   const toggleModalError = () => setErrorResponse('');
 
   const [catalogueName, setCatalogName] = useState([]);
+
   const [certificateName, setCertificateName] = useState('');
 
   const handleImageChange = e => {
     if (e.target.files) {
-      const filesArray = Array.from(e.target.files).map(file =>
-        URL.createObjectURL(file)
-      );
-
-      // console.log("filesArray: ", filesArray);
+      const filesArray = Array.from(e.target.files).map(file => {
+        return file;
+      });
 
       catalogueImages(prevImages => prevImages.concat(filesArray));
+
       Array.from(e.target.files).map(
         file => URL.revokeObjectURL(file) // avoid memory leak
       );
@@ -390,13 +399,7 @@ export default function VendorRegistration() {
       // current.file = file;
       if (name === 'catalogue') {
         if (e.target.files) {
-          const filesArray = Array.from(e.target.files).map(file =>
-            URL.createObjectURL(file)
-          );
-          console.log(
-            '🚀 ~ file: registrationAsVendor.jsx ~ line 379 ~ handleImageUpload ~ filesArray',
-            filesArray
-          );
+          const filesArray = Array.from(e.target.files).map(file => file);
 
           const name = file.name.split('.')[0].slice(0, 8);
 
@@ -404,9 +407,8 @@ export default function VendorRegistration() {
 
           const fileName = `${name}.${type}`;
 
-          setCatalogName(catalogueName => [...catalogueName, fileName]);
-
           setCatalogueImages(prevImages => prevImages.concat(filesArray));
+
           Array.from(e.target.files).map(
             file => URL.revokeObjectURL(file) // avoid memory leak
           );
@@ -429,6 +431,14 @@ export default function VendorRegistration() {
     }
   };
 
+  useEffect(() => {
+    setCatalogName(
+      catalogueImages.map(
+        img =>
+          `${img.name.split('.')[0].slice(0, 10)}.${img.name.split('.')[1]}`
+      )
+    );
+  }, [catalogueImages]);
   const useStyles = makeStyles(theme => ({
     formControl: {
       margin: theme.spacing(1),
@@ -1187,6 +1197,10 @@ export default function VendorRegistration() {
                 </span>
               ))}
 
+            {error.otherPlatform && (
+              <span className={styles.errorMsg}>{error.otherPlatform}</span>
+            )}
+
             <div
               style={{
                 textAlign: 'center',
@@ -1206,10 +1220,12 @@ export default function VendorRegistration() {
             </div>
           </form>
           <div style={{ textAlign: 'center', marginBottom: '101px' }}>
-            <span className={styles.helpText}> For help Email:</span>
-
-            <Link>help@fashtechhive.com</Link>
-            <span>/ Call: +91 - 7259111787</span>
+            <h4>
+              <span className={styles.helpText}> For help </span>
+              Email:
+              <Link> help@fashtechhive.com</Link>
+              <span> / Call: +91 - 7259111787</span>
+            </h4>
           </div>
         </div>
       </CustomSection>

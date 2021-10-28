@@ -70,6 +70,10 @@ export default function VendorRegistration() {
     catalogueImages: '',
     certificateImages: '',
   });
+  console.log(
+    '🚀 ~ file: registrationAsVendor.jsx ~ line 58 ~ VendorRegistration ~ error',
+    error
+  );
 
   const handleChangeForState = event => {
     SetExperience(event.target.value);
@@ -79,13 +83,6 @@ export default function VendorRegistration() {
       ...showInputField,
       [type]: e.target.value === 'yes' ? true : false,
     }));
-  };
-
-  const handleCategories = (e, type) => {
-    console.log(
-      '🚀 ~ file: registrationAsVendor.jsx ~ line 87 ~ handleCategories ~ e',
-      e
-    );
   };
 
   function validateEmail(email) {
@@ -101,6 +98,34 @@ export default function VendorRegistration() {
   const handleSubmit = async e => {
     // setDisableBtn(true);
     e.preventDefault();
+    let categoriesId = [];
+
+    const platForm = selectedPlatform.filter(plat => plat !== 'Platform');
+
+    if (
+      categories[0] === `Men's Wear` ||
+      categories[1] === `Men's Wear` ||
+      categories[2] === `Men's Wear` ||
+      categories[3] === `Men's Wear`
+    ) {
+      categoriesId.push(12);
+    }
+    if (
+      categories[0] === `Women's Wear` ||
+      categories[1] === `Women's Wear` ||
+      categories[2] === `Women's Wear` ||
+      categories[3] === `Women's Wear`
+    ) {
+      categoriesId.push(13);
+    }
+    if (
+      categories[0] === `Kid's Wear` ||
+      categories[1] === `Kid's Wear` ||
+      categories[2] === `Kid's Wear` ||
+      categories[2] === `Kid's Wear`
+    ) {
+      categoriesId.push(11);
+    }
 
     if (!values.name) {
       setError({ name: '* Please Enter your Name' });
@@ -144,7 +169,7 @@ export default function VendorRegistration() {
       setTimeout(() => setError({ instagram: '' }), ErrorClearTimeOut);
       return;
     }
-    if (showInputField.others && !values.others) {
+    if (showInputField.others && !selectedPlatform.length) {
       setError({ otherPlatform: '* Please Provide the details' });
       setTimeout(() => setError({ otherPlatform: '' }), ErrorClearTimeOut);
       return;
@@ -165,16 +190,17 @@ export default function VendorRegistration() {
       setTimeout(() => setError({ turnOver: '' }), ErrorClearTimeOut);
       return;
     }
-    // if (!dropDownOptions.categories) {
-    //   setError({ categories: '* Please Provide the details' });
-    //   setTimeout(() => setError({ categories: '' }), ErrorClearTimeOut);
-    //   return;
-    // }
-    // if (certificateImages) {
-    //   setError({ certificateImages: '* Please Provide the details' });
-    //   setTimeout(() => setError({ certificateImages: '' }), ErrorClearTimeOut);
-    //   return;
-    // }
+    if (!categoriesId.length) {
+      setError({ categories: '* Please Provide the details' });
+      setTimeout(() => setError({ categories: '' }), ErrorClearTimeOut);
+      return;
+    }
+
+    if (!certificateImages) {
+      setError({ certificateImages: '* Please Provide the details' });
+      setTimeout(() => setError({ certificateImages: '' }), ErrorClearTimeOut);
+      return;
+    }
     if (!catalogueImages.length || catalogueImages.length < 1) {
       setError({
         catalogueImages: `${
@@ -188,6 +214,7 @@ export default function VendorRegistration() {
     }
 
     const formData = new FormData();
+
     const dataInfo = {
       full_name: values.name,
       email: values.email,
@@ -196,14 +223,14 @@ export default function VendorRegistration() {
       certificate: certificateImages,
       year_of_operation: dropDownOptions.operation,
       operation_city: values.operationCity,
-      categories: selected,
+      categories: categoriesId,
       turn_over: dropDownOptions.turnOver,
       catalogues_image_count: catalogueImages.length,
       website: showInputField.website,
       website_url: values.website,
       instagram: values.instagram,
       other_platform_url: values.otherPlatform,
-      other_platform: showInputField.others,
+      other_platform: platForm,
     };
 
     catalogueImages.map((img, i) => {
@@ -213,6 +240,7 @@ export default function VendorRegistration() {
     Object.entries(dataInfo).map(([k, v]) => {
       formData.append(k, v);
     });
+
     try {
       const config = { headers: { 'Content-Type': 'multipart/form-data' } };
       const { data } = await common_axios.post(
@@ -223,13 +251,42 @@ export default function VendorRegistration() {
 
       setPopupMessage(data.message);
     } catch (error) {
-      console.log(
-        '🚀 ~ file: registrationAsVendor.jsx ~ line 209 ~ VendorRegistration ~ error',
-        error?.response?.data
-      );
       setErrorResponse(error.response.data);
     }
   };
+  const categoriesDropDown = [
+    {
+      id: 13,
+      name: "Kid's Wear",
+    },
+    {
+      id: 11,
+      name: "Men's Wear",
+    },
+    {
+      id: 12,
+      name: "Women's Wear",
+    },
+  ];
+
+  const platformDrop = [
+    {
+      id: 13,
+      name: 'Amazon',
+    },
+    {
+      id: 11,
+      name: 'Flipkart',
+    },
+    {
+      id: 12,
+      name: 'Myntra',
+    },
+    {
+      id: 22,
+      name: 'Rare Rabit',
+    },
+  ];
   const CustomCheckbox = withStyles({
     root: {
       color: '#9D9D9D',
@@ -247,10 +304,13 @@ export default function VendorRegistration() {
       borderRadius: 5,
       position: 'relative',
       height: '28px',
+      display: 'flex',
+      alignItems: 'center',
       color: '#6c6c6c',
+      fontSize: '14px',
       //   backgroundColor: theme.palette.background.paper,
       // border: '1px solid #6A5B40',
-      fontSize: 16,
+
       padding: '10px 26px 10px 12px',
       transition: theme.transitions.create(['border-color', 'box-shadow']),
       // Use the system font instead of the default Roboto font.
@@ -296,15 +356,39 @@ export default function VendorRegistration() {
   const imageUploader = React.useRef(null);
   const certificateUploader = React.useRef(null);
   const [catalogueImages, setCatalogueImages] = useState([]);
+  // console.log(
+  //   '🚀 ~ file: registrationAsVendor.jsx ~ line 360 ~ VendorRegistration ~ catalogueImages',
+  //   catalogueImages.map(
+  //     img => `${img.name.split('.')[0].slice(0, 10)}.${img.name.split('.')[1]}`
+  //   )
+  // );
 
-  const [certificateImages, setCertificateImages] = useState([]);
+  const [certificateImages, setCertificateImages] = useState();
+  console.log(
+    '🚀 ~ file: registrationAsVendor.jsx ~ line 364 ~ VendorRegistration ~ certificateImages',
+    certificateImages
+  );
 
   const toggleModal = () => setPopupMessage('');
   const toggleModalError = () => setErrorResponse('');
 
   const [catalogueName, setCatalogName] = useState([]);
+
   const [certificateName, setCertificateName] = useState('');
 
+  const handleImageChange = e => {
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files).map(file => {
+        return file;
+      });
+
+      catalogueImages(prevImages => prevImages.concat(filesArray));
+
+      Array.from(e.target.files).map(
+        file => URL.revokeObjectURL(file) // avoid memory leak
+      );
+    }
+  };
   const handleImageUpload = (e, name) => {
     const [file] = e.target.files;
 
@@ -314,11 +398,26 @@ export default function VendorRegistration() {
       // const { current } = uploadedImage;
       // current.file = file;
       if (name === 'catalogue') {
-        setCatalogName(catalogueName => [...catalogueName, file.name]);
-        setCatalogueImages(catalogueImages => [
-          ...catalogueImages,
-          ...e.target.files,
-        ]);
+        if (e.target.files) {
+          const filesArray = Array.from(e.target.files).map(file => file);
+
+          const name = file.name.split('.')[0].slice(0, 8);
+
+          const type = file.type.split('/')[1];
+
+          const fileName = `${name}.${type}`;
+
+          setCatalogueImages(prevImages => prevImages.concat(filesArray));
+
+          Array.from(e.target.files).map(
+            file => URL.revokeObjectURL(file) // avoid memory leak
+          );
+        }
+
+        // setCatalogueImages(catalogueImages => [
+        //   ...catalogueImages,
+        //   ...e.target.files,
+        // ]);
       }
       if (name === 'certificate') {
         setCertificateName(file.name);
@@ -332,12 +431,14 @@ export default function VendorRegistration() {
     }
   };
 
-  const [platformCount, setPlatformCount] = useState([1]);
-
-  const handlePlatform = () => {
-    setPlatformCount(platformCount => [...platformCount, platformCount[0] + 1]);
-  };
-
+  useEffect(() => {
+    setCatalogName(
+      catalogueImages.map(
+        img =>
+          `${img.name.split('.')[0].slice(0, 10)}.${img.name.split('.')[1]}`
+      )
+    );
+  }, [catalogueImages]);
   const useStyles = makeStyles(theme => ({
     formControl: {
       margin: theme.spacing(1),
@@ -372,14 +473,12 @@ export default function VendorRegistration() {
   const classes = useStyles();
   const [selected, setSelected] = useState([]);
 
+  const [categories, setCategories] = useState([]);
+
   const isAllSelected =
     options.length > 0 && selected.length === options.length;
 
   const handleChange = event => {
-    console.log(
-      '🚀 ~ file: registrationAsVendor.jsx ~ line 372 ~ VendorRegistration ~ event',
-      event
-    );
     const value = event.target.value;
 
     if (value[value.length - 1] === 'all') {
@@ -387,24 +486,22 @@ export default function VendorRegistration() {
       return;
     }
     setSelected(value);
+    setCategories(value);
   };
-  const [category, setCategory] = useState([]);
+  const [selectedPlatform, setSelectedPlatForm] = useState([]);
 
-  const getCategory = async () => {
-    const { data } = await common_axios.post(
-      `/category_for_merchant_register/`
-    );
-    console.log(
-      '🚀 ~ file: registrationAsVendor.jsx ~ line 384 ~ getCategory ~ data',
-      data
-    );
+  const handleChangePlatForm = event => {
+    const value = event.target.value;
 
-    setCategory(data?.data.map(item => item.categories).flat());
+    if (value[value.length - 1] === 'all') {
+      setSelectedPlatForm(
+        selectedPlatform.length === options.length ? [] : options
+      );
+      return;
+    }
+    setSelectedPlatForm(value);
   };
 
-  useEffect(() => {
-    getCategory();
-  }, []);
   return (
     <Container bottomDivider footerOnTabMob footerOnAllView>
       <>
@@ -722,10 +819,16 @@ export default function VendorRegistration() {
                       border: `1px solid ${
                         error.categories ? 'red' : '#6A5B40'
                       }`,
-                      // marginBottom: '8px',
+                      marginBottom: '8px',
                     }}
                   >
-                    <option disabled selected aria-label='None' value=''>
+                    <option
+                      disabled
+                      selected
+                      aria-label='None'
+                      value=''
+                      style={{ padding: '1rem' }}
+                    >
                       Categories
                     </option>
                     {/* <MenuItem
@@ -752,22 +855,20 @@ export default function VendorRegistration() {
                       />
                     </MenuItem>{' '} */}
                     *
-                    {category.slice(0, 20).map((option, i) => {
+                    {categoriesDropDown.map((option, i) => {
                       return (
-                        <MenuItem
-                          key={option.id}
-                          // value={`${
-                          //   i <= 10 ? 'Kids' : i <= 53 ? 'Mens' : 'Womens'
-                          // } - ${option.name}`}
-                          value={`${option.id}`}
-                        >
+                        <MenuItem key={option.id} value={option.name}>
                           <ListItemIcon>
                             <Checkbox
-                              checked={selected.indexOf(option.id) > -1}
+                              classes={{
+                                indeterminate: classes.indeterminateColor,
+                              }}
+                              style={{ color: '#6A5B40' }}
+                              checked={selected.indexOf(option.name) > -1}
                             />
                           </ListItemIcon>
                           <ListItemText
-                            primary={`${option.name}`}
+                            primary={option.name}
                             // primary={`${
                             //   i <= 10 ? 'Kids' : i <= 53 ? 'Mens' : 'Womens'
                             // } - ${option.name}`}
@@ -776,7 +877,16 @@ export default function VendorRegistration() {
                       );
                     })}
                   </Select>
-                  {/* You can select multiple */}
+                  <div style={{ display: 'flex', gap: '15px' }}>
+                    {categories.length > 1
+                      ? categories.map(category => (
+                          <span>
+                            {category === 'Categories' ? '' : category}
+                          </span>
+                        ))
+                      : ' You can select multiple'}
+                  </div>
+
                   {error.categories && (
                     <span className={styles.errorMsg}>{error.categories}</span>
                   )}
@@ -977,7 +1087,7 @@ export default function VendorRegistration() {
                       color: '#6A5B40',
                     }}
                   >
-                    {platformCount.map(platform => {
+                    {/* {platformCount.map(platform => {
                       return (
                         <NativeSelect
                           disableUnderline
@@ -1000,17 +1110,97 @@ export default function VendorRegistration() {
                           <option value={'Rare Rabit'}>Rare Rabit</option>
                         </NativeSelect>
                       );
-                    })}
-                    <span
-                      onClick={handlePlatform}
-                      style={{ cursor: 'pointer' }}
+                    })} */}
+                    <Select
+                      labelId='mutiple-select-label'
+                      className={`${styles.inputFieldRadio}`}
+                      multiple
+                      input={<BootstrapInput />}
+                      value={
+                        selectedPlatform.length
+                          ? selectedPlatform
+                          : ['Platform']
+                      }
+                      onChange={handleChangePlatForm}
+                      renderValue={selectedPlatform => selectedPlatform[0]}
+                      MenuProps={MenuProps}
+                      style={{
+                        border: `1px solid ${
+                          error.platform ? 'red' : '#6A5B40'
+                        }`,
+                        marginBottom: '8px',
+                        width: '400px',
+                      }}
                     >
-                      +Add platform
-                    </span>
+                      <option
+                        disabled
+                        selected
+                        aria-label='None'
+                        value=''
+                        style={{ padding: '1rem' }}
+                      >
+                        Platform
+                      </option>
+                      {/* <MenuItem
+                      value='all'
+                      classes={{
+                        root: isAllSelected ? classes.selectedAll : '',
+                      }}
+                    >
+                      <ListItemIcon>
+                        <Checkbox
+                          classes={{
+                            indeterminate: classes.indeterminateColor,
+                          }}
+                          checked={isAllSelected}
+                          indeterminate={
+                            selected.length > 0 &&
+                            selected.length < options.length
+                          }
+                        />
+                      </ListItemIcon>
+                      <ListItemText
+                        classes={{ primary: classes.selectAllText }}
+                        primary='Select All'
+                      />
+                    </MenuItem>{' '} */}
+
+                      {platformDrop.map((option, i) => {
+                        return (
+                          <MenuItem key={option.id} value={option.name}>
+                            <ListItemIcon>
+                              <Checkbox
+                                classes={{
+                                  indeterminate: classes.indeterminateColor,
+                                }}
+                                style={{ color: '#6A5B40' }}
+                                checked={
+                                  selectedPlatform.indexOf(option.name) > -1
+                                }
+                              />
+                            </ListItemIcon>
+                            <ListItemText primary={option.name} />
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
                   </FormControl>
                 )}
               </div>
             </FormControl>
+            {selectedPlatform &&
+              selectedPlatform?.map(item => (
+                <span
+                  style={{ display: 'inline-block', margin: '0.5rem 0.5rem' }}
+                >
+                  {item === 'Platform' ? '' : item}
+                </span>
+              ))}
+
+            {error.otherPlatform && (
+              <span className={styles.errorMsg}>{error.otherPlatform}</span>
+            )}
+
             <div
               style={{
                 textAlign: 'center',
@@ -1030,27 +1220,18 @@ export default function VendorRegistration() {
             </div>
           </form>
           <div style={{ textAlign: 'center', marginBottom: '101px' }}>
-            <span className={styles.helpText}> For help Email:</span>
-
-            <Link>help@fashtechhive.com</Link>
-            <span>/ Call: +91 - 7259111787</span>
+            <h4>
+              <span className={styles.helpText}> For help </span>
+              Email:
+              <Link> help@fashtechhive.com</Link>
+              <span> / Call: +91 - 7259111787</span>
+            </h4>
           </div>
         </div>
       </CustomSection>
     </Container>
   );
 }
-
-const names = [
-  'Mens casual wear',
-  'Mens ethnic wear',
-  'Mens formal wear',
-  'Mens sleep wear',
-  'Womens casual wear',
-  'Womens ethnic wear',
-  'Womens formal wear',
-  'Womens sleep wear',
-];
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

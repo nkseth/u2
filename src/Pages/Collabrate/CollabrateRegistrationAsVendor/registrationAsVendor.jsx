@@ -89,7 +89,7 @@ export default function VendorRegistration() {
   }
 
   const ErrorClearTimeOut = 5000;
-  const [popupMessage, setPopupMessage] = useState('asdas');
+  const [popupMessage, setPopupMessage] = useState('');
   const [errorResponse, setErrorResponse] = useState('');
   const [disableBtn, setDisableBtn] = useState(false);
 
@@ -99,9 +99,7 @@ export default function VendorRegistration() {
     e.preventDefault();
     let categoriesId = [];
 
-
     const platForm = selectedPlatform.filter(plat => plat !== 'Platform');
-
 
     if (
       categories[0] === `Men's Wear` ||
@@ -188,7 +186,6 @@ export default function VendorRegistration() {
       return;
     }
 
-
     if (!dropDownOptions.operation) {
       window.scrollTo(200, 0);
 
@@ -258,7 +255,6 @@ export default function VendorRegistration() {
       instagram_url: values.instagram,
       other_platform_url: platForm,
       other_platform: showInputField.others,
-
     };
 
     catalogueImages.map((img, i) => {
@@ -431,9 +427,7 @@ export default function VendorRegistration() {
       // current.file = file;
       if (name === 'catalogue') {
         if (e.target.files) {
-
           const filesArray = Array.from(e.target.files).map(file => file);
-
 
           const name = file.name.split('.')[0].slice(0, 8);
 
@@ -441,9 +435,7 @@ export default function VendorRegistration() {
 
           const fileName = `${name}.${type}`;
 
-
           setCatalogueImages(prevImages => prevImages.concat(filesArray));
-
 
           Array.from(e.target.files).map(
             file => URL.revokeObjectURL(file) // avoid memory leak
@@ -466,7 +458,6 @@ export default function VendorRegistration() {
       // reader.readAsDataURL(file);
     }
   };
-
 
   useEffect(() => {
     setCatalogName(
@@ -1275,7 +1266,6 @@ export default function VendorRegistration() {
                 )}
               </div>
             </FormControl>
-
 
             {error.otherPlatform && (
               <span className={styles.errorMsg}>{error.otherPlatform}</span>

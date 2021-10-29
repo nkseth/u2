@@ -99,7 +99,7 @@ export default function VendorRegistration() {
     e.preventDefault();
     let categoriesId = [];
 
-    const platForm = selectedPlatform.filter(plat => plat !== 'Platform');
+    const platForm = selectedPlatform.some(plat => plat !== 'Platform');
 
     if (
       categories[0] === `Men's Wear` ||
@@ -909,7 +909,7 @@ export default function VendorRegistration() {
                     {categoriesDropDown.map((option, i) => {
                       return (
                         <MenuItem
-                          className={styles.menuItem}
+                          className='register_as__vender--menu-item'
                           key={option.id}
                           value={option.name}
                           style={{ fontSize: '10px' }}
@@ -1233,7 +1233,7 @@ export default function VendorRegistration() {
                           <MenuItem
                             key={option.id}
                             value={option.name}
-                            className={styles.menuItem}
+                            className='register_as__vender--menu-item'
                           >
                             <ListItemIcon>
                               <Checkbox

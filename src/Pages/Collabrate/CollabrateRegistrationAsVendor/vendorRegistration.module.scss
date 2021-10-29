@@ -67,7 +67,9 @@
     font-family: 'DM Sans';
     padding: 8px;
     border: 1px solid #6a5b40;
-
+    &::placeholder {
+      font-family: 'DM Sans';
+    }
     p {
       position: absolute;
       left: 10px;
@@ -87,6 +89,9 @@
   }
   option {
     cursor: pointer !important;
+  }
+  .menuItem {
+    color: red !important;
   }
 
   .inputFieldButton {
@@ -159,8 +164,8 @@
 .catalogueButton {
   position: absolute !important;
   top: 0px;
-  right: 0;
-  bottom: 0;
+  right: 0px;
+  bottom: 0px;
   width: 116px;
   height: 48px !important;
   border-radius: 7px !important;

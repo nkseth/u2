@@ -89,7 +89,7 @@ export default function VendorRegistration() {
   }
 
   const ErrorClearTimeOut = 5000;
-  const [popupMessage, setPopupMessage] = useState('');
+  const [popupMessage, setPopupMessage] = useState('asdas');
   const [errorResponse, setErrorResponse] = useState('');
   const [disableBtn, setDisableBtn] = useState(false);
 
@@ -532,7 +532,7 @@ export default function VendorRegistration() {
     <Container bottomDivider footerOnTabMob footerOnAllView>
       <>
         {popupMessage && (
-          <SuccessPopUp toggle={toggleModal} width={'500px'} height={'150px'}>
+          <SuccessPopUp toggle={toggleModal} height={'350px'}>
             <img src={Confirm} alt='' />
             <h2 style={{ margin: '1rem 0', fontSize: '16px' }}>
               {popupMessage}
@@ -541,6 +541,7 @@ export default function VendorRegistration() {
               target='_blank'
               href='https://www.u2.dhaatri.store/'
               class={styles.removeModelButton}
+              style={{ marginTop: '1rem', width: '100%' }}
               onClick={e => {
                 toggleModal();
               }}
@@ -718,7 +719,7 @@ export default function VendorRegistration() {
                         </span>
                       )}
                       {!certificateName && (
-                        <p style={{ color: '#757575' }}>
+                        <p style={{ color: '#757575', fontSize: '14px' }}>
                           Professional certificate
                         </p>
                       )}
@@ -904,8 +905,13 @@ export default function VendorRegistration() {
                     *
                     {categoriesDropDown.map((option, i) => {
                       return (
-                        <MenuItem key={option.id} value={option.name}>
-                          <ListItemIcon style={{ fontSize: '10px' }}>
+                        <MenuItem
+                          className={styles.menuItem}
+                          key={option.id}
+                          value={option.name}
+                          style={{ fontSize: '10px' }}
+                        >
+                          <ListItemIcon>
                             <Checkbox
                               classes={{
                                 indeterminate: classes.indeterminateColor,
@@ -1008,7 +1014,7 @@ export default function VendorRegistration() {
                               `, + ${catalogueName.length - 1}`}
                           </span>
                         ) : (
-                          <span style={{ color: '#757575' }}>
+                          <span style={{ color: '#757575', fontSize: '14px' }}>
                             Catalogue sample
                           </span>
                         )}
@@ -1221,7 +1227,11 @@ export default function VendorRegistration() {
 
                       {platformDrop.map((option, i) => {
                         return (
-                          <MenuItem key={option.id} value={option.name}>
+                          <MenuItem
+                            key={option.id}
+                            value={option.name}
+                            className={styles.menuItem}
+                          >
                             <ListItemIcon>
                               <Checkbox
                                 classes={{

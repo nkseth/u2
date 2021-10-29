@@ -89,7 +89,7 @@ export default function VendorRegistration() {
   }
 
   const ErrorClearTimeOut = 5000;
-  const [popupMessage, setPopupMessage] = useState('asd');
+  const [popupMessage, setPopupMessage] = useState('');
   const [errorResponse, setErrorResponse] = useState('');
   const [disableBtn, setDisableBtn] = useState(false);
 
@@ -909,7 +909,7 @@ export default function VendorRegistration() {
                     {categoriesDropDown.map((option, i) => {
                       return (
                         <MenuItem
-                          className={styles.menuItem}
+                          className='register_as__vender--menu-item'
                           key={option.id}
                           value={option.name}
                           style={{ fontSize: '10px' }}
@@ -1233,7 +1233,7 @@ export default function VendorRegistration() {
                           <MenuItem
                             key={option.id}
                             value={option.name}
-                            className={styles.menuItem}
+                            className='register_as__vender--menu-item'
                           >
                             <ListItemIcon>
                               <Checkbox

@@ -47,6 +47,12 @@ const BottomNavigation = () => {
   const mobileView = useMediaQuery('(max-width:550px)');
   const location = useLocation();
 
+  const bottomNavVisible =
+    location.pathname === '/' ||
+    location.pathname === '/wear/mens' ||
+    location.pathname === '/wear/women' ||
+    location.pathname === '/wear/kids';
+
   const [currency, setCurrency] = useState('INR');
   const [showUserOption, setShowUserOption] = useState(false);
 
@@ -86,51 +92,53 @@ const BottomNavigation = () => {
     }
   };
   return (
-    <div
-      className={styles.NavContainer}
-      style={{ transform: `translateY(${scroll > 50 ? '0' : '100%'})` }}
-    >
-      {details.map((item, i) => {
-        return (
-          <Button
-            onClick={() => {
-              setActiveNav(i);
-              // if (i === 1) {
-              //   setDrawerOpen(true);
-              // }
-              if (i === 4) {
-                profileFnc(true);
-              }
-            }}
-            className={`${styles.btnContainer}`}
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-          >
-            <Link
-              to={item.to}
-              className={`${
-                activeNav === i && activeNav !== 1 && activeNav !== 4
-                  ? styles.active
-                  : ''
-              }`}
-            >
-              {item.title === 'measurement' ? (
-                <div class={styles.background}>
-                  <div className={styles.svgStyle}>{item.icon}</div>
-                </div>
-              ) : (
-                <div div className={styles.svg}>
-                  {item.icon}
-                </div>
-              )}
-            </Link>
-          </Button>
-        );
-      })}
+    <>
+      {bottomNavVisible && (
+        <div
+          className={styles.NavContainer}
+          style={{ transform: `translateY(${scroll > 50 ? '0' : '100%'})` }}
+        >
+          {details.map((item, i) => {
+            return (
+              <Button
+                onClick={() => {
+                  setActiveNav(i);
+                  // if (i === 1) {
+                  //   setDrawerOpen(true);
+                  // }
+                  if (i === 4) {
+                    profileFnc(true);
+                  }
+                }}
+                className={`${styles.btnContainer}`}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+                <Link
+                  to={item.to}
+                  className={`${
+                    activeNav === i && activeNav !== 1 && activeNav !== 4
+                      ? styles.active
+                      : ''
+                  }`}
+                >
+                  {item.title === 'measurement' ? (
+                    <div class={styles.background}>
+                      <div className={styles.svgStyle}>{item.icon}</div>
+                    </div>
+                  ) : (
+                    <div div className={styles.svg}>
+                      {item.icon}
+                    </div>
+                  )}
+                </Link>
+              </Button>
+            );
+          })}
 
-      {/* <>
+          {/* <>
         {isAuthenticated ? (
           <SwipeableDrawer
             anchor={'right'}
@@ -157,29 +165,31 @@ const BottomNavigation = () => {
           <SideNavbar main />
         </SwipeableDrawer>
       </> */}
-      <>
-        <SwipeableDrawer
-          anchor={'right'}
-          open={isUserDrawerOpen}
-          onClose={toggleDrawer('right', false)}
-          onOpen={toggleDrawer('right', true)}
-          transitionDuration={600}
-        >
-          <div>
-            <SideNavbar />
-          </div>
-        </SwipeableDrawer>
-        <SwipeableDrawer
-          anchor={'left'}
-          open={isDrawerOpen}
-          onClose={toggleDrawer('left', false)}
-          onOpen={toggleDrawer('left', true)}
-          transitionDuration={600}
-        >
-          <SideNavbar main />
-        </SwipeableDrawer>
-      </>
-    </div>
+          <>
+            <SwipeableDrawer
+              anchor={'right'}
+              open={isUserDrawerOpen}
+              onClose={toggleDrawer('right', false)}
+              onOpen={toggleDrawer('right', true)}
+              transitionDuration={600}
+            >
+              <div>
+                <SideNavbar />
+              </div>
+            </SwipeableDrawer>
+            <SwipeableDrawer
+              anchor={'left'}
+              open={isDrawerOpen}
+              onClose={toggleDrawer('left', false)}
+              onOpen={toggleDrawer('left', true)}
+              transitionDuration={600}
+            >
+              <SideNavbar main />
+            </SwipeableDrawer>
+          </>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -89,7 +89,7 @@ export default function VendorRegistration() {
   }
 
   const ErrorClearTimeOut = 5000;
-  const [popupMessage, setPopupMessage] = useState('');
+  const [popupMessage, setPopupMessage] = useState('asd');
   const [errorResponse, setErrorResponse] = useState('');
   const [disableBtn, setDisableBtn] = useState(false);
 
@@ -99,7 +99,7 @@ export default function VendorRegistration() {
     e.preventDefault();
     let categoriesId = [];
 
-    const platForm = selectedPlatform.filter(plat => plat !== 'Platform');
+    const platForm = selectedPlatform.some(plat => plat !== 'Platform');
 
     if (
       categories[0] === `Men's Wear` ||

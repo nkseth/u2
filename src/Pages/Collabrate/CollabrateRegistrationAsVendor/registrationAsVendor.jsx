@@ -99,7 +99,9 @@ export default function VendorRegistration() {
     e.preventDefault();
     let categoriesId = [];
 
+
     const platForm = selectedPlatform.filter(plat => plat !== 'Platform');
+
 
     if (
       categories[0] === `Men's Wear` ||
@@ -179,11 +181,13 @@ export default function VendorRegistration() {
       setTimeout(() => setError({ instagram: '' }), ErrorClearTimeOut);
       return;
     }
+
     if (showInputField.others && !selectedPlatform.length) {
       setError({ otherPlatform: '* Please Provide the details' });
       setTimeout(() => setError({ otherPlatform: '' }), ErrorClearTimeOut);
       return;
     }
+
 
     if (!dropDownOptions.operation) {
       window.scrollTo(200, 0);
@@ -249,10 +253,12 @@ export default function VendorRegistration() {
       catalogues_image_count: catalogueImages.length,
       website: showInputField.website,
       website_url: values.website,
+
       instagram: showInputField.instagram,
       instagram_url: values.instagram,
       other_platform_url: platForm,
       other_platform: showInputField.others,
+
     };
 
     catalogueImages.map((img, i) => {
@@ -425,7 +431,9 @@ export default function VendorRegistration() {
       // current.file = file;
       if (name === 'catalogue') {
         if (e.target.files) {
+
           const filesArray = Array.from(e.target.files).map(file => file);
+
 
           const name = file.name.split('.')[0].slice(0, 8);
 
@@ -433,7 +441,9 @@ export default function VendorRegistration() {
 
           const fileName = `${name}.${type}`;
 
+
           setCatalogueImages(prevImages => prevImages.concat(filesArray));
+
 
           Array.from(e.target.files).map(
             file => URL.revokeObjectURL(file) // avoid memory leak
@@ -457,6 +467,7 @@ export default function VendorRegistration() {
     }
   };
 
+
   useEffect(() => {
     setCatalogName(
       catalogueImages.map(
@@ -465,6 +476,7 @@ export default function VendorRegistration() {
       )
     );
   }, [catalogueImages]);
+
   const useStyles = makeStyles(theme => ({
     formControl: {
       margin: theme.spacing(1),
@@ -1263,6 +1275,7 @@ export default function VendorRegistration() {
                 )}
               </div>
             </FormControl>
+
 
             {error.otherPlatform && (
               <span className={styles.errorMsg}>{error.otherPlatform}</span>

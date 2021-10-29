@@ -112,3 +112,8 @@ input {
   flex-direction: column !important;
   gap: 1rem;
 }
+
+.vendorRegistration_menuItem__15JUu .MuiTypography-body1 {
+  font-size: 14px !important;
+  font-family: 'DM Sans' !important;
+}

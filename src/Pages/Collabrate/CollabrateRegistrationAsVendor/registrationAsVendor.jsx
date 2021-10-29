@@ -99,9 +99,7 @@ export default function VendorRegistration() {
     e.preventDefault();
     let categoriesId = [];
 
-
     const platForm = selectedPlatform.filter(plat => plat !== 'Platform');
-
 
     if (
       categories[0] === `Men's Wear` ||
@@ -188,7 +186,6 @@ export default function VendorRegistration() {
       return;
     }
 
-
     if (!dropDownOptions.operation) {
       window.scrollTo(200, 0);
 
@@ -258,7 +255,6 @@ export default function VendorRegistration() {
       instagram_url: values.instagram,
       other_platform_url: platForm,
       other_platform: showInputField.others,
-
     };
 
     catalogueImages.map((img, i) => {
@@ -431,9 +427,7 @@ export default function VendorRegistration() {
       // current.file = file;
       if (name === 'catalogue') {
         if (e.target.files) {
-
           const filesArray = Array.from(e.target.files).map(file => file);
-
 
           const name = file.name.split('.')[0].slice(0, 8);
 
@@ -441,9 +435,7 @@ export default function VendorRegistration() {
 
           const fileName = `${name}.${type}`;
 
-
           setCatalogueImages(prevImages => prevImages.concat(filesArray));
-
 
           Array.from(e.target.files).map(
             file => URL.revokeObjectURL(file) // avoid memory leak
@@ -466,7 +458,6 @@ export default function VendorRegistration() {
       // reader.readAsDataURL(file);
     }
   };
-
 
   useEffect(() => {
     setCatalogName(
@@ -544,7 +535,7 @@ export default function VendorRegistration() {
     <Container bottomDivider footerOnTabMob footerOnAllView>
       <>
         {popupMessage && (
-          <SuccessPopUp toggle={toggleModal} width={'500px'} height={'150px'}>
+          <SuccessPopUp toggle={toggleModal} height={'350px'}>
             <img src={Confirm} alt='' />
             <h2 style={{ margin: '1rem 0', fontSize: '16px' }}>
               {popupMessage}
@@ -553,6 +544,7 @@ export default function VendorRegistration() {
               target='_blank'
               href='https://www.u2.dhaatri.store/'
               class={styles.removeModelButton}
+              style={{ marginTop: '1rem', width: '100%' }}
               onClick={e => {
                 toggleModal();
               }}
@@ -730,7 +722,7 @@ export default function VendorRegistration() {
                         </span>
                       )}
                       {!certificateName && (
-                        <p style={{ color: '#757575' }}>
+                        <p style={{ color: '#757575', fontSize: '14px' }}>
                           Professional certificate
                         </p>
                       )}
@@ -916,8 +908,13 @@ export default function VendorRegistration() {
                     *
                     {categoriesDropDown.map((option, i) => {
                       return (
-                        <MenuItem key={option.id} value={option.name}>
-                          <ListItemIcon style={{ fontSize: '10px' }}>
+                        <MenuItem
+                          className={styles.menuItem}
+                          key={option.id}
+                          value={option.name}
+                          style={{ fontSize: '10px' }}
+                        >
+                          <ListItemIcon>
                             <Checkbox
                               classes={{
                                 indeterminate: classes.indeterminateColor,
@@ -1020,7 +1017,7 @@ export default function VendorRegistration() {
                               `, + ${catalogueName.length - 1}`}
                           </span>
                         ) : (
-                          <span style={{ color: '#757575' }}>
+                          <span style={{ color: '#757575', fontSize: '14px' }}>
                             Catalogue sample
                           </span>
                         )}
@@ -1233,7 +1230,11 @@ export default function VendorRegistration() {
 
                       {platformDrop.map((option, i) => {
                         return (
-                          <MenuItem key={option.id} value={option.name}>
+                          <MenuItem
+                            key={option.id}
+                            value={option.name}
+                            className={styles.menuItem}
+                          >
                             <ListItemIcon>
                               <Checkbox
                                 classes={{
@@ -1265,7 +1266,6 @@ export default function VendorRegistration() {
                 )}
               </div>
             </FormControl>
-
 
             {error.otherPlatform && (
               <span className={styles.errorMsg}>{error.otherPlatform}</span>

@@ -91,15 +91,9 @@ button:disabled {
     }
   }
 }
-.topdesigner {
-  padding: 12rem 1rem;
-}
 //-----------------------//
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  .topdesigner {
-    padding: 3rem 2rem !important;
-  }
   .Carousel_header {
     text-align: left;
     font-size: 54px;
@@ -121,9 +115,6 @@ button:disabled {
   }
 }
 @media screen and (max-width: 420px) {
-  .topdesigner {
-    padding: 3rem 1rem !important;
-  }
   .Carousel_header {
     text-align: left;
     font-size: 30px;
@@ -139,9 +130,6 @@ button:disabled {
   }
 }
 @media screen and (max-width: 550px) {
-  .Carousel_header {
-  }
-
   .Top_Designer {
     display: flex;
     height: 339px !important;

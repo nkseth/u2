@@ -23,7 +23,7 @@ function DesignerProductPage({ match }, props) {
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   const location = useLocation();
-  console.log(location)
+  console.log(location);
   const { filters } = useSelector((state) => state.root.filterCategory);
   const {
     params: { slug, type },

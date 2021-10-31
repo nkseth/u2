@@ -1,0 +1,63 @@
+.Customer_Review {
+    height: 250px;
+    width: 200px;
+    .Customer_Review_Items {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #8572508c;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0px 5px 10px #85725048;
+      &:hover {
+        box-shadow: 0px 0px 30px #00000025;
+        transition: all 0.3s ease-in-out;
+        border: 2px solid #85725000;
+      }
+      h4 {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 400;
+        margin-top: 5px;
+        margin-left: 3px;
+      }
+      span {
+        justify-self: flex-end;
+        position: absolute;
+        padding-left: 5px;
+        top: 4px;
+        right: 7px;
+        font-size: 0.60rem;
+        color: "#6c6c6c"
+      }
+      img {
+        margin-top: 10px;
+        height: 90px;
+        width: 90px;
+        object-fit: cover;
+        border-radius: 45%;
+        margin-left: 3px;
+      }
+      p {
+        text-align: center;
+        padding: 0.3rem;
+        font-size: 10px;
+        width: 190px;
+        font-weight: 400;
+        margin-top: 10px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .StarsDiv {
+    margin-left: 10px;
+    margin-top: -10px;
+  }

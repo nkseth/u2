@@ -455,7 +455,7 @@ export default function VendorRegistration() {
       //   // current.src = e.target.result;
 
       // };
-      // reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
     }
   };
 

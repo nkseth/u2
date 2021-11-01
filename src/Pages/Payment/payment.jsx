@@ -1,36 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import { Button, Radio, IconButton } from "@material-ui/core";
-import Container from "../../utils/Container/container";
-import { useHistory } from "react-router-dom";
-import Logo from "../../Images/logo/U2icon.svg";
-import InputField from "./Components/Input-Field/inputField";
-import CustomDivider from "../../utils/Custom Divider/divider";
-import CustomSection from "../../utils/Custom Section/section";
-import CustomStepper from "../../utils/Stepper/stepper";
-import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
-import styles from "./payment.module.scss";
+import React, { useState, useEffect } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { Button, Radio, IconButton } from '@material-ui/core';
+import Container from '../../utils/Container/container';
+import { useHistory } from 'react-router-dom';
+import Logo from '../../Images/logo/U2icon.svg';
+import InputField from './Components/Input-Field/inputField';
+import CustomDivider from '../../utils/Custom Divider/divider';
+import CustomSection from '../../utils/Custom Section/section';
+import CustomStepper from '../../utils/Stepper/stepper';
+import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
+import styles from './payment.module.scss';
 
 //icons
-import AddIcon from "@material-ui/icons/Add";
-import { ReactComponent as PayPalIcon } from "../../Images/icons/paypal.svg";
-import tick from "./success.gif";
-import close from "./close.svg";
-import { useDispatch, useSelector } from "react-redux";
+import AddIcon from '@material-ui/icons/Add';
+import { ReactComponent as PayPalIcon } from '../../Images/icons/paypal.svg';
+import tick from './success.gif';
+import close from './close.svg';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { getCartItems } from "../../Redux/actions/myBag";
-import Loader from "../../utils/Loader/Loader";
-import { clearCheckoutErrors, setPayment } from "../../Redux/actions/checkout";
-import common_axios from "../../utils/axios.config";
+import { getCartItems } from '../../Redux/actions/myBag';
+import Loader from '../../utils/Loader/Loader';
+import { clearCheckoutErrors, setPayment } from '../../Redux/actions/checkout';
+import common_axios from '../../utils/axios.config';
 const CustomRadio = withStyles({
   root: {
-    color: "#9D9D9D",
-    "&$checked": {
-      color: "#857250",
+    color: '#9D9D9D',
+    '&$checked': {
+      color: '#857250',
     },
   },
   checked: {},
-})((props) => <Radio color="default" {...props} />);
+})(props => <Radio color='default' {...props} />);
 export default function Payment({
   match: {
     params: { id },
@@ -38,17 +38,30 @@ export default function Payment({
 }) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("upi");
-  const [selectedUPIApp, setSelectedUPIApp] = useState("");
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('upi');
+
+  const [customized, SetCustomizedProducts] = useState();
+  const [selectedUPIApp, setSelectedUPIApp] = useState('');
   const [PaymentDone, setPaymentDone] = useState(false);
 
-  console.log(id);
+  const getCart = async () => {
+    const { data } = await common_axios.get('/carts');
+
+    SetCustomizedProducts(
+      data?.data[0]?.items.filter(item => item.type !== 'readymade')
+    );
+  };
+
+  useEffect(() => {
+    getCart();
+  }, []);
+
   const toggle = () => {
     setPaymentDone(false);
   };
 
-  const { cart } = useSelector((state) => state.root.cartItems);
-  const { info, loading, error } = useSelector((state) => state.root.payment);
+  const { cart } = useSelector(state => state.root.cartItems);
+  const { info, loading, error } = useSelector(state => state.root.payment);
   useEffect(() => {
     // if (!loading && info) setPaymentDone(!PaymentDone);
     if (error) {
@@ -60,12 +73,12 @@ export default function Payment({
   }, [dispatch, info, error, loading]);
 
   const loadRazorPay = () => {
-    return new Promise((resolve) => {
-      const razorPayScript = document.createElement("script");
-      razorPayScript.src = "https://checkout.razorpay.com/v1/checkout.js";
+    return new Promise(resolve => {
+      const razorPayScript = document.createElement('script');
+      razorPayScript.src = 'https://checkout.razorpay.com/v1/checkout.js';
       razorPayScript.onload = () => resolve(true);
       razorPayScript.onerror = () => resolve(false);
-      console.log("pay", razorPayScript);
+      console.log('pay', razorPayScript);
       document.body.appendChild(razorPayScript);
     });
   };
@@ -74,7 +87,7 @@ export default function Payment({
       const res = await loadRazorPay();
       if (!res) {
         alert(
-          "Razorpay SDK failed to load. Check your internet connection or try later."
+          'Razorpay SDK failed to load. Check your internet connection or try later.'
         );
       }
 
@@ -82,9 +95,9 @@ export default function Payment({
         const options = {
           key: process.env.REACT_APP_RAZORPAY_KEY_ID,
           amount: info.grand_total * 100, //=Rs500, String In Paise(smallest currency of India)
-          currency: "INR",
-          name: "U2 Unique & Universal",
-          description: "Test Transaction",
+          currency: 'INR',
+          name: 'U2 Unique & Universal',
+          description: 'Test Transaction',
           image: Logo,
           id: info.id,
 
@@ -94,15 +107,15 @@ export default function Payment({
               // alert(response.razorpay_order_id);
               // alert(response.razorpay_signature);
               console.log(response);
-              const { data } = await common_axios.post("/transaction_create", {
+              const { data } = await common_axios.post('/transaction_create', {
                 transaction_id: response.razorpay_payment_id,
                 order_id: info.id,
-                status: "SUCCESS",
+                status: 'SUCCESS',
               });
               if (data) setPaymentDone(!PaymentDone);
             } catch (error) {
               console.log(error);
-              alert("Payment failed");
+              alert('Payment failed');
             }
           },
           prefill: {
@@ -112,7 +125,7 @@ export default function Payment({
           },
 
           theme: {
-            color: "#6a5b40",
+            color: '#6a5b40',
           },
         };
 
@@ -136,9 +149,9 @@ export default function Payment({
       console.log(error);
     }
   };
-  const initiate_payment = async (e) => {
+  const initiate_payment = async e => {
     e.preventDefault();
-    if (!cart) return alert("You cart is empty.");
+    if (!cart) return alert('You cart is empty.');
     dispatch(setPayment(cart.id));
   };
 
@@ -151,18 +164,19 @@ export default function Payment({
             payment
             orderId={id}
             toggle={toggle}
-            title={"Your payment is successfully done"}
+            title={'Your payment is successfully done'}
             text={
-              "Lorem Ipsum is simply dummy text of the printing and typesetting"
+              'Lorem Ipsum is simply dummy text of the printing and typesetting'
             }
+            customized={customized && customized.length > 0}
           />
         ) : (
           <></>
         )}
-        <CustomSection style={{ marginTop: "2rem" }}>
+        <CustomSection style={{ marginTop: '2rem' }}>
           <Breadcrumb
-            path="Home / My Bag / Order Summary"
-            activePath="/ Payment"
+            path='Home / My Bag / Order Summary'
+            activePath='/ Payment'
           />
           <div>
             <CustomStepper activeStep={1} />
@@ -174,8 +188,8 @@ export default function Payment({
                 <div className={styles.upiDiv}>
                   <div>
                     <CustomRadio
-                      checked={selectedPaymentMethod === "upi"}
-                      onClick={() => setSelectedPaymentMethod("upi")}
+                      checked={selectedPaymentMethod === 'upi'}
+                      onClick={() => setSelectedPaymentMethod('upi')}
                     />
                     <p>
                       <span>UPI</span>
@@ -186,37 +200,37 @@ export default function Payment({
                     <span>Choose an App</span>
                     <div>
                       <CustomRadio
-                        size="small"
+                        size='small'
                         onClick={() => {
-                          if (selectedPaymentMethod === "upi") {
-                            setSelectedUPIApp("phonepe");
+                          if (selectedPaymentMethod === 'upi') {
+                            setSelectedUPIApp('phonepe');
                           }
                         }}
-                        checked={selectedUPIApp === "phonepe"}
+                        checked={selectedUPIApp === 'phonepe'}
                       />
                       <span>Phonepe</span>
                     </div>
                     <div>
                       <CustomRadio
-                        size="small"
+                        size='small'
                         onClick={() => {
-                          if (selectedPaymentMethod === "upi") {
-                            setSelectedUPIApp("upiId");
+                          if (selectedPaymentMethod === 'upi') {
+                            setSelectedUPIApp('upiId');
                           }
                         }}
-                        checked={selectedUPIApp === "upiId"}
+                        checked={selectedUPIApp === 'upiId'}
                       />
                       <span>Your UPI ID</span>
                     </div>
                   </div>
                 </div>
-                <CustomDivider style={{ backgroundColor: "#CECECE" }} />
+                <CustomDivider style={{ backgroundColor: '#CECECE' }} />
                 <div className={styles.paymentCardDiv}>
                   <div>
                     <CustomRadio
-                      checked={selectedPaymentMethod === "creditDebitCard"}
+                      checked={selectedPaymentMethod === 'creditDebitCard'}
                       onClick={() =>
-                        setSelectedPaymentMethod("creditDebitCard")
+                        setSelectedPaymentMethod('creditDebitCard')
                       }
                     />
                     <span>Credit / Debit Card</span>
@@ -225,24 +239,24 @@ export default function Payment({
                     <div>
                       <div>
                         <InputField
-                          label="Card number"
-                          placeholder="xxxx xxxx xxxx xxxx"
-                          onChange={(e) => console.log(e.target.value)}
+                          label='Card number'
+                          placeholder='xxxx xxxx xxxx xxxx'
+                          onChange={e => console.log(e.target.value)}
                         />
                         <InputField
-                          label="Name on card"
-                          placeholder="eg. Robert Mathew"
+                          label='Name on card'
+                          placeholder='eg. Robert Mathew'
                         />
                       </div>
                       <div>
-                        <InputField label="Validity" placeholder="MM / YY" />
-                        <InputField label="CVV" placeholder="eg. 983" />
+                        <InputField label='Validity' placeholder='MM / YY' />
+                        <InputField label='CVV' placeholder='eg. 983' />
                       </div>
                     </div>
                     <div className={styles.payBtnDiv}>
                       <Button
-                        variant="contained"
-                        color="default"
+                        variant='contained'
+                        color='default'
                         className={styles.payBtn}
                         onClick={initiate_payment}
                       >
@@ -251,25 +265,25 @@ export default function Payment({
                     </div>
                   </div>
                 </div>
-                <CustomDivider style={{ backgroundColor: "#CECECE" }} />
+                <CustomDivider style={{ backgroundColor: '#CECECE' }} />
                 <div className={styles.netbankingDiv}>
                   <CustomRadio
-                    checked={selectedPaymentMethod === "netbanking"}
-                    onClick={() => setSelectedPaymentMethod("netbanking")}
+                    checked={selectedPaymentMethod === 'netbanking'}
+                    onClick={() => setSelectedPaymentMethod('netbanking')}
                   />
                   <span>Netbanking</span>
                 </div>
-                <CustomDivider style={{ backgroundColor: "#CECECE" }} />
+                <CustomDivider style={{ backgroundColor: '#CECECE' }} />
                 <div className={styles.paypalDiv}>
                   <CustomRadio
-                    checked={selectedPaymentMethod === "paypal"}
-                    onClick={() => setSelectedPaymentMethod("paypal")}
+                    checked={selectedPaymentMethod === 'paypal'}
+                    onClick={() => setSelectedPaymentMethod('paypal')}
                   />
                   <PayPalIcon />
                 </div>
-                <CustomDivider style={{ backgroundColor: "#CECECE" }} />
+                <CustomDivider style={{ backgroundColor: '#CECECE' }} />
                 <div className={styles.giftCardsCouponsDiv}>
-                  <IconButton style={{ color: "#000" }}>
+                  <IconButton style={{ color: '#000' }}>
                     <AddIcon />
                   </IconButton>
                   <span>Add gift cards/Coupons</span>
@@ -285,7 +299,7 @@ export default function Payment({
                 ) : (
                   <>
                     <div>
-                      <CustomDivider style={{ backgroundColor: "#CECECE" }} />
+                      <CustomDivider style={{ backgroundColor: '#CECECE' }} />
                       <div className={styles.selectedProductPrices}>
                         <div>
                           <label>Product Price</label>
@@ -298,17 +312,17 @@ export default function Payment({
                         <div>
                           <label>Delivery charges</label>
                           <span>
-                            {cart.delivery_charge ? cart.delivery_charge : "₹0"}
+                            {cart.delivery_charge ? cart.delivery_charge : '₹0'}
                           </span>
                         </div>
                       </div>
-                      <CustomDivider style={{ backgroundColor: "#CECECE" }} />
+                      <CustomDivider style={{ backgroundColor: '#CECECE' }} />
                     </div>
                     <div className={cart.totalAmtDiv}>
                       <div
                         style={{
-                          display: "flex",
-                          justifyContent: "space-between",
+                          display: 'flex',
+                          justifyContent: 'space-between',
                         }}
                       >
                         <label>Total Amount</label>
@@ -326,16 +340,23 @@ export default function Payment({
   );
 }
 
-export function SuccessPopUp({ toggle, title, text, history, payment }) {
-  const { info, loading, error } = useSelector((state) => state.root.payment);
+export function SuccessPopUp({
+  toggle,
+  title,
+  text,
+  history,
+  payment,
+  customized,
+}) {
+  const { info, loading, error } = useSelector(state => state.root.payment);
   return (
     <div className={styles.modal}>
       <div className={styles.SecondLayer} onClick={toggle}></div>
       <div className={styles.Popup}>
         <IconButton className={styles.CloseBtn} onClick={toggle}>
-          <img src={close} alt="close" />
+          <img src={close} alt='close' />
         </IconButton>
-        <img src={tick} alt="tick" />
+        <img src={tick} alt='tick' />
         <h1>{title}</h1>
         <p>{text}</p>
         {payment ? (
@@ -343,9 +364,15 @@ export function SuccessPopUp({ toggle, title, text, history, payment }) {
             <Button
               className={styles.AddmeasureBTN}
               onClick={() =>
-                history.push(`/add-measurement-choose-standard-size/${info.id}`)
+                history.push(
+                  `${
+                    customized
+                      ? '/select-measurement'
+                      : `/add-measurement-choose-standard-size/${info.id}`
+                  }`
+                )
               }
-              disabled={!info}
+              // disabled={!info}
             >
               Add measurement
             </Button>

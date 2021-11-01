@@ -1,356 +1,168 @@
-// //here Trending Styles
-// .Trending_header {
-//   color: #000;
-//   // font-style: italic;
-// }
-
-// .Trending {
-//   display: flex;
-//   margin-left: auto;
-//   margin-right: auto;
-//   gap: 1rem;
-//   flex-wrap: wrap;
-//   align-items: center;
-//   justify-content: space-between !important;
-
-//   .Trending_Items {
-//     width: 310px;
-//     height: 330px;
-//     display: grid;
-//     justify-content: center;
-//     border-radius: 5px;
-//     background: #fff;
-//     box-shadow: 0px 5px 5px #a57b7b10;
-//     transition: all 0.3s ease-in-out;
-//     &:hover {
-//       box-shadow: 0px 0px 20px #03030342;
-//       transition: all 0.3s ease-in-out;
-//     }
-//     img {
-//       height: 260px !important;
-//       width: 310px !important;
-//       object-fit: cover;
-//       object-position: center;
-//       border-top-left-radius: 5px;
-//       border-top-right-radius: 5px;
-//     }
-//     div {
-//       display: flex;
-//       align-items: center;
-//       justify-content: center;
-//       p {
-//         font-weight: 600;
-//         margin: 1rem 0;
-//       }
-//       a {
-//         font-size: 16px;
-//         font-weight: 400;
-//         text-align: center;
-//         padding: 15px 0px;
-//         color: black;
-//         font-weight: 500;
-//       }
-//     }
-//   }
-// }
-// .Trending_Button {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 1rem;
-//   margin-top: 2rem;
-//   margin-bottom: -2em;
-//   button {
-//     // background: #857250;
-//     background: #85725000 !important;
-//     text-transform: capitalize;
-//     font-size: 1rem;
-//     color: #857250;
-//     width: 170px;
-//     border: 2px solid #857250;
-//     &:hover {
-//       background-color: #857250 !important;
-//       color: #fff !important;
-//     }
-//   }
-// }
-// .Trending_header {
-//   color: #000;
-//   font-family: DM Serif Display;
-//   font-size: 54px;
-//   font-weight: 400;
-//   line-height: 54px;
-//   letter-spacing: -1.5px;
-//   margin-bottom: 62px;
-//   display: flex;
-//   align-items: center;
-//   gap: 4rem;
-// }
-
-// // @media only screen and (min-device-width: 580px) and (max-device-width: 768px) {
-
-// //   .trending_content{
-// //     margin-top: 0em;
-// //   }
-
-// //   .Trending {
-// //     display: grid;
-// //     gap: 1rem;
-// //     grid-template-columns: repeat(2, 2fr);
-// //   }
-
-// // }
-
-// @media only screen and (min-device-width: 420px) and (max-device-width: 580px) {
-//   .trending_content {
-//     margin-top: 0em;
-//   }
-//   .Trending {
-//     height: auto;
-//     display: grid !important;
-//     grid-template-columns: repeat(2, 1fr);
-
-//     .Trending_Items {
-//       img {
-//         // height: 200px;
-//         height: 100%;
-//         width: 100%;
-//         object-fit: cover;
-//         object-position: center;
-//       }
-//     }
-//   }
-// }
-
-// // @media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
-// //   .trending_content{
-// //     margin-top: -5em;
-// //   }
-// //   .Trending_Button {
-// //     padding-top: 3rem;
-// //   }
-// //   .trending_content {
-// //     padding: 5rem 2rem !important;
-// //   }
-// //   .Trending_header {
-// //     font-size: 54px;
-// //     font-weight: 400;
-// //     color: #6A5B40;
-// //   }
-// //   .Trending {
-// //     height: auto;
-// //     display: grid;
-// //     grid-template-columns: repeat(2, 2fr);
-
-// //   }
-// // }
-// @media screen and (max-width: 769px) {
-//   .Trending_header {
-//     margin-top: 5px;
-//   }
-// }
-// @media screen and (max-width: 540px) {
-//   .Trending {
-//     height: auto;
-//     display: grid !important;
-//     grid-template-columns: repeat(2, 1fr);
-//   }
-// }
-
-// @media screen and (min-width: 420px) and (max-width: 522px) {
-//   .Trending {
-//     display: grid !important;
-//     gap: 1rem;
-//     grid-template-columns: repeat(2, 2fr);
-
-//     .Trending_Items {
-//       width: 200px;
-//       height: 250px;
-//       display: grid;
-
-//       justify-content: space-between;
-//       background: #fff;
-//       box-shadow: 0px 5px 10px #a57b7b41;
-//       img {
-//         width: 200px !important;
-//         height: 200px !important;
-//         object-fit: cover;
-//         object-position: center;
-//       }
-//       div {
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         a {
-//           font-size: 16px;
-//           font-weight: 400;
-//           text-align: center;
-//           padding: 15px 0px;
-//           color: black;
-//           font-weight: 500;
-//         }
-//       }
-//     }
-//   }
-// }
-// @media screen and (max-width: 550px) {
-//   .Trending_header {
-//     margin-top: -1.5em;
-//   }
-
-//   .Trending {
-//     display: flex;
-//     flex-wrap: wrap;
-//     align-items: center;
-//     justify-content: space-around !important;
-
-//     .Trending_Items {
-//       width: 200px;
-//       height: 250px;
-//       display: grid;
-//       // margin-left: auto;
-//       // margin-right: auto;
-//       justify-content: space-between;
-//       background: #fff;
-//       box-shadow: 0px 5px 10px #a57b7b41;
-//       img {
-//         width: 200px !important;
-//         height: 200px !important;
-//         object-fit: cover;
-//         object-position: center;
-//       }
-//       div {
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         a {
-//           font-size: 16px;
-//           font-weight: 400;
-//           text-align: center;
-//           padding: 15px 0px;
-//           color: black;
-//           font-weight: 500;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// @media screen and (max-width: 420px) {
-//   .trending_content {
-//     padding: 2rem 1rem !important;
-//   }
-
-//   .Trending_header {
-//     font-size: 20px;
-//     gap: 1rem;
-//     margin-bottom: 20px;
-//   }
-
-//   .Trending {
-//     display: flex;
-//     flex-wrap: wrap;
-//     align-items: center;
-//     justify-content: space-around !important;
-//     .Trending_Items {
-//       width: 130px;
-//       height: 180px;
-//       display: grid;
-//       // margin-left: auto;
-//       // margin-right: auto;
-//       justify-content: flex-start !important;
-//       background: #fff;
-//       box-shadow: 0px 5px 10px #a57b7b41;
-//       img {
-//         width: 130px !important;
-//         height: 120px !important;
-//         object-fit: cover;
-//         object-position: center;
-//       }
-//       div {
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         a {
-//           font-size: 16px;
-//           font-weight: 400;
-//           text-align: center;
-//           padding: 15px 0px;
-//           color: black;
-//           font-weight: 500;
-//         }
-//       }
-//     }
-//   }
-
-//   .Trending_Button {
-//     button {
-//       margin-top: 0px;
-//       margin-bottom: 1.3rem;
-//     }
-//   }
-// }
-
-// @media only screen and (min-width: 1250px) and (max-width: 1600px) {
-//   .Trending {
-//     .Trending_Items {
-//       img {
-//         // height: 240px;
-//         height: 100%;
-//         width: 100%;
-//         object-fit: cover;
-//         object-position: center;
-//       }
-//     }
-//   }
-// }
+//here Trending Styles
 
 .Trending_header {
-  color: #000;
+  color: #fff;
   font-family: DM Serif Display;
   font-size: 54px;
   font-weight: 400;
   line-height: 54px;
   letter-spacing: -1.5px;
-  margin-bottom: 62px;
+  // margin-bottom: 35px;
   display: flex;
   align-items: center;
   gap: 4rem;
+  margin-top: -0.6em;
+  margin-bottom: 2rem;
 }
-
 .Trending {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  place-items: center;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  margin-top: 1rem;
+  justify-content: space-evenly;
+  height: 290px;
+  margin-top: 2.5em;
+  width: 300px;
+  margin-bottom: 2.5em;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.3s ease-in-out;
 
   .Trending_Items {
-    width: 320px;
-    height: 330px;
+    margin: 0 7px;
     display: grid;
+    // min-width: 100%;
+    // height: 355px;
     justify-content: center;
-    border-radius: 5px;
     background: #fff;
-    box-shadow: 0px 5px 5px #a57b7b10;
-    transition: box-shadow 0.3s ease-in-out;
+    transition: all 0.3s ease-in;
+    z-index: 99;
+    border-radius: 5px;
+
     &:hover {
-      box-shadow: 0px 0px 20px #03030342;
-      transition: box-shadow 0.3s ease-in-out;
+      transition: all 0.3s ease-in;
+      box-shadow: 0px 0px 20px #0000002f;
+      border: 5px solid white;
+      border-radius: 5px;
+
+      img {
+        border-radius: 10px 10px 0px 0px;
+      }
     }
     img {
-      height: 260px;
-      width: 320px;
+      transition: all 0.3s ease-in;
+      height: 290px;
+      width: 290px;
       object-fit: cover;
-      object-position: top;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
+      object-position: top center !important;
     }
-    div {
-      display: flex;
-      align-items: center;
+    a {
+      font-size: 16px;
+      font-weight: 400;
+      text-align: center;
+      padding: 15px 0px;
+      color: black;
+      font-weight: 500;
+    }
+  }
+}
+button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  border-radius: 50%;
+}
+
+.NavigationContainer {
+  margin-top: 1rem;
+  display: flex;
+  // justify-content: space-between;
+  a:first-child {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #0059ff;
+  }
+}
+.Carousel_SliderButtonBox {
+  display: flex;
+  gap: 1rem;
+
+  margin-left: auto;
+  .Carousel_SliderButtons {
+    background: none;
+
+    border-radius: 50% !important;
+
+    border: none;
+    .Carousel_iconBtn {
+      border: 1px solid rgb(0, 0, 0) !important;
+      color: rgb(0, 0, 0) !important;
+      &:hover {
+        background-color: #00000085;
+        color: #fff !important;
+        border: 1px solid #00000085 !important;
+      }
+    }
+  }
+}
+
+//-----------------------//
+
+@media screen and (max-width: 1024px) {
+  .Trending_content {
+    padding: 3rem 2rem !important;
+  }
+  .Trending_header {
+    font-size: 54px;
+    gap: 1rem;
+    font-weight: 400;
+  }
+
+  .Carousel_header {
+    display: none;
+    text-align: center;
+    font-size: 44px;
+    line-height: 44px;
+  }
+  .Trending {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    margin-top: 1rem;
+    justify-content: space-evenly;
+    height: 280px;
+    margin-top: 2.5em;
+    width: 260px;
+    margin-bottom: 2.5em;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s ease-in-out;
+    .Trending_Items {
+      margin: 0 7px;
+      display: grid;
+      width: 100%;
+      // height: 355px;
       justify-content: center;
-      p {
-        font-weight: 600;
-        margin-bottom: 0.7rem;
+      background: #fff;
+      transition: all 0.3s ease-in;
+      z-index: 99;
+
+      &:hover {
+        transition: all 0.3s ease-in;
+        box-shadow: 0px 0px 20px #f3f1ee;
+        border: 5px solid white;
+        border-radius: 5px;
+
+        img {
+          border-radius: 10px 10px 0px 0px;
+        }
+      }
+      img {
+        transition: all 0.3s ease-in;
+        height: 260px;
+        width: 250px;
+        object-fit: cover;
+        object-position: top center !important;
       }
       a {
         font-size: 16px;
@@ -364,120 +176,18 @@
   }
 }
 
-.Trending_Button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  margin-top: 2rem;
-  margin-bottom: -2em;
-  button {
-    // background: #857250;
-    background: #85725000 !important;
-    text-transform: capitalize;
-    font-size: 1rem;
-    color: #857250;
-    width: 170px;
-    border: 2px solid #857250;
-    &:hover {
-      background-color: #857250 !important;
-      color: #fff !important;
-    }
-  }
-}
 
-@media screen and(max-width:1370px) {
-  .Trending_Items {
-    width: 260px !important;
-    height: 330px;
-    img {
-      height: 260px;
-      width: 260px !important;
-    }
-  }
-}
-@media screen and(max-width:1200px) {
-  .Trending_Items {
-    width: 230px !important;
-    height: 300px !important;
-    img {
-      height: 240px !important;
-      width: 230px !important;
-    }
-  }
-}
-@media screen and(max-width:1060px) {
-  // .Trending {
-  //   display: grid;
-  //   grid-template-columns: repeat(2, 1fr);
-  //   place-items: center;
-  //   gap: 2rem;
-  // }
-  .Trending_Items {
-    width: 200px !important;
-    height: 280px !important;
-    img {
-      height: 220px !important;
-      width: 200px !important;
-    }
-  }
-}
-@media screen and(max-width:930px) {
-  .Trending {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-    gap: 2rem;
-  }
-  .Trending_Items {
-    width: 280px !important;
-    height: 280px !important;
-    img {
-      height: 220px !important;
-      width: 280px !important;
-    }
-  }
-}
 
-@media screen and(max-width:750px) {
+@media screen and (max-width: 769px) {
   .Trending_header {
-    font-size: 48px;
-  }
-  .Trending {
-    gap: 1rem;
-  }
-  .Trending_Items {
-    width: 280px !important;
-    // height: 330px !important;
-    img {
-      width: 280px !important;
-    }
+    margin-top: 0em;
+    margin-bottom: 0.7em;
   }
 }
-@media screen and(max-width:630px) {
-  .Trending_Items {
-    width: 250px !important;
-    height: 270px !important;
-    img {
-      width: 250px !important;
-      height: 210px !important;
-    }
-  }
-}
-
-@media screen and(max-width:580px) {
-  .Trending_Items {
-    width: 180px !important;
-    height: 210px !important;
-    img {
-      width: 180px !important;
-      height: 150px !important;
-    }
-  }
-}
-@media screen and(max-width:420px) {
+@media screen and (max-width: 480px) {
   .Trending_header {
-    margin-bottom: 20px;
+    margin-bottom: 0.5em;
+    //styleName: Headline / H4;
     font-family: DM Serif Display;
     font-size: 20px;
     font-style: normal;
@@ -485,49 +195,33 @@
     line-height: 28px;
     letter-spacing: 0em;
     text-align: left;
-    color: #1a202c;
   }
+}
 
-  .SuitWear_header {
-    font-family: DM Serif Display;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #1a202c;
-  }
-  .trending_content {
-    padding: 1rem 1rem !important;
-  }
-  .Trending_Items {
-    width: 164px !important;
-    height: 208px !important;
+.Mobile_Trending_Items {
+  text-align: center;
+  background: #fff;
+  transition: all 0.3s ease-in;
+  z-index: 99;
+  border-radius: 5px;
+
+  &:hover {
+    transition: all 0.3s ease-in;
+    box-shadow: 0px 0px 20px #0000002f;
+    border: 5px solid white;
+    border-radius: 5px;
+
     img {
-      width: 164px !important;
-      height: 156px !important;
-      object-fit: cover;
+      border-radius: 10px 10px 0px 0px;
     }
-    div {
-      p {
-        font-family: DM Sans;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 20px;
-        letter-spacing: 0px;
-        text-align: center;
-        color: #0a0a0a !important;
-      }
-      a {
-        font-size: 16px !important;
-        font-weight: 400;
-        text-align: center;
-
-        color: #0a0a0a !important;
-        font-weight: 500;
-      }
-    }
+  }
+  a {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: center;
+    color: #0a0a0a;
   }
 }

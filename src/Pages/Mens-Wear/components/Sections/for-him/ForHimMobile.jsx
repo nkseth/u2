@@ -8,7 +8,7 @@ const ForHimMobile = ({ type }) => {
   const baseStyle = {
     padding: '1rem 1rem',
     background: '  #F3F1EE',
-    maginTop: '-3em',
+    marginTop: '-3em',
   };
   const { banner } = useSelector(state => state.root.main);
   console.log(

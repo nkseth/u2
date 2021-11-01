@@ -19,19 +19,19 @@
 
 .firstCon {
   > div:first-child {
-    width: calc(100% / 2);
+    width: calc(100% / 2.3);
   }
   > div:last-child {
-    width: calc(100% / 2);
+    width: calc(100% /1.7);
   }
 }
 
 .secondCon {
   > div:first-child {
-    width: calc(100% / 2);
+    width: calc(100% / 1.7);
   }
   > div:last-child {
-    width: calc(100% / 2);
+    width: calc(100% / 2.3);
   }
 }
 

@@ -16,13 +16,17 @@
   .sliderBtn {
     background: none;
     border: none;
+    :hover {
+      background: #FFFFFF !important;
+      border-radius: 50%;
+      border: #FFFFFF !important;;
+    }
   }
 }
 
 button:disabled {
   pointer-events: none;
   opacity: 0.5;
-
   border-radius: 50%;
 }
 

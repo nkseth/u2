@@ -1,0 +1,63 @@
+.headerDiv {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  gap: 31px;
+  padding-top: 40px;
+  padding-bottom: 50px;
+  .header {
+    font-family: DM Serif Display;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 48px;
+    letter-spacing: 0.03em;
+    color: #857250;
+  }
+}
+.check_card {
+  padding-bottom: 40px;
+}
+.btn_group {
+  padding-top: 50px;
+  Button {
+    width: 300px !important;
+    height: 48px !important;
+    text-transform: none !important;
+    background-color: #6a5b40 !important;
+    border-radius: 5px !important;
+    font-family: DM Sans !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    color: #ffffff !important;
+    a {
+      color: #fff !important;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .headerDiv {
+    width: 100%;
+    display: unset;
+    .header {
+      font-size: 20px;
+      font-weight: normal;
+      line-height: 28px;
+      letter-spacing: 0.03em;
+      color: #857250;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 10px;
+    }
+  }
+  .card_group {
+    padding-top: 30px;
+  }
+  .check_card {
+    padding-bottom: 20px;
+  }
+  .btn_group {
+    display: flex;
+    justify-content: center;
+  }
+}

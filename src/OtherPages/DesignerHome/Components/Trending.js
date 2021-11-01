@@ -54,10 +54,10 @@ const Trending = () => {
       <CustomSection className={styles.trending_content} style={baseStyle}>
         <div
           className={`${styles.Trending_header}`}
-          style={{ color: "#1A202C" }}
+          style={{ color: '#1A202C' }}
         >
           Trending
-          <CustomDivider style={{ height: "1px", background: "#857250" }} />
+          <CustomDivider style={{ height: '1px', background: '#857250' }} />
         </div>
         <CarouselProvider
           visibleSlides={match ? 1.4 : iPade ? 2.5 : large ? 3 : 4}

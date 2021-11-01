@@ -11,13 +11,16 @@ export default function HeroCard({ item }) {
 
   return (
     <div
-      style={{ backgroundImage: `url(${item.image})` }}
+      style={{ backgroundImage: `url(${item.cover_image})` }}
       className={styles.container}
     >
       <div>
         <span style={{color:item.title_color}} className={styles.header}>
-          {item.title}
+          {item.description}
         </span>
+        {/* <span style={{color:item.title_color}} className={styles.header}>
+          {item.name}
+        </span> */}
         <Button
           onClick={() => history.push(item.link)}
           className={styles.btn}

@@ -82,7 +82,6 @@ export const setSelectedSubGrp = (val) => ({
 export const get_mens_active_product = (type, active) => async (dispatch) => {
   console.log(type, "===", active);
   if (active === "all") {
-    console.log("It's All");
     try {
       const { data } = await common_axios.post(`/product_by_category/${type}`, {
         slug: "all",

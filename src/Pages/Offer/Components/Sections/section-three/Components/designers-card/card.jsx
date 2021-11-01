@@ -5,7 +5,7 @@ import styles from "./card.module.scss";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
-export default function DesignersCard({ brandImg, img }) {
+export default function DesignersCard({ brandImg, img, name, desc }) {
   const [isAddToWishList, setAddToWishList] = useState(false);
 
   return (
@@ -35,8 +35,9 @@ export default function DesignersCard({ brandImg, img }) {
         )}
       </div>
       <div className={styles.trends}>
-        <img src={brandImg} alt='brand' style={{ objectFit: "contain" }} />
-        <span>Up to 50 - 60% Off</span>
+        {/* <img src={brandImg} alt='brand' style={{ objectFit: "contain" }} /> */}
+        <h3>{name}</h3>
+        <span>{desc}</span>
       </div>
     </div>
   );

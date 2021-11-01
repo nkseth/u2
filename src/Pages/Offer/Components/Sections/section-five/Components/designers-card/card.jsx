@@ -5,7 +5,7 @@ import styles from "./card.module.scss";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
-export default function ProductCard({ img, title }) {
+export default function ProductCard({ img, title, desc }) {
   const [isAddToWishList, setAddToWishList] = useState(false);
 
   return (
@@ -37,12 +37,12 @@ export default function ProductCard({ img, title }) {
       <div className={styles.productDetails}>
         <span className={styles.productName}>{title}</span>
         <span className={styles.productDesc}>
-          Navy blue slim fit checket casual shirt
+          {desc}
         </span>
-        <p className={styles.productPrice}>
+        {/* <p className={styles.productPrice}>
           <span>₹554 </span>
           <span>₹1499 <span style={{ color: "#9D8E73" }} >63% OFF</span></span>
-        </p>
+        </p> */}
       </div>
     </div>
   );

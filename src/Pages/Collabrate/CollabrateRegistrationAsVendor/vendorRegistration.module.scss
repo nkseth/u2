@@ -44,7 +44,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
-    color: #6c6c6c;
+    // color: #6c6c6c;
   }
   .subtitle {
     font-family: DM Sans;
@@ -67,6 +67,9 @@
     font-family: 'DM Sans';
     padding: 8px;
     border: 1px solid #6a5b40;
+    &::placeholder {
+      font-family: 'DM Sans';
+    }
     p {
       position: absolute;
       left: 10px;
@@ -86,6 +89,9 @@
   }
   option {
     cursor: pointer !important;
+  }
+  .menuItem {
+    color: red !important;
   }
 
   .inputFieldButton {
@@ -111,6 +117,14 @@
     padding: 8px;
     width: 310px !important;
     border: 1px solid #6a5b40;
+  }
+  .inputFieldSelect {
+    border-radius: 5px !important;
+    height: 48px;
+    font-size: 14px;
+    font-family: 'DM Sans';
+
+    width: 310px !important;
   }
   .platform {
     border-radius: 5px !important;
@@ -150,8 +164,8 @@
 .catalogueButton {
   position: absolute !important;
   top: 0px;
-  right: 0;
-  bottom: 0;
+  right: 0px;
+  bottom: 0px;
   width: 116px;
   height: 48px !important;
   border-radius: 7px !important;
@@ -210,7 +224,7 @@
       text-align: unset;
       font-size: 16px;
       line-height: 22px;
-      color: #6c6c6c;
+      // color: #6c6c6c;
     }
     .inputField {
       border-radius: 5px !important;

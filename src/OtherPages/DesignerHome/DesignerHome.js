@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import DesignerWear from './Components/DesignerWear';
 import TopCategory from './Components/TopCategory';
 import Trending from './Components/Trending';

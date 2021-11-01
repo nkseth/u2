@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IconButton } from "@material-ui/core";
 import {
@@ -25,7 +25,31 @@ import img5 from "../section-three/Components/Slide/Images/card9.png"
 import img6 from "../section-three/Components/Slide/Images/card3.png"
 import img7 from "../section-three/Components/Slide/Images/card5.png"
 import img8 from "../section-three/Components/Slide/Images/card13.png"
+import common_axios from '../../../../../utils/axios.config'
+
+
 export default function SectionFive() {
+
+  useEffect(() => {
+    fetch_data()
+  }, [])
+
+  const [data, setData] = useState([])
+
+  const fetch_data = async () => {
+    const { data: res } = await common_axios.post("/themeOption", {
+      dashboard_type: "offers",
+      group_name: "buy_one_get_one_offer",
+      content_type: "all"
+    })
+
+    if (res.buy_one_get_one_offer) {
+      setData(res.buy_one_get_one_offer)
+    }
+    console.log(res)
+  }
+
+
   return (
     <CustomSection class="offers_buy_and_get" style={{ paddingTop: "5rem", paddingBottom: "7rem" }}>
       <div className={styles.header}>Buy 1 and Get 1</div>
@@ -38,11 +62,10 @@ export default function SectionFive() {
       >
         <Slider >
           <Slide index={0}>
-            <CarouselSlide img1={img5} img2={img6} img3={img7} img4={img8} title1={'Wrogn'} title2={'Benstokes'} title3={'Wrogn'} title4={'Benstokes'} />
-
+            <CarouselSlide img1={data.length > 0 ? data[0]?.cover_image : null} img2={data.length > 1 ? data[1]?.cover_image : null} img3={data.length > 2 ? data[2]?.cover_image : null} img4={data.length > 3 ? data[3]?.cover_image : null} title1={data.length > 0 ? data[0]?.name : null} title2={data.length > 1 ? data[1]?.name : null} title3={data.length > 2 ? data[2]?.name : null} title4={data.length > 3 ? data[3]?.name : null} desc1={data.length > 0 ? data[0]?.description : null}  desc2={data.length > 1 ? data[1]?.description : null} desc3={data.length > 2 ? data[2]?.description : null} desc4={data.length > 3 ? data[3]?.description : null}/>
           </Slide>
           <Slide index={1}>
-            <CarouselSlide img1={img1} img2={img2} img3={img3} img4={img4} title1={'Wrogn'} title2={'Benstokes'} title3={'Wrogn'} title4={'Benstokes'} />
+          <CarouselSlide img1={data.length > 4 ? data[4]?.cover_image : null} img2={data.length > 5 ? data[5]?.cover_image : null} img3={data.length > 6 ? data[6]?.cover_image : null} img4={data.length > 7 ? data[7]?.cover_image : null} title1={data.length > 4 ? data[4]?.name : null} title2={data.length > 5 ? data[5]?.name : null} title3={data.length > 6 ? data[6]?.name : null} title4={data.length > 7 ? data[7]?.name : null} desc1={data.length > 4 ? data[4]?.description : null} desc2={data.length > 5 ? data[5]?.description : null} desc3={data.length > 6 ? data[6]?.description : null}  desc4={data.length > 7 ? data[7]?.description : null} />
           </Slide>
         </Slider>
         <DotGroup style={{ display: "flex", backgroundColor: "#000" }} />

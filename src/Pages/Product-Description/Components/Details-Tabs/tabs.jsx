@@ -51,7 +51,9 @@ function a11yProps(index) {
 
 const AntTabs = withStyles({
   root: {
-    borderBottom: '1px solid #857250',
+    borderBottom: '1px solid #E5E5E5',
+    paddingLeft: '10%',
+    paddingRight: '10%'
   },
   indicator: {
     backgroundColor: '#857250',
@@ -63,7 +65,7 @@ const AntTab = withStyles(theme => ({
     textTransform: 'none',
     minWidth: 72,
     fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing(4),
+    marginRight: theme.spacing(12),
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -162,11 +164,11 @@ export default function DetailTabs({ type, product }) {
           label='Description'
           {...a11yProps(0)}
         />
-        <AntTab
+        {/* <AntTab
           className={styles.tabHeader}
           label='Shipping'
           {...a11yProps(1)}
-        />
+        /> */}
         <AntTab
           className={styles.tabHeader}
           label='Reviews'

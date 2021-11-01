@@ -86,28 +86,58 @@ export const getSimilarProducts = (tags) => async (dispatch) => {
   }
 };
 
-export const getSortedProduct = (slug, group, type) => async (dispatch) => {
-  try {
-    dispatch({ type: GET_PRODUCTS_REQUEST });
-    console.log("Filter Data", slug, group, type);
-    const { data } = await common_axios.post(`/productSorting`, {
-      type,
-      slug,
-      group,
+export const getSortedProduct = (slug, group, type, products) => async (dispatch) => {
+  // try {
+  //   dispatch({ type: GET_PRODUCTS_REQUEST });
+  //   console.log("Filter Data", slug, group, type);
+  //   const { data } = await common_axios.post(`/productSorting`, {
+  //     type,
+  //     slug,
+  //     group,
+  //   });
+  //   console.log(data.data);
+  //   if (data.data) {
+  //     console.log(data);
+  //     dispatch({
+  //       type: GET_PRODUCTS_SUCCESS,
+  //       payload: { data: data.data, sorted: true },
+  //     });
+  //   }
+  // } catch (err) {
+  //   console.log(err?.response?.data);
+  //   dispatch({ type: GET_PRODUCTS_FAIL, payload: err });
+  //   return Promise.reject(err);
+  // }
+  //products.sort(function (a, b) { return a.readymade_price - b.readymade_price; });
+  dispatch({ type: GET_PRODUCTS_REQUEST });
+  if (type === "new") {
+    const new_prods = products.sort(function (a, b) { return new Date(b.created_at) - new Date(a.created_at) });
+    dispatch({
+      type: GET_PRODUCTS_SUCCESS,
+      payload: { data: new_prods, sorted: true },
     });
-    console.log(data.data);
-    if (data.data) {
-      console.log(data);
-      dispatch({
-        type: GET_PRODUCTS_SUCCESS,
-        payload: { data: data.data, sorted: true },
-      });
-    }
-  } catch (err) {
-    console.log(err?.response?.data);
-    dispatch({ type: GET_PRODUCTS_FAIL, payload: err });
-    return Promise.reject(err);
+    return;
   }
+
+  if (type === "lowToHeigh") {
+    const new_prods = products.sort(function (a, b) { return a.readymade_price - b.readymade_price; });
+    dispatch({
+      type: GET_PRODUCTS_SUCCESS,
+      payload: { data: new_prods, sorted: true },
+    });
+    return;
+  }
+
+
+  if (type === "heighTolow") {
+    const new_prods = products.sort(function (a, b) { return b.readymade_price - a.readymade_price; });
+    dispatch({
+      type: GET_PRODUCTS_SUCCESS,
+      payload: { data: new_prods, sorted: true },
+    });
+    return;
+  }
+
 };
 
 export const clearProductsErrors = () => async (dispatch) =>

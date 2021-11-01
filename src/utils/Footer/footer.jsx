@@ -15,104 +15,61 @@ import OriginalIcon from "../../Images/icons/original.svg";
 import GooglePlayImg from "../../Images/icons/playStore.svg";
 import AppleStoreImg from "../../Images/icons/appStore.svg";
 
-const popularSearches = [
-  {
-    title: "Sherwani",
-    redirect: "/sherwani",
-  },
-  {
-    title: "Track Pants",
-    redirect: "/track-pants",
-  },
-  {
-    title: "Sweaters For Men",
-    redirect: "/sweaters-for-men",
-  },
-  {
-    title: "Men Wedding Dresses",
-    redirect: "/men-wedding-dresses",
-  },
-  {
-    title: "Kurta Pajama",
-    redirect: "/kurta-pajama",
-  },
-  {
-    title: "Raincoats ",
-    redirect: "/raincoats ",
-  },
-  {
-    title: "Shorts",
-    redirect: "/shorts ",
-  },
-  {
-    title: "Trousers ",
-    redirect: "/trousers ",
-  },
-  {
-    title: "Waistcoat ",
-    redirect: "/waistcoat ",
-  },
-  {
-    title: "Inner Wear",
-    redirect: "/inner-wear",
-  },
-  {
-    title: "Nightwear ",
-    redirect: "/nightwear ",
-  },
-  {
-    title: "Jeans ",
-    redirect: "/jeans ",
-  },
-  {
-    title: "Shirts",
-    redirect: "/shirts",
-  },
-  {
-    title: "Jogger Jeans",
-    redirect: "/jogger-jeans",
-  },
-  {
-    title: "Men Suits",
-    redirect: "/men-suits",
-  },
-  {
-    title: "T Shirts",
-    redirect: "/t-shirts",
-  },
+import configObject from "../../Configurations/objectConfig";
+const {
+  usefullLinks,
+  buyingGuide,
+  shopping,
+  policies,
+  talkToUs,
+  popularSearches,
+} = configObject;
 
-  {
-    title: "Sweatshirts ",
-    redirect: "/sweatshirts ",
-  },
-  {
-    title: "Jackets For Men",
-    redirect: "/jackets-for-men",
-  },
-  {
-    title: "Tracksuits ",
-    redirect: "/tracksuits ",
-  },
-  {
-    title: "Ripped Jeans",
-    redirect: "/ripped-jeans",
-  },
-  {
-    title: "Ethnic Wear",
-    redirect: "/ethnic-wear",
-  },
-  {
-    title: "Hoodies",
-    redirect: "/hoodies",
-  },
-  {
-    title: "Raksha Bandhan Gifts",
-    redirect: "/raksha-bandhan-gifts",
-  },
-];
 export default function Footer() {
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
+
+  const GetCustomizedList = ({ data, image }) => {
+    const spanClassName = !mobileView
+      ? styles.linksHeader
+      : styles.linksHeaderForMobile;
+
+    const containerClassName = !mobileView
+      ? styles.linksContainer
+      : image
+      ? styles.linksContainerWithImageForMobile
+      : styles.linksContainerForMobile;
+
+    const linkClassName = !mobileView ? styles.link : styles.linkForMobile;
+
+    const imageSize = { height: 15, width: 15 };
+
+    return (
+      data &&
+      data.map((item) => {
+        return (
+          <>
+            {image ? (
+              <div>
+                <img src={TalkToUsIcon} alt="talk to us" style={imageSize} />
+                <span className={spanClassName}>{item.title}</span>
+              </div>
+            ) : (
+              <span className={spanClassName}>{item.title}</span>
+            )}
+
+            <div className={containerClassName}>
+              {item.links &&
+                item.links.map((linkItem) => {
+                  return <Link className={linkClassName}>{linkItem}</Link>;
+                })}
+            </div>
+          </>
+        );
+      })
+    );
+  };
+
   return (
     <>
       <CustomSection
@@ -137,123 +94,175 @@ export default function Footer() {
                 justifyContent: "space-between",
               }}
             >
-              <span className={styles.logo}>Logo</span>
-              {mobileView && (
-                <Grid
-                  item
-                  sm={3}
-                  md={3}
-                  classname={styles.socialMediaContainer}
+              {!mobileView && <span className={styles.logo}>Logo</span>}
+            </div>
+
+            {!mobileView && (
+              <>
+                <div className={styles.emailContianer}>
+                  <span>Write email with us</span>
+                  <label>Enter email*</label>
+                  <input
+                    type="text"
+                    placeholder="thirdeyeinnovation@gmail.com"
+                  />
+                </div>
+                <Button
+                  className={styles.emailSubmitBtn}
+                  variant="contained"
+                  color="default"
                 >
-                  <span className={styles.linksHeader}>Connect with us</span>
-                  <div>
-                    <IconButton aria-label='instagram'>
-                      <img src={InstagramIcon} alt='instagram' />
-                    </IconButton>
-                    <IconButton aria-label='facebook'>
-                      <img src={FacebookIcon} alt='facebook' />
-                    </IconButton>
-                    <IconButton aria-label='linkedIn'>
-                      <img src={LinkedInIcon} alt='facebook' />
-                    </IconButton>
+                  submit
+                </Button>
+              </>
+            )}
+          </Grid>
+
+          {!mobileView ? (
+            <>
+              <Grid className={styles.gridItem} item xs={6} sm={4} md={2}>
+                <GetCustomizedList data={usefullLinks} />
+              </Grid>
+              <Grid className={styles.gridItem} item xs={6} sm={4} md={2}>
+                <GetCustomizedList data={buyingGuide} />
+              </Grid>
+              <Grid className={styles.gridItem} item xs={6} sm={3} md={2}>
+                <GetCustomizedList data={shopping} />
+              </Grid>
+              <Grid className={styles.gridItem} item xs={6} sm={3} md={2}>
+                <GetCustomizedList data={policies} />
+
+                <div
+                  className={
+                    !mobileView
+                      ? styles.talkToUsContainer
+                      : styles.talkToUsContainerForMobile
+                  }
+                >
+                  <GetCustomizedList data={talkToUs} image={TalkToUsIcon} />
+                </div>
+              </Grid>
+            </>
+          ) : (
+            <>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.5rem",
+                  paddingLeft: "10px",
+                  paddingRight: "5px",
+                  marginBottom: "10px",
+                }}
+                className={cx(styles.logoContainerForMobile)}
+              >
+                <div style={{ width: 205 }}>
+                  <span className={styles.logo}>Logo</span>
+                  <div className={styles.emailContianer}>
+                    <span>Write email with us</span>
+                    <label>Enter email*</label>
+                    <input
+                      type="text"
+                      placeholder="thirdeyeinnovation@gmail.com"
+                      style={{ fontSize: 12 }}
+                    />
+                  </div>
+                  <Button
+                    className={styles.emailSubmitBtn}
+                    variant="contained"
+                    color="default"
+                  >
+                    submit
+                  </Button>
+                </div>
+                <Grid className={styles.gridItem} item xs={6} sm={4} md={2}>
+                  <GetCustomizedList data={usefullLinks} />
+                </Grid>
+                <Grid className={styles.gridItem} item xs={6} sm={4} md={2}>
+                  <GetCustomizedList data={buyingGuide} />
+                </Grid>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: "0.5rem",
+                  paddingLeft: "10px",
+                  paddingRight: "5px",
+                }}
+              >
+                <Grid className={styles.gridItem} item xs={6} sm={3} md={2}>
+                  <GetCustomizedList data={shopping} />
+                </Grid>
+                <Grid className={styles.gridItem} item xs={6} sm={3} md={2}>
+                  <GetCustomizedList data={policies} />
+
+                  <div
+                    className={
+                      !mobileView
+                        ? styles.talkToUsContainer
+                        : styles.talkToUsContainerForMobile
+                    }
+                  >
+                    <GetCustomizedList data={talkToUs} image={TalkToUsIcon} />
+                  </div>
+                </Grid>
+                <Grid item sm={6} md={9} className={styles.storeContainer}>
+                  <div
+                    className={
+                      !mobileView
+                        ? styles.linksHeader
+                        : styles.linksHeaderForMobilePlatformButton
+                    }
+                  >
+                    Experience U2 App on Mobile
+                  </div>
+                  <div style={{ display: "grid" }}>
+                    <a href="#">
+                      <img
+                        src={GooglePlayImg}
+                        alt="google play"
+                        style={{ width: "85%", marginTop: 5 }}
+                      />
+                    </a>
+                    <a href="#">
+                      <img
+                        src={AppleStoreImg}
+                        alt="app store"
+                        style={{ width: "85%", marginTop: 10 }}
+                      />
+                    </a>
+                  </div>
+                </Grid>
+              </div>
+            </>
+          )}
+
+          {mobileView
+            ? null
+            : tabView && (
+                <Grid item sm={6} md={9} className={styles.storeContainer}>
+                  <div className={styles.linksHeader}>
+                    Experience U2 App on Mobile
+                  </div>
+                  <div style={{ display: "grid" }}>
+                    <a href="#">
+                      <img
+                        src={GooglePlayImg}
+                        alt="google play"
+                        style={{ width: "70%" }}
+                      />
+                    </a>
+                    <a href="#">
+                      <img
+                        src={AppleStoreImg}
+                        alt="app store"
+                        style={{ width: "70%" }}
+                      />
+                    </a>
                   </div>
                 </Grid>
               )}
-            </div>
-
-            <div className={styles.emailContianer}>
-              <span>Write email with us</span>
-              <label>Enter email*</label>
-              <input type='text' placeholder='thirdeyeinnovation@gmail.com' />
-            </div>
-            <Button
-              className={styles.emailSubmitBtn}
-              variant='contained'
-              color='default'
-            >
-              submit
-            </Button>
-          </Grid>
-          <Grid className={styles.gridItem} item xs={6} sm={4} md={2}>
-            <span className={styles.linksHeader}>Useful Links</span>
-            <div className={styles.linksContainer}>
-              <Link className={styles.link}>About us</Link>
-              <Link className={styles.link}>Contact us</Link>
-              <Link className={styles.link}>FAQ</Link>
-              <Link className={styles.link}>Explore</Link>
-              <Link className={styles.link}>Careers</Link>
-              <Link className={styles.link}>Sitemap</Link>
-            </div>
-          </Grid>
-          <Grid className={styles.gridItem} item xs={6} sm={4} md={2}>
-            <span className={styles.linksHeader}>Buying Guide</span>
-            <div className={styles.linksContainer}>
-              <Link className={styles.link}>Gift Card</Link>
-              <div>
-                <Link className={styles.link}>
-                  Coupon Code &amp; Offers <div>T&amp;C</div>
-                </Link></div>
-              <Link className={styles.link}>Returns &amp; Exchanges</Link>
-              <Link className={styles.link}>Shipping &amp; Delivery</Link>
-              <Link className={styles.link}>Payment Options</Link>
-              <Link className={styles.link}>Give Us Feedback</Link>
-              <Link className={styles.link}>Order Customization</Link>
-            </div>
-          </Grid>
-          <Grid className={styles.gridItem} item xs={6} sm={3} md={2}>
-            <span className={styles.linksHeader}>Shopping</span>
-            <div className={styles.linksContainer}>
-              <Link className={styles.link}>New Arrivals</Link>
-              <Link className={styles.link}>Men</Link>
-              <Link className={styles.link}>Women</Link>
-              <Link className={styles.link}>Kids</Link>
-              <Link className={styles.link}>Designers</Link>
-              <Link className={styles.link}>Comtempory</Link>
-              <Link className={styles.link}>Offers</Link>
-            </div>
-          </Grid>
-          <Grid className={styles.gridItem} item xs={6} sm={3} md={2}>
-            <span className={styles.linksHeader}>Policies</span>
-            <div className={styles.linksContainer}>
-              <Link className={styles.link}>Terms &amp; Conditions</Link>
-              <Link className={styles.link}>Security &amp; Privacy</Link>
-              <Link className={styles.link}>Purchase Order Policy</Link>
-              <div className={styles.talkToUsContainer}>
-                <div>
-                  <img src={TalkToUsIcon} alt='talk to us' />
-                  <span>Talk to us</span>
-                </div>
-
-                <div>
-                  <span>+919663406663</span>
-                  <span>+917762989531</span>
-                </div>
-              </div>
-            </div>
-          </Grid>
-          {tabView && (
-            <Grid item sm={6} md={9} className={styles.storeContainer}>
-              <div className={styles.linksHeader}>
-                Experience U2 App on Mobile
-              </div>
-              <div style={{ display: "grid" }}>
-                <a href='#'>
-                  <img
-                    src={GooglePlayImg}
-                    alt='google play'
-                    style={{ width: "70%" }}
-                  />
-                </a>
-                <a href='#'>
-                  <img
-                    src={AppleStoreImg}
-                    alt='app store'
-                    style={{ width: "70%" }}
-                  />
-                </a>
-              </div>
-            </Grid>
-          )}
         </Grid>
 
         <Grid
@@ -265,20 +274,20 @@ export default function Footer() {
             <Grid item sm={3} md={3} classname={styles.socialMediaContainer}>
               <span className={styles.linksHeader}>Connect with us</span>
               <div>
-                <IconButton aria-label='instagram'>
-                  <img src={InstagramIcon} alt='instagram' />
+                <IconButton aria-label="instagram">
+                  <img src={InstagramIcon} alt="instagram" />
                 </IconButton>
-                <IconButton aria-label='facebook'>
-                  <img src={FacebookIcon} alt='facebook' />
+                <IconButton aria-label="facebook">
+                  <img src={FacebookIcon} alt="facebook" />
                 </IconButton>
-                <IconButton aria-label='linkedIn'>
-                  <img src={LinkedInIcon} alt='facebook' />
+                <IconButton aria-label="linkedIn">
+                  <img src={LinkedInIcon} alt="facebook" />
                 </IconButton>
               </div>
             </Grid>
           )}
 
-          {tabView && (
+          {mobileView ? (
             <Grid
               item
               sm={8}
@@ -289,32 +298,115 @@ export default function Footer() {
               }}
             >
               <div
-                style={{ display: "flex", alignItems: "center", gap: "1rem" }}
+                style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
               >
-                <img src={OriginalIcon} alt='100% original' />
-                <div style={{ display: "flex", flexDirection: "column" }}>
+                <Grid item sm={3} md={3}>
                   <span
-                    style={{
-                      fontSize: "16px",
-                      fontWeight: 700,
-                      lineHeight: "22px",
-                    }}
+                  // className={styles.linksHeader}
                   >
-                    100% ORIGINAL
+                    Connect with us
                   </span>
-                  <span
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: 400,
-                      lineHeight: "18px",
-                      color: "#3B3B3B",
-                    }}
-                  >
-                    guarantee for all products at U2.com
-                  </span>
+                  <div style={{ marginTop: -8 }}>
+                    <IconButton
+                      aria-label="instagram"
+                      style={{ margin: -5, marginLeft: 6 }}
+                    >
+                      <img
+                        src={InstagramIcon}
+                        alt="instagram"
+                        style={{ width: 20, height: 20 }}
+                      />
+                    </IconButton>
+                    <IconButton aria-label="facebook">
+                      <img
+                        src={FacebookIcon}
+                        alt="facebook"
+                        style={{ width: 20, height: 20, margin: -10 }}
+                      />
+                    </IconButton>
+                    <IconButton aria-label="linkedIn">
+                      <img
+                        src={LinkedInIcon}
+                        alt="facebook"
+                        style={{ width: 20, height: 20, margin: -5 }}
+                      />
+                    </IconButton>
+                  </div>
+                </Grid>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <img
+                    src={OriginalIcon}
+                    alt="100% original"
+                    style={{ height: 35, width: 35 }}
+                  />
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <span
+                      style={{
+                        fontSize: "9px",
+                        fontWeight: 700,
+                      }}
+                    >
+                      100% ORIGINAL
+                    </span>
+                    <span
+                      style={{
+                        fontSize: "8px",
+                        fontWeight: 400,
+                        color: "#3B3B3B",
+                        marginTop: -4,
+                      }}
+                    >
+                      guarantee for all products at U2.com
+                    </span>
+                  </div>
                 </div>
               </div>
             </Grid>
+          ) : (
+            tabView && (
+              <Grid
+                item
+                sm={8}
+                style={{
+                  display: "grid",
+                  placeItems: "center",
+                  justifyItems: "flex-start",
+                }}
+              >
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "1rem" }}
+                >
+                  <img src={OriginalIcon} alt="100% original" />
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <span
+                      style={{
+                        fontSize: "16px",
+                        fontWeight: 700,
+                        lineHeight: "22px",
+                      }}
+                    >
+                      100% ORIGINAL
+                    </span>
+                    <span
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: 400,
+                        lineHeight: "18px",
+                        color: "#3B3B3B",
+                      }}
+                    >
+                      guarantee for all products at U2.com
+                    </span>
+                  </div>
+                </div>
+              </Grid>
+            )
           )}
           {!tabView && (
             <Grid item sm={4} md={9} className={styles.storeContainer}>
@@ -322,22 +414,22 @@ export default function Footer() {
                 Experience U2 App on Mobile
               </div>
               <div className={styles.storeImageContainer}>
-                <a href='#'>
+                <a href="#">
                   <img
                     className={styles.googlePlay}
                     src={GooglePlayImg}
-                    alt='google play'
+                    alt="google play"
                   />
                 </a>
-                <a href='#'>
+                <a href="#">
                   <img
                     className={styles.appStore}
                     src={AppleStoreImg}
-                    alt='app store'
+                    alt="app store"
                   />
                 </a>
                 <div className={styles.originalIconContainer}>
-                  <img src={OriginalIcon} alt='100% original' />
+                  <img src={OriginalIcon} alt="100% original" />
                   <div>
                     <span>100% ORIGINAL</span>
                     <span>guarantee for all products at U2.com</span>
@@ -347,6 +439,8 @@ export default function Footer() {
             </Grid>
           )}
         </Grid>
+
+        {/* Populer searches section*/}
         <Grid
           container
           classname={styles.gridContainer}
@@ -368,18 +462,55 @@ export default function Footer() {
             </Grid>
           )}
 
-          <Grid item md={12} className={styles.searchTagContainer}>
-            {popularSearches?.map((item) => (
-              <Link to={item.redirect}>{item.title}&nbsp;|&nbsp;</Link>
+          <Grid
+            item
+            md={12}
+            className={
+              !mobileView
+                ? styles.searchTagContainer
+                : styles.searchTagContainerForMobile
+            }
+          >
+            {popularSearches?.map((item, index) => (
+              <Link to={item.redirect}>
+                {item.title}
+                {popularSearches.length - 1 !== index ? (
+                  <>&nbsp;|&nbsp;</>
+                ) : null}
+              </Link>
             ))}
-            {popularSearches?.map((item) => (
-              <Link to={item.redirect}>{item.title}&nbsp;|&nbsp;</Link>
+          </Grid>
+          <Grid
+            item
+            md={12}
+            mt={1}
+            className={
+              !mobileView
+                ? styles.searchTagContainer
+                : styles.searchTagContainerForMobile
+            }
+          >
+            {popularSearches?.map((item, index) => (
+              <Link to={item.redirect}>
+                {item.title}
+                {popularSearches.length - 1 !== index ? (
+                  <>&nbsp;|&nbsp;</>
+                ) : null}
+              </Link>
             ))}
           </Grid>
           <Grid item xs={12} sm={12} md={12}>
             <CustomDivider />
           </Grid>
-          <Grid item xs={12} sm={12} md={12} className={styles.endTagline}>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={12}
+            className={
+              !mobileView ? styles.endTagline : styles.endTaglineForMobile
+            }
+          >
             &copy;{new Date().getFullYear()} U2.com All rights reserved.
           </Grid>
         </Grid>

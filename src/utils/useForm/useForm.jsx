@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 export default function useForm(defaults) {
   const [values, setValues] = useState(defaults);
-  console.log('🚀 ~ file: useForm.jsx ~ line 5 ~ useForm ~ values', values);
 
   function updateValues(e) {
     let { value } = e.target;
@@ -13,5 +12,9 @@ export default function useForm(defaults) {
       [e.target.name]: value,
     });
   }
-  return { values, updateValues };
+
+  function resetValues() {
+    setValues(defaults);
+  }
+  return { values, updateValues, resetValues };
 }

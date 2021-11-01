@@ -5,7 +5,7 @@ import styles from "./card.module.scss";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
-export default function DiscountCard({ img, brandImg }) {
+export default function DiscountCard({ img, brandImg, name, desc, slug }) {
   const [isAddToWishList, setAddToWishList] = useState(false);
 
   return (
@@ -35,8 +35,9 @@ export default function DiscountCard({ img, brandImg }) {
         )}
       </div>
       <div className={styles.brandDetails}>
-        <img src={brandImg} alt='brand' />
-        <span>Up to 30 - 40% Off</span>
+        <h3>{name}</h3>
+        {/* <img src={brandImg} alt='brand' /> */}
+        <span>{desc}</span>
       </div>
     </div>
   );

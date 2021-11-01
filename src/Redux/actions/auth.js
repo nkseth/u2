@@ -1,6 +1,7 @@
 import common_axios from "../../utils/axios.config";
 import {
   CLEAR_ERRORS,
+  FORGOT_DATA,
   LOAD_USER,
   LOGIN,
   LOGIN_REQUEST,
@@ -97,3 +98,8 @@ export const registOtpVerify = (otp, email) => async (dispatch) => {
 export const clearAuth = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
 };
+
+export const setForgotData = (val) => ({
+  type: FORGOT_DATA,
+  payload: val,
+});

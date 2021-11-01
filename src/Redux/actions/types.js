@@ -22,6 +22,7 @@ export const GET_CUSTOMER_REVIEWS = "GET_CUSTOMER_REVIEWS";
 export const SIGNUP_CREDS = "SIGNUP_CREDS";
 export const LOGIN_CREDS = "LOGIN_CREDS";
 export const USER_DATA = "USER_DATA";
+export const FORGOT_DATA = "FORGOT_DATA";
 
 //Men's Wear
 export const MENS_WEAR_SLIDER = "MENS_WEAR_SLIDER";

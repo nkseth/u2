@@ -68,7 +68,7 @@ export default function ProductsSection({
   const handleSort = (e) => {
     setSortBy(e.target.value);
     setClearAll(false);
-    dispatch(getSortedProduct(slug, group, e.target.value));
+    dispatch(getSortedProduct(slug, group, e.target.value, products));
   };
 
   const toggleDrawer = (anchor, open) => (event) => {

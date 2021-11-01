@@ -12,6 +12,8 @@ import {
   ORDER_SUMM,
 } from "./types";
 import HomepageDataService from "../services/homepage.service";
+import axios from "axios";
+import common_axios from "../../utils/axios.config";
 
 export const createCategories = (title, description) => async (dispatch) => {
   try {
@@ -102,11 +104,11 @@ export const findCategorysByTitle = (title) => async (dispatch) => {
 
 export const get_section_1_sliders = () => async (dispatch) => {
   try {
-    const res = await HomepageDataService.getSection1Sliders();
-    if (res.data.data) {
+    const { data } = await common_axios.post('/themeOption', { "dashboard_type": "comman", "content_type": "all", "group_name": "top_offer_of_the_season" })
+    if (data.top_offer_of_the_season) {
       dispatch({
         type: SECTION1_SLIDERS,
-        payload: res.data.data,
+        payload: data.top_offer_of_the_season,
       });
     }
   } catch (err) {

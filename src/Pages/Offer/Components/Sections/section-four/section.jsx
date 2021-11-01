@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, useMediaQuery } from "@material-ui/core";
 import CustomSection from "../../../../../utils/Custom Section/section";
 import DiscountCard from "./Components/card/card";
@@ -22,12 +22,32 @@ import brand5 from "../section-three/Components/Slide/Images/logo/logo5.png"
 import brand6 from "../section-three/Components/Slide/Images/logo/logo6.png"
 import brand7 from "../section-three/Components/Slide/Images/logo/logo7.png"
 import brand8 from "../section-three/Components/Slide/Images/logo/logo8.png"
-
+import common_axios from '../../../../../utils/axios.config'
 
 export default function SectionFour() {
+
+  const [data, setData] = useState([])
   const tabView = useMediaQuery("(max-width:770px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   const AdDCard = useMediaQuery("(max-width:960px)");
+
+  useEffect(() => {
+    fetch_data()
+  }, [])
+
+  const fetch_data = async () => {
+    const { data: res } = await common_axios.post("/themeOption", {
+      dashboard_type: "offers",
+      group_name: "flat_30_40_off_on_ethnic_wear",
+      content_type: "all"
+    })
+
+    if (res.flat_30_40_off_on_ethnic_wear) {
+      setData(res.flat_30_40_off_on_ethnic_wear)
+    }
+    console.log(res)
+  }
+
   return (
     <CustomSection
       class={styles.flat_section_four}
@@ -40,7 +60,14 @@ export default function SectionFour() {
       <div className={styles.container}>
         <span className={styles.header}>Flat 30 - 40% Off on Ethnic Wear</span>
         <Grid container spacing={3}>
-          <Grid item xs={6} sm={4} xs={6} sm={4} md={3}>
+          {data.map((item) => {
+            return (
+              <Grid item xs={6} sm={4} xs={6} sm={4} md={3}>
+                <DiscountCard img={item.cover_image} brandImg={brand1} name={item.name} desc={item.description} />
+              </Grid>
+            )
+          })}
+          {/* <Grid item xs={6} sm={4} xs={6} sm={4} md={3}>
             <DiscountCard img={img1} brandImg={brand1} />
           </Grid>
           <Grid item xs={6} sm={4} md={3}>
@@ -80,7 +107,7 @@ export default function SectionFour() {
 
           {tabView && mobileView && (
             <></>
-          )}
+          )} */}
         </Grid>
       </div>
     </CustomSection>

@@ -15,7 +15,7 @@ export default function SectionOne() {
     dispatch(get_section_1_sliders());
   },[])
 
-  console.log(offers_sliders)
+  //alert(offers_sliders)
 
   if(!offers_sliders){
     return null;

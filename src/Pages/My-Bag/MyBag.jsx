@@ -37,10 +37,10 @@ import {
   removeFromBag,
   clearCartError,
   applyCoupons,
-} from "../../Redux/actions/myBag";
-import { SuccessPopUp } from "../../utils/Popups/SuccessPopup";
-import EmptyBag from "./Components/Empty-Bag";
-import CartOffers from "./Components/Offers/CartOffers";
+} from '../../Redux/actions/myBag';
+import { SuccessPopUp } from '../../utils/Popups/SuccessPopup';
+import EmptyBag from './Components/Empty-Bag';
+import CartOffers from './Components/Offers/CartOffers';
 
 export default function MyBag() {
   const history = useHistory();
@@ -58,7 +58,6 @@ export default function MyBag() {
   const [click, setClick] = useState(false);
   const [coupon, setCoupon] = useState(null);
   // const [cartMessage, setCartMessage] = useState('Added To bag');
-
   // console.log(cart);
 
   useEffect(() => {
@@ -153,9 +152,9 @@ export default function MyBag() {
     return <EmptyBag />;
   }
 
-  const applyCartCoupon = (e) => {
+  const applyCartCoupon = e => {
     e.preventDefault();
-    if (!coupon) return alert("Select coupon first.");
+    if (!coupon) return alert('Select coupon first.');
     dispatch(applyCoupons(cart.id, coupon.code, cart.shop_id));
   };
 
@@ -456,11 +455,10 @@ export default function MyBag() {
                       <div className={styles.couponInputDiv}>
                         <div>
                           <input
-
-                            type="text"
-                            placeholder="Enter coupon code"
-                            name="coupon"
-                            value={coupon ? coupon.code : ""}
+                            type='text'
+                            placeholder='Enter coupon code'
+                            name='coupon'
+                            value={coupon ? coupon.code : ''}
                           />
                           <span onClick={applyCartCoupon}>Apply</span>
                         </div>

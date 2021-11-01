@@ -56,7 +56,7 @@ export default function NewCollectionSection({ type }) {
                     type={type}
                     item={collection}
                     image={
-                      new_collection[i + 1]?.image || new_collection[0].image
+                      new_collection[i]?.image || new_collection[0].image
                     }
                   >
                     <div className={styles.sliderBtnDiv}>

@@ -33,7 +33,7 @@ export default function Slide({ item, type, children, image }) {
 
         {!tabViewPro && <div>{children}</div>}
       </div>
-      {!tabViewPro && <img src={image} alt='product' />}
+      {!tabViewPro && <img src={image} alt='product' style={{height: '319.6px', width: '224px'}} />}
     </div>
   );
 }

@@ -17,12 +17,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUpdateWishlist, getWishList } from "../../Redux/actions/wishlist";
 import { clearProductsErrors, getProducts } from "../../Redux/actions/products";
 
-function DesignerProductPage({ match }) {
+function DesignerProductPage({ match }, props) {
   const dispatch = useDispatch();
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:768px)");
   const mobileView = useMediaQuery("(max-width:550px)");
   const location = useLocation();
+  console.log(location);
   const { filters } = useSelector((state) => state.root.filterCategory);
   const {
     params: { slug, type },

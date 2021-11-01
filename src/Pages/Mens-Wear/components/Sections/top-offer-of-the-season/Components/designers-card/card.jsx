@@ -14,7 +14,7 @@ export default function DesignersCard({ image, title, description }) {
     <div className={styles.container}>
       <Link to='offers'>
         <div className={styles.imgContainer}>
-          <img src={image} alt='product' />
+          <img src={image} alt='product' style={{borderTopLeftRadius: '5px', borderTopRightRadius: '5px'}} />
           {description && <div className='overlay'></div>}
           <span>{description}</span>
         </div>

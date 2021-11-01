@@ -50,8 +50,8 @@ export default function ForHimSection({ type, coverImage }) {
     <CustomSection
       style={{
         backgroundColor: "rgba(230, 227, 220, 0.21)",
-        paddingBottom: mobileView ? "40px" : "84px",
-        paddingTop: mobileView ? "30px" : "45px",
+        paddingBottom: mobileView ? "40px" : "50px",
+        paddingTop: mobileView ? "30px" : "",
       }}
     >
       <div className={styles.mainContainer}>

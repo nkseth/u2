@@ -10,7 +10,7 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomDivider from "../../../../utils/Custom Divider/divider";
 import InputField from "../../../Payment/Components/Input-Field/inputField";
 import styles from "./NewAddress.module.scss";
@@ -19,6 +19,8 @@ import { ReactComponent as LocationIcon } from "../../../../Images/icons/locatio
 import close from "../../../Payment/close.svg";
 import { useDispatch } from "react-redux";
 import { addAddress } from "../../../../Redux/actions/address";
+import { useSelector } from "react-redux";
+import { getCartItems } from "../../../../Redux/actions/myBag";
 
 const CustomRadio = withStyles({
   root: {
@@ -56,9 +58,9 @@ function NewAddress({ setAddAddress }) {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [landmark, setLandmark] = useState("");
-
-  const classes = useStyles();
-
+  const { loading, message, error } = useSelector(
+    (state) => state.root.userAddress
+  );
   const createNewAddressHandler = (e) => {
     e.preventDefault();
     console.log(
@@ -96,6 +98,13 @@ function NewAddress({ setAddAddress }) {
       })
     );
   };
+
+  useEffect(() => {
+    if (!loading && message) {
+      dispatch(getCartItems());
+      setAddAddress(false);
+    }
+  }, [loading, message, dispatch]);
 
   return (
     <div className={styles.modal}>

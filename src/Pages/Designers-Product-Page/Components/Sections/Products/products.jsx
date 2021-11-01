@@ -17,8 +17,17 @@ import Filter from "../Filter/filter";
 import styles from "./product.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getWishList } from "../../../../../Redux/actions/wishlist";
-import { getSortedProduct } from "../../../../../Redux/actions/filter-category";
-export default function ProductsSection({ products, loading, slug, group }) {
+import { getSortedProduct } from "../../../../../Redux/actions/products";
+import { GET_PRODUCTS_SUCCESS } from "../../../../../Redux/actions/types";
+// import { getSortedProduct } from "../../../../../Redux/actions/filter-category";
+export default function ProductsSection({
+  products,
+  loading,
+  slug,
+  group,
+  clearAll,
+  setClearAll,
+}) {
   const dispatch = useDispatch();
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const tabView = useMediaQuery("(max-width:550px)");
@@ -32,35 +41,31 @@ export default function ProductsSection({ products, loading, slug, group }) {
   const handleSort = (e) => {
     setSortBy(e.target.value);
     console.log(e.target.value);
-    dispatch(getSortedProduct(slug, group, e.target.value));
-    // if (e.target.value === "lowToHigh") {
-    //   setTemp(products.sort((a, b) => a.price - b.price));
-    // }
+    setClearAll(false);
+    //dispatch(getSortedProduct(slug, group, e.target.value));
+    if (e.target.value == "lowToHeigh") {
+      const new_prod = products.sort(function (a, b) { return a.readymade_price - b.readymade_price; });
+      dispatch({
+        type: GET_PRODUCTS_SUCCESS,
+        payload: { data: new_prod, sorted: true },
+      });
+    } else if (e.target.value == "heighTolow") {
+      const new_prod = products.sort(function (a, b) { return b.readymade_price - a.readymade_price; });
+      dispatch({
+        type: GET_PRODUCTS_SUCCESS,
+        payload: { data: new_prod, sorted: true },
+      });
+    } else {
+      const new_prod = products.sort(function (a, b) {
+        return new Date(b.created_at) - new Date(a.created_at)
+      });
 
-    // if (e.target.value === "highToLow") {
-    //   setTemp(
-    //     products.sort((a, b) => {
-    //       if (b.custom_price >= 1) {
-    //         return b.custom_price - a.custom_price;
-    //       }
-    //       if (b.readymade_price >= 1) {
-    //         return b.readymade_price - a.readymade_price;
-    //       }
-    //       return b.price - a.price;
-    //     })
-    //   );
-    // } else {
-    //   return setTemp(
-    //     products.sort((a, b) => {
-    //       return b.title.localeCompare(a.name);
-    //     })
-    //   );
-    // }
+      dispatch({
+        type: GET_PRODUCTS_SUCCESS,
+        payload: { data: new_prod, sorted: true },
+      });
+    }
   };
-
-  // useEffect(() => {
-  //   // setProducts(temp);
-  // }, [sortBy]);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -74,12 +79,10 @@ export default function ProductsSection({ products, loading, slug, group }) {
     setFilterOpen(open);
   };
 
-  // useEffect(() => {
-  //   if (isAuthenticated) dispatch(getWishList(user.api_token));
-  // }, [dispatch, isAuthenticated, user]);
-
   const PRODUCT_COUNT = 9;
-
+  useEffect(() => {
+    if (clearAll) setSortBy("");
+  }, [clearAll]);
   return (
     <>
       {tabViewPro && (
@@ -95,10 +98,10 @@ export default function ProductsSection({ products, loading, slug, group }) {
       )}
 
       <Grid
-        container
-        style={{ width: "100%", margin: 0 }}
-        justifyContent="flex-start"
-        spacing={mobileView ? 1 : 3}
+      // container
+      // style={{ width: '100%', margin: 0 }}
+      // justifyContent='flex-start'
+      // spacing={mobileView ? 1 : 3}
       >
         <Grid
           item
@@ -172,8 +175,10 @@ export default function ProductsSection({ products, loading, slug, group }) {
           </FormControl>
         </Grid>
         {loading ? (
-          <div style={{ margin: "auto" }}>
-            <Loader height={"200px"} />
+          <div className={styles.productsGrid}>
+            {[...Array(9)].map((item) => {
+              return <ProductLoader width={"100%"} height={"350px"} />;
+            })}
           </div>
         ) : (
           <div className={styles.productsGrid}>

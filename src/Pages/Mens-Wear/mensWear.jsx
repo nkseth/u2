@@ -47,6 +47,7 @@ import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { LazyLoadingComp } from "../../utils/LazyLoading";
 import parse from "html-react-parser";
+import ForHimMobile from "./components/Sections/for-him/ForHimMobile";
 export default function MensWear({ match }) {
   const {
     params: { type },
@@ -63,14 +64,9 @@ export default function MensWear({ match }) {
   const {
     mens_wear_slider,
     mens_wear_cat,
-    loading,
-    banner: { id, name, description, cover_image },
+    banner: { id, name, description, cover_image, background_image },
   } = useSelector((state) => state.root.main);
   const { banner } = useSelector((state) => state.root.main);
-  // console.log(
-  //   '🚀 ~ file: mensWear.jsx ~ line 70 ~ MensWear ~ banner',
-  //   banner.categories
-  // );
 
   const theme = useTheme();
   const small = useMediaQuery(theme.breakpoints.down("xs"));
@@ -79,7 +75,7 @@ export default function MensWear({ match }) {
 
   useEffect(() => {
     dispatch(get_mens_wear_slider(type));
-    dispatch(get_mens_wear_cat(`${type}-fashion`));
+    dispatch(get_mens_wear_cat(`${type}`));
     dispatch(getBanner(type));
   }, [type, dispatch]);
 
@@ -113,7 +109,7 @@ export default function MensWear({ match }) {
         <div
           className={styles.carouselItem}
           key={id}
-          style={{ backgroundImage: `url(${cover_image})` }}
+          style={{ backgroundImage: `url(${background_image})` }}
         >
           <div>
             <span>{name}</span>
@@ -134,51 +130,62 @@ export default function MensWear({ match }) {
           }
         />
       </CustomSection>
-      <section className={styles.categoriesToBagSection}>
-        <span className={styles.categoriesToBagHeader}>Categories to Bag</span>
+      {!mobile && (
+        <section className={styles.categoriesToBagSection}>
+          <span className={styles.categoriesToBagHeader}>
+            Categories to Bag
+          </span>
 
-        <CarouselProvider
-          naturalSlideWidth={100}
-          visibleSlides={small ? 1 : customView ? 2 : iPade ? 1 : 3}
-          totalSlides={mens_wear_cat.length}
-          infinite
-          isIntrinsicHeight
-          className={styles.carousel}
-        >
-          <Slider>
-            {mens_wear_cat.map((item, index) => {
-              const { name, slug, cover_image: image } = item;
-              return (
-                <Slide index={item.name + index} style={{ marginRight: "4em" }}>
-                  <LazyLoadingComp>
-                    <CategoriesToBagCard
-                      image={image}
-                      slug={slug}
-                      title={name}
-                      type={type}
-                    />
-                  </LazyLoadingComp>
-                </Slide>
-              );
-            })}
-          </Slider>
-          <DotGroup style={{ display: "flex", display: "none" }} />
+          <CarouselProvider
+            naturalSlideWidth={100}
+            visibleSlides={small ? 1.5 : customView ? 2 : iPade ? 1 : 3}
+            totalSlides={mens_wear_cat.length + 0.45}
+            // infinite
+            isIntrinsicHeight
+            className={styles.carousel}
+          >
+            <Slider>
+              {mens_wear_cat.map((item, index) => {
+                const { name, slug, cover_image: image } = item;
+                return (
+                  <Slide
+                    index={item.name + index}
+                    style={{ marginRight: "4em" }}
+                  >
+                    <LazyLoadingComp>
+                      <CategoriesToBagCard
+                        image={image}
+                        slug={slug}
+                        title={name}
+                        type={type}
+                      />
+                    </LazyLoadingComp>
+                  </Slide>
+                );
+              })}
+            </Slider>
+            <DotGroup style={{ display: "flex", display: "none" }} />
 
-          <div className={styles.sliderBtnDiv}>
-            <ButtonBack className={styles.sliderBtnPrev}>
-              <IconButton size="small" className={styles.iconBtn}>
-                <NavigateBeforeIcon />
-              </IconButton>
-            </ButtonBack>
-            <ButtonNext className={styles.sliderBtnNext}>
-              <IconButton size="small" className={styles.iconBtn}>
-                <NavigateNextIcon />
-              </IconButton>
-            </ButtonNext>
-          </div>
-        </CarouselProvider>
-      </section>
-      <ForHimSection type={type} loading={loading} />
+            <div className={styles.sliderBtnDiv}>
+              <ButtonBack className={styles.sliderBtnPrev}>
+                <IconButton size="small" className={styles.iconBtn}>
+                  <NavigateBeforeIcon />
+                </IconButton>
+              </ButtonBack>
+              <ButtonNext className={styles.sliderBtnNext}>
+                <IconButton size="small" className={styles.iconBtn}>
+                  <NavigateNextIcon />
+                </IconButton>
+              </ButtonNext>
+            </div>
+          </CarouselProvider>
+        </section>
+      )}
+      {mobile ? (
+        <ForHimMobile type={type} coverImage={cover_image} />
+      ) : (
+        <ForHimSection type={type} coverImage={cover_image} />
+      )}
       <NewCollectionSection type={type} />
       <ExploreTopDesignersSection type={type} />
       <StylishRecommendationSection type={type} />

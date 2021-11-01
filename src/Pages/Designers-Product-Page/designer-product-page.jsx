@@ -8,11 +8,6 @@ import ProductsSection from "./Components/Sections/Products/products";
 import { useLocation } from "react-router-dom";
 import Loader from "../../utils/Loader/Loader";
 
-//images
-
-// import AllenSolly from "./Components/Sections/Products/Images/AllenSolly.png";
-// import PeterEngland from "./Components/Sections/Products/Images/PeterEngland.png";
-// import BeneKleed from "./Components/Sections/Products/Images/BeneKleed.png";
 import common_axios from "../../utils/axios.config";
 import {
   getFilteredProduct,
@@ -36,6 +31,7 @@ function DesignerProductPage({ match }) {
   const [product, setProduct] = useState([]);
   // const [loading, setLoading] = useState(true);
   const { user, isAuthenticated } = useSelector((state) => state.root.auth);
+  const [clearAll, setClearAll] = useState(true);
   const { productList, loading, error } = useSelector(
     (state) => state.root.products
   );
@@ -107,6 +103,8 @@ function DesignerProductPage({ match }) {
                     filters={filters}
                     filterProduct={filterProduct}
                     type={type}
+                    setClearAll={setClearAll}
+                    clearAll={clearAll}
                   />
                 )}
               </div>
@@ -127,6 +125,8 @@ function DesignerProductPage({ match }) {
                 loading={loading}
                 slug={slug}
                 group={type}
+                clearAll={clearAll}
+                setClearAll={setClearAll}
               />
             </div>
           </div>

@@ -1,28 +1,28 @@
-import { Button, useMediaQuery } from "@material-ui/core";
-import { Crop32Rounded, Crop32Sharp } from "@material-ui/icons";
-import React, { useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import CustomDivider from "../../../utils/Custom Divider/divider";
-import styles from "../Style/Trending.module.scss";
-import { topTrending } from "../../../Redux/actions/designerHomePage";
-import { useDispatch, useSelector } from "react-redux";
-import { LazyLoadingImg } from "../../../utils/LazyLoading";
+import { Button, useMediaQuery } from '@material-ui/core';
+import { Crop32Rounded, Crop32Sharp } from '@material-ui/icons';
+import React, { useEffect } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import CustomDivider from '../../../utils/Custom Divider/divider';
+import styles from '../Style/Trending.module.scss';
+import { topTrending } from '../../../Redux/actions/designerHomePage';
+import { useDispatch, useSelector } from 'react-redux';
+import { LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const Trending = () => {
   const dispatch = useDispatch();
   const imageSrc =
-    "https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
+    'https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
   const baseStyle = {
-    padding: "5rem 3rem",
-    background: "  #F3F1EE",
-    maginTop: "-3em",
+    padding: '5rem 3rem',
+    background: '  #F3F1EE',
+    maginTop: '-3em',
   };
 
   // const { push } = useLocation();
   const { push } = useHistory();
-  const mobileView = useMediaQuery("(max-width:1024px)");
+  const mobileView = useMediaQuery('(max-width:1024px)');
 
-  const { items } = useSelector((state) => state.root.trending);
+  const { items } = useSelector(state => state.root.trending);
 
   useEffect(async () => {
     dispatch(topTrending());
@@ -33,13 +33,13 @@ const Trending = () => {
       <div className={styles.trending_content} style={baseStyle}>
         <div
           className={`${styles.Trending_header}`}
-          style={{ color: "#1A202C" }}
+          style={{ color: '#1A202C' }}
         >
           Trending
-          <CustomDivider style={{ height: "1px", background: "#857250" }} />
+          <CustomDivider style={{ height: '1px', background: '#857250' }} />
         </div>
         <div className={styles.Trending}>
-          {items?.map((item) => (
+          {items?.map(item => (
             <Link to={{ pathname: `/designers-product-page/${item.slug}` }}>
               <div key={item.name} className={styles.Trending_Items}>
                 <LazyLoadingImg image={item.cover_image} />

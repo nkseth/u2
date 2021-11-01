@@ -467,9 +467,8 @@
 
 @media screen and (max-width: 550px) {
   .lastContainer {
-    margin-top: 0em !important;
-
     width: 100% !important;
+    margin-top: 0em !important;
     .placeOrderBtnDiv {
       margin: 2rem 0;
     }
@@ -510,19 +509,18 @@
 }
 
 .mainDiv {
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  padding: 0.2rem 1rem 1rem 1rem;
 }
 .mainimg {
-  height: 124px;
+  height: 130px;
   width: 96px;
-  // border-radius: 5px;
+  border-radius: 5px;
   margin-left: 0.5em;
   object-position: top;
   object-fit: cover;
+  margin-top: 15px;
 }
 
 .ImageQuanDiv {
@@ -531,16 +529,48 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-
+.quantity1 {
+  height: 27px !important;
+  min-width: 30px !important;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.1599999964237213px;
+  text-align: center;
+  padding: 0 2px;
+  border: 1px solid rgba(206, 199, 185, 1);
+  transform: rotate(90deg);
+}
+.addBtn1 {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  transform: rotate(90deg);
+}
+.removeBtn1 {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  transform: rotate(90deg);
+}
+.addBtn1,
+.removeBtn1 {
+  height: 27px !important;
+  min-width: 24.00000000000002px !important;
+  background: rgba(206, 199, 185, 1) !important;
+  outline: none !important;
+  border: none !important;
+}
 .InfoDiv {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-left: 0.5em;
+  margin-left: 1em;
 }
 
 .mainInfo {
-  display: flex;
+  // display: flex;
   flex-direction: column;
   width: 100%;
   align-items: flex-start;
@@ -588,7 +618,7 @@
   .PriceMobileMain {
     //styleName: Headline / H4;
     font-family: DM Serif Display;
-    font-size: 20px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: 28px;
@@ -618,32 +648,95 @@
     color: #6a5b40;
     margin-left: 0.5em;
   }
-  .MoveToWishListBtnMobile {
-    height: 40px !important;
-    width: 164px !important;
-    border-radius: 5px !important;
-    padding: 10px, 12px, 10px, 12px !important;
-    margin-top: 1em !important;
-    border: 1px solid #9d8e73 !important;
-    font-family: DM Sans !important;
-    font-size: 12px !important;
-    font-style: normal !important;
-    font-weight: 700 !important;
-    line-height: 16px !important;
-    letter-spacing: 0.3199999928474426px !important;
-    text-align: center !important;
-    color: #9d8e73 !important;
-  }
+}
+.MoveToWishListBtnMobile {
+  border-radius: 0px !important;
+  padding: 10px, 12px, 10px, 12px !important;
+  font-family: DM Sans !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  line-height: 16px !important;
+  letter-spacing: 0.3199999928474426px !important;
+  text-align: center !important;
+  text-transform: inherit !important;
+
+  border-top: 1px solid #cecece !important;
+  border-bottom: 1px solid #cecece !important;
+  border-right: 1px solid #cecece !important;
+  color: #9d8e73 !important;
+  height: 42px;
+  width: 100%;
 }
 .RemoveBTNMobile {
   color: red !important;
+  border-radius: 0px !important;
   font-family: DM Sans !important;
-  font-size: 12px !important;
+  font-size: 16px !important;
   font-style: normal !important;
   font-weight: 700 !important;
   line-height: 16px !important;
   letter-spacing: 0.3199999928474426px !important;
   text-align: left !important;
-  margin-top: 0.5em !important;
-  text-decoration: underline !important;
+  text-transform: inherit !important;
+  border-top: 1px solid #cecece !important;
+  border-bottom: 1px solid #cecece !important;
+  height: 42px;
+  width: 100%;
+}
+
+.mobileButton {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  // padding: 0.5em;
+  // border-bottom: 1px solid #cecece;
+  // border-top: 1px solid #cecece;
+}
+
+.CheckOutProcess {
+  width: 95%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  background: #f1efeb;
+  max-width: 550px;
+  padding: 1em;
+  border-radius: 5px;
+  margin-top: 30px;
+  h1 {
+    font-family: DM Sans;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #000 !important;
+  }
+  li {
+    font-family: DM Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+
+    color: #3b3b3b;
+  }
+  .CheckOutProcessBtn {
+    border-radius: 5px !important;
+    background-color: #6a5b40 !important;
+    color: #fff !important;
+    margin-top: 1em !important;
+    font-family: DM Sans !important;
+    font-size: 12px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 20px !important;
+    letter-spacing: 0px !important;
+    text-align: center !important;
+  }
 }

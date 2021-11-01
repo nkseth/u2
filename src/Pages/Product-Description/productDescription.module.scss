@@ -253,10 +253,9 @@
   .priceTab {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     // flex-direction: column;
-    justify-content: space-between;
     margin-left: 1em;
-    flex-wrap: wrap;
     > span:first-child {
       font-family: DM Serif Display;
       font-size: 34px;

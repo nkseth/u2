@@ -36,15 +36,18 @@ import {
   getCoupons,
   removeFromBag,
   clearCartError,
+  applyCoupons,
 } from '../../Redux/actions/myBag';
 import { SuccessPopUp } from '../../utils/Popups/SuccessPopup';
+import EmptyBag from './Components/Empty-Bag';
+import CartOffers from './Components/Offers/CartOffers';
 
 export default function MyBag() {
   const history = useHistory();
   const dispatch = useDispatch();
   const tabView = useMediaQuery('(max-width:768px)');
   const tabViewPro = useMediaQuery('(max-width:835px)');
-  const mobileView = useMediaQuery('(max-width:550px)');
+  const mobileView = useMediaQuery('(max-width:480px)');
   const [quantity, setQuantity] = useState(1);
   const { user } = useSelector(state => state.root.auth);
   const { cart } = useSelector(state => state.root.cartItems);
@@ -53,26 +56,24 @@ export default function MyBag() {
   );
 
   const [click, setClick] = useState(false);
+  const [coupon, setCoupon] = useState(null);
   // const [cartMessage, setCartMessage] = useState('Added To bag');
-  console.log(cart);
   // console.log(cart);
-  console.log(message);
 
   useEffect(() => {
     if (message) {
       alert(message);
-      dispatch(clearCartError());
       dispatch(getCartItems());
-      history.push('/my-bag');
+      dispatch(clearCartError());
     }
     if (error) {
       alert(error);
       dispatch(clearCartError());
       dispatch(getCartItems());
     }
-    if (!cart && !loading) dispatch(getCartItems());
+    dispatch(getCartItems());
     dispatch(getCoupons());
-  }, [dispatch, message, error]);
+  }, [dispatch, message, error, history]);
 
   const add_quantity = async (item, index) => {
     try {
@@ -147,112 +148,128 @@ export default function MyBag() {
     setRemoveModal(removeModal => !removeModal);
   };
 
+  if (!cart) {
+    return <EmptyBag />;
+  }
+
+  const applyCartCoupon = e => {
+    e.preventDefault();
+    if (!coupon) return alert('Select coupon first.');
+    dispatch(applyCoupons(cart.id, coupon.code, cart.shop_id));
+  };
+
   return (
     <Container bottomDivider footerOnTabMob>
-      <CustomSection
-        style={mobileView ? { marginTop: '0' } : { marginTop: '3em' }}
-      >
-        <Breadcrumb path='Home' activePath='/ My Bag' />
+      {
+        <CustomSection
+          style={mobileView ? { marginTop: '0' } : { marginTop: '3em' }}
+        >
+          <Breadcrumb path='Home' activePath='/ My Bag' />
+          {cart && (
+            <div className={styles.container}>
+              {mobileView ? (
+                <>
+                  <MobileProductMyBag
+                    data={cart.items}
+                    quantity={quantity}
+                    setQuantity={setQuantity}
+                    add_quantity={add_quantity}
+                    substract_quantity={substract_quantity}
+                    remove_item={remove_item}
+                    move_to_wishlist={move_to_wishlist}
+                  />
+                </>
+              ) : (
+                //This component ⬆ is for mobile view dont itterate this component go inside it and ittetrate there
+                <div className={styles.firstContainer}>
+                  <div>My Bag</div>
 
-        {cart && (
-          <div className={styles.container}>
-            {mobileView ? (
-              <>
-                <MobileProductMyBag
-                  data={cart.items}
-                  quantity={quantity}
-                  setQuantity={setQuantity}
-                  add_quantity={add_quantity}
-                  substract_quantity={substract_quantity}
-                  remove_item={remove_item}
-                  move_to_wishlist={move_to_wishlist}
-                />
-              </>
-            ) : (
-              //This component ⬆ is for mobile view dont itterate this component go inside it and ittetrate there
-              <div className={styles.firstContainer}>
-                <div>My Bag</div>
-                {cart.items?.map((item, index) => {
-                  return (
-                    <>
-                      {removeModal && (
-                        <SuccessPopUp
-                          toggle={toggleRemoveModal}
-                          width={'500px'}
-                          height={'100px'}
-                        >
-                          <h2 style={{ margin: '1rem 0' }}>
-                            Are you sure you want to remove this Item?
-                          </h2>
-                          <Button
-                            class={styles.removeModelButton}
-                            onClick={e => {
-                              remove_item(removeItem, e);
-                              toggleRemoveModal();
-                            }}
+                  {cart.items?.map((item, index) => {
+                    return (
+                      <>
+                        {removeModal && (
+                          <SuccessPopUp
+                            toggle={toggleRemoveModal}
+                            width={'500px'}
+                            height={'100px'}
                           >
-                            Yes
-                          </Button>
-                          <Button
-                            class={styles.removeModelButton}
-                            onClick={() => {
-                              toggleRemoveModal();
-                            }}
-                          >
-                            No
-                          </Button>
-                        </SuccessPopUp>
-                      )}
-                      <div className={styles.BorderContainer}>
-                        <div className={styles.mainContainer}>
-                          <img
-                            src={item.product?.image}
-                            alt='product'
-                            className={styles.image}
-                          />
-                          <div>
-                            <div style={{ alignItems: 'flex-start' }}>
-                              <p className={styles.proName}>{item.title}</p>
-                              <p>{item.color}</p>
+                            <h2 style={{ margin: '1rem 0' }}>
+                              Are you sure you want to remove this Item?
+                            </h2>
+                            <Button
+                              class={styles.removeModelButton}
+                              onClick={e => {
+                                remove_item(removeItem, e);
+                                toggleRemoveModal();
+                              }}
+                            >
+                              Yes
+                            </Button>
+                            <Button
+                              class={styles.removeModelButton}
+                              onClick={() => {
+                                toggleRemoveModal();
+                              }}
+                            >
+                              No
+                            </Button>
+                          </SuccessPopUp>
+                        )}
+                        <div className={styles.BorderContainer}>
+                          <div className={styles.mainContainer}>
+                            <Link
+                              to={`/product-description/${item.product.slug}`}
+                            >
+                              <img
+                                src={item.product?.image}
+                                alt='product'
+                                className={styles.image}
+                              />
+                            </Link>
+                            <div>
+                              <div style={{ alignItems: 'flex-start' }}>
+                                <p className={styles.proName}>{item.title}</p>
+                                <p>{item.fabric}</p>
 
-                              <div>
-                                <h4>Product Type</h4>
-                                <p>{item.type.toUpperCase()}</p>
-                                <HtmlTooltipButton
-                                  open={click}
-                                  onOpen={() => setClick(true)}
-                                  onClose={() => setClick(false)}
-                                  disableFocusListener
-                                  disableHoverListener
-                                  // className={styles.ProductSelectorHelpBtn}
-                                  // style={{ color: '#6a5b40', backgroundColor: 'red' }}
-                                  title={
-                                    <React.Fragment>
-                                      <h3
-                                        style={{
-                                          padding: 10,
-                                          display: 'flex',
-                                          alignItems: 'center',
-                                          gap: '0.2rem',
-                                        }}
-                                      >
-                                        <FavoriteIcon /> Add To wishlist
-                                      </h3>
-                                    </React.Fragment>
-                                  }
-                                  placement={'top'}
-                                  arrow
-                                >
-                                  <Button
-                                    onClick={() => {
-                                      move_to_wishlist(item);
-                                      setClick(click => !click);
-                                    }}
-                                    className={styles.MoveToWishListBtn}
+                                <div>
+                                  <h4>Product Type</h4>
+                                  <p>{item.type.toUpperCase()}</p>
+                                  <HtmlTooltipButton
+                                    open={click}
+                                    onOpen={() => setClick(true)}
+                                    onClose={() => setClick(false)}
+                                    disableFocusListener
+                                    disableHoverListener
+                                    // className={styles.ProductSelectorHelpBtn}
+                                    // style={{ color: '#6a5b40', backgroundColor: 'red' }}
+                                    title={
+                                      <React.Fragment>
+                                        <h3
+                                          style={{
+                                            padding: 10,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '0.2rem',
+                                          }}
+                                        >
+                                          <FavoriteIcon /> Add To wishlist
+                                        </h3>
+                                      </React.Fragment>
+                                    }
+                                    placement={'top'}
+                                    arrow
                                   >
-                                    Move to Wishlist
-                                  </Button>
-                                </HtmlTooltipButton>
+                                    <Button
+                                      onClick={() => {
+                                        move_to_wishlist(item);
+                                        setClick(click => !click);
+                                      }}
+                                      className={styles.MoveToWishListBtn}
+                                    >
+                                      Move to Wishlist
+                                    </Button>
+                                  </HtmlTooltipButton>
+                                </div>
                               </div>
                             </div>
 
@@ -263,168 +280,216 @@ export default function MyBag() {
                                 alignItems: 'center',
                               }}
                             >
-                              <p>
-                                {item.currency_symbol}
-                                {item.hasOffer
-                                  ? item.offer_price
-                                  : item.unit_price}
-                              </p>
-                              <p className={styles.priceSpanP}>
-                                <span className={styles.priceSpan}>
-                                  {item.price}
-                                </span>
-                                <span className={styles.priceSpan1}>
-                                  {item.discount}
-                                </span>
-                              </p>
-                              <div className={styles.quan}>
-                                <p>Quantity</p>
-                                <div style={{ display: 'flex' }}>
-                                  <Button
-                                    className={styles.addBtn}
-                                    onClick={() =>
-                                      substract_quantity(item, index)
-                                    }
-                                  >
-                                    <RemoveIcon style={{ width: '15px' }} />
-                                  </Button>
-                                  <div className={styles.quantity}>
-                                    {item.quantity}
-                                  </div>
-                                  <Button
-                                    className={styles.removeBtn}
-                                    onClick={() => add_quantity(item, index)}
-                                  >
-                                    <AddIcon style={{ width: '15px' }} />
-                                  </Button>
+                              {item.type === 'readymade' ? (
+                                item.readymade_offer_price > 0 ? (
+                                  <>
+                                    <p>
+                                      {item.currency_symbol}
+                                      {item.readymade_offer_price}
+                                    </p>
+                                    <p className={styles.priceSpanP}>
+                                      <span className={styles.priceSpan}>
+                                        {item.currency_symbol}
+                                        {item.readymade_price}
+                                      </span>
+                                      <span className={styles.priceSpan1}>
+                                        {item.readymade_discount.toFixed(0)}%
+                                        OFF
+                                      </span>
+                                    </p>
+                                  </>
+                                ) : (
+                                  <p>
+                                    {item.currency_symbol}
+                                    {item.readymade_price}
+                                  </p>
+                                )
+                              ) : item.custom_offer_price > 0 ? (
+                                <>
+                                  <p>
+                                    {item.currency_symbol}
+                                    {item.custom_offer_price}
+                                  </p>
+                                  <p className={styles.priceSpanP}>
+                                    <span className={styles.priceSpan}>
+                                      {item.currency_symbol}
+                                      {item.custom_price}
+                                    </span>
+                                    <span className={styles.priceSpan1}>
+                                      {item.custom_discount.toFixed(0)}% off
+                                    </span>
+                                  </p>
+                                </>
+                              ) : (
+                                <p>
+                                  {item.currency_symbol}
+                                  {item.custom_price}
+                                </p>
+                              )}
+                            </div>
+                            <div className={styles.quan}>
+                              <p>Quantity</p>
+                              <div style={{ display: 'flex' }}>
+                                <Button
+                                  className={styles.addBtn}
+                                  onClick={() =>
+                                    substract_quantity(item, index)
+                                  }
+                                >
+                                  <RemoveIcon style={{ width: '15px' }} />
+                                </Button>
+                                <div className={styles.quantity}>
+                                  {item.quantity}
                                 </div>
                                 <Button
-                                  // onClick={() => remove_item(item)}
-                                  onClick={e => toggleRemoveModal(item, e)}
-                                  className={styles.RemoveBTN}
+                                  className={styles.removeBtn}
+                                  onClick={() => add_quantity(item, index)}
                                 >
-                                  Remove item
+                                  <AddIcon style={{ width: '15px' }} />
                                 </Button>
                               </div>
+                              <Button
+                                // onClick={() => remove_item(item)}
+                                onClick={e => toggleRemoveModal(item, e)}
+                                className={styles.RemoveBTN}
+                              >
+                                Remove item
+                              </Button>
                             </div>
+                            {/* </div> */}
+                            {/* </div> */}
+                            {/* </div> */}
+                            {item.type === 'customise' ? (
+                              <div
+                                style={{
+                                  marginLeft: '1em',
+                                  marginBottom: '1em',
+                                }}
+                              >
+                                <CheckOutProcess />
+                              </div>
+                            ) : (
+                              <></>
+                            )}
                           </div>
                         </div>
-                        {item.type === 'customise' ? (
-                          <div
-                            style={{ marginLeft: '1em', marginBottom: '1em' }}
-                          >
-                            <CheckOutProcess />
-                          </div>
-                        ) : (
-                          <></>
-                        )}
-                      </div>
-                    </>
-                  );
-                })}
-                <div>
-                  <div></div>
-                </div>
-              </div>
-            )}
-            <div className={styles.lastContainer}>
-              <div>
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}
-                >
-                  <div>Price Details</div>
-                  <div className={styles.BtnlIkediv}>{cart.items.length}</div>
-                </div>
-                <div>
-                  <CustomDivider style={{ backgroundColor: '#CECECE' }} />
-                  <div className={styles.selectedProductPrices}>
-                    <div>
-                      <label>Product Price</label>
-
-                      <span>₹{cart?.total}</span>
-                    </div>
-                    <div>
-                      <label>Service charges</label>
-                      <span>
-                        ₹{cart?.taxes}({cart?.taxrate})
-                      </span>
-                    </div>
-                    <div>
-                      <label>Delivery charges</label>
-                      <span>₹{cart?.delivery_charge || '₹0'}</span>
-                    </div>
-                  </div>
-                  <CustomDivider style={{ backgroundColor: '#CECECE' }} />
-                </div>
-                <div className={styles.totalAmtDiv}>
+                      </>
+                    );
+                  })}
                   <div>
-                    <label>Total Amount</label>
-                    <span>₹{cart?.grand_total}</span>
+                    <div></div>
                   </div>
                 </div>
-                <CustomDivider style={{ backgroundColor: '#CECECE' }} />
+              )}
+              <div className={styles.lastContainer}>
+                <div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <div>Price Details</div>
+                    <div className={styles.BtnlIkediv}>{cart.items.length}</div>
+                  </div>
+                  <div>
+                    <CustomDivider style={{ backgroundColor: '#CECECE' }} />
+                    <div className={styles.selectedProductPrices}>
+                      <div>
+                        <label>Product Price</label>
 
-                <Accordion
-                  style={{
-                    boxShadow: 'none',
-                    margin: '1rem 0',
-                    padding: 0,
-                  }}
-                  className={styles.applyCouponDiv}
-                >
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    IconButtonProps={{ size: 'small' }}
-                    aria-controls='panel1a-content'
-                    id='panel1a-header'
+                        <span>₹{cart?.total}</span>
+                      </div>
+                      <div>
+                        <label>Service charges</label>
+                        <span>
+                          ₹{cart?.taxes}({cart?.taxrate})
+                        </span>
+                      </div>
+                      <div>
+                        <label>Delivery charges</label>
+                        <span>₹{cart?.delivery_charge || '₹0'}</span>
+                      </div>
+                    </div>
+                    <CustomDivider style={{ backgroundColor: '#CECECE' }} />
+                  </div>
+                  <div className={styles.totalAmtDiv}>
+                    <div>
+                      <label>Total Amount</label>
+                      <span>₹{cart?.grand_total}</span>
+                    </div>
+                  </div>
+                  <CustomDivider style={{ backgroundColor: '#CECECE' }} />
+
+                  <Accordion
                     style={{
                       boxShadow: 'none',
-                      margin: 0,
+                      margin: '1rem 0',
                       padding: 0,
                     }}
+                    className={styles.applyCouponDiv}
                   >
-                    <div className={styles.accordionHeader}>
-                      <CouponIcon />
-                      <span>Apply Coupon</span>
-                    </div>
-                  </AccordionSummary>
-                  <AccordionDetails
-                    style={{
-                      background: '#fff',
-                      padding: '.8rem 0',
-                    }}
-                  >
-                    <div className={styles.couponInputDiv}>
-                      <div>
-                        <input
-                          type='text'
-                          placeholder='Enter coupon code'
-                          name='coupon'
-                        />
-                        <span>Apply</span>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      IconButtonProps={{ size: 'small' }}
+                      aria-controls='panel1a-content'
+                      id='panel1a-header'
+                      style={{
+                        boxShadow: 'none',
+                        margin: 0,
+                        padding: 0,
+                      }}
+                    >
+                      <div className={styles.accordionHeader}>
+                        <CouponIcon />
+                        <span>Apply Coupon</span>
                       </div>
-                      <button onClick={toggleModal}>View offers</button>
-                    </div>
-                  </AccordionDetails>
-                </Accordion>
-                <Button
-                  variant='text'
-                  color='default'
-                  className={styles.placeOrderBtn}
-                  onClick={() => on_checkout()}
-                >
-                  Checkout
-                </Button>
+                    </AccordionSummary>
+                    <AccordionDetails
+                      style={{
+                        background: '#fff',
+                        padding: '.8rem 0',
+                      }}
+                    >
+                      <div className={styles.couponInputDiv}>
+                        <div>
+                          <input
+                            type='text'
+                            placeholder='Enter coupon code'
+                            name='coupon'
+                            value={coupon ? coupon.code : ''}
+                          />
+                          <span onClick={applyCartCoupon}>Apply</span>
+                        </div>
+                        <button onClick={toggleModal}>View offers</button>
+                      </div>
+                    </AccordionDetails>
+                  </Accordion>
+                  <Button
+                    variant='text'
+                    color='default'
+                    className={styles.placeOrderBtn}
+                    onClick={() => on_checkout()}
+                  >
+                    Checkout
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
-        )}
-      </CustomSection>
-      {modal && <SuccessPopUp toggle={toggleModal} />}
+          )}
+        </CustomSection>
+      }
+
+      {modal && (
+        <SuccessPopUp toggle={toggleModal}>
+          <CartOffers
+            coupon={coupon}
+            setCoupon={setCoupon}
+            toggle={toggleModal}
+          />
+        </SuccessPopUp>
+      )}
     </Container>
   );
 }
@@ -446,69 +511,128 @@ const MobileProductMyBag = ({
           <div className={styles.MobileborderDiv}>
             <div className={styles.mainDiv}>
               <div className={styles.ImageQuanDiv}>
-                <img
-                  src={item.product?.image}
-                  className={styles.mainimg}
-                  alt={data.id}
-                />
+                <Link to={`/product-description/${item.product.slug}`}>
+                  <img
+                    src={item.product?.image}
+                    className={styles.mainimg}
+                    alt={data.id}
+                  />
+                </Link>
               </div>
               <div className={styles.InfoDiv}>
                 <div className={styles.mainInfo}>
-                  <h1>{item.title}</h1>
                   <div
                     style={{
                       display: 'flex',
-                      alignItems: 'flex-start',
+                      alignItems: 'center',
                       justifyContent: 'space-between',
                       width: '100%',
                     }}
                   >
-                    <div
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        width: '80%',
-                      }}
-                    >
-                      <p className={styles.PType1}>Product Type</p>
-                      <p className={styles.PType2}>{item.type.toUpperCase()}</p>
+                    <div>
+                      <h1>{item.title}</h1>
+                      <p style={{ marginTop: '-24px' }}>{item.fabric}</p>
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          justifyContent: 'space-between',
+                          width: '100%',
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            width: '80%',
+                          }}
+                        >
+                          <p className={styles.PType1}>Product Type</p>
+                          <p className={styles.PType2}>
+                            {item.type.toUpperCase()}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div className={styles.quan}>
-                    <p>Quantity</p>
-                    <div style={{ display: 'flex' }}>
-                      <Button
-                        className={styles.addBtn}
-                        onClick={() => substract_quantity(item, index)}
-                      >
-                        <RemoveIcon style={{ width: '15px' }} />
-                      </Button>
-                      <div className={styles.quantity}>{item.quantity}</div>
-                      <Button
-                        className={styles.removeBtn}
-                        onClick={() => add_quantity(item, index)}
-                      >
-                        <AddIcon style={{ width: '15px' }} />
-                      </Button>
+                    <div>
+                      <div className={styles.quan}>
+                        <div
+                          style={{ display: 'flex', flexDirection: 'column' }}
+                        >
+                          <Button
+                            className={styles.addBtn1}
+                            onClick={() => substract_quantity(item, index)}
+                          >
+                            <RemoveIcon
+                              style={{
+                                width: '15px',
+                                transform: 'rotate(90deg)',
+                              }}
+                            />
+                          </Button>
+                          <div className={styles.quantity1}>
+                            <span style={{ transform: 'rotate(270deg)' }}>
+                              {item.quantity}
+                            </span>
+                          </div>
+                          <Button
+                            className={styles.removeBtn1}
+                            onClick={() => add_quantity(item, index)}
+                          >
+                            <AddIcon style={{ width: '15px' }} />
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div className={styles.PriceMobile}>
-                    <p className={styles.PriceMobileMain}>
-                      {item.currency_symbol}
-                      {item.type === 'readymade'
-                        ? item.readymade_price
-                        : item.custom_price}
-                    </p>
-                    <p className={styles.PriceMobileOriginal}>
-                      {item.unit_price}
-                    </p>
-                    <p className={styles.PriceMobileDiscount}>
-                      {item.discount}
-                    </p>
-                  </div>
+                  {item.type === 'readymade' ? (
+                    item.readymade_offer_price > 0 ? (
+                      <div className={styles.PriceMobile}>
+                        <p className={styles.PriceMobileMain}>
+                          {item.currency_symbol}
+                          {item.readymade_offer_price}
+                        </p>
+                        <p className={styles.PriceMobileOriginal}>
+                          {item.currency_symbol}
+                          {item.readymade_price}
+                        </p>
+                        <p className={styles.PriceMobileDiscount}>
+                          {item.readymade_discount.toFixed(0)}% OFF
+                        </p>
+                      </div>
+                    ) : (
+                      <div className={styles.PriceMobile}>
+                        <p className={styles.PriceMobileMain}>
+                          {item.currency_symbol}
+                          {item.readymade_price}
+                        </p>
+                      </div>
+                    )
+                  ) : item.custom_offer_price > 0 ? (
+                    <div className={styles.PriceMobile}>
+                      <p className={styles.PriceMobileMain}>
+                        {item.currency_symbol}
+                        {item.custom_offer_price}
+                      </p>
+                      <p className={styles.PriceMobileOriginal}>
+                        {item.currency_symbol}
+                        {item.custom_price}
+                      </p>
+                      <p className={styles.PriceMobileDiscount}>
+                        {item.custom_discount.toFixed(0)}% OFF
+                      </p>
+                    </div>
+                  ) : (
+                    <div className={styles.PriceMobile}>
+                      <p className={styles.PriceMobileMain}>
+                        {item.currency_symbol}
+                        {item.custom_price}
+                      </p>
+                    </div>
+                  )}
 
-                  <Button
+                  {/* <Button
                     onClick={e => move_to_wishlist(item, e)}
                     className={styles.MoveToWishListBtnMobile}
                   >
@@ -519,9 +643,24 @@ const MobileProductMyBag = ({
                     className={styles.RemoveBTNMobile}
                   >
                     Remove item
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
+            </div>
+            <div className={styles.mobileButton}>
+              <Button
+                onClick={e => move_to_wishlist(item, e)}
+                className={styles.MoveToWishListBtnMobile}
+              >
+                Move to Whishlist
+              </Button>
+              <Button
+                onClick={e => remove_item(item, e)}
+                className={styles.RemoveBTNMobile}
+              >
+                Remove item
+              </Button>
+              <hr />
             </div>
             {item.type === 'customise' ? <CheckOutProcess /> : <></>}
           </div>

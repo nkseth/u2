@@ -7,14 +7,17 @@ import {
   GET_COUPONS_SUCCESS,
   GET_COUPONS_FAILED,
   CLEAR_ERRORS,
+  APPLY_COUPONS_REQUEST,
+  APPLY_COUPONS_SUCCESS,
+  APPLY_COUPONS_FAILED,
 } from "../actions/types";
 
-export const cartItemsReducer = (initialState = { cart: null }, action) => {
+export const cartItemsReducer = (initialState = { cart: false }, action) => {
   const { type, payload } = action;
 
   switch (type) {
     case GET_CART: {
-      // Object.assign(initialState.cart, payload);
+      Object.assign(initialState.cart, payload);
       return { ...initialState, cart: payload };
     }
 
@@ -53,14 +56,36 @@ export const couponsReducer = (
   const { type, payload } = action;
 
   switch (type) {
-    case REMOVE_FROM_CART_REQUEST:
+    case GET_COUPONS_REQUEST:
       return { ...initialState, loading: true };
 
-    case REMOVE_FROM_CART_SUCCESS: {
+    case GET_COUPONS_SUCCESS: {
       // Object.assign(initialState, payload);
       return { ...initialState, couponList: payload, loading: false };
     }
-    case REMOVE_FROM_CART_FAILED:
+    case GET_COUPONS_FAILED:
+      return { ...initialState, error: payload, loading: false };
+
+    default:
+      return initialState;
+  }
+};
+
+export const applyCouponsReducer = (
+  initialState = { data: null, loading: false, error: null },
+  action
+) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case APPLY_COUPONS_REQUEST:
+      return { ...initialState, loading: true };
+
+    case APPLY_COUPONS_SUCCESS: {
+      // Object.assign(initialState, payload);
+      return { ...initialState, data: payload, loading: false };
+    }
+    case APPLY_COUPONS_FAILED:
       return { ...initialState, error: payload, loading: false };
 
     default:

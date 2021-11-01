@@ -125,9 +125,18 @@ button:disabled {
     margin-bottom: 5px;
     font-weight: 400;
   }
-  // img {
-  //   width: 346px !important;
-  // }
+  .SuitWear {
+    a {
+      font-family: DM Sans;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 700 !important;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+
+      color: #0a0a0a !important;
+    }
+  }
 }
 
 @media screen and (max-width: 769px) {

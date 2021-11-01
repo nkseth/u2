@@ -1,6 +1,7 @@
 import {
   ALL_THAT_YOU_WANT,
   CELIBRITY_STYLE,
+  FORGOT_DATA,
   GET_BANNER,
   GET_CATEGORY_GROUP,
   GET_CATEGORY_SUBGROUP,
@@ -26,7 +27,7 @@ const inialState = {
   mens_wear_cat: [],
   mens_wear_subgrp: [],
   selected_sub_grp: "all",
-  mens_active_product: [],
+  mens_active_product: null,
   new_collection: null,
   top_designers: {},
   stylish_recommend: null,
@@ -40,6 +41,7 @@ const inialState = {
   category_subgrp: {},
   order_summ: {},
   banner: {},
+  forgot_data: {}
 };
 
 const mainreducer = (state = inialState, action) => {
@@ -145,6 +147,11 @@ const mainreducer = (state = inialState, action) => {
       return {
         ...state,
         order_summ: action.payload,
+      };
+    case FORGOT_DATA:
+      return {
+        ...state,
+        forgot_data: action.payload,
       };
     default:
       return state;

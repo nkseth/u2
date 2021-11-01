@@ -252,8 +252,7 @@
   margin-top: -0.8em;
   display: flex;
   align-items: center;
-
-  // gap: 4rem;
+  gap: 4rem;
 }
 .divOverlayImg {
   width: 100%;
@@ -301,11 +300,16 @@
     z-index: 2;
 
     a {
-      color: #fff;
-      padding: 0.4rem;
+      //styleName: H3;
+      font-family: DM Serif Display;
       font-size: 28px;
-      font-family: 'Quicksand';
+      font-style: normal;
       font-weight: 400;
+      line-height: 36px;
+      letter-spacing: 0em;
+      text-align: left;
+      color: white;
+      padding: 0.4rem 0;
     }
   }
 }
@@ -338,6 +342,25 @@
 @media screen and (max-width: 640px) {
   .Category {
     grid-template-rows: 300px 200px 200px 300px;
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      z-index: 2;
+
+      a {
+        //styleName: H3;
+        font-family: DM Serif Display;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 36px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: white;
+      }
+    }
   }
   .Category_item {
     background-position: center center;
@@ -369,23 +392,46 @@
     padding: 3rem 1rem !important;
   }
   .PopularCategory_header {
-    font-size: 35px;
+    font-size: 20px;
     margin-bottom: 20px;
     gap: 1rem;
-    div {
-      a {
-        color: #fff;
-        padding: 0.4rem;
-        font-size: 20px !important;
-        font-family: 'Quicksand';
-        font-weight: 400;
+    //styleName: H4;
+    font-family: DM Serif Display;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+
+    .Category {
+      div {
+        font-weight: 700 !important;
+
+        a {
+          //styleName: H5;
+          font-family: DM Sans !important;
+          font-size: 16px !important;
+          font-style: normal;
+          font-weight: 700 !important;
+          line-height: 20px;
+          letter-spacing: 0em;
+          text-align: left;
+        }
       }
     }
   }
   .Category_item {
     background-position: center center;
+
     a {
-      font-size: 20px !important;
+      //styleName: H5;
+      font-family: DM Sans !important;
+      font-size: 16px !important;
+      font-style: normal;
+      font-weight: 700 !important;
+      line-height: 20px;
+      letter-spacing: 0em;
+      text-align: left;
     }
   }
 }

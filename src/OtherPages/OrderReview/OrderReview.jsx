@@ -3,7 +3,13 @@ import { useParams } from 'react-router';
 import OrdersCard from '../../Pages/All-Orders/Components/Order-Card/card';
 import styles from './OrderReview.module.scss';
 import ReactStars from 'react-rating-stars-component';
+// import gallery from '../../Images/image/gallery.png';
+// import camera from '../../Images/image/camera.png';
+import post from '../../Images/image/post.png';
+import { TextField, useMediaQuery } from '@material-ui/core';
 const OrderReview = () => {
+  const mobileView = useMediaQuery('(max-width:550px)');
+
   const item = {
     brand: null,
     category_id: 0,
@@ -55,10 +61,71 @@ const OrderReview = () => {
   const { orderid } = useParams();
   return (
     <>
-      <OrdersCard item={item} orderId={orderid} />
-      <div className={styles.review}>
-        {/* <h1>Review this product</h1> */}
-        <ReactStars {...firstExample} />
+      <div>
+        {mobileView ? (
+          <div>
+            <div className={styles.review}>
+              <div></div>
+              <h3>Your Name</h3>
+            </div>
+            <ReactStars classNames={styles.stars} {...firstExample} />
+            <div style={{ marginTop: '30px' }}>
+              <label>Add your reviews</label>
+              <TextField
+                multiline
+                rows={4}
+                placeholder='placeholder'
+                variant='outlined'
+                style={{
+                  width: '100%',
+                  marginTop: '15px',
+                }}
+              />
+            </div>
+
+            <div
+              style={{
+                display: 'inline-flex',
+                marginTop: '28px',
+                marginBottom: '37px',
+              }}
+            >
+              <img src={post} alt='post' />
+              <button
+                style={{
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  marginLeft: '8px',
+                  fontSize: '14px',
+                }}
+              >
+                Add image
+              </button>
+            </div>
+
+            <div className={styles.add_image}>
+              <h3>Choose image</h3>
+              <div style={{ display: 'flex' }}>
+                <div style={{ display: 'grid' }}>
+                  {/* <img src={gallery} alt='gallery' /> */}
+                  <span>Gallery</span>
+                </div>
+                <div style={{ display: 'grid', marginLeft: '35px' }}>
+                  {/* <img src={camera} alt='camera' /> */}
+                  <span>Camera</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <OrdersCard item={item} orderId={orderid} />
+            <div>
+              {/* <h1>Review this product</h1> */}
+              <ReactStars {...firstExample} />
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

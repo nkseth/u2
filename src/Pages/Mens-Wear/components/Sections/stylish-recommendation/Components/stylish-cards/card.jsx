@@ -17,7 +17,7 @@ export default function StylishCard({ type, item }) {
       />
       <div className={styles.content}>
         <div className={styles.text}>{item?.title || ""}</div>
-        <Link to={`/designers-product-page/${type}/${item.slug}`}>
+        <Link to={`/designers-product-page/${type}/${item.link}`}>
           <Button
             className={styles.shopNowBtn}
             variant="contained"

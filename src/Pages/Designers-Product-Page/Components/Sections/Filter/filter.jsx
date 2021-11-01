@@ -113,7 +113,9 @@ export default function Filter(props) {
   });
 
   const clearAllFilterFromReducer = () => {
+    if (props.clearAll) return;
     dispatch(clearAllFilter());
+    props.setClearAll(true);
     filterProduct();
   };
 
@@ -123,6 +125,10 @@ export default function Filter(props) {
     };
     setAllFilters();
   }, [filters]);
+
+  useEffect(() => {
+    setCheckedItemType(['All']);
+  }, []);
 
   const showChange = (event, newValue) => {
     setValue(newValue);
@@ -145,15 +151,6 @@ export default function Filter(props) {
   const [checkedFit, setCheckedFit] = useState([]);
 
   const handleFilterChange = (filterName, value) => {
-    console.log(
-      '🚀 ~ file: filter.jsx ~ line 148 ~ handleFilterChange ~ filterName, value',
-      filterName,
-      value
-    );
-    console.log(
-      '🚀 ~ file: filter.jsx ~ line 149 ~ handleFilterChange ~ selectedFilter.discount',
-      selectedFilter.discount
-    );
     setSelectedFilter(prevState => ({
       ...prevState,
       [filterName]: value,
@@ -207,7 +204,6 @@ export default function Filter(props) {
     });
 
     if (product_type) {
-      console.log(product_type);
       if (attributeValue_id.length > 0 && attribute_id.length > 0) {
         if (product_type === 'all')
           filterProduct({
@@ -249,6 +245,7 @@ export default function Filter(props) {
         });
       else filterProduct({ discount, range });
     }
+    props.setClearAll(false);
   };
   const clearFilterReducer = (cat, item) => {
     const newData = filterDataList[cat].filter(
@@ -359,6 +356,7 @@ export default function Filter(props) {
     sendFilter(product_type, range, discount);
   };
 
+  console.log(checkedDesign)
   return (
     <div className={styles.container}>
       {!tabViewPro && (
@@ -428,8 +426,8 @@ export default function Filter(props) {
             marks={priceRange}
             // scale={scaleValues}
             onChange={showChange}
-            // valueLabelDisplay='auto'
-            // aria-labelledby='non-linear-slider'
+          // valueLabelDisplay='auto'
+          // aria-labelledby='non-linear-slider'
           />
           <br />
           <div className={styles.price}>
@@ -457,6 +455,7 @@ export default function Filter(props) {
               <span>₹</span>
             </div>
           </div>
+          <p onClick={() => setValue([0, 19090.8])} style={{ cursor: "pointer", textAlign: 'right' }}>Clear</p>
         </AccordionDetails>
       </Accordion>
       <Accordion className={styles.accordion}>
@@ -492,6 +491,7 @@ export default function Filter(props) {
                 //   label={<p className={styles.radioBtnsLabels}>{value}</p>}
                 // />
                 <FormControlLabel
+                  checked={checkedItemType[checkedItemType.length - 1] == value ? true : false}
                   onChange={e => {
                     const item = {
                       value: e.target.value,
@@ -506,6 +506,7 @@ export default function Filter(props) {
               );
             })}
           </RadioGroup>
+          <p onClick={() => handleCheckBoxValues({ target: { checked: true } }, 'itemType', { value: "All", checked: true })} style={{ cursor: "pointer", textAlign: 'right' }}>Clear</p>
         </AccordionDetails>
       </Accordion>
       <Accordion className={styles.accordion}>
@@ -524,6 +525,7 @@ export default function Filter(props) {
             return (
               <FormControlLabel
                 control={<CustomCheckbox />}
+                checked={checkedColors[checkedColors.length - 1]?.value == value ? true : false}
                 onChange={e => {
                   const item = {
                     attributeValue_id: attr_value_id,
@@ -544,6 +546,7 @@ export default function Filter(props) {
               />
             );
           })}
+          <p onClick={() => handleCheckBoxValues({ target: { checked: true } }, 'color', {})} style={{ cursor: "pointer", textAlign: 'right' }}>Clear</p>
         </AccordionDetails>
       </Accordion>
       <Accordion className={styles.accordion}>
@@ -576,19 +579,20 @@ export default function Filter(props) {
               //   label={<p className={styles.radioBtnsLabels}>{discount}%</p>}
               // />
               <FormControlLabel
+                checked={checkedDiscount[checkedDiscount.length - 1]?.value == value ? true : false}
                 value={name}
-                onChange={(e) => {
+                onChange={e => {
                   const item = {
                     value: value,
                   };
-                  handleCheckBoxValues(e, "discount", item);
+                  handleCheckBoxValues(e, 'discount', item);
                 }}
                 control={<CustomRadio />}
                 label={<p className={styles.radioBtnsLabels}>{name}</p>}
-
               />
             ))}
           </RadioGroup>
+          <p onClick={() => handleCheckBoxValues({ target: { checked: true } }, 'discount', {})} style={{ cursor: "pointer", textAlign: 'right' }}>Clear</p>
         </AccordionDetails>
       </Accordion>
       <Accordion className={styles.accordion}>
@@ -605,6 +609,7 @@ export default function Filter(props) {
         <AccordionDetails className={styles.accordionDetials}>
           {fabricFilter?.map(({ attr_value_id, attribute_id, value }, key) => (
             <FormControlLabel
+              checked={checkedFabric[checkedFabric.length - 1]?.value == value ? true : false}
               control={<CustomCheckbox />}
               onChange={e => {
                 const item = {
@@ -618,6 +623,7 @@ export default function Filter(props) {
               label={<p className={styles.radioBtnsLabels}>{value}</p>}
             />
           ))}
+          <p onClick={() => handleCheckBoxValues({ target: { checked: true } }, 'fabric', {})} style={{ cursor: "pointer", textAlign: 'right' }}>Clear</p>
         </AccordionDetails>
       </Accordion>
       <Accordion className={styles.accordion}>
@@ -634,6 +640,7 @@ export default function Filter(props) {
         <AccordionDetails className={styles.accordionDetials}>
           {sizeFilter?.map(({ attr_value_id, attribute_id, value }, key) => (
             <FormControlLabel
+            checked={checkedSize[checkedSize.length - 1]?.value == value ? true : false}
               control={<CustomCheckbox />}
               onChange={e => {
                 const item = {
@@ -649,6 +656,7 @@ export default function Filter(props) {
               }
             />
           ))}
+           <p onClick={() => handleCheckBoxValues({ target: { checked: true } }, 'size', {  })} style={{ cursor: "pointer", textAlign: 'right' }}>Clear</p>
           {/* </RadioGroup> */}
         </AccordionDetails>
       </Accordion>
@@ -666,6 +674,7 @@ export default function Filter(props) {
         <AccordionDetails className={styles.accordionDetials}>
           {sleeveLength.map(({ value, attr_value_id, attribute_id }) => (
             <FormControlLabel
+            checked={checkedSleeveLength[checkedSleeveLength.length - 1]?.value == value ? true : false}
               control={<CustomCheckbox />}
               onChange={e => {
                 const item = {
@@ -679,6 +688,7 @@ export default function Filter(props) {
               label={<p className={styles.radioBtnsLabels}>{value}</p>}
             />
           ))}
+           <p onClick={() => handleCheckBoxValues({ target: { checked: true } }, 'sleeve', {})} style={{ cursor: "pointer", textAlign: 'right' }}>Clear</p>
           {/* </RadioGroup> */}
         </AccordionDetails>
       </Accordion>
@@ -697,7 +707,8 @@ export default function Filter(props) {
           {designFilter.map(
             ({ attr_value_id, attribute_id, category_id, value }) => (
               <FormControlLabel
-                value='New'
+              checked={checkedDesign[checkedDesign.length - 1]?.value == value ? true : false}
+                value={value}
                 onChange={e => {
                   const item = {
                     attributeValue_id: attr_value_id,
@@ -711,6 +722,7 @@ export default function Filter(props) {
               />
             )
           )}
+           <p onClick={() => handleCheckBoxValues({ target: { checked: true } }, 'design', {  })} style={{ cursor: "pointer", textAlign: 'right' }}>Clear</p>
           {/* </RadioGroup> */}
         </AccordionDetails>
       </Accordion>
@@ -729,6 +741,7 @@ export default function Filter(props) {
           {occasionsFilter.map(
             ({ attr_value_id, attribute_id, name, value, id }) => (
               <FormControlLabel
+              checked={checkedShopOccasion[checkedShopOccasion.length - 1]?.value == value ? true : false}
                 control={<CustomCheckbox />}
                 onChange={e => {
                   const item = {
@@ -743,6 +756,7 @@ export default function Filter(props) {
               />
             )
           )}
+           <p onClick={() => handleCheckBoxValues({ target: { checked: true } }, 'occasion', {  })} style={{ cursor: "pointer", textAlign: 'right' }}>Clear</p>
         </AccordionDetails>
       </Accordion>
       <Accordion className={styles.accordion}>
@@ -759,6 +773,7 @@ export default function Filter(props) {
         <AccordionDetails className={styles.accordionDetials}>
           {fit.map(({ attr_value_id, attribute_id, name, value, id }) => (
             <FormControlLabel
+            checked={checkedFit[checkedFit.length - 1]?.value == value ? true : false}
               control={<CustomCheckbox />}
               onChange={e => {
                 const item = {
@@ -772,6 +787,7 @@ export default function Filter(props) {
               label={<p className={styles.radioBtnsLabels}>{value}</p>}
             />
           ))}
+           <p onClick={() => handleCheckBoxValues({ target: { checked: true } }, 'fit', {  })} style={{ cursor: "pointer", textAlign: 'right' }}>Clear</p>
         </AccordionDetails>
       </Accordion>
       <Accordion className={styles.accordion}>
@@ -789,6 +805,7 @@ export default function Filter(props) {
           {length.map(({ attr_value_id, attribute_id, name, value, id }) => (
             <FormControlLabel
               control={<CustomCheckbox />}
+              checked={checkedSleeveLength[checkedSleeveLength.length - 1]?.value == value ? true : false}
               onChange={e => {
                 const item = {
                   attributeValue_id: attr_value_id,
@@ -801,6 +818,7 @@ export default function Filter(props) {
               label={<p className={styles.radioBtnsLabels}>{value}</p>}
             />
           ))}
+           <p onClick={() => handleCheckBoxValues({ target: { checked: true } }, 'length', {  })} style={{ cursor: "pointer", textAlign: 'right' }}>Clear</p>
         </AccordionDetails>
       </Accordion>
       {/* <CheckboxComponents

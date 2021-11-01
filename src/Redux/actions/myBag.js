@@ -9,6 +9,9 @@ import {
   REMOVE_FROM_CART_REQUEST,
   REMOVE_FROM_CART_SUCCESS,
   CLEAR_ERRORS,
+  APPLY_COUPONS_REQUEST,
+  APPLY_COUPONS_SUCCESS,
+  APPLY_COUPONS_FAILED,
 } from "./types";
 
 export const getCartItems = () => async (dispatch) => {
@@ -18,7 +21,7 @@ export const getCartItems = () => async (dispatch) => {
     console.log(data);
     if (data.data[0]) {
       dispatch({ type: GET_CART, payload: data.data[0] });
-    }
+    } else dispatch({ type: GET_CART, payload: false });
   } catch (e) {
     console.log(e.response);
   }
@@ -55,6 +58,24 @@ export const getCoupons = () => async (dispatch) => {
   } catch (err) {
     console.log(err?.response.data);
     dispatch({ type: GET_COUPONS_FAILED, payload: err.response.data });
+    return Promise.reject(err);
+  }
+};
+
+export const applyCoupons = (cartId, coupon, shop_id) => async (dispatch) => {
+  try {
+    dispatch({ type: APPLY_COUPONS_REQUEST });
+    const { data } = await common_axios.post(`/cart/${cartId}/applyCoupon`, {
+      coupon,
+      shop_id,
+    });
+    console.log(data);
+    if (data) {
+      dispatch({ type: APPLY_COUPONS_SUCCESS, payload: data });
+    }
+  } catch (err) {
+    console.log(err?.response.data);
+    dispatch({ type: APPLY_COUPONS_FAILED, payload: err.response.data });
     return Promise.reject(err);
   }
 };

@@ -368,7 +368,7 @@ export function SuccessPopUp({
                   `${
                     customized
                       ? '/select-measurement'
-                      : `/add-measurement-choose-standard-size/${info.id}`
+                      : `/add-measurement-choose-standard-size/${info.id}/0`
                   }`
                 )
               }

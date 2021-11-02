@@ -10,6 +10,7 @@ import Back from './images/back.svg';
 import Front from './images/front.svg';
 import { useHistory } from 'react-router';
 import common_axios from '../../utils/axios.config';
+import { SuccessPopUp } from '../../utils/Popups/SuccessPopup';
 
 const UploadImage = ({
   match: {
@@ -30,19 +31,35 @@ const UploadImage = ({
   const imageUploader2 = React.useRef(null);
 
   const [image1, setImage1] = useState(null);
+  console.log('🚀 ~ file: UploadImage.jsx ~ line 33 ~ image1', image1);
   const [image2, setImage2] = useState(null);
-  console.log(image1, image2);
-  const handleImageUpload = e => {
+  console.log('🚀 ~ file: UploadImage.jsx ~ line 35 ~ image2', image2);
+
+  const handleImageUpload = (e, name) => {
     const [file] = e.target.files;
     if (file) {
-      const reader = new FileReader();
-      const { current } = uploadedImage;
-      current.file = file;
-      reader.onload = e => {
-        current.src = e.target.result;
-        setImage1(e.target.result);
-      };
-      reader.readAsDataURL(file);
+      if (name === 'front') {
+        setImage1(file);
+        const reader = new FileReader();
+        const { current } = uploadedImage;
+        current.file = file;
+        reader.onload = e => {
+          current.src = e.target.result;
+          // setImage1(e.target.result);
+        };
+
+        reader.readAsDataURL(file);
+      }
+      if (name === 'back') {
+        setImage2(file);
+        const reader = new FileReader();
+        const { current } = uploadedImage2;
+        current.file = file;
+        reader.onload = e => {
+          current.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
     }
   };
   const handleImageUpload2 = e => {
@@ -80,6 +97,7 @@ const UploadImage = ({
       if (data) {
         alert('Upload Successfull...');
         history.push(`/viewmeasurement/save/${basic_id}`);
+        // <SuccessPopUp></SuccessPopUp>;
       }
     } catch (error) {
       console.log(error);
@@ -115,7 +133,7 @@ const UploadImage = ({
               <input
                 type='file'
                 accept='image/*'
-                onChange={handleImageUpload}
+                onChange={e => handleImageUpload(e, 'front')}
                 ref={imageUploader}
                 style={{
                   display: 'none',
@@ -133,7 +151,7 @@ const UploadImage = ({
               <input
                 type='file'
                 accept='image/*'
-                onChange={handleImageUpload2}
+                onChange={e => handleImageUpload(e, 'back')}
                 ref={imageUploader2}
                 style={{
                   display: 'none',

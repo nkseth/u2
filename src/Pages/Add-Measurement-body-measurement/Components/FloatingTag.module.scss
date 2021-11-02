@@ -1,254 +1,233 @@
-@mixin  btn {
-    background: rgb(255, 255, 255)!important;
-    border-radius: 20px!important;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.267);
-    padding: 0.3em 0.5em!important;
-    font-family: Inter;
-    font-size: 11px!important;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 16px;
-    letter-spacing: 0px;
-    border: 3px solid rgba(0, 0, 0, 0)!important;
-    transition: all 1s!important;
-    animation: linear 0.5s!important ;
-    position: absolute!important;
+@mixin btn {
+  background: rgb(255, 255, 255) !important;
+  border-radius: 20px !important;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.267);
+  padding: 0.3em 0.5em !important;
+  font-family: Inter;
+  font-size: 11px !important;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0px;
+  border: 3px solid rgba(0, 0, 0, 0) !important;
+  transition: all 1s !important;
+  animation: linear 0.5s !important ;
+  position: absolute !important;
 
-    text-align: left;
-    &:hover{
-        border: 3px solid #857250!important;
-    }
+  text-align: left;
+  &:hover {
+    border: 3px solid #857250 !important;
+  }
 }
-@mixin  btnactive {
-    color: #857250;
-        border: 3px solid #857250!important;
+@mixin btnactive {
+  color: #857250;
+  border: 3px solid #857250 !important;
 }
-@mixin  btnSuccess {
-    background-color: #42BE65!important;
-    border-radius: 20px!important;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.267);
-    padding: 0.3em 0.5em!important;
-    font-family: Inter;
-    font-size: 11px!important;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 16px;
-    letter-spacing: 0px;
-    border: 3px solid rgba(0, 0, 0, 0)!important;
-    transition: all 1s!important;
-    animation: linear 0.5s!important ;
-    position: absolute!important;
-    color: #ffffff!important;
-    text-align: left;
-        border: 3px solid transparent!important;
-}
-
-
-.container{
-position: absolute;
-width: 70%;
-left: 50%;
-transform: translateX(-50%);
-height: 100%;
-top: 0;
-z-index: 90!important;
- button{
-     text-transform:initial
- }
-}
-.neck{
-    @include btn();
-    top: 14%!important;
-    left: 30%!important;
+@mixin btnSuccess {
+  background-color: #42be65 !important;
+  border-radius: 20px !important;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.267);
+  padding: 0.3em 0.5em !important;
+  font-family: Inter;
+  font-size: 11px !important;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0px;
+  border: 3px solid rgba(0, 0, 0, 0) !important;
+  transition: all 1s !important;
+  animation: linear 0.5s !important ;
+  position: absolute !important;
+  color: #ffffff !important;
+  text-align: left;
+  border: 3px solid transparent !important;
 }
 
-.shoulder{
-    @include btn();
-    top: 20%;
-    left: 55%;
+.container {
+  position: absolute;
+  width: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  top: 0;
+  z-index: 90 !important;
+  button {
+    text-transform: initial;
+  }
 }
-.chest{
-    @include btn();
-    top: 25%;
-    left: 30%;
-
-}
-.armHole{
-    @include btn();
-    top: 30%;
-    right: 25%;
-}
-.sleeve{
-    @include btn();
-    top:40%;
-    right:25%;
-}
-.wrist{
-    @include btn();
-    top:45%;
-    left:25%;
+.neck {
+  @include btn();
+  top: 14% !important;
+  left: 30% !important;
 }
 
+.shoulder {
+  @include btn();
+  top: 18%;
+  left: 60%;
+}
+.chest {
+  @include btn();
+  top: 25%;
+  left: 30%;
+}
+.armHole {
+  @include btn();
+  top: 30%;
+  right: 20%;
+}
+.sleeve {
+  @include btn();
+  top: 40%;
+  right: 25%;
+}
+.wrist {
+  @include btn();
+  top: 45%;
+  left: 25%;
+}
 
 // Lower Images
-.waist{
-    @include btn();
-    top: 40%;
-    left: 55%
+.waist {
+  @include btn();
+  top: 40%;
+  left: 55%;
 }
 
-.hip{
-    @include btn();
-    top: 50%;
-    left: 25%
-
+.hip {
+  @include btn();
+  top: 50%;
+  left: 25%;
 }
 
-.fullLength{
-    @include btn();
-    top: 53%;
-    right: 25%
+.fullLength {
+  @include btn();
+  top: 53%;
+  right: 25%;
 }
-.thigh{
-    @include btn();
-    top: 65%;
-    right: 30%
-}
-
-
-.inseam{
-    @include btn();
-    top: 60%;
-    left: 35%
+.thigh {
+  @include btn();
+  top: 65%;
+  right: 30%;
 }
 
-.calf{
-    @include btn();
-    top: 75%;
-    left: 30%
+.inseam {
+  @include btn();
+  top: 60%;
+  left: 35%;
 }
 
-.ankle{
-    @include btn();
-    top: 85%;
-    right: 30%
+.calf {
+  @include btn();
+  top: 75%;
+  left: 30%;
 }
 
-
-
-.neckG{
-    @include btnSuccess();
-    top: 14%!important;
-    left: 30%!important;
+.ankle {
+  @include btn();
+  top: 85%;
+  right: 30%;
 }
 
-.shoulderG{
-    @include btnSuccess();
-    top: 20%;
-    left: 55%;
-}
-.chestG{
-    @include btnSuccess();
-    top: 25%;
-    left: 30%;
-
-}
-.armHoleG{
-    @include btnSuccess();
-    top: 30%;
-    right: 25%;
-}
-.sleeveG{
-    @include btnSuccess();
-    top:40%;
-    right:25%;
-}
-.wristG{
-    @include btnSuccess();
-    top:45%;
-    left:25%;
+.neckG {
+  @include btnSuccess();
+  top: 14% !important;
+  left: 30% !important;
 }
 
+.shoulderG {
+  @include btnSuccess();
+  top: 20%;
+  left: 55%;
+}
+.chestG {
+  @include btnSuccess();
+  top: 25%;
+  left: 30%;
+}
+.armHoleG {
+  @include btnSuccess();
+  top: 30%;
+  right: 25%;
+}
+.sleeveG {
+  @include btnSuccess();
+  top: 40%;
+  right: 25%;
+}
+.wristG {
+  @include btnSuccess();
+  top: 45%;
+  left: 25%;
+}
 
 // Lower Images
-.waistG{
-    @include btnSuccess();
-    top: 40%;
-    left: 55%
+.waistG {
+  @include btnSuccess();
+  top: 40%;
+  left: 55%;
 }
 
-.hipG{
-    @include btnSuccess();
-    top: 50%;
-    left: 25%
-
+.hipG {
+  @include btnSuccess();
+  top: 50%;
+  left: 25%;
 }
 
-.fullLengthG{
-    @include btnSuccess();
-    top: 53%;
-    right: 25%
+.fullLengthG {
+  @include btnSuccess();
+  top: 53%;
+  right: 25%;
 }
-.thighG{
-    @include btnSuccess();
-    top: 65%;
-    right: 30%
-}
-
-
-.inseamG{
-    @include btnSuccess();
-    top: 60%;
-    left: 35%
+.thighG {
+  @include btnSuccess();
+  top: 65%;
+  right: 30%;
 }
 
-.calfG{
-    @include btnSuccess();
-    top: 75%;
-    left: 30%
+.inseamG {
+  @include btnSuccess();
+  top: 60%;
+  left: 35%;
 }
 
-.ankleG{
-    @include btnSuccess();
-    top: 85%;
-    right: 30%
+.calfG {
+  @include btnSuccess();
+  top: 75%;
+  left: 30%;
 }
 
-
-
-
-
-
-
-
-
-
-
-@media screen and (max-width:900px) {
-    .container{
-        width: 130%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+.ankleG {
+  @include btnSuccess();
+  top: 85%;
+  right: 30%;
 }
-@media screen and (max-width:885px) {
-    .container{
-        width: 150%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+
+@media screen and (max-width: 900px) {
+  .container {
+    width: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
-@media screen and (max-width:400px) {
-    .container{
-        width: 150%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+@media screen and (max-width: 885px) {
+  .container {
+    width: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
-@media screen and (max-width:350px) {
-    .container{
-        width: 180%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+@media screen and (max-width: 400px) {
+  .container {
+    width: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+@media screen and (max-width: 350px) {
+  .container {
+    width: 180%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }

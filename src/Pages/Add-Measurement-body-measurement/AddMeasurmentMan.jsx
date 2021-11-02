@@ -1,35 +1,35 @@
-import React, { useEffect, useState } from "react";
-import styles from "./Styles/AddMeasurmentMan.module.scss";
+import React, { useEffect, useState } from 'react';
+import styles from './Styles/AddMeasurmentMan.module.scss';
 
-import { Button, IconButton, useMediaQuery } from "@material-ui/core";
-import AccordionS from "./Components/Accordion";
-import FloatingTag from "./Components/FloatingTag";
+import { Button, IconButton, useMediaQuery } from '@material-ui/core';
+import AccordionS from './Components/Accordion';
+import FloatingTag from './Components/FloatingTag';
 
-import Image from "./Images/men/Man.svg";
-import neck_image from "./Images/men/upper/neck.svg";
-import shoulder_image from "./Images/men/upper/shoulder.svg";
-import chest_image from "./Images/men/upper/chest.svg";
-import wrist_image from "./Images/men/upper/wrist.svg";
-import arm_image from "./Images/men/upper/Armhhole.svg";
-import sleeve_image from "./Images/men/upper/sleveelength.svg";
-import waist_image from "./Images/men/lower/waist.svg";
-import fullLength_image from "./Images/men/lower/full length.svg";
-import hip_image from "./Images/men/lower/hip round.svg";
-import inseam_image from "./Images/men/lower/inseam.svg";
-import calf_image from "./Images/men/lower/Calf.svg";
-import ankle_image from "./Images/men/lower/ankle.svg";
-import thigh_image from "./Images/men/lower/thigh.svg";
-import MeasurementFloating from "./Components/MeasurementFloating";
-import Container from "../../utils/Container/container";
-import { useSelector, useDispatch } from "react-redux";
-import help_img from "./Images/help.svg";
-import { Link, useHistory } from "react-router-dom";
+import Image from './Images/men/Man.svg';
+import neck_image from './Images/men/upper/neck.svg';
+import shoulder_image from './Images/men/upper/shoulder.svg';
+import chest_image from './Images/men/upper/chest.svg';
+import wrist_image from './Images/men/upper/wrist.svg';
+import arm_image from './Images/men/upper/Armhhole.svg';
+import sleeve_image from './Images/men/upper/sleveelength.svg';
+import waist_image from './Images/men/lower/waist.svg';
+import fullLength_image from './Images/men/lower/full length.svg';
+import hip_image from './Images/men/lower/hip round.svg';
+import inseam_image from './Images/men/lower/inseam.svg';
+import calf_image from './Images/men/lower/Calf.svg';
+import ankle_image from './Images/men/lower/ankle.svg';
+import thigh_image from './Images/men/lower/thigh.svg';
+import MeasurementFloating from './Components/MeasurementFloating';
+import Container from '../../utils/Container/container';
+import { useSelector, useDispatch } from 'react-redux';
+import help_img from './Images/help.svg';
+import { Link, useHistory } from 'react-router-dom';
 import {
   getAllMeasurements,
   saveMeasurement,
   set_lower_body,
   set_upper_body,
-} from "../../Redux/actions/measurement";
+} from '../../Redux/actions/measurement';
 
 import {
   // Measuremant Parameters
@@ -61,7 +61,7 @@ import {
   ThighVALUE,
   CalfVALUE,
   AnkleVALUE,
-} from "../../Redux/MeasuremantData";
+} from '../../Redux/MeasuremantData';
 
 function AddManMeasurement({
   match: {
@@ -69,19 +69,19 @@ function AddManMeasurement({
   },
 }) {
   const history = useHistory();
-  const mobileView = useMediaQuery("(max-width:550px)");
-  const tabView = useMediaQuery("(max-width:769px)");
+  const mobileView = useMediaQuery('(max-width:550px)');
+  const tabView = useMediaQuery('(max-width:769px)');
   const dispatch = useDispatch();
 
   const { upper_body, lower_body } = useSelector(
-    (state) => state.root.measurement
+    state => state.root.measurement
   );
   console.log(basic_id);
 
-  const { measurements } = useSelector((state) => state.root.allMeasurements);
+  const { measurements } = useSelector(state => state.root.allMeasurements);
   // console.log(measurements[measurements.length - 1]);
-  const { user } = useSelector((state) => state.root.auth);
-  console.log("body");
+  const { user } = useSelector(state => state.root.auth);
+  console.log('body');
   const { neck, chest, wrist, shoulder, arm_hole, sleeve } = upper_body;
   const { waist, hip_round, full_length, inseam, thigh, calf, ankle } =
     lower_body;
@@ -93,75 +93,75 @@ function AddManMeasurement({
   }, [user, dispatch, measurements, basic_id]);
 
   const Form = (value, name) => {
-    if (name === "Neck") {
+    if (name === 'Neck') {
       dispatch(set_upper_body({ ...upper_body, neck: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       NeckVALUE(value);
-    } else if (name === "Shoulder") {
+    } else if (name === 'Shoulder') {
       dispatch(set_upper_body({ ...upper_body, shoulder: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       ShoulderVALUE(value);
-    } else if (name === "Chest") {
+    } else if (name === 'Chest') {
       dispatch(set_upper_body({ ...upper_body, chest: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       ChestVALUE(value);
-    } else if (name === "Arm Hole") {
+    } else if (name === 'Arm Hole') {
       dispatch(set_upper_body({ ...upper_body, arm_hole: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       ArmHoleVALUE(value);
-    } else if (name === "Sleeve length") {
+    } else if (name === 'Sleeve length') {
       dispatch(set_upper_body({ ...upper_body, sleeve: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       SleeveLengthVALUE(value);
-    } else if (name === "Wrist") {
+    } else if (name === 'Wrist') {
       dispatch(set_upper_body({ ...upper_body, wrist: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       WristVALUE(value);
-    } else if (name === "Waist") {
+    } else if (name === 'Waist') {
       dispatch(set_lower_body({ ...lower_body, waist: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       WaistVALUE(value);
-    } else if (name === "Full length") {
+    } else if (name === 'Full length') {
       dispatch(set_lower_body({ ...lower_body, full_length: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       FullLengthVALUE(value);
-    } else if (name === "Hip Round") {
+    } else if (name === 'Hip Round') {
       dispatch(set_lower_body({ ...lower_body, hip_round: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       HipRoundVALUE(value);
-    } else if (name === "InSeam") {
+    } else if (name === 'InSeam') {
       dispatch(set_lower_body({ ...lower_body, inseam: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       InSeamVALUE(value);
-    } else if (name === "Thigh") {
+    } else if (name === 'Thigh') {
       dispatch(set_lower_body({ ...lower_body, thigh: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       ThighVALUE(value);
-    } else if (name === "Calf") {
+    } else if (name === 'Calf') {
       dispatch(set_lower_body({ ...lower_body, calf: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       CalfVALUE(value);
-    } else if (name === "Ankle") {
+    } else if (name === 'Ankle') {
       dispatch(set_lower_body({ ...lower_body, ankle: value }));
-      setAllDone("Done");
+      setAllDone('Done');
       AnkleVALUE(value);
     }
   };
 
-  var NECKFilled = neck === "" ? false : true;
-  var CHESTFilled = chest === "" ? false : true;
-  var WRISTFilled = wrist === "" ? false : true;
-  var SHOULDERFilled = shoulder === "" ? false : true;
-  var ARMHOLEFilled = arm_hole === "" ? false : true;
-  var SLEEVEFilled = sleeve === "" ? false : true;
+  var NECKFilled = neck === '' ? false : true;
+  var CHESTFilled = chest === '' ? false : true;
+  var WRISTFilled = wrist === '' ? false : true;
+  var SHOULDERFilled = shoulder === '' ? false : true;
+  var ARMHOLEFilled = arm_hole === '' ? false : true;
+  var SLEEVEFilled = sleeve === '' ? false : true;
 
-  var WAISTFilled = waist === "" ? false : true;
-  var HIPROUNDFilled = hip_round === "" ? false : true;
-  var INSEAMFilled = inseam === "" ? false : true;
-  var FULLLENGTHFilled = full_length === "" ? false : true;
-  var THIGHFilled = thigh === "" ? false : true;
-  var CALFFilled = calf === "" ? false : true;
-  var ANKLEFilled = ankle === "" ? false : true;
+  var WAISTFilled = waist === '' ? false : true;
+  var HIPROUNDFilled = hip_round === '' ? false : true;
+  var INSEAMFilled = inseam === '' ? false : true;
+  var FULLLENGTHFilled = full_length === '' ? false : true;
+  var THIGHFilled = thigh === '' ? false : true;
+  var CALFFilled = calf === '' ? false : true;
+  var ANKLEFilled = ankle === '' ? false : true;
 
   const [AllValues, SetAllValues] = useState(
     NECKFilled &&
@@ -180,41 +180,41 @@ function AddManMeasurement({
       ? true
       : false
   );
-  const [AllDone, setAllDone] = useState("Start");
-  const [button, setButton] = useState("upper");
-  const [Open, SetOpen] = useState("upper");
+  const [AllDone, setAllDone] = useState('Start');
+  const [button, setButton] = useState('upper');
+  const [Open, SetOpen] = useState('upper');
 
-  const FocusIt = (value) => {
+  const FocusIt = value => {
     if (Open === value) {
       if (
-        value === "Neck" ||
-        value === "Arm Hole" ||
-        value === "Shoulder" ||
-        value === "Chest" ||
-        value === "Wrist" ||
-        value === "Sleeve length"
+        value === 'Neck' ||
+        value === 'Arm Hole' ||
+        value === 'Shoulder' ||
+        value === 'Chest' ||
+        value === 'Wrist' ||
+        value === 'Sleeve length'
       ) {
-        SetOpen("upper");
+        SetOpen('upper');
       } else {
-        SetOpen("lower");
+        SetOpen('lower');
       }
     } else {
       SetOpen(value);
     }
   };
   const SetIt = () => {
-    if (AllDone === "Start") {
-      SetOpen("Neck");
-      setButton("upper");
+    if (AllDone === 'Start') {
+      SetOpen('Neck');
+      setButton('upper');
     } else {
       setAllDone(true);
-      SetOpen("upper");
+      SetOpen('upper');
     }
   };
   const UploadMeasurement = () => {
-    setAllDone("Done");
+    setAllDone('Done');
     const upperBodyData = {
-      type: "upper",
+      type: 'upper',
       measurements_basic_id: basic_id,
       neck: parseFloat(NeckData),
       shoulder: parseFloat(ShoulderData),
@@ -225,7 +225,7 @@ function AddManMeasurement({
     };
 
     const lowerBodyData = {
-      type: "Lower",
+      type: 'Lower',
       measurements_basic_id: basic_id,
       full_length: parseFloat(FullLengthData),
       hip_round: parseFloat(HipRoundData),
@@ -237,7 +237,7 @@ function AddManMeasurement({
     };
 
     console.log(
-      "UpperData",
+      'UpperData',
       NeckData,
       ChestData,
       WristData,
@@ -246,7 +246,7 @@ function AddManMeasurement({
       SleeveLengthData
     );
     console.log(
-      "LowerData",
+      'LowerData',
       WaistData,
       HipRoundData,
       FullLengthData,
@@ -262,28 +262,28 @@ function AddManMeasurement({
       <div
         className={styles.container}
         style={
-          tabView && !mobileView ? { marginTop: "1em" } : { marginTop: "0em" }
+          tabView && !mobileView ? { marginTop: '1em' } : { marginTop: '0em' }
         }
       >
         <div className={styles.TabsButtonDivTop}>
           <Button
             onClick={() => {
-              setButton("upper");
-              SetOpen("upper");
+              setButton('upper');
+              SetOpen('upper');
             }}
             className={
-              button === "upper" ? styles.TabsButtonActive1 : styles.TabsButton1
+              button === 'upper' ? styles.TabsButtonActive1 : styles.TabsButton1
             }
           >
             Upper Body
           </Button>
           <Button
             onClick={() => {
-              setButton("lower");
-              SetOpen("lower");
+              setButton('lower');
+              SetOpen('lower');
             }}
             className={
-              button === "lower" ? styles.TabsButtonActive2 : styles.TabsButton2
+              button === 'lower' ? styles.TabsButtonActive2 : styles.TabsButton2
             }
           >
             Lower Body
@@ -294,74 +294,74 @@ function AddManMeasurement({
 
           <img
             src={
-              Open === "upper"
+              Open === 'upper'
                 ? Image
-                : Open === "lower"
+                : Open === 'lower'
                 ? Image
-                : Open === "Neck"
+                : Open === 'Neck'
                 ? neck_image
-                : Open === "Shoulder"
+                : Open === 'Shoulder'
                 ? shoulder_image
-                : Open === "Chest"
+                : Open === 'Chest'
                 ? chest_image
-                : Open === "Arm Hole"
+                : Open === 'Arm Hole'
                 ? arm_image
-                : Open === "Waist"
+                : Open === 'Waist'
                 ? waist_image
-                : Open === "Wrist"
+                : Open === 'Wrist'
                 ? wrist_image
-                : Open === "Hip Round"
+                : Open === 'Hip Round'
                 ? hip_image
-                : Open === "Thigh"
+                : Open === 'Thigh'
                 ? thigh_image
-                : Open === "Ankle"
+                : Open === 'Ankle'
                 ? ankle_image
-                : Open === "Sleeve length"
+                : Open === 'Sleeve length'
                 ? sleeve_image
-                : Open === "Calf"
+                : Open === 'Calf'
                 ? calf_image
-                : Open === "InSeam"
+                : Open === 'InSeam'
                 ? inseam_image
-                : Open === "Full length"
+                : Open === 'Full length'
                 ? fullLength_image
                 : Image
             }
-            alt="body"
+            alt='body'
             className={
-              Open === "upper"
+              Open === 'upper'
                 ? styles.upperImage
-                : Open === "lower"
+                : Open === 'lower'
                 ? styles.lowerImage
-                : Open === "Neck"
+                : Open === 'Neck'
                 ? styles.Neck
-                : Open === "Shoulder"
+                : Open === 'Shoulder'
                 ? styles.Shoulder
-                : Open === "Chest"
+                : Open === 'Chest'
                 ? styles.Chest
-                : Open === "Arm Hole"
+                : Open === 'Arm Hole'
                 ? styles.Arm
-                : Open === "Waist"
+                : Open === 'Waist'
                 ? styles.Waist
-                : Open === "Wrist"
+                : Open === 'Wrist'
                 ? styles.Wrist
-                : Open === "Hip Round"
+                : Open === 'Hip Round'
                 ? styles.Hip
-                : Open === "Thigh"
+                : Open === 'Thigh'
                 ? styles.Thigh
-                : Open === "Ankle"
+                : Open === 'Ankle'
                 ? styles.Ankle
-                : Open === "Sleeve length"
+                : Open === 'Sleeve length'
                 ? styles.Sleeve
-                : Open === "Calf"
+                : Open === 'Calf'
                 ? styles.Calf
-                : Open === "InSeam"
+                : Open === 'InSeam'
                 ? styles.Inseam
-                : Open === "Full length"
+                : Open === 'Full length'
                 ? styles.FullLength
                 : styles.upperImage
             }
           />
-          {Open === "upper" || Open === "lower" ? (
+          {Open === 'upper' || Open === 'lower' ? (
             <FloatingTag
               position={button}
               FocusIt={FocusIt}
@@ -389,31 +389,31 @@ function AddManMeasurement({
             focused={true}
             Form={Form}
             value={
-              Open === "Neck"
+              Open === 'Neck'
                 ? neck
-                : Open === "Shoulder"
+                : Open === 'Shoulder'
                 ? shoulder
-                : Open === "Arm Hole"
+                : Open === 'Arm Hole'
                 ? arm_hole
-                : Open === "Sleeve length"
+                : Open === 'Sleeve length'
                 ? sleeve
-                : Open === "Waist"
+                : Open === 'Waist'
                 ? waist
-                : Open === "Full length"
+                : Open === 'Full length'
                 ? full_length
-                : Open === "Chest"
+                : Open === 'Chest'
                 ? chest
-                : Open === "Ankle"
+                : Open === 'Ankle'
                 ? ankle
-                : Open === "InSeam"
+                : Open === 'InSeam'
                 ? inseam
-                : Open === "Thigh"
+                : Open === 'Thigh'
                 ? thigh
-                : Open === "Calf"
+                : Open === 'Calf'
                 ? calf
-                : Open === "Wrist"
+                : Open === 'Wrist'
                 ? wrist
-                : Open === "Hip Round"
+                : Open === 'Hip Round'
                 ? hip_round
                 : 0
             }
@@ -425,7 +425,7 @@ function AddManMeasurement({
           <Link
             to={`/add-measurement-image/${basic_id}`}
             //  to={`/viewmeasurement/${basic_id}`}
-            style={{ color: "#fff" }}
+            style={{ color: '#fff' }}
           >
             <Button
               className={styles.submitBtn}
@@ -447,11 +447,11 @@ function AddManMeasurement({
           <div className={styles.TabsButtonDiv}>
             <Button
               onClick={() => {
-                setButton("upper");
-                SetOpen("upper");
+                setButton('upper');
+                SetOpen('upper');
               }}
               className={
-                button === "upper"
+                button === 'upper'
                   ? styles.TabsButtonActive1
                   : styles.TabsButton1
               }
@@ -460,11 +460,11 @@ function AddManMeasurement({
             </Button>
             <Button
               onClick={() => {
-                setButton("lower");
-                SetOpen("lower");
+                setButton('lower');
+                SetOpen('lower');
               }}
               className={
-                button === "lower"
+                button === 'lower'
                   ? styles.TabsButtonActive2
                   : styles.TabsButton2
               }
@@ -499,7 +499,7 @@ function AddManMeasurement({
           <div className={styles.help}>
             <h1>Help</h1>
             <IconButton className={styles.help_btn}>
-              <img src={help_img} alt="" />
+              <img src={help_img} alt='' />
             </IconButton>
           </div>
         </div>

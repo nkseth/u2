@@ -22,6 +22,8 @@
   background: #e6e3dc;
   img {
     height: calc(100vh - 98px);
+    object-fit: cover;
+    object-position: top center;
   }
 }
 
@@ -94,7 +96,7 @@
 }
 .OtherInfoDiv {
   width: 100%;
-  max-width: 300px;
+  // max-width: 300px;
   margin-bottom: 1em;
   background-color: #e6e3dc;
   border-radius: 12px;
@@ -105,7 +107,6 @@
   padding: 1em;
   span {
     display: flex;
-    align-items: center;
     h3 {
       font-family: DM Sans;
       font-size: 20px;
@@ -115,6 +116,7 @@
       letter-spacing: 0.03em;
       text-align: left;
       margin-left: 0.5em;
+      color: #000000 !important;
     }
     h1 {
       font-family: DM Serif Display;
@@ -124,7 +126,8 @@
       line-height: 48px;
       letter-spacing: 0.03em;
       text-align: left;
-      margin-right: 0.3em;
+      margin: 0 0 0 0.3em !important;
+      color: #000000 !important;
     }
   }
 }

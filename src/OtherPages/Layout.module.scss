@@ -25,6 +25,18 @@
     color: #857250;
   }
 }
+.Button {
+  background-color: #857250 !important;
+  color: white !important;
+  height: 50px;
+  padding: 10px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  &:hover {
+    background-color: #857250;
+  }
+}
 
 .cardsDiv {
   margin-top: 17px;

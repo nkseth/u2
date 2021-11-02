@@ -117,3 +117,13 @@ input {
   font-size: 14px !important;
   font-family: 'DM Sans' !important;
 }
+
+.mySwiper_view--measurement {
+  height: calc(100vh - 98px);
+}
+
+.mySwiper_view--measurement img {
+  object-fit: contain;
+  height: calc(100vh - 98px);
+  object-position: top center;
+}

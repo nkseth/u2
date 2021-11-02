@@ -1,7 +1,12 @@
 .heading {
-  font-family: 'DM Serif Display';
+  //styleName: H1;
+  font-family: DM Serif Display;
   font-size: 54px;
+  font-style: normal;
+  font-weight: 400;
   line-height: 64px;
+  letter-spacing: 0em;
+
   color: white;
 }
 .subHeading {
@@ -18,7 +23,7 @@
 }
 .textGroup {
   background-color: #6a5b40;
-  opacity: 0.53;
+  opacity: 0.78;
   width: 742px;
   height: 232px;
   position: absolute;

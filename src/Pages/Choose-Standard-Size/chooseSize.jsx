@@ -82,7 +82,7 @@ const BootstrapInput = withStyles((theme) => ({
 
 export default function ChooseStandardSize({
   match: {
-    params: { orderId },
+    params: { orderId, itemId },
   },
 }) {
   const history = useHistory();
@@ -97,7 +97,7 @@ export default function ChooseStandardSize({
   const [Names, setName] = useState(Customer_Name);
 
   const { gender } = useSelector((state) => state.root.measurement);
-  console.log(gender);
+  console.log(orderId, itemId);
   const { user } = useSelector((state) => state.root.auth);
 
   useEffect(() => {
@@ -128,8 +128,9 @@ export default function ChooseStandardSize({
         fitting: Fitting,
         user_id: user.id,
         order_id: orderId,
+        item_id: itemId
       });
-      setTimeout(() => {}, 150000);
+      setTimeout(() => { }, 150000);
       console.log(data);
       dispatch(set_basic_id(data));
       set_basic_id(data);
@@ -195,8 +196,8 @@ export default function ChooseStandardSize({
                   mobileView
                     ? { width: "285px" }
                     : tabView
-                    ? { width: "375px" }
-                    : { width: "100%", minWidth: "350px", maxWidth: "450px" }
+                      ? { width: "375px" }
+                      : { width: "100%", minWidth: "350px", maxWidth: "450px" }
                 }
                 notimp
                 placeholder="Name"
@@ -211,8 +212,8 @@ export default function ChooseStandardSize({
                   mobileView
                     ? { width: "90%", maxWidth: "285px" }
                     : tabView
-                    ? { background: "grey" }
-                    : { width: "100%", minWidth: "300px", maxWidth: "350px" }
+                      ? { background: "grey" }
+                      : { width: "100%", minWidth: "300px", maxWidth: "350px" }
                 }
                 input={<BootstrapInput />}
                 value={Gender}
@@ -243,8 +244,8 @@ export default function ChooseStandardSize({
                   mobileView
                     ? { width: "90%", maxWidth: "285px" }
                     : tabView
-                    ? { background: "grey" }
-                    : { width: "100%", minWidth: "300px", maxWidth: "350px" }
+                      ? { background: "grey" }
+                      : { width: "100%", minWidth: "300px", maxWidth: "350px" }
                 }
                 input={<BootstrapInput />}
                 value={Size}
@@ -295,8 +296,8 @@ export default function ChooseStandardSize({
                   mobileView
                     ? { width: "90%", maxWidth: "285px" }
                     : tabView
-                    ? { background: "grey" }
-                    : { width: "100%", minWidth: "300px", maxWidth: "350px" }
+                      ? { background: "grey" }
+                      : { width: "100%", minWidth: "300px", maxWidth: "350px" }
                 }
                 input={<BootstrapInput />}
                 value={Fitting}

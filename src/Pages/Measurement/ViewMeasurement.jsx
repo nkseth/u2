@@ -47,9 +47,6 @@ export default function ViewMeasurement({
 
   const { user } = useSelector(state => state.root.auth);
   const { measurement } = useSelector(state => state.root.measurement);
-
-  console.log(measurement);
-
   const { neck, chest, wrist, shoulder, arm_hole, sleeve } = upper_body;
   const { waist, hip_round, full_length, inseam, thigh, calf, ankle } =
     lower_body;
@@ -100,14 +97,13 @@ export default function ViewMeasurement({
                 <Carousel
                   autoPlay
                   emulateTouch
-                  infiniteLoop
                   showStatus={false}
                   showArrows={true}
                   showThumbs={false}
                 >
-                  <img src={img} alt='all body details' />
+                  <img src={measurement.front_image} alt='all body details' />
 
-                  <img src={img} alt='all body details' />
+                  <img src={measurement.back_image} alt='all body details' />
                 </Carousel>
               </div>
             </Grid>

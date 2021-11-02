@@ -1,5 +1,6 @@
 .Measurement {
   margin-top: 30px;
+  position: relative;
   // width: 80%;
   .Measurement_Box {
     display: grid;
@@ -72,7 +73,22 @@
     }
   }
 }
+.Button {
+  background-color: #857250 !important;
+  color: white !important;
+  height: 50px;
+  padding: 10px !important;
+  min-width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  position: fixed !important;
+  bottom: 50px !important;
+  right: 200px !important;
 
+  &:hover {
+    background-color: #857250;
+  }
+}
 h5 {
   font-family: DM Sans;
   font-size: 16px;

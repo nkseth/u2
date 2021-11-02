@@ -87,9 +87,7 @@ export default function CustomTextField({
                   },
                 }}
                 InputProps={{
-                  endAdornment: (
-                    <InputAdornment position='end'>In</InputAdornment>
-                  ),
+                  endAdornment: <InputAdornment>In</InputAdornment>,
                 }}
                 variant='standard'
                 fullWidth
@@ -99,10 +97,10 @@ export default function CustomTextField({
                   background: 'transparent',
                   paddingLeft: '0.2em',
                 }}
-                autoFocus={focus}
+                autoFocus={true}
                 value={values}
                 onChange={BringValue}
-                type={'text'}
+                type={'number'}
               />
             </div>
             <div>

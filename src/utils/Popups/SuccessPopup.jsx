@@ -1,6 +1,6 @@
-import styles from './SuccessPopUp.module.scss';
-import close from './close.svg';
-import { IconButton } from '@material-ui/core';
+import styles from "./SuccessPopUp.module.scss";
+import close from "./close.svg";
+import { IconButton } from "@material-ui/core";
 export function SuccessPopUp({
   toggle,
   title,

@@ -148,7 +148,7 @@ function App() {
         <ProtectedRoute path='/add-measurement' component={AddMeasurement} />
         <ProtectedRoute path='/my-measurements' component={MyMeasurements} />
         <ProtectedRoute
-          path='/add-measurement-choose-standard-size/:orderId'
+          path='/add-measurement-choose-standard-size/:orderId/:itemId'
           component={ChooseStandardSize}
           exact
         />

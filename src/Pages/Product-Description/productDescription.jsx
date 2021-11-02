@@ -85,15 +85,19 @@ const BootstrapInput = withStyles(theme => ({
     },
   },
   input: {
+
     width: '343px',
+
     borderRadius: 0,
     position: 'relative',
     // backgroundColor: theme.palette.background.paper,
     border: '1px solid #ced4da',
     fontSize: 16,
+
     padding: '3px 8px',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     '&:focus': {
+
       borderRadius: 4,
       borderColor: '#80bdff',
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
@@ -175,6 +179,15 @@ export default function ProductDescription({ match }) {
   const { details, error, tags, loading, attributes } = useSelector(
     state => state.root.productDetails
   );
+
+  useEffect(() => {
+    if(click){
+      setTimeout(() => {
+        setClick(false)
+      }, 4500);
+    }
+  }, [click])
+
   useEffect(() => {
     if (details) {
       setProductType(
@@ -386,7 +399,9 @@ export default function ProductDescription({ match }) {
                     </div>
                     <div>
                       <label>Enter pincode*</label>
+
                       <input type='text' name='pincode/zipcode' />
+
                     </div>
                     <span>
                       Please enter the pincode to check delivery time{' '}

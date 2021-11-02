@@ -1,6 +1,7 @@
 import common_axios from "../../utils/axios.config";
 import {
   CLEAR_ERRORS,
+  FORGOT_DATA,
   LOAD_USER,
   LOGIN,
   LOGIN_REQUEST,
@@ -11,6 +12,7 @@ import {
   VERIFY_OTP_FAILED,
   VERIFY_OTP_REQUEST,
   VERIFY_OTP_SUCCESS,
+  OAUTH_SIGNUP
 } from "./types";
 
 export const login = (userCreds) => async (dispatch) => {
@@ -53,12 +55,13 @@ export const logout = () => async (dispatch) => {
 export const loadUser = () => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
+    
     const { data } = await common_axios.post("/is_login", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-
+    console.log('token',data)
     if (data.data) {
       dispatch({ type: LOAD_USER, payload: data.data });
     }
@@ -97,3 +100,44 @@ export const registOtpVerify = (otp, email) => async (dispatch) => {
 export const clearAuth = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
 };
+
+
+export const PostOauthSignup = (userData,type) =>  {
+  return new Promise((resolve, reject) => {
+    fetch("http://127.0.0.1:8000/api"+ type, {
+      method: 'POST',
+      body: JSON.stringify(userData)
+    })
+    .then((response) => response.json())
+    .then((res) => {
+      resolve(res);
+    })
+    .catch((error) => {
+      reject(error);
+    });
+  });
+
+}
+
+export const socialLogin = (userCreds, provider) => async (dispatch) => {
+  try {
+    dispatch({ type: LOGIN_REQUEST });
+    const { data } = await common_axios.post("auth/social/"+provider, userCreds);
+    console.log('data', data)
+    if (data.data) {
+      localStorage.setItem("token", JSON.stringify(data.data.api_token));
+      localStorage.setItem("isLogged", true);
+      dispatch({ type: LOGIN, payload: data.data });
+    }
+  } catch (e) {
+    alert("Sometinh went wrong");
+    console.log(e);
+  }
+};
+
+
+export const setForgotData = (val) => ({
+  type: FORGOT_DATA,
+  payload: val,
+});
+

@@ -11,7 +11,10 @@ import common_axios from "../utils/axios.config";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginCreds, setUserData } from "../Redux/actions/homepage";
 import { useCookies } from "react-cookie";
-import { login } from "../Redux/actions/auth";
+import { login, socialLogin } from "../Redux/actions/auth";
+import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+
 const Login = () => {
   const { login_Mode_Handler, loginMode, login_Model_Hide } = useLogin();
   const dispatch = useDispatch();
@@ -65,6 +68,37 @@ const Login = () => {
     //   console.log(e);
     // }
   };
+
+  const signup = (response, type) => {
+    
+    setLoading(true);
+    let postData;
+    if(type == 'facebook' && response.email) {
+      console.log('response.accessToken facebook', response.accessToken);
+      postData = {
+        'access_token' : response.accessToken
+      }
+      dispatch(socialLogin(postData, 'facebook'));
+    }
+
+    if(type == 'google' && response.profileObj.email) {
+      console.log('response.accessToken google', response.accessToken)
+      postData = {
+        'access_token' : response.accessToken
+      }
+      dispatch(socialLogin(postData, 'google'));
+    }
+  }
+
+  const responseFacebook = (response) => {
+    console.log(response);
+    signup(response, 'facebook');
+  }
+
+  const responseGoogle = (response) => {
+    console.log(response);
+    signup(response, 'google');
+  }
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className={styles.Screen_Login}>
@@ -128,14 +162,34 @@ const Login = () => {
       )}
 
       <div className={styles.Screen_Login_Social}>
-        <Button>
-          <img src={GoogleIcon} alt="GoogleIcon" />
-          Google
-        </Button>
-        <Button>
-          <img src={FacebookIcon} alt="FacebookIcon" />
-          Facebook
-        </Button>
+        
+          <GoogleLogin
+            clientId="1056686618594-imlm5dpp7jbviiqgot8mai4gpr7tehvg.apps.googleusercontent.com"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+            render={renderProps => (
+              <Button onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                <img src={GoogleIcon} alt="GoogleIcon" /> </Button>
+            )}
+            buttonText="Login"
+        />
+        
+          <FacebookLogin
+            appId="270944214982706"
+            autoLoad={false}
+            fields="name,email,picture"
+            callback={responseFacebook}
+            cssClass="my-facebook-button-class"
+            textButton=""
+            icon="fa-facebook"
+            render={renderProps => (
+              <Button onClick={renderProps.onClick}>
+                <img src={FacebookIcon} alt="FacebookIcon" /></Button>
+            )}
+          />
+          
+        
       </div>
       <div className={styles.Screen_Login_Bottom}>
         <Link onClick={() => login_Mode_Handler("SignUp")}>

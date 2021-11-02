@@ -1,61 +1,100 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import CustomDivider from '../../../utils/Custom Divider/divider';
-import styles from '../Style/PopularCategory.module.scss';
-import overlay from '../Images/p1.png';
-import { useHistory } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { popularCategories } from '../../../Redux/actions/designerHomePage';
-import '../Style/common.scss';
-import { LazyLoadingComp } from '../../../utils/LazyLoading/index';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useMediaQuery } from "@material-ui/core";
+import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 
-//TRBL
-//TRBL
+import { popularCategories } from "../../../Redux/actions/designerHomePage";
+import CustomDivider from "../../../utils/Custom Divider/divider";
+
+import styles from "../Style/PopularCategory.module.scss";
+import "../Style/common.scss";
+
+import overlay from "../Images/p1.png";
+
 const PopularCategory = () => {
   const dispatch = useDispatch();
-  const baseStyle = { padding: '5rem 3rem' };
-  const { categories } = useSelector(state => state.root.popularCategory);
-  console.log(categories);
+  const history = useHistory();
+  const mobile = useMediaQuery("(max-width:450px)");
+
+  const baseStyle = {
+    padding: "5rem 3rem",
+  };
+
+  const { categories } = useSelector((state) => state.root.popularCategory);
+
   useEffect(() => {
     dispatch(popularCategories());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const history = useHistory();
 
   return (
     <div className={styles.popularcategory_content} style={baseStyle}>
-      <div className={`${styles.PopularCategory_header}`}>
+      <div className={styles.PopularCategory_header}>
         Popular Categories
         <CustomDivider style={{ height: '1px', background: '#857250' }} />
       </div>
-      <div className={`${styles.Category} Category`}>
-        {categories?.slice(0, 6).map((category, i) => {
-          return (
-            <div
-              onClick={() =>
-                history.push(`/designers-product-page/${category.link}`)
-              }
-
-              className={`${styles.Category_item}   Category_item-${i}`}
-              style={{
-                backgroundImage: 'url(' + category?.image + ')',
-              }}
-            >
-              <img
-                src={overlay}
-                className={styles.divOverlayImg}
-                alt={category?.id}
-              />
-
-              <Link
-                style={{ zIndex: 10 }}
-                to={category.link ? category.link : ''}
+      {!mobile ? (
+        <div className={`${styles.Category} Category`}>
+          {categories?.slice(0, 6).map((category, i) => {
+            return (
+              <div
+                onClick={() =>
+                  history.push(`/designers-product-page/${category.link}`)
+                }
+                className={`${styles.Category_item}   Category_item-${i}`}
+                style={{
+                  backgroundImage: "url(" + category?.image + ")",
+                }}
               >
-                {category?.title}
-              </Link>
-            </div>
-          );
-        })}
-      </div>
+                <img
+                  src={overlay}
+                  className={styles.divOverlayImg}
+                  alt={category?.id}
+                />
+
+                <Link
+                  style={{ zIndex: 10 }}
+                  to={category.link ? category.link : ""}
+                >
+                  {category?.title}
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div class="container">
+          <div className={styles.Category}>
+            {categories?.slice(0, 6).map((category, i) => {
+              return (
+                <div
+                  onClick={() =>
+                    history.push(`/designers-product-page/${category.link}`)
+                  }
+                  className={`${styles.Category_item}   Category_item-${i}`}
+                  style={{
+                    backgroundImage: "url(" + category?.image + ")",
+                  }}
+                >
+                  <img
+                    src={overlay}
+                    className={styles.divOverlayImg}
+                    alt={category?.id}
+                  />
+
+                  <Link
+                    style={{ zIndex: 10 }}
+                    to={category.link ? category.link : ""}
+                  >
+                    {category?.title}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -7,8 +7,16 @@
     border: none;
     border-radius: 50%;
     &:hover {
-      background-color: #00000085;
-      color: #fff !important;
+      background-color:  #FFFFFF;
+      color: #6A5B40 !important;
+    }
+  }
+  .iconBtn {
+    border: 1px solid #fff !important;
+    color: #fff !important;
+    &:hover {
+      background-color:  #FFFFFF;
+      color: #6A5B40 !important;
     }
   }
 }

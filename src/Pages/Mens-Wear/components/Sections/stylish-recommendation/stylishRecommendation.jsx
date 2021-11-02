@@ -123,11 +123,6 @@ export default function StylishRecommendationSection({ type }) {
                       <StylishCard type={type} item={stylish_recommend[3]} />
                     </div>
                   ) : null}
-                  {stylish_recommend.length > 4 ? (
-                    <div>
-                      <StylishCard type={type} item={stylish_recommend[4]} />
-                    </div>
-                  ) : null}
                 </div>
               </>
             )}

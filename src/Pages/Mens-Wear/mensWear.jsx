@@ -138,19 +138,20 @@ export default function MensWear({ match }) {
 
           <CarouselProvider
             naturalSlideWidth={100}
-            visibleSlides={small ? 1.5 : customView ? 2 : iPade ? 1 : 3}
+            visibleSlides={small ? 1.2 : customView ? 1.5 : iPade ? 1.5 : 3.1}
             totalSlides={mens_wear_cat.length + 0.45}
             // infinite
             isIntrinsicHeight
             className={styles.carousel}
           >
-            <Slider>
+           
+            <Slider style={{marginLeft: "12px"}}>
               {mens_wear_cat.map((item, index) => {
                 const { name, slug, cover_image: image } = item;
                 return (
                   <Slide
                     index={item.name + index}
-                    style={{ marginRight: "4em" }}
+                    style={{ marginRight: "1em" }}
                   >
                     <LazyLoadingComp>
                       <CategoriesToBagCard
@@ -164,6 +165,7 @@ export default function MensWear({ match }) {
                 );
               })}
             </Slider>
+            
             <DotGroup style={{ display: "flex", display: "none" }} />
 
             <div className={styles.sliderBtnDiv}>

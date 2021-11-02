@@ -178,3 +178,124 @@ $text-secondary: #3b3b3b;
   font-weight: 400;
   line-height: 30px;
 }
+
+.searchTagContainerForMobile {
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px;
+  // text-align: justify;
+}
+
+.endTaglineForMobile {
+  margin-top: -10px;
+  margin-bottom: 50px;
+  font-size: 12px;
+  font-weight: 400;
+  color: $text-secondary;
+  display: flex;
+  justify-content: center;
+}
+
+.linksHeaderForMobile {
+  font-family: DM Serif Display;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  margin-bottom: 0.2rem;
+}
+
+.linksHeaderForMobilePlatformButton {
+  font-family: DM Serif Display;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  margin-bottom: 0.2rem;
+}
+
+.linksContainerForMobile {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.1rem;
+}
+
+.linksContainerWithImageForMobile {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.1rem;
+  margin-left: 20px;
+}
+
+.linkForMobile {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 14px;
+  color: #3b3b3b;
+}
+
+.talkToUsContainerForMobile {
+  margin-top: 5px;
+  div:first-child {
+    span {
+     margin-left: 5px;
+    }
+  }
+}
+
+.logoContainerForMobile {
+  .logo {
+    color: $primary-color;
+    font-family: DM Serif Display;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 44px;
+  }
+
+  .emailContianer {
+    margin-top: 24px;
+    display: grid;
+    span {
+      font-family: DM Serif Display;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 200;
+      line-height: 18px;
+      color: #000;
+    }
+    label {
+      font-family: DM Sans;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 11px;
+      letter-spacing: 0.1599999964237213px;
+      margin-top: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      height: 35px;
+      border-radius: 5px;
+      border: 1px solid $primary-color;
+      padding: 0.5rem 0.5rem;
+      margin-bottom: 0.7rem;
+    }
+  }
+  .emailSubmitBtn {
+    background: $primary-color !important;
+    height: 30px !important;
+    width: 80px !important;
+    border-radius: 5px !important;
+    font-family: Inter;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 16px !important;
+    color: #fff !important;
+  }
+}

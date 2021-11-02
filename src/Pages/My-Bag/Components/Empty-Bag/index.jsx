@@ -4,6 +4,7 @@ import CustomSection from '../../../../utils/Custom Section/section';
 import styles from './index.module.scss';
 import Empty from '../../../../Images/mybag/empty.png';
 import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 export default function EmptyBag() {
   return (
@@ -32,7 +33,11 @@ export default function EmptyBag() {
             </p>
           </div>
           <div style={{ marginTop: '167px', marginBottom: '42px' }}>
-            <Button className={styles.mobileButton}>Browse items</Button>
+            <Button className={styles.mobileButton}>
+              <Link to={`/wear/mens`} style={{ color: '#fff' }}>
+                Browse items
+              </Link>
+            </Button>
           </div>
         </div>
       </CustomSection>

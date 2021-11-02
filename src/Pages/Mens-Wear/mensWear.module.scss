@@ -8,7 +8,7 @@
   div {
     width: 100%;
     height: 100%;
-    background: #392d16e5;
+    background: #392d16ce;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,6 +42,7 @@
 .categoriesToBagSection {
   text-align: center;
   margin-bottom: 5rem;
+  margin-top: -60px;
 
   .categoriesToBagHeader {
     font-family: DM Serif Display;
@@ -63,17 +64,22 @@
 .sliderBtnDiv {
   position: absolute;
   display: flex;
-  align-items: center !important;
   justify-content: space-between;
   width: 100%;
   height: 20px;
 
   // gap: 1rem;
-  .sliderBtnPrev,
+  .sliderBtnPrev{
+    background: none;
+    border: none;
+    margin-top: 3rem;
+    margin-left: -30px;
+  }
   .sliderBtnNext {
     background: none;
     border: none;
     margin-top: 3rem;
+    margin-right: -40px;
   }
 }
 
@@ -94,6 +100,9 @@
 .iconBtn {
   border: 1px solid rgb(0, 0, 0) !important;
   color: rgb(0, 0, 0) !important;
+  :hover{
+    color: white !important;
+  }
 }
 
 .swiper_slide {
@@ -102,9 +111,12 @@
 
 .carousel {
   display: flex;
+  align-self: center;
   justify-content: center;
   position: relative;
-  width: 100%;
+  width: 88%;
+  margin-left: 70px;
+  margin-right: 100px;
 }
 
 .ban_category {
@@ -217,6 +229,10 @@
   .sliderBtnNext {
     background: none;
     border: none;
+    :hover {
+      background-color: #6A5B40;
+      border-radius: 50px;
+    }
   }
 }
 

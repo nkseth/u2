@@ -1,6 +1,7 @@
 import common_axios from "../../utils/axios.config";
 import {
   CLEAR_ERRORS,
+  FORGOT_DATA,
   LOAD_USER,
   LOGIN,
   LOGIN_REQUEST,
@@ -100,6 +101,7 @@ export const clearAuth = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
 };
 
+
 export const PostOauthSignup = (userData,type) =>  {
   return new Promise((resolve, reject) => {
     fetch("http://127.0.0.1:8000/api"+ type, {
@@ -132,4 +134,10 @@ export const socialLogin = (userCreds, provider) => async (dispatch) => {
     console.log(e);
   }
 };
+
+
+export const setForgotData = (val) => ({
+  type: FORGOT_DATA,
+  payload: val,
+});
 

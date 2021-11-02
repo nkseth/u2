@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IconButton, useMediaQuery } from "@material-ui/core";
 import {
@@ -34,14 +34,34 @@ import brand5 from "../section-three/Components/Slide/Images/logo/logo5.png"
 import brand6 from "../section-three/Components/Slide/Images/logo/logo6.png"
 import brand7 from "../section-three/Components/Slide/Images/logo/logo7.png"
 import brand8 from "../section-three/Components/Slide/Images/logo/logo8.png"
-
+import common_axios from '../../../../../utils/axios.config'
 
 
 
 export default function SectionThree() {
+
+  const [data, setData] = useState([])
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
+
+  useEffect(()=>{
+     fetch_data()
+  },[])
+
+  const fetch_data = async () => {
+    const { data:res } = await common_axios.post("/themeOption",{
+      dashboard_type:"offers",
+      group_name:"best_offer_on_designer_wear",
+      content_type:"all"
+    })
+ 
+    if(res.best_offer_on_designer_wear){
+      setData(res.best_offer_on_designer_wear)
+    }
+    console.log(res)
+  }
+
   return (
     <CustomSection
       class={styles.offer_section_three}
@@ -61,12 +81,11 @@ export default function SectionThree() {
         >
           <Slider>
             <Slide index={0}>
-              <CarouselSlide img1={img1} img2={img2} img3={img3} img4={img4} brand1={brand1} brand2={brand2} brand3={brand3} brand4={brand4} />
+              <CarouselSlide data={data} />
             </Slide>
-            <Slide index={1} style={{ marginLeft: 10 }}>
+            {/* <Slide index={1} style={{ marginLeft: 10 }}>
               <CarouselSlide img1={img5} img2={img6} img3={img7} img4={img8} brand1={brand5} brand2={brand6} brand3={brand7} brand4={brand8} />
-
-            </Slide>
+            </Slide> */}
           </Slider>
           <DotGroup style={{ display: "flex", color: "#fff" }} />
           <div className={styles.carouselNavigationDiv}>

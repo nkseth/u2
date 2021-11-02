@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { IconButton, useMediaQuery } from "@material-ui/core";
+import { IconButton, useMediaQuery, useTheme } from "@material-ui/core";
 import {
   CarouselProvider,
   Slider,
@@ -20,9 +20,32 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { get_top_designers } from "../../../../../Redux/actions/mensWear";
 import { topDesigner } from "../../../../../Redux/actions/designerHomePage";
 export default function ExploreTopDesignersSection({ type }) {
-  const tabView = useMediaQuery("(max-width:768px)");
-  const tabViewPro = useMediaQuery("(max-width:835px)");
-  const mobileView = useMediaQuery("(max-width:550px)");
+  const theme = useTheme();
+  const extraSmall = useMediaQuery(theme.breakpoints.down("xs"));
+  const small = useMediaQuery(theme.breakpoints.down("sm"));
+  const width550 = useMediaQuery("(max-width:550px)");
+  const width768 = useMediaQuery("(max-width:768px)");
+  const width835 = useMediaQuery("(max-width:835px)");
+  const width910 = useMediaQuery("(max-width:910px)");
+  const width1125 = useMediaQuery("(max-width:1125px)");
+
+  const getVisibleCardCount = () => {
+    return extraSmall
+      ? 1
+      : small
+      ? 1.5
+      : width550
+      ? 2
+      : width768
+      ? 2
+      : width835
+      ? 2
+      : width910
+      ? 3
+      : width1125
+      ? 3
+      : 4;
+  };
 
   const dispatch = useDispatch();
 
@@ -38,31 +61,30 @@ export default function ExploreTopDesignersSection({ type }) {
   return (
     <CustomSection
       class="explore_top_designer"
-      style={{ paddingTop: "3rem", paddingBottom: "3rem" }}
+      style={{ paddingTop: "4rem", paddingBottom: "3rem" }}
     >
       <div className={styles.header}>Explore Top Designers</div>
       <CarouselProvider
+        visibleSlides={getVisibleCardCount()}
         naturalSlideWidth={100}
-        totalSlides={2}
+        totalSlides={Object.keys(designers).length}
         isIntrinsicHeight
       >
         <Slider>
-          {designers?.map(
-            ({ id, cover_image, get_merchant, marchent_id }, index) => {
-              return (
-                <Slide index={index}>
-                  <div className={styles.Top_Designer}>
+          {designers?.map(({ id, cover_image, name, marchent_id }, index) => {
+            return (
+              <Slide index={index}>
+                <div className={styles.Top_Designer}>
+                  <div className={styles.Top_Designer_Items}>
                     <Link to={`/designer-products/${marchent_id}`}>
-                      <div className={styles.Top_Designer_Items}>
-                        <img src={cover_image} alt={id} />
-                        <span>{get_merchant?.name}</span>
-                      </div>
+                      <img src={cover_image} alt={id} />
+                      <div style={{ marginTop: "25px" }}>{name}</div>
                     </Link>
                   </div>
-                </Slide>
-              );
-            }
-          )}
+                </div>
+              </Slide>
+            );
+          })}
         </Slider>
         <DotGroup style={{ display: "flex" }} />
         <div className={styles.carouselNavigationDiv}>

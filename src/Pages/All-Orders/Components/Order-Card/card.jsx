@@ -79,7 +79,7 @@ export default function OrdersCard({ pending, item, orderId, detail }) {
                 <Button
                   onClick={() =>
                     history.push(
-                      `/add-measurement-choose-standard-size/${orderId}`
+                      `/add-measurement-choose-standard-size/${orderId}/${item.id}`
                     )
                   }
                   className={styles.trackBtn}

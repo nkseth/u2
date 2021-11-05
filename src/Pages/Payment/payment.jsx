@@ -178,7 +178,9 @@ export default function Payment({
             path='Home / My Bag / Order Summary'
             activePath='/ Payment'
           />
-          <div>{/* <CustomStepper activeStep={1} /> */}</div>
+          <div>
+            <CustomStepper activeStep={1} />
+          </div>
           <div className={styles.container}>
             <div className={styles.firstContainer}>
               <div className={styles.paymentHeader}>Payment Option</div>

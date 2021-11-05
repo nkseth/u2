@@ -49,11 +49,18 @@ export default function VendorBanner() {
               New to U2? See how to setup a business account and use U2 to grow
               your business by collaborating.
             </p>
-            <Button
+            <Link to='/Collabrate-registration'>
+              <Button
+                className={mobileView ? styles.buttonMobile : styles.buttonTab}
+              >
+                Register as a Vendor
+              </Button>
+            </Link>
+            {/* <Button
               className={mobileView ? styles.buttonMobile : styles.buttonTab}
             >
               Register as a Fashion Designer
-            </Button>
+            </Button> */}
           </div>
         </div>
       )}

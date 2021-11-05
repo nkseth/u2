@@ -1,26 +1,27 @@
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { IconButton, Button, useMediaQuery } from "@material-ui/core";
-import Container from "../../utils/Container/container";
-import CustomDivider from "../../utils/Custom Divider/divider";
-import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
-import styles from "./addMeasurement.module.scss";
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { IconButton, Button, useMediaQuery } from '@material-ui/core';
+import Container from '../../utils/Container/container';
+import CustomDivider from '../../utils/Custom Divider/divider';
+import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
+import styles from './addMeasurement.module.scss';
 //Icons
-import RotateIcon from "../../Images/icons/rotate.svg";
-import DownloadIcon from "../../Images/icons/download.svg";
-import DeleteIcon from "../../Images/icons/delete.svg";
+import RotateIcon from '../../Images/icons/rotate.svg';
+import DownloadIcon from '../../Images/icons/download.svg';
+import DeleteIcon from '../../Images/icons/delete.svg';
 //mui Icons
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import RemoveIcon from "@material-ui/icons/Remove";
-import AddIcon from "@material-ui/icons/Add";
-import ZoomInIcon from "@material-ui/icons/ZoomIn";
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
+import ZoomInIcon from '@material-ui/icons/ZoomIn';
 
 export default function AddMeasurement() {
   const history = useHistory();
-  const tabViewPro = useMediaQuery("(max-width:1024px)");
-  const tabView = useMediaQuery("(max-width:768px)");
-  const mobileView = useMediaQuery("(max-width:550px)");
-  const img="https://images.pexels.com/photos/7137411/pexels-photo-7137411.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  const tabViewPro = useMediaQuery('(max-width:1024px)');
+  const tabView = useMediaQuery('(max-width:768px)');
+  const mobileView = useMediaQuery('(max-width:550px)');
+  const img =
+    'https://images.pexels.com/photos/7137411/pexels-photo-7137411.png?auto=compress&cs=tinysrgb&dpr=2&w=500';
   // const img =
   //   "https://s3-alpha-sig.figma.com/img/a86d/7e94/db43f37e2d10b9c407c724b0631387bb?Expires=1627257600&Signature=FtcP6W48HqPgfbhmYPPALKmRyQ9XG987WU~FXilypjyltP~UU59d5QJXB5E1-HTREdUM0dZ14we2et9ZRcYoD5t6AT5exMmEUhH1nCG8LtAKyFRU9j5pB0~UM93~L9FKgc1UV9QDTDb~UCu6~EVV2jO95MBSOIvlwZD4CxGmU~LwAIgbwn3~R-xW3Swg85BoZxOlqlEj-VvnJo34pNhM442IpKBD2HYz58uioY3oddte5pve51ihyw7bUtqSbw0cxQg~EpBtkRWsPLVyo~P45IEWI8pQOe~EgQmEQ7Tf71GKRV8U3PmxmAyBe6rfP69epZYY6141nEPPHlqcmr74NQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
   return (
@@ -30,8 +31,22 @@ export default function AddMeasurement() {
           {!tabViewPro && (
             <Breadcrumb
               path='Home / Men / Measurements/'
+              paths={[
+                {
+                  name: 'Home',
+                  path: '/',
+                },
+                {
+                  name: 'Men',
+                  path: '/wear/mens',
+                },
+                {
+                  name: 'Measurements',
+                  path: '/add-measurement-choose-standard-size/12',
+                },
+              ]}
               activePath=' Simulation'
-              style={{marginBottom:'1rem'}}
+              style={{ marginBottom: '1rem' }}
             />
           )}
           {tabViewPro && (
@@ -39,13 +54,13 @@ export default function AddMeasurement() {
               <div className={styles.innerZoomDiv}>
                 <div>
                   <IconButton size='small'>
-                    <RemoveIcon style={{ color: "#fff", height: "24px" }} />
+                    <RemoveIcon style={{ color: '#fff', height: '24px' }} />
                   </IconButton>
                   <IconButton size='small'>
-                    <ZoomInIcon style={{ color: "#fff", height: "24px" }} />
+                    <ZoomInIcon style={{ color: '#fff', height: '24px' }} />
                   </IconButton>
                   <IconButton size='small'>
-                    <AddIcon style={{ color: "#fff", height: "24px" }} />
+                    <AddIcon style={{ color: '#fff', height: '24px' }} />
                   </IconButton>
                 </div>
               </div>
@@ -94,7 +109,7 @@ export default function AddMeasurement() {
             className={styles.button}
             variant='contained'
             endIcon={<ArrowForwardIcon />}
-            onClick={() => history.push("/my-measurements")}
+            onClick={() => history.push('/my-measurements')}
           >
             Add Measurement
           </Button>
@@ -111,13 +126,13 @@ export default function AddMeasurement() {
             <div className={styles.innerZoomDiv}>
               <div>
                 <IconButton size='small'>
-                  <RemoveIcon style={{ color: "#fff", height: "24px" }} />
+                  <RemoveIcon style={{ color: '#fff', height: '24px' }} />
                 </IconButton>
                 <IconButton size='small'>
-                  <ZoomInIcon style={{ color: "#fff", height: "24px" }} />
+                  <ZoomInIcon style={{ color: '#fff', height: '24px' }} />
                 </IconButton>
                 <IconButton size='small'>
-                  <AddIcon style={{ color: "#fff", height: "24px" }} />
+                  <AddIcon style={{ color: '#fff', height: '24px' }} />
                 </IconButton>
               </div>
               <span>Zoom</span>

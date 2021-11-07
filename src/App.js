@@ -242,7 +242,7 @@ function App() {
           path='/measurement-and-simulation'
           component={MeasurementAndSimulation}
         />
-        <Route path='/select-measurement' component={SelectMeasurement} />
+        <Route path='/select-measurement/:id' component={SelectMeasurement} />
         {/* New pages */}
         <Route path={'/home/polls'} component={Polls} />
         <Route path={'/daily-fashion-tips'} component={FashionTips} />

@@ -84,7 +84,7 @@ const ProductsByDesigner = ({ match }) => {
             <div className={styles.FilterBreadDiv}>
               {!tabViewPro && (
                 <div style={{ width: "200%", marginLeft: 15 }}>
-                  <Breadcrumb path={`Products /`} activePath={`Designer`} />
+                  <Breadcrumb path={`Home /`} activePath={`Designer`} />
                 </div>
               )}
               <div className={styles.firstSection}>
@@ -128,7 +128,7 @@ const ProductsByDesigner = ({ match }) => {
               <div style={{ padding: "1rem 1rem 5rem" }}>
                 {tabViewPro && (
                   <div className={styles.upperbread}>
-                    <Breadcrumb path={`Products /`} activePath={`Designer`} />
+                    <Breadcrumb path={`Home /`} activePath={`Designer`} />
                   </div>
                 )}
                 <ProductsSection

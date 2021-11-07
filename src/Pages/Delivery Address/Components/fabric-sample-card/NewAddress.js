@@ -75,11 +75,42 @@ function NewAddress({ setAddAddress }) {
       city,
       landmark
     );
-    if (
-      (name === "" || address === "" || mobile === "",
-      pincode === "" || locality === "" || city === "")
-    )
-      return alert("All fields are required except optional");
+    // if (
+    //   (name === "" || address === "" || mobile === "",
+    //   pincode === "" || locality === "" || city === "")
+    // )
+    //   return alert("All fields are required except optional");
+    if(name?.length == 0){
+      alert("Enter a valid name");
+      return;
+    }
+
+    if(address?.length < 5){
+      alert("Enter a valid Address");
+      return;
+    }
+
+    if(mobile?.length < 10){
+      alert("Enter a valid Mobile number");
+      return;
+    }
+
+    if(pincode?.length != 6){
+      alert("Enter a valid pincode");
+      return;
+    }
+
+    if(locality?.length == 0){
+      alert("Enter a valid locality");
+      return;
+    }
+
+    if(city?.length == 0){
+      alert("Enter a valid city");
+      return;
+    }
+
+
     if (mobile === alternateMobile)
       return alert("Provide different alternate contact.");
     dispatch(

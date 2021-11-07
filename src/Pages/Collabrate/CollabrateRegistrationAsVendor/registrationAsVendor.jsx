@@ -583,7 +583,6 @@ export default function VendorRegistration() {
           background='#ffffffa'
           loaderColor='#857250'
         />
-        ;
       </>
       <CustomSection>
         <div className={styles.mainContainer}>

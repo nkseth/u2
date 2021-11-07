@@ -294,43 +294,43 @@ export default function Payment({
             <div className={styles.lastContainer}>
               <div>
                 <div>Price Details</div>
-                {!cart ? (
+                {/* {!cart ? (
                   <Loader />
-                ) : (
-                  <>
-                    <div>
-                      <CustomDivider style={{ backgroundColor: '#CECECE' }} />
-                      <div className={styles.selectedProductPrices}>
-                        <div>
-                          <label>Product Price</label>
-                          <span>₹{cart.total}</span>
-                        </div>
-                        <div>
-                          <label>Service charges</label>
-                          <span>₹{cart.taxes}</span>
-                        </div>
-                        <div>
-                          <label>Delivery charges</label>
-                          <span>
-                            {cart.delivery_charge ? cart.delivery_charge : '₹0'}
-                          </span>
-                        </div>
+                ) : ( */}
+                <>
+                  <div>
+                    <CustomDivider style={{ backgroundColor: '#CECECE' }} />
+                    <div className={styles.selectedProductPrices}>
+                      <div>
+                        <label>Product Price</label>
+                        <span>₹{cart.total}</span>
                       </div>
-                      <CustomDivider style={{ backgroundColor: '#CECECE' }} />
-                    </div>
-                    <div className={cart.totalAmtDiv}>
-                      <div
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                        }}
-                      >
-                        <label>Total Amount</label>
-                        <span>₹{cart.grand_total}</span>
+                      <div>
+                        <label>Service charges</label>
+                        <span>₹{cart.taxes}</span>
+                      </div>
+                      <div>
+                        <label>Delivery charges</label>
+                        <span>
+                          {cart.delivery_charge ? cart.delivery_charge : '₹0'}
+                        </span>
                       </div>
                     </div>
-                  </>
-                )}
+                    <CustomDivider style={{ backgroundColor: '#CECECE' }} />
+                  </div>
+                  <div className={cart.totalAmtDiv}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <label>Total Amount</label>
+                      <span>₹{cart.grand_total}</span>
+                    </div>
+                  </div>
+                </>
+                {/* )} */}
               </div>
             </div>
           </div>

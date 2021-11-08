@@ -367,7 +367,7 @@ export function SuccessPopUp({
                 history.push(
                   `${
                     customized
-                      ? '/select-measurement'
+                      ? `/select-measurement/${info.id}`
                       : `/add-measurement-choose-standard-size/${info.id}/0`
                   }`
                 )

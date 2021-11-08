@@ -55,14 +55,14 @@ export default function MyBag() {
     state => state.root.removeCartItem
   );
 
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState('');
   const [coupon, setCoupon] = useState(null);
   // const [cartMessage, setCartMessage] = useState('Added To bag');
   // console.log(cart);
 
   useEffect(() => {
     if (message) {
-      alert(message);
+      //alert(message);
       dispatch(getCartItems());
       dispatch(clearCartError());
     }
@@ -113,7 +113,6 @@ export default function MyBag() {
 
   const remove_item = async (item, e) => {
     if (e) e.preventDefault();
-    console.log(item.id, cart.id);
     dispatch(removeFromBag(item.id, cart.id));
   };
 
@@ -235,7 +234,7 @@ export default function MyBag() {
                                   <h4>Product Type</h4>
                                   <p>{item.type.toUpperCase()}</p>
                                   <HtmlTooltipButton
-                                    open={click}
+                                    open={item.id == click ? true : false}
                                     onOpen={() => setClick(true)}
                                     onClose={() => setClick(false)}
                                     disableFocusListener
@@ -262,7 +261,7 @@ export default function MyBag() {
                                     <Button
                                       onClick={() => {
                                         move_to_wishlist(item);
-                                        setClick(click => !click);
+                                        setClick(item.id);
                                       }}
                                       className={styles.MoveToWishListBtn}
                                     >

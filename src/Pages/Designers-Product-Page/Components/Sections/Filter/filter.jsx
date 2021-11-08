@@ -365,7 +365,8 @@ export default function Filter(props) {
     sendFilter(product_type, range, discount);
   };
 
-  console.log(checkedDesign)
+  console.log(checkedDiscount)
+
   return (
     <div className={styles.container}>
       {!tabViewPro && (
@@ -526,7 +527,7 @@ export default function Filter(props) {
         >
           <div className={styles.accordionSummaryInnerDiv}>
             <span>Colour</span>
-            <span>{selectedFilter.color}</span>
+            <span>{checkedColors.length > 0 ? checkedColors[checkedColors.length -1].value : 'Select Colour'}</span>
           </div>
         </AccordionSummary>
         <AccordionDetails className={styles.accordionDetials}>
@@ -566,7 +567,7 @@ export default function Filter(props) {
         >
           <div className={styles.accordionSummaryInnerDiv}>
             <span>Discount</span>
-            <span>{selectedFilter.discount}</span>
+            <span>{checkedDiscount.length > 0 ? checkedDiscount[checkedDiscount.length -1].value + '%' : 'Select Discount'}</span>
           </div>
         </AccordionSummary>
         <AccordionDetails className={styles.accordionDetials}>
@@ -612,7 +613,7 @@ export default function Filter(props) {
         >
           <div className={styles.accordionSummaryInnerDiv}>
             <span>Fabric</span>
-            <span>{selectedFilter.fabric}</span>
+            <span>{checkedFabric.length > 0 ? checkedFabric[checkedFabric.length -1].value : 'Select Fabric'}</span>
           </div>
         </AccordionSummary>
         <AccordionDetails className={styles.accordionDetials}>
@@ -643,7 +644,7 @@ export default function Filter(props) {
         >
           <div className={styles.accordionSummaryInnerDiv}>
             <span>Size</span>
-            <span>{selectedFilter.size}</span>
+            <span>{checkedSize.length > 0 ? checkedSize[checkedSize.length -1].value : 'Select Size'}</span>
           </div>
         </AccordionSummary>
         <AccordionDetails className={styles.accordionDetials}>
@@ -677,7 +678,7 @@ export default function Filter(props) {
         >
           <div className={styles.accordionSummaryInnerDiv}>
             <span>Sleeve Length</span>
-            <span>{selectedFilter.length}</span>
+            <span>{checkedSleeveLength.length > 0 ? checkedSleeveLength[checkedSleeveLength.length -1].value : 'Select Sleevelength'}</span>
           </div>
         </AccordionSummary>
         <AccordionDetails className={styles.accordionDetials}>
@@ -709,7 +710,7 @@ export default function Filter(props) {
         >
           <div className={styles.accordionSummaryInnerDiv}>
             <span>Design</span>
-            <span>{selectedFilter.design}</span>
+            <span>{checkedDesign.length > 0 ? checkedDesign[checkedDesign.length -1].value : 'Select Design'}</span>
           </div>
         </AccordionSummary>
         <AccordionDetails className={styles.accordionDetials}>
@@ -743,7 +744,7 @@ export default function Filter(props) {
         >
           <div className={styles.accordionSummaryInnerDiv}>
             <span>Shop by occasion</span>
-            <span>{selectedFilter.shopByOccasion}</span>
+            <span>{checkedShopOccasion.length > 0 ? checkedShopOccasion[checkedShopOccasion.length -1].value : 'Select'}</span>
           </div>
         </AccordionSummary>
         <AccordionDetails className={styles.accordionDetials}>
@@ -776,7 +777,7 @@ export default function Filter(props) {
         >
           <div className={styles.accordionSummaryInnerDiv}>
             <span>Fit</span>
-            <span>{selectedFilter.fit}</span>
+            <span>{checkedFit.length > 0 ? checkedFit[checkedFit.length -1].value : 'Select Fit'}</span>
           </div>
         </AccordionSummary>
         <AccordionDetails className={styles.accordionDetials}>

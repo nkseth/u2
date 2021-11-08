@@ -86,6 +86,8 @@ export default function TopOffersOfTheSeasonSection({ type }) {
                   image1={item.cover_image}
                   title={item.name}
                   description={item.description}
+                  slug={item.slug}
+                  type={type}
                 />
               </Slide>
             );

@@ -9,6 +9,8 @@ export default function DesignerSlide({
   image4,
   title,
   description,
+  slug,
+  type
 }) {
   const mobileView = useMediaQuery('(max-width:400px)');
   const mobileViewPro = useMediaQuery('(max-width:550px)');
@@ -29,6 +31,8 @@ export default function DesignerSlide({
           <DesignersCard
             image={image1}
             title={title}
+            slug={slug}
+            type={type}
             description={description}
           />
         </>
@@ -38,6 +42,8 @@ export default function DesignerSlide({
             image={image1}
             title={title}
             description={description}
+            slug={slug}
+            type={type}
           />
         </>
       ) : tabView ? (
@@ -46,6 +52,8 @@ export default function DesignerSlide({
             image={image1}
             title={title}
             description={description}
+            slug={slug}
+            type={type}
           />
         </>
       ) : tabViewPro ? (
@@ -54,6 +62,8 @@ export default function DesignerSlide({
             image={image1}
             title={title}
             description={description}
+            slug={slug}
+            type={type}
           />
         </>
       ) : CustomView ? (
@@ -62,6 +72,8 @@ export default function DesignerSlide({
             image={image1}
             title={title}
             description={description}
+            slug={slug}
+            type={type}
           />
         </>
       ) : (
@@ -70,6 +82,8 @@ export default function DesignerSlide({
             image={image1}
             title={title}
             description={description}
+            slug={slug}
+            type={type}
           />
         </>
       )}

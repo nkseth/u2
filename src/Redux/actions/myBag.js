@@ -36,7 +36,6 @@ export const removeFromBag = (item, cart) => async (dispatch) => {
         item,
       },
     });
-    console.log(data);
     if (data.message) {
       dispatch({ type: REMOVE_FROM_CART_SUCCESS, payload: data.message });
     }

@@ -34,7 +34,6 @@
     background: #fff;
     transition: all 0.2s ease-in;
     z-index: 99;
-    border-radius: 5px;
     &:hover {
       transition: all 0.2s ease-in;
       box-shadow: 0px 0px 20px #0000002f;
@@ -52,18 +51,12 @@
       object-position: top !important;
     }
     a {
-      font-family: DM Sans;
-      font-style: normal;
-      font-weight: bold;
       font-size: 16px;
-      line-height: 20px;
-
-      /* identical to box height, or 125% */
+      font-weight: 400;
       text-align: center;
-
-      /* Base / Black */
-      color: #0a0a0a;
       padding: 15px 0px;
+      color: black;
+      font-weight: 500;
     }
   }
 }
@@ -133,7 +126,16 @@ button:disabled {
     font-weight: 400;
   }
   .SuitWear {
+    text-align:left!important;
+    width:250px;
+    height:280px !important;
+    .SuitWear_Items{
+      img{
+        height:260px !important;
+      }
+    }
     a {
+      text-align:left !important;
       font-family: DM Sans;
       font-size: 12px;
       font-style: normal;

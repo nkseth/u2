@@ -1,46 +1,51 @@
-import React, { useEffect, useState } from "react";
-import { Button, Grid, useMediaQuery } from "@material-ui/core";
-import Container from "../../utils/Container/container";
-import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
-import Filter from "./Components/Sections/Filter/filter";
-import styles from "./designer-product-page.module.scss";
-import ProductsSection from "./Components/Sections/Products/products";
-import { useLocation } from "react-router-dom";
-import Loader from "../../utils/Loader/Loader";
+import React, { useEffect, useState } from 'react';
+import { Button, Grid, useMediaQuery } from '@material-ui/core';
+import Container from '../../utils/Container/container';
+import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
+import Filter from './Components/Sections/Filter/filter';
+import styles from './designer-product-page.module.scss';
+import ProductsSection from './Components/Sections/Products/products';
+import { useLocation } from 'react-router-dom';
+import Loader from '../../utils/Loader/Loader';
 
-import common_axios from "../../utils/axios.config";
+import common_axios from '../../utils/axios.config';
 import {
   getFilteredProduct,
   getFilterList,
-} from "../../Redux/actions/filter-category";
-import { useDispatch, useSelector } from "react-redux";
-import { clearUpdateWishlist, getWishList } from "../../Redux/actions/wishlist";
-import { clearProductsErrors, getProducts } from "../../Redux/actions/products";
+} from '../../Redux/actions/filter-category';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearUpdateWishlist, getWishList } from '../../Redux/actions/wishlist';
+import { clearProductsErrors, getProducts } from '../../Redux/actions/products';
+import FilterSkelton from './Components/Sections/Filter/FilterSkelton';
 
 function DesignerProductPage({ match }, props) {
   const dispatch = useDispatch();
-  const tabViewPro = useMediaQuery("(max-width:835px)");
-  const tabView = useMediaQuery("(max-width:768px)");
-  const mobileView = useMediaQuery("(max-width:550px)");
+  const tabViewPro = useMediaQuery('(max-width:835px)');
+  const tabView = useMediaQuery('(max-width:768px)');
+  const mobileView = useMediaQuery('(max-width:550px)');
   const location = useLocation();
   console.log(location);
-  const { filters } = useSelector((state) => state.root.filterCategory);
+  const { filters, loading: loadingFilter } = useSelector(
+    state => state.root.filterCategory
+  );
+
+  const dummyArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const {
     params: { slug, type },
   } = match;
 
   const [product, setProduct] = useState([]);
   // const [loading, setLoading] = useState(true);
-  const { user, isAuthenticated } = useSelector((state) => state.root.auth);
+  const { user, isAuthenticated } = useSelector(state => state.root.auth);
   const [clearAll, setClearAll] = useState(true);
   const { productList, loading, error } = useSelector(
-    (state) => state.root.products
+    state => state.root.products
   );
   const {
     added,
     removed,
     loading: updating,
-  } = useSelector((state) => state.root.updateWishlist);
+  } = useSelector(state => state.root.updateWishlist);
   useEffect(() => {
     if (!updating) {
       if (added) {
@@ -70,7 +75,7 @@ function DesignerProductPage({ match }, props) {
     dispatch(getWishList(user.api_token));
   }, [dispatch, isAuthenticated, user, slug, type]);
 
-  const filterProduct = (filterData) => {
+  const filterProduct = filterData => {
     console.log(filterData);
     dispatch(getProducts(type, { ...filterData, slug }));
   };
@@ -81,7 +86,7 @@ function DesignerProductPage({ match }, props) {
           {!tabViewPro && (
             <div className={styles.FilterBreadDiv}>
               {!tabViewPro && (
-                <div style={{ width: "200%", marginLeft: 15 }}>
+                <div style={{ width: '200%', marginLeft: 15 }}>
                   <Breadcrumb
                     path={`Home /`}
                     activePath={
@@ -91,14 +96,16 @@ function DesignerProductPage({ match }, props) {
                           : `${type}`
                         : slug
                         ? `${slug}`
-                        : "product"
+                        : 'product'
                     }
                   />
                 </div>
               )}
               <div className={styles.firstSection}>
-                {!filters ? (
-                  <Loader />
+                {loadingFilter ? (
+                  dummyArr.map(item => {
+                    return <FilterSkelton />;
+                  })
                 ) : (
                   <Filter
                     filters={filters}
@@ -112,11 +119,12 @@ function DesignerProductPage({ match }, props) {
             </div>
           )}
           <div className={styles.secondSection}>
-            <div style={{ padding: "1rem 1rem 5rem" }}>
+            <div style={{ padding: '1rem 1rem 5rem' }}>
               {tabViewPro && (
                 <div className={styles.upperbread}>
                   <Breadcrumb
-                    path={`Home /`}
+
+                                path={`Home /`}
                     activePath={
                       type
                         ? slug
@@ -126,6 +134,7 @@ function DesignerProductPage({ match }, props) {
                         ? `${slug}`
                         : "product"
                     }
+
                   />
                 </div>
               )}

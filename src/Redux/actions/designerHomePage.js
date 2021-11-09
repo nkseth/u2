@@ -1,6 +1,7 @@
 import common_axios from '../../utils/axios.config';
 import DesignerHomePageDataService from '../services/designerHomePage.service';
 import {
+  DATA_SUCCESS,
   GET_CATEGORY_GROUP,
   GET_CATEGORY_SUBGROUP,
   GET_CUSTOMER_REVIEWS,
@@ -11,18 +12,43 @@ import {
   GET_TOP_DESIGNERS,
   GET_TOP_SEASON_OFFERS,
   GET_TOP_TRENDING,
+  LOADING_DATA,
+  POPULAR_CATEGORY_ERROR,
+  POPULAR_CATEGORY_LOADING,
+  POPULAR_CATEGORY_SUCCESS,
+  SUIT_WEAR_ERROR,
+  SUIT_WEAR_LOADING,
+  SUIT_WEAR_SUCCESS,
+  TOP_CATEGORY_ERROR,
+  TOP_CATEGORY_LOADING,
+  TOP_CATEGORY_SUCCESS,
+  TOP_TRENDING_ERROR,
+  TOP_TRENDING_LOADING,
+  TOP_TRENDING_SUCCESS,
 } from './types';
 
 export const topTrending = () => async dispatch => {
   try {
+    dispatch({
+      type: TOP_TRENDING_LOADING,
+    });
+
     const { data } = await DesignerHomePageDataService.getTrending();
+
     if (data.trending_categories) {
       dispatch({
         type: GET_TOP_TRENDING,
         payload: data.trending_categories,
       });
     }
+    dispatch({
+      type: TOP_TRENDING_SUCCESS,
+    });
   } catch (err) {
+    dispatch({
+      type: TOP_TRENDING_ERROR,
+      payload: err.message,
+    });
     console.log(err);
     return Promise.reject(err);
   }
@@ -30,11 +56,20 @@ export const topTrending = () => async dispatch => {
 
 export const topCategories = params => async dispatch => {
   try {
+    dispatch({
+      type: TOP_CATEGORY_LOADING,
+    });
     const { data } = await DesignerHomePageDataService.topCategories(params);
     if (data.data) {
       dispatch({ type: GET_TOP_CATEGORY, payload: data.data });
     }
+    dispatch({
+      type: TOP_CATEGORY_SUCCESS,
+    });
   } catch (err) {
+    dispatch({
+      type: TOP_CATEGORY_ERROR,
+    });
     console.log(err);
     return Promise.reject(err);
   }
@@ -42,11 +77,21 @@ export const topCategories = params => async dispatch => {
 
 export const suitWears = () => async dispatch => {
   try {
+    dispatch({
+      type: SUIT_WEAR_LOADING,
+    });
     const { data } = await DesignerHomePageDataService.suitWear();
     if (data.suit_wear) {
       dispatch({ type: GET_SUIT_WEAR, payload: data.suit_wear });
     }
+    dispatch({
+      type: SUIT_WEAR_SUCCESS,
+    });
   } catch (err) {
+    dispatch({
+      type: SUIT_WEAR_ERROR,
+      error: err.message,
+    });
     console.log(err);
     return Promise.reject(err);
   }

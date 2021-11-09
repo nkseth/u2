@@ -7,14 +7,38 @@ import {
   GET_TOP_DESIGNERS,
   GET_TOP_SEASON_OFFERS,
   GET_TOP_TRENDING,
-} from "../actions/types";
+  TOP_TRENDING_LOADING,
+  TOP_TRENDING_SUCCESS,
+  TOP_TRENDING_ERROR,
+  SUIT_WEAR_LOADING,
+  SUIT_WEAR_SUCCESS,
+} from '../actions/types';
 
-export const trendingReducer = (initialState = { items: [] }, action) => {
+export const trendingReducer = (
+  initialState = { items: [], loading: true, error: '' },
+  action
+) => {
   const { type, payload } = action;
 
   switch (type) {
+    case TOP_TRENDING_LOADING:
+      return {
+        ...initialState,
+        loading: true,
+      };
     case GET_TOP_TRENDING:
       return { ...initialState, items: payload };
+    case TOP_TRENDING_SUCCESS:
+      return {
+        ...initialState,
+        loading: false,
+      };
+    case TOP_TRENDING_ERROR:
+      return {
+        ...initialState,
+        error: payload.error,
+        loading: false,
+      };
 
     default:
       return initialState;
@@ -37,14 +61,30 @@ export const topCategoryReducer = (
 };
 
 export const suitWearReducer = (
-  initialState = { suitWearItems: [] },
+  initialState = { suitWearItems: [], loading: true },
   action
 ) => {
   const { type, payload } = action;
 
   switch (type) {
+    case SUIT_WEAR_LOADING:
+      return {
+        ...initialState,
+
+        loading: true,
+      };
     case GET_SUIT_WEAR:
       return { ...initialState, suitWearItems: payload };
+    case SUIT_WEAR_SUCCESS:
+      return {
+        ...initialState,
+        loading: false,
+      };
+    case SUIT_WEAR_SUCCESS:
+      return {
+        ...initialState,
+        error: payload.error,
+      };
 
     default:
       return initialState;

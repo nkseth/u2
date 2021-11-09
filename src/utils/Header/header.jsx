@@ -34,6 +34,7 @@ import MegaMenu from './Components/MegaMenu';
 import { ReactComponent as Logo } from '../../Images/logo/u2.svg';
 import { ReactComponent as LogoSM } from '../../Images/logo/U2icon.svg';
 import { getCategorySubGroup } from '../../Redux/actions/designerHomePage';
+// import Search from './Components/SearchResult/seachResult';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -318,13 +319,14 @@ export default function Header() {
             </span>
           </div>
           <div className={styles.verticalDivider} />
-          <div className={styles.searchBarContainer}>
+          {/* <div className={styles.searchBarContainer}>
             <img src={SearchIcon} alt='search' />
             <input
-              type='text'
+              type='text' className='typeahead' id='bloodhound'
               placeholder='Search for designers, brands and more'
             />
-          </div>
+          </div> */}
+          <div>{/* <Search /> */}</div>
         </div>
       )}
 

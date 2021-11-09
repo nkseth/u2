@@ -203,6 +203,11 @@ function AddManMeasurement({
     }
   };
   const SetIt = () => {
+    if (AllDone === 'Done') {
+      setButton('lower');
+      SetOpen('lower');
+    }
+
     if (AllDone === 'Start') {
       SetOpen('Neck');
       setButton('upper');

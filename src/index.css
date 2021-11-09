@@ -102,9 +102,16 @@ input {
   background-color: #cecece !important;
 }
 
+.trending-carousel--dot .carousel__dot {
+  height: 2px;
+  width: 100%;
+  border: 0;
+  background: #cecece !important;
+}
+
 /* Image Gallery */
-.image-gallery {
-  background-color: white;
+.trending-carousel--dot .carousel__dot--selected {
+  background-color: #000 !important;
 }
 
 /* measurement Page Accordion */

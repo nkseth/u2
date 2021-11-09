@@ -9,7 +9,7 @@ import {
 } from '../actions/types';
 
 export const filterCategoryReducer = (
-  initialState = { filters: null },
+  initialState = { filters: null, loading: true },
   action
 ) => {
   const { type, payload } = action;
@@ -18,6 +18,8 @@ export const filterCategoryReducer = (
     case GET_FILTER_LIST:
       return { ...initialState, filters: payload };
 
+    case 'LOADED_FILTERS':
+      return { ...initialState, loading: false };
     default:
       return initialState;
   }

@@ -14,11 +14,12 @@ import './common.scss';
 export default function CustomTextField({
   label,
   helperText,
-  focus,
+  focused,
   Form,
   name,
   values,
 }) {
+  console.log('🚀 ~ file: CustomTextField.jsx ~ line 22 ~ focused', focused);
   const [Open, SetOpen] = useState(false);
   const Tab = useMediaQuery('(max-width:786px');
 
@@ -71,23 +72,30 @@ export default function CustomTextField({
             id='panel1a-header'
             className={styles.accordionSummary}
           >
-            <div>
+            <div style={{ position: 'relative' }}>
               <TextField
-                label={label}
+                // label={label}
                 InputLabelProps={{
                   style: {
                     color: 'grey',
                     fontFamily: 'DM Sans',
                     fontSize: '20px',
-                    fontWeight: 400,
+                    fontWeight: 'bolder',
                     lineHeight: '16px',
                     letterSpacing: '0.3199999928474426px',
                     background: 'transparent',
                     padding: '0 0 0 .2em',
                   },
                 }}
+                // InputProps={{
+                //   endAdornment: <InputAdornment>In</InputAdornment>,
+                // }}
                 InputProps={{
-                  endAdornment: <InputAdornment>In</InputAdornment>,
+                  inputProps: {
+                    type: 'number',
+                    minlength: 0,
+                    maxlength: 8,
+                  },
                 }}
                 variant='standard'
                 fullWidth
@@ -102,6 +110,18 @@ export default function CustomTextField({
                 onChange={BringValue}
                 type={'number'}
               />
+
+              <p
+                style={{
+                  position: 'absolute',
+                  top: '2px',
+                  fontSize: '1.2rem ',
+                  left: `${label.length + 150}px`,
+                  fontWeight: 'bold',
+                }}
+              >
+                in
+              </p>
             </div>
             <div>
               <p className={styles.accInfo}>

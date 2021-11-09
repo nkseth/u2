@@ -61,6 +61,23 @@
 
     width: 70%;
   }
+  // button {
+  //   height: 200px;
+  //   width: 60vw;
+  //   display: flex;
+
+  //   justify-content: center;
+  //   align-items: center;
+  //   background: #392d169a;
+  //   color: white;
+  //   font-family: "DM Serif Display";
+  //   text-transform: capitalize;
+  //   box-shadow: 0px 6px 10px #0000007d;
+  //   font-size: 54px;
+  //   &:hover {
+  //     background: #614c26b5;
+  //   }
+  // }
 }
 
 .collabrate_bgg {
@@ -135,13 +152,10 @@
 @media screen and (max-width: 420px) {
   .collabrate_bgg {
     padding: 1rem 1rem;
-    background: #6a5b4052;
-    height: 50px;
-
+    height: 125px !important;
   }
   .Collabrate_With_US {
-    margin-top: -85px !important;
-    background-size: contain;
+    height: 220px;
     button {
       font-family: DM Sans;
       font-size: 16px;
@@ -157,9 +171,8 @@
       }
     }
     h2 {
-      margin-top: 25px;
       font-family: DM Serif Display;
-      font-size: 27px;
+      font-size: 35px;
       font-style: normal;
       font-weight: 400;
       line-height: 48px;

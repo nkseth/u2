@@ -5,18 +5,21 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { trackOrders } from '../../Redux/actions/order';
+import common_axios from '../../utils/axios.config';
 
 const TrackOrders = () => {
-  const orderId = useLocation().pathname.slice(12);
-  console.log(orderId);
+  const orderId = useLocation().pathname.split('/')[2];
+
   const { isAuthenticated, user } = useSelector(state => state.root.auth);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(trackOrders(orderId, user.api_token));
   }, [dispatch, user, orderId]);
+
   return (
     <div className={styles.TrackOrders}>
-      <TimeLine 
+      <TimeLine
         date={'Oct, 23 2020'}
         time={'2:00 PM IST '}
         OrderInfo={'Order confirmed'}

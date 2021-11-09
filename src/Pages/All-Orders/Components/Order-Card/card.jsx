@@ -5,6 +5,7 @@ import CustomDivider from '../../../../utils/Custom Divider/divider';
 import styles from './card.module.scss';
 
 export default function OrdersCard({ pending, item, orderId, detail }) {
+  console.log('🚀 ~ file: card.jsx ~ line 8 ~ OrdersCard ~ item', item);
   const history = useHistory();
   const mobileView = useMediaQuery('(max-width:550px)');
   return (
@@ -97,7 +98,9 @@ export default function OrdersCard({ pending, item, orderId, detail }) {
           ) : (
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button
-                onClick={() => history.push(`/trackorder/${orderId}`)}
+                onClick={() =>
+                  history.push(`/trackorder/${orderId}/${item.id}`)
+                }
                 className={styles.trackBtn}
                 variant='contained'
                 style={{ whiteSpace: 'nowrap' }}

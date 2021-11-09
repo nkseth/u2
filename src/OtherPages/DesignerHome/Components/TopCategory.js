@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
-import CustomDivider from "../../../utils/Custom Divider/divider";
-import styles from "../Style/TopCategory.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { LazyLoadingImg } from "../../../utils/LazyLoading";
+import React, { useEffect } from 'react';
+import CustomDivider from '../../../utils/Custom Divider/divider';
+import styles from '../Style/TopCategory.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { LazyLoadingImg } from '../../../utils/LazyLoading';
 
 const TopCategory = () => {
   const dispatch = useDispatch();
 
-  const { category_grp } = useSelector((state) => state.root.main);
-  console.log(category_grp);
+  const { category_grp, loading } = useSelector(state => state.root.main);
+
   const baseStyle = {};
   return (
     <div className={styles.main}>
       <h1 className={styles.top_category_title}>Top Categories 2021</h1>
       <div className={styles.TopCategory}>
         <div className={styles.TopCategory_Items}>
-          <h1 className="hidden_mobile">Top Categories 2021</h1>
+          <h1 className='hidden_mobile'>Top Categories 2021</h1>
         </div>
         {category_grp.men && (
           <CategoryItems
@@ -25,7 +25,7 @@ const TopCategory = () => {
             image={category_grp.men?.cover_image}
             categories={category_grp.men?.categories}
             slug={category_grp.men?.slug}
-            type="mens"
+            type='mens'
           />
         )}
         {category_grp.women && (
@@ -35,7 +35,7 @@ const TopCategory = () => {
             image={category_grp.women?.cover_image}
             categories={category_grp.women?.categories}
             slug={category_grp.women?.slug}
-            type="womens"
+            type='womens'
           />
         )}
         {category_grp.kids && (
@@ -45,7 +45,7 @@ const TopCategory = () => {
             image={category_grp.kids?.cover_image}
             categories={category_grp.kids?.categories}
             slug={category_grp.kids?.slug}
-            type="kids"
+            type='kids'
           />
         )}
       </div>
@@ -68,17 +68,17 @@ const CategoryItems = ({ heading, details, image, categories, slug, type }) => {
               {heading}
               <CustomDivider
                 style={{
-                  height: "1px",
-                  background: "#fff",
-                  marginleft: "-5px",
+                  height: '1px',
+                  background: '#fff',
+                  marginleft: '-5px',
                 }}
               />
               <div></div>
             </h2>
             <div className={styles.hover}>
-              {categories?.slice(0, 8).map((item) => (
+              {categories?.slice(0, 8).map(item => (
                 <Link
-                  style={{ padding: "1rem 0" }}
+                  style={{ padding: '1rem 0' }}
                   key={item.id.toString()}
                   to={{
                     pathname: `/designers-product-page/${type}/${item.slug}`,

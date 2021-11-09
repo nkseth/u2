@@ -5,7 +5,14 @@ import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
 
+import Skeleton from '@material-ui/lab/Skeleton';
+
 const TopCategoryMobile = () => {
+  const [loading, setLoading] = useState(true);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
   const category = [
     {
       name: 'New In',
@@ -55,10 +62,29 @@ const TopCategoryMobile = () => {
           {category.map(cat => {
             return (
               <SwiperSlide>
-                <Link to={cat.to} className={styles.category}>
-                  <img src={cat.image} alt={cat.name} />
-                  <p>{cat.name}</p>
-                </Link>
+                {loading ? (
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      margin: '.5rem auto',
+                      gap: '5px',
+                    }}
+                  >
+                    <Skeleton
+                      variant='circle'
+                      width={'50px'}
+                      height={'50px'}
+                      animation='wave'
+                    />
+                    <Skeleton variant='text' height='15px' />
+                  </div>
+                ) : (
+                  <Link to={cat.to} className={styles.category}>
+                    <img src={cat.image} alt={cat.name} />
+                    <p>{cat.name}</p>
+                  </Link>
+                )}
               </SwiperSlide>
             );
           })}

@@ -1,0 +1,27 @@
+.page-item{
+    padding: 0px 5px;
+}
+.page-link{
+    color: #857250 ;
+    border-radius: 2px;
+    border: 1px solid #9D8E73;
+}
+.page-item.active .page-link {
+    background-color: #6A5B40;
+    border-color: #6A5B40;
+}
+.page-link:hover{
+    color: #857250;
+}
+.page-link:focus{
+    box-shadow: none;
+}
+.page-item.disabled .page-link{
+    display: none;
+}
+.group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}

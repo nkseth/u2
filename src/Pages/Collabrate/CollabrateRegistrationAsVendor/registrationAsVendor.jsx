@@ -121,7 +121,7 @@ export default function VendorRegistration() {
       categories[0] === `Kid's Wear` ||
       categories[1] === `Kid's Wear` ||
       categories[2] === `Kid's Wear` ||
-      categories[2] === `Kid's Wear`
+      categories[3] === `Kid's Wear`
     ) {
       categoriesId.push(11);
     }

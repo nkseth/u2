@@ -52,6 +52,7 @@ import HamMenuIcon from '../../Images/icons/hamMenu.svg';
 import SearchDarkIcon from '../../Images/icons/searchDark.svg';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { getCategorySubGroup } from '../../Redux/actions/designerHomePage';
+import { SuccessPopUp } from '../Popups/SuccessPopup';
 
 const navItems = [
   { name: 'Designers', icon: designersIcon, path: '/designers/' },
@@ -101,7 +102,12 @@ export default function SideNavbar({ main }) {
     alert('Logout Successuful');
     history.push('/');
   };
+
   console.log(category_subgrp);
+
+  const toggleModal = () => {
+    setLogoutModal(logoutModal => !logoutModal);
+  };
   return (
     <>
       {main ? (
@@ -233,28 +239,50 @@ export default function SideNavbar({ main }) {
       ) : (
         <>
           {logoutModal ? (
-            <div className={styles.LogoutModal}>
-              <div className={styles.modal}>
-                <IconButton
-                  className={styles.CloseBtn}
-                  onClick={() => setLogoutModal(false)}
-                >
-                  <img src={close} />
-                </IconButton>
-                <img src={lock} className={styles.Img} />
-                <h2>Are you sure you want to logout?</h2>
-                <Button className={styles.YesBtn} onClick={logoutHandler}>
-                  Yes
-                </Button>
-                <Button
-                  className={styles.NoBtn}
-                  onClick={() => setLogoutModal(false)}
-                >
-                  No
-                </Button>
-              </div>
-            </div>
+            <SuccessPopUp toggle={toggleModal} height={'350px'}>
+              <img src={lock} className={styles.Img} />
+              <h2>Are you sure you want to logout?</h2>
+              <Button
+                className={styles.YesBtn}
+                style={{
+                  backgroundColor: '#6a5b40',
+                  color: '#fff',
+                  margin: '1rem 0',
+                }}
+                onClick={logoutHandler}
+              >
+                Yes
+              </Button>
+              <Button
+                className={styles.NoBtn}
+                style={{ backgroundColor: '#6a5b40', color: '#fff' }}
+                onClick={() => setLogoutModal(false)}
+              >
+                No
+              </Button>
+            </SuccessPopUp>
           ) : (
+            // <div className={styles.LogoutModal}>
+            //   <div className={styles.modal}>
+            //     <IconButton
+            //       className={styles.CloseBtn}
+            //       onClick={() => setLogoutModal(false)}
+            //     >
+            //       <img src={close} />
+            //     </IconButton>
+            //     <img src={lock} className={styles.Img} />
+            //     <h2>Are you sure you want to logout?</h2>
+            //     <Button className={styles.YesBtn} onClick={logoutHandler}>
+            //       Yes
+            //     </Button>
+            //     <Button
+            //       className={styles.NoBtn}
+            //       onClick={() => setLogoutModal(false)}
+            //     >
+            //       No
+            //     </Button>
+            //   </div>
+            // </div>
             <></>
           )}
           <div className={styles.container}>
@@ -265,14 +293,14 @@ export default function SideNavbar({ main }) {
             <div className={styles.profileDiv}>
               <img
                 src={
-                  user.avatar ||
+                  user?.avatar ||
                   'https://www.gravatar.com/avatar/ce4e1fb0cdab055e0cee3499613e0e6c?s=100&d=mm'
                 }
                 alt='profile'
               />
               <div>
-                <span>{user.nice_name}</span>
-                <span>{user.email}</span>
+                <span>{user?.nice_name}</span>
+                <span>{user?.email}</span>
               </div>
               <IconButton aria-label='settings'>
                 <img src={settingsIcon} alt='settings' />

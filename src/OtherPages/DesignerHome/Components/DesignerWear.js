@@ -56,7 +56,7 @@ const DesignerWear = () => {
         </Carousel> */}
         <Swiper
           // direction={'vertical'}
-          centeredSlides={true}
+
           autoplay={{
             delay: 4500,
             disableOnInteraction: true,
@@ -79,19 +79,23 @@ const DesignerWear = () => {
               return (
                 <SwiperSlide>
                   <div
-                    // onClick={() => history.push(item.link)}
                     style={{
                       backgroundImage: `url(${item.image})`,
+
+                      backgroundPosition: 'center center',
                     }}
                     className={styles.carouselItem}
                   >
+                    <div className={styles.btn_container}>
+                      <Button className={styles.button}>
+                        Switch To Branded <ArrowRightAltIcon />
+                      </Button>
+                    </div>
+
                     <div className={styles.itemDetails}>
                       <h1>{item.title || 'Categories'}</h1>
                       <p>{item.sub_title}</p>
                     </div>
-                    {/* <Button className={styles.button}>
-                    Switch To Branded <ArrowRightAltIcon />{' '}
-                  </Button> */}
                   </div>
                 </SwiperSlide>
               );

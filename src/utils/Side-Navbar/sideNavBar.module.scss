@@ -9,6 +9,10 @@
   // width: 354px;
   min-width: 270px;
 
+  @media screen and (max-width: 480px) {
+    background: #fff;
+  }
+
   .breadcrumbDiv {
     width: 100%;
     display: flex;

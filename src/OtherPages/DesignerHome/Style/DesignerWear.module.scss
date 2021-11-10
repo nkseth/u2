@@ -1,8 +1,11 @@
 //Here Designer Style oKay
+@import url('https://fonts.googleapis.com/css?family=DM+Sans:400,700,500|Quicksand:700|DM+Serif+Display:400|Inter:700');
 
 .DesignerWear {
   height: 610px;
   width: 100%;
+  position: relative;
+
   @media screen and (max-width: 420px) {
     height: 200px;
   }
@@ -54,29 +57,43 @@
   justify-content: center;
   height: 100%;
   z-index: 10;
+  margin-top: -3rem;
 }
 .carouselItem {
   height: 610px;
   width: 100%;
-
+  position: relative;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  position: relative;
+
   @media screen and (max-width: 420px) {
     height: 200px;
   }
 }
-
+.btn_container {
+  display: flex;
+  justify-content: end;
+  margin: 1.5rem 2rem;
+}
 .button {
-  position: absolute;
   background: white !important;
-  top: 40px;
+
   z-index: 20;
-  right: 25px;
+  width: 201px;
+  height: 48px;
+
   text-transform: capitalize;
   font-weight: 600;
   padding: 0.8rem 1rem;
+  color: #6a5b40 !important;
+  z-index: 100;
+  font-family: Inter !important;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0px;
 }
 // .DesignerWear_Button {
 //   color: #6a5b40 !important;

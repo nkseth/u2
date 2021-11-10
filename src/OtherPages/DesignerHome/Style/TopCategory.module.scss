@@ -66,16 +66,17 @@
       position: absolute;
       height: 100%;
       width: 100%;
-      background: #00000000;
+      // background: #00000000;
+      background: rgba(0, 0, 0, 0.356) !important;
       display: flex;
       align-items: flex-end;
       .TopCategory_Items_Layer_text {
         display: flex;
         flex-direction: column;
-        padding: 2rem;
+        padding: 1.5rem;
         gap: 1rem;
         font-family: Quicksand;
-        height: 70%;
+        height: 85%;
         justify-content: flex-end;
         h2 {
           color: #fff;
@@ -85,6 +86,14 @@
           font-size: 35px;
           font-weight: 700;
           width: 100%;
+          font-family: DM Sans;
+          font-size: 35px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 53px;
+          letter-spacing: 0.0075em;
+          text-align: left;
+
           > div {
             height: 1em;
             width: 100px;
@@ -164,6 +173,9 @@
     font-weight: 400;
     line-height: 54px;
     letter-spacing: -1.5px;
+  }
+  .TopCategory_Items_Layer_text {
+    height: 90% !important;
   }
 
   .TopCategory_header {

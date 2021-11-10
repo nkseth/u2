@@ -58,7 +58,7 @@ const TopCategoryMobile = () => {
         })}
       </div> */}
       <div>
-        <Swiper slidesPerView={4} spaceBetween={10}>
+        <Swiper slidesPerView={4 + 0.8} spaceBetween={10}>
           {category.map(cat => {
             return (
               <SwiperSlide>

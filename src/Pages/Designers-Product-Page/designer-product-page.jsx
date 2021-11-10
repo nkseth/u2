@@ -7,7 +7,6 @@ import styles from './designer-product-page.module.scss';
 import ProductsSection from './Components/Sections/Products/products';
 import { useLocation } from 'react-router-dom';
 import Loader from '../../utils/Loader/Loader';
-
 import common_axios from '../../utils/axios.config';
 import {
   getFilteredProduct,
@@ -16,6 +15,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUpdateWishlist, getWishList } from '../../Redux/actions/wishlist';
 import { clearProductsErrors, getProducts } from '../../Redux/actions/products';
+import Pagination from './Components/Pagination/pagination';
 import FilterSkelton from './Components/Sections/Filter/FilterSkelton';
 
 function DesignerProductPage({ match }, props) {
@@ -25,11 +25,8 @@ function DesignerProductPage({ match }, props) {
   const mobileView = useMediaQuery('(max-width:550px)');
   const location = useLocation();
   console.log(location);
-  const { filters, loading: loadingFilter } = useSelector(
-    state => state.root.filterCategory
-  );
-
   const dummyArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const { filters } = useSelector(state => state.root.filterCategory);
   const {
     params: { slug, type },
   } = match;
@@ -102,7 +99,7 @@ function DesignerProductPage({ match }, props) {
                 </div>
               )}
               <div className={styles.firstSection}>
-                {loadingFilter ? (
+                {!filters ? (
                   dummyArr.map(item => {
                     return <FilterSkelton />;
                   })
@@ -151,7 +148,7 @@ function DesignerProductPage({ match }, props) {
         </div>
         <div className={styles.LoadMoreBtnContainer}>
           <div className={styles.LoadMoreBtnDiv}>
-            <Button className={styles.LoadMoreBtn}>Load More</Button>
+            <Pagination />
           </div>
         </div>
       </>

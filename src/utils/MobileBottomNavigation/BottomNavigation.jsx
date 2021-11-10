@@ -29,12 +29,11 @@ const BottomNavigation = () => {
     {
       title: 'category',
       icon: <Categories />,
-      to: '/mobile-category',
+      to: `/mobile-category`,
     },
     {
       title: 'measurement',
       icon: <Measurement style={{}} />,
-      to: '/measurement',
     },
     { title: 'date', icon: <Explore />, to: '/' },
     { title: 'time', icon: <Profile /> },
@@ -91,6 +90,26 @@ const BottomNavigation = () => {
       login_Model_Show();
     }
   };
+
+  const handleNavigation = (name, to) => {
+    console.log(
+      '🚀 ~ file: BottomNavigation.jsx ~ line 95 ~ handleNavigation ~ name',
+      name
+    );
+    if (name === 'measurement') {
+      console.log(
+        '🚀 ~ file: BottomNavigation.jsx ~ line 95 ~ handleNavigation ~ to',
+        to
+      );
+      if (isAuthenticated) {
+        history.push('/measurement');
+      } else {
+        login_Model_Show();
+      }
+    }
+
+    history.push(to);
+  };
   return (
     <>
       {bottomNavVisible && (
@@ -117,7 +136,8 @@ const BottomNavigation = () => {
                 }}
               >
                 <Link
-                  to={item.to}
+                  // to={item.to}
+                  onClick={() => handleNavigation(item.title, item.to)}
                   className={`${
                     activeNav === i && activeNav !== 1 && activeNav !== 4
                       ? styles.active

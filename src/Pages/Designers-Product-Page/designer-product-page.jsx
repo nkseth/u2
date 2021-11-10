@@ -85,7 +85,7 @@ function DesignerProductPage({ match }, props) {
               {!tabViewPro && (
                 <div style={{ width: '200%', marginLeft: 15 }}>
                   <Breadcrumb
-                    path={`Products /`}
+                    path={`Home /`}
                     activePath={
                       type
                         ? slug
@@ -120,8 +120,18 @@ function DesignerProductPage({ match }, props) {
               {tabViewPro && (
                 <div className={styles.upperbread}>
                   <Breadcrumb
-                    path={`Products /`}
-                    activePath={`${type} / ${slug}` || 'product'}
+
+                                path={`Home /`}
+                    activePath={
+                      type
+                        ? slug
+                          ? `${type} / ${slug}`
+                          : `${type}`
+                        : slug
+                        ? `${slug}`
+                        : "product"
+                    }
+
                   />
                 </div>
               )}

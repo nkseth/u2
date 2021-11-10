@@ -28,7 +28,11 @@ const Theme = createMuiTheme({
   },
 });
 
-export default function SelectMeasurement() {
+export default function SelectMeasurement({
+  match: {
+    params: { id },
+  },
+}) {
   const mobileView = useMediaQuery('(max-width:550px)');
   const [value, setValue] = React.useState(null);
   const [orders, setOrders] = useState([])
@@ -48,14 +52,12 @@ export default function SelectMeasurement() {
 
   const fetch_orders = async () => {
     try {
-      const { data } = await common_axios.get('/orders')
+      const { data } = await common_axios.get(`/order/${id}`)
       console.log(data)
       if (data.data) {
-        data.data.forEach((item) => {
-          if (item.order_status_id === 10) {
-            setOrders(item.items)
+          if (data.data.order_status_id === 10) {
+            setOrders(data.data.items)
           }
-        })
       }
     } catch (e) {
       console.log()

@@ -58,6 +58,9 @@
   height: 100%;
   z-index: 10;
   margin-top: -3rem;
+  @media screen and (max-width: 480px) {
+    margin-top: 0rem;
+  }
 }
 .carouselItem {
   height: 610px;
@@ -75,6 +78,9 @@
   display: flex;
   justify-content: end;
   margin: 1.5rem 2rem;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 }
 .button {
   background: white !important;

@@ -23,6 +23,7 @@ import { suitWears } from '../../../Redux/actions/designerHomePage';
 import c1 from '../Images/111.png';
 import c2 from '../Images/c2.jpg';
 import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
+import Carousel_Component from './Carousel_Component';
 
 const SuitWear = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const SuitWear = () => {
 
   const { suitWearItems } = useSelector(state => state.root.suitWears);
 
-  const [visible, setvisible] = useState(4);
+  const visible = 4.9;
   const theme = useTheme();
 
   const match = useMediaQuery('(max-width:630px)');
@@ -55,7 +56,7 @@ const SuitWear = () => {
     <div>
       <CustomSection class={styles.suitwear_content} style={customStyle}>
         <div
-          className={`${styles.SuitWear_header}`}
+          className={`${styles.SuitWear_header} common-headings--1`}
           style={{ color: mobile ? '#1A202C' : '#fff' }}
         >
           Suit Wear{' '}
@@ -63,7 +64,8 @@ const SuitWear = () => {
             style={{ height: '2px', background: mobile ? '#000' : '#fff' }}
           />
         </div>
-        <CarouselProvider
+        <Carousel_Component items={suitWearItems} name='suitWear' />
+        {/* <CarouselProvider
           visibleSlides={match ? 1.4 : iPade ? 2 : large ? 3 : visible}
           totalSlides={suitWearItems?.length + 0.3}
           isIntrinsicHeight
@@ -89,9 +91,12 @@ const SuitWear = () => {
                     <div>
                       <div className={styles.SuitWear}>
                         <div className={styles.SuitWear_Items}>
-                          {/* <LazyLoadingImg image={item.cover_image} /> */}
+                        
                           <img src={item.cover_image} alt={item.id} />
-                          <Link to={`/designers-product-page/${item.slug}`}>
+                          <Link
+                            to={`/designers-product-page/${item.slug} `}
+                            className='carousel-items--text'
+                          >
                             {item.name}
                           </Link>
                         </div>
@@ -106,10 +111,6 @@ const SuitWear = () => {
             <>
               <DotGroup style={{ display: 'flex', marginTop: '2rem' }} />
               <div className={styles.NavigationContainer}>
-                {/* <Link style={{ color: '#fff' }} to='designers-product-page'>
-              SEE All
-            </Link> */}
-
                 <div className={styles.Carousel_SliderButtonBox}>
                   <ButtonBack className={styles.Carousel_SliderButtons}>
                     <IconButton
@@ -131,7 +132,7 @@ const SuitWear = () => {
               </div>
             </>
           )}
-        </CarouselProvider>
+        </CarouselProvider> */}
       </CustomSection>
     </div>
   );

@@ -1,0 +1,86 @@
+.common-headings--1 {
+  font-family: DM Serif Display;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 64px;
+  letter-spacing: 0em;
+  text-align: left;
+
+  @media screen and (max-width: 768px) {
+    font-family: DM Serif Display;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 64px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  @media screen and (max-width: 480px) {
+    font-family: DM Serif Display;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}
+
+.carousel-items--text {
+  font-family: DM Sans;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: center;
+
+  @media screen and (max-width: 768px) {
+    font-family: DM Sans;
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: center;
+  }
+  @media screen and (max-width: 480px) {
+    font-family: DM Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.3199999928474426px;
+    text-align: center;
+  }
+}
+
+.popular-category--items {
+  font-family: DM Serif Display;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+
+  @media screen and (max-width: 768px) {
+    font-family: DM Serif Display;
+    font-size: 22px !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  @media screen and (max-width: 480px) {
+    font-family: DM Sans !important;
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+}

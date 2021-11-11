@@ -111,7 +111,7 @@ const Season_Offers = () => {
 
   return (
     <div className={styles.seasonsoffer} style={baseStyle}>
-      <div className={` ${styles.Season_Offers_header}`}>
+      <div className={` ${styles.Season_Offers_header} common-headings--1`}>
         Top Offers of the Season
         <CustomDivider style={{ height: '1px', background: '#857250' }} />
       </div>

@@ -90,7 +90,8 @@
           font-size: 35px;
           font-style: normal;
           font-weight: 700;
-          line-height: 53px;
+          line-height: 52.5px;
+
           letter-spacing: 0.0075em;
           text-align: left;
 
@@ -102,10 +103,14 @@
         }
         p {
           color: #fff;
-          line-height: 30px;
-          font-size: 18px;
           font-weight: 500;
-          padding-right: 2rem;
+          font-family: DM Sans;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 27px;
+          letter-spacing: 0.0075em;
+          text-align: left;
           transition: all 0.3s ease-in-out;
         }
       }

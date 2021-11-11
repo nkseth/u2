@@ -55,14 +55,14 @@ export default function ProductsSection({
     return xs
       ? false
       : sm
-      ? false
-      : md
-      ? true
-      : lg
-      ? true
-      : xl
-      ? true
-      : true;
+        ? false
+        : md
+          ? true
+          : lg
+            ? true
+            : xl
+              ? true
+              : true;
   }
 
   const handleSort = (e) => {
@@ -108,7 +108,7 @@ export default function ProductsSection({
             return (
               visibility && (
                 <MenuItem
-                  key={value+id+index}
+                  key={value + id + index}
                   value={value}
                   style={{ fontSize: mobileView && "15px" }}
                 >
@@ -152,7 +152,7 @@ export default function ProductsSection({
             marginBottom: "1rem",
           }}
         >
-          {tabViewPro && (
+          {tabViewPro && !mobileView && (
             <div className={styles.filterDiv}>
               <ButtonGroup variant="contained" color="default" aria-label="">
                 <Button
@@ -167,10 +167,12 @@ export default function ProductsSection({
               </ButtonGroup>
             </div>
           )}
+          { !mobileView && (
+            <div style={getScreenView() ? { position: 'relative', marginTop: '-25px', marginBottom: getScreenView() ? '70px' : '15px' } : {}} >
+              <SortByFilter listArray={productSortByOptions} />
+            </div>
+          )}
 
-          <div style={getScreenView() ? {position: 'relative', marginTop: '-25px', marginBottom: getScreenView() ? '70px' : '15px'}: {}} >
-          <SortByFilter listArray={productSortByOptions} />
-          </div>
         </Grid>
         {loading ? (
           <div className={styles.productsGrid}>

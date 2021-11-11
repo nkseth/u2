@@ -1,27 +1,27 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useMediaQuery } from "@material-ui/core";
-import { useHistory } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useMediaQuery } from '@material-ui/core';
+import { useHistory } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { popularCategories } from "../../../Redux/actions/designerHomePage";
-import CustomDivider from "../../../utils/Custom Divider/divider";
+import { popularCategories } from '../../../Redux/actions/designerHomePage';
+import CustomDivider from '../../../utils/Custom Divider/divider';
 
-import styles from "../Style/PopularCategory.module.scss";
-import "../Style/common.scss";
+import styles from '../Style/PopularCategory.module.scss';
+import '../Style/common.scss';
 
-import overlay from "../Images/p1.png";
+import overlay from '../Images/p1.png';
 
 const PopularCategory = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const mobile = useMediaQuery("(max-width:450px)");
+  const mobile = useMediaQuery('(max-width:450px)');
 
   const baseStyle = {
-    padding: "5rem 3rem",
+    padding: '5rem 3rem',
   };
 
-  const { categories } = useSelector((state) => state.root.popularCategory);
+  const { categories } = useSelector(state => state.root.popularCategory);
 
   useEffect(() => {
     dispatch(popularCategories());
@@ -30,7 +30,7 @@ const PopularCategory = () => {
 
   return (
     <div className={styles.popularcategory_content} style={baseStyle}>
-      <div className={styles.PopularCategory_header}>
+      <div className={`${styles.PopularCategory_header} common-headings--1`}>
         Popular Categories
         <CustomDivider style={{ height: '1px', background: '#857250' }} />
       </div>
@@ -44,7 +44,8 @@ const PopularCategory = () => {
                 }
                 className={`${styles.Category_item}   Category_item-${i}`}
                 style={{
-                  backgroundImage: "url(" + category?.image + ")",
+                  backgroundImage: 'url(' + category?.image + ')',
+                  backgroundPosition: 'top center',
                 }}
               >
                 <img
@@ -54,8 +55,9 @@ const PopularCategory = () => {
                 />
 
                 <Link
+                  className='popular-category--items'
                   style={{ zIndex: 10 }}
-                  to={category.link ? category.link : ""}
+                  to={category.link ? category.link : ''}
                 >
                   {category?.title}
                 </Link>
@@ -64,7 +66,7 @@ const PopularCategory = () => {
           })}
         </div>
       ) : (
-        <div class="container">
+        <div class='container'>
           <div className={styles.Category}>
             {categories?.slice(0, 6).map((category, i) => {
               return (
@@ -74,7 +76,7 @@ const PopularCategory = () => {
                   }
                   className={`${styles.Category_item}   Category_item-${i}`}
                   style={{
-                    backgroundImage: "url(" + category?.image + ")",
+                    backgroundImage: 'url(' + category?.image + ')',
                   }}
                 >
                   <img
@@ -85,7 +87,7 @@ const PopularCategory = () => {
 
                   <Link
                     style={{ zIndex: 10 }}
-                    to={category.link ? category.link : ""}
+                    to={category.link ? category.link : ''}
                   >
                     {category?.title}
                   </Link>

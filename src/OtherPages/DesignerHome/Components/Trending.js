@@ -17,6 +17,7 @@ import {
 import { IconButton, useMediaQuery, useTheme } from '@material-ui/core';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Carousel_Component from './Carousel_Component';
 
 const Trending = () => {
   const match = useMediaQuery('(max-width:630px)');
@@ -44,12 +45,12 @@ const Trending = () => {
     dispatch(topTrending());
   }, []);
 
-  const visible = 4;
+  const visible = 4.9;
   if (items) {
     return (
       <div className={styles.trending_content} style={baseStyle}>
         <div
-          className={`${styles.Trending_header}`}
+          className={`${styles.Trending_header} common-headings--1`}
           style={{ color: '#1A202C' }}
         >
           Trending
@@ -57,7 +58,8 @@ const Trending = () => {
         </div>
         {!tab ? (
           <>
-            <CarouselProvider
+            <Carousel_Component items={items} name={'trending'} />
+            {/* <CarouselProvider
               visibleSlides={match ? 1.4 : iPade ? 2.5 : large ? 3 : visible}
               totalSlides={match ? items?.length + 0.3 : items?.length + 1}
               isIntrinsicHeight
@@ -88,7 +90,10 @@ const Trending = () => {
                                 alt={item.id}
                                 // style={customImg}
                               />
-                              <Link to={`/designers-product-page/${item.slug}`}>
+                              <Link
+                                to={`/designers-product-page/${item.slug}`}
+                                className='carousel-items--text'
+                              >
                                 {item.name}
                               </Link>
                             </div>
@@ -123,7 +128,7 @@ const Trending = () => {
                   </ButtonNext>
                 </div>
               </div>
-            </CarouselProvider>
+            </CarouselProvider> */}
           </>
         ) : (
           <div className={styles.Trending}>
@@ -133,7 +138,7 @@ const Trending = () => {
                   <LazyLoadingImg image={item.cover_image} />
 
                   <div>
-                    <p> {item.name}</p>
+                    <p className='carousel-items--text'> {item.name}</p>
                   </div>
                 </div>
               </Link>

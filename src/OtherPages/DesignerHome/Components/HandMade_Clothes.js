@@ -19,6 +19,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { handMadeClothes } from '../../../Redux/actions/designerHomePage';
 import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
+import Carousel_Component from './Carousel_Component';
 
 const HandMade_Clothes = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const HandMade_Clothes = () => {
   };
   const { clothes } = useSelector(state => state.root.handMadeClothes);
 
-  const [visible, setvisible] = useState(4);
+  const visible = 4.9;
   useEffect(() => {
     dispatch(handMadeClothes());
   }, []);
@@ -49,7 +50,7 @@ const HandMade_Clothes = () => {
     <div>
       <CustomSection class={styles.suitwear_content} style={customStyle}>
         <div
-          className={`${styles.SuitWear_header}`}
+          className={`${styles.SuitWear_header} common-headings--1`}
           style={{ color: mobile ? '#000' : '#fff' }}
         >
           Hand Made Clothes
@@ -57,7 +58,8 @@ const HandMade_Clothes = () => {
             style={{ height: '2px', background: mobile ? '#000' : '#fff' }}
           />
         </div>
-        <CarouselProvider
+        <Carousel_Component items={clothes} name='handMade' />
+        {/* <CarouselProvider
           visibleSlides={match ? 1.4 : iPade ? 2 : large ? 3 : visible}
           totalSlides={clothes?.length + 0.8}
           isIntrinsicHeight
@@ -77,9 +79,12 @@ const HandMade_Clothes = () => {
                 <LazyLoadingComp>
                   <div className={styles.SuitWear}>
                     <div className={styles.SuitWear_Items}>
-                      {/* <LazyLoadingImg image={cover_image} /> */}
+                     
                       <img src={cover_image} alt={name} />
-                      <Link to={`/designers-product-page/${slug}`}>
+                      <Link
+                        className='carousel-items--text'
+                        to={`/designers-product-page/${slug}`}
+                      >
                         <a>{name}</a>
                       </Link>
                     </div>
@@ -92,9 +97,7 @@ const HandMade_Clothes = () => {
             <>
               <DotGroup style={{ display: 'flex', marginTop: '2rem' }} />
               <div className={styles.NavigationContainer}>
-                {/* <Link style={{ color: '#fff' }} to='designers-product-page'>
-              SEE All
-            </Link> */}
+               
                 <div className={styles.Carousel_SliderButtonBox}>
                   <ButtonBack className={styles.Carousel_SliderButtons}>
                     <IconButton
@@ -116,7 +119,7 @@ const HandMade_Clothes = () => {
               </div>
             </>
           )}
-        </CarouselProvider>
+        </CarouselProvider> */}
       </CustomSection>
     </div>
   );

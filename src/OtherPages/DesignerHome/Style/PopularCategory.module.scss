@@ -1,10 +1,5 @@
 .PopularCategory_header {
   color: #000;
-  font-family: DM Serif Display;
-  font-size: 54px;
-  font-weight: 400;
-  line-height: 54px;
-  letter-spacing: -1.5px;
   margin-bottom: 4rem;
   margin-top: -0.8em;
   display: flex;
@@ -58,15 +53,15 @@
 
     a {
       //styleName: H3;
-      font-family: DM Serif Display;
-      font-size: 28px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 36px;
-      letter-spacing: 0em;
-      text-align: left;
+      // font-family: DM Serif Display;
+      // font-size: 28px;
+      // font-style: normal;
+      // font-weight: 400;
+      // line-height: 36px;
+      // letter-spacing: 0em;
+      // text-align: left;
       color: white;
-      padding: 0.4rem 0;
+      padding: 0.7rem 0;
     }
   }
 }
@@ -107,15 +102,15 @@
       z-index: 2;
 
       a {
-        //styleName: H3;
-        font-family: DM Serif Display;
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 36px;
-        letter-spacing: 0em;
-        text-align: left;
-        color: white;
+        //   //styleName: H3;
+        //   font-family: DM Serif Display;
+        //   font-size: 24px;
+        //   font-style: normal;
+        //   font-weight: 400;
+        //   line-height: 36px;
+        //   letter-spacing: 0em;
+        //   text-align: left;
+        //   color: white;
       }
     }
   }
@@ -123,7 +118,6 @@
     background-position: center center;
   }
 }
-
 
 @media screen and (max-width: 530px) {
   .PopularCategory_header {
@@ -136,7 +130,7 @@
       'four four'
       'five six' !important;
     grid-template-rows: repeat(4, 140px);
-    grid-template-columns: 1fr 150px
+    grid-template-columns: 1fr 150px;
   }
   .Category_item {
     background-position: center center;
@@ -156,12 +150,12 @@
     margin-bottom: 20px;
     // gap: 1rem;
     //styleName: H4;
-    font-family: DM Serif Display;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: left;
+    // font-family: DM Serif Display;
+    // font-style: normal;
+    // font-weight: 400;
+    // line-height: 28px;
+    // letter-spacing: 0em;
+    // text-align: left;
 
     .Category {
       div {
@@ -169,13 +163,13 @@
 
         a {
           //styleName: H5;
-          font-family: DM Sans !important;
-          font-size: 16px !important;
-          font-style: normal;
-          font-weight: 700 !important;
-          line-height: 20px;
-          letter-spacing: 0em;
-          text-align: left;
+          // font-family: DM Sans !important;
+          // font-size: 16px !important;
+          // font-style: normal;
+          // font-weight: 700 !important;
+          // line-height: 20px;
+          // letter-spacing: 0em;
+          // text-align: left;
         }
       }
     }
@@ -195,4 +189,3 @@
     }
   }
 }
-

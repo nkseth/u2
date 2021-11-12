@@ -61,13 +61,36 @@
     border-radius: 50% !important;
 
     border: none;
+
     .Carousel_iconBtn {
+      width: 40px;
+      height: 40px;
       border: 1px solid rgb(0, 0, 0) !important;
       color: rgb(0, 0, 0) !important;
       &:hover {
         background-color: #6c6c6c;
         color: #fff !important;
         border: #6c6c6c !important;
+      }
+    }
+  }
+}
+@media screen and (max-width: 570px) {
+  .Carousel_Wear {
+    width: 248px !important;
+    height: 286px !important;
+    .Carousel_Items {
+      width: 248px;
+      height: 304px;
+
+      img {
+        transition: all 0.3s ease-in;
+        height: 252.25px !important;
+        width: 248px;
+        border-radius: 5px 5px 0 0;
+
+        object-fit: cover;
+        object-position: top center !important;
       }
     }
   }
@@ -80,7 +103,6 @@
     .Carousel_Items {
       width: 208px;
       height: 235px;
-
       img {
         transition: all 0.3s ease-in;
         height: 195px !important;

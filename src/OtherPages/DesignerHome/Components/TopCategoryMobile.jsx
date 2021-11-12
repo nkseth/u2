@@ -1,12 +1,15 @@
 import { useSelector } from 'react-redux';
 import styles from '../Style/TopCategoryMobile.module.scss';
 import React, { useRef, useState } from 'react';
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
-
 import Skeleton from '@material-ui/lab/Skeleton';
-
+import Men from '../Images/TopCategoryMobile/mens.svg';
+import women from '../Images/TopCategoryMobile/women.svg';
+import newIn from '../Images/TopCategoryMobile/newIn.svg';
+import kids from '../Images/TopCategoryMobile/kids.svg';
+import offers from '../Images/TopCategoryMobile/offers.svg';
+import trending from '../Images/TopCategoryMobile/trending.svg';
 const TopCategoryMobile = () => {
   const [loading, setLoading] = useState(true);
 
@@ -16,32 +19,32 @@ const TopCategoryMobile = () => {
   const category = [
     {
       name: 'New In',
-      image: 'https://dhaatri.info/storage/images/6143555e3e729.jpg',
+      image: newIn,
       to: '/',
     },
     {
       name: 'Men',
-      image: 'https://dhaatri.info/storage/images/6143555e3e729.jpg',
+      image: Men,
       to: '/wear/mens',
     },
     {
       name: 'Women  ',
-      image: 'https://dhaatri.info/storage/images/6143555e3e729.jpg',
+      image: women,
       to: '/wear/women',
     },
     {
       name: 'Kids',
-      image: 'https://dhaatri.info/storage/images/6143555e3e729.jpg',
+      image: kids,
       to: '/wear/kids',
     },
     {
       name: 'Offers',
-      image: 'https://dhaatri.info/storage/images/6143555e3e729.jpg',
+      image: offers,
       to: '/offers',
     },
     {
       name: 'Trending',
-      image: 'https://dhaatri.info/storage/images/6143555e3e729.jpg',
+      image: trending,
     },
   ];
 

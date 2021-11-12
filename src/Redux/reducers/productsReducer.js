@@ -12,7 +12,13 @@ import {
 } from '../actions/types';
 
 export const productsReducer = (
-  state = { loading: false, productList: null, error: null, sorted: false },
+  state = {
+    loading: false,
+    productList: null,
+    error: null,
+    sorted: false,
+    count: null,
+  },
   action
 ) => {
   const { type, payload } = action;
@@ -25,6 +31,7 @@ export const productsReducer = (
         loading: false,
         productList: payload.data,
         sorted: payload.sorted,
+        count: payload.count,
       };
     case GET_PRODUCTS_FAIL:
       return {

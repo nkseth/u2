@@ -130,8 +130,8 @@ function DesignerProductPage({ match }, props) {
                         : slug
                           ? `${slug}`
                           : "product"
-                    }
 
+                    }
                   />
                 </div>
               )}

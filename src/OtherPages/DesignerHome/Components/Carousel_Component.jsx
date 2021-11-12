@@ -23,10 +23,12 @@ const Carousel_Component = ({ items, name }) => {
   const large = useMediaQuery('(max-width:1330px)');
   const CustomView = useMediaQuery('(max-width:400px)');
 
-  const visible = items.length > 4 ? 4.9 : 4;
+  const visible = items.length > 4 ? 4.8 : 4;
   return (
     <CarouselProvider
-      visibleSlides={match ? 1.4 : iPade ? 2.5 : large ? 3 : visible}
+      visibleSlides={
+        match ? 1.95 : tab ? 1.9 : iPade ? 2.5 : large ? 3 : visible
+      }
       totalSlides={match ? items?.length + 0.3 : items?.length + 1}
       isIntrinsicHeight
     >

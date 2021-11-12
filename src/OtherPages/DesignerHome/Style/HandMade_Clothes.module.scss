@@ -104,6 +104,11 @@ button:disabled {
     line-height: 44px;
   }
 }
+@media screen and (max-width: 450px) {
+  .SuitWear {
+    background-color: #fff;
+  }
+}
 
 @media screen and (max-width: 450px) {
   .suitwear_content {

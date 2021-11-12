@@ -24,15 +24,10 @@ import c1 from '../Images/111.png';
 import c2 from '../Images/c2.jpg';
 import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
 import Carousel_Component from './Carousel_Component';
-
+import dotted from '../Images/dottedBg.svg';
 const SuitWear = () => {
   const dispatch = useDispatch();
-  const mobile = useMediaQuery('(max-width:450px)');
-
-  const customStyle = {
-    padding: '5rem 3rem 4rem  3rem',
-    background: mobile ? '#F3F1EE' : '#938368',
-  };
+  const mobile = useMediaQuery('(max-width:479px)');
 
   const { suitWearItems } = useSelector(state => state.root.suitWears);
 
@@ -52,9 +47,21 @@ const SuitWear = () => {
     return null;
   }
 
+  const stylesMobile = {
+    background: '#F3F1EE',
+    padding: '5rem 3rem 4rem  3rem',
+  };
+  const stylesCustom = {
+    backgroundImage: `url(${dotted})`,
+    padding: '5rem 3rem 4rem  3rem',
+  };
+
   return (
     <div>
-      <CustomSection class={styles.suitwear_content} style={customStyle}>
+      <CustomSection
+        class={styles.suitwear_content}
+        style={mobile ? stylesMobile : stylesCustom}
+      >
         <div
           className={`${styles.SuitWear_header} common-headings--1`}
           style={{ color: mobile ? '#1A202C' : '#fff' }}

@@ -18,12 +18,12 @@ const Carousel_Component = ({ items, name }) => {
   const match = useMediaQuery('(max-width:630px)');
   const iPade = useMediaQuery('(max-width:900px)');
   const tab = useMediaQuery('(max-width:768px)');
-  const mobile = useMediaQuery('(max-width:450px)');
+  const mobile = useMediaQuery('(max-width:479px)');
 
   const large = useMediaQuery('(max-width:1330px)');
   const CustomView = useMediaQuery('(max-width:400px)');
 
-  const visible = items.length > 4 ? 4.8 : 4;
+  const visible = items.length > 4 ? 4 : 4;
   return (
     <CarouselProvider
       visibleSlides={
@@ -34,16 +34,7 @@ const Carousel_Component = ({ items, name }) => {
     >
       <Slider>
         {items?.map((item, i) => (
-          <Slide
-            index={i}
-            key={item.id.toString()}
-            style={
-              CustomView
-                ? { marginRight: '10px', marginLeft: '10px' }
-                : { marginRight: '20px', marginLeft: '20px' }
-            }
-            className={styles.items}
-          >
+          <Slide index={i} key={item.id.toString()} className={styles.items}>
             <LazyLoadingComp>
               <Link
                 to={{

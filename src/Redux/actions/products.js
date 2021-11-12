@@ -13,16 +13,18 @@ import {
 } from './types';
 
 export const getProducts = (type, filter) => async dispatch => {
+  console.log('🚀 ~ file: products.js ~ line 16 ~ filter', filter);
   try {
     dispatch({ type: GET_PRODUCTS_REQUEST });
     let url = '';
     if (type) url = `/getCategoryByProduct/${type}`;
     else url = `/getCategoryByProduct`;
     const { data } = await common_axios.post(url, filter);
+    console.log('🚀 ~ file: products.js ~ line 23 ~ data', data);
     if (data.data) {
       dispatch({
         type: GET_PRODUCTS_SUCCESS,
-        payload: { data: data.data, sorted: false },
+        payload: { data: data.data, sorted: false, count: data.count },
       });
     }
   } catch (err) {

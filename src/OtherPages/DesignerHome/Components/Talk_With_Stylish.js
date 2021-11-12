@@ -10,9 +10,10 @@ const Talk_With_Stylish = () => {
       <div className={styles.Talk_With_Stylish}>
         <div>
           <h1>Talk With Stylist</h1>
-          <p style={{ fontSize: '16px' }}>
-            Lorem ipspushum dolor sit amet consectetur adipisicing elit. Maxime
-            obcaecati nihil repellendus
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an
           </p>
           <Button
             onClick={() => push('/talk-with-stylish')}

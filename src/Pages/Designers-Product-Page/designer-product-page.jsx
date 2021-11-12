@@ -35,9 +35,10 @@ function DesignerProductPage({ match }, props) {
   // const [loading, setLoading] = useState(true);
   const { user, isAuthenticated } = useSelector(state => state.root.auth);
   const [clearAll, setClearAll] = useState(true);
-  const { productList, loading, error } = useSelector(
+  const { productList, loading, error, count } = useSelector(
     state => state.root.products
   );
+
   const {
     added,
     removed,
@@ -65,19 +66,26 @@ function DesignerProductPage({ match }, props) {
     dispatch(getFilterList());
   }, [slug, dispatch, error, productList, type]);
 
+  const [page, setPage] = useState(1);
+
+  const handlePagination = (e, value) => {
+    setPage(value);
+  };
   useEffect(() => {
-    if (type) dispatch(getProducts(type, { slug }));
+    if (type)
+      dispatch(getProducts(type, { slug, next_record: page * 10 - 10 }));
     else dispatch(getProducts(null, { slug }));
     if (!isAuthenticated) return;
     dispatch(getWishList(user.api_token));
-  }, [dispatch, isAuthenticated, user, slug, type]);
+  }, [dispatch, isAuthenticated, user, slug, type, page]);
 
   const filterProduct = filterData => {
     console.log(filterData);
     dispatch(getProducts(type, { ...filterData, slug }));
   };
+
   return (
-    <Container bottomDivider sortFilter footerOnWeb  >
+    <Container bottomDivider sortFilter footerOnWeb>
       <>
         <div className={styles.container}>
           {!tabViewPro && (
@@ -92,8 +100,8 @@ function DesignerProductPage({ match }, props) {
                           ? `${type} / ${slug}`
                           : `${type}`
                         : slug
-                          ? `${slug}`
-                          : 'product'
+                        ? `${slug}`
+                        : 'product'
                     }
                   />
                 </div>
@@ -120,7 +128,6 @@ function DesignerProductPage({ match }, props) {
               {tabViewPro && (
                 <div className={styles.upperbread}>
                   <Breadcrumb
-
                     path={`Home /`}
                     activePath={
                       type
@@ -128,9 +135,8 @@ function DesignerProductPage({ match }, props) {
                           ? `${type} / ${slug}`
                           : `${type}`
                         : slug
-                          ? `${slug}`
-                          : "product"
-
+                        ? `${slug}`
+                        : 'product'
                     }
                   />
                 </div>
@@ -147,13 +153,13 @@ function DesignerProductPage({ match }, props) {
           </div>
         </div>
         <div>
-          {  !tabViewPro &&
+          {!tabViewPro && (
             <div className={styles.LoadMoreBtnContainer}>
               <div className={styles.LoadMoreBtnDiv}>
-                <Pagination />
+                <Pagination handlePagination={handlePagination} count={count} />
               </div>
             </div>
-          }
+          )}
         </div>
       </>
     </Container>

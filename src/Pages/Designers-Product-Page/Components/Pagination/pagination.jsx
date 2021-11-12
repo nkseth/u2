@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
-import styles from './pagination.scss';
-
+import './pagination.scss';
+// import 'bootstrap/dist/css/bootstrap.css';
 export default function Paginations() {
   return (
     <div
@@ -22,7 +22,7 @@ export default function Paginations() {
           pageCount={10}
           marginPagesDisplayed={2}
           pageRangeDisplayed={3}
-          containerClassName={'pagination justify-content-center'}
+          containerClassName={'pagination'}
           pageClassName={'page-item'}
           pageLinkClassName={'page-link'}
           previousClassName={'page-item'}

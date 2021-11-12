@@ -532,7 +532,8 @@ export default function VendorRegistration() {
   };
 
   return (
-    <Container bottomDivider footerOnTabMob footerOnAllView>
+    // <Container bottomDivider footerOnTabMob footerOnAllView>
+    <>
       <>
         {popupMessage && (
           <SuccessPopUp toggle={toggleModal} height={'350px'}>
@@ -1298,7 +1299,8 @@ export default function VendorRegistration() {
           </div>
         </div>
       </CustomSection>
-    </Container>
+    </>
+    // </Container>
   );
 }
 

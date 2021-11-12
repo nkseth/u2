@@ -20,15 +20,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handMadeClothes } from '../../../Redux/actions/designerHomePage';
 import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
 import Carousel_Component from './Carousel_Component';
-
+import dotted from '../Images/dottedBg.svg';
 const HandMade_Clothes = () => {
   const dispatch = useDispatch();
-  const mobile = useMediaQuery('(max-width:420px)');
+  const mobile = useMediaQuery('(max-width:479px)');
 
-  const customStyle = {
-    padding: '5rem 3rem 4rem  3rem',
-    background: mobile ? '#F3F1EE' : '#938368',
-  };
   const { clothes } = useSelector(state => state.root.handMadeClothes);
 
   const visible = 4.9;
@@ -45,10 +41,20 @@ const HandMade_Clothes = () => {
   if (!clothes) {
     return null;
   }
-
+  const stylesMobile = {
+    background: '#F3F1EE',
+    padding: '5rem 3rem 4rem  3rem',
+  };
+  const stylesCustom = {
+    backgroundImage: `url(${dotted})`,
+    padding: '5rem 3rem 4rem  3rem',
+  };
   return (
     <div>
-      <CustomSection class={styles.suitwear_content} style={customStyle}>
+      <CustomSection
+        class={styles.suitwear_content}
+        style={mobile ? stylesMobile : stylesCustom}
+      >
         <div
           className={`${styles.SuitWear_header} common-headings--1`}
           style={{ color: mobile ? '#000' : '#fff' }}

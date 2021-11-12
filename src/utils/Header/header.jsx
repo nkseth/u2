@@ -50,7 +50,6 @@ export default function Header() {
     designers: false,
     contempory: false,
     offers: false,
-    more: false,
   });
   const [mouseLeave, setMouseLeave] = useState({
     newArrivals: true,
@@ -60,7 +59,6 @@ export default function Header() {
     designers: true,
     contempory: true,
     offers: true,
-    more: true,
   });
   //Here I use Redux For Show Login Model
 
@@ -310,13 +308,13 @@ export default function Header() {
                 Offers
               </Link>
             </span>
-            <span
+            {/* <span
               // onMouseEnter={() => handleMouseEnter("more")}
               // onMouseLeave={() => handleMouseLeave("more")}
               className={cx(styles.menuItem, styles.menuItem_more)}
             >
               More
-            </span>
+            </span> */}
           </div>
           <div className={styles.verticalDivider} />
           {/* <div className={styles.searchBarContainer}>

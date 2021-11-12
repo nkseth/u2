@@ -77,7 +77,7 @@ function DesignerProductPage({ match }, props) {
     dispatch(getProducts(type, { ...filterData, slug }));
   };
   return (
-    <Container bottomDivider footerOnAllView>
+    <Container bottomDivider sortFilter footerOnWeb  >
       <>
         <div className={styles.container}>
           {!tabViewPro && (
@@ -92,8 +92,8 @@ function DesignerProductPage({ match }, props) {
                           ? `${type} / ${slug}`
                           : `${type}`
                         : slug
-                        ? `${slug}`
-                        : 'product'
+                          ? `${slug}`
+                          : 'product'
                     }
                   />
                 </div>
@@ -116,10 +116,11 @@ function DesignerProductPage({ match }, props) {
             </div>
           )}
           <div className={styles.secondSection}>
-            <div style={{ padding: '1rem 1rem 5rem' }}>
+            <div style={{ padding: '1rem 1rem 3rem' }}>
               {tabViewPro && (
                 <div className={styles.upperbread}>
                   <Breadcrumb
+
                     path={`Home /`}
                     activePath={
                       type
@@ -127,8 +128,9 @@ function DesignerProductPage({ match }, props) {
                           ? `${type} / ${slug}`
                           : `${type}`
                         : slug
-                        ? `${slug}`
-                        : 'product'
+                          ? `${slug}`
+                          : "product"
+
                     }
                   />
                 </div>
@@ -144,10 +146,14 @@ function DesignerProductPage({ match }, props) {
             </div>
           </div>
         </div>
-        <div className={styles.LoadMoreBtnContainer}>
-          <div className={styles.LoadMoreBtnDiv}>
-            <Pagination />
-          </div>
+        <div>
+          {  !tabViewPro &&
+            <div className={styles.LoadMoreBtnContainer}>
+              <div className={styles.LoadMoreBtnDiv}>
+                <Pagination />
+              </div>
+            </div>
+          }
         </div>
       </>
     </Container>

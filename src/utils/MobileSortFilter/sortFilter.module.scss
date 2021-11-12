@@ -1,0 +1,22 @@
+.container{
+    transition: transform 0.3s ease-in-out;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+}
+
+.filter{
+    width: 100%;
+    font-family: DM Sans !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
+    color: #6C6C6C !important;
+    text-transform: unset !important;
+    border-radius: unset !important;
+    border-right: 1px solid #cecece !important ;
+    border-top: 1px solid #cecece !important  ;
+  }

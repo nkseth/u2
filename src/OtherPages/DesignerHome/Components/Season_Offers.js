@@ -8,7 +8,7 @@ import { topSeasonOffers } from '../../../Redux/actions/designerHomePage';
 import { LazyLoadingComp } from '../../../utils/LazyLoading';
 const Season_Offers = () => {
   const dispatch = useDispatch();
-  const baseStyle = { padding: '5rem 3rem', marginBottom: '3rem' };
+  const baseStyle = { padding: '' };
   // offer
   const { push } = useHistory();
   const Handler = () => {

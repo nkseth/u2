@@ -21,6 +21,7 @@ import FilterSkelton from './Components/Sections/Filter/FilterSkelton';
 function DesignerProductPage({ match }, props) {
   const dispatch = useDispatch();
   const tabViewPro = useMediaQuery('(max-width:835px)');
+  const mobile = useMediaQuery('(max-width:479px)');
   const tabView = useMediaQuery('(max-width:768px)');
   const mobileView = useMediaQuery('(max-width:550px)');
   const location = useLocation();
@@ -74,7 +75,7 @@ function DesignerProductPage({ match }, props) {
   useEffect(() => {
     if (type)
       dispatch(getProducts(type, { slug, next_record: page * 10 - 10 }));
-    else dispatch(getProducts(null, { slug }));
+    else dispatch(getProducts(null, { slug, next_record: page * 10 - 10 }));
     if (!isAuthenticated) return;
     dispatch(getWishList(user.api_token));
   }, [dispatch, isAuthenticated, user, slug, type, page]);
@@ -156,7 +157,11 @@ function DesignerProductPage({ match }, props) {
           {!tabViewPro && (
             <div className={styles.LoadMoreBtnContainer}>
               <div className={styles.LoadMoreBtnDiv}>
-                <Pagination handlePagination={handlePagination} count={count} />
+                <Pagination
+                  handlePagination={handlePagination}
+                  count={count}
+                  page={page}
+                />
               </div>
             </div>
           )}

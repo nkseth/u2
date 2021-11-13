@@ -21,6 +21,7 @@ import Carousel_Component from './Carousel_Component';
 
 const Trending = () => {
   const match = useMediaQuery('(max-width:630px)');
+  const mobile = useMediaQuery('(max-width:479px)');
   const iPade = useMediaQuery('(max-width:900px)');
   const tab = useMediaQuery('(max-width:768px)');
 
@@ -30,9 +31,8 @@ const Trending = () => {
   const imageSrc =
     'https://images.unsplash.com/photo-1585846416120-3a7354ed7d39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHN1aXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
   const baseStyle = {
-    padding: '5rem 3rem',
+    padding: '101px 3rem 5rem 3rem',
     background: '  #F3F1EE',
-    maginTop: '-3em',
   };
 
   // const { push } = useLocation();

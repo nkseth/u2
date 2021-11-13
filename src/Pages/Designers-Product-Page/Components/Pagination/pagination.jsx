@@ -5,13 +5,13 @@ import './pagination.scss';
 // import 'antd/dist/antd.css';
 import Pagination from '@material-ui/lab/Pagination';
 // import 'bootstrap/dist/css/bootstrap.css';
-export default function Paginations({ handlePagination, count }) {
+export default function Paginations({ handlePagination, count, page }) {
   const LIMIT = 10;
 
   const pages = Math.ceil(count / LIMIT);
   console.log(
     '🚀 ~ file: pagination.jsx ~ line 12 ~ Paginations ~ pages',
-    pages
+    pages < 2
   );
 
   return (
@@ -26,7 +26,11 @@ export default function Paginations({ handlePagination, count }) {
       className='product_page_pagination--buttons'
     >
       <div>
-        <p>Page: 1 to {pages}</p>
+        {pages > 1 && (
+          <p style={{ marginLeft: '1rem' }}>
+            Page: {page} of {pages}
+          </p>
+        )}
       </div>
       <div>
         {/* <ReactPaginate
@@ -47,9 +51,11 @@ export default function Paginations({ handlePagination, count }) {
           breakLinkClassName={'page-link'}
           activeClassName={'active'}
         /> */}
-        <div style={{}}>
+        <div>
           <Pagination
             count={pages}
+            hideNextButton={pages <= 1}
+            hidePrevButton={pages <= 1}
             variant='outlined'
             shape='rounded'
             onChange={handlePagination}

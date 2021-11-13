@@ -307,10 +307,21 @@
 
 .Trending_header {
   color: #000;
-  margin-bottom: 62px;
+  margin-bottom: 60px;
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 123px;
+
+  @media screen and (max-width: 768px) {
+    gap: 75px;
+    margin-bottom: 50px;
+    margin-top: -50px;
+  }
+  @media screen and (max-width: 479px) {
+    gap: 8px;
+    margin-bottom: 50px;
+    margin-top: 0px;
+  }
 }
 .TrendingWear {
   display: flex;

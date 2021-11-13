@@ -18,7 +18,7 @@ const PopularCategory = () => {
   const mobile = useMediaQuery('(max-width:450px)');
 
   const baseStyle = {
-    padding: '5rem 3rem',
+    padding: '5rem 3rem 141px 3rem',
   };
 
   const { categories } = useSelector(state => state.root.popularCategory);

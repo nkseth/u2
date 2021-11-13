@@ -5,8 +5,15 @@
   margin-bottom: 35px !important;
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 123px;
   margin-top: -0.6em;
+  @media screen and (max-width: 768px) {
+    gap: 75px;
+  }
+  @media screen and (max-width: 479px) {
+    gap: 8px;
+    margin-bottom: -16px !important;
+  }
 }
 .SuitWear {
   display: flex;

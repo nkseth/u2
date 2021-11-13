@@ -41,6 +41,7 @@ import {
 import { SuccessPopUp } from '../../utils/Popups/SuccessPopup';
 import EmptyBag from './Components/Empty-Bag';
 import CartOffers from './Components/Offers/CartOffers';
+import CartItem from './Components/CartItem/CartItem';
 
 export default function MyBag() {
   const history = useHistory();
@@ -121,21 +122,6 @@ export default function MyBag() {
     history.push('/order-summary');
   };
 
-  const HtmlTooltipButton = withStyles(theme => ({
-    tooltip: {
-      // placement: "right-start",
-      backgroundColor: '#857250',
-      color: 'white',
-      width: 150,
-      display: 'flex',
-      textAlign: 'center',
-      alignItems: 'center',
-      height: 50,
-      fontSize: theme.typography.pxToRem(10),
-      border: 'none',
-    },
-  }))(Tooltip);
-
   const [modal, setModal] = useState(false);
   const [removeModal, setRemoveModal] = useState(false);
   const [removeItem, setRemoveItem] = useState();
@@ -215,162 +201,16 @@ export default function MyBag() {
                           </SuccessPopUp>
                         )}
                         <div className={styles.BorderContainer}>
-                          <div className={styles.mainContainer}>
-                            <Link
-                              to={`/product-description/${item.product.slug}`}
-                            >
-                              <img
-                                src={item.product?.image}
-                                alt='product'
-                                className={styles.image}
-                              />
-                            </Link>
-                            <div>
-                              <div style={{ alignItems: 'flex-start' }}>
-                                <p className={styles.proName}>{item.title}</p>
-                                <p>{item.fabric}</p>
-
-                                <div>
-                                  <h4>Product Type</h4>
-                                  <p>{item.type.toUpperCase()}</p>
-                                  <HtmlTooltipButton
-                                    open={item.id == click ? true : false}
-                                    onOpen={() => setClick(true)}
-                                    onClose={() => setClick(false)}
-                                    disableFocusListener
-                                    disableHoverListener
-                                    // className={styles.ProductSelectorHelpBtn}
-                                    // style={{ color: '#6a5b40', backgroundColor: 'red' }}
-                                    title={
-                                      <React.Fragment>
-                                        <h3
-                                          style={{
-                                            padding: 10,
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '0.2rem',
-                                          }}
-                                        >
-                                          <FavoriteIcon /> Add To wishlist
-                                        </h3>
-                                      </React.Fragment>
-                                    }
-                                    placement={'top'}
-                                    arrow
-                                  >
-                                    <Button
-                                      onClick={() => {
-                                        move_to_wishlist(item);
-                                        setClick(item.id);
-                                      }}
-                                      className={styles.MoveToWishListBtn}
-                                    >
-                                      Move to Wishlist
-                                    </Button>
-                                  </HtmlTooltipButton>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div
-                              style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                              }}
-                            >
-                              {item.type === 'readymade' ? (
-                                item.readymade_offer_price > 0 ? (
-                                  <>
-                                    <p>
-                                      {item.currency_symbol}
-                                      {item.readymade_offer_price}
-                                    </p>
-                                    <p className={styles.priceSpanP}>
-                                      <span className={styles.priceSpan}>
-                                        {item.currency_symbol}
-                                        {item.readymade_price}
-                                      </span>
-                                      <span className={styles.priceSpan1}>
-                                        {item.readymade_discount.toFixed(0)}%
-                                        OFF
-                                      </span>
-                                    </p>
-                                  </>
-                                ) : (
-                                  <p>
-                                    {item.currency_symbol}
-                                    {item.readymade_price}
-                                  </p>
-                                )
-                              ) : item.custom_offer_price > 0 ? (
-                                <>
-                                  <p>
-                                    {item.currency_symbol}
-                                    {item.custom_offer_price}
-                                  </p>
-                                  <p className={styles.priceSpanP}>
-                                    <span className={styles.priceSpan}>
-                                      {item.currency_symbol}
-                                      {item.custom_price}
-                                    </span>
-                                    <span className={styles.priceSpan1}>
-                                      {item.custom_discount.toFixed(0)}% off
-                                    </span>
-                                  </p>
-                                </>
-                              ) : (
-                                <p>
-                                  {item.currency_symbol}
-                                  {item.custom_price}
-                                </p>
-                              )}
-                            </div>
-                            <div className={styles.quan}>
-                              <p>Quantity</p>
-                              <div style={{ display: 'flex' }}>
-                                <Button
-                                  className={styles.addBtn}
-                                  onClick={() =>
-                                    substract_quantity(item, index)
-                                  }
-                                >
-                                  <RemoveIcon style={{ width: '15px' }} />
-                                </Button>
-                                <div className={styles.quantity}>
-                                  {item.quantity}
-                                </div>
-                                <Button
-                                  className={styles.removeBtn}
-                                  onClick={() => add_quantity(item, index)}
-                                >
-                                  <AddIcon style={{ width: '15px' }} />
-                                </Button>
-                              </div>
-                              <Button
-                                // onClick={() => remove_item(item)}
-                                onClick={e => toggleRemoveModal(item, e)}
-                                className={styles.RemoveBTN}
-                              >
-                                Remove item
-                              </Button>
-                            </div>
-                            {/* </div> */}
-                            {/* </div> */}
-                            {/* </div> */}
-                            {item.type === 'customise' ? (
-                              <div
-                                style={{
-                                  marginLeft: '1em',
-                                  marginBottom: '1em',
-                                }}
-                              >
-                                <CheckOutProcess />
-                              </div>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
+                          <CartItem
+                            item={item}
+                            setClick={setClick}
+                            click={click}
+                            move_to_wishlist={move_to_wishlist}
+                            substract_quantity={substract_quantity}
+                            toggleRemoveModal={toggleRemoveModal}
+                            add_quantity={add_quantity}
+                            remove_item={remove_item}
+                          />
                         </div>
                       </>
                     );
@@ -530,7 +370,7 @@ const MobileProductMyBag = ({
                   >
                     <div>
                       <h1>{item.title}</h1>
-                      <p style={{ marginTop: '-24px' }}>{item.fabric}</p>
+                      <p className={styles.proCat}>{item.fabric}</p>
                       <div
                         style={{
                           display: 'flex',
@@ -543,7 +383,6 @@ const MobileProductMyBag = ({
                           style={{
                             display: 'flex',
                             flexDirection: 'column',
-                            width: '80%',
                           }}
                         >
                           <p className={styles.PType1}>Product Type</p>
@@ -559,6 +398,18 @@ const MobileProductMyBag = ({
                           style={{ display: 'flex', flexDirection: 'column' }}
                         >
                           <Button
+                            className={styles.removeBtn1}
+                            onClick={() => add_quantity(item, index)}
+                          >
+                            <AddIcon style={{ width: '15px' }} />
+                          </Button>
+
+                          <div className={styles.quantity1}>
+                            <span style={{ transform: 'rotate(270deg)' }}>
+                              {item.quantity}
+                            </span>
+                          </div>
+                          <Button
                             className={styles.addBtn1}
                             onClick={() => substract_quantity(item, index)}
                           >
@@ -568,17 +419,6 @@ const MobileProductMyBag = ({
                                 transform: 'rotate(90deg)',
                               }}
                             />
-                          </Button>
-                          <div className={styles.quantity1}>
-                            <span style={{ transform: 'rotate(270deg)' }}>
-                              {item.quantity}
-                            </span>
-                          </div>
-                          <Button
-                            className={styles.removeBtn1}
-                            onClick={() => add_quantity(item, index)}
-                          >
-                            <AddIcon style={{ width: '15px' }} />
                           </Button>
                         </div>
                       </div>

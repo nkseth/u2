@@ -1,0 +1,268 @@
+.mainContainer {
+  padding: 1rem 2rem 1rem 0;
+  display: flex;
+  gap: 1rem;
+  img {
+    width: 165px;
+    height: 187px;
+    @media screen and (max-width: 789px) {
+      width: 145px;
+      height: 177px;
+    }
+  }
+  .product_details {
+    .proName {
+      font-family: DM Sans;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0px;
+      text-align: left;
+      color: #0a0a0a;
+      margin-bottom: 4px !important;
+    }
+    .proCat {
+      font-family: DM Sans;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+      text-align: left;
+      color: #6c6c6c;
+      margin-top: 4px !important;
+    }
+  }
+  .priceDetails {
+  }
+  .actualPrice {
+    font-family: DM Serif Display !important;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 11px;
+  }
+  .discountDetails {
+    font-family: DM Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+    display: flex;
+    gap: 0.5rem;
+
+    .discountPrice {
+      color: #9d9d9d;
+      margin-bottom: 4px !important;
+
+      display: inline-block;
+    }
+    .discountPercentage {
+      color: #9d8e73 !important;
+    }
+  }
+  .productTypeNQuantity {
+    display: flex;
+    gap: 3.5rem;
+    margin-top: -0.5rem;
+    .productType {
+      h4 {
+        font-family: DM Sans;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0px;
+        text-align: left;
+        margin: 0.5rem 0;
+      }
+      p {
+        font-family: DM Sans;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px;
+        letter-spacing: 0.1599999964237213px;
+        text-align: left;
+        text-transform: capitalize;
+        color: #6c6c6c;
+      }
+    }
+    .productQuantity {
+      margin-top: 0.5rem;
+      p {
+        //styleName: Body / Label-bold;
+        font-family: DM Sans;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 16px;
+        letter-spacing: 0.3199999928474426px;
+        text-align: center;
+      }
+      .productQuantityBtn {
+        display: flex;
+        align-items: center;
+        margin: 0.5rem 0;
+        .quantity {
+          font-family: DM Sans;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0.1599999964237213px;
+          text-align: center;
+          padding: 0.2rem 0.7rem;
+          border: 0.5px solid #cec7b9;
+          color: #0a0a0a !important;
+        }
+        .addBtn,
+        .removeBtn {
+          height: 27px !important;
+          min-width: 24.00000000000002px !important;
+          background: rgba(206, 199, 185, 1) !important;
+          outline: none !important;
+          color: #6a5b40 !important;
+        }
+        .addBtn {
+          border-radius: 5px 0 0 5px;
+        }
+        .removeBtn {
+          border-radius: 0 5px 5px 0;
+        }
+      }
+    }
+  }
+
+  .MoveToWishListBtn {
+    margin-top: 1rem;
+    width: 164px;
+    border: 0.5px solid #9d8e73;
+    //styleName: Body / Label-bold;
+    font-family: DM Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.3199999928474426px;
+    text-align: center;
+
+    height: 40px;
+    @media screen and (max-width: 789px) {
+      width: 154px;
+      height: 40px;
+    }
+  }
+
+  .wishlistNRemove {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .RemoveBTN {
+      font-family: DM Sans;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+      text-align: left;
+      color: #da1e28;
+      text-decoration: underline;
+      text-transform: capitalize !important;
+    }
+  }
+
+  // > div {
+  //   flex: 1;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   padding: 1rem 0;
+  //   > div:first-child {
+  //     display: flex;
+  //     gap: 0.5rem;
+  //     flex-direction: column;
+  //     > p:first-child {
+  //       font-size: 16px;
+  //       font-weight: 700;
+  //       line-height: 20px;
+  //     }
+  //     > p:nth-child(2) {
+  //       font-size: 12px;
+  //       font-weight: 400;
+  //       line-height: 16px;
+  //       letter-spacing: 0.3199999928474426px;
+  //       color: rgba(108, 108, 108, 1);
+  //     }
+  //     > div {
+  //       display: flex;
+  //       flex-direction: column;
+  //       gap: 5px;
+  //       > span:first-child {
+  //         font-size: 12px;
+  //         font-weight: 700;
+  //         line-height: 16px;
+  //         letter-spacing: 0.3199999928474426px;
+  //       }
+  //       h4 {
+  //         font-family: DM Sans !important;
+  //         font-size: 16px !important;
+  //         font-style: normal !important;
+  //         font-weight: 700 !important;
+  //         line-height: 20px !important;
+  //         letter-spacing: 0px !important;
+  //         text-align: left !important;
+  //         color: #0a0a0a;
+  //       }
+  //       p {
+  //         font-family: DM Sans !important;
+  //         font-size: 16px !important;
+  //         font-style: normal !important;
+  //         font-weight: 500 !important;
+  //         line-height: 18px !important;
+  //         letter-spacing: 0.1599999964237213px !important;
+  //         text-align: left !important;
+  //         color: #6c6c6c;
+  //       }
+  //       > div {
+  //         display: flex;
+  //         align-items: center;
+  //         justify-content: space-between;
+  //         height: 27px;
+  //         width: 100px;
+  //         border: 1px solid rgb(255, 255, 255);
+  //         border-radius: 5px;
+  //         background-color: rgba(206, 199, 185, 1);
+  //       }
+  //     }
+  //   }
+
+  //   > div:last-child {
+  //     > p:first-child {
+  //       font-family: DM Serif Display;
+  //       font-size: 28px;
+  //       font-weight: 400;
+  //       line-height: 36px;
+  //     }
+  //     > .priceSpanP {
+  //       font-size: 16px;
+  //       font-weight: 700;
+  //       line-height: 20px;
+  //       display: flex;
+  //       gap: 5px;
+  //       > .priceSpan {
+  //         text-decoration: line-through;
+  //         color: #e6e3dc;
+  //       }
+  //       > .priceSpan1 {
+  //         color: var(--primary-color);
+  //       }
+  //     }
+  //   }
+  // }
+}

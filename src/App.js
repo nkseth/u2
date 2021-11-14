@@ -217,7 +217,7 @@ function App() {
         <ProtectedRoute path={'/payments'} component={Page_Payments} />
         <ProtectedRoute path={'/editpayments'} component={Page_EditPayments} />
         <ProtectedRoute
-          path='/trackorder/:orderid'
+          path='/trackorder/:orderId/:item_id'
           component={Page_TrackOrders}
           exact
         />

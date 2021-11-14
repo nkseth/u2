@@ -203,18 +203,21 @@ export default function ProductDescription({ match }) {
     if (!details && !loading) dispatch(getProductDetails(slug));
   }, [slug, dispatch, details]);
 
+  console.log(details)
+
   useEffect(() => {
     dispatch(getProductDetails(slug));
   }, []);
 
   const buy_now_handler = async () => {
+
     if (isAuthenticated) {
       if (details.hasOwnProperty('title')) {
         try {
           const type = ProductType === 'ready made' ? 'readymade' : 'customise';
           const value = { type, variant_id: variantId };
           const { data } = await common_axios.post(`/addToCart/${slug}`, {
-            value,
+            ...value,
           });
           console.log(data);
           if (data) {

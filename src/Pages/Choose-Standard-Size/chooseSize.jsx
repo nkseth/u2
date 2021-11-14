@@ -127,8 +127,8 @@ export default function ChooseStandardSize({
         standard_size: Size,
         fitting: Fitting,
         user_id: user.id,
-        order_id: orderId,
-        item_id: itemId
+        order_id: orderId ? orderId : null,
+        item_id: itemId ? itemId : null
       });
       setTimeout(() => { }, 150000);
       console.log(data);

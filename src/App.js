@@ -153,6 +153,10 @@ function App() {
           exact
         />
         <ProtectedRoute
+          path='/add-measurement-choose-standard-size'
+          component={ChooseStandardSize}
+        />
+        <ProtectedRoute
           path='/add-measurement-gender'
           component={AddMeasurementGender}
         />

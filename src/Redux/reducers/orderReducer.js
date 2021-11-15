@@ -11,7 +11,7 @@ import {
 } from "../actions/types";
 
 export const trackOrderReducer = (
-  state = { trackingData: null, loading: false, error: null },
+  state = { trackingData: [], loading: false, error: null },
   action
 ) => {
   const { type, payload } = action;

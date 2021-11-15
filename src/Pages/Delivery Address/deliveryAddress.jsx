@@ -86,6 +86,19 @@ export default function DeliveryAddress({
     setOpen(false);
   };
 
+  const getLocation = () => {
+    const location = window.navigator && window.navigator.geolocation
+
+    if (location) {
+      location.getCurrentPosition((position) => {
+        console.log(position)
+      }, (error) => {
+        console.log(error)
+        //this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
+      })
+    }
+  }
+
   return (
     <Container bottomDivider footerOnTabMob>
       <CustomSection style={{ marginTop: "1em" }}>
@@ -157,6 +170,7 @@ export default function DeliveryAddress({
                   className={styles.useCurrentLocationBtn}
                   variant="contained"
                   color="default"
+                  onClick={getLocation}
                   startIcon={<LocationIcon />}
                 >
                   Use current location

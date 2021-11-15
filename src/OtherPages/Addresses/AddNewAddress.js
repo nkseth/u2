@@ -19,9 +19,9 @@ const AddNewAddress = () => {
   const [alternate_phone, setAlternate_phone] = useState('')
   const [addressType, setAddressType] = useState('Home')
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch_data()
-  },[]);
+  }, []);
 
   const fetch_data = async () => {
 
@@ -33,43 +33,43 @@ const AddNewAddress = () => {
 
   const on_submit = async () => {
 
-    if(name.length < 2){
+    if (name.length < 2) {
       alert("Enter a valid name")
       return;
     }
 
-    if(phone.length != 10){
+    if (phone.length != 10) {
       alert("Enter a valid 10 digit mobile number")
       return;
     }
 
-    if(pin.length != 6){
+    if (pin.length != 6) {
       alert("Enter a valid pincode")
       return;
     }
 
-    if(locality.length < 2){
+    if (locality.length < 2) {
       alert("Enter a valid Locality")
       return;
     }
 
-    if(street.length < 2){
+    if (street.length < 2) {
       alert("Enter a valid street")
       return;
     }
 
-    if(city.length < 2){
+    if (city.length < 2) {
       alert("Enter a valid city")
       return;
     }
 
-    if(state.length < 2 || state == 'Select State'){
+    if (state.length < 2 || state == 'Select State') {
       alert("Enter a valid state")
       return;
     }
 
     try {
-      const { data } = await common_axios.post('address/store',{
+      const { data } = await common_axios.post('address/store', {
         address_type: 'Primary',
         address_line_1: street,
         city,
@@ -78,17 +78,30 @@ const AddNewAddress = () => {
         name,
         locality,
         state,
-        landmark:Landmark,
+        landmark: Landmark,
         alternate_phone
       });
-      
-      if(data){
+
+      if (data) {
         push('/myaddresses')
       }
-    } catch (e){
+    } catch (e) {
       console.log(e?.response?.data)
     }
 
+  }
+
+  const getLocation = () => {
+    const location = window.navigator && window.navigator.geolocation
+
+    if (location) {
+      location.getCurrentPosition((position) => {
+        console.log(position)
+      }, (error) => {
+        console.log(error)
+        //this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
+      })
+    }
   }
 
 
@@ -97,7 +110,7 @@ const AddNewAddress = () => {
       <form onSubmit={(e) => e.preventDefault()}>
         <div className={styles.AddNewAddress_Top}>
           <label>Add new address</label>
-          <Button>
+          <Button onClick={getLocation}>
             <LocationOnIcon />
             <span>Use current loacation</span>
           </Button>
@@ -110,7 +123,7 @@ const AddNewAddress = () => {
         </div>
         <div className={styles.AddNewAddress_textarea}>
           <label>Address area and street</label>
-          <textarea onChange={(e)=> setStreet(e.target.value)} placeholder={"input"}></textarea>
+          <textarea onChange={(e) => setStreet(e.target.value)} placeholder={"input"}></textarea>
         </div>
         <div className={styles.AddNewAddress_Inputs}>
           <Inputs onChange={(e) => setCity(e.target.value)} label="City / Disrict / Town" placeholder="Input" />

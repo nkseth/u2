@@ -9,7 +9,7 @@
   flex: 1;
   position: relative;
   padding-left: 4rem;
-  padding-right: 112px;
+  // padding-right: 112px;
 }
 
 .headerDiv {
@@ -76,6 +76,16 @@
       color: grey;
     }
   }
+}
+
+.pendingHeading {
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: left;
 }
 
 .pastOrdersDiv {

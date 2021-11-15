@@ -5,7 +5,7 @@ import styles from "./slide.module.scss";
 
 
 
-export default function DesignerSlide({ data }) {
+export default function DesignerSlide({ img1, img2, img3, img4, brand1, brand2, brand3, brand4, desc1, desc2, desc3, desc4, slug1, slug2, slug3, slug4 }) {
   const tabView = useMediaQuery("(max-width:768px)");
   const tabViewPro = useMediaQuery("(max-width:835px)");
   const mobileView = useMediaQuery("(max-width:550px)");
@@ -14,24 +14,24 @@ export default function DesignerSlide({ data }) {
       <div
         style={{
           display: "flex",
-          justifyContent: tabView ? "space-around" : "space-between",
+          justifyContent: "space-evenly",
           gap: mobileView ? ".5rem" : "1rem",
         }}
       >
-        {!tabView && data.length != 0 ? <DesignersCard img={data[0]?.cover_image} name={data[0]?.name} slug={data[0]?.slug} desc={data[0].description} /> : null}
-        {!mobileView && data.length > 1 ? <DesignersCard img={data[1]?.cover_image} name={data[1]?.name} slug={data[1]?.slug} desc={data[1].description} /> : null}
+        {!tabView && img1? <DesignersCard img={img1} name={brand1} slug={slug1} desc={desc1} /> : null}
+        {!mobileView && img2 ? <DesignersCard img={img2} name={brand2} slug={slug2} desc={desc2} /> : null}
         {tabView || !mobileView ? <></> :
           <>
-            {data.length > 2 ? <DesignersCard img={data[2]?.cover_image} name={data[2]?.name} slug={data[2]?.slug} desc={data[2].description} /> : null}
+            {img3 ? <DesignersCard img={img3} name={brand3} slug={slug3} desc={desc3} /> : null}
           </>}
-        {data.length > 2 ? <DesignersCard img={data[2]?.cover_image} name={data[2]?.name} slug={data[2]?.slug} desc={data[2].description} /> : null}
+        {img3 ? <DesignersCard img={img3} name={brand3} slug={slug3} desc={desc3} /> : null}
         {mobileView ?
           <>
-            {data.length > 2 ? <DesignersCard img={data[2]?.cover_image} name={data[2]?.name} slug={data[2]?.slug} desc={data[2].description} /> : null}
+            {img3 ? <DesignersCard img={img3} name={brand3} slug={slug3} desc={desc3} /> : null}
           </>
 
           :
-          data.length > 3 ? <DesignersCard img={data[3]?.cover_image} name={data[3]?.name} slug={data[3]?.slug} desc={data[3].description} /> : null
+          img4 ? <DesignersCard img={img4} name={brand4} slug={slug4} desc={desc4} /> : null
         }
       </div>
     </>

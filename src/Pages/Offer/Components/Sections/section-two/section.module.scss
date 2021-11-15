@@ -39,6 +39,17 @@
     width: 100%;
   }
 }
+
+.center_img{
+  background-image: url("./images//center_image.png");
+  height: 250px;
+  width: 250px;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
 .AbsoluteBgContainer1{
 position: absolute;
 width: 50%;

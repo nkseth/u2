@@ -48,25 +48,6 @@ const Login = () => {
 
     setLoading(true);
     dispatch(login({ email, password }));
-
-    // try {
-    //   const { data } = await common_axios.post("/auth/login", {
-    //     email,
-    //     password,
-    //   });
-
-    //   console.log(data);
-
-    //   if (data) {
-    //     // setCookie("data", data.data, { path: "/" });
-    //     localStorage.setItem("token", JSON.stringify(data.data.api_token));
-    //     dispatch(setUserData(data.data));
-    //     login_Model_Hide();
-    //   }
-    // } catch (e) {
-    //   alert("Invalid Email or Password");
-    //   console.log(e);
-    // }
   };
 
   const signup = (response, type) => {

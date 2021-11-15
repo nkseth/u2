@@ -413,6 +413,18 @@ export default function OrderSummary() {
 
 export function DeliveryAddress({ address, setAddAddress, cartId }) {
   const routerHistory = useHistory();
+  const getLocation = () => {
+    const location = window.navigator && window.navigator.geolocation
+
+    if (location) {
+      location.getCurrentPosition((position) => {
+        console.log(position)
+      }, (error) => {
+        console.log(error)
+        //this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
+      })
+    }
+  }
   return (
     <div className={styles.DeliveryAddress}>
       {address && (
@@ -478,6 +490,7 @@ export function DeliveryAddress({ address, setAddAddress, cartId }) {
           <Button
             className={styles.useCurrentLocationBtn}
             variant="contained"
+            onClick={getLocation}
             color="default"
             startIcon={<LocationIcon />}
           >

@@ -89,10 +89,10 @@ export const Page_ChatExpert = () => {
     </Layout>
   );
 };
-export const Page_TrackOrders = () => {
+export const Page_TrackOrders = ({ match }) => {
   return (
     <Layout title={'Track Order'}>
-      <TrackOrders />
+      <TrackOrders match={match} />
     </Layout>
   );
 };

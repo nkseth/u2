@@ -145,7 +145,7 @@ const Login = () => {
       <div className={styles.Screen_Login_Social}>
         
           <GoogleLogin
-            clientId="1056686618594-imlm5dpp7jbviiqgot8mai4gpr7tehvg.apps.googleusercontent.com"
+            clientId="162602749574-8tmi3mu59fsopou0fgfrdmn2uqvqpab3.apps.googleusercontent.com"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}
@@ -157,7 +157,7 @@ const Login = () => {
         />
         
           <FacebookLogin
-            appId="270944214982706"
+            appId="2888475091369881"
             autoLoad={false}
             fields="name,email,picture"
             callback={responseFacebook}

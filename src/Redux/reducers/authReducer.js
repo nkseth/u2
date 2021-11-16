@@ -10,11 +10,11 @@ import {
   VERIFY_OTP_FAILED,
   VERIFY_OTP_REQUEST,
   VERIFY_OTP_SUCCESS,
-} from "../actions/types";
+} from '../actions/types';
 
 export const authReducer = (
   initialState = {
-    loading: false,
+    loading: true,
     isAuthenticated: false,
     user: {},
     error: null,

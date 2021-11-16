@@ -151,7 +151,7 @@
 // }
 
 import React from 'react';
-import { Button, useMediaQuery } from '@material-ui/core';
+import { Button, IconButton, useMediaQuery } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import CustomDivider from '../../../../utils/Custom Divider/divider';
 import styles from './card.module.scss';
@@ -230,7 +230,7 @@ export default function OrdersCard({
                       Size: {item.size || 'L'}
                     </h2>
                   )}
-                  {status === 'delivered' ? (
+                  {status === 'deliverd' ? (
                     <Button
                       onClick={() => history.push(`/order-review/${orderId}`)}
                       className={styles.rating}
@@ -252,7 +252,9 @@ export default function OrdersCard({
                     </Button>
                   ) : (
                     <Button
-                      onClick={() => history.push(`/trackorder/${orderId}`)}
+                      onClick={() =>
+                        history.push(`/trackorder/${orderId}/${item.id}`)
+                      }
                       className={styles.trackBtn}
                       variant='contained'
                     >
@@ -332,7 +334,7 @@ export const OrdersCardMobile = ({
   console.log('🚀 ~ file: card.jsx ~ line 326 ~ item', item);
   const history = useHistory();
   return (
-    <div className={styles.mobileContainer}>
+    <div className={styles.mobileContainer} style={{ position: 'relative' }}>
       <img
         src={item.product.image}
         alt={item.title}
@@ -351,8 +353,13 @@ export const OrdersCardMobile = ({
             <span>Solid Straight Kurta</span>
           </div>
         </div>
+        {status === 'deliverd' && (
+          <div className={styles.delivery_dateMobile}>
+            <h5>Arriving on 16 Jan 2021</h5>
+          </div>
+        )}
         <div className={styles.trackNCancelMobile}>
-          {status === 'delivered' ? (
+          {status === 'deliverd' ? (
             <div className={styles.mobileBTN}>
               <Button
                 onClick={() => history.push(`/order-review/${orderId}`)}
@@ -387,7 +394,7 @@ export const OrdersCardMobile = ({
               </Button>
             </div>
           )}
-          {status !== 'delivered' && (
+          {status !== 'deliverd' && (
             <div className={styles.cancelBtnContainer}>
               <Link
                 style={{ marginLeft: `${detailsPage ? 'auto' : ''}` }}
@@ -398,9 +405,38 @@ export const OrdersCardMobile = ({
             </div>
           )}
         </div>
+
         <div className={styles.delivery_dateMobile}>
           <h5>Arriving on 16 Jan 2021</h5>
         </div>
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          top: '10px',
+          right: '-15px',
+          top: '20%',
+        }}
+      >
+        <IconButton
+          onClick={() => history.push(`/product-description/${item.slug}`)}
+        >
+          <svg
+            width='16'
+            height='16'
+            viewBox='0 0 16 16'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='M6 12L10 8L6 4'
+              stroke='#9D9D9D'
+              stroke-width='1.33333'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+            />
+          </svg>
+        </IconButton>
       </div>
     </div>
   );

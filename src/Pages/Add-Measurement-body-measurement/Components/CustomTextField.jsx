@@ -90,13 +90,14 @@ export default function CustomTextField({
                 // InputProps={{
                 //   endAdornment: <InputAdornment>In</InputAdornment>,
                 // }}
-                InputProps={{
-                  inputProps: {
-                    type: 'number',
-                    minlength: 0,
-                    maxlength: 8,
-                  },
-                }}
+                // InputProps={{
+                //   inputProps: {
+                //     type: 'number',
+                //     minlength: 0,
+                //     maxLength: 6,
+                //   },
+                // }}
+                inputProps={{ maxLength: 10 }}
                 variant='standard'
                 fullWidth
                 // helperText={helperText}
@@ -104,6 +105,8 @@ export default function CustomTextField({
                   width: '100%',
                   background: 'transparent',
                   paddingLeft: '0.2em',
+                  fontWeight: '700',
+                  fontSize: '16px',
                 }}
                 autoFocus={true}
                 value={values}
@@ -114,10 +117,11 @@ export default function CustomTextField({
               <p
                 style={{
                   position: 'absolute',
-                  top: '2px',
+                  top: '3px',
                   fontSize: '1.2rem ',
-                  left: `${label.length + 150}px`,
-                  fontWeight: 'bold',
+                  left: `${label.length + 80}px`,
+                  fontWeight: '700',
+                  fontSize: '16px',
                 }}
               >
                 in

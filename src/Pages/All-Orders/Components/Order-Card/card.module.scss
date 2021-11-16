@@ -284,8 +284,11 @@
   position: relative;
   width: 100%;
 
-  display: flex;
-  gap: 14px;
+  // display: flex;
+
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 12px;
   img {
     width: 100px !important;
     height: 132px !important;
@@ -328,7 +331,7 @@
     letter-spacing: 0.3199999928474426px;
     text-align: center;
     color: #fff !important;
-    width: 140px;
+    width: 100px;
     height: 40px;
     text-transform: capitalize !important;
   }
@@ -338,15 +341,19 @@
     text-transform: capitalize !important;
     background: #857250 !important;
     color: #fff !important;
+    margin: 0.5rem 0;
+    img {
+      width: 14px !important;
+      height: 14px !important;
+      margin-right: 0.2rem;
+    }
   }
 
   .trackNCancelMobile {
     display: flex;
-
-    justify-content: space-between !important;
-    align-items: center !important;
-    gap: 2rem;
-
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 1.5rem;
     .cancelBtnMobile {
       font-family: DM Sans;
       font-size: 10px;

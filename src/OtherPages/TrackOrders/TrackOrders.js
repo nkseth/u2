@@ -9,15 +9,16 @@ import common_axios from '../../utils/axios.config';
 import parse from 'html-react-parser';
 
 const TrackOrders = ({ match }) => {
-
   const {
     params: { orderId, item_id },
   } = match;
 
   const { isAuthenticated, user } = useSelector(state => state.root.auth);
   const { trackingData } = useSelector(state => state.root.trackOrder);
-  const [delivered, setDelivered] = useState(false)
-  const [delivery_data, set_delivery_data] = useState({})
+  const [delivered, setDelivered] = useState(false);
+  const [delivery_data, set_delivery_data] = useState({});
+
+  console.log(trackingData);
 
   const dispatch = useDispatch();
 
@@ -26,25 +27,23 @@ const TrackOrders = ({ match }) => {
   }, [dispatch, user, orderId]);
 
   useEffect(() => {
-    trackingData.forEach((item) => {
+    trackingData.forEach(item => {
       if (item.order_status_id == 'Delivery') {
-        setDelivered(true)
-        set_delivery_data(item)
+        setDelivered(true);
+        set_delivery_data(item);
       }
-    })
-  }, [trackingData])
+    });
+  }, [trackingData]);
 
-  if(trackingData.length == 0){
-    return(
-      <h3>Nothing to show, please try after some time</h3>
-    )
+  if (trackingData.length == 0) {
+    return <h3>Nothing to show, please try after some time</h3>;
   }
 
   return (
     <div className={styles.TrackOrders}>
       {trackingData.map((item, index) => {
         if (item.order_status_id == 'Delivery') {
-          return null
+          return null;
         }
         return (
           <TimeLine
@@ -55,7 +54,7 @@ const TrackOrders = ({ match }) => {
             className={index == 0 ? styles.TrackOrders_Timeline_Dot_First : ''}
             completed={true}
           />
-        )
+        );
       })}
       {/* <TimeLine
         OrderInfo={'Fabric Cutting'}
@@ -91,7 +90,7 @@ const TrackOrders = ({ match }) => {
           </div>
         }
       /> */}
-      {trackingData.length > 1 ?
+      {trackingData.length > 1 ? (
         <TimeLine
           OrderInfo={'Delivery'}
           date={delivery_data.created_at}
@@ -101,7 +100,8 @@ const TrackOrders = ({ match }) => {
             'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, itaque!ctetur adipisicing elit. Esse, itaque!'
           }
           completed={delivered}
-        /> : null}
+        />
+      ) : null}
     </div>
   );
 };
@@ -124,8 +124,9 @@ const TimeLine = ({
           <p>{date}</p> <p>{time}</p>
         </div>
         <div
-          className={`${styles.TrackOrders_Timeline_Dot} ${className} ${completed ? 'done' : ''
-            } `}
+          className={`${styles.TrackOrders_Timeline_Dot} ${className} ${
+            completed ? 'done' : ''
+          } `}
         >
           <span
             className={` ${completed ? 'done' : ''}`}

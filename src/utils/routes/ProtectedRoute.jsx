@@ -7,6 +7,14 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   const { loading, isAuthenticated, user } = useSelector(
     state => state.root.auth
   );
+  console.log(
+    '🚀 ~ file: ProtectedRoute.jsx ~ line 10 ~ ProtectedRoute ~ loading',
+    loading
+  );
+  console.log(
+    '🚀 ~ file: ProtectedRoute.jsx ~ line 8 ~ ProtectedRoute ~ isAuthenticated',
+    isAuthenticated
+  );
   return loading ? (
     <Loader />
   ) : (

@@ -6,7 +6,7 @@ import CustomDivider from '../Custom Divider/divider';
 import CustomSection from '../Custom Section/section';
 import BottomNavigation from '../MobileBottomNavigation/BottomNavigation';
 import { useLocation } from 'react-router';
-import SortFilter from '../MobileSortFilter/sortFilter'
+import SortFilter from '../../Pages/Designers-Product-Page/Components/MobileSortFilter/sortFilter'
 
 export default function Container(props) {
   const tabView = useMediaQuery('(max-width:768px)');

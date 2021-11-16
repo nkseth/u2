@@ -482,8 +482,13 @@ export default function ProductDescription({ match }) {
                     >
                       <div className={styles.productDetails}>
                         <span>{details.brand}</span>
-                        <span>{details.title}</span>
+                        <h3 className={styles.product__title}>
+                          {details.title}
+                        </h3>
                       </div>
+                      <IconButton>
+                        <Share style={{ width: '37px', height: '37px' }} />
+                      </IconButton>
                       {details.stock_quantity < 10 ? (
                         <div className={styles.alert}>
                           <img src={clockIcon} alt='clock' />
@@ -707,7 +712,20 @@ export default function ProductDescription({ match }) {
                   <>
                     <div className={styles.productDetails}>
                       <span>{details.brand}</span>
-                      <span>{details.title}</span>
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <h3 className={styles.product__title}>
+                          {details.title}
+                        </h3>
+                        <IconButton>
+                          <Share style={{ width: '37px', height: '37px' }} />
+                        </IconButton>
+                      </div>
                     </div>
                     <div className={styles.selectProduct}>
                       <div
@@ -910,12 +928,16 @@ export default function ProductDescription({ match }) {
                               >
                                 <FavoriteIcon style={{ color: 'red' }} />
                               </IconButton>
-                              <Share
-                                style={{ height: '24px', width: '24px' }}
-                              />
+                              <IconButton>
+                                <Share
+                                  style={{ width: '24px', height: '24px' }}
+                                />
+                              </IconButton>
                             </div>
                           ) : (
-                            <div>
+                            <div
+                              style={{ display: 'flex', alignItems: 'center' }}
+                            >
                               <IconButton
                                 aria-label='product'
                                 onClick={() => {
@@ -928,9 +950,11 @@ export default function ProductDescription({ match }) {
                               >
                                 <FavoriteBorderIcon />
                               </IconButton>
-                              <Share
-                                style={{ height: '24px', width: '24px' }}
-                              />
+                              <IconButton>
+                                <Share
+                                  style={{ width: '24px', height: '24px' }}
+                                />
+                              </IconButton>
                             </div>
                           )}
                         </>

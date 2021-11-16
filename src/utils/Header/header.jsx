@@ -88,7 +88,7 @@ export default function Header() {
     }, 200);
   };
 
-  const tabView = useMediaQuery('(max-width:768px)');
+  const tabView = useMediaQuery('(max-width:1060px)');
   const mobileView = useMediaQuery('(max-width:550px)');
   const mobile = useMediaQuery('(max-width:460px)');
   const [megaMenuType, setMegaMenuType] = useState('');

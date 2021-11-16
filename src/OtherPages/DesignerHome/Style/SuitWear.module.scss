@@ -5,9 +5,16 @@
   // margin-bottom: 35px;
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 123px;
   margin-top: -0.6em;
   margin-bottom: 2rem;
+  @media screen and (max-width: 768px) {
+    gap: 75px;
+  }
+  @media screen and (max-width: 479px) {
+    gap: 8px;
+    margin-bottom: -16px !important;
+  }
 }
 .SuitWear {
   display: flex;
@@ -172,7 +179,7 @@ button:disabled {
 
 @media screen and (max-width: 450px) {
   .suitwear_content {
-    padding: 3rem 1rem !important;
+    padding: 2rem 1rem !important;
   }
   .SuitWear_header {
     font-size: 35px;

@@ -53,7 +53,7 @@ const SuitWear = () => {
   };
   const stylesCustom = {
     backgroundImage: `url(${dotted})`,
-    padding: '5rem 3rem 4rem  3rem',
+    padding: '5rem 3rem 4rem 3rem',
   };
 
   return (

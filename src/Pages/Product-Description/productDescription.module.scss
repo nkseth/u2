@@ -51,7 +51,27 @@
   display: none;
   cursor: pointer;
 }
+.product__title {
+  //styleName: Headline / H3;
+  font-family: DM Serif Display;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
 
+  @media screen and (max-width: 768px) {
+    //styleName: Headline / H3;
+    font-family: DM Serif Display;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}
 // .imagegall {
 //   background: white;
 //   padding-top: 1em;
@@ -227,7 +247,7 @@
 
   .price {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 0.5rem;
     flex-wrap: wrap;
     > span:first-child {
@@ -255,7 +275,7 @@
 
   .priceTab {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     // margin-left: 1em;
 
     > span:first-child {

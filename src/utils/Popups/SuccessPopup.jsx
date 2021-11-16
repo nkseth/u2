@@ -1,6 +1,6 @@
-import styles from "./SuccessPopUp.module.scss";
-import close from "./close.svg";
-import { IconButton } from "@material-ui/core";
+import styles from './SuccessPopUp.module.scss';
+import close from './close.svg';
+import { IconButton } from '@material-ui/core';
 export function SuccessPopUp({
   toggle,
   title,
@@ -10,6 +10,7 @@ export function SuccessPopUp({
   children,
   width,
   height,
+  tick,
 }) {
   return (
     <div className={styles.modal}>
@@ -18,8 +19,8 @@ export function SuccessPopUp({
         <IconButton className={styles.CloseBtn} onClick={toggle}>
           <img src={close} />
         </IconButton>
-        {/* <img src={tick} />
-        <h1>{title}</h1>
+        {tick && <img src={tick} />}
+        {/*<h1>{title}</h1>
         <p>{text}</p>
         {payment ? (
           <>

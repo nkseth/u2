@@ -230,7 +230,7 @@ export default function OrdersCard({
                       Size: {item.size || 'L'}
                     </h2>
                   )}
-                  {status === 'delivered' ? (
+                  {status === 'deliverd' ? (
                     <Button
                       onClick={() => history.push(`/order-review/${orderId}`)}
                       className={styles.rating}
@@ -252,7 +252,9 @@ export default function OrdersCard({
                     </Button>
                   ) : (
                     <Button
-                      onClick={() => history.push(`/trackorder/${orderId}`)}
+                      onClick={() =>
+                        history.push(`/trackorder/${orderId}/${item.id}`)
+                      }
                       className={styles.trackBtn}
                       variant='contained'
                     >

@@ -335,12 +335,14 @@ export const OrdersCardMobile = ({
   const history = useHistory();
   return (
     <div className={styles.mobileContainer} style={{ position: 'relative' }}>
-      <img
-        src={item.product.image}
-        alt={item.title}
-        style={{ cursor: 'pointer' }}
-        onClick={() => history.push(`/product-description/${item.slug}`)}
-      />
+      <Link to={`/order-details/${orderId}`} style={{ cursor: 'pointer' }}>
+        <img
+          src={item.product.image}
+          alt={item.title}
+          style={{ cursor: 'pointer' }}
+          onClick={() => history.push(`/product-description/${item.slug}`)}
+        />
+      </Link>
       <div className={styles.rightContainer}>
         <div className={styles.detailsMobile}>
           <div className={styles.nameNCatMobile}>
@@ -418,25 +420,27 @@ export const OrdersCardMobile = ({
           top: '20%',
         }}
       >
-        <IconButton
-          onClick={() => history.push(`/product-description/${item.slug}`)}
-        >
-          <svg
-            width='16'
-            height='16'
-            viewBox='0 0 16 16'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
+        <Link to={`/order-details/${orderId}`} style={{ cursor: 'pointer' }}>
+          <IconButton
+            onClick={() => history.push(`/product-description/${item.slug}`)}
           >
-            <path
-              d='M6 12L10 8L6 4'
-              stroke='#9D9D9D'
-              stroke-width='1.33333'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-            />
-          </svg>
-        </IconButton>
+            <svg
+              width='16'
+              height='16'
+              viewBox='0 0 16 16'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M6 12L10 8L6 4'
+                stroke='#9D9D9D'
+                stroke-width='1.33333'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+              />
+            </svg>
+          </IconButton>
+        </Link>
       </div>
     </div>
   );

@@ -7,8 +7,10 @@ import CustomDivider from '../../utils/Custom Divider/divider';
 import { Button, IconButton, useMediaQuery } from '@material-ui/core';
 import OrdersCard from '../../Pages/All-Orders/Components/Order-Card/card';
 import { useParams } from 'react-router';
+import { useEffect } from 'react';
 const OrderDetailsMobile = ({ order, status, orderDetails }) => {
   const { orderid } = useParams();
+
   return (
     <div className={styles.MobileConatiner}>
       <img src={order?.cover_image} alt='' />
@@ -93,10 +95,16 @@ const OrderDetailsMobile = ({ order, status, orderDetails }) => {
         </div>
       </div>
       {orderDetails?.items &&
-        orderDetails?.items.slice(0, 1).map(item => {
-          console.log(item);
+        orderDetails?.items.slice(1, 3).map(item => {
+          console.log(
+            '🚀 ~ file: OrderDetailsMobile.jsx ~ line 112 ~ orderDetails?.items.slice ~ item',
+            item
+          );
           return (
-            <div>
+            <div style={{ margin: '1rem 0' }}>
+              <span style={{ fontWeight: 'bold' }}>
+                Other items in this order
+              </span>
               {status === 'confirmed' ? (
                 <OrdersCard item={item} orderId={orderid} detailsPage />
               ) : status === 'pending' ? (

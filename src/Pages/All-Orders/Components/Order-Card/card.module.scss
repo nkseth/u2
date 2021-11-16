@@ -338,15 +338,17 @@
     text-transform: capitalize !important;
     background: #857250 !important;
     color: #fff !important;
+    margin: 0.5rem 0;
+    img {
+      width: 14px !important;
+      height: 14px !important;
+      margin-right: 0.2rem;
+    }
   }
 
   .trackNCancelMobile {
-    display: flex;
-
-    justify-content: space-between !important;
-    align-items: center !important;
-    gap: 2rem;
-
+    display: grid;
+    grid-template-columns: repeat(1fr, 200px);
     .cancelBtnMobile {
       font-family: DM Sans;
       font-size: 10px;

@@ -353,8 +353,13 @@ export const OrdersCardMobile = ({
             <span>Solid Straight Kurta</span>
           </div>
         </div>
+        {status === 'deliverd' && (
+          <div className={styles.delivery_dateMobile}>
+            <h5>Arriving on 16 Jan 2021</h5>
+          </div>
+        )}
         <div className={styles.trackNCancelMobile}>
-          {status === 'delivered' ? (
+          {status === 'deliverd' ? (
             <div className={styles.mobileBTN}>
               <Button
                 onClick={() => history.push(`/order-review/${orderId}`)}
@@ -389,7 +394,7 @@ export const OrdersCardMobile = ({
               </Button>
             </div>
           )}
-          {status !== 'delivered' && (
+          {status !== 'deliverd' && (
             <div className={styles.cancelBtnContainer}>
               <Link
                 style={{ marginLeft: `${detailsPage ? 'auto' : ''}` }}
@@ -400,6 +405,7 @@ export const OrdersCardMobile = ({
             </div>
           )}
         </div>
+
         <div className={styles.delivery_dateMobile}>
           <h5>Arriving on 16 Jan 2021</h5>
         </div>

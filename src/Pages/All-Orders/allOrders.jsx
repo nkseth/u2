@@ -181,7 +181,7 @@ export default function AllOrders() {
                   }) => (
                     <div className={styles.ordersCardDiv}>
                       {items.map(item => (
-                        <PastOrdersCard
+                        <OrdersCard
                           status='deliverd'
                           deliveryDate={delivery_date}
                           item={item}

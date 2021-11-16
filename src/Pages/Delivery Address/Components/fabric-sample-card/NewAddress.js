@@ -21,6 +21,7 @@ import { useDispatch } from "react-redux";
 import { addAddress } from "../../../../Redux/actions/address";
 import { useSelector } from "react-redux";
 import { getCartItems } from "../../../../Redux/actions/myBag";
+import Geocode from "react-geocode";
 
 const CustomRadio = withStyles({
   root: {
@@ -49,12 +50,12 @@ function NewAddress({ setAddAddress }) {
   const BreakPointExtraSmall = useMediaQuery("(max-width:750px)");
   const BreakPointMobile = useMediaQuery("(max-width:610px)");
   const [AddressType, SetAddressType] = useState(0);
-  const [State, SetState] = useState();
+  const [State, SetState] = useState('');
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState();
-  const [alternateMobile, setAlternateMobile] = useState();
-  const [pincode, setPincode] = useState();
-  const [locality, setLocality] = useState();
+  const [alternateMobile, setAlternateMobile] = useState('');
+  const [pincode, setPincode] = useState('');
+  const [locality, setLocality] = useState('');
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [landmark, setLandmark] = useState("");
@@ -137,6 +138,45 @@ function NewAddress({ setAddAddress }) {
     }
   }, [loading, message, dispatch]);
 
+  const getLocation = () => {
+    const location = window.navigator && window.navigator.geolocation
+
+    if (location) {
+      location.getCurrentPosition((position) => {
+        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+          (response) => {
+            if (response.status == 'OK') {
+              setAddress(response.results[0].formatted_address)
+              const letVar = response.results[0].address_components
+              letVar.forEach((item) => {
+                item.types.forEach((qr) => {
+                  if (qr === 'locality') {
+                    setLocality(item.long_name)
+                  }
+                  if (qr === 'administrative_area_level_2') {
+                    setCity(item.long_name)
+                  }
+                  if (qr === 'administrative_area_level_1') {
+                    SetState(item.long_name)
+                  }
+                  if (qr === 'postal_code') {
+                    setPincode(item.long_name)
+                  }
+                })
+              })
+            }
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+      }, (error) => {
+        console.log(error)
+        //this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
+      })
+    }
+  }
+
   return (
     <div className={styles.modal}>
       <div
@@ -160,6 +200,7 @@ function NewAddress({ setAddAddress }) {
               className={styles.useCurrentLocationBtn}
               variant="contained"
               color="default"
+              onClick={getLocation}
               startIcon={<LocationIcon />}
             >
               Use current location
@@ -361,9 +402,10 @@ function NewAddress({ setAddAddress }) {
               IsState
               StatesName={IndianStates}
               notimp
+              value={State}
               label="State"
               placeholder="Select Your State"
-              onChange={(e) => SetState(e.target.value)}
+              onChange={(e) => SetState(e)}
             />
 
             <InputField

@@ -19,8 +19,6 @@ const TrackOrders = ({ match }) => {
   const [delivered, setDelivered] = useState(false)
   const [delivery_data, set_delivery_data] = useState({})
 
-  console.log(trackingData)
-
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -87,10 +87,14 @@ import MobileCategory from './utils/MobileCategoryPage/MobileCategory';
 import ProductsByDesigner from './Pages/Designers-Product-Page/ProductsByDesigner';
 import SelectMeasurement from './Pages/Select-Measurement/selectMeasurement';
 // import OrderDetails from "./OtherPages/OrderDetails/OrderDetails";
-
+import Geocode from "react-geocode";
 //Start From Here
 
 function App() {
+  Geocode.setApiKey("AIzaSyA_nmZVriBFLHl4ZdmN7d_WVr9PEH2sZa4");
+  Geocode.setLanguage("en");
+  Geocode.setRegion("es");
+  Geocode.setLocationType("ROOFTOP");
   const { isLoginModel } = useLogin();
   const dispatch = useDispatch();
   const [cookies, setCookie] = useCookies(['user']);

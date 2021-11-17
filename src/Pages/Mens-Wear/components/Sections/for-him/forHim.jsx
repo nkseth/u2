@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader, { ProductLoader } from "../../../../../utils/Loader/Loader";
 //Images
 import Main from "./Components/Images/Main.jpg";
+import { ReactComponent as Icon } from "../../../../../Images/icons/icon.svg"
 
 import {
   get_mens_active_product,
@@ -17,6 +18,7 @@ import {
 import { useHistory } from "react-router-dom";
 import { LazyLoadingImg } from "../../../../../utils/LazyLoading";
 import { getWishList } from "../../../../../Redux/actions/wishlist";
+import CustomDivider from "../../../../../utils/Custom Divider/divider"
 
 export default function ForHimSection({ type, coverImage }) {
   // const loading = false;
@@ -50,153 +52,36 @@ export default function ForHimSection({ type, coverImage }) {
     <CustomSection
       style={{
         backgroundColor: "rgba(230, 227, 220, 0.21)",
-        paddingBottom: mobileView ? "40px" : "50px",
-        paddingTop: mobileView ? "30px" : "",
+        paddingBottom: mobileView ? "40px" : "134px",
+        paddingTop: !mobileView ? "30px" : "",
       }}
     >
-      <div className={styles.mainContainer}>
-        <div className={styles.forHimFirstSection}>
-          <p>
-            <span style={{ color: "#000" }}>
-              <i>#For</i>
-            </span>
-            &nbsp;{type === "mens" ? "Him" : type === "womens" ? "Her" : "Kids"}
-          </p>
-          {customView && (
-            <nav
-              className={styles.navBar}
-              style={{
-                width: mobileView ? "100%" : "85%",
-                justifyContent: "center",
-                marginTop: mobileView ? ".5rem" : "2rem",
-              }}
-            >
-              <div className={styles.navItems}>
-                <span
-                  href="#"
-                  className={activeNav === "all" && styles.activeNav}
-                  onClick={() => setActiveNav(grp, "all")}
-                >
-                  All
-                </span>
-                {banner.categories?.map((item, index) => {
-                  if (index > 3) {
-                    return null;
-                  }
-                  return (
-                    <span
-                      href="#"
-                      className={
-                        activeNav.toLowerCase() === item.slug.toLowerCase() &&
-                        styles.activeNav
-                      }
-                      onClick={() => {
-                        setActiveNav(grp, item.slug);
-                      }}
-                    >
-                      {item.name}
-                    </span>
-                  );
-                })}
-              </div>
-            </nav>
-          )}
-          <LazyLoadingImg image={coverImage} />
-          {/* <img src={Main} alt='for him' /> */}
+      {
+         ! mobileView ? <h2 className={styles.heading}>For him</h2> 
+        :
+        <div style={{display:"flex", alignItems:"center"}}>
+          <h2 className={styles.heading}>For him</h2>
+          <CustomDivider style={{ height: '1px', background: '#857250',marginLeft:"8px" }} />
         </div>
-        <Grid
-          container
-          style={{ margin: "0" }}
-          spacing={mobileView ? 1 : tabView ? 2 : 4}
-          justify="space-between"
-          className={styles.secondSection}
-        >
-          {!customView && (
-            <Grid item xs={12} sm={12} md={12}>
-              <nav className={styles.navBar}>
-                <div className={styles.navItems}>
-                  <span
-                    href="#"
-                    className={activeNav === "all" && styles.activeNav}
-                    onClick={() => setActiveNav(grp, "all")}
-                  >
-                    All
-                  </span>
-                  {banner.categories?.map((item, index) => {
-                    if (index > 4) {
-                      return null;
-                    }
-                    return (
-                      <span
-                        href="#"
-                        className={activeNav === item.slug && styles.activeNav}
-                        onClick={() => setActiveNav(grp, item.slug)}
-                      >
-                        {item.name}
-                      </span>
-                    );
-                  })}
-                </div>
-                <Button
-                  onClick={() =>
-                    history.push(`/designers-product-page/${grp}/all`)
-                  }
-                  className={styles.viewAllBtn}
-                >
-                  View all
-                </Button>
-              </nav>
-            </Grid>
-          )}
-          {/* {mens_active_product?.slice(0, 6).map(item => {
+      }
+      
+      <div  className={styles.forHim_items}>
+        {
+          banner?.categories?.map((item) => {
             return (
-              <Grid item xs={6} sm={4} md={4} justifyContent={'space-between'}>
-                <ProductCard data={item} image={item.feature_image} />
-              </Grid>
-            );
-          })} */}
+              <div  className={styles.forHim_item}>
+                <img src={item.cover_image} />
+                <h3>{item.name}</h3>
+              </div>
+            )
+          })
 
-          {!mens_active_product
-            ? [...Array(6)].map((item) => (
-                <Grid
-                  item
-                  xs={6}
-                  sm={4}
-                  md={4}
-                  justifyContent={"space-between"}
-                >
-                  <ProductLoader width="100%" height="400px" />
-                </Grid>
-              ))
-            : mens_active_product?.slice(0, 6).map((item) => {
-                return (
-                  <Grid
-                    item
-                    xs={6}
-                    sm={4}
-                    md={4}
-                    justifyContent={"space-between"}
-                  >
-                    <ProductCard product={item} key={item.id} />
-                  </Grid>
-                );
-              })}
-        </Grid>
-        {customView && (
-          <Grid
-            item
-            md={12}
-            style={{ display: "flex", justifyContent: "center" }}
-          >
-            <Button
-              onClick={() => history.push(`/designers-product-page/${grp}/all`)}
-              className={styles.viewAllBtn}
-            >
-              View all
-            </Button>
-          </Grid>
-        )}
+        }
       </div>
+      <div style={{ textAlign: "center", marginTop: "1rem" }}>
+              <Button className={styles.moreButton}>View more</Button>
+              <Icon style={{ marginLeft: "12px" }} />
+            </div>
     </CustomSection>
   );
 }

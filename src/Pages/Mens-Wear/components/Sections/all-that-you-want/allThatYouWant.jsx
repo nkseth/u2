@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Grid, useMediaQuery } from "@material-ui/core";
+import { Grid, useMediaQuery, Button } from "@material-ui/core";
 import CustomSection from "../../../../../utils/Custom Section/section";
 import TopOffersCard from "./components/offers-card/card";
 import styles from "./allThatYouWant.module.scss";
@@ -11,6 +11,10 @@ import All2 from "./components/Images/All2.jpg";
 import All3 from "./components/Images/All3.jpg";
 import { get_all_that_you_want } from "../../../../../Redux/actions/mensWear";
 import { LazyLoadingImg } from "../../../../../utils/LazyLoading";
+// Swiper
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper.min.css";
+
 
 export default function AllThatYouWantSection({ type }) {
   const dispatch = useDispatch();
@@ -47,9 +51,8 @@ export default function AllThatYouWantSection({ type }) {
   return (
     <CustomSection
       style={{
-        paddingBottom: mobileView ? "40px" : "84px",
-        paddingTop: mobileView ? "30px" : "84px",
-        background: "rgba(206, 199, 185, 0.2)",
+        paddingBottom: mobileView ? "38px" : "146px",
+        paddingTop: mobileView ? "30px" : "66px",
       }}
     >
       <div className={styles.header}>
@@ -68,21 +71,48 @@ export default function AllThatYouWantSection({ type }) {
           />
         ))}
       </div> */}
-      <div className={styles.topOffersCardContainer}>
-        {all_that_you_want?.slice(0, 3).map((item) => {
-          return (
-            <Link to={`/designers-product-page/${type}/${item.link}`}>
-              <div key={item.id} className={styles.item}>
-                <LazyLoadingImg image={item.image} height={"225px"} />
+      {
+        !mobileView ?
+          <div className={styles.topOffersCardContainer}>
+            {all_that_you_want?.slice(0, 3).map((item) => {
+              return (
+                <Link to={`/designers-product-page/${type}/${item.link}`}>
+                  <div key={item.id} className={styles.item}>
+                    <LazyLoadingImg image={item.image} height={"225px"} />
 
-                {/* <img src={item.image} alt={item.name} /> */}
+                    {/* <img src={item.image} alt={item.name} /> */}
 
-                <h1>{item.title}</h1>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+                    <h1>{item.title}</h1>
+                  </div>
+                </Link>
+              );
+            })}
+          </div> :
+          <div className={styles.topOffersCardContainer}>
+            <Swiper slidesPerView={3}>
+              {
+                all_that_you_want?.map((item) => {
+                  const data = item.title.split(" ")
+                  return (
+                    <SwiperSlide style={{ margin: "0.5rem" }}>
+                      <Button className={styles.allThatButton}> <span><span style={{ fontSize: "12px", fontFamily: " DM Sans", textTransform: "initial", fontWeight: 400 }}>{data[0]}</span><br /><span style={{ fontSize: "20px", fontFamily: 'DM Serif Display', fontWeight: 400 }}>{data[1]}{data[2]}{data[3]}</span></span></Button>
+                    </SwiperSlide>
+                  )
+                })
+              }
+
+            </Swiper>
+            {/* {all_that_you_want?.slice(0, 3).map((item) => {
+              const data = item.title.split(" ")
+              console.log(data[0])
+              return (
+
+                <Button className={styles.allThatButton}> <span><span style={{ fontSize: "12px" }}>{data[0]}</span><br /><span style={{ fontSize: "20px" ,fontFamily:'DM Serif Display'}}>{data[1]}{data[2]}{data[3]}</span></span></Button>
+              );
+            })} */}
+          </div>
+      }
+
     </CustomSection>
   );
 }

@@ -194,10 +194,6 @@ export default function MensWear({ match }) {
         <ForHimSection type={type} coverImage={cover_image} />
     
       <NewCollectionSection type={type} />
-      {
-        mobileView &&
-        <NewArrivals type={type} />
-      }
       <ExploreTopDesignersSection type={type} />
       <StylishRecommendationSection type={type} />
       <MostLovedStyleSection type={type} />

@@ -57,19 +57,19 @@ export default function ForHimSection({ type, coverImage }) {
       }}
     >
       {
-         ! mobileView ? <h2 className={styles.heading}>For him</h2> 
-        :
-        <div style={{display:"flex", alignItems:"center"}}>
-          <h2 className={styles.heading}>For him</h2>
-          <CustomDivider style={{ height: '1px', background: '#857250',marginLeft:"8px" }} />
-        </div>
+        !mobileView ? <h2 className={styles.heading}>For him</h2>
+          :
+          <div style={{ display: "flex", alignItems: "center",marginTop:"-45px" }}>
+            <h2 className={styles.heading}>For him</h2>
+            <CustomDivider style={{ height: '1px', background: '#857250', marginLeft: "8px" }} />
+          </div>
       }
-      
-      <div  className={styles.forHim_items}>
+
+      <div className={styles.forHim_items}>
         {
           banner?.categories?.map((item) => {
             return (
-              <div  className={styles.forHim_item}>
+              <div className={styles.forHim_item}>
                 <img src={item.cover_image} />
                 <h3>{item.name}</h3>
               </div>
@@ -78,10 +78,14 @@ export default function ForHimSection({ type, coverImage }) {
 
         }
       </div>
-      <div style={{ textAlign: "center", marginTop: "1rem" }}>
-              <Button className={styles.moreButton}>View more</Button>
-              <Icon style={{ marginLeft: "12px" }} />
-            </div>
+      {
+        mobileView &&
+        <div style={{ textAlign: "center", marginTop: "1rem" }}>
+          <Button className={styles.moreButton}>View more</Button>
+          <Icon style={{ marginLeft: "12px" }} />
+        </div>
+      }
+
     </CustomSection>
   );
 }

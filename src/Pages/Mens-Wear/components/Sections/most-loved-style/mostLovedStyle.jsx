@@ -91,7 +91,7 @@ export default function MostLovedStyleSection({ type }) {
           </CustomSection>
         ) : (
           <CustomSection
-          style={{ backgroundImage: `url("${dottedBg}")`, marginTop: "14px",paddingTop:"2rem" }}>
+          style={{ backgroundImage: `url("${dottedBg}")`, marginTop: "14px",paddingTop:"2rem",paddingBottom:"1remy" }}>
             <CarouselProvider
               visibleSlides={match ? 1.4 : iPade ? 2 : large ? 3 : visible}
               // naturalSlideWidth={100}

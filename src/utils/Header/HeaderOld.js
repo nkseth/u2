@@ -19,7 +19,6 @@ import CustomSection from '../Custom Section/section';
 import SideNavbar from '../Side-Navbar/sideNavbar';
 import styles from './header.module.scss';
 //Icons
-import Bell from './Images/bell.svg';
 import PersonIcon from '../../Images/icons/person.svg';
 import FavoriteIcon from '../../Images/icons/favorite.svg';
 import BagIcon from '../../Images/icons/bag.svg';
@@ -37,7 +36,7 @@ import { ReactComponent as LogoSM } from '../../Images/logo/U2icon.svg';
 import { getCategorySubGroup } from '../../Redux/actions/designerHomePage';
 import Search from './Components/SearchResult/seachResult';
 
-const Header = () => {
+export default function Header() {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -89,9 +88,9 @@ const Header = () => {
     }, 200);
   };
 
-  const tabView = useMediaQuery('(max-width:1030px)');
+  const tabView = useMediaQuery('(max-width:1060px)');
   const mobileView = useMediaQuery('(max-width:550px)');
-  const mobile = useMediaQuery('(max-width:479px)');
+  const mobile = useMediaQuery('(max-width:460px)');
   const [megaMenuType, setMegaMenuType] = useState('');
   const { user } = useSelector(state => state.root.auth);
 
@@ -125,7 +124,7 @@ const Header = () => {
   return (
     <div
       style={{
-        padding: mobileView ? '0 1em' : '0 2em',
+        padding: mobileView ? '0 1em' : '0 3em',
         width: mobileView ? '100%' : '100%',
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -133,102 +132,69 @@ const Header = () => {
       className={styles.headerShadow}
     >
       <div className={styles.firstContainer}>
-        {!tabView ? (
-          <div className={styles.logo}>
-            <Link to='/'>{!mobile ? <Logo /> : <LogoSM />}</Link>
-          </div>
-        ) : (
-          tabView && (
-            <div style={{ display: 'flex' }}>
-              {tabView && !mobile && (
-                <IconButton
-                  aria-label='menu'
-                  style={{ marginLeft: '-12px' }}
-                  onClick={() => setDrawerOpen(true)}
-                >
-                  <img
-                    src={HamMenuIcon}
-                    alt='menu'
-                    className={styles.hamMenuIcon}
-                  />
-                </IconButton>
-              )}
-              <div className={styles.logo}>
-                <Link to='/'>{!mobileView ? <Logo /> : <LogoSM />}</Link>
-              </div>
-            </div>
-          )
-        )}
-        <div className={styles.secondContainer}>
-          <MegaMenu
-            visible={isMegaMenuOpen}
-            type={megaMenuType}
-            Close={setMegaMenuOpen}
-          />
-          <div className={styles.mainMenuContainer}>
-            <span
-              onMouseEnter={() => {
-                handleMouseEnter('mens');
-                setMegaMenuOpen(true);
-              }}
-              onMouseLeave={() => {
-                handleMouseLeave('mens');
-              }}
-              className={cx(styles.menuItem, styles.menuItem_men)}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: mobileView ? '8px' : '21px',
+          }}
+        >
+          {tabView && !mobile && (
+            <IconButton
+              aria-label='menu'
+              style={{ marginLeft: '-12px' }}
+              onClick={() => setDrawerOpen(true)}
             >
-              <Link to='/wear/mens'>Men</Link>
-            </span>
-            <span
-              onMouseEnter={() => {
-                handleMouseEnter('womens');
-                setMegaMenuOpen(true);
-              }}
-              onMouseLeave={() => handleMouseLeave('womens')}
-              className={cx(styles.menuItem, styles.menuItem_women)}
-            >
-              {' '}
-              <Link to='/wear/womens'> Women</Link>
-            </span>
-            <span
-              onMouseEnter={() => {
-                handleMouseEnter('kids');
-                setMegaMenuOpen(true);
-              }}
-              onMouseLeave={() => handleMouseLeave('kids')}
-              className={cx(styles.menuItem, styles.menuItem_kids)}
-            >
-              <Link to='/wear/kids'> Kids</Link>
-            </span>
-            <span
-              // onMouseEnter={() => handleMouseEnter("designers")}
-              // onMouseLeave={() => handleMouseLeave("designers")}
-              className={cx(styles.menuItem, styles.menuItem_designers)}
-            >
-              <Link to='designers'>Designers</Link>
-            </span>
-
-            <span
-              // onMouseEnter={() => handleMouseEnter("offers")}
-              // onMouseLeave={() => handleMouseLeave("offers")}
-              className={cx(styles.menuItem, styles.menuItem_offers)}
-            >
-              <Link to='offers'>Offers</Link>
-            </span>
-          </div>
+              <img
+                src={HamMenuIcon}
+                alt='menu'
+                className={styles.hamMenuIcon}
+              />
+            </IconButton>
+          )}
+          <span className={styles.logo}>
+            <Link to='/'>
+              {/* LOGO */}
+              {/* <img src={Logo} alt='' /> */}
+              {!mobile ? <Logo /> : <LogoSM />}
+            </Link>
+          </span>
         </div>
-        {!mobile && (
-          <div>
-            <Search />
+        {tabView && !mobileView && (
+          <div className={styles.searchBarContainer}>
+            <img src={SearchIcon} alt='search' />
+            <input
+              type='text'
+              placeholder='Search for designers, brands and more'
+            />
           </div>
         )}
-        <div className={styles.iconContainer}>
-          <IconButton
-            aria-label='my account'
-            onClick={() => profileFnc('/profile')}
-          >
-            <img src={Bell} alt='' />
-          </IconButton>
-          {!mobile && (
+
+        {mobileView && (
+          <div>
+            <IconButton aria-label='search'>
+              <img
+                src={SearchDarkIcon}
+                className={styles.mobileViewSideIcons}
+                alt='search'
+              />
+            </IconButton>
+            <IconButton
+              onClick={() => history.push('/my-bag')}
+              aria-label='my bag'
+              style={{ marginRight: '-12px' }}
+            >
+              <img
+                src={BagIcon}
+                alt='my bag'
+                className={styles.mobileViewSideIcons}
+              />
+            </IconButton>
+          </div>
+        )}
+
+        {!tabView && (
+          <div>
             <IconButton
               aria-label='my account'
               onClick={() => profileFnc('/profile')}
@@ -243,21 +209,136 @@ const Header = () => {
                 />
               </div>
             </IconButton>
-          )}
-          <IconButton
-            aria-label='favorites'
-            onClick={() => profileFnc('/wishlist')}
-          >
-            <img src={FavoriteIcon} alt='favorites' />
-          </IconButton>
-          <IconButton
-            onClick={() => history.push('/my-bag')}
-            aria-label='my bag'
-          >
-            <img src={BagIcon} alt='my bag' />
-          </IconButton>
-        </div>
+            <IconButton
+              aria-label='favorites'
+              onClick={() => profileFnc('/wishlist')}
+            >
+              <img src={FavoriteIcon} alt='favorites' />
+            </IconButton>
+            <IconButton
+              onClick={() => history.push('/my-bag')}
+              aria-label='my bag'
+            >
+              <img src={BagIcon} alt='my bag' />
+            </IconButton>
+          </div>
+        )}
       </div>
+
+      {!tabView && (
+        <div className={styles.secondContainer}>
+          <MegaMenu
+            visible={isMegaMenuOpen}
+            type={megaMenuType}
+            Close={setMegaMenuOpen}
+          />
+          <div className={styles.mainMenuContainer}>
+            <span
+              // onMouseEnter={() => handleMouseEnter("newArrivals")}
+              // onMouseLeave={() => handleMouseLeave("newArrivals")}
+              className={cx(styles.menuItem, styles.menuItem_newArrivals)}
+            >
+              <Link style={{ color: '#9D8E73' }} to='/designers-product-page'>
+                New arrivals
+              </Link>
+            </span>
+            <span
+              onMouseEnter={() => {
+                handleMouseEnter('mens');
+                setMegaMenuOpen(true);
+              }}
+              onMouseLeave={() => {
+                handleMouseLeave('mens');
+              }}
+              className={cx(styles.menuItem, styles.menuItem_men)}
+            >
+              <Link style={{ color: '#9D8E73' }} to='/wear/mens'>
+                Men
+              </Link>
+            </span>
+            <span
+              onMouseEnter={() => {
+                handleMouseEnter('womens');
+                setMegaMenuOpen(true);
+              }}
+              onMouseLeave={() => handleMouseLeave('womens')}
+              className={cx(styles.menuItem, styles.menuItem_women)}
+            >
+              {' '}
+              <Link style={{ color: '#9D8E73' }} to='/wear/womens'>
+                {' '}
+                Women
+              </Link>
+            </span>
+            <span
+              onMouseEnter={() => {
+                handleMouseEnter('kids');
+                setMegaMenuOpen(true);
+              }}
+              onMouseLeave={() => handleMouseLeave('kids')}
+              className={cx(styles.menuItem, styles.menuItem_kids)}
+            >
+              <Link style={{ color: '#9D8E73' }} to='/wear/kids'>
+                {' '}
+                Kids
+              </Link>
+            </span>
+            <span
+              // onMouseEnter={() => handleMouseEnter("designers")}
+              // onMouseLeave={() => handleMouseLeave("designers")}
+              className={cx(styles.menuItem, styles.menuItem_designers)}
+            >
+              <Link style={{ color: '#9D8E73' }} to='designers'>
+                Designers
+              </Link>
+            </span>
+            <span
+              // onMouseEnter={() => handleMouseEnter("contemporary")}
+              // onMouseLeave={() => handleMouseLeave("contemporary")}
+              className={cx(styles.menuItem, styles.menuItem_contempory)}
+            >
+              Contemporary
+            </span>
+            <span
+              // onMouseEnter={() => handleMouseEnter("offers")}
+              // onMouseLeave={() => handleMouseLeave("offers")}
+              className={cx(styles.menuItem, styles.menuItem_offers)}
+            >
+              <Link style={{ color: '#9D8E73' }} to='offers'>
+                Offers
+              </Link>
+            </span>
+            {/* <span
+              // onMouseEnter={() => handleMouseEnter("more")}
+              // onMouseLeave={() => handleMouseLeave("more")}
+              className={cx(styles.menuItem, styles.menuItem_more)}
+            >
+              More
+            </span> */}
+          </div>
+          <div className={styles.verticalDivider} />
+          {/* <div className={styles.searchBarContainer}>
+            <img src={SearchIcon} alt='search' />
+            <input
+              type='text' className='typeahead' id='bloodhound'
+              placeholder='Search for designers, brands and more'
+            />
+          </div> */}
+          <div>
+            <Search />
+          </div>
+        </div>
+      )}
+
+      <div
+        style={{
+          display: mouseEnter.newArrivals
+            ? 'block'
+            : mouseLeave.newArrivals
+            ? 'none'
+            : '',
+        }}
+      ></div>
       <SwipeableDrawer
         anchor={'left'}
         open={isDrawerOpen}
@@ -277,6 +358,4 @@ const Header = () => {
       </SwipeableDrawer>
     </div>
   );
-};
-
-export default Header;
+}

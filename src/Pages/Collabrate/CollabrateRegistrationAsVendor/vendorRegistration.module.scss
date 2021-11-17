@@ -187,6 +187,17 @@
   cursor: pointer;
 }
 
+.placeHolder {
+  font-family: DM Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #0a0a0a;
+}
+
 @media screen and (max-width: 550px) {
   .mainContainer {
     .logo {

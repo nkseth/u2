@@ -933,7 +933,7 @@ export default function VendorRegistration() {
                       );
                     })}
                   </Select>
-                  <span style={{ color: '#757575' }}>
+                  <span className={styles.placeHolder}>
                     * You can select multiple
                   </span>
                   {!selected.length && (

@@ -1,6 +1,6 @@
 .carouselItem {
   width: 100%;
-  background-image: url('./Images//menswear1.png');
+  background-image: url("./Images//menswear1.png");
   background-repeat: no-repeat;
   background-size: cover;
   height: 648px;
@@ -41,7 +41,7 @@
 
 .categoriesToBagSection {
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 6rem;
   margin-top: -60px;
 
   .categoriesToBagHeader {
@@ -51,8 +51,9 @@
     line-height: 64px;
     text-align: center;
     color: #0a0a0a;
-    margin: 2rem auto;
+    margin-top: 57px;
     display: inline-block;
+    margin-bottom: 72px;
   }
 }
 .categoriesToBagContainer {
@@ -69,7 +70,7 @@
   height: 20px;
 
   // gap: 1rem;
-  .sliderBtnPrev{
+  .sliderBtnPrev {
     background: none;
     border: none;
     margin-top: 3rem;
@@ -100,7 +101,7 @@
 .iconBtn {
   border: 1px solid rgb(0, 0, 0) !important;
   color: rgb(0, 0, 0) !important;
-  :hover{
+  :hover {
     color: white !important;
   }
 }
@@ -121,19 +122,22 @@
 
 .ban_category {
   border: 1px solid #857250;
-  border-radius: 10000px;
+  border-radius: 100px;
+  height: 28px;
 
   p {
-    padding: 0.7rem;
+    padding: 5px;
     //styleName: Body extra small / Bold;
     font-family: Inter;
-    font-size: 15px;
+    font-size: 11px;
     font-style: normal;
     font-weight: 700;
     line-height: 16px;
     letter-spacing: 0px;
-    text-align: left;
+    text-align: center;
     color: #857250;
+    width: 100%;
+    min-width: 69px;
   }
 }
 
@@ -187,18 +191,23 @@
   }
 }
 @media screen and (max-width: 550px) {
+  .heroSection {
+    padding: 10px;
+    border-radius: 5px;
+  }
   .carouselItem {
     height: 225px;
+    border-radius: 5px;
     span {
-      font-size: 30px !important;
-      line-height: 30px;
+      font-size: 20px !important;
+      line-height: 20px;
       letter-spacing: -1.5px;
-      margin-bottom: 1em;
+      margin-bottom: 3px;
     }
     p {
       margin-top: 0em;
-      font-size: 12px !important;
-      line-height: 18px;
+      font-size: 14px !important;
+      line-height: 21px;
       letter-spacing: 0.0075em;
       width: 90%;
     }
@@ -230,7 +239,7 @@
     background: none;
     border: none;
     :hover {
-      background-color: #6A5B40;
+      background-color: #6a5b40;
       border-radius: 50px;
     }
   }

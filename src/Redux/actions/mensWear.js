@@ -205,6 +205,7 @@ export const get_top_offers = (type) => async (dispatch) => {
       content_type: type,
       group_name: "top_offer_of_the_season",
     });
+    console.log(data.top_offer_of_the_season)
 
     if (data.top_offer_of_the_season) {
       dispatch({ type: TOP_OFFERS, payload: data.top_offer_of_the_season });

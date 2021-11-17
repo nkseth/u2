@@ -65,7 +65,7 @@ export default function ExploreTopDesignersSection({ type }) {
   return (
     <CustomSection
       class='explore_top_designer'
-      style={{ paddingTop: '4rem', paddingBottom: '3rem' }}
+      style={{ paddingTop: '5rem', paddingBottom: '3rem' }}
     >
       <div className={styles.header}>Explore Top Designers</div>
       <CarouselProvider

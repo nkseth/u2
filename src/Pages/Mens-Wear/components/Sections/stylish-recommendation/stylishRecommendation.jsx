@@ -36,7 +36,7 @@ export default function StylishRecommendationSection({ type }) {
       style={{
         backgroundColor: '#E6E3DC36',
         paddingTop: '43px',
-        paddingBottom: '43px',
+        paddingBottom: '93px',
       }}
     >
       {mobile ? (

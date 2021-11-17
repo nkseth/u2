@@ -48,6 +48,9 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { LazyLoadingComp } from "../../utils/LazyLoading";
 import parse from "html-react-parser";
 import ForHimMobile from "./components/Sections/for-him/ForHimMobile";
+import NewArrivals from "./components/Sections/new-arrivals/newArrivals"
+
+
 export default function MensWear({ match }) {
   const {
     params: { type },
@@ -81,18 +84,17 @@ export default function MensWear({ match }) {
 
   return (
     <Container footerOnAllView>
-      {mobile && (
-        <Swiper slidesPerView={3} style={{ padding: "0.5rem 0" }}>
+      {mobileView && (
+        <Swiper slidesPerView={4} style={{ padding: "0.5rem 10px" }}>
           {banner?.categories ? (
             banner?.categories.map((cat) => {
               return (
                 <SwiperSlide style={{ margin: "0.1rem" }}>
                   <Link
-                    to={`${
-                      type === "kids"
-                        ? `/designers-product-page/${cat.slug}`
-                        : `/designers-product-page/${type}/${cat.slug}`
-                    }`}
+                    to={`${type === "kids"
+                      ? `/designers-product-page/${cat.slug}`
+                      : `/designers-product-page/${type}/${cat.slug}`
+                      }`}
                     className={styles.ban_category}
                   >
                     <p>{cat.name.split(" ")[0]}</p>
@@ -117,20 +119,24 @@ export default function MensWear({ match }) {
           </div>
         </div>
       </section>
-      <CustomSection style={{ padding: "2rem 1rem" }}>
-        <Breadcrumb
-          style={{ paddingTop: tabView && "2rem 0" }}
-          path="Designer Home /"
-          activePath={
-            type === "mens"
-              ? "Men’s wear"
-              : type === "womens"
-              ? "Women’s wear"
-              : "Kid’s wear"
-          }
-        />
-      </CustomSection>
-      {!mobile && (
+      {
+        !mobileView &&
+        <CustomSection style={{ padding: "2rem 1rem" }}>
+          <Breadcrumb
+            style={{ paddingTop: tabView && "2rem 0" }}
+            path="Designer Home /"
+            activePath={
+              type === "mens"
+                ? "Men’s wear"
+                : type === "womens"
+                  ? "Women’s wear"
+                  : "Kid’s wear"
+            }
+          />
+        </CustomSection>
+      }
+
+      {!mobileView && (
         <section className={styles.categoriesToBagSection}>
           <span className={styles.categoriesToBagHeader}>
             Categories to Bag
@@ -144,8 +150,8 @@ export default function MensWear({ match }) {
             isIntrinsicHeight
             className={styles.carousel}
           >
-           
-            <Slider style={{marginLeft: "12px"}}>
+
+            <Slider style={{ marginLeft: "12px" }}>
               {mens_wear_cat.map((item, index) => {
                 const { name, slug, cover_image: image } = item;
                 return (
@@ -165,7 +171,7 @@ export default function MensWear({ match }) {
                 );
               })}
             </Slider>
-            
+
             <DotGroup style={{ display: "flex", display: "none" }} />
 
             <div className={styles.sliderBtnDiv}>
@@ -183,12 +189,15 @@ export default function MensWear({ match }) {
           </CarouselProvider>
         </section>
       )}
-      {mobile ? (
-        <ForHimMobile type={type} coverImage={cover_image} />
-      ) : (
+      
+        {/* <ForHimMobile type={type} coverImage={cover_image} /> */}
         <ForHimSection type={type} coverImage={cover_image} />
-      )}
+    
       <NewCollectionSection type={type} />
+      {
+        mobileView &&
+        <NewArrivals type={type} />
+      }
       <ExploreTopDesignersSection type={type} />
       <StylishRecommendationSection type={type} />
       <MostLovedStyleSection type={type} />

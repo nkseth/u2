@@ -7,7 +7,7 @@ import styles from './designer-product-page.module.scss';
 import ProductsSection from './Components/Sections/Products/products';
 import { useLocation } from 'react-router-dom';
 import Loader from '../../utils/Loader/Loader';
-
+import Person from './person.svg';
 import common_axios from '../../utils/axios.config';
 import {
   getFilteredProduct,
@@ -23,7 +23,7 @@ import {
 
 const ProductsByDesigner = ({ match }) => {
   const dispatch = useDispatch();
-  const tabViewPro = useMediaQuery('(max-width:835px)');
+  const tabViewPro = useMediaQuery('(max-width:840px)');
   const tabView = useMediaQuery('(max-width:768px)');
   const mobileView = useMediaQuery('(max-width:550px)');
   const location = useLocation();
@@ -110,7 +110,7 @@ const ProductsByDesigner = ({ match }) => {
               <div className={styles.banner__body}>
                 <div className={styles.banner__body__frame}>
                   <img
-                    src=''
+                    src={Person}
                     alt=''
                     className={styles.banner__body__frame__image}
                   />

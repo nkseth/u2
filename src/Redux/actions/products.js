@@ -41,6 +41,7 @@ export const getDesignerProducts = (designerId, filter) => async dispatch => {
       `/getProductByDesigner/${designerId}`,
       filter
     );
+    console.log('🚀 ~ file: products.js ~ line 44 ~ data', data);
     if (data.data) {
       dispatch({
         type: GET_PRODUCTS_SUCCESS,

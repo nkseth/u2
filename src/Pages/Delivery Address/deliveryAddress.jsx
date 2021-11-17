@@ -30,6 +30,10 @@ import NewAddress from "./Components/fabric-sample-card/NewAddress";
 import { useDispatch } from "react-redux";
 import { getMyAddresses } from "../../Redux/actions/address";
 import { useSelector } from "react-redux";
+import Geocode from "react-geocode";
+
+
+
 const CustomRadio = withStyles({
   root: {
     color: "#9D9D9D",
@@ -59,7 +63,7 @@ export default function DeliveryAddress({
   const [address, setAddress] = useState([]);
   const [selectAddress, setSelectAddress] = useState(null);
   const { addressList } = useSelector((state) => state.root.myAddresses);
-  console.log(addressList);
+
   useEffect(() => {
     dispatch(getMyAddresses());
   }, [dispatch]);
@@ -91,9 +95,18 @@ export default function DeliveryAddress({
 
     if (location) {
       location.getCurrentPosition((position) => {
-        console.log(position)
+        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+          (response) => {
+            const address = response.results[0].formatted_address;
+            console.log(address);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
       }, (error) => {
         console.log(error)
+        alert('An error occured')
         //this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
       })
     }

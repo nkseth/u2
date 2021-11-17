@@ -34,7 +34,7 @@ export default function InputField({ label, placeholder, onChange, style, States
 
 
 
-  const [State, SetState] = useState('State')
+  const [State, SetState] = useState(value)
   const classes = useStyles();
 
 
@@ -87,18 +87,18 @@ export default function InputField({ label, placeholder, onChange, style, States
                 }}>
                 <NativeSelect
                   disableUnderline
-                  value={State}
+                  value={value}
                   name="age"
                   className={styles.NativeSelect}
-                  onChange={handleChangeForState}
+                  onChange={(e)=> onChange(e.target.value)}
                   inputProps={{ 'aria-label': 'age' }}
                 >
-                  <option value="" disabled>
-                    State
+                  <option value="select">
+                    Select State
                   </option>
                   {StatesName.map((item) => {
                     return (
-                      <option value={item.id}>{item}</option>
+                      <option value={item}>{item}</option>
                     )
                   })}
                 </NativeSelect>

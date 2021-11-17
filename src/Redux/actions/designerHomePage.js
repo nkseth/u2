@@ -112,8 +112,12 @@ export const popularCategories = () => async dispatch => {
 export const topDesigner = () => async dispatch => {
   try {
     const { data } = await DesignerHomePageDataService.topDesigner();
+    console.log(
+      '🚀 ~ file: designerHomePage.js ~ line 115 ~ data',
+      data.data[0]
+    );
 
-    if (data[0]) dispatch({ type: GET_TOP_DESIGNERS, payload: data[0] });
+    if (data) dispatch({ type: GET_TOP_DESIGNERS, payload: data });
   } catch (err) {
     console.log(err);
     return Promise.reject(err);

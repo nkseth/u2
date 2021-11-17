@@ -12,7 +12,6 @@ function SelectSize({ variant }) {
     '🚀 ~ file: SelectSize.js ~ line 11 ~ SelectSize ~ variant',
     variant
   );
-
   const [size, setSize] = useState('xs');
   const customView = useMediaQuery('(max-width:1044px)');
   const tabView = useMediaQuery('(max-width:768px)');
@@ -20,7 +19,7 @@ function SelectSize({ variant }) {
 
   return (
     <div className={styles.container}>
-      <h4>Select Size</h4>
+      <h4 className={styles.heading_1}>Select Size</h4>
       <div className={styles.radioBtnDiv}>
         {variant?.map(({ name, id }) => (
           <IconButton

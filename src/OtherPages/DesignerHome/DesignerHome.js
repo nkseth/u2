@@ -14,7 +14,8 @@ import Customer_Review from './Components/Customer_Review';
 import Container from '../../utils/Container/container';
 import { useMediaQuery } from '@material-ui/core';
 import TopCategoryMobile from './Components/TopCategoryMobile';
-
+// FONTS
+import './FontStyles.scss';
 // I use Apple Pie Order To Readable Code -neerajcodes
 const DesignerHome = () => {
   const mobile = useMediaQuery('(max-width:420px)');

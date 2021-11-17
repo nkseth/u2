@@ -47,7 +47,7 @@ export default function Creators({ toggle, open }) {
                 <img src={iphone3} alt='iphone3' />
               </Box>
 
-              <Box>
+              <Box style={{ marginLeft: '35px' }}>
                 <img src={creator} alt='galleryicon' />
                 <p className={styles.heading}>Creators</p>
                 <p className={styles.textTab}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './TrackOrders.module.scss';
 import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
@@ -6,28 +6,57 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { trackOrders } from '../../Redux/actions/order';
 import common_axios from '../../utils/axios.config';
+import parse from 'html-react-parser';
 
-const TrackOrders = () => {
-  const orderId = useLocation().pathname.split('/')[2];
+const TrackOrders = ({ match }) => {
+  const {
+    params: { orderId, item_id },
+  } = match;
 
   const { isAuthenticated, user } = useSelector(state => state.root.auth);
+  const { trackingData } = useSelector(state => state.root.trackOrder);
+  const [delivered, setDelivered] = useState(false);
+  const [delivery_data, set_delivery_data] = useState({});
+
+  console.log(trackingData);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(trackOrders(orderId, user.api_token));
+    dispatch(trackOrders(orderId, user.api_token, item_id));
   }, [dispatch, user, orderId]);
+
+  useEffect(() => {
+    trackingData.forEach(item => {
+      if (item.order_status_id == 'Delivery') {
+        setDelivered(true);
+        set_delivery_data(item);
+      }
+    });
+  }, [trackingData]);
+
+  if (trackingData.length == 0) {
+    return <h3>Nothing to show, please try after some time</h3>;
+  }
 
   return (
     <div className={styles.TrackOrders}>
-      <TimeLine
-        date={'Oct, 23 2020'}
-        time={'2:00 PM IST '}
-        OrderInfo={'Order confirmed'}
-        InfoDescription={'The seller has confirmed your order'}
-        className={styles.TrackOrders_Timeline_Dot_First}
-        completed={true}
-      />
-      <TimeLine
+      {trackingData.map((item, index) => {
+        if (item.order_status_id == 'Delivery') {
+          return null;
+        }
+        return (
+          <TimeLine
+            date={item.created_at}
+            time={item.time || '2:00 PM IST'}
+            OrderInfo={item.order_status_id}
+            InfoDescription={item.order_item_description}
+            className={index == 0 ? styles.TrackOrders_Timeline_Dot_First : ''}
+            completed={true}
+          />
+        );
+      })}
+      {/* <TimeLine
         OrderInfo={'Fabric Cutting'}
         InfoDescription={
           'Lorem, ipsu consectetur adipisicing elit. Esse, itaque!'
@@ -60,14 +89,19 @@ const TrackOrders = () => {
             <Button>Review/Examine your product</Button>
           </div>
         }
-      />
-      <TimeLine
-        OrderInfo={'Delivery'}
-        InfoDescription={
-          'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, itaque!ctetur adipisicing elit. Esse, itaque!'
-        }
-        completed={false}
-      />
+      /> */}
+      {trackingData.length > 1 ? (
+        <TimeLine
+          OrderInfo={'Delivery'}
+          date={delivery_data.created_at}
+          time={delivery_data.time || '2:00 PM IST'}
+          InfoDescription={
+            delivery_data.order_item_description ||
+            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, itaque!ctetur adipisicing elit. Esse, itaque!'
+          }
+          completed={delivered}
+        />
+      ) : null}
     </div>
   );
 };
@@ -104,7 +138,7 @@ const TimeLine = ({
             {OrderInfo}
           </h4>
           <p style={{ color: `${completed ? '#6C6C6C' : '#6C6C6C'}` }}>
-            {InfoDescription}
+            {InfoDescription && parse(InfoDescription)}
           </p>
           {button}
         </div>

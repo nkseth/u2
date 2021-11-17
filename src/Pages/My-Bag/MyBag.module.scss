@@ -10,24 +10,32 @@
     > div:first-child {
       height: 60px;
       padding: 1rem 1.7rem;
-      background: #e6e3dc;
+      background: rgba(230, 227, 220, 1);
       font-family: DM Serif Display;
       font-size: 20px;
       font-weight: 400;
       line-height: 28px;
-      color: var(--primary-color);
+      color: #6a5b40;
+      //styleName: Headline / H4;
+      font-family: DM Serif Display;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 28px;
+      letter-spacing: 0em;
+      text-align: left;
     }
     .BorderContainer {
-      border-bottom: 1px solid var(--primary-color);
-      border-left: 1px solid var(--primary-color);
-      border-right: 1px solid var(--primary-color);
+      // border-bottom: 1px solid var(--primary-color);
+      // border-left: 1px solid var(--primary-color);
+      // border-right: 1px solid var(--primary-color);
       .mainContainer {
         padding: 1rem 1.5rem;
         display: flex;
         gap: 1rem;
         img {
-          height: 186px;
           width: 165px;
+          height: 187px;
         }
         > div {
           flex: 1;
@@ -387,16 +395,19 @@
 .placeOrderBtn {
   height: 48px !important;
   width: 100%;
+  width: 360px;
+  height: 48px;
   flex: 1 !important;
   border-radius: 5px !important;
   text-transform: none !important;
   color: #fff !important;
   font-family: DM Sans !important;
   font-size: 16px !important;
-
+  background: #6a5b40;
   font-weight: 700 !important;
   line-height: 20px !important;
-  background-color: var(--primary-color) !important;
+  background-color: #6a5b40 !important;
+  margin-top: 38px !important;
 }
 
 .CheckOutProcess {
@@ -409,6 +420,7 @@
   max-width: 550px;
   padding: 1em;
   border-radius: 5px;
+
   h1 {
     font-family: DM Sans;
     font-size: 18px;
@@ -444,7 +456,7 @@
   }
 }
 
-@media screen and (max-width: 835px) {
+@media screen and (max-width: 1024px) {
   .container {
     flex-direction: column;
     .firstContainer {
@@ -575,6 +587,7 @@
   width: 100%;
   align-items: flex-start;
   margin-left: 0.3em;
+  margin-top: 1rem;
 
   h1 {
     //styleName: Headline / H5;
@@ -585,6 +598,15 @@
     line-height: 20px;
     letter-spacing: 0px;
   }
+  .proCat {
+    font-family: DM Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0.1599999964237213px;
+    text-align: left;
+  }
 
   .PType1 {
     font-family: DM Sans;
@@ -594,7 +616,7 @@
     line-height: 18px;
     letter-spacing: 0.1599999964237213px;
     text-align: left;
-    margin-top: 1em;
+    margin-top: 0.2rem;
     color: #000;
   }
   .PType2 {
@@ -704,7 +726,8 @@
   max-width: 550px;
   padding: 1em;
   border-radius: 5px;
-  margin-top: 30px;
+  margin-top: 10px;
+  margin-bottom: 30px;
   h1 {
     font-family: DM Sans;
     font-size: 15px;

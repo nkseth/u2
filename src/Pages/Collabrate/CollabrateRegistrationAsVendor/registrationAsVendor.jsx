@@ -532,7 +532,8 @@ export default function VendorRegistration() {
   };
 
   return (
-    <Container bottomDivider footerOnTabMob footerOnAllView>
+    // <Container bottomDivider footerOnTabMob footerOnAllView>
+    <>
       <>
         {popupMessage && (
           <SuccessPopUp toggle={toggleModal} height={'350px'}>
@@ -932,7 +933,7 @@ export default function VendorRegistration() {
                       );
                     })}
                   </Select>
-                  <span style={{ color: '#757575' }}>
+                  <span className={styles.placeHolder}>
                     * You can select multiple
                   </span>
                   {!selected.length && (
@@ -1298,7 +1299,8 @@ export default function VendorRegistration() {
           </div>
         </div>
       </CustomSection>
-    </Container>
+    </>
+    // </Container>
   );
 }
 

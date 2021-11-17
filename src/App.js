@@ -153,6 +153,10 @@ function App() {
           exact
         />
         <ProtectedRoute
+          path='/add-measurement-choose-standard-size'
+          component={ChooseStandardSize}
+        />
+        <ProtectedRoute
           path='/add-measurement-gender'
           component={AddMeasurementGender}
         />
@@ -217,7 +221,7 @@ function App() {
         <ProtectedRoute path={'/payments'} component={Page_Payments} />
         <ProtectedRoute path={'/editpayments'} component={Page_EditPayments} />
         <ProtectedRoute
-          path='/trackorder/:orderid'
+          path='/trackorder/:orderId/:item_id'
           component={Page_TrackOrders}
           exact
         />

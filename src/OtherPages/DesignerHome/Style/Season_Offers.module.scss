@@ -203,18 +203,30 @@
 //     height: 300px;
 //   }
 // }
-
+.seasonsoffer {
+  margin-bottom: 5rem;
+  padding: 5rem 3rem;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 3rem;
+    padding: 3rem 2rem !important;
+  }
+  @media screen and (max-width: 479px) {
+    margin-bottom: 2rem !important;
+    padding: 2rem 1rem !important;
+  }
+}
 .Season_Offers_header {
-  font-family: DM Serif Display;
-  font-size: 54px;
-  font-weight: 400;
-  line-height: 54px;
-  letter-spacing: -1.5px;
   margin-bottom: 5rem;
   margin-top: -0.7em;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 123px;
+  @media screen and (max-width: 768px) {
+    gap: 75px;
+  }
+  @media screen and (max-width: 479px) {
+    gap: 8px;
+  }
 }
 .overLayDiv {
   position: absolute;
@@ -230,9 +242,9 @@
   grid-template-areas:
     'one two'
     'one two'
-    'one three'
+    'one two'
     'one three';
-  grid-template-rows: 180px 180px 150px 150px;
+  grid-template-rows: 134px 134px 134px 272px;
   gap: 0.2rem;
   div {
     display: flex;
@@ -251,18 +263,19 @@
         font-weight: 700;
         background: #fff;
         text-transform: capitalize;
-        width: 150px;
+        width: 173px;
+        height: 48px;
         &:hover {
           background: #f1f1f1;
         }
       }
       h2 {
         color: #fff;
-        font-family: DM Serif Display;
-        text-align: center;
-        width: 75%;
-        font-size: 34px;
-        font-weight: 400;
+        // font-family: DM Serif Display;
+        // text-align: center;
+        width: 278px;
+        // font-size: 34px;
+        // font-weight: 400;
         z-index: 10;
       }
     }
@@ -297,6 +310,12 @@
     border: 2px solid #fff !important;
     background: transparent !important;
     font-size: 15px !important;
+  }
+}
+.h2_div {
+  margin-bottom: 44px !important;
+  h2 {
+    margin-bottom: 18px !important;
   }
 }
 
@@ -368,7 +387,8 @@
       'one one two'
       'one one two'
       'three three three';
-    grid-template-rows: repeat(2, 150px);
+    grid-template-rows: 227px 117px;
+    grid-template-columns: 1fr 1fr 117px;
     gap: 0.1rem;
     div {
       display: flex;
@@ -378,12 +398,14 @@
   }
 
   .h2_div {
+    margin: 0 !important;
+
     h2 {
       font-family: DM Serif Display;
       font-size: 20px !important;
       font-style: normal;
       font-weight: 400;
-
+      margin: 0 !important;
       line-height: 24px;
 
       text-align: center;

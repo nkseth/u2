@@ -9,10 +9,16 @@ import {
   GET_SIMILAR_PRODUCTS_REQUEST,
   GET_SIMILAR_PRODUCTS_SUCCESS,
   GET_SIMILAR_PRODUCTS_FAILED,
-} from "../actions/types";
+} from '../actions/types';
 
 export const productsReducer = (
-  state = { loading: false, productList: null, error: null, sorted: false },
+  state = {
+    loading: false,
+    productList: null,
+    error: null,
+    sorted: false,
+    count: null,
+  },
   action
 ) => {
   const { type, payload } = action;
@@ -25,6 +31,7 @@ export const productsReducer = (
         loading: false,
         productList: payload.data,
         sorted: payload.sorted,
+        count: payload.count,
       };
     case GET_PRODUCTS_FAIL:
       return {
@@ -47,6 +54,7 @@ export const productDetailsReducer = (
     attributes: null,
     tags: null,
     error: null,
+    variantId: null,
   },
   action
 ) => {
@@ -62,6 +70,7 @@ export const productDetailsReducer = (
         details: payload.data,
         attributes: payload.attribute_details,
         tags: payload.tags,
+        variantId: payload.variant_id,
       };
     }
     case GET_PRODUCT_DETAILS_FAILED:

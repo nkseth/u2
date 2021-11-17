@@ -2,16 +2,18 @@
 
 .SuitWear_header {
   color: #fff;
-  font-family: DM Serif Display;
-  font-size: 54px;
-  font-weight: 400;
-  line-height: 54px;
-  letter-spacing: -1.5px;
   margin-bottom: 35px !important;
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 123px;
   margin-top: -0.6em;
+  @media screen and (max-width: 768px) {
+    gap: 75px;
+  }
+  @media screen and (max-width: 479px) {
+    gap: 8px;
+    margin-bottom: -16px !important;
+  }
 }
 .SuitWear {
   display: flex;
@@ -51,12 +53,7 @@
       object-position: top !important;
     }
     a {
-      font-size: 16px;
-      font-weight: 400;
-      text-align: center;
-      padding: 15px 0px;
       color: black;
-      font-weight: 500;
     }
   }
 }
@@ -114,6 +111,11 @@ button:disabled {
     line-height: 44px;
   }
 }
+@media screen and (max-width: 450px) {
+  .SuitWear {
+    background-color: #fff;
+  }
+}
 
 @media screen and (max-width: 450px) {
   .suitwear_content {
@@ -126,16 +128,16 @@ button:disabled {
     font-weight: 400;
   }
   .SuitWear {
-    text-align:left!important;
-    width:250px;
-    height:280px !important;
-    .SuitWear_Items{
-      img{
-        height:260px !important;
+    text-align: left !important;
+    width: 250px;
+    height: 280px !important;
+    .SuitWear_Items {
+      img {
+        height: 260px !important;
       }
     }
     a {
-      text-align:left !important;
+      text-align: left !important;
       font-family: DM Sans;
       font-size: 12px;
       font-style: normal;

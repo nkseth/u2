@@ -23,8 +23,8 @@
     border-radius: 5px;
 
     img {
-      width: 100%;
-      height: 290px;
+      max-width: 263px;
+      height: 295px;
       object-fit: cover;
       object-position: top center;
     }
@@ -37,7 +37,9 @@
 }
 
 .productDetails {
-  margin-top: 1em;
+
+  padding-top: 1rem;
+
   display: grid;
   gap: 5px;
   width: 100%;
@@ -83,7 +85,8 @@
     height: 250px;
     .imgContainer {
       img {
-        height: 165px;
+        height: 164px;
+        border-radius: 5px;
       }
     }
   }
@@ -94,8 +97,8 @@
   }
   .mobilewishlist {
     position: absolute;
-    top: 0;
-    right: 5px;
+    top: -2px;
+    right: -8px;
     display: block;
     height: 20px;
   }
@@ -117,6 +120,17 @@
       span:last-child {
         color: grey;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .productDetails {
+    .productDesc {
+      font-size: 11px;
+    }
+    .productPrice {
+      font-size: 11px;
     }
   }
 }

@@ -1,6 +1,7 @@
 //here Customer_Review Styles
 .Customer_Review_header {
   color: #000;
+  gap: 123px;
 }
 .Customer_Review {
   display: flex;
@@ -74,11 +75,11 @@ button:disabled {
 
 //Here Static Styles For Carousel
 .Carousel_header {
-  font-family: DM Serif Display;
-  font-size: 54px;
-  font-weight: 400;
-  line-height: 54px;
-  letter-spacing: -1.5px;
+  // font-family: DM Serif Display;
+  // font-size: 54px;
+  // font-weight: 400;
+  // line-height: 54px;
+  // letter-spacing: -1.5px;
   margin-bottom: 20px;
 }
 .NavigationContainer {

@@ -92,62 +92,6 @@ function AddManMeasurement({
     dispatch(getAllMeasurements(user.api_token));
   }, [user, dispatch, measurements, basic_id]);
 
-  const Form = (value, name) => {
-    if (name === 'Neck') {
-      dispatch(set_upper_body({ ...upper_body, neck: value }));
-      setAllDone('Done');
-      NeckVALUE(value);
-    } else if (name === 'Shoulder') {
-      dispatch(set_upper_body({ ...upper_body, shoulder: value }));
-      setAllDone('Done');
-      ShoulderVALUE(value);
-    } else if (name === 'Chest') {
-      dispatch(set_upper_body({ ...upper_body, chest: value }));
-      setAllDone('Done');
-      ChestVALUE(value);
-    } else if (name === 'Arm Hole') {
-      dispatch(set_upper_body({ ...upper_body, arm_hole: value }));
-      setAllDone('Done');
-      ArmHoleVALUE(value);
-    } else if (name === 'Sleeve length') {
-      dispatch(set_upper_body({ ...upper_body, sleeve: value }));
-      setAllDone('Done');
-      SleeveLengthVALUE(value);
-    } else if (name === 'Wrist') {
-      dispatch(set_upper_body({ ...upper_body, wrist: value }));
-      setAllDone('Done');
-      WristVALUE(value);
-    } else if (name === 'Waist') {
-      dispatch(set_lower_body({ ...lower_body, waist: value }));
-      setAllDone('Done');
-      WaistVALUE(value);
-    } else if (name === 'Full length') {
-      dispatch(set_lower_body({ ...lower_body, full_length: value }));
-      setAllDone('Done');
-      FullLengthVALUE(value);
-    } else if (name === 'Hip Round') {
-      dispatch(set_lower_body({ ...lower_body, hip_round: value }));
-      setAllDone('Done');
-      HipRoundVALUE(value);
-    } else if (name === 'InSeam') {
-      dispatch(set_lower_body({ ...lower_body, inseam: value }));
-      setAllDone('Done');
-      InSeamVALUE(value);
-    } else if (name === 'Thigh') {
-      dispatch(set_lower_body({ ...lower_body, thigh: value }));
-      setAllDone('Done');
-      ThighVALUE(value);
-    } else if (name === 'Calf') {
-      dispatch(set_lower_body({ ...lower_body, calf: value }));
-      setAllDone('Done');
-      CalfVALUE(value);
-    } else if (name === 'Ankle') {
-      dispatch(set_lower_body({ ...lower_body, ankle: value }));
-      setAllDone('Done');
-      AnkleVALUE(value);
-    }
-  };
-
   var NECKFilled = neck === '' ? false : true;
   var CHESTFilled = chest === '' ? false : true;
   var WRISTFilled = wrist === '' ? false : true;
@@ -163,25 +107,104 @@ function AddManMeasurement({
   var CALFFilled = calf === '' ? false : true;
   var ANKLEFilled = ankle === '' ? false : true;
 
-  const [AllValues, SetAllValues] = useState(
+  const UpperValues =
     NECKFilled &&
-      CHESTFilled &&
-      WRISTFilled &&
-      SHOULDERFilled &&
-      ARMHOLEFilled &&
-      SLEEVEFilled &&
-      WAISTFilled &&
-      HIPROUNDFilled &&
-      INSEAMFilled &&
-      THIGHFilled &&
-      FULLLENGTHFilled &&
-      CALFFilled &&
-      ANKLEFilled === true
-      ? true
-      : false
+    CHESTFilled &&
+    WRISTFilled &&
+    SHOULDERFilled &&
+    ARMHOLEFilled &&
+    SLEEVEFilled;
+  console.log(
+    '🚀 ~ file: AddMeasurmentMan.jsx ~ line 96 ~ UpperValue',
+    UpperValues
   );
+
+  const LowerValues =
+    WAISTFilled &&
+    HIPROUNDFilled &&
+    INSEAMFilled &&
+    FULLLENGTHFilled &&
+    THIGHFilled &&
+    CALFFilled &&
+    ANKLEFilled;
+  console.log(
+    '🚀 ~ file: AddMeasurmentMan.jsx ~ line 123 ~ LowerValues',
+    LowerValues
+  );
+  const Form = (values, name) => {
+    const value = +Math.max(0, parseFloat(values)).toString().slice(0, 8);
+
+    if (name === 'Neck') {
+      dispatch(set_upper_body({ ...upper_body, neck: value }));
+      NeckVALUE(value);
+    } else if (name === 'Shoulder') {
+      dispatch(set_upper_body({ ...upper_body, shoulder: value }));
+
+      ShoulderVALUE(value);
+    } else if (name === 'Chest') {
+      dispatch(set_upper_body({ ...upper_body, chest: value }));
+
+      ChestVALUE(value);
+    } else if (name === 'Arm Hole') {
+      dispatch(set_upper_body({ ...upper_body, arm_hole: value }));
+
+      ArmHoleVALUE(value);
+    } else if (name === 'Sleeve length') {
+      dispatch(set_upper_body({ ...upper_body, sleeve: value }));
+
+      SleeveLengthVALUE(value);
+    } else if (name === 'Wrist') {
+      dispatch(set_upper_body({ ...upper_body, wrist: value }));
+
+      WristVALUE(value);
+    } else if (name === 'Waist') {
+      dispatch(set_lower_body({ ...lower_body, waist: value }));
+
+      WaistVALUE(value);
+    } else if (name === 'Full length') {
+      dispatch(set_lower_body({ ...lower_body, full_length: value }));
+
+      FullLengthVALUE(value);
+    } else if (name === 'Hip Round') {
+      dispatch(set_lower_body({ ...lower_body, hip_round: value }));
+
+      HipRoundVALUE(value);
+    } else if (name === 'InSeam') {
+      dispatch(set_lower_body({ ...lower_body, inseam: value }));
+
+      InSeamVALUE(value);
+    } else if (name === 'Thigh') {
+      dispatch(set_lower_body({ ...lower_body, thigh: value }));
+
+      ThighVALUE(value);
+    } else if (name === 'Calf') {
+      dispatch(set_lower_body({ ...lower_body, calf: value }));
+
+      CalfVALUE(value);
+    } else if (name === 'Ankle') {
+      dispatch(set_lower_body({ ...lower_body, ankle: value }));
+
+      AnkleVALUE(value);
+    }
+    if (UpperValues) {
+      setAllDone('Done');
+    }
+  };
+
+  const [AllValues, SetAllValues] = useState(LowerValues && UpperValues);
+  console.log(
+    '🚀 ~ file: AddMeasurmentMan.jsx ~ line 182 ~ AllValues',
+    AllValues
+  );
+
+  useEffect(() => {
+    SetAllValues(LowerValues && UpperValues);
+  }, [LowerValues, UpperValues]);
+
   const [AllDone, setAllDone] = useState('Start');
+
   const [button, setButton] = useState('upper');
+
   const [Open, SetOpen] = useState('upper');
 
   const FocusIt = value => {
@@ -212,8 +235,12 @@ function AddManMeasurement({
       SetOpen('Neck');
       setButton('upper');
     } else {
-      setAllDone(true);
-      SetOpen('upper');
+      if (AllValues) {
+        setAllDone(true);
+        SetOpen('upper');
+      } else {
+        setAllDone('Please fill all Fields');
+      }
     }
   };
   const UploadMeasurement = () => {
@@ -434,9 +461,14 @@ function AddManMeasurement({
           >
             <Button
               className={styles.submitBtn}
-              onClick={AllDone === true ? UploadMeasurement : SetIt}
+              onClick={
+                AllDone === true && AllValues ? UploadMeasurement : SetIt
+              }
             >
-              Submit
+              {AllDone === true && AllValues
+                ? 'Submit'
+                : 'Please Fill all the fields'}
+              {/* Submit */}
             </Button>
           </Link>
         ) : (

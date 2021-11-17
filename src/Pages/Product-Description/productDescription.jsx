@@ -46,6 +46,7 @@ import { Product_Type, Product_Type_Change } from '../../Redux/MeasuremantData';
 import ReactImageMagnify from 'react-image-magnify';
 import { useDispatch } from 'react-redux';
 import { getProductDetails } from '../../Redux/actions/products';
+
 // import {
 //   MagnifierContainer,
 //   MagnifierZoom,
@@ -57,6 +58,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination } from 'swiper/core';
 import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
+import {
+  addToWishlist,
+  clearUpdateWishlist,
+  removeFromWishlist,
+} from '../../Redux/actions/wishlist';
 
 const CustomRadio = withStyles({
   root: {
@@ -85,7 +91,6 @@ const BootstrapInput = withStyles(theme => ({
     },
   },
   input: {
-
     width: '343px',
 
     borderRadius: 0,
@@ -97,7 +102,6 @@ const BootstrapInput = withStyles(theme => ({
     padding: '3px 8px',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     '&:focus': {
-
       borderRadius: 4,
       borderColor: '#80bdff',
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
@@ -157,10 +161,7 @@ export default function ProductDescription({ match }) {
   const [ProductDrop, setProductDrop] = useState(false);
   const [click, setClick] = useState(false);
   const [animate, setAnimate] = useState(false);
-  console.log(
-    '🚀 ~ file: productDescription.jsx ~ line 156 ~ ProductDescription ~ animate',
-    animate
-  );
+
   const [cartMessage, setCartMessage] = useState('Added To bag');
   // const [buttonMessage, setButtonMessage] = useState("Add to Bag");
 
@@ -175,18 +176,18 @@ export default function ProductDescription({ match }) {
 
   const { login_Model_Show } = useLogin();
 
-  const { isAuthenticated } = useSelector(state => state.root.auth);
-  const { details, error, tags, loading, attributes } = useSelector(
+  const { user, isAuthenticated } = useSelector(state => state.root.auth);
+  const { details, error, tags, loading, attributes, variantId } = useSelector(
     state => state.root.productDetails
   );
 
   useEffect(() => {
-    if(click){
+    if (click) {
       setTimeout(() => {
-        setClick(false)
+        setClick(false);
       }, 4500);
     }
-  }, [click])
+  }, [click]);
 
   useEffect(() => {
     if (details) {
@@ -202,17 +203,21 @@ export default function ProductDescription({ match }) {
     if (!details && !loading) dispatch(getProductDetails(slug));
   }, [slug, dispatch, details]);
 
+  console.log(details)
+
   useEffect(() => {
     dispatch(getProductDetails(slug));
   }, []);
 
   const buy_now_handler = async () => {
+
     if (isAuthenticated) {
       if (details.hasOwnProperty('title')) {
         try {
           const type = ProductType === 'ready made' ? 'readymade' : 'customise';
+          const value = { type, variant_id: variantId };
           const { data } = await common_axios.post(`/addToCart/${slug}`, {
-            type,
+            ...value,
           });
           console.log(data);
           if (data) {
@@ -238,8 +243,10 @@ export default function ProductDescription({ match }) {
     if (isAuthenticated) {
       try {
         const type = ProductType === 'ready made' ? 'readymade' : 'customise';
+        const value = { type, variant_id: variantId };
         const { data } = await common_axios.post(`/addToCart/${slug}`, {
           type,
+          variant_id: variantId,
         });
 
         if (data) {
@@ -256,6 +263,23 @@ export default function ProductDescription({ match }) {
     } else {
       login_Model_Show();
     }
+  };
+
+  const add_to_wishlist = prod => {
+    if (!isAuthenticated)
+      return alert('Login first to add the item to wishlist');
+    dispatch(addToWishlist(prod.slug, user.api_token));
+    setAddToWishList(true);
+    // dispatch(getWishList(user.api_token));
+  };
+
+  const remove_from_wishlist = prod => {
+    if (!isAuthenticated)
+      return alert('Login first to add the item to wishlist');
+    const id = prod.id;
+    dispatch(removeFromWishlist(id, user.api_token));
+    // dispatch(getWishList(user.api_token));
+    setAddToWishList(false);
   };
 
   // console.log(product);
@@ -291,8 +315,12 @@ export default function ProductDescription({ match }) {
                           className={`${imageIdx === i ? 'active' : ''}`}
                           style={{
                             border: `${
-                              imageIdx === i ? '2px solid #857250' : ''
+                              imageIdx === i ? '1px solid #857250' : ''
                             }`,
+                            width: '70px',
+                            height: '75px',
+                            objectFit: 'cover',
+                            objectPosition: 'top center',
                           }}
                           alt={image.url}
                           key={i}
@@ -329,7 +357,7 @@ export default function ProductDescription({ match }) {
                         <IconButton
                           aria-label='product'
                           onClick={() => {
-                            setAddToWishList(addToWishlist => !addToWishlist);
+                            remove_from_wishlist(details.product);
                           }}
                           style={{
                             backgroundColor: '#fff',
@@ -345,7 +373,7 @@ export default function ProductDescription({ match }) {
                         <IconButton
                           aria-label='product'
                           onClick={() => {
-                            setAddToWishList(addToWishlist => !addToWishlist);
+                            add_to_wishlist(details.product);
                           }}
                           // className={styles.icons}
                           style={{
@@ -361,12 +389,21 @@ export default function ProductDescription({ match }) {
                       )}
                     </div>
                   ) : (
-                    <Swiper>
-                      <SwiperSlide>
-                        <img src={images[imageIdx]?.original} />
-                        <img src={images[imageIdx]?.original} />
-                        <img src={images[imageIdx]?.original} />
-                      </SwiperSlide>
+                    <Swiper slidesPerView={1}>
+                      {images.map((image, i) => {
+                        return (
+                          <SwiperSlide
+                            style={{
+                              margin: 'auto',
+                            }}
+                          >
+                            <img
+                              style={{ width: '90vw', height: '100%' }}
+                              src={image?.original}
+                            />
+                          </SwiperSlide>
+                        );
+                      })}
                     </Swiper>
                   )}
 
@@ -379,8 +416,11 @@ export default function ProductDescription({ match }) {
                             className={`${imageIdx === i ? 'active' : ''}`}
                             style={{
                               border: `${
-                                imageIdx === i ? '4px solid #857250' : ''
+                                imageIdx === i ? '2px solid #857250' : ''
                               }`,
+                              width: '56.59px',
+                              height: '61.44px',
+                              objectFit: 'cover',
                             }}
                             alt={image.url}
                             key={i}
@@ -401,7 +441,6 @@ export default function ProductDescription({ match }) {
                       <label>Enter pincode*</label>
 
                       <input type='text' name='pincode/zipcode' />
-
                     </div>
                     <span>
                       Please enter the pincode to check delivery time{' '}
@@ -443,8 +482,13 @@ export default function ProductDescription({ match }) {
                     >
                       <div className={styles.productDetails}>
                         <span>{details.brand}</span>
-                        <span>{details.title}</span>
+                        <h3 className={styles.product__title}>
+                          {details.title}
+                        </h3>
                       </div>
+                      <IconButton>
+                        <Share style={{ width: '37px', height: '37px' }} />
+                      </IconButton>
                       {details.stock_quantity < 10 ? (
                         <div className={styles.alert}>
                           <img src={clockIcon} alt='clock' />
@@ -615,7 +659,7 @@ export default function ProductDescription({ match }) {
                                   </span>
                                   <span>
                                     {'  '}
-                                    {details.readymade_discount}%
+                                    {details.readymade_discount}% OFF
                                   </span>
                                 </p>
                               </>
@@ -656,7 +700,7 @@ export default function ProductDescription({ match }) {
                         )}
                       </div>
                       {ProductType === 'ready made' ? (
-                        <SelectSize variant={details.variant} />
+                        <SelectSize variant={attributes.Size} />
                       ) : (
                         <></>
                       )}
@@ -668,7 +712,20 @@ export default function ProductDescription({ match }) {
                   <>
                     <div className={styles.productDetails}>
                       <span>{details.brand}</span>
-                      <span>{details.title}</span>
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <h3 className={styles.product__title}>
+                          {details.title}
+                        </h3>
+                        <IconButton>
+                          <Share style={{ width: '37px', height: '37px' }} />
+                        </IconButton>
+                      </div>
                     </div>
                     <div className={styles.selectProduct}>
                       <div
@@ -791,7 +848,7 @@ export default function ProductDescription({ match }) {
                               </span>
                               <span>
                                 {'  '}
-                                {details.readymade_discount}%
+                                {details.readymade_discount}% OFF
                               </span>
                             </p>
                           </>
@@ -835,9 +892,19 @@ export default function ProductDescription({ match }) {
                 {mobileView && (
                   <>
                     <div className={styles.productDetails}>
-                      <div>
-                        <span>{details.brand}</span>
-                        <span style={{ float: 'right' }}>
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        <div>
+                          <h1 className={styles.mobile__heading}>
+                            {details.brand}
+                          </h1>
+                        </div>
+                        {/* <span style={{ float: 'right' }}>
                           <FavoriteIcon
                             style={{
                               color: 'red',
@@ -846,7 +913,51 @@ export default function ProductDescription({ match }) {
                             }}
                           />
                           <Share style={{ height: '24px', width: '24px' }} />
-                        </span>
+                        </span> */}
+                        <>
+                          {isAddToWishList ? (
+                            <div>
+                              <IconButton
+                                aria-label='product'
+                                onClick={() => {
+                                  remove_from_wishlist(details.product);
+                                }}
+                                style={{
+                                  backgroundColor: '#fff',
+                                }}
+                              >
+                                <FavoriteIcon style={{ color: 'red' }} />
+                              </IconButton>
+                              <IconButton>
+                                <Share
+                                  style={{ width: '24px', height: '24px' }}
+                                />
+                              </IconButton>
+                            </div>
+                          ) : (
+                            <div
+                              style={{ display: 'flex', alignItems: 'center' }}
+                            >
+                              <IconButton
+                                aria-label='product'
+                                onClick={() => {
+                                  add_to_wishlist(details.product);
+                                }}
+                                // className={styles.icons}
+                                style={{
+                                  backgroundColor: '#fff',
+                                }}
+                              >
+                                <FavoriteBorderIcon />
+                              </IconButton>
+                              <IconButton>
+                                <Share
+                                  style={{ width: '24px', height: '24px' }}
+                                />
+                              </IconButton>
+                            </div>
+                          )}
+                        </>
                       </div>
                       <span>{details.title}</span>
                     </div>
@@ -965,7 +1076,7 @@ export default function ProductDescription({ match }) {
                               </span>
                               <span>
                                 {'  '}
-                                {details.readymade_discount}%
+                                {details.readymade_discount}% OFF
                               </span>
                             </p>
                           </>
@@ -1028,7 +1139,11 @@ export default function ProductDescription({ match }) {
                       </div>
                     ) : null}
 
-                    {ProductType === 'ready made' ? <SelectSize /> : <></>}
+                    {ProductType === 'ready made' ? (
+                      <SelectSize variant={attributes.Size} />
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 )}
 
@@ -1043,7 +1158,11 @@ export default function ProductDescription({ match }) {
                         <div>50:00</div>
                       </div>
                     ) : null}
-                    {ProductType === 'ready made' ? <SelectSize /> : <></>}
+                    {ProductType === 'ready made' ? (
+                      <SelectSize variant={attributes.Size} />
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 )}
                 <div className={styles.selectColor}>
@@ -1177,39 +1296,41 @@ export default function ProductDescription({ match }) {
                         onClick={() => {
                           add_bag_handler();
                           setClick(click => isAuthenticated && !click);
-                          setAnimate(animate => !animate);
+                          // setAnimate(animate => !animate);
                         }}
                         variant='outlined'
                         color='default'
                         // startIcon={}
                         fullWidth
-                        className={
-                          !animate
-                            ? styles.addToBagBtn
-                            : styles.addToBagBtnClicked
-                        }
+                        // className={
+                        //   !animate
+                        //     ? styles.addToBagBtn
+                        //     : styles.addToBagBtnClicked
+                        // }
+                        className={styles.addToBagBtn}
                       >
                         <span
-                          className={
-                            !animate ? styles.bagIcon : styles.bagIconclicked
-                          }
+                          // className={
+                          //   !animate ? styles.bagIcon : styles.bagIconclicked
+                          // }
+                          className={styles.bagIcon}
                         >
                           <BagIcon />
                         </span>
                         <span
-                          className={
-                            !animate ? styles.addBag : styles.addBagclicked
-                          }
+                        // className={
+                        //   !animate ? styles.addBag : styles.addBagclicked
+                        // }
                         >
                           Add to Bag
                         </span>
-                        <span
-                          className={
-                            !animate ? styles.addedBag : styles.addedBagclicked
-                          }
+                        {/* <span
+                        // className={
+                        //   !animate ? styles.addedBag : styles.addedBagclicked
+                        // }
                         >
                           Added to Bag
-                        </span>
+                        </span> */}
                       </Button>
                     </HtmlTooltipButton>
                   </div>
@@ -1231,7 +1352,11 @@ export default function ProductDescription({ match }) {
                         </div>
                         <div>
                           <label>Enter pincode*</label>
-                          <input type='text' name='pincode/zipcode' />
+                          <input
+                            type='text'
+                            name='pincode/zipcode'
+                            placeholder='560054'
+                          />
                         </div>
                         <span>
                           Please enter the pincode to check delivery time{' '}

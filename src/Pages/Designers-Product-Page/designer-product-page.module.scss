@@ -54,6 +54,7 @@
   border-bottom: 1px solid #6a5b40;
 }
 @media only screen and (min-width: 550px) and (max-width: 835px) {
+  
   .upperbread {
     width: 150%;
     margin-left: -2em;
@@ -67,8 +68,9 @@
   }
 }
 @media screen and (max-width: 835px) {
-  .container {
-    padding-top: 0;
+  .container{
+    padding: 0 0;
+  
     .secondSection {
       width: 100%;
     }

@@ -8,7 +8,7 @@ import { topSeasonOffers } from '../../../Redux/actions/designerHomePage';
 import { LazyLoadingComp } from '../../../utils/LazyLoading';
 const Season_Offers = () => {
   const dispatch = useDispatch();
-  const baseStyle = { padding: '5rem 3rem 9rem 3rem' };
+  const baseStyle = { padding: '' };
   // offer
   const { push } = useHistory();
   const Handler = () => {
@@ -111,7 +111,7 @@ const Season_Offers = () => {
 
   return (
     <div className={styles.seasonsoffer} style={baseStyle}>
-      <div className={` ${styles.Season_Offers_header}`}>
+      <div className={` ${styles.Season_Offers_header} common-headings--1`}>
         Top Offers of the Season
         <CustomDivider style={{ height: '1px', background: '#857250' }} />
       </div>
@@ -127,7 +127,7 @@ const Season_Offers = () => {
             >
               <div className={styles.overLayDiv}></div>
               <div className={styles.h2_div}>
-                <h2>{offer?.title}</h2>
+                <h2 className='carousel-items--text'>{offer?.title}</h2>
                 <Button onClick={Handler} className={styles.buttons}>
                   Shop Now
                 </Button>

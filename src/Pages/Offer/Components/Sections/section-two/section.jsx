@@ -13,23 +13,23 @@ export default function SectionTwo() {
 
   const [data, setData] = useState([])
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch_data()
-  },[])
+  }, [])
 
   const fetch_data = async () => {
-    try{
-      const { data:res } = await common_axios.get('https://dhaatri.info/api/banners/offers/1');
-      if(res.data){
+    try {
+      const { data: res } = await common_axios.get('https://dhaatri.info/api/banners/offers/1');
+      if (res.data) {
         setData(res.data)
       }
-    } catch(e){
+    } catch (e) {
       console.log(e)
     }
   }
 
 
-  if(data.length == 0){
+  if (data.length == 0) {
     return null
   }
 
@@ -38,7 +38,7 @@ export default function SectionTwo() {
     <CustomSection className={styles.offer_section_two} style={{ paddingTop: "4rem", paddingBottom: "7rem" }}>
       <div className={styles.container}>
         <span className={styles.header}>Top Offers of the Season</span>
-        <div className={styles.imgContainer} style={{backgroundImage:`url(${data[0].image})`}}>
+        <div className={styles.imgContainer} style={{ backgroundImage: `url(${data[0].image})` }}>
           <div className={styles.AbsoluteBgContainer1} ></div>
           <div className={styles.AbsoluteBgBox} >
             <div className={styles.AbsoluteBgContainer2} ></div>
@@ -47,7 +47,9 @@ export default function SectionTwo() {
           <div className={styles.imgBox}>
 
             {/* <img src={data[0].image} alt='Extra 50% off' /> */}
-            <span style={{fontSize:25, color:"white"}}>{data[0]?.description}</span>
+            <div className={styles.center_img}>
+              <span style={{ fontSize: 25, color: "white", maxWidth:170, wordWrap:"break-word" }}>{data[0]?.description}</span>
+            </div>
             <Link>
               <Button className={styles.btn}>Shop Now</Button>
             </Link>

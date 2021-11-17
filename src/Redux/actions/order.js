@@ -1,4 +1,4 @@
-import common_axios from "../../utils/axios.config";
+import common_axios from '../../utils/axios.config';
 import {
   ORDER_DETAIL_FAILED,
   ORDER_DETAIL_REQUEST,
@@ -6,23 +6,21 @@ import {
   TRACK_ORDER_FAILED,
   TRACK_ORDER_REQUEST,
   TRACK_ORDER_SUCCESS,
-} from "./types";
+} from './types';
 
-export const trackOrders = (orderId, token) => async (dispatch) => {
+export const trackOrders = (orderId, token, item_id) => async dispatch => {
   try {
     const id = parseInt(orderId);
     console.log(id, token);
     dispatch({ type: TRACK_ORDER_REQUEST });
-    const { data } = await common_axios.get(`/order/${id}/track`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    const { data } = await common_axios.post(`/order_item_status`, {
+      order_id: orderId,
+      product_id: item_id,
     });
-    console.log(data);
     if (data) {
       dispatch({
         type: TRACK_ORDER_SUCCESS,
-        payload: data,
+        payload: data.data,
       });
     }
   } catch (err) {
@@ -35,7 +33,7 @@ export const trackOrders = (orderId, token) => async (dispatch) => {
   }
 };
 
-export const getOrderDetail = (orderId) => async (dispatch) => {
+export const getOrderDetail = orderId => async dispatch => {
   try {
     const id = parseInt(orderId);
     console.log(id);
@@ -49,7 +47,7 @@ export const getOrderDetail = (orderId) => async (dispatch) => {
       });
     }
   } catch (err) {
-    console.log(err.response.data);
+    console.log(err.response?.data);
     dispatch({
       type: ORDER_DETAIL_FAILED,
       payload: err,

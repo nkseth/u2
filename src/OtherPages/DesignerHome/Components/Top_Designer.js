@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { IconButton, useMediaQuery, useTheme } from "@material-ui/core";
+import { Link } from 'react-router-dom';
+import { IconButton, useMediaQuery, useTheme } from '@material-ui/core';
 import {
   CarouselProvider,
   Slider,
@@ -7,39 +7,40 @@ import {
   ButtonBack,
   ButtonNext,
   DotGroup,
-} from "pure-react-carousel";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+} from 'pure-react-carousel';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-import CustomSection from "../../../utils/Custom Section/section";
-import CustomDivider from "../../../utils/Custom Divider/divider";
-import { topDesigner } from "../../../Redux/actions/designerHomePage";
-import { LazyLoadingComp, LazyLoadingImg } from "../../../utils/LazyLoading";
-import Loader from "../../../utils/Loader/Loader";
-import CardGoldenBorderWithText from "../../../Commons/Cards/CardGoldenBorderWithText/CardGoldenBorderWithText";
-
-import styles from "../Style/Top_Designer.module.scss";
+import CustomSection from '../../../utils/Custom Section/section';
+import CustomDivider from '../../../utils/Custom Divider/divider';
+import { topDesigner } from '../../../Redux/actions/designerHomePage';
+import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
+import Loader from '../../../utils/Loader/Loader';
+import CardGoldenBorderWithText from '../../../Commons/Cards/CardGoldenBorderWithText/CardGoldenBorderWithText';
+import Carousel_Component from './Carousel_Component';
+import styles from '../Style/Top_Designer.module.scss';
 
 const Top_Designer = () => {
   const dispatch = useDispatch();
-  const mobile = useMediaQuery("(max-width:450px)");
+  const mobile = useMediaQuery('(max-width:450px)');
 
   const baseStyle = {
-    padding: !mobile ? "7rem 3rem" : '2rem 1rem',
-    background: "#fff",
+    padding: !mobile ? '7rem 3rem' : '2rem 1rem',
+    background: '#fff',
   };
 
   const theme = useTheme();
-  const match = useMediaQuery(theme.breakpoints.down("xs"));
-  const iPade = useMediaQuery(theme.breakpoints.down("sm"));
-  const CustomView = useMediaQuery("(max-width:550px)");
-  const { designers } = useSelector((state) => state.root.topDesigner);
+  const match = useMediaQuery(theme.breakpoints.down('xs'));
+  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
+  const CustomView = useMediaQuery('(max-width:550px)');
+  const { designers } = useSelector(state => state.root.topDesigner);
+  console.log('🚀 ~ file: Top_Designer.js ~ line 39 ~ designers', designers);
 
   useEffect(() => {
     dispatch(topDesigner());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // if (!designers) {
@@ -47,7 +48,7 @@ const Top_Designer = () => {
   // }
 
   return (
-    <div className="top_designer">
+    <div className='top_designer'>
       {designers.length < 1 ? (
         <Loader />
       ) : (
@@ -56,9 +57,9 @@ const Top_Designer = () => {
             className={`${styles.Carousel_header} ${styles.Top_Designer_header}`}
           >
             Explore Top Designers
-            <CustomDivider style={{ height: "2px", background: "#fff" }} />
+            <CustomDivider style={{ height: '2px', background: '#fff' }} />
           </div>
-          <CarouselProvider
+          {/* <CarouselProvider
             visibleSlides={match ? 1 : iPade ? 2 : 4}
             totalSlides={designers?.length}
             isIntrinsicHeight
@@ -93,9 +94,9 @@ const Top_Designer = () => {
                 ))}
               </Slider>
             ) : (
-              <div class="container">
-                <div class="row">
-                  <div class="col">
+              <div class='container'>
+                <div class='row'>
+                  <div class='col'>
                     <Slider>
                       {designers?.map(
                         ({ id, name, cover_image, marchent_id }, i) => (
@@ -124,22 +125,23 @@ const Top_Designer = () => {
                 </div>
               </div>
             )}
-            <DotGroup style={{ display: "flex", marginTop: "1rem" }} />
+            <DotGroup style={{ display: 'flex', marginTop: '1rem' }} />
             <div className={styles.NavigationContainer}>
               <div className={styles.Carousel_SliderButtonBox}>
                 <ButtonBack className={styles.Carousel_SliderButtons}>
-                  <IconButton size="small" className={styles.Carousel_iconBtn}>
+                  <IconButton size='small' className={styles.Carousel_iconBtn}>
                     <NavigateBeforeIcon />
                   </IconButton>
                 </ButtonBack>
                 <ButtonNext className={styles.Carousel_SliderButtons}>
-                  <IconButton size="small" className={styles.Carousel_iconBtn}>
+                  <IconButton size='small' className={styles.Carousel_iconBtn}>
                     <NavigateNextIcon />
                   </IconButton>
                 </ButtonNext>
               </div>
             </div>
-          </CarouselProvider>
+          </CarouselProvider> */}
+          <Carousel_Component items={designers} name={'designers'} />
         </CustomSection>
       )}
     </div>

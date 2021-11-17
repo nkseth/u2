@@ -30,6 +30,7 @@
   place-items: center;
 }
 
+
 @media screen and (max-width: 1060px) {
   .productsGrid {
     grid-template-columns: repeat(3, 1fr);

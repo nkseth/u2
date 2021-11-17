@@ -46,7 +46,6 @@
 
   .priceDetails {
     h1 {
-      //styleName: Headline / H3;
       font-family: DM Serif Display;
       font-size: 28px;
       font-style: normal;
@@ -54,7 +53,31 @@
       line-height: 36px;
       letter-spacing: 0em;
       text-align: left;
+
       color: #0a0a0a;
+    }
+    .quantity {
+      h5 {
+        font-family: DM Sans;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 16px;
+        letter-spacing: 0.3199999928474426px;
+        text-align: left;
+        color: #3b3b3b;
+        span {
+          //styleName: Headline / H6;
+          font-family: DM Sans;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 18px;
+          letter-spacing: 0px;
+          text-align: center;
+          color: #0a0a0a;
+        }
+      }
     }
   }
 
@@ -62,12 +85,17 @@
     margin: 0.2rem 0;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
     gap: 4px;
     font-family: DM Sans;
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
 
+    @media screen and (max-width: 768px) {
+      gap: 2px;
+    }
     h5 {
       line-height: 16px;
       letter-spacing: 0.3199999928474426px;
@@ -98,15 +126,55 @@
       letter-spacing: 0px;
       text-align: left;
       h5 {
-        margin: 0.5rem 0;
+        margin: 4px 0;
+        font-family: DM Sans;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0px;
+        text-align: left;
+        color: #0a0a0a;
       }
       p {
         font-weight: 500;
         line-height: 18px;
         letter-spacing: 0.1599999964237213px;
+        font-family: DM Sans;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px;
+        letter-spacing: 0.1599999964237213px;
+        text-align: left;
 
         color: #6c6c6c;
       }
+    }
+  }
+
+  .nameNCat {
+    h1 {
+      //styleName: Headline / H5;
+      font-family: DM Sans;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0px;
+      text-align: left;
+      color: #0a0a0a;
+    }
+    span {
+      //styleName: Body / Label;
+      font-family: DM Sans;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+      text-align: left;
+      color: #6c6c6c;
     }
   }
 
@@ -115,11 +183,8 @@
     justify-content: space-between;
     align-items: center;
     margin: 1rem 0;
-    > span:first-child {
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 16px;
-      letter-spacing: 0.3199999928474426px;
+
+    .orderDetailBtn {
       color: #6a5b40;
     }
 
@@ -142,18 +207,38 @@
     }
   }
 }
+.delivered_date {
+  display: flex;
+  justify-content: flex-end;
+  h5 {
+    //styleName: Headline / H5;
+    font-family: DM Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #42be65;
+  }
+}
 
 .trackBtn {
   margin: 0.5rem 0;
   height: 40px !important;
   width: 164px !important;
   border-radius: 5px;
-  font-family: DM Sans !important;
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  text-transform: none !important;
+
   background-color: #6a5b40 !important;
   color: #fff !important;
+
+  font-family: DM Sans !important;
+  font-size: 12px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  line-height: 16px !important;
+  letter-spacing: 0.3199999928474426px !important;
+  text-align: center;
 }
 .rating {
   background-color: #6a5b40 !important;
@@ -191,5 +276,109 @@
   .trackBtn {
     width: 100% !important;
     font-size: 12px !important;
+  }
+}
+
+.mobileContainer {
+  margin: 28px 0;
+  position: relative;
+  width: 100%;
+
+  // display: flex;
+
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 12px;
+  img {
+    width: 100px !important;
+    height: 132px !important;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  .rightContainer {
+    .detailsMobile {
+      .nameNCatMobile {
+        h1 {
+          font-family: DM Sans;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 20px;
+          letter-spacing: 0px;
+          text-align: left;
+        }
+        span {
+          font-family: DM Sans;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0.1599999964237213px;
+          text-align: left;
+          color: #6c6c6c !important;
+        }
+      }
+    }
+  }
+  .trackBtnMobile {
+    margin-top: 8px;
+    background: #857250 !important;
+    font-family: DM Sans;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.3199999928474426px;
+    text-align: center;
+    color: #fff !important;
+    width: 120px;
+    height: 40px;
+    text-transform: capitalize !important;
+  }
+  .ratingMobile {
+    width: 198px;
+    height: 40px;
+    text-transform: capitalize !important;
+    background: #857250 !important;
+    color: #fff !important;
+    margin: 0.5rem 0;
+    img {
+      width: 14px !important;
+      height: 14px !important;
+      margin-right: 0.2rem;
+    }
+  }
+
+  .trackNCancelMobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 1.5rem;
+    .cancelBtnMobile {
+      font-family: DM Sans;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+      text-align: left;
+
+      color: #da1e28 !important;
+      text-decoration: underline !important;
+    }
+  }
+  .delivery_dateMobile {
+    margin-top: 9px;
+    h5 {
+      //styleName: Body / Label-bold;
+      font-family: DM Sans;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+      text-align: left;
+      color: #857250;
+    }
   }
 }

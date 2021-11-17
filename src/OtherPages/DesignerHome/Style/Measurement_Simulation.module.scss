@@ -1,6 +1,6 @@
 //Here Measurement_Simulation style
 .Measurement_Simulation {
-  height: 500px;
+  height: 605px;
   background: mediumaquamarine;
   display: flex;
   align-items: center;
@@ -14,13 +14,17 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    width: 50%;
+
+    width: 475px;
     h1 {
       font-family: DM Serif Display;
-      font-size: 4rem;
+      font-size: 63px;
+      font-style: normal;
       font-weight: 400;
-      line-height: 75px;
-      letter-spacing: -1.5px;
+      line-height: 80px;
+      letter-spacing: 0em;
+      text-align: left;
+
       color: #fff;
     }
     button {
@@ -30,10 +34,20 @@
       margin-top: 15px;
       width: 160px;
       border: 2px solid #ffffff;
+      width: 227px;
+      height: 50px;
+
+      font-family: DM Sans;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0em;
+      text-align: left;
 
       &:hover {
-        background-color: #857250 !important;
-        border: 2px solid #857250;
+        background-color: #ffffff !important;
+        color: #857250 !important;
       }
     }
   }
@@ -63,24 +77,44 @@
   }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 479px) {
   .Measurement_Simulation {
-    height: 360px;
+    height: 282px;
     position: relative;
 
     div {
-      margin-left: 1em;
+      display: grid;
+      width: 100%;
+      place-items: center;
+      margin: 0 !important;
       h1 {
+        //styleName: Headline / H3;
+        font-family: DM Serif Display;
         font-size: 28px;
-        width: 100%;
-        text-align: left;
-        line-height: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 36px;
+        letter-spacing: 0em;
+        text-align: center;
+      }
+      p {
+        font-family: DM Sans;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: center;
+        color: #fff;
+        width: 339px;
       }
     }
   }
   .buttons {
     margin-left: 15px !important;
     background-color: #ffffff !important;
+    width: 150px !important;
+    height: 40.33px !important;
   }
 }
 @media screen and (max-width: 769px) {

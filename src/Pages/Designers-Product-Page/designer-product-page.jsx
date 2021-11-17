@@ -21,6 +21,7 @@ import FilterSkelton from './Components/Sections/Filter/FilterSkelton';
 function DesignerProductPage({ match }, props) {
   const dispatch = useDispatch();
   const tabViewPro = useMediaQuery('(max-width:835px)');
+  const mobile = useMediaQuery('(max-width:479px)');
   const tabView = useMediaQuery('(max-width:768px)');
   const mobileView = useMediaQuery('(max-width:550px)');
   const location = useLocation();
@@ -35,9 +36,10 @@ function DesignerProductPage({ match }, props) {
   // const [loading, setLoading] = useState(true);
   const { user, isAuthenticated } = useSelector(state => state.root.auth);
   const [clearAll, setClearAll] = useState(true);
-  const { productList, loading, error } = useSelector(
+  const { productList, loading, error, count } = useSelector(
     state => state.root.products
   );
+
   const {
     added,
     removed,
@@ -65,19 +67,26 @@ function DesignerProductPage({ match }, props) {
     dispatch(getFilterList());
   }, [slug, dispatch, error, productList, type]);
 
+  const [page, setPage] = useState(1);
+
+  const handlePagination = (e, value) => {
+    setPage(value);
+  };
   useEffect(() => {
-    if (type) dispatch(getProducts(type, { slug }));
-    else dispatch(getProducts(null, { slug }));
+    if (type)
+      dispatch(getProducts(type, { slug, next_record: page * 10 - 10 }));
+    else dispatch(getProducts(null, { slug, next_record: page * 10 - 10 }));
     if (!isAuthenticated) return;
     dispatch(getWishList(user.api_token));
-  }, [dispatch, isAuthenticated, user, slug, type]);
+  }, [dispatch, isAuthenticated, user, slug, type, page]);
 
   const filterProduct = filterData => {
     console.log(filterData);
     dispatch(getProducts(type, { ...filterData, slug }));
   };
+
   return (
-    <Container bottomDivider footerOnAllView>
+    <Container bottomDivider sortFilter footerOnWeb>
       <>
         <div className={styles.container}>
           {!tabViewPro && (
@@ -116,12 +125,11 @@ function DesignerProductPage({ match }, props) {
             </div>
           )}
           <div className={styles.secondSection}>
-            <div style={{ padding: '1rem 1rem 5rem' }}>
+            <div style={{ padding: '1rem 1rem 3rem' }}>
               {tabViewPro && (
                 <div className={styles.upperbread}>
                   <Breadcrumb
-
-                                path={`Home /`}
+                    path={`Home /`}
                     activePath={
                       type
                         ? slug
@@ -129,9 +137,8 @@ function DesignerProductPage({ match }, props) {
                           : `${type}`
                         : slug
                         ? `${slug}`
-                        : "product"
+                        : 'product'
                     }
-
                   />
                 </div>
               )}
@@ -146,10 +153,18 @@ function DesignerProductPage({ match }, props) {
             </div>
           </div>
         </div>
-        <div className={styles.LoadMoreBtnContainer}>
-          <div className={styles.LoadMoreBtnDiv}>
-            <Pagination />
-          </div>
+        <div>
+          {!tabViewPro && (
+            <div className={styles.LoadMoreBtnContainer}>
+              <div className={styles.LoadMoreBtnDiv}>
+                <Pagination
+                  handlePagination={handlePagination}
+                  count={count}
+                  page={page}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </>
     </Container>

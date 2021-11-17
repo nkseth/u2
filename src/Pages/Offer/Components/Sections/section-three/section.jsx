@@ -80,12 +80,15 @@ export default function SectionThree() {
           isIntrinsicHeight
         >
           <Slider>
-            <Slide index={0}>
+            {/* <Slide index={0}>
               <CarouselSlide data={data} />
-            </Slide>
-            {/* <Slide index={1} style={{ marginLeft: 10 }}>
-              <CarouselSlide img1={img5} img2={img6} img3={img7} img4={img8} brand1={brand5} brand2={brand6} brand3={brand7} brand4={brand8} />
             </Slide> */}
+            <Slide index={1} style={{ marginLeft: 10 }}>
+              <CarouselSlide img1={data.length > 0 ? data[0]?.cover_image : null} img2={data.length > 1 ? data[1]?.cover_image : null} img3={data.length > 2 ? data[2]?.cover_image : null} img4={data.length > 3 ? data[3]?.cover_image : null} brand1={data.length > 0 ? data[0]?.name : null} brand2={data.length > 1 ? data[1]?.name : null} brand3={data.length > 2 ? data[2]?.name : null} brand4={data.length > 3 ? data[3]?.name : null} desc1={data.length > 0 ? data[0]?.description : null} desc2={data.length > 1 ? data[1]?.description : null}  desc3={data.length > 2 ? data[2]?.description : null} desc4={data.length > 3 ? data[3]?.description : null} slug1={data.length > 0 ? data[0]?.slug : null} slug2={data.length > 1 ? data[1]?.slug : null} slug3={data.length > 2 ? data[2]?.slug : null} slug3={data.length > 3 ? data[3]?.slug : null}/>
+            </Slide>
+            <Slide index={1} style={{ marginLeft: 10 }}>
+              <CarouselSlide img1={data.length > 4 ? data[4]?.cover_image : null} img2={data.length > 5 ? data[5]?.cover_image : null} img3={data.length > 6 ? data[6]?.cover_image : null} img4={data.length > 7 ? data[7]?.cover_image : null} brand1={data.length > 4 ? data[4]?.name : null} brand2={data.length > 5 ? data[5]?.name : null} brand3={data.length > 6 ? data[6]?.name : null} brand4={data.length > 7 ? data[7]?.name : null} desc1={data.length > 4 ? data[4]?.description : null} desc2={data.length > 5 ? data[5]?.description : null}  desc3={data.length > 6 ? data[6]?.description : null} desc4={data.length > 7 ? data[7]?.description : null} slug1={data.length > 4 ? data[4]?.slug : null} slug2={data.length > 5 ? data[5]?.slug : null} slug3={data.length > 6 ? data[6]?.slug : null} slug3={data.length > 7 ? data[7]?.slug : null} />
+            </Slide> 
           </Slider>
           <DotGroup style={{ display: "flex", color: "#fff" }} />
           <div className={styles.carouselNavigationDiv}>

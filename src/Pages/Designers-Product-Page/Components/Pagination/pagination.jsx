@@ -1,28 +1,46 @@
+// import { Pagination } from 'antd';
 import React from 'react';
 import ReactPaginate from 'react-paginate';
-import styles from './pagination.scss';
+import './pagination.scss';
+// import 'antd/dist/antd.css';
+import Pagination from '@material-ui/lab/Pagination';
+// import 'bootstrap/dist/css/bootstrap.css';
+export default function Paginations({ handlePagination, count, page }) {
+  const LIMIT = 10;
 
-export default function Paginations() {
+  const pages = Math.ceil(count / LIMIT);
+  console.log(
+    '🚀 ~ file: pagination.jsx ~ line 12 ~ Paginations ~ pages',
+    pages < 2
+  );
+
   return (
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        display: 'grid',
+        width: '100%',
+        gridTemplateColumns: 'auto 1fr',
+        placeItems: 'center',
+        margin: '2rem 0',
       }}
+      className='product_page_pagination--buttons'
     >
       <div>
-        <p>Page: 1 to 10</p>
+        {pages > 1 && (
+          <p style={{ marginLeft: '1rem' }}>
+            Page: {page} of {pages}
+          </p>
+        )}
       </div>
       <div>
-        <ReactPaginate
+        {/* <ReactPaginate
           previousLabel={'Previous'}
           nextLabel={'Next'}
           breakLabel={'...'}
           pageCount={10}
           marginPagesDisplayed={2}
           pageRangeDisplayed={3}
-          containerClassName={'pagination justify-content-center'}
+          containerClassName={'pagination'}
           pageClassName={'page-item'}
           pageLinkClassName={'page-link'}
           previousClassName={'page-item'}
@@ -32,7 +50,17 @@ export default function Paginations() {
           breakClassName={'page-item'}
           breakLinkClassName={'page-link'}
           activeClassName={'active'}
-        />
+        /> */}
+        <div>
+          <Pagination
+            count={pages}
+            hideNextButton={pages <= 1}
+            hidePrevButton={pages <= 1}
+            variant='outlined'
+            shape='rounded'
+            onChange={handlePagination}
+          />
+        </div>
       </div>
     </div>
   );

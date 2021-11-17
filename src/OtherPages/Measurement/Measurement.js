@@ -68,7 +68,7 @@ const Measurement = () => {
       </div> */}
       <Button className={styles.Button}>
         <Link
-          to='/add-measurement-choose-standard-size/12/12'
+          to='/add-measurement-choose-standard-size'
           style={{
             display: 'flex',
             alignItems: 'center',

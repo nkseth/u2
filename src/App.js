@@ -87,10 +87,14 @@ import MobileCategory from './utils/MobileCategoryPage/MobileCategory';
 import ProductsByDesigner from './Pages/Designers-Product-Page/ProductsByDesigner';
 import SelectMeasurement from './Pages/Select-Measurement/selectMeasurement';
 // import OrderDetails from "./OtherPages/OrderDetails/OrderDetails";
-
+import Geocode from "react-geocode";
 //Start From Here
 
 function App() {
+  Geocode.setApiKey("AIzaSyA_nmZVriBFLHl4ZdmN7d_WVr9PEH2sZa4");
+  Geocode.setLanguage("en");
+  Geocode.setRegion("es");
+  Geocode.setLocationType("ROOFTOP");
   const { isLoginModel } = useLogin();
   const dispatch = useDispatch();
   const [cookies, setCookie] = useCookies(['user']);
@@ -151,6 +155,10 @@ function App() {
           path='/add-measurement-choose-standard-size/:orderId/:itemId'
           component={ChooseStandardSize}
           exact
+        />
+        <ProtectedRoute
+          path='/add-measurement-choose-standard-size'
+          component={ChooseStandardSize}
         />
         <ProtectedRoute
           path='/add-measurement-gender'
@@ -217,7 +225,7 @@ function App() {
         <ProtectedRoute path={'/payments'} component={Page_Payments} />
         <ProtectedRoute path={'/editpayments'} component={Page_EditPayments} />
         <ProtectedRoute
-          path='/trackorder/:orderid'
+          path='/trackorder/:orderId/:item_id'
           component={Page_TrackOrders}
           exact
         />

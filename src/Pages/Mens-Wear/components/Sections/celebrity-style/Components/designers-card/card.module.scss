@@ -1,12 +1,13 @@
 .container {
-display: flex;
-flex-direction: column;
-justify-content: center;
-width: 100%!important;
-max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100% !important;
+  max-width: 300px;
   .imgContainer {
     position: relative;
     width: 100%;
+    height: 363px;
     img {
       height: 100%;
       width: 100%;
@@ -23,6 +24,7 @@ max-width: 300px;
 .productDetails {
   display: grid;
   gap: 5px;
+  margin-top: 15px;
   .productName {
     font-size: 16px;
     font-weight: 700;
@@ -33,7 +35,7 @@ max-width: 300px;
     font-weight: 400;
     line-height: 16px;
     letter-spacing: 0.3199999928474426px;
-    color: #3b3b3b; 
+    color: #3b3b3b;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -54,7 +56,7 @@ max-width: 300px;
 @media screen and (max-width: 835px) {
   .imgContainer {
     img {
-      height: 100%!important;
+      height: 100% !important;
       // width: 250px !important;
     }
   }
@@ -62,13 +64,54 @@ max-width: 300px;
 
 @media screen and (max-width: 550px) {
   .container {
-    width: 100%!important;
+    width: 100% !important;
     max-width: 300px;
+    .imgContainer {
+      position: relative;
+      width: 100%;
+      height: 232px;
+    }
   }
   .imgContainer {
     img {
       height: 100% !important;
       width: 100% !important;
+    }
+  }
+  .productDetails {
+    display: grid;
+    gap: 5px;
+    margin-top: 15px;
+    .productName {
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      font-family: DM Sans;
+      line-height: 20px;
+    }
+    .productDesc {
+      font-size: 12px;
+      font-weight: 400;
+      font-family: DM Sans;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+      color: white;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      -webkit-box-orient: vertical;
+    }
+    .productPrice {
+      font-size: 14px;
+      font-weight: 400;
+      font-family: DM Sans;
+      color: white;
+      line-height: 18px;
+      letter-spacing: 0.1599999964237213px;
+      span:last-child {
+        color: white;
+      }
     }
   }
 }

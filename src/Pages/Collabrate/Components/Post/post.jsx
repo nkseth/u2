@@ -55,9 +55,11 @@ export default function Post({ toggle, open }) {
                 <img src={iphone3} alt='iphone3' />
               </Box>
 
-              <Box>
+              <Box style={{ marginLeft: '35px' }}>
                 <img src={posts} alt='galleryicon' />
-                <p className={styles.heading}>Posts</p>
+                <p style={{ paddingLeft: '0' }} className={styles.heading}>
+                  Posts
+                </p>
                 <p className={styles.textTab}>
                   Grab your audience's attention by your post with eye-catching
                   photos and videos.

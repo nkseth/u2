@@ -4,11 +4,22 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import SearchIcon from '../../../../Images/icons/search.svg';
 import styles from './searchResult.module.scss';
-import { createTheme, ThemeProvider, withStyles } from '@material-ui/core';
+import {
+  createTheme,
+  ThemeProvider,
+  useMediaQuery,
+  withStyles,
+} from '@material-ui/core';
 
 export default function Search() {
+  const tabView = useMediaQuery('(max-width:1180px)');
+  const mobileView = useMediaQuery('(max-width:550px)');
+  const mobile = useMediaQuery('(max-width:460px)');
   return (
-    <Stack spacing={2} sx={{ width: 536, height: 50 }}>
+    <Stack
+      spacing={2}
+      sx={{ width: tabView ? 290 : 340, height: tabView ? 40 : 50 }}
+    >
       <Autocomplete
         freeSolo
         disableClearable

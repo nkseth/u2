@@ -14,7 +14,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { LazyLoadingComp } from '../../../utils/LazyLoading';
 import { Link } from 'react-router-dom';
 
-const Carousel_Component = ({ items, name }) => {
+const Carousel_Component = ({ items, name, pathName }) => {
   const match = useMediaQuery('(max-width:630px)');
   const iPade = useMediaQuery('(max-width:900px)');
   const tab = useMediaQuery('(max-width:768px)');
@@ -33,44 +33,51 @@ const Carousel_Component = ({ items, name }) => {
       isIntrinsicHeight
     >
       <Slider>
-        {items?.map((item, i) => (
-          <Slide
-            index={i}
-            key={item.id.toString()}
-            className={styles.items}
-            style={
-              CustomView
-                ? { marginRight: '10px', marginLeft: '10px' }
-                : { marginRight: '10px', marginLeft: '10px' }
-            }
-          >
-            <LazyLoadingComp>
-              <Link
-                to={{
-                  pathname: `/designers-product-page/${item.slug}`,
-                }}
-              >
-                <div>
-                  <div className={styles.Carousel_Wear}>
-                    <div className={styles.Carousel_Items}>
-                      <img
-                        src={item.cover_image}
-                        alt={item.id}
-                        // style={customImg}
-                      />
-                      <Link
-                        to={`/designers-product-page/${item.slug}`}
-                        className='carousel-items--text'
-                      >
-                        {item.name}
-                      </Link>
+        {items?.map((item, i) => {
+          console.log(
+            '🚀 ~ file: Carousel_Component.jsx ~ line 77 ~ {items?.map ~ item',
+            item.shop_id
+          );
+          const id = pathName === 'designer-products';
+          return (
+            <Slide
+              index={i}
+              key={item.id.toString()}
+              className={styles.items}
+              style={
+                CustomView
+                  ? { marginRight: '10px', marginLeft: '10px' }
+                  : { marginRight: '10px', marginLeft: '10px' }
+              }
+            >
+              <LazyLoadingComp>
+                <Link
+                  to={{
+                    pathname: `${pathName}/`,
+                  }}
+                >
+                  <div>
+                    <div className={styles.Carousel_Wear}>
+                      <div className={styles.Carousel_Items}>
+                        <img
+                          src={item.cover_image}
+                          alt={item.id}
+                          // style={customImg}
+                        />
+                        <Link
+                          to={`/designers-product-page/${item.slug}`}
+                          className='carousel-items--text'
+                        >
+                          {item.name}
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </LazyLoadingComp>
-          </Slide>
-        ))}
+                </Link>
+              </LazyLoadingComp>
+            </Slide>
+          );
+        })}
       </Slider>
       {!mobile && (
         <>
@@ -99,3 +106,53 @@ const Carousel_Component = ({ items, name }) => {
 };
 
 export default Carousel_Component;
+
+export const Carousel_Component_2 = ({ item, i, name, pathName }) => {
+  // const match = useMediaQuery('(max-width:630px)');
+  // const iPade = useMediaQuery('(max-width:900px)');
+  // const tab = useMediaQuery('(max-width:768px)');
+  // const mobile = useMediaQuery('(max-width:479px)');
+
+  // const large = useMediaQuery('(max-width:1330px)');
+  const CustomView = useMediaQuery('(max-width:400px)');
+
+  // const visible = items.length > 4 ? 4.3 : 4;
+  return (
+    <Slide
+      index={i}
+      key={item.id.toString()}
+      className={styles.items}
+      style={
+        CustomView
+          ? { marginRight: '10px', marginLeft: '10px' }
+          : { marginRight: '10px', marginLeft: '10px' }
+      }
+    >
+      <LazyLoadingComp>
+        <Link
+          to={{
+            pathname: `/${pathName}`,
+          }}
+        >
+          <div>
+            <div className={styles.Carousel_Wear}>
+              <div className={styles.Carousel_Items}>
+                <img
+                  src={item.cover_image}
+                  alt={item.id}
+                  // style={customImg}
+                />
+                <Link
+                  to={`/designers-product-page/${item.slug}`}
+                  className='carousel-items--text'
+                >
+                  {item.name}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Link>
+      </LazyLoadingComp>
+    </Slide>
+  );
+};

@@ -114,12 +114,7 @@ export const topDesignerReducer = (
 
   switch (type) {
     case GET_TOP_DESIGNERS:
-      console.log(
-        '🚀 ~ file: designHomePageReducer.js ~ line 118 ~ payload',
-        payload
-      );
-
-      return { ...initialState, designers: payload.get_designer };
+      return { ...initialState, designers: payload.data[0].top_designer };
 
     default:
       return initialState;

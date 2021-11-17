@@ -14,7 +14,7 @@ import {
   AccordionDetails,
 } from '@material-ui/core';
 import cx from 'classnames';
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link, useLocation, useHistory, withRouter } from 'react-router-dom';
 import CustomSection from '../Custom Section/section';
 import SideNavbar from '../Side-Navbar/sideNavbar';
 import styles from './header.module.scss';
@@ -35,6 +35,15 @@ import { ReactComponent as Logo } from '../../Images/logo/u2.svg';
 import { ReactComponent as LogoSM } from '../../Images/logo/U2icon.svg';
 import { getCategorySubGroup } from '../../Redux/actions/designerHomePage';
 import Search from './Components/SearchResult/seachResult';
+import { getAlgoliaResults } from '@algolia/autocomplete-js';
+import algoliasearch from 'algoliasearch';
+import { Autocomplete } from './Components/Autocomplete';
+import { ProductItem } from './Components/ProductItem';
+
+
+const appId = 'URPPB4YKVU';
+const apiKey = 'a32df24de3734cdd34b6c12b46c96c27';
+const searchClient = algoliasearch(appId, apiKey);
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -325,7 +334,35 @@ export default function Header() {
             />
           </div> */}
           <div>
-            <Search />
+            {/* <Search /> */}
+            <Autocomplete
+              openOnFocus={false}
+              getSources={({ query }) => [
+                {
+                  sourceId: 'products',
+                  getItems() {
+                    return getAlgoliaResults({
+                      searchClient,
+                      queries: [
+                        {
+                          indexName: 'products',
+                          query,
+                        },
+                      ],
+                    });
+                  },
+                  onSelect({item}) {
+                    console.log('yrdy', item);
+                    history.push('/product-description/'+item.slug);
+                  },
+                  templates: {
+                    item({ item, components }) {
+                      return <ProductItem hit={item} components={components} />;
+                    },
+                  },
+                },
+              ]}
+            />
           </div>
         </div>
       )}

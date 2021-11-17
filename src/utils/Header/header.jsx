@@ -267,7 +267,8 @@ const Header = () => {
       >
         {location.pathname === '/orders' ||
         location.pathname === '/offers' ||
-        location.pathname === '/all-orders' ? (
+        location.pathname === '/all-orders' ||
+        location.pathname === '/orders/cancel-order' ? (
           <div className={styles.sideNavbarDiv}>
             <SideNavbar />
           </div>

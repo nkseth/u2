@@ -37,7 +37,7 @@ const Top_Designer = () => {
   const { designers } = useSelector(state => state.root.topDesigner);
 
   const baseStyle = {
-    padding: !mobile ? '7rem 3rem' : '2rem 1rem',
+    padding: !mobile ? '5rem 3rem' : '2rem 1rem',
     background: '#fff',
   };
   console.log('🚀 ~ file: Top_Designer.js ~ line 39 ~ designers', designers);
@@ -59,7 +59,8 @@ const Top_Designer = () => {
       ) : (
         <CustomSection class={styles.topdesigner} style={baseStyle}>
           <div
-            className={`${styles.Carousel_header} ${styles.Top_Designer_header}`}
+            className={`${styles.Carousel_header} ${styles.Top_Designer_header} `}
+            style={{ fontFamily: 'DM Serif Display' }}
           >
             Explore Top Designers
             <CustomDivider style={{ height: '2px', background: '#fff' }} />

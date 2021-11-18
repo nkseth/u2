@@ -288,7 +288,7 @@ export default function OrdersCard({
             >
               <img src={Star} alt='' /> Rate & Review Product
             </Button>
-          ) : (
+           ) : (
             <Button
               onClick={() => history.push(`/trackorder/${orderId}`)}
               className={styles.trackBtn}
@@ -296,7 +296,7 @@ export default function OrdersCard({
             >
               Track Order
             </Button>
-          )} */}
+           )} */}
               <div className={styles.detailThree}>
                 {!detailsPage && (
                   <Link
@@ -309,9 +309,10 @@ export default function OrdersCard({
                   </Link>
                 )}
 
-                <Link
+                <Link 
                   style={{ marginLeft: `${detailsPage ? 'auto' : ''}` }}
                   className={styles.cancelBtn}
+                  onClick={() => history.push(`/orders/cancel-order`)}
                 >
                   Cancel Order
                 </Link>
@@ -398,7 +399,7 @@ export const OrdersCardMobile = ({
           )}
           {status !== 'deliverd' && (
             <div className={styles.cancelBtnContainer}>
-              <Link
+              <Link href="/home"
                 style={{ marginLeft: `${detailsPage ? 'auto' : ''}` }}
                 className={styles.cancelBtnMobile}
               >

@@ -313,11 +313,8 @@ function App() {
           component={CollabrateAsInfluencer}
         />
         <Route path={'/mobile-category'} component={MobileCategory} />
-<<<<<<< HEAD
         <Route path={'/order-review/:id'} component={Add_Review_Page} />
-=======
         <Route path={'/orders/cancel-order'} component={CancelOrder} />
->>>>>>> 0aa78d4c2426d4aeaf6d6a344a582381d21e1b85
       </Switch>
     </div>
   );

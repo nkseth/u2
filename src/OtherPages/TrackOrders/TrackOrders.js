@@ -18,7 +18,10 @@ const TrackOrders = ({ match }) => {
   const [delivered, setDelivered] = useState(false);
   const [delivery_data, set_delivery_data] = useState({});
 
-  console.log(trackingData);
+  console.log(
+    '🚀 ~ file: TrackOrders.js ~ line 22 ~ TrackOrders ~ trackingData',
+    trackingData
+  );
 
   const dispatch = useDispatch();
 
@@ -121,7 +124,7 @@ const TimeLine = ({
     <>
       <div className={`${styles.TrackOrders_Timeline}`}>
         <div className={styles.TrackOrders_Timeline_Time}>
-          <p>{date}</p> <p>{time}</p>
+          <p>{date}</p> <span>{time}</span>
         </div>
         <div
           className={`${styles.TrackOrders_Timeline_Dot} ${className} ${

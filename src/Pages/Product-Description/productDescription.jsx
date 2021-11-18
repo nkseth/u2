@@ -203,14 +203,13 @@ export default function ProductDescription({ match }) {
     if (!details && !loading) dispatch(getProductDetails(slug));
   }, [slug, dispatch, details]);
 
-  console.log(details)
+  console.log(details);
 
   useEffect(() => {
     dispatch(getProductDetails(slug));
   }, []);
 
   const buy_now_handler = async () => {
-
     if (isAuthenticated) {
       if (details.hasOwnProperty('title')) {
         try {
@@ -731,7 +730,7 @@ export default function ProductDescription({ match }) {
                       <div
                         style={{
                           fontWeight: 'bolder',
-                          marginTop: 5,
+
                           marginBottom: -10,
                         }}
                       >
@@ -1299,7 +1298,6 @@ export default function ProductDescription({ match }) {
                           // setAnimate(animate => !animate);
                         }}
                         variant='outlined'
-                        color='default'
                         // startIcon={}
                         fullWidth
                         // className={

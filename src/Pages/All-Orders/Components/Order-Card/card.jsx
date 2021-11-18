@@ -171,7 +171,7 @@ export default function OrdersCard({
   const mobileView = useMediaQuery('(max-width:479px)');
   return (
     <div className={styles.mainContainer}>
-      {!detailsPage && item.title && <CustomDivider customBg='#CECECE' />}
+      {/* {!detailsPage && item.title && <CustomDivider customBg='#CECECE' />} */}
       {/* <div className={styles.delivered_date}>
         <h5>Delivered on Jan 13</h5>
       </div> */}
@@ -309,7 +309,7 @@ export default function OrdersCard({
                   </Link>
                 )}
 
-                <Link 
+                <Link
                   style={{ marginLeft: `${detailsPage ? 'auto' : ''}` }}
                   className={styles.cancelBtn}
                   onClick={() => history.push(`/orders/cancel-order`)}
@@ -399,7 +399,8 @@ export const OrdersCardMobile = ({
           )}
           {status !== 'deliverd' && (
             <div className={styles.cancelBtnContainer}>
-              <Link href="/home"
+              <Link
+                href='/home'
                 style={{ marginLeft: `${detailsPage ? 'auto' : ''}` }}
                 className={styles.cancelBtnMobile}
               >

@@ -24,5 +24,5 @@ export function Autocomplete(props) {
     };
   }, [props]);
 
-  return <div ref={containerRef} />;
+  return <div ref={containerRef} style={{ zIndex: '100' }} />;
 }

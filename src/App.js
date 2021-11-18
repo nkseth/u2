@@ -87,6 +87,7 @@ import AboutUs from './OtherPages/AboutUs/AboutUs';
 import MobileCategory from './utils/MobileCategoryPage/MobileCategory';
 import ProductsByDesigner from './Pages/Designers-Product-Page/ProductsByDesigner';
 import SelectMeasurement from './Pages/Select-Measurement/selectMeasurement';
+import CancelOrder from './Pages/All-Orders/Components/Cancel-order/cancelOrder';
 // import OrderDetails from "./OtherPages/OrderDetails/OrderDetails";
 import Geocode from "react-geocode";
 import Review from './OtherPages/Review/Review';
@@ -312,7 +313,11 @@ function App() {
           component={CollabrateAsInfluencer}
         />
         <Route path={'/mobile-category'} component={MobileCategory} />
+<<<<<<< HEAD
         <Route path={'/order-review/:id'} component={Add_Review_Page} />
+=======
+        <Route path={'/orders/cancel-order'} component={CancelOrder} />
+>>>>>>> 0aa78d4c2426d4aeaf6d6a344a582381d21e1b85
       </Switch>
     </div>
   );

@@ -28,24 +28,18 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 1.6rem;
   place-items: center;
-}
 
-
-@media screen and (max-width: 1060px) {
-  .productsGrid {
+  @media screen and (max-width: 1060px) {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
-}
-@media screen and (max-width: 580px) {
-  .productsGrid {
+  @media screen and (max-width: 580px) {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media screen and (max-width: 400px) {
-  .productsGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+
+    @media screen and (max-width: 400px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
   }
 }
 

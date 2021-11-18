@@ -20,7 +20,7 @@ import FilterSkelton from './Components/Sections/Filter/FilterSkelton';
 
 function DesignerProductPage({ match }, props) {
   const dispatch = useDispatch();
-  const tabViewPro = useMediaQuery('(max-width:835px)');
+  const tabViewPro = useMediaQuery('(max-width:840px)');
   const mobile = useMediaQuery('(max-width:479px)');
   const tabView = useMediaQuery('(max-width:768px)');
   const mobileView = useMediaQuery('(max-width:550px)');

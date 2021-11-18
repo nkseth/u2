@@ -19,24 +19,29 @@ import { topDesigner } from '../../../Redux/actions/designerHomePage';
 import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
 import Loader from '../../../utils/Loader/Loader';
 import CardGoldenBorderWithText from '../../../Commons/Cards/CardGoldenBorderWithText/CardGoldenBorderWithText';
-import Carousel_Component from './Carousel_Component';
+import Carousel_Component, { Carousel_Component_2 } from './Carousel_Component';
 import styles from '../Style/Top_Designer.module.scss';
 
 const Top_Designer = () => {
   const dispatch = useDispatch();
-  const mobile = useMediaQuery('(max-width:450px)');
+
+  const theme = useTheme();
+  const match = useMediaQuery('(max-width:630px)');
+  const iPade = useMediaQuery('(max-width:900px)');
+  const tab = useMediaQuery('(max-width:768px)');
+  const mobile = useMediaQuery('(max-width:479px)');
+
+  const large = useMediaQuery('(max-width:1330px)');
+  const CustomView = useMediaQuery('(max-width:400px)');
+
+  const { designers } = useSelector(state => state.root.topDesigner);
 
   const baseStyle = {
     padding: !mobile ? '7rem 3rem' : '2rem 1rem',
     background: '#fff',
   };
-
-  const theme = useTheme();
-  const match = useMediaQuery(theme.breakpoints.down('xs'));
-  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
-  const CustomView = useMediaQuery('(max-width:550px)');
-  const { designers } = useSelector(state => state.root.topDesigner);
   console.log('🚀 ~ file: Top_Designer.js ~ line 39 ~ designers', designers);
+  const visible = designers.length > 4 ? 4.3 : 4;
 
   useEffect(() => {
     dispatch(topDesigner());
@@ -141,7 +146,61 @@ const Top_Designer = () => {
               </div>
             </div>
           </CarouselProvider> */}
-          <Carousel_Component items={designers} name={'designers'} />
+          <CarouselProvider
+            visibleSlides={
+              match ? 1.5 : tab ? 1.9 : iPade ? 2.5 : large ? 3 : visible
+            }
+            totalSlides={
+              match ? designers?.length + 0.3 : designers?.length + 1
+            }
+            isIntrinsicHeight
+          >
+            <Slider>
+              {designers?.map((item, i) => {
+                console.log(
+                  '🚀 ~ file: Top_Designer.js ~ line 169 ~ {designers?.map ~ item',
+                  item.shop_id
+                );
+
+                return (
+                  <Carousel_Component_2
+                    item={item}
+                    i={i}
+                    name={'designers'}
+                    pathName={`designer-products/${item.shop_id}`}
+                  />
+                );
+              })}
+            </Slider>
+            {!mobile && (
+              <>
+                <DotGroup
+                  style={{ display: 'flex', marginTop: '2rem' }}
+                  className={`top-designer-carousel--dot`}
+                />
+                <div className={styles.NavigationContainer}>
+                  <div className={styles.Carousel_SliderButtonBox}>
+                    <ButtonBack className={styles.Carousel_SliderButtons}>
+                      <IconButton
+                        size='small'
+                        className={styles.Carousel_iconBtn}
+                      >
+                        <NavigateBeforeIcon />
+                      </IconButton>
+                    </ButtonBack>
+                    <ButtonNext className={styles.Carousel_SliderButtons}>
+                      <IconButton
+                        size='small'
+                        className={styles.Carousel_iconBtn}
+                      >
+                        <NavigateNextIcon />
+                      </IconButton>
+                    </ButtonNext>
+                  </div>
+                </div>
+              </>
+            )}
+          </CarouselProvider>
         </CustomSection>
       )}
     </div>

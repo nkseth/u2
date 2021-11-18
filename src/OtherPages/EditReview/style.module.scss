@@ -1,0 +1,39 @@
+.review {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    div {
+      width: 111px;
+      height: 111px;
+      border-radius: 100%;
+      background-image: url(../../Images/gender/male.svg);
+      background-size: cover;
+    }
+    h3 {
+      font-size: 16px;
+      margin-top: 12px;
+    }
+  }
+  .stars {
+    display: flex;
+    justify-content: center;
+  }
+  .add_image {
+    background: #ffffff;
+    box-shadow: 0px -5px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 21px;
+    padding: 35px 15px;
+    h3 {
+      font-size: 18px;
+      margin-bottom: 26px;
+    }
+  }
+  
+  .custom_container{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none; 
+  }
+  
+  .custom_container::-webkit-scrollbar {
+    display: none;
+  }

@@ -8,7 +8,6 @@ export const Buttons = values => {
         return (
           <Col key={1} xs={24} xl={24}>
              <button type="submit" fluid attached='bottom' onClick={(()=>values.functionName)} className="btn commanButton">{values.name}</button>
-          
           </Col>
         );
     }

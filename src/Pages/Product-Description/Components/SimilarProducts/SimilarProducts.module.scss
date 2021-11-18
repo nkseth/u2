@@ -9,6 +9,17 @@
 
   color: #6a5b40;
   margin: 1rem 1.1rem;
+
+  @media screen and (max-width: 479px) {
+    //styleName: Headline / H4;
+    font-family: DM Serif Display;
+    font-size: 20px !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
 }
 
 .similarProduct {

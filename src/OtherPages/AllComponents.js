@@ -17,6 +17,7 @@ import ContactUs from './ContactUs/ContactUs';
 import WriteToUs from './ContactUs/component/WriteToUs';
 import OrderDetails from './OrderDetails/OrderDetails';
 import OrderReview from './OrderReview/OrderReview';
+import EditReview from './EditReview';
 
 export const Page_Profile = () => {
   return (
@@ -135,6 +136,14 @@ export const Write_to_us = () => {
   return (
     <Layout title={'Contact us'}>
       <WriteToUs />
+    </Layout>
+  );
+};
+
+export const Page_Edit_Review = ({ match }) => {
+  return (
+    <Layout title={'Edit review'}>
+      <EditReview match={match} />
     </Layout>
   );
 };

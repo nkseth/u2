@@ -41,6 +41,8 @@ export default function MostLovedStyleSection({ type }) {
 
   const { most_loved } = useSelector((state) => state.root.main);
 
+  console.log(most_loved)
+
   return (
     <div>
       {

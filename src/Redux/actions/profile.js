@@ -28,7 +28,7 @@ export const get_designers = () => async (dispatch) => {
   }
 };
 
-export const get_reviews = () => async (dispatch) => {
+export const get_reviews = (setLoading) => async (dispatch) => {
   try {
     const { data } = await common_axios.get("/product_review_list");
     if (data) {
@@ -36,9 +36,12 @@ export const get_reviews = () => async (dispatch) => {
         type: REVIEWS,
         payload: data,
       });
+      setLoading(false)
     }
+    setLoading(false)
   } catch (err) {
     console.log(err);
+    setLoading(false)
     return Promise.reject(err);
   }
 };

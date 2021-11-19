@@ -30,7 +30,11 @@ const Carousel_Component = ({ items, name, pathName }) => {
         match ? 1.5 : tab ? 1.9 : iPade ? 2.5 : large ? 3 : visible
       }
       totalSlides={match ? items?.length + 0.3 : items?.length + 1}
-      isIntrinsicHeight
+      // isIntrinsicHeight
+      // visibleSlides={getVisibleCardCount()}
+      naturalSlideWidth={100}
+      // totalSlides={Object.keys(new_collection).length}
+      // isIntrinsicHeight
     >
       <Slider>
         {items?.map((item, i) => {

@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import styles from "./style/LoginOtpVarify.module.scss";
-import OtpInput from "react-otp-input";
-import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
-import useLogin from "./useLogin";
-import { useSelector, useDispatch } from "react-redux";
-import common_axios from "../utils/axios.config";
-import { setUserData } from "../Redux/actions/homepage";
+import React, { useState } from 'react';
+import styles from './style/LoginOtpVarify.module.scss';
+import OtpInput from 'react-otp-input';
+import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
+import useLogin from './useLogin';
+import { useSelector, useDispatch } from 'react-redux';
+import common_axios from '../utils/axios.config';
+import { setUserData } from '../Redux/actions/homepage';
 
 const LoginOtpVarify = () => {
   const dispatch = useDispatch();
 
   const { login_Model_Hide } = useLogin();
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const { name, password, email } = useSelector(
-    (state) => state.root.login.login_creds
+    state => state.root.login.login_creds
   );
 
   const getStarted = async () => {
     if (text?.length !== 4) {
-      alert("Enter a valid OTP");
+      alert('Enter a valid OTP');
       return;
     }
 
     try {
-      const { data } = await common_axios.post("/auth/otp_varify", {
+      const { data } = await common_axios.post('/auth/otp_varify', {
         email,
         password,
         otp: text,
@@ -33,7 +33,7 @@ const LoginOtpVarify = () => {
       console.log(data);
 
       if (data.data) {
-        localStorage.setItem("token", JSON.stringify(data.data.api_token));
+        localStorage.setItem('token', JSON.stringify(data.data.api_token));
         dispatch(setUserData(data.data));
         login_Model_Hide();
       }
@@ -60,24 +60,24 @@ const LoginOtpVarify = () => {
       </div>
       <div className={styles.LoginOtpVarify_OTP}>
         <OtpInput
-          containerStyle={{ display: "flex", justifyContent: "space-evenly" }}
-          inputStyle={{ color: "#6c6c6c", fontSize: "16px" }}
+          containerStyle={{ display: 'flex', justifyContent: 'space-evenly' }}
+          inputStyle={{ color: '#6c6c6c', fontSize: '16px' }}
           numInputs={4}
-          errorStyle="error"
-          onChange={(event) => setText(event)}
-          separator={<span>{"  "}</span>}
+          errorStyle='error'
+          onChange={event => setText(event)}
+          separator={<span>{'  '}</span>}
           isInputNum={true}
           value={text}
-          name="otp"
+          name='otp'
         />
       </div>
       <div className={styles.LoginOtpVarify_Button}>
         <Button onClick={getStarted}>Get Started</Button>
       </div>
       <div className={styles.LoginOtpVarify_Bottom_Link_1}>
-        <Link>
-          Didn't receive code? <b style={{ color: "#0000EE" }}>Resend code</b>
-        </Link>
+        <a>
+          Didn't receive code? <b style={{ color: '#0000EE' }}>Resend code</b>
+        </a>
       </div>
     </form>
   );

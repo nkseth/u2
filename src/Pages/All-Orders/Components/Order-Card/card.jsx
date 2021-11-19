@@ -184,7 +184,7 @@ export default function OrdersCard({
   const mobileView = useMediaQuery('(max-width:479px)');
   return (
     <div className={styles.mainContainer}>
-      {!detailsPage && item.title && <CustomDivider customBg='#CECECE' />}
+      {/* {!detailsPage && item.title && <CustomDivider customBg='#CECECE' />} */}
       {/* <div className={styles.delivered_date}>
         <h5>Delivered on Jan 13</h5>
       </div> */}

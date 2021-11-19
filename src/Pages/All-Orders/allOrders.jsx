@@ -42,6 +42,7 @@ export default function AllOrders() {
         deliverdOrders.push(order);
     });
   }
+
   return (
     <Container bottomDivider pBottom='0' footerOnTabMob>
       {!orders ? (
@@ -189,19 +190,6 @@ export default function AllOrders() {
                           orderId={id}
                         />
                       ))}
-
-                      {/* <div className={styles.deliveryAddress}>
-                        <span>Delivery Address</span>
-                        <p>
-                          <span>{customer.name}</span>
-                          <span>{customer.phone_no}</span>
-                        </p>
-                        <p>{delivery_address}</p>
-                        <p>
-                          <span>Order ID</span>
-                          <span>{order_number}</span>
-                        </p>
-                      </div> */}
                       <CustomDivider />
                     </div>
                   )

@@ -314,7 +314,7 @@ function App() {
         />
         <Route path={'/mobile-category'} component={MobileCategory} />
         <Route path={'/order-review/:id'} component={Add_Review_Page} />
-        <Route path={'/orders/cancel-order'} component={CancelOrder} />
+        <Route path={'/orders/cancel-order/:item_id/:order_id'} component={CancelOrder} />
       </Switch>
     </div>
   );

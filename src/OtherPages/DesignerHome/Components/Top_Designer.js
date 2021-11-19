@@ -27,7 +27,7 @@ const Top_Designer = () => {
 
   const theme = useTheme();
   const match = useMediaQuery('(max-width:630px)');
-  const iPade = useMediaQuery('(max-width:900px)');
+  const iPade = useMediaQuery('(max-width:1000px)');
   const tab = useMediaQuery('(max-width:768px)');
   const mobile = useMediaQuery('(max-width:479px)');
 

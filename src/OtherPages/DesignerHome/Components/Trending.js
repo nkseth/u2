@@ -6,6 +6,7 @@ import styles from '../Style/Trending.module.scss';
 import { topTrending } from '../../../Redux/actions/designerHomePage';
 import { useDispatch, useSelector } from 'react-redux';
 import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
+import Skeleton from '@material-ui/lab/Skeleton';
 import {
   CarouselProvider,
   Slider,
@@ -17,15 +18,17 @@ import {
 import { IconButton, useMediaQuery, useTheme } from '@material-ui/core';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import Carousel_Component from './Carousel_Component';
+// import Carousel_Component from './Carousel_Component';
+import Carousel_Component from '../../../utils/Carousel_Component/Carousel_Component';
+import SkeletonLoaderCarousel from '../../../utils/skeletons/SkeletonLoaderCarousel';
 
 const Trending = () => {
   const match = useMediaQuery('(max-width:630px)');
+  const iPade = useMediaQuery('(max-width:1000px)');
+  const tab = useMediaQuery('(max-width:890px)');
   const mobile = useMediaQuery('(max-width:479px)');
-  const iPade = useMediaQuery('(max-width:900px)');
-  const tab = useMediaQuery('(max-width:768px)');
-
   const large = useMediaQuery('(max-width:1330px)');
+
   const CustomView = useMediaQuery('(max-width:400px)');
   const dispatch = useDispatch();
   const imageSrc =
@@ -39,13 +42,14 @@ const Trending = () => {
   const { push } = useHistory();
   const mobileView = useMediaQuery('(max-width:1024px)');
 
-  const { items } = useSelector(state => state.root.trending);
+  const { items, loading } = useSelector(state => state.root.trending);
+  console.log('🚀 ~ file: Trending.js ~ line 44 ~ Trending ~ loading', loading);
 
   useEffect(async () => {
     dispatch(topTrending());
   }, []);
 
-  const visible = 4.9;
+  const visible = 4;
   if (items) {
     return (
       <div className={styles.trending_content} style={baseStyle}>
@@ -57,52 +61,30 @@ const Trending = () => {
           <CustomDivider style={{ height: '1px', background: '#857250' }} />
         </div>
         {!tab ? (
-          <>
-            <Carousel_Component items={items} name={'trending'} />
-            {/* <CarouselProvider
-              visibleSlides={match ? 1.4 : iPade ? 2.5 : large ? 3 : visible}
-              totalSlides={match ? items?.length + 0.3 : items?.length + 1}
+          loading ? (
+            <SkeletonLoaderCarousel />
+          ) : (
+            <CarouselProvider
+              visibleSlides={
+                match ? 1.5 : tab ? 1.9 : iPade ? 2.5 : large ? 3 : visible
+              }
+              naturalSlideWidth={100}
+              totalSlides={items.length}
               isIntrinsicHeight
             >
               <Slider>
-                {items?.map((item, i) => (
-                  <Slide
-                    index={i}
-                    key={item.id.toString()}
-                    style={
-                      CustomView
-                        ? { marginRight: '10px', marginLeft: '10px' }
-                        : { marginRight: '20px', marginLeft: '20px' }
-                    }
-                    className={styles.items}
-                  >
-                    <LazyLoadingComp>
-                      <Link
-                        to={{
-                          pathname: `/designers-product-page/${item.slug}`,
-                        }}
-                      >
-                        <div>
-                          <div className={styles.TrendingWear}>
-                            <div className={styles.Trending_Items}>
-                              <img
-                                src={item.cover_image}
-                                alt={item.id}
-                                // style={customImg}
-                              />
-                              <Link
-                                to={`/designers-product-page/${item.slug}`}
-                                className='carousel-items--text'
-                              >
-                                {item.name}
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    </LazyLoadingComp>
-                  </Slide>
-                ))}
+                <>
+                  {items?.map((item, i) => {
+                    return (
+                      <Carousel_Component
+                        item={item}
+                        i={i}
+                        name={'homepage-trending-wear'}
+                        pathName={''}
+                      />
+                    );
+                  })}
+                </>
               </Slider>
               <DotGroup
                 style={{ display: 'flex', marginTop: '2rem' }}
@@ -128,20 +110,34 @@ const Trending = () => {
                   </ButtonNext>
                 </div>
               </div>
-            </CarouselProvider> */}
-          </>
+            </CarouselProvider>
+          )
         ) : (
           <div className={styles.Trending}>
             {items?.map(item => (
-              <Link to={{ pathname: `/designers-product-page/${item.slug}` }}>
-                <div key={item.name} className={styles.Trending_Items}>
-                  <LazyLoadingImg image={item.cover_image} />
+              <>
+                {loading ? (
+                  <Skeleton
+                    variant='rect'
+                    width='100%'
+                    height='210px'
+                    style={{ margin: '0.5rem' }}
+                    animation='wave'
+                  />
+                ) : (
+                  <Link
+                    to={{ pathname: `/designers-product-page/${item.slug}` }}
+                  >
+                    <div key={item.name} className={styles.Trending_Items}>
+                      <img src={item.cover_image} />
 
-                  <div>
-                    <p className='carousel-items--text'> {item.name}</p>
-                  </div>
-                </div>
-              </Link>
+                      <div>
+                        <p className='carousel-items--text'> {item.name}</p>
+                      </div>
+                    </div>
+                  </Link>
+                )}
+              </>
             ))}
           </div>
         )}

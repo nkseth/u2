@@ -56,6 +56,7 @@ export default function ForHimSection({ type, coverImage }) {
         paddingTop: !mobileView ? '30px' : '',
       }}
     >
+
       {!mobileView ? (
         <h2 className={`${styles.heading} mens-common-headings--1`}>For him</h2>
       ) : (

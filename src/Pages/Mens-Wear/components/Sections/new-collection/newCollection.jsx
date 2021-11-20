@@ -59,20 +59,22 @@ export default function NewCollectionSection({ type }) {
 
   const getVisibleCardCount = () => {
     return extraSmall
-      ? 1
+      ? 2
       : small
-      ? 1.5
-      : width550
-      ? 2
-      : width768
-      ? 2
-      : width835
-      ? 2
-      : width910
-      ? 3
-      : width1125
-      ? 3
-      : 4;
+
+        ? 2
+        : width550
+          ? 2
+          : width768
+            ? 3
+            : width835
+              ? 3
+              : width910
+                ? 3
+                : width1125
+                  ? 3
+                  : 4;
+
   };
 
   // console.log(new_collection);

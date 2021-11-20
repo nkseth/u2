@@ -1,0 +1,91 @@
+.stepper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 46px;
+}
+.inputFields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    div {
+        margin-bottom: 24px;
+        .inputField {
+            border: 1px solid #6a5b40;
+            box-sizing: border-box;
+            border-radius: 12px;
+            width: 464px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+.heading {
+    margin-top: 47px;
+    margin-bottom: 46px;
+    p {
+        font-family: "DM Serif Display";
+        font-size: 35px;
+        color: #6A5B40;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .stepper {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 40px !important;
+        background: #6a5b40 !important;
+        border-radius: 29px !important;
+        padding-top: 1rem !important;
+        margin-bottom: 2.75rem !important;
+    }
+    .inputFields {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        div {
+            margin-bottom: 24px;
+            .inputField {
+                border: 1px solid #6a5b40;
+                box-sizing: border-box;
+                border-radius: 12px;
+                width: 345px;
+                height: 50px;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+    .heading {
+        margin-top: 32px;
+        margin-bottom: 46px;
+        p {
+            font-family: "DM Serif Display";
+            font-size: 25px;
+            color: white;
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .inputFields {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        div {
+            margin-bottom: 24px;
+            .inputField {
+                border: 1px solid #6a5b40;
+                box-sizing: border-box;
+                border-radius: 12px;
+                width: 300px;
+                height: 50px;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+}

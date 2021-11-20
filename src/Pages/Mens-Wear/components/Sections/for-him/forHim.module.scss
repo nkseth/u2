@@ -254,6 +254,7 @@
     letter-spacing: 0.3199999928474426px;
     text-align: center;
     margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
   }
   @media screen and (max-width: 550px) {
     height: 345px;
@@ -306,6 +307,7 @@
     // grid-template-rows: repeat(2,minmax(378px,394px));
     gap: 1rem;
     place-items: center;
+    margin-top: -40px;
   }
   .forHim_item {
     height: 189px;
@@ -325,12 +327,34 @@
       line-height: 16px;
       letter-spacing: 0.3199999928474426px;
       text-align: center;
-      margin-top: 1.2rem;
-      margin-bottom: 1.2rem;
+      margin-top: 0.5rem;
     }
   }
 }
-
+@media screen and (max-width: 320px) {
+  .forHim_item {
+    width: 137px;
+    height: 189px;
+    background-color: white;
+    border-radius: 5px;
+    img {
+      width: 100%;
+      height: 156px;
+      object-fit: cover;
+      border-radius: 5px 5px 0 0;
+    }
+    h3 {
+      font-family: DM Sans;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.3199999928474426px;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+  }
+}
 @media screen and (max-width: 1024px) and (min-width: 769px) {
   // .forHim_items {
   //   display: grid;

@@ -1,0 +1,93 @@
+.inputField {
+    width: 464px;
+    margin-bottom: 24px;
+    height: 48px;
+    border: 1px solid #6a5b40;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 8px;
+    font-family: DM Sans;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.16px;
+    color: #0a0a0a;
+    &::placeholder {
+        color: black !important;
+    }
+}
+.buttonNext {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 256px;
+    margin-top: 67px;
+}
+.heading {
+    margin-bottom: 37px;
+    margin-top: 58px;
+    p {
+        font-family: DM Serif Display;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 35px;
+        line-height: 33px;
+        color: #6a5b40 !important;
+    }
+}
+.stepper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 46px;
+}
+
+@media screen and (max-width: 550px) {
+    .inputField {
+        width: 345px;
+        font-family: DM Sans;
+        font-size: 14px;
+        line-height: 18px;
+        margin-bottom: 24px;
+        color: black;
+        height: 50px;
+    }
+    .buttonNext {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 256px;
+        margin-top: 50px;
+    }
+    .heading {
+        margin-bottom: 46px;
+        margin-top: 26px;
+        p {
+            font-family: DM Serif Display;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 25px;
+            line-height: 33px;
+            color: white !important;
+        }
+    }
+    .stepper {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 40px !important;
+        background: #6A5B40 !important;
+        border-radius: 29px !important;
+        padding-top: 1rem !important;
+        margin-bottom: 2.75rem !important;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .inputField {
+        width: 300px;
+        font-family: DM Sans;
+        font-size: 14px;
+        line-height: 18px;
+        margin-bottom: 24px;
+        color: black;
+        height: 50px;
+    }
+}

@@ -1,10 +1,7 @@
 import React from 'react';
 import {
   Box,
-  ThemeProvider,
-  Button,
   Grid,
-  createMuiTheme,
   useMediaQuery,
 } from '@material-ui/core';
 import check from '../../../../Images/collabrate/check.png';
@@ -98,15 +95,13 @@ export default function WhatIsThere() {
               <p className={styles.text}>Spend less to get more.</p>
             </div>
 
-            {/* <div style={{ marginTop: "38px" }}>
-                                    <Button className={styles.button}>Start Shopping</Button>
-                            </div> */}
+
           </Box>
         </Box>
       ) : (
         <Grid style={{ margin: '25px 0' }}>
           <Grid>
-            <p className={mobileView ? styles.headingMobile : styles.heading}>
+            <p className={styles.heading}>
               What is there for you?
             </p>
           </Grid>
@@ -129,8 +124,8 @@ export default function WhatIsThere() {
                 marginTop: '25px',
               }}
             >
-              <img src={check} alt='check' />
-              <p className={mobileView ? styles.textMobile : styles.text}>
+              <img src={check} className={styles.check} alt='check' />
+              <p className={styles.text}>
                 Exclusive platform for fashion & lifestyle industry.
               </p>
             </div>
@@ -142,8 +137,8 @@ export default function WhatIsThere() {
                 marginTop: '16px',
               }}
             >
-              <img src={check} alt='check' />
-              <p className={mobileView ? styles.textMobile : styles.text}>
+              <img src={check} className={styles.check} alt='check' />
+              <p className={styles.text}>
                 Users on U2 already know what they can get. ie niche audience
                 with shopping fashion mindset.
               </p>
@@ -156,8 +151,8 @@ export default function WhatIsThere() {
                 marginTop: '16px',
               }}
             >
-              <img src={check} alt='check' />
-              <p className={mobileView ? styles.textMobile : styles.text}>
+              <img src={check} className={styles.check} alt='check' />
+              <p className={styles.text}>
                 Only platform to sale and scale. We’ve covered Ecommerce &
                 Social media for you{' '}
               </p>
@@ -170,8 +165,8 @@ export default function WhatIsThere() {
                 marginTop: '16px',
               }}
             >
-              <img src={check} alt='check' />
-              <p className={mobileView ? styles.textMobile : styles.text}>
+              <img src={check} className={styles.check} alt='check' />
+              <p className={styles.text}>
                 Rich features to increase your scales.
               </p>
             </div>
@@ -183,19 +178,12 @@ export default function WhatIsThere() {
                 marginTop: '16px',
               }}
             >
-              <img src={check} alt='check' />
-              <p className={mobileView ? styles.textMobile : styles.text}>
+              <img src={check} className={styles.check} alt='check' />
+              <p className={styles.text}>
                 Spend less to get more.
               </p>
             </div>
 
-            {/* <div style={{ marginTop: '15px' }}>
-              <Button
-                className={mobileView ? styles.buttonMobile : styles.button}
-              >
-                Start Shopping
-              </Button>
-            </div> */}
           </Grid>
         </Grid>
       )}

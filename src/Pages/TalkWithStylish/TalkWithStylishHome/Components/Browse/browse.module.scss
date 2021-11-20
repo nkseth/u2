@@ -1,0 +1,31 @@
+.browse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    div {
+        width: 100%;
+        position: absolute;
+    }
+}
+.browseProduct {
+    font-family: "DM Serif Display";
+    color: white;
+    font-size: 54px;
+    display: flex;
+    justify-content: center;
+    line-height: 47px;
+    text-align: center;
+    position: relative;
+}
+@media screen and (max-width: "550px") {
+    .browseProduct {
+        font-family: "DM Serif Display";
+        color: #6a5b40;
+        font-size: 21px;
+        display: flex;
+        justify-content: center;
+        line-height: 27px;
+        text-align: center;
+        position: relative;
+    }
+}

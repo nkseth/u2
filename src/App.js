@@ -90,7 +90,13 @@ import SelectMeasurement from './Pages/Select-Measurement/selectMeasurement';
 import CancelOrder from './Pages/All-Orders/Components/Cancel-order/cancelOrder';
 // import OrderDetails from "./OtherPages/OrderDetails/OrderDetails";
 import Geocode from "react-geocode";
+
+
+import TalkWithStylishQuestion from './Pages/TalkWithStylish/TalkWithStylishQuestion/talkWithStylishQuestion';
+import TalkWithStylish from './Pages/TalkWithStylish/TalkWithStylishHome/talkWithStylish';
+
 import Review from './OtherPages/Review/Review';
+
 //Start From Here
 
 function App() {
@@ -313,8 +319,13 @@ function App() {
           component={CollabrateAsInfluencer}
         />
         <Route path={'/mobile-category'} component={MobileCategory} />
+
+        <Route path={"/talk-with-stylish-home"} component={TalkWithStylish} />
+        <Route path={"/talk-with-stylish-question"} component={TalkWithStylishQuestion} />
+
         <Route path={'/order-review/:id'} component={Add_Review_Page} />
         <Route path={'/orders/cancel-order/:item_id/:order_id'} component={CancelOrder} />
+
       </Switch>
     </div>
   );

@@ -28,26 +28,26 @@ const Carousel_Component = ({ item, i, name, pathName }) => {
           : { marginRight: '5px', marginLeft: '5px' }
       }
     >
-      <LazyLoadingComp>
-        <Link
-          to={{
-            pathname: `${pathName}`,
-          }}
-        >
-          <div className={`${styles.Carousel_Wear} ${name}`}>
-            <div className={styles.Carousel_Items}>
-              <img
-                src={item.cover_image || item.image}
-                alt={item.id}
-                // style={customImg}
-              />
-              <Link to={`${pathName}`} className='carousel-items--text'>
-                {item.name || item.title}
-              </Link>
-            </div>
+      {/* <LazyLoadingComp> */}
+      <Link
+        to={{
+          pathname: `${pathName}`,
+        }}
+      >
+        <div className={`${styles.Carousel_Wear} ${name}`}>
+          <div className={styles.Carousel_Items}>
+            <img
+              src={item.cover_image || item.image}
+              alt={item.id}
+              // style={customImg}
+            />
+            <Link to={`${pathName}`} className='carousel-items--text'>
+              {item.name || item.title}
+            </Link>
           </div>
-        </Link>
-      </LazyLoadingComp>
+        </div>
+      </Link>
+      {/* </LazyLoadingComp> */}
     </Slide>
   );
 };

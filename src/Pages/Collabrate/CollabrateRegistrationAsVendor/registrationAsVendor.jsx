@@ -224,11 +224,10 @@ export default function VendorRegistration() {
       window.scrollTo(800, 0);
 
       setError({
-        catalogueImages: `${
-          catalogueImages.length < 1
-            ? '* Please Provide 2 or more image'
-            : '* Please Provide the details'
-        }`,
+        catalogueImages: `${catalogueImages.length < 1
+          ? '* Please Provide 2 or more image'
+          : '* Please Provide the details'
+          }`,
       });
       setTimeout(() => setError({ catalogueImages: '' }), ErrorClearTimeOut);
       return;
@@ -301,6 +300,7 @@ export default function VendorRegistration() {
         setCatalogName('');
       }
     } catch (error) {
+      console.log(error.response.data);
       setFormLoading(false);
       setErrorResponse(error.response.data);
     }
@@ -565,9 +565,19 @@ export default function VendorRegistration() {
             <h2 style={{ margin: '1rem 0', fontSize: '16px' }}>
               {errorResponse.message}
             </h2>
-            <p style={{ margin: '1rem 0' }}>
-              {JSON.stringify(errorResponse.errors)}
-            </p>
+            {errorResponse.errors ? Object.entries(errorResponse.errors).map(([k, v]) => {
+              return (
+                <p style={{ margin: '1rem 0' }}>
+                  {v && v.length != 0 ? v[0] : ''}
+                </p>
+              )
+            }) : " "}
+            {/* <p style={{ margin: '1rem 0' }}>
+              {errorResponse.errors ? Object.entries(errorResponse.errors).map(([k, v]) => {
+                formData.append(k, v);
+              }) : " "}
+              {errorResponse.errors ? JSON.stringify(errorResponse.errors) : ''}
+            </p> */}
             <button
               class={styles.removeModelButton}
               onClick={e => {
@@ -600,9 +610,8 @@ export default function VendorRegistration() {
             <Grid container spacing={4} style={{ marginTop: '11px' }}>
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <input
-                  className={`${styles.inputField} ${
-                    error.name && styles.errorInput
-                  }`}
+                  className={`${styles.inputField} ${error.name && styles.errorInput
+                    }`}
                   type='text'
                   name='name'
                   placeholder='Full name'
@@ -616,9 +625,8 @@ export default function VendorRegistration() {
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <input
-                  className={`${styles.inputField} ${
-                    error.email && styles.errorInput
-                  }`}
+                  className={`${styles.inputField} ${error.email && styles.errorInput
+                    }`}
                   type='text'
                   name='email'
                   value={values.email}
@@ -632,15 +640,14 @@ export default function VendorRegistration() {
               {!tabView ? (
                 <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                   <input
-                    className={`${styles.inputField} ${
-                      error.phone && styles.errorInput
-                    }`}
+                    className={`${styles.inputField} ${error.phone && styles.errorInput
+                      }`}
                     type='number'
                     placeholder='Phone Number'
                     name='phone'
                     value={values.phone}
                     onChange={updateValues}
-                    // onChange={onChange}
+                  // onChange={onChange}
                   />
                   {error.phone && (
                     <span className={styles.errorMsg}>{error.phone}</span>
@@ -650,9 +657,8 @@ export default function VendorRegistration() {
                 <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
                   <>
                     <input
-                      className={`${styles.inputField} ${
-                        error.phone && styles.errorInput
-                      }`}
+                      className={`${styles.inputField} ${error.phone && styles.errorInput
+                        }`}
                       type='number'
                       name='phone'
                       placeholder='Phone Number'
@@ -675,9 +681,8 @@ export default function VendorRegistration() {
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <>
                   <input
-                    className={`${styles.inputField} ${
-                      error.designerName && styles.errorInput
-                    }`}
+                    className={`${styles.inputField} ${error.designerName && styles.errorInput
+                      }`}
                     type='text'
                     name='designerName'
                     placeholder='Designer name'
@@ -753,12 +758,10 @@ export default function VendorRegistration() {
                     value={dropDownOptions.operation}
                     onChange={e => handleDropDown(e, 'operation')}
                     style={{
-                      color: `${
-                        dropDownOptions.operation ? '#000' : '#757575'
-                      }`,
-                      border: `1px solid ${
-                        error.operations ? 'red' : '#6A5B40'
-                      }`,
+                      color: `${dropDownOptions.operation ? '#000' : '#757575'
+                        }`,
+                      border: `1px solid ${error.operations ? 'red' : '#6A5B40'
+                        }`,
                     }}
                   >
                     <option
@@ -783,9 +786,8 @@ export default function VendorRegistration() {
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <input
-                  className={`${styles.inputField} ${
-                    error.operationCity && styles.errorInput
-                  }`}
+                  className={`${styles.inputField} ${error.operationCity && styles.errorInput
+                    }`}
                   type='text'
                   name='operationCity'
                   placeholder='Operation city'
@@ -807,12 +809,10 @@ export default function VendorRegistration() {
                     value={dropDownOptions.catalogue}
                     onChange={e => handleDropDown(e, 'catalogue')}
                     style={{
-                      color: `${
-                        dropDownOptions.catalogue ? '#000' : '#757575'
-                      }`,
-                      border: `1px solid ${
-                        error.catalogue ? 'red' : '#6A5B40'
-                      }`,
+                      color: `${dropDownOptions.catalogue ? '#000' : '#757575'
+                        }`,
+                      border: `1px solid ${error.catalogue ? 'red' : '#6A5B40'
+                        }`,
                     }}
                   >
                     <option disabled selected aria-label='None' value=''>
@@ -866,9 +866,8 @@ export default function VendorRegistration() {
                     renderValue={selected => selected.join(', ')}
                     MenuProps={MenuProps}
                     style={{
-                      border: `1px solid ${
-                        error.categories ? 'red' : '#6A5B40'
-                      }`,
+                      border: `1px solid ${error.categories ? 'red' : '#6A5B40'
+                        }`,
                       backgroundColor: 'none',
                       marginBottom: '8px',
                     }}
@@ -878,7 +877,7 @@ export default function VendorRegistration() {
                       selected
                       aria-label='None'
                       value=''
-                      // style={{ padding: '1rem' }}
+                    // style={{ padding: '1rem' }}
                     >
                       Categories
                     </option>
@@ -925,9 +924,9 @@ export default function VendorRegistration() {
                           </ListItemIcon>
                           <ListItemText
                             primary={option.name}
-                            // primary={`${
-                            //   i <= 10 ? 'Kids' : i <= 53 ? 'Mens' : 'Womens'
-                            // } - ${option.name}`}
+                          // primary={`${
+                          //   i <= 10 ? 'Kids' : i <= 53 ? 'Mens' : 'Womens'
+                          // } - ${option.name}`}
                           />
                         </MenuItem>
                       );
@@ -1062,9 +1061,8 @@ export default function VendorRegistration() {
                 {showInputField.website && (
                   <>
                     <input
-                      className={`${styles.inputFieldRadio} ${
-                        error.Website && styles.errorInput
-                      }`}
+                      className={`${styles.inputFieldRadio} ${error.Website && styles.errorInput
+                        }`}
                       type='text'
                       placeholder='Website URL'
                       name='website'
@@ -1102,9 +1100,8 @@ export default function VendorRegistration() {
                 {showInputField.instagram && (
                   <>
                     <input
-                      className={`${styles.inputFieldRadio} ${
-                        error.Website && styles.errorInput
-                      }`}
+                      className={`${styles.inputFieldRadio} ${error.Website && styles.errorInput
+                        }`}
                       type='text'
                       placeholder='Instagram ID'
                       name='instagram'
@@ -1188,9 +1185,8 @@ export default function VendorRegistration() {
                       }
                       MenuProps={MenuProps}
                       style={{
-                        border: `1px solid ${
-                          error.platform ? 'red' : '#6A5B40'
-                        }`,
+                        border: `1px solid ${error.platform ? 'red' : '#6A5B40'
+                          }`,
                         marginBottom: '8px',
                         width: '400px',
                       }}
@@ -1283,7 +1279,7 @@ export default function VendorRegistration() {
                 variant='contained'
                 className={styles.nextButton}
                 disabled={disableBtn}
-                // onClick={handlePopup}
+              // onClick={handlePopup}
               >
                 Submit
               </Button>

@@ -4,15 +4,14 @@ import ReactPaginate from 'react-paginate';
 import './pagination.scss';
 // import 'antd/dist/antd.css';
 import Pagination from '@material-ui/lab/Pagination';
+import { useRouteMatch } from 'react-router';
 // import 'bootstrap/dist/css/bootstrap.css';
 export default function Paginations({ handlePagination, count, page }) {
   const LIMIT = 10;
+  const { path } = useRouteMatch();
+  console.log('🚀 ~ file: pagination.jsx ~ line 12 ~ Paginations ~ path', path);
 
   const pages = Math.ceil(count / LIMIT);
-  console.log(
-    '🚀 ~ file: pagination.jsx ~ line 12 ~ Paginations ~ pages',
-    pages < 2
-  );
 
   return (
     <div

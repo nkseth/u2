@@ -1,7 +1,7 @@
 .container {
   position: absolute;
-  top: 150%;
-  width: 180%;
+  top: 60px;
+  width: 81vw;
   z-index: 99;
   background-color: #fff;
   display: flex;
@@ -11,12 +11,9 @@
   gap: 1rem;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.123);
   transition: all 1s ease-in-out !important;
-  left: -10%;
+  left: -200px;
   // transform: translateX(-50%);
   // animation: FadeIn 1s;
-  @media screen and (max-width: 1350px) {
-    width: 230%;
-  }
 }
 
 .container::-webkit-scrollbar {

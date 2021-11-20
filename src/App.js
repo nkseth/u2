@@ -88,6 +88,9 @@ import ProductsByDesigner from './Pages/Designers-Product-Page/ProductsByDesigne
 import SelectMeasurement from './Pages/Select-Measurement/selectMeasurement';
 // import OrderDetails from "./OtherPages/OrderDetails/OrderDetails";
 import Geocode from "react-geocode";
+
+import TalkWithStylishQuestion from './Pages/TalkWithStylish/TalkWithStylishQuestion/talkWithStylishQuestion';
+import TalkWithStylish from './Pages/TalkWithStylish/TalkWithStylishHome/talkWithStylish';
 //Start From Here
 
 function App() {
@@ -306,6 +309,8 @@ function App() {
           component={CollabrateAsInfluencer}
         />
         <Route path={'/mobile-category'} component={MobileCategory} />
+        <Route path={"/talk-with-stylish-home"} component={TalkWithStylish} />
+        <Route path={"/talk-with-stylish-question"} component={TalkWithStylishQuestion} />
       </Switch>
     </div>
   );

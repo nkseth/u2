@@ -87,3 +87,17 @@
   position: relative;
   bottom: 62px;
 }
+.postimg{
+  width: 50px;
+}
+@media screen and (max-width:550px) {
+  .heading{
+    font-size: 25px;
+  }
+  .textTab{
+    font-size: 16px;
+  }
+  .postimg{
+    width: 37px;
+  }
+} 

@@ -47,8 +47,8 @@ export default function Products({ toggle, open }) {
                 <img src={iphone3} alt='iphone3' />
               </Box>
 
-              <Box style={{ marginLeft: '35px' }}>
-                <img src={products} />
+              <Box style={{ padding:mobileView?'25px 24px 0':'25px 55px 0px 55px' }}>
+                <img src={products} style={{width:mobileView && '37px'}}/>
                 <p className={styles.heading}>Products</p>
                 <p className={styles.textTab}>
                   Inspire your audience to discover, browse and purchase your
@@ -61,7 +61,7 @@ export default function Products({ toggle, open }) {
               className={styles.backgroundTab}
               onClick={() => toggle('products')}
             >
-              <Box style={{ marginLeft: '30px' }}>
+              <Box style={{ marginLeft: '36px' }}>
                 <img src={products1} style={{ marginTop: '18px' }} />
                 <p className={styles.title}>Products</p>
               </Box>

@@ -33,7 +33,7 @@ code {
 
 a {
   text-decoration: none;
-  color: #0A0A0A;
+  color: #0a0a0a;
 }
 
 input {
@@ -133,4 +133,19 @@ input {
   object-fit: contain;
   height: calc(100vh - 98px);
   object-position: top center;
+}
+
+/* SEARCH */
+
+.aa-Form .aa-InputWrapperPrefix label svg {
+  color: #000;
+}
+.aa-Form:focus-within {
+  border-color: #9d8e73 !important;
+
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
+  transition: 0.1s ease-in-out;
+}
+.aa-Panel {
+  z-index: 200 !important;
 }

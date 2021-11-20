@@ -136,7 +136,6 @@ const Trending = () => {
               <Link to={{ pathname: `/designers-product-page/${item.slug}` }}>
                 <div key={item.name} className={styles.Trending_Items}>
                   <LazyLoadingImg image={item.cover_image} />
-
                   <div>
                     <p className='carousel-items--text'> {item.name}</p>
                   </div>

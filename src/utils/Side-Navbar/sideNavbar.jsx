@@ -212,10 +212,10 @@ export default function SideNavbar({ main }) {
               </AccordionSummary>
               <AccordionDetails className={styles.accordionDetials}>
                 <div className={styles.subMenuItems}>
-                  <Link>Indian fusion wear</Link>
-                  <Link>western wear</Link>
-                  <Link>Bottom wear</Link>
-                  <Link>Bottom wear</Link>
+                  <a>Indian fusion wear</a>
+                  <a>western wear</a>
+                  <a>Bottom wear</a>
+                  <a>Bottom wear</a>
                 </div>
               </AccordionDetails>
             </Accordion>

@@ -1289,7 +1289,7 @@ export default function VendorRegistration() {
             <h4>
               <span className={styles.helpText}> For help </span>
               Email:
-              <Link> help@fashtechhive.com</Link>
+              <a> help@fashtechhive.com</a>
               <span> / Call: +91 - 7259111787</span>
             </h4>
           </div>

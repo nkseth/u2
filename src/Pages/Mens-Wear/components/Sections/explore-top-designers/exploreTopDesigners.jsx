@@ -19,6 +19,7 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { get_top_designers } from '../../../../../Redux/actions/mensWear';
 import { topDesigner } from '../../../../../Redux/actions/designerHomePage';
+import Carousel_Component from '../../../../../utils/Carousel_Component/Carousel_Component';
 export default function ExploreTopDesignersSection({ type }) {
   const theme = useTheme();
   const extraSmall = useMediaQuery(theme.breakpoints.down('xs'));
@@ -61,32 +62,57 @@ export default function ExploreTopDesignersSection({ type }) {
     designers
   );
   // console.log(top_designers);
+  const match = useMediaQuery('(max-width:630px)');
+  const iPade = useMediaQuery('(max-width:1000px)');
+  const tab = useMediaQuery('(max-width:890px)');
+  const mobile = useMediaQuery('(max-width:479px)');
+  const large = useMediaQuery('(max-width:1330px)');
+
+  const visible = designers?.length > 4 ? 4.3 : 4;
 
   return (
     <CustomSection
       class='explore_top_designer'
       style={{ paddingTop: '5rem', paddingBottom: '3rem' }}
     >
-      <div className={styles.header}>Explore Top Designers</div>
+      <div
+        className={`${styles.header} mens-common-headings--1`}
+        style={{ fontStyle: 'italic' }}
+      >
+        Explore Top Designers
+      </div>
       <CarouselProvider
-        visibleSlides={getVisibleCardCount()}
+        visibleSlides={
+          match ? 1.5 : tab ? 1.9 : iPade ? 2.5 : large ? 3 : visible
+        }
         naturalSlideWidth={100}
-        totalSlides={Object.keys(designers).length}
+        totalSlides={designers.length}
         isIntrinsicHeight
       >
         <Slider>
-          {designers?.map(({ id, cover_image, name, marchent_id }, index) => {
+          {designers?.map((item, index) => {
+            console.log(
+              '🚀 ~ file: exploreTopDesigners.jsx ~ line 113 ~ {designers?.map ~ item',
+              item
+            );
+
             return (
-              <Slide index={index}>
-                <div className={styles.Top_Designer}>
-                  <div className={styles.Top_Designer_Items}>
-                    <Link to={`/designer-products/${marchent_id}`}>
-                      <img src={cover_image} alt={id} />
-                      <div style={{ marginTop: '25px' }}>{name}</div>
-                    </Link>
-                  </div>
-                </div>
-              </Slide>
+              // <Slide index={index}>
+              //   <div className={styles.Top_Designer}>
+              //     <div className={styles.Top_Designer_Items}>
+              //       <Link to={`/designer-products/${marchent_id}`}>
+              //         <img src={cover_image} alt={id} />
+              //         <div style={{ marginTop: '25px' }}>{name}</div>
+              //       </Link>
+              //     </div>
+              //   </div>
+              // </Slide>
+              <Carousel_Component
+                item={item}
+                i={index}
+                name={'mens-top--designer'}
+                pathName={`/designer-products/${item.shop_id}`}
+              />
             );
           })}
         </Slider>

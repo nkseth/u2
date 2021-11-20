@@ -41,7 +41,6 @@ import algoliasearch from 'algoliasearch';
 import { Autocomplete } from './Components/Autocomplete';
 import { ProductItem } from './Components/ProductItem';
 
-
 const appId = 'URPPB4YKVU';
 const apiKey = 'a32df24de3734cdd34b6c12b46c96c27';
 const searchClient = algoliasearch(appId, apiKey);
@@ -226,10 +225,11 @@ const Header = () => {
           </div>
         </div>
         {!mobile && (
-          <div>
+          <div style={{ zIndex: 30 }}>
             {/* <Search /> */}
             <Autocomplete
               openOnFocus={false}
+              style={{ zIndex: 10 }}
               getSources={({ query }) => [
                 {
                   sourceId: 'products',
@@ -244,9 +244,8 @@ const Header = () => {
                       ],
                     });
                   },
-                  onSelect({item}) {
-                    console.log('yrdy', item);
-                    history.push('/product-description/'+item.slug);
+                  onSelect({ item }) {
+                    history.push('/product-description/' + item.slug);
                   },
                   templates: {
                     item({ item, components }) {

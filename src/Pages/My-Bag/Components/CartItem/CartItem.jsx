@@ -137,7 +137,7 @@ const CartItem = ({
                 <div className={styles.productQuantityBtn}>
                   <Button
                     className={styles.addBtn}
-                    onClick={() => substract_quantity(item, index)}
+                    onClick={() => substract_quantity(item, index,item.variant_id)}
                   >
                     <RemoveIcon style={{ width: '15px' }} />
                   </Button>
@@ -146,7 +146,7 @@ const CartItem = ({
                   </div>
                   <Button
                     className={styles.removeBtn}
-                    onClick={() => add_quantity(item, index)}
+                    onClick={() => add_quantity(item, index,item.variant_id)}
                   >
                     <AddIcon style={{ width: '15px' }} />
                   </Button>

@@ -115,6 +115,7 @@ const Trending = () => {
         ) : (
           <div className={styles.Trending}>
             {items?.map(item => (
+
               <>
                 {loading ? (
                   <Skeleton
@@ -138,6 +139,16 @@ const Trending = () => {
                   </Link>
                 )}
               </>
+
+              <Link to={{ pathname: `/designers-product-page/${item.slug}` }}>
+                <div key={item.name} className={styles.Trending_Items}>
+                  <LazyLoadingImg image={item.cover_image} />
+                  <div>
+                    <p className='carousel-items--text'> {item.name}</p>
+                  </div>
+                </div>
+              </Link>
+
             ))}
           </div>
         )}

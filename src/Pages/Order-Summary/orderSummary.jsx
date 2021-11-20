@@ -150,6 +150,7 @@ export default function OrderSummary() {
                           alt="product"
                           className={styles.image}
                         />
+                  
                         <div style={{ padding: "0" }}>
                           <div>
                             <p className={styles.Itemname}>{item.title}</p>
@@ -158,6 +159,24 @@ export default function OrderSummary() {
                             <p className={styles.protypetext}>
                               {item.type.toUpperCase()}
                             </p>
+                            <p style={{display: 'flex'}}>
+                            <div style={{display: 'flex'}}>
+                              <div >Color:</div>
+              <div className={styles.colori} style={{backgroundColor:item?.color.toLowerCase(),marginLeft:'5px'}}></div>
+             
+              </div>
+             {
+             item.type==="readymade"?
+             <div style={{display: 'flex',marginLeft:'10px'}}>
+              <div >Size:</div>
+              <div  style={{backgroundColor:'#6a5b40',marginLeft:'5px',display:"flex",width:'20px',height:'20px',
+            alignItems: 'center',justifyContent: 'center',color:'white'
+            }}>{item.size}</div>
+              </div>
+            :null  
+            }
+                              </p>
+                            
                             <div className={styles.quan}>
                               <p>Quantity</p>
                               <div style={{ display: "flex" }}>

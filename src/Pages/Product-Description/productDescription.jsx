@@ -1,3 +1,6 @@
+/* eslint-disable no-lone-blocks */
+/* eslint-disable array-callback-return */
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -46,6 +49,7 @@ import { Product_Type, Product_Type_Change } from '../../Redux/MeasuremantData';
 import ReactImageMagnify from 'react-image-magnify';
 import { useDispatch } from 'react-redux';
 import { getProductDetails } from '../../Redux/actions/products';
+import {FacebookShareButton,FacebookIcon,WhatsappShareButton, WhatsappIcon} from 'react-share'
 
 // import {
 //   MagnifierContainer,
@@ -63,7 +67,7 @@ import {
   clearUpdateWishlist,
   removeFromWishlist,
 } from '../../Redux/actions/wishlist';
-
+import MetaTags from 'react-meta-tags';
 const CustomRadio = withStyles({
   root: {
     color: 'transparent',
@@ -156,8 +160,8 @@ export default function ProductDescription({ match }) {
   const tabView = useMediaQuery('(max-width:768px)');
   const tabViewPro = useMediaQuery('(min-width:768px) and (max-width:1044px');
   const mobileView = useMediaQuery('(max-width:550px)');
-
-  const [selectedColor, setSelectedColor] = useState('');
+const  [sharedisplay,setsharedisplay]=useState(false)
+  
   const [ProductDrop, setProductDrop] = useState(false);
   const [click, setClick] = useState(false);
   const [animate, setAnimate] = useState(false);
@@ -171,7 +175,7 @@ export default function ProductDescription({ match }) {
   } = match;
 
   const [images, setImages] = useState([]);
-  const [ProductType, setProductType] = useState(null);
+ 
   const [isAddToWishList, setAddToWishList] = useState(false);
 
   const { login_Model_Show } = useLogin();
@@ -180,6 +184,155 @@ export default function ProductDescription({ match }) {
   const { details, error, tags, loading, attributes, variantId } = useSelector(
     state => state.root.productDetails
   );
+  const [allvarient,setallvarient]=useState([])
+  const [selectedvarient,setselectedvarient]=useState({})
+    
+    const [rvariant,setrvariant]=useState([])
+    const [ProductType, setProductType] = useState(null);
+  const [cvariant,setcvariant]=useState([])
+  const [selectedsize,setselectedsize]=useState('')
+  const [selectedcolor,setselectedcolor]=useState('')
+
+  const setsizing=(sss)=>{
+    setselectedsize(sss)
+  }
+useEffect(() => {
+  
+  if(details){
+    setallvarient(details?.variant)
+  setselectedvarient(details?.variant[0])
+    let r=[],c=[]
+    details.variant.map((v)=>{
+    if(v.variant_type==='customise')
+      c.push(v)
+      else r.push(v)
+    })
+  setrvariant(r)
+  setcvariant(c)
+  console.log(c,r)
+ if(c.length>0) {
+   setProductType('customise')
+   setselectedvarient(c[0])
+  
+   c[0].values.map((d)=>{
+    if(d.attribute_name==='Size')
+        { 
+        setselectedsize("")
+        }
+    if(d.attribute_name==='Color')
+        { 
+        setselectedcolor(d.color)
+     
+      }   
+  })
+  
+}
+ else { 
+   setProductType('readymade')
+   setselectedvarient(r[0])
+
+   r[0].values.map((d)=>{
+    if(d.attribute_name==='Size')
+        { 
+        setselectedsize(d.attributeValue)
+        }
+    if(d.attribute_name==='Color')
+        { 
+        setselectedcolor(d.color)
+        }   
+  })
+}
+  }
+},[details])
+
+
+useEffect(() => {
+  
+  if(details){
+    let r=[],c=[]
+    details.variant.map((v)=>{
+    if(v.variant_type==='customise')
+      c.push(v)
+      else r.push(v)
+    })
+  setrvariant(r)
+  setcvariant(c)
+  console.log(c,r)
+ if(c.length>0 && ProductType==="customise") {
+   setProductType('customise')
+   setselectedvarient(c[0])
+  
+   c[0].values.map((d)=>{
+    if(d.attribute_name==='Size')
+        {  
+        setselectedsize("")
+        }
+    if(d.attribute_name==='Color')
+        { 
+        setselectedcolor(d.color)
+     
+      }   
+  })
+  
+}
+ else { 
+   setProductType('readymade')
+   setselectedvarient(r[0])
+
+   r[0].values.map((d)=>{
+    if(d.attribute_name==='Size')
+        { 
+        setselectedsize(d.attributeValue)
+        }
+    if(d.attribute_name==='Color')
+        { 
+        setselectedcolor(d.color)
+        }   
+  })
+}
+  }
+},[ProductType])
+
+
+
+
+const  [colorarr,setcolorarr]=useState([])
+
+useEffect(() => {
+
+
+  if(ProductType==="readymade")
+  {
+    const c=[]
+
+  rvariant.map((variant)=>{
+     variant.values.map(attri=>{
+  if(attri.attribute_name==="Color")
+        { 
+           if(!c.includes(attri.color)) c.push(attri.color) 
+        }
+      })
+  })
+  setcolorarr(c)
+}
+else{
+  const c=[]
+
+cvariant.map((variant)=>{
+   variant.values.map(attri=>{
+if(attri.attribute_name==="Color")
+      { 
+        if(!c.includes(attri.color)) c.push(attri.color) 
+      }
+    })
+})
+setcolorarr(c)
+}
+  
+
+},[cvariant,rvariant])
+
+
 
   useEffect(() => {
     if (click) {
@@ -190,18 +343,18 @@ export default function ProductDescription({ match }) {
   }, [click]);
 
   useEffect(() => {
-    if (details) {
-      setProductType(
-        details.product.isCustomise === 'on' ? 'custom' : 'ready made'
-      );
+    if (selectedvarient) {
+      // setProductType(
+      //   details.product.isCustomise === 'on' ? 'custom' : 'ready made'
+      // );
       const img = [];
-      details.images.forEach(item => {
+      selectedvarient?.images?.forEach(item => {
         img.push({ thumbnail: item.path, original: item.path });
       });
       setImages(img);
     }
     if (!details && !loading) dispatch(getProductDetails(slug));
-  }, [slug, dispatch, details]);
+  }, [selectedvarient]);
 
   console.log(details)
 
@@ -214,8 +367,8 @@ export default function ProductDescription({ match }) {
     if (isAuthenticated) {
       if (details.hasOwnProperty('title')) {
         try {
-          const type = ProductType === 'ready made' ? 'readymade' : 'customise';
-          const value = { type, variant_id: variantId };
+          const type = ProductType 
+          const value = { type, variant_id: selectedvarient.id };
           const { data } = await common_axios.post(`/addToCart/${slug}`, {
             ...value,
           });
@@ -242,11 +395,11 @@ export default function ProductDescription({ match }) {
   const add_bag_handler = async () => {
     if (isAuthenticated) {
       try {
-        const type = ProductType === 'ready made' ? 'readymade' : 'customise';
-        const value = { type, variant_id: variantId };
+        const type = ProductType 
+        const value = { type, variant_id:selectedvarient.id };
         const { data } = await common_axios.post(`/addToCart/${slug}`, {
           type,
-          variant_id: variantId,
+          variant_id: selectedvarient.id,
         });
 
         if (data) {
@@ -284,18 +437,96 @@ export default function ProductDescription({ match }) {
 
   // console.log(product);
   const [imageIdx, setImageIdx] = useState(0);
-
+useEffect(() => {
+  document.title="hello"
+},[])
   // if (loadingDesc) return <DescriptionLoader />;
 
+
+useEffect(()=> {
+  console.log(ProductType)
+ 
+  if(ProductType){
+if(ProductType==="readymade")
+{
+  const machingc=[]
+rvariant.map((variant)=>{
+  variant.values.map(attri=>{
+if(attri.attribute_name==="Color" )
+     { 
+       if(attri.color===selectedcolor) machingc.push(variant)
+     }
+   })
+})
+let finalv=[]
+machingc.map((variant)=>{
+  variant.values.map(attri=>{
+if(attri.attribute_name==="Size" )
+     { 
+       if(attri.attributeValue===selectedsize) finalv.push(variant)
+     }
+   })
+})
+
+setselectedvarient(finalv[0])
+
+console.log("rrrrrrrrrrrrrrrrrrr",finalv[0])
+} 
+else{
+  {
+    const machingc=[]
+  cvariant.map((variant)=>{
+    variant.values.map(attri=>{
+  if(attri.attribute_name==="Color" )
+       { 
+         if(attri.color===selectedcolor) machingc.push(variant)
+       }
+     })
+  })
+  let finalv=[]
+ 
+  
+  setselectedvarient(machingc[0])
+  
+  console.log("hhhhhhhhhhhhhhh",machingc[0])
+  
+  } 
+}
+  }
+
+},[selectedsize,selectedcolor,ProductType])
+
+
+
   return (
-    <Container bottomDivider footerOnTabMob>
+<>
+<MetaTags>
+  <title>Website - Articles - How to SEO</title>
+  <meta name="description" content="Want to learn SEO with React? Look no further!"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="How to SEO"/>
+  <meta property="og:image" content="https://www.example.com/how-to-seo.jpg"/>
+  <meta property="og:article:author" content="Jessy"/>
+  <meta property="og:article:tag" content="react"/>
+  <meta property="og:article:tag" content="seo"/>
+  <meta property="og:article:published_time" content="2020-12-31"/>
+  </MetaTags>
+
+    <Container bottomDivider footerOnTabMob style={{backgroud:'red'}}>
       <>
+    
+
         <CustomSection style={{ marginTop: 10, marginBottom: 10 }}>
-          <Breadcrumb
-            path={`Home / ${details?.brand} /`}
-            activePath={details?.title}
-            style={{ padding: '1rem 0' }}
-          />
+      
+           <Breadcrumb
+          style={{ paddingTop: tabView && "2rem 0" }}
+          crum={[{label:'Home',path:'/'},
+          {label: details?.brand ,path:`/${details?.brand}`},
+
+         {label:details?.title ,path:''},
+
+        ]}
+        />
         </CustomSection>
         {loading ? (
           <DescriptionLoader />
@@ -486,7 +717,7 @@ export default function ProductDescription({ match }) {
                           {details.title}
                         </h3>
                       </div>
-                      <IconButton>
+                      <IconButton onClick={() =>alert("wow")}>
                         <Share style={{ width: '37px', height: '37px' }} />
                       </IconButton>
                       {details.stock_quantity < 10 ? (
@@ -529,17 +760,17 @@ export default function ProductDescription({ match }) {
                           value={ProductType}
                           onOpen={() => setProductDrop(true)}
                           onClose={() => setProductDrop(false)}
-                          onChange={e => setProductType(e.target.value)}
+                           onChange={e => setProductType(e.target.value)}
                         >
-                          {details.product?.isVariant ? (
-                            <MenuItem value={'ready made'}>
+
+    {rvariant.length>0?(<MenuItem value={'readymade'}>
                               <FormControlLabel
                                 className={
                                   ProductDrop
                                     ? styles.FormControlLabel
                                     : styles.FormControlLabelS
                                 }
-                                checked={ProductType === 'ready made'}
+                                checked={ProductType === 'readymade'}
                                 control={<CustomRadio />}
                                 label={
                                   <div className={styles.ProductSelector}>
@@ -558,28 +789,27 @@ export default function ProductDescription({ match }) {
                                   </div>
                                 }
                               />
-                            </MenuItem>
-                          ) : null}
-                          {details.product?.isCustomise === 'on' ? (
-                            <MenuItem value={'custom'}>
+                            </MenuItem>):null}
+
+                         {cvariant.length>0? (  <MenuItem value={'customise'}>
                               <FormControlLabel
                                 className={
                                   ProductDrop
                                     ? styles.FormControlLabel
                                     : styles.FormControlLabelS
                                 }
-                                checked={ProductType === 'custom'}
+                                checked={ProductType === 'customise'}
                                 control={<CustomRadio />}
                                 label={
                                   <div className={styles.ProductSelector}>
                                     <p className={styles.ChoicesBtnsLabels}>
-                                      Customised
+                                    customise
                                     </p>
                                     {ProductDrop ? (
                                       <h6 className={styles.ProductSelectorh6}>
                                         Lorem ipsum is placeholder text commonly
-                                        used in the graphic er text commonly
-                                        used in the graphic
+                                        used in the graphicer text commonly used
+                                        in the graphic
                                       </h6>
                                     ) : (
                                       <></>
@@ -587,42 +817,7 @@ export default function ProductDescription({ match }) {
                                   </div>
                                 }
                               />
-                            </MenuItem>
-                          ) : ProductType === 'custom' ? (
-                            details.product.isVariant ? (
-                              <MenuItem value={'ready made'}>
-                                <FormControlLabel
-                                  className={
-                                    ProductDrop
-                                      ? styles.FormControlLabel
-                                      : styles.FormControlLabelS
-                                  }
-                                  checked={ProductType === 'ready made'}
-                                  control={<CustomRadio />}
-                                  label={
-                                    <div className={styles.ProductSelector}>
-                                      <p className={styles.ChoicesBtnsLabels}>
-                                        Ready Made
-                                      </p>
-                                      {ProductDrop ? (
-                                        <h6
-                                          className={styles.ProductSelectorh6}
-                                        >
-                                          Lorem ipsum is placeholder text
-                                          commonly used in the graphicer text
-                                          commonly used in the graphic
-                                        </h6>
-                                      ) : (
-                                        <></>
-                                      )}
-                                    </div>
-                                  }
-                                />
-                              </MenuItem>
-                            ) : null
-                          ) : (
-                            <></>
-                          )}
+                            </MenuItem>):null}
                         </Select>
                         <HtmlTooltip
                           // className={styles.ProductSelectorHelpBtn}
@@ -642,65 +837,33 @@ export default function ProductDescription({ match }) {
                             <HelpIcon />
                           </IconButton>
                         </HtmlTooltip>
-                        {/* <IconButton className={styles.ProductSelectorHelpBtn} aria-label="add to shopping cart" size={'medium'} ><HelpIcon color="#6a5b40" /></IconButton> */}
-                        {ProductType === 'ready made' ? (
+                       
                           <div className={styles.priceTab}>
-                            {details.readymade_offer_price > 0 ? (
+                          
                               <>
                                 <span>
                                   {details.currency_symbol}
-                                  {details.readymade_offer_price}
+                                  {selectedvarient?.offer_price}
                                 </span>
                                 <br />
                                 <p>
                                   <span>
                                     {details.currency_symbol}
-                                    {details.readymade_price}
+                                    {selectedvarient?.sale_price}
                                   </span>
                                   <span>
                                     {'  '}
-                                    {details.readymade_discount}% OFF
+                                    {selectedvarient?.discount}% OFF
                                   </span>
                                 </p>
                               </>
-                            ) : (
-                              <span>
-                                {details.currency_symbol}
-                                {details.readymade_price}
-                              </span>
-                            )}
                           </div>
-                        ) : (
-                          <div className={styles.priceTab}>
-                            {details.custom_offer_price > 0 ? (
-                              <>
-                                <span>
-                                  {details.currency_symbol}
-                                  {details.custom_offer_price}
-                                </span>
-                                <br />
-                                <p>
-                                  <span>
-                                    {details.currency_symbol}
-                                    {details.custom_price}
-                                  </span>
-                                  <span>
-                                    {'  '}
-                                    {details.custom_discount}%
-                                  </span>
-                                </p>
-                              </>
-                            ) : (
-                              <span>
-                                {details.currency_symbol}
-                                {details.custom_price}
-                              </span>
-                            )}
-                          </div>
-                        )}
                       </div>
-                      {ProductType === 'ready made' ? (
-                        <SelectSize variant={attributes.Size} />
+                      {ProductType === 'readymade' ? (
+                        <SelectSize variant={rvariant} 
+                        selectedsize={selectedsize} 
+                        setselectedsize={setsizing}
+                        />
                       ) : (
                         <></>
                       )}
@@ -722,9 +885,25 @@ export default function ProductDescription({ match }) {
                         <h3 className={styles.product__title}>
                           {details.title}
                         </h3>
-                        <IconButton>
-                          <Share style={{ width: '37px', height: '37px' }} />
+                        <IconButton onClick={() =>setsharedisplay(!sharedisplay)}>
+                          <Share  style={{ width: '37px', height: '37px' }} />
                         </IconButton>
+                        <div style={{minHeight:'50vh',minWidth:'7vw',display:sharedisplay?'flex':'none',
+                       flexDirection:'column',position:'absolute', right:'5vw',top:'8vh',zIndex:'1000',
+                       boxShadow:'0px 0px 35px lightgray',
+                       transition:'5s',alignItems:'center',padding:'5px',borderRadius:'15px'
+                        }}>
+<div style={{borderRadius:'50%'}}>
+<FacebookShareButton url={window.location.href}>
+<FacebookIcon size={"4rem"} round />
+</FacebookShareButton>
+</div>
+<div>
+<WhatsappShareButton  url={window.location.href} title="seemsdlfm"  separator=":: ">
+  <WhatsappIcon  size={"4rem"} round  />
+</WhatsappShareButton>
+</div>
+                        </div>
                       </div>
                     </div>
                     <div className={styles.selectProduct}>
@@ -746,22 +925,23 @@ export default function ProductDescription({ match }) {
                           position: 'relative',
                         }}
                       >
-                        <Select
+                         <Select
+                         
                           input={<BootstrapInput />}
                           value={ProductType}
                           onOpen={() => setProductDrop(true)}
                           onClose={() => setProductDrop(false)}
-                          onChange={e => setProductType(e.target.value)}
+                           onChange={e => setProductType(e.target.value)}
                         >
-                          {details.product?.isVariant ? (
-                            <MenuItem value={'ready made'}>
+
+    {rvariant.length>0?(<MenuItem value={'readymade'}>
                               <FormControlLabel
                                 className={
                                   ProductDrop
                                     ? styles.FormControlLabel
                                     : styles.FormControlLabelS
                                 }
-                                checked={ProductType === 'ready made'}
+                                checked={ProductType === 'readymade'}
                                 control={<CustomRadio />}
                                 label={
                                   <div className={styles.ProductSelector}>
@@ -780,28 +960,27 @@ export default function ProductDescription({ match }) {
                                   </div>
                                 }
                               />
-                            </MenuItem>
-                          ) : null}
-                          {details.product?.isCustomise === 'on' ? (
-                            <MenuItem value={'custom'}>
+                            </MenuItem>):null}
+
+                         {cvariant.length>0? (  <MenuItem value={'customise'}>
                               <FormControlLabel
                                 className={
                                   ProductDrop
                                     ? styles.FormControlLabel
                                     : styles.FormControlLabelS
                                 }
-                                checked={ProductType === 'custom'}
+                                checked={ProductType === 'customise'}
                                 control={<CustomRadio />}
                                 label={
                                   <div className={styles.ProductSelector}>
                                     <p className={styles.ChoicesBtnsLabels}>
-                                      Customised
+                                    customise
                                     </p>
                                     {ProductDrop ? (
                                       <h6 className={styles.ProductSelectorh6}>
                                         Lorem ipsum is placeholder text commonly
-                                        used in the graphic er text commonly
-                                        used in the graphic
+                                        used in the graphicer text commonly used
+                                        in the graphic
                                       </h6>
                                     ) : (
                                       <></>
@@ -809,8 +988,7 @@ export default function ProductDescription({ match }) {
                                   </div>
                                 }
                               />
-                            </MenuItem>
-                          ) : null}
+                            </MenuItem>):null}
                         </Select>
                         <HtmlTooltip
                           className={styles.ProductSelectorHelpBtn}
@@ -831,62 +1009,28 @@ export default function ProductDescription({ match }) {
                         </HtmlTooltip>
                       </div>
                     </div>
+                    <div className={styles.priceTab}>
+                          
+                          <>
+                            <span>
+                              {details.currency_symbol}
+                              {selectedvarient?.offer_price}
+                            </span>
+                            <br />
+                            <p>
+                              <span>
+                                {details.currency_symbol}
+                                {selectedvarient?.sale_price}
+                              </span>
+                              <span>
+                                {'  '}
+                                {selectedvarient?.discount}% OFF
+                              </span>
+                            </p>
+                          </>
 
-                    {ProductType === 'ready made' ? (
-                      <div className={styles.priceTab}>
-                        {details.readymade_offer_price > 0 ? (
-                          <>
-                            <span>
-                              {details.currency_symbol}
-                              {details.readymade_offer_price}
-                            </span>
-                            <br />
-                            <p>
-                              <span>
-                                {details.currency_symbol}
-                                {details.readymade_price}
-                              </span>
-                              <span>
-                                {'  '}
-                                {details.readymade_discount}% OFF
-                              </span>
-                            </p>
-                          </>
-                        ) : (
-                          <span>
-                            {details.currency_symbol}
-                            {details.readymade_price}
-                          </span>
-                        )}
                       </div>
-                    ) : (
-                      <div className={styles.priceTab}>
-                        {details.custom_offer_price > 0 ? (
-                          <>
-                            <span>
-                              {details.currency_symbol}
-                              {details.custom_offer_price}
-                            </span>
-                            <br />
-                            <p>
-                              <span>
-                                {details.currency_symbol}
-                                {details.custom_price}
-                              </span>
-                              <span>
-                                {'  '}
-                                {details.custom_discount}%
-                              </span>
-                            </p>
-                          </>
-                        ) : (
-                          <span>
-                            {details.currency_symbol}
-                            {details.custom_price}
-                          </span>
-                        )}
-                      </div>
-                    )}
+                  
                   </>
                 )}
                 {mobileView && (
@@ -973,23 +1117,23 @@ export default function ProductDescription({ match }) {
                       </div>
                       <br />
                       <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <Select
-                          style={{ width: '80%' }}
+                      <Select
+                          style={{ width: '80%',backgroundColor: 'red'}}
                           input={<BootstrapInput />}
                           value={ProductType}
                           onOpen={() => setProductDrop(true)}
                           onClose={() => setProductDrop(false)}
-                          onChange={e => setProductType(e.target.value)}
+                           onChange={e => setProductType(e.target.value)}
                         >
-                          {details.product?.isVariant ? (
-                            <MenuItem value={'ready made'}>
+
+    {rvariant.length>0?(<MenuItem value={'readymade'}>
                               <FormControlLabel
                                 className={
                                   ProductDrop
                                     ? styles.FormControlLabel
                                     : styles.FormControlLabelS
                                 }
-                                checked={ProductType === 'ready made'}
+                                checked={ProductType === 'readymade'}
                                 control={<CustomRadio />}
                                 label={
                                   <div className={styles.ProductSelector}>
@@ -1008,28 +1152,27 @@ export default function ProductDescription({ match }) {
                                   </div>
                                 }
                               />
-                            </MenuItem>
-                          ) : null}
-                          {details.product?.isCustomise === 'on' ? (
-                            <MenuItem value={'custom'}>
+                            </MenuItem>):null}
+
+                         {cvariant.length>0? (  <MenuItem value={'customise'}>
                               <FormControlLabel
                                 className={
                                   ProductDrop
                                     ? styles.FormControlLabel
                                     : styles.FormControlLabelS
                                 }
-                                checked={ProductType === 'custom'}
+                                checked={ProductType === 'customise'}
                                 control={<CustomRadio />}
                                 label={
                                   <div className={styles.ProductSelector}>
                                     <p className={styles.ChoicesBtnsLabels}>
-                                      Customised
+                                    customise
                                     </p>
                                     {ProductDrop ? (
                                       <h6 className={styles.ProductSelectorh6}>
                                         Lorem ipsum is placeholder text commonly
-                                        used in the graphic er text commonly
-                                        used in the graphic
+                                        used in the graphicer text commonly used
+                                        in the graphic
                                       </h6>
                                     ) : (
                                       <></>
@@ -1037,8 +1180,7 @@ export default function ProductDescription({ match }) {
                                   </div>
                                 }
                               />
-                            </MenuItem>
-                          ) : null}
+                            </MenuItem>):null}
                         </Select>
                         <HtmlTooltip
                           className={styles.ProductSelectorHelpBtn}
@@ -1060,61 +1202,26 @@ export default function ProductDescription({ match }) {
                         </HtmlTooltip>
                       </div>
                     </div>
-                    {ProductType === 'ready made' ? (
-                      <div className={styles.price}>
-                        {details.readymade_offer_price > 0 ? (
-                          <>
-                            <span>
-                              {details.currency_symbol}
-                              {details.readymade_offer_price}
-                            </span>
-                            <br />
-                            <p>
-                              <span>
-                                {details.currency_symbol}
-                                {details.readymade_price}
-                              </span>
-                              <span>
-                                {'  '}
-                                {details.readymade_discount}% OFF
-                              </span>
-                            </p>
-                          </>
-                        ) : (
-                          <span>
-                            {details.currency_symbol}
-                            {details.readymade_price}
-                          </span>
-                        )}
-                      </div>
-                    ) : (
-                      <div className={styles.price}>
-                        {details.custom_offer_price > 0 ? (
-                          <>
-                            <span>
-                              {details.currency_symbol}
-                              {details.custom_offer_price}
-                            </span>
-                            <br />
-                            <p>
-                              <span>
-                                {details.currency_symbol}
-                                {details.custom_price}
-                              </span>
-                              <span>
-                                {'  '}
-                                {details.custom_discount}%
-                              </span>
-                            </p>
-                          </>
-                        ) : (
-                          <span>
-                            {details.currency_symbol}
-                            {details.custom_price}
-                          </span>
-                        )}
-                      </div>
-                    )}
+                    <div className={styles.priceTab}>
+                          
+                              <>
+                                <span>
+                                  {details.currency_symbol}
+                                  {selectedvarient?.offer_price}
+                                </span>
+                                <br />
+                                <p>
+                                  <span>
+                                    {details.currency_symbol}
+                                    {selectedvarient?.sale_price}
+                                  </span>
+                                  <span>
+                                    {'  '}
+                                    {selectedvarient?.discount}% OFF
+                                  </span>
+                                </p>
+                              </>
+                          </div>
                   </>
                 )}
                 {customView && !mobileView && (
@@ -1139,8 +1246,11 @@ export default function ProductDescription({ match }) {
                       </div>
                     ) : null}
 
-                    {ProductType === 'ready made' ? (
-                      <SelectSize variant={attributes.Size} />
+                    {ProductType === 'readymade' ? (
+                      <SelectSize variant={rvariant} 
+                      selectedsize={selectedsize} 
+                      setselectedsize={setsizing}
+                      />
                     ) : (
                       <></>
                     )}
@@ -1158,8 +1268,11 @@ export default function ProductDescription({ match }) {
                         <div>50:00</div>
                       </div>
                     ) : null}
-                    {ProductType === 'ready made' ? (
-                      <SelectSize variant={attributes.Size} />
+                    {ProductType === 'readymade' ? (
+                      <SelectSize variant={rvariant} 
+                      selectedsize={selectedsize} 
+                      setselectedsize={setsizing}
+                      />
                     ) : (
                       <></>
                     )}
@@ -1168,84 +1281,36 @@ export default function ProductDescription({ match }) {
                 <div className={styles.selectColor}>
                   <div>Select colour</div>
                   <br />
-
+{  console.log("aefnsdkfnsdknfsdkfksdfn",selectedcolor)}
                   <div className={styles.SelectColorCard}>
-                    <IconButton
-                      className={styles.ColorBTN}
-                      onClick={() => setSelectedColor('#DAD3C1')}
-                      style={{
-                        backgroundColor: '#DAD3C1',
-                        borderColor:
-                          selectedColor === '#DAD3C1' ? '#DAD3C1' : 'white',
-                      }}
-                    >
-                      <IconButton
-                        className={styles.ColorInnerBTN}
-                        style={{
-                          borderColor:
-                            selectedColor === '#DAD3C1'
-                              ? '#fff'
-                              : 'transparent',
-                        }}
-                      ></IconButton>
-                    </IconButton>
-                    <IconButton
-                      className={styles.ColorBTN}
-                      onClick={() => setSelectedColor('#FF543E')}
-                      style={{
-                        backgroundColor: '#FF543E',
-                        borderColor:
-                          selectedColor === '#FF543E' ? '#FF543E' : 'white',
-                      }}
-                    >
-                      <IconButton
-                        className={styles.ColorInnerBTN}
-                        style={{
-                          borderColor:
-                            selectedColor === '#FF543E'
-                              ? '#fff'
-                              : 'transparent',
-                        }}
-                      ></IconButton>
-                    </IconButton>
-                    <IconButton
-                      className={styles.ColorBTN}
-                      onClick={() => setSelectedColor('#D1AA67')}
-                      style={{
-                        backgroundColor: '#D1AA67',
-                        borderColor:
-                          selectedColor === '#D1AA67' ? '#D1AA67' : 'white',
-                      }}
-                    >
-                      <IconButton
-                        className={styles.ColorInnerBTN}
-                        style={{
-                          borderColor:
-                            selectedColor === '#D1AA67'
-                              ? '#fff'
-                              : 'transparent',
-                        }}
-                      ></IconButton>
-                    </IconButton>
-                    <IconButton
-                      className={styles.ColorBTN}
-                      onClick={() => setSelectedColor('#000000')}
-                      style={{
-                        backgroundColor: '#000000',
-                        borderColor:
-                          selectedColor === '#000000' ? '#000000' : 'white',
-                      }}
-                    >
-                      <IconButton
-                        className={styles.ColorInnerBTN}
-                        style={{
-                          borderColor:
-                            selectedColor === '#000000'
-                              ? '#fff'
-                              : 'transparent',
-                        }}
-                      ></IconButton>
-                    </IconButton>
+                      {
+                    
+                    colorarr.map((c)=>{
+                      
+                              return    <IconButton
+                                        className={styles.ColorBTN}
+                                        onClick={() => setselectedcolor(c)}
+                              style={{
+                                backgroundColor: c,
+                                borderColor:
+                                  selectedcolor === c ? c : 'white',
+                              }}
+                            >
+                              <IconButton
+                                className={styles.ColorInnerBTN}
+                                style={{
+                                  borderColor:
+                                  selectedcolor === c
+                                      ? '#fff'
+                                      : 'transparent',
+                                }}
+                              ></IconButton>
+                            </IconButton>
+                            
+                        
+                      })
+}
+                    
                   </div>
                 </div>
 
@@ -1416,5 +1481,6 @@ export default function ProductDescription({ match }) {
       </>
       {tags && tags.length > 0 && <SimilarProducts tags={tags} />}
     </Container>
+    </>
   );
 }

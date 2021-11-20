@@ -27,11 +27,12 @@ export const getCartItems = () => async (dispatch) => {
   }
 };
 
-export const removeFromBag = (item, cart) => async (dispatch) => {
+export const removeFromBag = (item, cart,id) => async (dispatch) => {
   try {
     dispatch({ type: REMOVE_FROM_CART_REQUEST });
-    const { data } = await common_axios.delete("/cart/removeItem", {
+    const { data } = await common_axios.delete(`/cart/removeItem`, {
       data: {
+        variant_id:id,
         cart,
         item,
       },

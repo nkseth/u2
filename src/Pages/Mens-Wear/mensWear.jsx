@@ -120,7 +120,24 @@ export default function MensWear({ match }) {
       <CustomSection style={{ padding: "2rem 1rem" }}>
         <Breadcrumb
           style={{ paddingTop: tabView && "2rem 0" }}
-          path="Designer Home /"
+          path="Designer Home /mens"
+          crum={[{label:'Designer home',path:'/'},
+          {label: type === "mens"?'Men’s wear': 
+          type === "womens" ? "Women’s wear":
+          type === 'kids'? "Kid’s wear":
+          type === 'designers'?"designer wear":
+          type==='offers'?"Offers":
+          type==='contemporary'?"Contemporary":null
+          ,
+          path: type === "mens"?'/wear/men': 
+          type === "womens" ? '/wear/women':
+          type === 'kids'? '/wear/kids':
+          type === 'designers'?'/wear/designer':
+          type==='offers'?'/wear/offers':
+          type==='contemporary'?'/wear/contemporary':null},
+        
+
+        ]}
           activePath={
             type === "mens"
               ? "Men’s wear"

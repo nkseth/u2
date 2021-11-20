@@ -73,6 +73,9 @@ export function Product({
     product_id,
     type,
     fabric,
+    color_code,
+    size,
+    variant_id
   },
 }) {
   const history = useHistory();
@@ -83,7 +86,8 @@ export function Product({
   const { user } = useSelector((state) => state.root.auth);
 
   const removeHandler = () => {
-    dispatch(removeFromWishlist(product_id, user.api_token));
+    dispatch(removeFromWishlist(product_id, user.api_token,variant_id));
+    debugger
   };
   const addToBagHandler = () => {
     dispatch(add_to_bag(slug, type));
@@ -153,7 +157,23 @@ export function Product({
           </> */}
           <h5>Product type</h5>
           <h6>{type.toUpperCase()}</h6>
-
+          <p style={{display: 'flex'}}>
+                            <div style={{display: 'flex'}}>
+                              <div >Color:</div>
+              <div className={styles.colori} style={{backgroundColor:color_code,marginLeft:'5px'}}></div>
+             
+              </div>
+             {
+             type==="readymade"?
+             <div style={{display: 'flex',marginLeft:'10px'}}>
+              <div >Size:</div>
+              <div  style={{backgroundColor:'#6a5b40',marginLeft:'5px',display:"flex",width:'20px',height:'20px',
+            alignItems: 'center',justifyContent: 'center',color:'white'
+            }}>{size}</div>
+              </div>
+            :null  
+            }
+                              </p>
           <div className={styles.quantityDiv}>
             <div className={styles.BtnDiv}>
               <Button

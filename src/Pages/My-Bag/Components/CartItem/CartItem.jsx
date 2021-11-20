@@ -40,7 +40,7 @@ const CartItem = ({
       <div className={styles.mainContainer}>
         <Link to={`/product-description/${item.product.slug}`}>
           <img
-            src={item.product?.image}
+            src={item.feature_image}
             alt='product'
             className={styles.image}
           />
@@ -61,7 +61,23 @@ const CartItem = ({
                   {item.title}
                 </h5>
                 <p className={styles.proCat}>{item.fabric}</p>
+                
               </div>
+              <div style={{display: 'flex'}}>
+              <div >Color:</div>
+              <div className={styles.colori} style={{backgroundColor:item?.color_code,marginLeft:'5px'}}></div>
+             
+              </div>
+              {
+                item.type==="readymade"?
+              <div style={{display: 'flex'}}>
+              <div >Size:</div>
+              <div  style={{backgroundColor:'#6a5b40',marginLeft:'5px',display:"flex",width:'20px',height:'20px',
+            alignItems: 'center',justifyContent: 'center',color:'white'
+            }}>{item.size}</div>
+              
+              </div>:null
+              }
               <div>
                 {item.type === 'readymade' ? (
                   item.readymade_offer_price > 0 ? (
@@ -135,7 +151,9 @@ const CartItem = ({
                     <AddIcon style={{ width: '15px' }} />
                   </Button>
                 </div>
+              
               </div>
+              
             </div>
             <div className={styles.wishlistNRemove}>
               <HtmlTooltipButton

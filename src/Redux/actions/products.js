@@ -60,6 +60,7 @@ export const getProductDetails = slug => async dispatch => {
     const { data } = await common_axios.get(`/productDetail/${slug}`);
 
     if (data) {
+     
       dispatch({
         type: GET_PRODUCT_DETAILS_SUCCESS,
         payload: data,

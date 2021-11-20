@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './SelectSize.module.scss';
 import {
   Button,
@@ -7,31 +7,52 @@ import {
   Select,
   useMediaQuery,
 } from '@material-ui/core';
-function SelectSize({ variant }) {
+function SelectSize({variant,selectedsize,setselectedsize}) {
   console.log(
     '🚀 ~ file: SelectSize.js ~ line 11 ~ SelectSize ~ variant',
-    variant
+    selectedsize
   );
   const [size, setSize] = useState('xs');
   const customView = useMediaQuery('(max-width:1044px)');
   const tabView = useMediaQuery('(max-width:768px)');
   const mobileView = useMediaQuery('(max-width:550px)');
+const [ss,setss]=useState([])
+  useEffect(()=>{
+    const gg=[]
+    variant.map((vari)=>{
+      vari.values.map((atti)=>{
+          if(atti.attribute_name==='Size')
+          if(!gg.includes(atti.attributeValue)) gg.push(atti.attributeValue)
+      })
+    })
 
+    setss(gg)
+  },[variant])
+
+// const clickhandler=(name,attribute_id,variant_id,id)=>{
+//   setselectedsize(name);
+// //   console.log("thifsifsdifsdf",{...v,size:{attribute_id:attribute_id ,attr_value_id:id,variant_id:variant_id}});
+// //   debugger
+// //  onvarientchangehandler({...v,size:{attribute_id:attribute_id ,attr_value_id:id,variant_id:variant_id}});
+// }
   return (
     <div className={styles.container}>
       <h4 className={styles.heading_1}>Select Size</h4>
       <div className={styles.radioBtnDiv}>
-        {variant?.map(({ name, id }) => (
-          <IconButton
-            key={id}
+        {ss?.map((item,index) => {
+         return <IconButton
+            key={index}
             className={
-              size === name ? styles.BtnSelected : styles.radioBtnOutline
+              selectedsize === item ? styles.BtnSelected : styles.radioBtnOutline
             }
-            onClick={() => setSize(name)}
+            onClick={() =>{
+              setselectedsize(item)
+            } }
           >
-            {name}
+            {item}
           </IconButton>
-        ))}
+          
+})}
         {/* <IconButton
           className={
             size === "xs" ? styles.BtnSelected : styles.radioBtnOutline

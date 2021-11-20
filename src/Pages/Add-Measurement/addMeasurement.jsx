@@ -31,17 +31,17 @@ export default function AddMeasurement() {
           {!tabViewPro && (
             <Breadcrumb
               path='Home / Men / Measurements/'
-              paths={[
+              crum={[
                 {
-                  name: 'Home',
+                  label: 'Home',
                   path: '/',
                 },
                 {
-                  name: 'Men',
+                  label: 'Men',
                   path: '/wear/mens',
                 },
                 {
-                  name: 'Measurements',
+                  label: 'Measurements',
                   path: '/add-measurement-choose-standard-size/12',
                 },
               ]}

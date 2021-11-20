@@ -40,12 +40,13 @@ export const getWishList = (token) => async (dispatch) => {
   }
 };
 
-export const addToWishlist = (slug, token) => async (dispatch) => {
+export const addToWishlist = (slug, token,id) => async (dispatch) => {
   try {
-    const { data } = await common_axios.get(`/wishlist/${slug}/add`, {
+    const { data } = await common_axios.get(`/wishlist/${slug}/add/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+    
     });
     console.log(data);
     if (data) {
@@ -57,11 +58,11 @@ export const addToWishlist = (slug, token) => async (dispatch) => {
   }
 };
 
-export const removeFromWishlist = (id, token) => async (dispatch) => {
+export const removeFromWishlist = (id, token,varient) => async (dispatch) => {
   try {
     dispatch({ type: REMOVE_FROM_WISHLIST_REQUEST });
     console.log(id, token);
-    const { data } = await common_axios.delete(`/wishlist/${id}/remove`, {
+    const { data } = await common_axios.delete(`/wishlist/${id}/remove/${varient}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

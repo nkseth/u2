@@ -108,13 +108,13 @@ export default function MyBag() {
 
   const move_to_wishlist = async (item, e) => {
     if (e) e.preventDefault();
-    dispatch(addToWishlist(item.slug, user.api_token));
+    dispatch(addToWishlist(item.product.slug , user.api_token,item.variant_id));
     remove_item(item);
   };
 
   const remove_item = async (item, e) => {
     if (e) e.preventDefault();
-    dispatch(removeFromBag(item.id, cart.id));
+    dispatch(removeFromBag(item.id, cart.id,item.variant_id));
   };
 
   const on_checkout = () => {
@@ -149,7 +149,9 @@ export default function MyBag() {
         <CustomSection
           style={mobileView ? { marginTop: '0' } : { marginTop: '3em' }}
         >
-          <Breadcrumb path='Home' activePath='/ My Bag' />
+          <Breadcrumb
+          crum={[{label:'Home',path:'/'},{label:'My bag',path:'/my-bag'}]}
+          path='Home' activePath='/ My Bag' />
           {cart && (
             <div className={styles.container}>
               {mobileView ? (
@@ -352,7 +354,7 @@ const MobileProductMyBag = ({
               <div className={styles.ImageQuanDiv}>
                 <Link to={`/product-description/${item.product.slug}`}>
                   <img
-                    src={item.product?.image}
+                    src={item.feature_image}
                     className={styles.mainimg}
                     alt={data.id}
                   />
@@ -391,6 +393,21 @@ const MobileProductMyBag = ({
                           </p>
                         </div>
                       </div>
+                      <div style={{display: 'flex'}}>
+              <div >Color:</div>
+              <div className={styles.colori} style={{backgroundColor:item?.color_code,marginLeft:'5px'}}></div>
+             
+              </div>
+             {
+             item.type==="readymade"?
+             <div style={{display: 'flex'}}>
+              <div >Size:</div>
+              <div  style={{backgroundColor:'#6a5b40',marginLeft:'5px',display:"flex",width:'20px',height:'20px',
+            alignItems: 'center',justifyContent: 'center',color:'white'
+            }}>{item.size}</div>
+              </div>
+            :null  
+            }
                     </div>
                     <div>
                       <div className={styles.quan}>

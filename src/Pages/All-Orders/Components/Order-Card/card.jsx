@@ -13,7 +13,7 @@ export default function OrdersCard({ pending, item, orderId, detail }) {
       {!item && <CustomDivider />}
       <div className={styles.cardContainer}>
         <img
-          src={item.product.image}
+          src={item.cover_image}
           alt={item.title}
           style={{ cursor: 'pointer' }}
           onClick={() => history.push(`/product-description/${item.slug}`)}
@@ -31,7 +31,24 @@ export default function OrdersCard({ pending, item, orderId, detail }) {
               </h1>
               <span>{item.fabric}</span>
             </div>
+            <p style={{display: 'flex'}}>
+                            <div style={{display: 'flex'}}>
+                              <div >Color:</div>
 
+              <div className={styles.colori} style={{backgroundColor:item.color_code ,marginLeft:'5px'}}></div>
+             
+              </div>
+             {
+             item.type==="readymade"?
+             <div style={{display: 'flex',marginLeft:'10px'}}>
+              <div >Size:</div>
+              <div  style={{backgroundColor:'#6a5b40',marginLeft:'5px',display:"flex",width:'20px',height:'20px',
+            alignItems: 'center',justifyContent: 'center',color:'white'
+            }}>{item.size}</div>
+              </div>
+            :null  
+            }
+                              </p>
             <div style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
               {item.currency_symbol}
               {item.total}

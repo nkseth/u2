@@ -94,16 +94,10 @@ function DesignerProductPage({ match }, props) {
               {!tabViewPro && (
                 <div style={{ width: '200%', marginLeft: 15 }}>
                   <Breadcrumb
-                    path={`Home /`}
-                    activePath={
-                      type
-                        ? slug
-                          ? `${type} / ${slug}`
-                          : `${type}`
-                        : slug
-                        ? `${slug}`
-                        : 'product'
-                    }
+                    crum={[{label:'Home',path:'/'},
+                    {label: type?`${type}`:null,path:type?`/wear/${type}`:null},
+                    {label: slug?`${slug}`:null,path:``}
+                  ]}
                   />
                 </div>
               )}
@@ -128,17 +122,11 @@ function DesignerProductPage({ match }, props) {
             <div style={{ padding: '1rem 1rem 3rem' }}>
               {tabViewPro && (
                 <div className={styles.upperbread}>
-                  <Breadcrumb
-                    path={`Home /`}
-                    activePath={
-                      type
-                        ? slug
-                          ? `${type} / ${slug}`
-                          : `${type}`
-                        : slug
-                        ? `${slug}`
-                        : 'product'
-                    }
+                   <Breadcrumb
+                    crum={[{label:'Home',path:'/'},
+                    {label: type?`${type}`:null,path:type?`/wear/${type}`:null},
+                    {label: slug?`${slug}`:null,path:``}
+                  ]}
                   />
                 </div>
               )}

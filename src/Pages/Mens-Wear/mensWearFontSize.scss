@@ -1,0 +1,31 @@
+.mens-common-headings--1 {
+  font-family: DM Serif Display;
+  font-size: 54px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 64px;
+  letter-spacing: 0em;
+
+  @media screen and (max-width: 768px) {
+    font-family: DM Serif Display;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 64px;
+    letter-spacing: 0em;
+  }
+  @media screen and (max-width: 480px) {
+    font-family: DM Serif Display;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0em;
+  }
+}
+
+.carousel-items--text {
+}
+
+.popular-category--items {
+}

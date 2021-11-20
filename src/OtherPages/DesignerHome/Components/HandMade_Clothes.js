@@ -19,24 +19,26 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { handMadeClothes } from '../../../Redux/actions/designerHomePage';
 import { LazyLoadingComp, LazyLoadingImg } from '../../../utils/LazyLoading';
-import Carousel_Component from './Carousel_Component';
+import Carousel_Component from '../../../utils/Carousel_Component/Carousel_Component';
+import SkeletonLoaderCarousel from '../../../utils/skeletons/SkeletonLoaderCarousel';
 import dotted from '../Images/dottedBg.svg';
 const HandMade_Clothes = () => {
   const dispatch = useDispatch();
-  const mobile = useMediaQuery('(max-width:479px)');
 
-  const { clothes } = useSelector(state => state.root.handMadeClothes);
+  const { clothes, loading } = useSelector(state => state.root.handMadeClothes);
+  console.log('🚀 ~ file: HandMade_Clothes.js ~ line 29 ~ loading', loading);
 
-  const visible = 4.9;
   useEffect(() => {
     dispatch(handMadeClothes());
   }, []);
 
   const theme = useTheme();
   const match = useMediaQuery('(max-width:630px)');
-  const iPade = useMediaQuery(theme.breakpoints.down('sm'));
-  const large = useMediaQuery(theme.breakpoints.down('1330px'));
-  const CustomView = useMediaQuery('(max-width:400px)');
+  const iPade = useMediaQuery('(max-width:1000px)');
+  const tab = useMediaQuery('(max-width:890px)');
+  const mobile = useMediaQuery('(max-width:479px)');
+  const large = useMediaQuery('(max-width:1330px)');
+  const visible = 4;
 
   if (!clothes) {
     return null;
@@ -64,68 +66,55 @@ const HandMade_Clothes = () => {
             style={{ height: '2px', background: mobile ? '#000' : '#fff' }}
           />
         </div>
-        <Carousel_Component items={clothes} name='handMade' />
-        {/* <CarouselProvider
-          visibleSlides={match ? 1.4 : iPade ? 2 : large ? 3 : visible}
-          totalSlides={clothes?.length + 0.8}
-          isIntrinsicHeight
-        >
-          <Slider>
-            {clothes?.map(({ id, cover_image, name, slug }, i) => (
-              <Slide
-                index={i}
-                key={id}
-                style={
-                  CustomView
-                    ? { marginRight: '40px', marginLeft: '10px' }
-                    : { marginRight: '20px', marginLeft: '20px' }
-                }
-                className={styles.items}
-              >
-                <LazyLoadingComp>
-                  <div className={styles.SuitWear}>
-                    <div className={styles.SuitWear_Items}>
-                     
-                      <img src={cover_image} alt={name} />
-                      <Link
-                        className='carousel-items--text'
-                        to={`/designers-product-page/${slug}`}
+        {/* <Carousel_Component items={clothes} name='handMade' /> */}
+        {loading ? (
+          <SkeletonLoaderCarousel />
+        ) : (
+          <CarouselProvider
+            visibleSlides={
+              match ? 1.5 : tab ? 1.9 : iPade ? 2.5 : large ? 3 : visible
+            }
+            naturalSlideWidth={100}
+            totalSlides={clothes.length}
+            isIntrinsicHeight
+          >
+            <Slider>
+              {clothes?.map((item, i) => (
+                <Carousel_Component
+                  item={item}
+                  i={i}
+                  name={'homepage-hand--made'}
+                  pathName={`/designers-product-page/${item.slug}`}
+                />
+              ))}
+            </Slider>
+            {!mobile && (
+              <>
+                <DotGroup style={{ display: 'flex', marginTop: '2rem' }} />
+                <div className={styles.NavigationContainer}>
+                  <div className={styles.Carousel_SliderButtonBox}>
+                    <ButtonBack className={styles.Carousel_SliderButtons}>
+                      <IconButton
+                        size='small'
+                        className={styles.Carousel_iconBtn}
                       >
-                        <a>{name}</a>
-                      </Link>
-                    </div>
+                        <NavigateBeforeIcon />
+                      </IconButton>
+                    </ButtonBack>
+                    <ButtonNext className={styles.Carousel_SliderButtons}>
+                      <IconButton
+                        size='small'
+                        className={styles.Carousel_iconBtn}
+                      >
+                        <NavigateNextIcon />
+                      </IconButton>
+                    </ButtonNext>
                   </div>
-                </LazyLoadingComp>
-              </Slide>
-            ))}
-          </Slider>
-          {!mobile && (
-            <>
-              <DotGroup style={{ display: 'flex', marginTop: '2rem' }} />
-              <div className={styles.NavigationContainer}>
-               
-                <div className={styles.Carousel_SliderButtonBox}>
-                  <ButtonBack className={styles.Carousel_SliderButtons}>
-                    <IconButton
-                      size='small'
-                      className={styles.Carousel_iconBtn}
-                    >
-                      <NavigateBeforeIcon />
-                    </IconButton>
-                  </ButtonBack>
-                  <ButtonNext className={styles.Carousel_SliderButtons}>
-                    <IconButton
-                      size='small'
-                      className={styles.Carousel_iconBtn}
-                    >
-                      <NavigateNextIcon />
-                    </IconButton>
-                  </ButtonNext>
                 </div>
-              </div>
-            </>
-          )}
-        </CarouselProvider> */}
+              </>
+            )}
+          </CarouselProvider>
+        )}
       </CustomSection>
     </div>
   );

@@ -79,9 +79,7 @@ const SkeletonLoaderCarousel = ({ mobile }) => {
                 );
               })}
             </Slider>
-          </CarouselProvider>
 
-          {/* <>
             <DotGroup style={{ display: 'flex', marginTop: '2rem' }} />
             <div className={styles.NavigationContainer}>
               <div className={styles.Carousel_SliderButtonBox}>
@@ -97,7 +95,7 @@ const SkeletonLoaderCarousel = ({ mobile }) => {
                 </ButtonNext>
               </div>
             </div>
-          </> */}
+          </CarouselProvider>
         </>
       )}
     </>

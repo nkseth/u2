@@ -300,6 +300,7 @@ export default function VendorRegistration() {
         setCatalogName('');
       }
     } catch (error) {
+      console.log(error.response.data);
       setFormLoading(false);
       setErrorResponse(error.response.data);
     }
@@ -564,9 +565,19 @@ export default function VendorRegistration() {
             <h2 style={{ margin: '1rem 0', fontSize: '16px' }}>
               {errorResponse.message}
             </h2>
-            <p style={{ margin: '1rem 0' }}>
-              {JSON.stringify(errorResponse.errors)}
-            </p>
+            {errorResponse.errors ? Object.entries(errorResponse.errors).map(([k, v]) => {
+              return (
+                <p style={{ margin: '1rem 0' }}>
+                  {v && v.length != 0 ? v[0] : ''}
+                </p>
+              )
+            }) : " "}
+            {/* <p style={{ margin: '1rem 0' }}>
+              {errorResponse.errors ? Object.entries(errorResponse.errors).map(([k, v]) => {
+                formData.append(k, v);
+              }) : " "}
+              {errorResponse.errors ? JSON.stringify(errorResponse.errors) : ''}
+            </p> */}
             <button
               class={styles.removeModelButton}
               onClick={e => {
@@ -1087,12 +1098,19 @@ export default function VendorRegistration() {
                   <div>
                     <FormControl
                       style={{
+
                         width: '100%',
                         marginLeft: !mobileView && '121px',
                         fontSize: '16px',
                         fontFamily: 'DM Sans',
                         lineHeight: '21px',
                         color: '#6A5B40',
+
+                        border: `1px solid ${error.platform ? 'red' : '#6A5B40'
+                          }`,
+                        marginBottom: '8px',
+                        width: '400px',
+
                       }}
                     >
 
@@ -1186,6 +1204,7 @@ export default function VendorRegistration() {
               </Button>
             </div>
           </form>
+
           {!mobileView && (
             <div style={{ textAlign: 'center', marginBottom: '101px' }}>
               <h4>
@@ -1196,6 +1215,7 @@ export default function VendorRegistration() {
               </h4>
             </div>
           )}
+
         </div>
       </CustomSection>
     </>

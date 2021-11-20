@@ -25,6 +25,12 @@ import {
   TOP_TRENDING_ERROR,
   TOP_TRENDING_LOADING,
   TOP_TRENDING_SUCCESS,
+  TOP_DESIGNERS_LOADING,
+  TOP_DESIGNERS_SUCCESS,
+  TOP_SEASON_OFFERS_SUCCESS,
+  TOP_SEASON_OFFERS_LOADING,
+  HAND_MADE_CLOTHES_LOADING,
+  HAND_MADE_CLOTHES_SUCCESS,
 } from './types';
 
 export const topTrending = () => async dispatch => {
@@ -99,9 +105,15 @@ export const suitWears = () => async dispatch => {
 
 export const popularCategories = () => async dispatch => {
   try {
+    dispatch({
+      type: POPULAR_CATEGORY_LOADING,
+    });
     const { data } = await DesignerHomePageDataService.popularCategory();
     if (data.data) {
       dispatch({ type: GET_POPULAR_CATEGORY, payload: data.data });
+      dispatch({
+        type: POPULAR_CATEGORY_SUCCESS,
+      });
     }
   } catch (err) {
     console.log(err);
@@ -111,6 +123,10 @@ export const popularCategories = () => async dispatch => {
 
 export const topDesigner = () => async dispatch => {
   try {
+    dispatch({
+      type: TOP_DESIGNERS_LOADING,
+    });
+
     const { data } = await DesignerHomePageDataService.topDesigner();
     console.log(
       '🚀 ~ file: designerHomePage.js ~ line 115 ~ data',
@@ -118,6 +134,9 @@ export const topDesigner = () => async dispatch => {
     );
 
     if (data) dispatch({ type: GET_TOP_DESIGNERS, payload: data });
+    dispatch({
+      type: TOP_DESIGNERS_SUCCESS,
+    });
   } catch (err) {
     console.log(err);
     return Promise.reject(err);
@@ -126,10 +145,16 @@ export const topDesigner = () => async dispatch => {
 
 export const topSeasonOffers = () => async dispatch => {
   try {
+    dispatch({
+      type: TOP_SEASON_OFFERS_LOADING,
+    });
     const { data } = await DesignerHomePageDataService.topSeasonOffers();
     if (data.data) {
       dispatch({ type: GET_TOP_SEASON_OFFERS, payload: data.data });
     }
+    dispatch({
+      type: TOP_SEASON_OFFERS_SUCCESS,
+    });
   } catch (err) {
     console.log(err);
     return Promise.reject(err);
@@ -138,9 +163,15 @@ export const topSeasonOffers = () => async dispatch => {
 
 export const handMadeClothes = () => async dispatch => {
   try {
+    dispatch({
+      type: HAND_MADE_CLOTHES_LOADING,
+    });
     const { data } = await DesignerHomePageDataService.handMadeClothes();
     if (data.hand_made_cloth) {
       dispatch({ type: GET_HAND_MADE_CLOTHES, payload: data.hand_made_cloth });
+      dispatch({
+        type: HAND_MADE_CLOTHES_SUCCESS,
+      });
     }
   } catch (err) {
     console.log(err);

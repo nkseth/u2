@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { popularCategories } from '../../../Redux/actions/designerHomePage';
 import CustomDivider from '../../../utils/Custom Divider/divider';
-
+import Skeleton from '@material-ui/lab/Skeleton';
 import styles from '../Style/PopularCategory.module.scss';
 import '../Style/common.scss';
 
@@ -21,7 +21,9 @@ const PopularCategory = () => {
     padding: '5rem 3rem 141px 3rem',
   };
 
-  const { categories } = useSelector(state => state.root.popularCategory);
+  const { categories, loading } = useSelector(
+    state => state.root.popularCategory
+  );
 
   useEffect(() => {
     dispatch(popularCategories());
@@ -38,30 +40,43 @@ const PopularCategory = () => {
         <div className={`${styles.Category} Category`}>
           {categories?.slice(0, 6).map((category, i) => {
             return (
-              <div
-                onClick={() =>
-                  history.push(`/designers-product-page/${category.link}`)
-                }
-                className={`${styles.Category_item}   Category_item-${i}`}
-                style={{
-                  backgroundImage: 'url(' + category?.image + ')',
-                  backgroundPosition: 'top center',
-                }}
-              >
-                <img
-                  src={overlay}
-                  className={styles.divOverlayImg}
-                  alt={category?.id}
-                />
+              <>
+                {loading ? (
+                  <div className={`col Category_item-${i}`}>
+                    <Skeleton
+                      variant='rect'
+                      width='100%'
+                      height='100%'
+                      animation='wave'
+                    />
+                  </div>
+                ) : (
+                  <div
+                    onClick={() =>
+                      history.push(`/designers-product-page/${category.link}`)
+                    }
+                    className={`${styles.Category_item}   Category_item-${i}`}
+                    style={{
+                      backgroundImage: 'url(' + category?.image + ')',
+                      backgroundPosition: 'top center',
+                    }}
+                  >
+                    <img
+                      src={overlay}
+                      className={styles.divOverlayImg}
+                      alt={category?.id}
+                    />
 
-                <Link
-                  className='popular-category--items'
-                  style={{ zIndex: 10 }}
-                  to={category.link ? category.link : ''}
-                >
-                  {category?.title}
-                </Link>
-              </div>
+                    <Link
+                      className='popular-category--items'
+                      style={{ zIndex: 10 }}
+                      to={category.link ? category.link : ''}
+                    >
+                      {category?.title}
+                    </Link>
+                  </div>
+                )}
+              </>
             );
           })}
         </div>

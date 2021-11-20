@@ -8,11 +8,9 @@
 .subHeading{
     font-family: DM Sans;
     font-style: normal;
-    font-weight: 500;
     font-size: 18px;
     line-height: 164.8%;
     margin-top: 35px;
-    margin-bottom:23px ;
 }
 .text{
     font-family: DM Sans;
@@ -46,7 +44,7 @@
     font-family: DM Sans !important;
     font-style: normal !important;
     font-weight: bold !important;
-    font-size: 14px !important;
+    font-size: 12px !important;
     line-height: 20px !important;
     color: #FFFFFF !important;
     text-transform: uppercase !important;
@@ -60,9 +58,14 @@
     font-family: DM Sans !important;
     font-style: normal !important;
     font-weight: bold !important;
-    font-size: 14px !important;
+    font-size: 12px !important;
     line-height: 20px !important;
     color: #FFFFFF !important;
     text-transform: uppercase !important;
     font-feature-settings: 'tnum' on, 'lnum' on, 'zero' on !important;
+}
+@media screen and (max-width:550px) {
+    .subHeading{
+        margin-top: 0;
+    }
 }

@@ -7,7 +7,7 @@ import styles from './designer-product-page.module.scss';
 import ProductsSection from './Components/Sections/Products/products';
 import { useLocation } from 'react-router-dom';
 import Loader from '../../utils/Loader/Loader';
-
+import Person from './person.svg';
 import common_axios from '../../utils/axios.config';
 import {
   getFilteredProduct,
@@ -20,10 +20,11 @@ import {
   getDesignerProducts,
   getProducts,
 } from '../../Redux/actions/products';
-
+import Pagination from './Components/Pagination/pagination';
+import { useHistory, useRouteMatch } from 'react-router';
 const ProductsByDesigner = ({ match }) => {
   const dispatch = useDispatch();
-  const tabViewPro = useMediaQuery('(max-width:835px)');
+  const tabViewPro = useMediaQuery('(max-width:840px)');
   const tabView = useMediaQuery('(max-width:768px)');
   const mobileView = useMediaQuery('(max-width:550px)');
   const location = useLocation();
@@ -36,19 +37,28 @@ const ProductsByDesigner = ({ match }) => {
   // const [loading, setLoading] = useState(true);
   const { user, isAuthenticated } = useSelector(state => state.root.auth);
   const [clearAll, setClearAll] = useState(true);
-  const { productList, loading, error } = useSelector(
+  const { productList, loading, error, count } = useSelector(
     state => state.root.products
   );
   console.log(
-    '🚀 ~ file: ProductsByDesigner.jsx ~ line 42 ~ ProductsByDesigner ~ productList',
-    productList
+    '🚀 ~ file: ProductsByDesigner.jsx ~ line 40 ~ ProductsByDesigner ~ count',
+    count
   );
+
   const {
     added,
     removed,
     loading: updating,
   } = useSelector(state => state.root.updateWishlist);
 
+  const [page, setPage] = useState(1);
+  const { path } = useRouteMatch();
+
+  const currentPath = path.split('/')[0];
+
+  const handlePagination = (e, value) => {
+    setPage(value);
+  };
   useEffect(() => {
     if (!updating) {
       if (added) {
@@ -71,10 +81,10 @@ const ProductsByDesigner = ({ match }) => {
   }, [dispatch, error, productList]);
 
   useEffect(() => {
-    dispatch(getDesignerProducts(designerId));
+    dispatch(getDesignerProducts(designerId, { next_record: page * 10 - 10 }));
     if (!isAuthenticated) return;
     dispatch(getWishList(user.api_token));
-  }, [dispatch, isAuthenticated, user, designerId]);
+  }, [dispatch, isAuthenticated, user, designerId, page]);
 
   const filterProduct = filterData => {
     console.log(filterData);
@@ -110,7 +120,7 @@ const ProductsByDesigner = ({ match }) => {
               <div className={styles.banner__body}>
                 <div className={styles.banner__body__frame}>
                   <img
-                    src=''
+                    src={Person}
                     alt=''
                     className={styles.banner__body__frame__image}
                   />
@@ -146,11 +156,17 @@ const ProductsByDesigner = ({ match }) => {
             </div>
           </div>
         </div>
-        <div className={styles.LoadMoreBtnContainer}>
-          <div className={styles.LoadMoreBtnDiv}>
-            <Button className={styles.LoadMoreBtn}>Load More</Button>
+        {!tabViewPro && (
+          <div className={styles.LoadMoreBtnContainer}>
+            <div className={styles.LoadMoreBtnDiv}>
+              <Pagination
+                handlePagination={handlePagination}
+                count={count}
+                page={page}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </>
     </Container>
   );

@@ -8,7 +8,7 @@
   background-size: cover;
   display: grid;
   place-content: center;
-  margin: 75px 0 2rem;
+  margin: 15px 0 2rem;
   button {
     height: 50px;
     width: 191px;
@@ -144,9 +144,9 @@
       letter-spacing: 0em;
       text-align: center;
     }
-    p {
-      display: none;
-    }
+    // p {
+    //   display: none;
+    // }
   }
 }
 
@@ -160,6 +160,8 @@
   .Collabrate_With_US {
     height: 220px;
     button {
+      width: 150px !important;
+      height: 40.33px !important;
       font-family: DM Sans;
       font-size: 16px;
       font-style: normal;
@@ -175,12 +177,13 @@
     }
     h2 {
       font-family: DM Serif Display;
-      font-size: 35px;
+      font-size: 20px;
       font-style: normal;
       font-weight: 400;
-      line-height: 48px;
+      line-height: 36px;
       letter-spacing: 0em;
-      text-align: center;
+      text-align: left;
+      padding-bottom: 0 !important;
     }
     p {
       font-family: DM Sans;
@@ -191,10 +194,10 @@
       letter-spacing: 0em;
       text-align: center;
 
-      margin-bottom: 5px !important;
-      width: 95%;
+      max-width: 339px;
       text-align: center;
-      margin: 0 auto;
+      margin: 8px 0;
+      padding-bottom: 0 !important;
     }
   }
 }

@@ -30,9 +30,11 @@ button:disabled {
 }
 .topOffer_items {
   display: grid;
-  grid-template-columns: repeat(2, minmax(150px, 164px));
+  grid-template-columns: repeat(2, minmax(150px, 1fr));
   gap: 1rem;
+  justify-content: center;
   place-items: center;
+  margin: 1rem 0;
 }
 .topOffer_item {
   min-width: 154px;

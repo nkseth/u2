@@ -224,11 +224,10 @@ export default function VendorRegistration() {
       window.scrollTo(800, 0);
 
       setError({
-        catalogueImages: `${
-          catalogueImages.length < 1
-            ? '* Please Provide 2 or more image'
-            : '* Please Provide the details'
-        }`,
+        catalogueImages: `${catalogueImages.length < 1
+          ? '* Please Provide 2 or more image'
+          : '* Please Provide the details'
+          }`,
       });
       setTimeout(() => setError({ catalogueImages: '' }), ErrorClearTimeOut);
       return;
@@ -301,6 +300,7 @@ export default function VendorRegistration() {
         setCatalogName('');
       }
     } catch (error) {
+      console.log(error.response.data);
       setFormLoading(false);
       setErrorResponse(error.response.data);
     }
@@ -565,9 +565,19 @@ export default function VendorRegistration() {
             <h2 style={{ margin: '1rem 0', fontSize: '16px' }}>
               {errorResponse.message}
             </h2>
-            <p style={{ margin: '1rem 0' }}>
-              {JSON.stringify(errorResponse.errors)}
-            </p>
+            {errorResponse.errors ? Object.entries(errorResponse.errors).map(([k, v]) => {
+              return (
+                <p style={{ margin: '1rem 0' }}>
+                  {v && v.length != 0 ? v[0] : ''}
+                </p>
+              )
+            }) : " "}
+            {/* <p style={{ margin: '1rem 0' }}>
+              {errorResponse.errors ? Object.entries(errorResponse.errors).map(([k, v]) => {
+                formData.append(k, v);
+              }) : " "}
+              {errorResponse.errors ? JSON.stringify(errorResponse.errors) : ''}
+            </p> */}
             <button
               class={styles.removeModelButton}
               onClick={e => {
@@ -590,7 +600,7 @@ export default function VendorRegistration() {
           <div className={styles.logo}>
             <img src={Logo} />
           </div>
-          <h2>Register as a Fashion Designer!</h2>
+          <h2>Register as a Vendor!</h2>
           <p>Please fill in the form to start your journey with us.</p>
           <h3>Basic Details</h3>
           <span className={styles.subtitle}>
@@ -600,9 +610,8 @@ export default function VendorRegistration() {
             <Grid container spacing={4} style={{ marginTop: '11px' }}>
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <input
-                  className={`${styles.inputField} ${
-                    error.name && styles.errorInput
-                  }`}
+                  className={`${styles.inputField} ${error.name && styles.errorInput
+                    }`}
                   type='text'
                   name='name'
                   placeholder='Full name'
@@ -616,9 +625,8 @@ export default function VendorRegistration() {
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <input
-                  className={`${styles.inputField} ${
-                    error.email && styles.errorInput
-                  }`}
+                  className={`${styles.inputField} ${error.email && styles.errorInput
+                    }`}
                   type='text'
                   name='email'
                   value={values.email}
@@ -632,15 +640,14 @@ export default function VendorRegistration() {
               {!tabView ? (
                 <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                   <input
-                    className={`${styles.inputField} ${
-                      error.phone && styles.errorInput
-                    }`}
+                    className={`${styles.inputField} ${error.phone && styles.errorInput
+                      }`}
                     type='number'
                     placeholder='Phone Number'
                     name='phone'
                     value={values.phone}
                     onChange={updateValues}
-                    // onChange={onChange}
+                  // onChange={onChange}
                   />
                   {error.phone && (
                     <span className={styles.errorMsg}>{error.phone}</span>
@@ -650,9 +657,8 @@ export default function VendorRegistration() {
                 <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
                   <>
                     <input
-                      className={`${styles.inputField} ${
-                        error.phone && styles.errorInput
-                      }`}
+                      className={`${styles.inputField} ${error.phone && styles.errorInput
+                        }`}
                       type='number'
                       name='phone'
                       placeholder='Phone Number'
@@ -675,9 +681,8 @@ export default function VendorRegistration() {
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <>
                   <input
-                    className={`${styles.inputField} ${
-                      error.designerName && styles.errorInput
-                    }`}
+                    className={`${styles.inputField} ${error.designerName && styles.errorInput
+                      }`}
                     type='text'
                     name='designerName'
                     placeholder='Designer name'
@@ -730,7 +735,7 @@ export default function VendorRegistration() {
                     <Button
                       variant='contained'
                       onClick={() => certificateUploader.current.click()}
-                      className={styles.professionalButton}
+                      className={styles.catalogueButton}
                     >
                       Browse
                     </Button>
@@ -753,12 +758,10 @@ export default function VendorRegistration() {
                     value={dropDownOptions.operation}
                     onChange={e => handleDropDown(e, 'operation')}
                     style={{
-                      color: `${
-                        dropDownOptions.operation ? '#000' : '#757575'
-                      }`,
-                      border: `1px solid ${
-                        error.operations ? 'red' : '#6A5B40'
-                      }`,
+                      color: `${dropDownOptions.operation ? '#000' : '#757575'
+                        }`,
+                      border: `1px solid ${error.operations ? 'red' : '#6A5B40'
+                        }`,
                     }}
                   >
                     <option
@@ -783,9 +786,8 @@ export default function VendorRegistration() {
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <input
-                  className={`${styles.inputField} ${
-                    error.operationCity && styles.errorInput
-                  }`}
+                  className={`${styles.inputField} ${error.operationCity && styles.errorInput
+                    }`}
                   type='text'
                   name='operationCity'
                   placeholder='Operation city'
@@ -807,12 +809,10 @@ export default function VendorRegistration() {
                     value={dropDownOptions.catalogue}
                     onChange={e => handleDropDown(e, 'catalogue')}
                     style={{
-                      color: `${
-                        dropDownOptions.catalogue ? '#000' : '#757575'
-                      }`,
-                      border: `1px solid ${
-                        error.catalogue ? 'red' : '#6A5B40'
-                      }`,
+                      color: `${dropDownOptions.catalogue ? '#000' : '#757575'
+                        }`,
+                      border: `1px solid ${error.catalogue ? 'red' : '#6A5B40'
+                        }`,
                     }}
                   >
                     <option disabled selected aria-label='None' value=''>
@@ -831,31 +831,6 @@ export default function VendorRegistration() {
 
               <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <FormControl style={{ width: '100%' }}>
-                  {/* <NativeSelect
-                    disableUnderline
-                    className={styles.inputFieldDrop}
-                    onChange={handleChangeForState}
-                    input={<BootstrapInput />}
-                    value={dropDownOptions.categories}
-                    onChange={e => handleDropDown(e, 'categories')}
-                    multiple
-                    style={{
-                      border: `1px solid ${
-                        error.categories ? 'red' : '#6A5B40'
-                      }`,
-                      marginBottom: '8px',
-                    }}
-                  >
-                    <option disabled selected aria-label='None' value=''>
-                      Categories
-                    </option>
-                    <option value={'Less than 30'}>Less than 30</option>
-                    <option value={'30-100'}>30 - 100</option>
-                    <option value={'100-200'}>100 - 200</option>
-                    <option value={'200 above'}>200 and above</option>
-                    have
-                  </NativeSelect> */}
-                  {/* <InputLabel id='mutiple-select-label'>Category</InputLabel> */}
                   <Select
                     labelId='mutiple-select-label'
                     className={styles.inputFieldDrop}
@@ -866,9 +841,8 @@ export default function VendorRegistration() {
                     renderValue={selected => selected.join(', ')}
                     MenuProps={MenuProps}
                     style={{
-                      border: `1px solid ${
-                        error.categories ? 'red' : '#6A5B40'
-                      }`,
+                      border: `1px solid ${error.categories ? 'red' : '#6A5B40'
+                        }`,
                       backgroundColor: 'none',
                       marginBottom: '8px',
                     }}
@@ -878,33 +852,11 @@ export default function VendorRegistration() {
                       selected
                       aria-label='None'
                       value=''
-                      // style={{ padding: '1rem' }}
+                    // style={{ padding: '1rem' }}
                     >
                       Categories
                     </option>
-                    {/* <MenuItem
-                      value='all'
-                      classes={{
-                        root: isAllSelected ? classes.selectedAll : '',
-                      }}
-                    >
-                      <ListItemIcon>
-                        <Checkbox
-                          classes={{
-                            indeterminate: classes.indeterminateColor,
-                          }}
-                          checked={isAllSelected}
-                          indeterminate={
-                            selected.length > 0 &&
-                            selected.length < options.length
-                          }
-                        />
-                      </ListItemIcon>
-                      <ListItemText
-                        classes={{ primary: classes.selectAllText }}
-                        primary='Select All'
-                      />
-                    </MenuItem>{' '} */}
+
                     *
                     {categoriesDropDown.map((option, i) => {
                       return (
@@ -925,9 +877,9 @@ export default function VendorRegistration() {
                           </ListItemIcon>
                           <ListItemText
                             primary={option.name}
-                            // primary={`${
-                            //   i <= 10 ? 'Kids' : i <= 53 ? 'Mens' : 'Womens'
-                            // } - ${option.name}`}
+                          // primary={`${
+                          //   i <= 10 ? 'Kids' : i <= 53 ? 'Mens' : 'Womens'
+                          // } - ${option.name}`}
                           />
                         </MenuItem>
                       );
@@ -1018,7 +970,7 @@ export default function VendorRegistration() {
                           </span>
                         ) : (
                           <span style={{ color: '#757575', fontSize: '14px' }}>
-                            Catalogue sample
+                            Catalogue sample images
                           </span>
                         )}
                       </p>
@@ -1037,6 +989,9 @@ export default function VendorRegistration() {
                     )}
                   </div>
                 </FormControl>
+                <span className={styles.placeHolder}>
+                  Up to 10 images
+                </span>
               </Grid>
             </Grid>
             <h3>Online presence</h3>
@@ -1062,9 +1017,8 @@ export default function VendorRegistration() {
                 {showInputField.website && (
                   <>
                     <input
-                      className={`${styles.inputFieldRadio} ${
-                        error.Website && styles.errorInput
-                      }`}
+                      className={`${styles.inputFieldRadio} ${error.Website && styles.errorInput
+                        }`}
                       type='text'
                       placeholder='Website URL'
                       name='website'
@@ -1102,9 +1056,8 @@ export default function VendorRegistration() {
                 {showInputField.instagram && (
                   <>
                     <input
-                      className={`${styles.inputFieldRadio} ${
-                        error.Website && styles.errorInput
-                      }`}
+                      className={`${styles.inputFieldRadio} ${error.Website && styles.errorInput
+                        }`}
                       type='text'
                       placeholder='Instagram ID'
                       name='instagram'
@@ -1142,130 +1095,92 @@ export default function VendorRegistration() {
                   />
                 </RadioGroup>
                 {showInputField.others && (
-                  <FormControl
-                    style={{
-                      width: '100%',
-                      marginLeft: !mobileView && '121px',
-                      fontSize: '16px',
-                      fontFamily: 'DM Sans',
-                      lineHeight: '21px',
-                      color: '#6A5B40',
-                    }}
-                  >
-                    {/* {platformCount.map(platform => {
-                      return (
-                        <NativeSelect
-                          disableUnderline
-                          label='Total years of operations'
-                          className={styles.platform}
-                          // onChange={handleChangeForState}
-                          value={dropDownOptions.platform}
-                          onChange={e => handleDropDown(e, 'platform')}
-                          input={<BootstrapInput />}
-                          style={{
-                            border: `1px solid ${
-                              error.otherPlatform ? 'red' : '#6A5B40'
-                            }`,
-                            marginBottom: '10px',
-                          }}
-                        >
-                          <option value={'Amazon'}>Amazon</option>
-                          <option value={'Flipkart'}>Flipkart</option>
-                          <option value={'Myntra'}>Myntra</option>
-                          <option value={'Rare Rabit'}>Rare Rabit</option>
-                        </NativeSelect>
-                      );
-                    })} */}
-                    <Select
-                      labelId='mutiple-select-label'
-                      className={`${styles.inputFieldSelect}`}
-                      multiple
-                      input={<BootstrapInput />}
-                      value={selectedPlatform}
-                      onChange={handleChangePlatForm}
-                      renderValue={selectedPlatform =>
-                        selectedPlatform.join(', ')
-                      }
-                      MenuProps={MenuProps}
+                  <div>
+                    <FormControl
                       style={{
-                        border: `1px solid ${
-                          error.platform ? 'red' : '#6A5B40'
-                        }`,
+
+                        width: '100%',
+                        marginLeft: !mobileView && '121px',
+                        fontSize: '16px',
+                        fontFamily: 'DM Sans',
+                        lineHeight: '21px',
+                        color: '#6A5B40',
+
+                        border: `1px solid ${error.platform ? 'red' : '#6A5B40'
+                          }`,
                         marginBottom: '8px',
                         width: '400px',
-                      }}
-                    >
-                      <option
-                        disabled
-                        selected
-                        aria-label='None'
-                        value=''
-                        style={{ padding: '1rem' }}
-                      >
-                        Platform
-                      </option>
-                      {/* <MenuItem
-                      value='all'
-                      classes={{
-                        root: isAllSelected ? classes.selectedAll : '',
-                      }}
-                    >
-                      <ListItemIcon>
-                        <Checkbox
-                          classes={{
-                            indeterminate: classes.indeterminateColor,
-                          }}
-                          checked={isAllSelected}
-                          indeterminate={
-                            selected.length > 0 &&
-                            selected.length < options.length
-                          }
-                        />
-                      </ListItemIcon>
-                      <ListItemText
-                        classes={{ primary: classes.selectAllText }}
-                        primary='Select All'
-                      />
-                    </MenuItem>{' '} */}
 
-                      {platformDrop.map((option, i) => {
-                        return (
-                          <MenuItem
-                            key={option.id}
-                            value={option.name}
-                            className='register_as__vender--menu-item'
-                          >
-                            <ListItemIcon>
-                              <Checkbox
-                                classes={{
-                                  indeterminate: classes.indeterminateColor,
-                                }}
-                                style={{ color: '#6A5B40' }}
-                                checked={
-                                  selectedPlatform.indexOf(option.name) > -1
-                                }
-                              />
-                            </ListItemIcon>
-                            <ListItemText primary={option.name} />
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                    {!selectedPlatform.length && (
-                      <p
+                      }}
+                    >
+
+                      <Select
+                        labelId='mutiple-select-label'
+                        className={`${styles.inputFieldSelect}`}
+                        multiple
+                        input={<BootstrapInput />}
+                        value={selectedPlatform}
+                        onChange={handleChangePlatForm}
+                        renderValue={selectedPlatform =>
+                          selectedPlatform.join(', ')
+                        }
+                        MenuProps={MenuProps}
                         style={{
-                          position: 'absolute',
-                          left: '10px',
-                          pointerEvents: 'none',
+                          border: `1px solid ${error.platform ? 'red' : '#6A5B40'
+                            }`,
                         }}
                       >
-                        Platform
-                      </p>
-                    )}
-                  </FormControl>
+                        <option
+                          disabled
+                          selected
+                          aria-label='None'
+                          value=''
+                          style={{ padding: '1rem' }}
+                        >
+                          Platform
+                        </option>
+
+                        {platformDrop.map((option, i) => {
+                          return (
+                            <MenuItem
+                              key={option.id}
+                              value={option.name}
+                              className='register_as__vender--menu-item'
+                            >
+                              <ListItemIcon>
+                                <Checkbox
+                                  classes={{
+                                    indeterminate: classes.indeterminateColor,
+                                  }}
+                                  style={{ color: '#6A5B40' }}
+                                  checked={
+                                    selectedPlatform.indexOf(option.name) > -1
+                                  }
+                                />
+                              </ListItemIcon>
+                              <ListItemText primary={option.name} />
+                            </MenuItem>
+                          );
+                        })}
+                      </Select>
+                      {!selectedPlatform.length && (
+                        <p
+                          style={{
+                            position: 'absolute',
+                            left: '10px',
+                            pointerEvents: 'none',
+                          }}
+                        >
+                          Platform
+                        </p>
+                      )}
+                    </FormControl>
+                    <Button className={styles.addbtn}>+Add platform</Button>
+                  </div>
                 )}
               </div>
             </FormControl>
+
 
             {error.otherPlatform && (
               <span className={styles.errorMsg}>{error.otherPlatform}</span>
@@ -1283,24 +1198,27 @@ export default function VendorRegistration() {
                 variant='contained'
                 className={styles.nextButton}
                 disabled={disableBtn}
-                // onClick={handlePopup}
+              // onClick={handlePopup}
               >
                 Submit
               </Button>
             </div>
           </form>
-          <div style={{ textAlign: 'center', marginBottom: '101px' }}>
-            <h4>
-              <span className={styles.helpText}> For help </span>
-              Email:
-              <Link> help@fashtechhive.com</Link>
-              <span> / Call: +91 - 7259111787</span>
-            </h4>
-          </div>
+
+          {!mobileView && (
+            <div style={{ textAlign: 'center', marginBottom: '101px' }}>
+              <h4>
+                <span className={styles.helpText}> For help </span>
+                <span className={styles.subtext}>Email:</span>
+                <span className={styles.subtext}><Link> help@fashtechhive.com</Link></span>
+                <span className={styles.subtext}> / Call: +91 - 7259111787</span>
+              </h4>
+            </div>
+          )}
+
         </div>
       </CustomSection>
     </>
-    // </Container>
   );
 }
 

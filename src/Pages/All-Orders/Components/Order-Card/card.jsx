@@ -167,11 +167,24 @@ export default function OrdersCard({
 }) {
   console.log('🚀 ~ file: card.jsx ~ line 161 ~ OrdersCard ~ status', status);
 
+  const cancelOrder = () => {
+
+    const two_hour = 2 * 60 * 60 * 1000;
+    const is_expired = (new Date() - new Date(item.created_at)) > two_hour
+    console.log(new Date() - new Date(item.created_at), two_hour)
+    if(is_expired && status == 'current'){
+      alert("Order can't be cancelled after 2 hours.");
+      return
+    }
+
+    history.push(`/orders/cancel-order/${item.id}/${orderId}`)
+  }
+
   const history = useHistory();
   const mobileView = useMediaQuery('(max-width:479px)');
   return (
     <div className={styles.mainContainer}>
-      {!detailsPage && item.title && <CustomDivider customBg='#CECECE' />}
+      {/* {!detailsPage && item.title && <CustomDivider customBg='#CECECE' />} */}
       {/* <div className={styles.delivered_date}>
         <h5>Delivered on Jan 13</h5>
       </div> */}
@@ -181,6 +194,7 @@ export default function OrdersCard({
           orderId={orderId}
           detailsPage={detailsPage}
           status={status}
+          onCancel={cancelOrder}
         />
       ) : (
         <>
@@ -288,7 +302,7 @@ export default function OrdersCard({
             >
               <img src={Star} alt='' /> Rate & Review Product
             </Button>
-          ) : (
+           ) : (
             <Button
               onClick={() => history.push(`/trackorder/${orderId}`)}
               className={styles.trackBtn}
@@ -296,7 +310,7 @@ export default function OrdersCard({
             >
               Track Order
             </Button>
-          )} */}
+           )} */}
               <div className={styles.detailThree}>
                 {!detailsPage && (
                   <Link
@@ -309,12 +323,13 @@ export default function OrdersCard({
                   </Link>
                 )}
 
-                <Link
-                  style={{ marginLeft: `${detailsPage ? 'auto' : ''}` }}
+                <span
+                  style={{ marginLeft: `${detailsPage ? 'auto' : ''}`, fontSize:14, fontWeight:'800', cursor:"pointer" }}
                   className={styles.cancelBtn}
+                  onClick={() => cancelOrder()}
                 >
                   Cancel Order
-                </Link>
+                </span>
               </div>
             </div>
           </div>
@@ -330,6 +345,7 @@ export const OrdersCardMobile = ({
   detailsPage,
   status,
   mobile,
+  onCancel
 }) => {
   console.log('🚀 ~ file: card.jsx ~ line 326 ~ item', item);
   const history = useHistory();
@@ -398,12 +414,13 @@ export const OrdersCardMobile = ({
           )}
           {status !== 'deliverd' && (
             <div className={styles.cancelBtnContainer}>
-              <Link
-                style={{ marginLeft: `${detailsPage ? 'auto' : ''}` }}
+              <span 
+                onClick={onCancel}
+                style={{ marginLeft: `${detailsPage ? 'auto' : ''}`, fontSize:12, cursor:'pointer' }}
                 className={styles.cancelBtnMobile}
               >
                 Cancel Order
-              </Link>
+              </span>
             </div>
           )}
         </div>

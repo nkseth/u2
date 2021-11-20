@@ -40,7 +40,7 @@ export default function StylishRecommendationSection({ type }) {
       }}
     >
       {mobile ? (
-        <div className={styles.stylish_header}>
+        <div className={`${styles.stylish_header}  `}>
           Stylish Recommendation
           <CustomDivider style={{ height: '1px', background: '#857250' }} />
         </div>

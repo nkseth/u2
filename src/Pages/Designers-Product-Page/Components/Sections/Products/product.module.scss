@@ -25,27 +25,22 @@
 .productsGrid {
   // width: 100%;
   display: grid !important;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(200px, 264px));
+
   gap: 1.6rem;
   place-items: center;
-}
 
-
-@media screen and (max-width: 1060px) {
-  .productsGrid {
+  @media screen and (max-width: 1136px) {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
-}
-@media screen and (max-width: 580px) {
-  .productsGrid {
+  @media screen and (max-width: 580px) {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media screen and (max-width: 400px) {
-  .productsGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+
+    @media screen and (max-width: 400px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
   }
 }
 

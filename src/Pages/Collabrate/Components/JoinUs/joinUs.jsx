@@ -16,7 +16,7 @@ export default function JoinUs() {
         < div >
             {
                 !tabViewPro ?
-                    <Box display="flex" justifyContent="center" >
+                    <Box style={{margin:'107px 0'}} display="flex" justifyContent="center" >
 
                         <Box display="flex" justifyContent="center" alignItems="center">
                             <Box style={{ position: "relative" }}>
@@ -53,7 +53,7 @@ export default function JoinUs() {
                     </Box>
 
                     :
-                    <Grid>
+                    <Grid style={{margin:mobileView?'50px 0' : '94px 0'}}>
                         <Grid>
                             <p className={mobileView? styles.headingMobile : styles.heading}>Start your account easily and join us quickly</p>
                         </Grid>
@@ -80,7 +80,7 @@ export default function JoinUs() {
                         </Grid>
 
                         <Grid style={{ marginTop:mobileView?"30px" : "38px" }}>
-                                <Button className={styles.buttonTab}>Creat Account</Button>
+                                <Button className={styles.buttonTab}>Create Account</Button>
                         </Grid>
                     </Grid>
             }

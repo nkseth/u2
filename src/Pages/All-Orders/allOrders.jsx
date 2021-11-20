@@ -42,6 +42,7 @@ export default function AllOrders() {
         deliverdOrders.push(order);
     });
   }
+
   return (
     <Container bottomDivider pBottom='0' footerOnTabMob>
       {!orders ? (
@@ -80,21 +81,26 @@ export default function AllOrders() {
                 ></div>
                 {confirmedOrders.map(
                   ({ id, customer, items, order_number }, idx) => {
+                    console.log(
+                      '🚀 ~ file: allOrders.jsx ~ line 102 ~ AllOrders ~ confirmedOrders',
+                      confirmedOrders.length
+                    );
                     return (
                       <div className={styles.ordersCardDiv}>
                         {/* {console.log(order)} */}
                         {items.map(item => (
-                          <OrdersCard
-                            status='current'
-                            item={item}
-                            key={item.id}
-                            orderId={id}
-                            mobile={mobileView}
-                            index={idx}
-                          />
+                          <>
+                            <OrdersCard
+                              status='current'
+                              item={item}
+                              key={item.id}
+                              orderId={id}
+                              mobile={mobileView}
+                              index={idx}
+                            />
+                            <CustomDivider customBg='#CECECE' />
+                          </>
                         ))}
-
-                        <CustomDivider customBg='#CECECE' />
                       </div>
                     );
                   }
@@ -127,13 +133,16 @@ export default function AllOrders() {
                       {/* {console.log(order)} */}
 
                       {items.map(item => (
-                        <OrdersCard
-                          status='pending'
-                          item={item}
-                          key={item.id}
-                          orderId={id}
-                          index={idx}
-                        />
+                        <>
+                          <OrdersCard
+                            status='pending'
+                            item={item}
+                            key={item.id}
+                            orderId={id}
+                            index={idx}
+                          />
+                          <CustomDivider customBg='#CECECE' />
+                        </>
                       ))}
 
                       {/* <div className={styles.deliveryAddress}>
@@ -148,7 +157,6 @@ export default function AllOrders() {
                           <span>{order_number}</span>
                         </p>
                       </div> */}
-                      <CustomDivider customBg='#CECECE' />
                     </div>
                   )
                 )}
@@ -181,13 +189,16 @@ export default function AllOrders() {
                   }) => (
                     <div className={styles.ordersCardDiv}>
                       {items.map(item => (
-                        <OrdersCard
-                          status='deliverd'
-                          deliveryDate={delivery_date}
-                          item={item}
-                          key={item.id}
-                          orderId={id}
-                        />
+                        <>
+                          <OrdersCard
+                            status='deliverd'
+                            deliveryDate={delivery_date}
+                            item={item}
+                            key={item.id}
+                            orderId={id}
+                          />
+                          <CustomDivider customBg='#CECECE' />
+                        </>
                       ))}
 
                       {/* <div className={styles.deliveryAddress}>
@@ -202,7 +213,7 @@ export default function AllOrders() {
                           <span>{order_number}</span>
                         </p>
                       </div> */}
-                      <CustomDivider />
+                      {/* <CustomDivider /> */}
                     </div>
                   )
                 )}

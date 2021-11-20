@@ -1,26 +1,30 @@
 .container {
   position: relative;
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 20% 80%;
   padding: 3rem 0;
 
-  .firstSection {
-    width: 100%;
-    border-right: 1px solid rgb(236, 236, 236);
+  @media screen and (max-width: 840px) {
+    grid-template-columns: 1fr;
   }
-  .firstSection :first-child {
-    border-right: none;
-  }
-  .FilterBreadDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 20%;
-  }
-  .secondSection {
-    width: 80%;
-    // margin-top: -5em;
-  }
+  // .firstSection {
+  //   width: 100%;
+  //   border-right: 1px solid rgb(236, 236, 236);
+  // }
+  // .firstSection :first-child {
+  //   border-right: none;
+  // }
+  // .FilterBreadDiv {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: flex-start;
+  //   width: 20%;
+  // }
+  // .secondSection {
+  //   width: 80%;
+  //   // margin-top: -5em;
+  // }
 }
 .LoadMoreBtnContainer {
   width: 100%;
@@ -54,7 +58,6 @@
   border-bottom: 1px solid #6a5b40;
 }
 @media only screen and (min-width: 550px) and (max-width: 835px) {
-  
   .upperbread {
     width: 150%;
     margin-left: -2em;
@@ -68,9 +71,9 @@
   }
 }
 @media screen and (max-width: 835px) {
-  .container{
+  .container {
     padding: 0 0;
-  
+
     .secondSection {
       width: 100%;
     }
@@ -97,11 +100,12 @@
 //desginer product section
 .banner {
   width: 100%;
-  background-color: gray;
-  min-height: 400px;
+  background-image: url('./bg.svg');
+  min-height: 440px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 2rem;
   &__body {
     display: flex;
     justify-content: flex-start;
@@ -117,10 +121,12 @@
       align-items: center;
       justify-content: center;
       min-width: 300px;
-
+      width: 315px;
+      height: 298px;
       &__image {
         width: 100%;
-        height: 300px;
+        height: 100%;
+        object-fit: cover;
       }
     }
 

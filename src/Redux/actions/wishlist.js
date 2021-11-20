@@ -40,14 +40,10 @@ export const getWishList = (token) => async (dispatch) => {
   }
 };
 
-export const addToWishlist = (slug, token) => async (dispatch) => {
+export const addToWishlist = (slug, variant_id) => async (dispatch) => {
   try {
-    const { data } = await common_axios.get(`/wishlist/${slug}/add`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log(data);
+    const { data } = await common_axios.get(`/wishlist/${slug}/add/${variant_id}`);
+
     if (data) {
       dispatch({ type: ADD_TO_WISHLIST, payload: data.message });
     }

@@ -6,8 +6,8 @@ import iphone3 from '../../../../Images/collabrate/iPhone3.png';
 import styles from './creators.module.scss';
 
 export default function Creators({ toggle, open }) {
-  const mobileView = useMediaQuery('(max-width:550px)');
   const tabViewPro = useMediaQuery('(max-width:1024px)');
+  const mobileView = useMediaQuery('(max-width:550px)');
 
   return (
     <div>
@@ -47,8 +47,8 @@ export default function Creators({ toggle, open }) {
                 <img src={iphone3} alt='iphone3' />
               </Box>
 
-              <Box>
-                <img src={creator} alt='galleryicon' />
+              <Box style={{padding:mobileView?'25px 24px 15px':'25px 55px 0px 55px' }}>
+                <img src={creator} alt='galleryicon' style={{width:mobileView && '37px'}} />
                 <p className={styles.heading}>Creators</p>
                 <p className={styles.textTab}>
                   Grab your audience's attention by your post with eye-catching
@@ -61,12 +61,12 @@ export default function Creators({ toggle, open }) {
               className={styles.backgroundTab}
               onClick={() => toggle('creators')}
             >
-              <Box style={{ marginLeft: '30px' }}>
+              <Box style={{ marginLeft: '36px' }}>
                 <img src={creator1} style={{ marginTop: '18px' }} />
                 <p className={styles.title}>Creators</p>
               </Box>
             </Box>
-          )}
+          )} 
         </>
       )}
     </div>

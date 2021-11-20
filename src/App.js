@@ -54,6 +54,7 @@ import {
   Write_to_us,
   Order_details_page,
   Add_Review_Page,
+  Page_Edit_Review,
 } from './OtherPages/AllComponents';
 import DesignerHome from './OtherPages/DesignerHome/DesignerHome';
 import { Page_Login } from './LoginSceens/LoginSignUp';
@@ -86,11 +87,23 @@ import AboutUs from './OtherPages/AboutUs/AboutUs';
 import MobileCategory from './utils/MobileCategoryPage/MobileCategory';
 import ProductsByDesigner from './Pages/Designers-Product-Page/ProductsByDesigner';
 import SelectMeasurement from './Pages/Select-Measurement/selectMeasurement';
+import CancelOrder from './Pages/All-Orders/Components/Cancel-order/cancelOrder';
 // import OrderDetails from "./OtherPages/OrderDetails/OrderDetails";
+import Geocode from "react-geocode";
+
+
+import TalkWithStylishQuestion from './Pages/TalkWithStylish/TalkWithStylishQuestion/talkWithStylishQuestion';
+import TalkWithStylish from './Pages/TalkWithStylish/TalkWithStylishHome/talkWithStylish';
+
+import Review from './OtherPages/Review/Review';
 
 //Start From Here
 
 function App() {
+  Geocode.setApiKey("AIzaSyA_nmZVriBFLHl4ZdmN7d_WVr9PEH2sZa4");
+  Geocode.setLanguage("en");
+  Geocode.setRegion("es");
+  Geocode.setLocationType("ROOFTOP");
   const { isLoginModel } = useLogin();
   const dispatch = useDispatch();
   const [cookies, setCookie] = useCookies(['user']);
@@ -217,6 +230,10 @@ function App() {
           path={'/addNewaddress'}
           component={Page_AddNewAddress}
         />
+        <ProtectedRoute
+          path={'/edit_review/:id'}
+          component={Page_Edit_Review}
+        />
         <ProtectedRoute path={'/wishlist'} component={Page_Wishlist} />
         <ProtectedRoute path={'/payments'} component={Page_Payments} />
         <ProtectedRoute path={'/editpayments'} component={Page_EditPayments} />
@@ -302,6 +319,13 @@ function App() {
           component={CollabrateAsInfluencer}
         />
         <Route path={'/mobile-category'} component={MobileCategory} />
+
+        <Route path={"/talk-with-stylish-home"} component={TalkWithStylish} />
+        <Route path={"/talk-with-stylish-question"} component={TalkWithStylishQuestion} />
+
+        <Route path={'/order-review/:id'} component={Add_Review_Page} />
+        <Route path={'/orders/cancel-order/:item_id/:order_id'} component={CancelOrder} />
+
       </Switch>
     </div>
   );

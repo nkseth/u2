@@ -36,11 +36,11 @@ export default function StylishRecommendationSection({ type }) {
       style={{
         backgroundColor: '#E6E3DC36',
         paddingTop: '43px',
-        paddingBottom: '43px',
+        paddingBottom: '93px',
       }}
     >
       {mobile ? (
-        <div className={styles.stylish_header}>
+        <div className={`${styles.stylish_header}  `}>
           Stylish Recommendation
           <CustomDivider style={{ height: '1px', background: '#857250' }} />
         </div>

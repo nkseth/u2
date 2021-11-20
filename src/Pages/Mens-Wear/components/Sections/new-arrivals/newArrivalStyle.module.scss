@@ -1,0 +1,64 @@
+.carouselNavigationDiv {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    > a:first-child {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #ffffff;
+    }
+  }
+  
+  .sliderBtnDiv {
+    display: flex;
+    gap: 1rem;
+    .sliderBtn {
+      background: none;
+      border: none;
+      :hover {
+        background: #FFFFFF !important;
+        border-radius: 50%;
+        border: #FFFFFF !important;;
+      }
+    }
+  }
+  
+  button:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    border-radius: 50%;
+  }
+  
+  .iconBtn {
+    border: 1px solid rgb(0, 0, 0) !important;
+    color: rgb(0, 0, 0) !important;
+  }
+  
+  .headerMobile {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: -15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -1.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+      color: #fff;
+      text-align: center;
+  
+      > span:first-child {
+        font-style: italic !important;
+        font-family: DM Serif Display !important;
+      }
+      > span:last-child {
+        font-family: DM Sans !important;
+      }
+    }
+  }
+  

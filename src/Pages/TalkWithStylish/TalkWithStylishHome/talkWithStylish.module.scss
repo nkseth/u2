@@ -1,0 +1,77 @@
+.background {
+    height: 544px;
+    width: 100%;
+    background: #6a5b40;
+    position: relative;
+}
+.banner {
+    height: 609px;
+    width: 90%;
+    position: absolute;
+    top: 193px;
+}
+.heading {
+    padding-top: 5rem;
+    h1 {
+        font-family: DM Serif Display;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 54px;
+        line-height: 28px;
+        text-align: center;
+        color: #857250;
+        padding-bottom: 2.8rem;
+    }
+    span {
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 37px;
+        /* or 206% */
+
+        text-align: center;
+
+        color: #0a0a0a;
+    }
+}
+
+@media screen and (max-width: "550px") {
+    .background {
+        height: 183px;
+        width: 100%;
+        background: #6a5b40;
+        position: relative;
+    }
+    .banner {
+        height: 181px;
+        width: 90%;
+        position: absolute;
+        top: 126px;
+    }
+    .heading {
+        padding-top: 2rem;
+        h1 {
+            font-family: DM Serif Display;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 54px;
+            line-height: 28px;
+            text-align: center;
+            color: #857250;
+            padding-bottom: 2.8rem;
+        }
+        span {
+            font-family: DM Sans;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 25px;
+            /* or 206% */
+
+            text-align: center;
+
+            color: #0a0a0a;
+        }
+    }
+}

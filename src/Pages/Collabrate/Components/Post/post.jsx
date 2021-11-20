@@ -52,12 +52,14 @@ export default function Post({ toggle, open }) {
           {open === 'post' ? (
             <Box marginBottom='40px'>
               <Box className={styles.image3Tab}>
-                <img src={iphone3} alt='iphone3' />
+                <img src={iphone3}  alt='iphone3' />
               </Box>
 
-              <Box>
-                <img src={posts} alt='galleryicon' />
-                <p className={styles.heading}>Posts</p>
+              <Box style={{ padding:mobileView? '0 24px' : '0 55px', marginTop:'-35px' }}>
+                <img src={posts} alt='galleryicon' style={{width:mobileView &&'37px'}} />
+                <p style={{ paddingLeft: '0' }} className={styles.heading}>
+                  Posts
+                </p>
                 <p className={styles.textTab}>
                   Grab your audience's attention by your post with eye-catching
                   photos and videos.
@@ -69,7 +71,7 @@ export default function Post({ toggle, open }) {
               className={styles.backgroundTab}
               onClick={() => toggle('post')}
             >
-              <Box style={{ marginLeft: '30px' }}>
+              <Box style={{ marginLeft: '36px' }}>
                 <img src={posts1} style={{ marginTop: '18px' }} />
                 <p className={styles.title}>Posts</p>
               </Box>

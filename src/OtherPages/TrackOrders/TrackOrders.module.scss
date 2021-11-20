@@ -11,11 +11,23 @@
 .TrackOrders_Timeline_Time {
   padding: 0.4rem;
   p {
+    font-family: DM Sans;
     font-size: 12px;
-    &:nth-of-type(1) {
-      font-weight: 500;
-      color: #444;
-    }
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+  span {
+    font-family: DM Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #6c6c6c;
   }
 }
 .TrackOrders_Timeline_Dot {
@@ -59,12 +71,22 @@
 .TrackOrders_Timeline_info {
   padding: 0.4rem;
   h4 {
-    font-size: 1rem;
+    font-family: DM Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 0px;
+    text-align: left;
   }
   p {
+    font-family: DM Sans;
     font-size: 14px;
-    color: #555;
+    font-style: normal;
     font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.1599999964237213px;
+    text-align: left;
   }
   div {
     padding: 0.4rem 0;

@@ -76,11 +76,12 @@ export default function MyBag() {
     dispatch(getCoupons());
   }, [dispatch, message, error, history]);
 
-  const add_quantity = async (item, index) => {
+  const add_quantity = async (item, index,variant_id) => {
     try {
       const { data } = await common_axios.put(`/cart/${cart.id}/update`, {
         item: item.id,
         quantity: parseInt(item.quantity) + 1,
+        variant_id: variant_id
       });
       console.log(data);
       dispatch(getCartItems());
@@ -90,12 +91,13 @@ export default function MyBag() {
     }
   };
 
-  const substract_quantity = async (item, index) => {
+  const substract_quantity = async (item, index,variant_id) => {
     if (parseInt(item.quantity) > 1) {
       try {
         const { data } = await common_axios.put(`/cart/${cart.id}/update`, {
           item: item.id,
           quantity: parseInt(item.quantity) - 1,
+          variant_id: variant_id
         });
         console.log(data);
         dispatch(getCartItems());
@@ -164,6 +166,11 @@ export default function MyBag() {
                     substract_quantity={substract_quantity}
                     remove_item={remove_item}
                     move_to_wishlist={move_to_wishlist}
+                    setClick={setClick}
+                    click={click}
+                    toggleRemoveModal={toggleRemoveModal}
+                    removeModal={removeModal}
+                    removeItem={removeItem}
                   />
                 </>
               ) : (
@@ -307,15 +314,13 @@ export default function MyBag() {
                       </div>
                     </AccordionDetails>
                   </Accordion>
-                  <Button
-                    variant='text'
-                    color='default'
-                    className={styles.placeOrderBtn}
-                    onClick={() => on_checkout()}
-                  >
-                    Checkout
-                  </Button>
                 </div>
+                <Button
+                  className={styles.placeOrderBtn}
+                  onClick={() => on_checkout()}
+                >
+                  Checkout
+                </Button>
               </div>
             </div>
           )}
@@ -341,8 +346,27 @@ const MobileProductMyBag = ({
   data,
   remove_item,
   move_to_wishlist,
+  click,
+  setClick,
+  toggleRemoveModal,
+  removeModal,
+  removeItem,
 }) => {
   console.log(data);
+  const HtmlTooltipButton = withStyles(theme => ({
+    tooltip: {
+      // placement: "right-start",
+      backgroundColor: '#857250',
+      color: 'white',
+      width: 150,
+      display: 'flex',
+      textAlign: 'center',
+      alignItems: 'center',
+      height: 50,
+      fontSize: theme.typography.pxToRem(10),
+      border: 'none',
+    },
+  }))(Tooltip);
 
   return (
     <div className={styles.MobileConatiner}>
@@ -384,13 +408,22 @@ const MobileProductMyBag = ({
                         <div
                           style={{
                             display: 'flex',
-                            flexDirection: 'column',
+                            alignItems: 'flex-start',
+                            justifyContent: 'space-between',
+                            width: '100%',
                           }}
                         >
-                          <p className={styles.PType1}>Product Type</p>
-                          <p className={styles.PType2}>
-                            {item.type.toUpperCase()}
-                          </p>
+                          <div
+                            style={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                            }}
+                          >
+                            <p className={styles.PType1}>Product Type</p>
+                            <p className={styles.PType2}>
+                              {item.type.toUpperCase()}
+                            </p>
+                          </div>
                         </div>
                       </div>
                       <div style={{display: 'flex'}}>
@@ -414,81 +447,82 @@ const MobileProductMyBag = ({
                         <div
                           style={{ display: 'flex', flexDirection: 'column' }}
                         >
-                          <Button
-                            className={styles.removeBtn1}
-                            onClick={() => add_quantity(item, index)}
-                          >
-                            <AddIcon style={{ width: '15px' }} />
-                          </Button>
+                      
+                            <Button
+                              className={styles.removeBtn1}
+                              onClick={() => add_quantity(item, index,item.variant_id)}
+                            >
+                              <AddIcon style={{ width: '15px' }} />
+                            </Button>
 
-                          <div className={styles.quantity1}>
-                            <span style={{ transform: 'rotate(270deg)' }}>
-                              {item.quantity}
-                            </span>
+                            <div className={styles.quantity1}>
+                              <span style={{ transform: 'rotate(270deg)' }}>
+                                {item.quantity}
+                              </span>
+                            </div>
+                            <Button
+                              className={styles.addBtn1}
+                              onClick={() => substract_quantity(item, index,item.variant_id)}
+                            >
+                              <RemoveIcon
+                                style={{
+                                  width: '15px',
+                                  transform: 'rotate(90deg)',
+                                }}
+                              />
+                            </Button>
                           </div>
-                          <Button
-                            className={styles.addBtn1}
-                            onClick={() => substract_quantity(item, index)}
-                          >
-                            <RemoveIcon
-                              style={{
-                                width: '15px',
-                                transform: 'rotate(90deg)',
-                              }}
-                            />
-                          </Button>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  {item.type === 'readymade' ? (
-                    item.readymade_offer_price > 0 ? (
+                    {item.type === 'readymade' ? (
+                      item.readymade_offer_price > 0 ? (
+                        <div className={styles.PriceMobile}>
+                          <p className={styles.PriceMobileMain}>
+                            {item.currency_symbol}
+                            {item.readymade_offer_price}
+                          </p>
+                          <p className={styles.PriceMobileOriginal}>
+                            {item.currency_symbol}
+                            {item.readymade_price}
+                          </p>
+                          <p className={styles.PriceMobileDiscount}>
+                            {item.readymade_discount.toFixed(0)}% OFF
+                          </p>
+                        </div>
+                      ) : (
+                        <div className={styles.PriceMobile}>
+                          <p className={styles.PriceMobileMain}>
+                            {item.currency_symbol}
+                            {item.readymade_price}
+                          </p>
+                        </div>
+                      )
+                    ) : item.custom_offer_price > 0 ? (
                       <div className={styles.PriceMobile}>
                         <p className={styles.PriceMobileMain}>
                           {item.currency_symbol}
-                          {item.readymade_offer_price}
+                          {item.custom_offer_price}
                         </p>
                         <p className={styles.PriceMobileOriginal}>
                           {item.currency_symbol}
-                          {item.readymade_price}
+                          {item.custom_price}
                         </p>
                         <p className={styles.PriceMobileDiscount}>
-                          {item.readymade_discount.toFixed(0)}% OFF
+                          {item.custom_discount.toFixed(0)}% OFF
                         </p>
                       </div>
                     ) : (
                       <div className={styles.PriceMobile}>
                         <p className={styles.PriceMobileMain}>
                           {item.currency_symbol}
-                          {item.readymade_price}
+                          {item.custom_price}
                         </p>
                       </div>
-                    )
-                  ) : item.custom_offer_price > 0 ? (
-                    <div className={styles.PriceMobile}>
-                      <p className={styles.PriceMobileMain}>
-                        {item.currency_symbol}
-                        {item.custom_offer_price}
-                      </p>
-                      <p className={styles.PriceMobileOriginal}>
-                        {item.currency_symbol}
-                        {item.custom_price}
-                      </p>
-                      <p className={styles.PriceMobileDiscount}>
-                        {item.custom_discount.toFixed(0)}% OFF
-                      </p>
-                    </div>
-                  ) : (
-                    <div className={styles.PriceMobile}>
-                      <p className={styles.PriceMobileMain}>
-                        {item.currency_symbol}
-                        {item.custom_price}
-                      </p>
-                    </div>
-                  )}
+                    )}
 
-                  {/* <Button
+                    {/* <Button
                     onClick={e => move_to_wishlist(item, e)}
                     className={styles.MoveToWishListBtnMobile}
                   >
@@ -500,29 +534,60 @@ const MobileProductMyBag = ({
                   >
                     Remove item
                   </Button> */}
+                  </div>
                 </div>
               </div>
+              <div className={styles.mobileButton}>
+                <HtmlTooltipButton
+                  open={item.id == click ? true : false}
+                  onOpen={() => setClick(true)}
+                  onClose={() => setClick(false)}
+                  disableFocusListener
+                  disableHoverListener
+                  className={styles.ProductSelectorHelpBtn}
+                  style={{ color: '#6a5b40' }}
+                  title={
+                    <>
+                      <h3
+                        style={{
+                          padding: 10,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.2rem',
+                        }}
+                      >
+                        <FavoriteIcon /> Added To wishlist
+                      </h3>
+                    </>
+                  }
+                  placement={'top'}
+                  arrow
+                >
+                  <Button
+                    onClick={() => {
+                      move_to_wishlist(item);
+                      setClick(item.id);
+                    }}
+                    className={styles.MoveToWishListBtnMobile}
+                  >
+                    Move to Wishlist
+                  </Button>
+                </HtmlTooltipButton>
+                <Button
+                  onClick={() => remove_item(item)}
+                  onClick={e => toggleRemoveModal(item, e)}
+                  // onClick={e => }
+                  className={styles.RemoveBTNMobile}
+                >
+                  Remove item
+                </Button>
+                <hr />
+              </div>
+              {item.type === 'customise' ? <CheckOutProcess /> : <></>}
             </div>
-            <div className={styles.mobileButton}>
-              <Button
-                onClick={e => move_to_wishlist(item, e)}
-                className={styles.MoveToWishListBtnMobile}
-              >
-                Move to Whishlist
-              </Button>
-              <Button
-                onClick={e => remove_item(item, e)}
-                className={styles.RemoveBTNMobile}
-              >
-                Remove item
-              </Button>
-              <hr />
-            </div>
-            {item.type === 'customise' ? <CheckOutProcess /> : <></>}
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
   );
 };
 

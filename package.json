@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "dependencies": {
+    "@algolia/autocomplete-js": "^1.5.0",
     "@autocomplete/material-ui": "0.0.17",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
@@ -14,6 +15,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "algoliasearch": "^4.11.0",
     "antd": "^4.16.6",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",

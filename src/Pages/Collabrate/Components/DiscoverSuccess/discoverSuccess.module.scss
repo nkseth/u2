@@ -1,51 +1,49 @@
-.heading{
-    font-family: DM Serif Display;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 54px;
-    line-height: 63px;
-    display: flex;
-    font-feature-settings: 'tnum' on, 'lnum' on;
+.heading {
+  font-family: DM Serif Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 54px;
+  line-height: 63px;
+  display: flex;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  max-width: 644px;
 }
-.subHeading{
-    font-family: DM Sans;
-    font-style: normal;
-    font-weight: normal;
+.subHeading {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 174%;
+  color: #3b3b3b;
+  margin-top: 15px;
+}
+.text {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 174%;
+  margin-left: 25px;
+}
+.compogroup{
+  margin-bottom: 107px;
+}
+
+
+@media screen and (max-width:550px) {
+  .check{
+    width: 15px;
+  }
+  .text{
     font-size: 18px;
-    line-height: 174%;
-    color: #3B3B3B;
-    margin-top: 15px;
-}
-.text{
-    font-family: DM Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 28px;
-    line-height: 174%;
-    margin-left: 25px;
-}
-.headingMobile{
-    font-family: DM Serif Display;
-    font-style: normal;
-    font-weight: normal;
+    margin-left: 11px;
+  }
+  .heading {
     font-size: 25px;
     line-height: 32px;
-    display: flex;
-}
-.subHeadingMobile{
-    font-family: DM Sans;
-    font-style: normal;
-    font-weight: normal;
+  }
+  .subHeadingMobile {
     font-size: 18px;
-    line-height: 174%;
-    color: #3B3B3B;
     margin-top: 15px;
-}
-.textMobile{
-    font-family: DM Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 174%;
-    margin-left: 25px;
+  }
 }

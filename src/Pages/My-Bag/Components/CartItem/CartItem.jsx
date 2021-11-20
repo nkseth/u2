@@ -53,7 +53,7 @@ const CartItem = ({
                 justifyContent: 'space-between',
               }}
             >
-              <div>
+              <div className={styles.nameNCat}>
                 <h5
                   className={styles.proName}
                   style={{ marginBottom: '0.5rem' }}
@@ -114,7 +114,7 @@ const CartItem = ({
                         <strike>{item.custom_price}</strike>
                       </span>
                       <span className={styles.discountPercentage}>
-                        {item.custom_discount.toFixed(0)}% off
+                        {item.custom_discount.toFixed(0)}% OFF
                       </span>
                     </p>
                   </>

@@ -1,62 +1,124 @@
-.heading{
-    font-family:DM Serif Display;
-    font-size:54px;
-    line-height:64px;
-}
-.subHeading{
-    font-family: DM Sans;
-    font-size: 18px;
-    font-weight: 500;
-    margin-top: 25px;
-    line-height: 164.8%;
-}
-.percent{
-    font-family: DM Serif Display;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 40px;
-    line-height: 120%;
-    margin-bottom: 34px;
-    text-align: center;
-}
-.subtext{
-    font-family: DM Sans;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 164.8%;
-    color: #3B3B3B;
-    text-align: center;
-}
-.headingMobile{
-    font-family:DM Serif Display;
-    font-size:25px;
-    line-height:120%;
-    text-align: center;
-}
-.subHeadingMobile{
-    font-family: DM Sans;
-    font-size: 16px;
-    font-weight: 500;
-    margin-top: 12px;
-    line-height: 164.8%;
-    text-align: center;
-}
-.percentBox{
-    display:flex;
-    margin-top:33px;
-    margin-left:50px;
-    margin-right:60px;
-}
-.percentBoxMobile{
+.group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media screen and (max-width:1024px) {
     display: unset;
+  }
+
+  >div:first-child {
+    @media screen and (max-width:1024px) {
+      display: flex;
+      justify-content: center;
+    }
+
+    @media screen and (max-width:550px) {
+      >img {
+        width: 100%;
+      }
+    }
+  }
+
+  >div:nth-child(2) {
+    @media screen and (max-width:550px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 65px;
+    }
+
+    @media screen and (min-width:551px) and (max-width:1024px) {
+      margin-top: 110px;
+    }
+
+    >p:first-child {
+      font-family: DM Serif Display;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 54px;
+      line-height: 120%;
+      color: #000000;
+      margin-bottom: 25px;
+
+      @media screen and (max-width:550px) {
+        font-size: 25px;
+        margin-bottom: 12px;
+      }
+    }
+
+    >p:nth-child(2) {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 164.8%;
+      color: #000000;
+
+      @media screen and (max-width:550px) {
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+  }
 }
-.percentMobile{
-    font-family: DM Serif Display;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 40px;
-    line-height: 120%;
-    margin-bottom: 3px;
-    text-align: center;
+
+.percentgroup {
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width:1024px) {
+    justify-content: space-around;
+  }
+
+  @media screen and (max-width:550px) {
+    display: unset;
+  }
+
+  >div:first-child {
+    >p:first-child {
+      font-family: DM Serif Display;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 40px;
+      line-height: 120%;
+      color: #000000;
+      text-align: center;
+      margin: 33px 0 34px 0;
+    }
+
+    >p:nth-child(2) {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 164.8%;
+      text-align: center;
+      color: #3B3B3B;
+      width: 260px;
+    }
+  }
+
+  >div:last-child {
+    >p:first-child {
+      font-family: DM Serif Display;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 40px;
+      line-height: 120%;
+      color: #000000;
+      text-align: center;
+      margin: 33px 0 34px 0;
+    }
+
+    >p:nth-child(2) {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 164.8%;
+      text-align: center;
+      color: #3B3B3B;
+      width: 260px;
+    }
+  }
 }

@@ -11,7 +11,7 @@ import { popularCategories } from '../../Redux/actions/designerHomePage';
 import { useDispatch } from 'react-redux';
 import Category from './Component/Category';
 import Container from '../Container/container';
-import Mens from './images/mens.jpg';
+import Mens from './images/men.jpg';
 import Women from './images/women.jpg';
 import Kids from './images/kids.jpg';
 const MobileCategory = () => {

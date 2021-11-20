@@ -1,48 +1,50 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Grid, useMediaQuery } from "@material-ui/core";
-import Container from "../../utils/Container/container";
-import CustomDivider from "../../utils/Custom Divider/divider";
-import SideNavbar from "../../utils/Side-Navbar/sideNavbar";
-import Breadcrumb from "../../utils/Breadcrumb/breadcrumb";
-import OrdersCard from "./Components/Order-Card/card";
-import styles from "./allOrders.module.scss";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Grid, useMediaQuery } from '@material-ui/core';
+import Container from '../../utils/Container/container';
+import CustomDivider from '../../utils/Custom Divider/divider';
+import SideNavbar from '../../utils/Side-Navbar/sideNavbar';
+import Breadcrumb from '../../utils/Breadcrumb/breadcrumb';
+import OrdersCard from './Components/Order-Card/card';
+import styles from './allOrders.module.scss';
 //icons
-import DeliveryVanIcon from "../../Images/icons/devliveryVan.svg";
-import PackageIcon from "../../Images/icons/package.svg";
-import PastOrdersCard from "./Components/Past-orders/card";
-import { useDispatch, useSelector } from "react-redux";
-import { get_orders } from "../../Redux/actions/profile";
-import Loader from "../../utils/Loader/Loader";
+import DeliveryVanIcon from '../../Images/icons/devliveryVan.svg';
+import Pending from './images/pending.svg';
+import PackageIcon from '../../Images/icons/package.svg';
+import PastOrdersCard from './Components/Past-orders/card';
+import { useDispatch, useSelector } from 'react-redux';
+import { get_orders } from '../../Redux/actions/profile';
+import Loader from '../../utils/Loader/Loader';
 
 export default function AllOrders() {
   const dispatch = useDispatch();
-  const { orders } = useSelector((state) => state.root.profile);
+  const { orders } = useSelector(state => state.root.profile);
   console.log(orders);
   useEffect(() => {
     dispatch(get_orders());
   }, [dispatch]);
-  const tabView = useMediaQuery("(max-width:768px)");
-  const mobileView = useMediaQuery("(max-width:550px)");
+  const tabView = useMediaQuery('(max-width:768px)');
+  const mobileView = useMediaQuery('(max-width:500px)');
   let pendingOrders = [],
     confirmedOrders = [],
     deliverdOrders = [];
 
   if (orders) {
-    orders.forEach((order) => {
+    orders.forEach(order => {
       if (
-        order.order_status.toLowerCase() === "pending" ||
-        order.order_status.toLowerCase() === "pending"
+        order.order_status.toLowerCase() === 'pending' ||
+        order.order_status.toLowerCase() === 'pending'
       )
         pendingOrders.push(order);
-      if (order.order_status.toLowerCase() === "confirmed")
+      if (order.order_status.toLowerCase() === 'confirmed')
         confirmedOrders.push(order);
-      if (order.order_status.toLowerCase() === "delivered")
+      if (order.order_status.toLowerCase() === 'delivered')
         deliverdOrders.push(order);
     });
   }
+
   return (
-    <Container bottomDivider pBottom="0" footerOnTabMob>
+    <Container bottomDivider pBottom='0' footerOnTabMob>
       {!orders ? (
         <Loader />
       ) : (
@@ -50,37 +52,55 @@ export default function AllOrders() {
           {!tabView && <SideNavbar />}
           <div className={styles.cardsDivOuterContainer}>
             {tabView && (
-              <Breadcrumb path="Home /" activePath="Profile / Orders" />
+              <Breadcrumb path='Home /' activePath='Profile / Orders' />
             )}
             <div className={styles.headerDiv}>
               <span className={styles.header}>Orders</span>
-              <CustomDivider />
+              <CustomDivider customBg='#CECECE' />
             </div>
             {confirmedOrders.length > 0 && (
               <div>
                 <div
                   style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    gap: "1rem",
-                    padding: "1rem 0",
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    padding: '1rem 0',
                   }}
                 >
-                  <img src={DeliveryVanIcon} alt="Delivery Van" />
-                  {"On the way"}
+                  <img src={DeliveryVanIcon} alt='Delivery Van' />
+                  {'On the way'}
                 </div>
-                <CustomDivider />
+                <div
+                  style={{
+                    height: '1px',
+                    background: '#CECECE',
+                    width: '65%',
+                  }}
+                ></div>
                 {confirmedOrders.map(
-                  ({ id, customer, items, order_number }) => {
+                  ({ id, customer, items, order_number }, idx) => {
+                    console.log(
+                      '🚀 ~ file: allOrders.jsx ~ line 102 ~ AllOrders ~ confirmedOrders',
+                      confirmedOrders.length
+                    );
                     return (
                       <div className={styles.ordersCardDiv}>
                         {/* {console.log(order)} */}
-                        {items.map((item) => (
-                          <OrdersCard item={item} key={item.id} orderId={id} />
+                        {items.map(item => (
+                          <>
+                            <OrdersCard
+                              status='current'
+                              item={item}
+                              key={item.id}
+                              orderId={id}
+                              mobile={mobileView}
+                              index={idx}
+                            />
+                            <CustomDivider customBg='#CECECE' />
+                          </>
                         ))}
-
-                        <CustomDivider />
                       </div>
                     );
                   }
@@ -91,32 +111,41 @@ export default function AllOrders() {
               <div>
                 <div
                   style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    gap: "1rem",
-                    padding: "1rem 0",
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    padding: '1rem 0',
+                    color: '#FF543E',
                   }}
+                  className={styles.pendingHeading}
                 >
-                  <img src={DeliveryVanIcon} alt="Delivery Van" />
-                  {"Pending"}
+                  <img src={Pending} alt='Delivery Van' />
+                  Pending orders
                 </div>
-                <CustomDivider />
+                <CustomDivider customBg='#CECECE' />
                 {pendingOrders.map(
-                  ({ id, customer, items, order_number, delivery_address }) => (
+                  (
+                    { id, customer, items, order_number, delivery_address },
+                    idx
+                  ) => (
                     <div className={styles.ordersCardDiv}>
                       {/* {console.log(order)} */}
 
-                      {items.map((item) => (
-                        <OrdersCard
-                          pending
-                          item={item}
-                          key={item.id}
-                          orderId={id}
-                        />
+                      {items.map(item => (
+                        <>
+                          <OrdersCard
+                            status='pending'
+                            item={item}
+                            key={item.id}
+                            orderId={id}
+                            index={idx}
+                          />
+                          <CustomDivider customBg='#CECECE' />
+                        </>
                       ))}
 
-                      <div className={styles.deliveryAddress}>
+                      {/* <div className={styles.deliveryAddress}>
                         <span>Delivery Address</span>
                         <p>
                           <span>{customer.name}</span>
@@ -127,8 +156,7 @@ export default function AllOrders() {
                           <span>Order ID</span>
                           <span>{order_number}</span>
                         </p>
-                      </div>
-                      <CustomDivider />
+                      </div> */}
                     </div>
                   )
                 )}
@@ -139,15 +167,15 @@ export default function AllOrders() {
               <div>
                 <div
                   style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    gap: "1rem",
-                    padding: "1rem 0",
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    padding: '1rem 0',
                   }}
                 >
-                  <img src={PackageIcon} alt="orders" />
-                  {"Past Orders"}
+                  <img src={PackageIcon} alt='orders' />
+                  {'Past Orders'}
                 </div>
                 <CustomDivider />
                 {deliverdOrders.map(
@@ -160,16 +188,20 @@ export default function AllOrders() {
                     delivery_address,
                   }) => (
                     <div className={styles.ordersCardDiv}>
-                      {items.map((item) => (
-                        <PastOrdersCard
-                          deliveryDate={delivery_date}
-                          item={item}
-                          key={item.id}
-                          orderId={id}
-                        />
+                      {items.map(item => (
+                        <>
+                          <OrdersCard
+                            status='deliverd'
+                            deliveryDate={delivery_date}
+                            item={item}
+                            key={item.id}
+                            orderId={id}
+                          />
+                          <CustomDivider customBg='#CECECE' />
+                        </>
                       ))}
 
-                      <div className={styles.deliveryAddress}>
+                      {/* <div className={styles.deliveryAddress}>
                         <span>Delivery Address</span>
                         <p>
                           <span>{customer.name}</span>
@@ -180,8 +212,8 @@ export default function AllOrders() {
                           <span>Order ID</span>
                           <span>{order_number}</span>
                         </p>
-                      </div>
-                      <CustomDivider />
+                      </div> */}
+                      {/* <CustomDivider /> */}
                     </div>
                   )
                 )}

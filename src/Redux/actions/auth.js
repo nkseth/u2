@@ -130,7 +130,7 @@ export const socialLogin = (userCreds, provider) => async (dispatch) => {
       dispatch({ type: LOGIN, payload: data.data });
     }
   } catch (e) {
-    alert("Sometinh went wrong");
+    alert("Something went wrong");
     console.log(e);
   }
 };

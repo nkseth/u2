@@ -177,7 +177,7 @@ const  [sharedisplay,setsharedisplay]=useState(false)
   const [images, setImages] = useState([]);
  
   const [isAddToWishList, setAddToWishList] = useState(false);
-
+  const [reviews, setReviews] = useState([])
   const { login_Model_Show } = useLogin();
 
   const { user, isAuthenticated } = useSelector(state => state.root.auth);
@@ -352,18 +352,38 @@ setcolorarr(c)
         img.push({ thumbnail: item.path, original: item.path });
       });
       setImages(img);
+      setAddToWishList(details.is_wishlist)
     }
     if (!details && !loading) dispatch(getProductDetails(slug));
   }, [selectedvarient]);
 
-  console.log(details)
 
   useEffect(() => {
     dispatch(getProductDetails(slug));
   }, []);
 
-  const buy_now_handler = async () => {
 
+  useEffect(() => {
+    if (details) {
+      get_product_review()
+    }
+  }, [details])
+
+  const get_product_review = async () => {
+
+    try {
+      const { data } = await common_axios.get(`https://dhaatri.info/api/product_review_list/${details.id}`)
+      if(data.data){
+        setReviews(data.data)
+      }
+    } catch (e) {
+      console.log(e)
+    }
+
+  }
+
+
+  const buy_now_handler = async () => {
     if (isAuthenticated) {
       if (details.hasOwnProperty('title')) {
         try {
@@ -421,7 +441,7 @@ setcolorarr(c)
   const add_to_wishlist = prod => {
     if (!isAuthenticated)
       return alert('Login first to add the item to wishlist');
-    dispatch(addToWishlist(prod.slug, user.api_token));
+    dispatch(addToWishlist(prod.slug, variantId));
     setAddToWishList(true);
     // dispatch(getWishList(user.api_token));
   };
@@ -545,9 +565,8 @@ else{
                           src={image.thumbnail}
                           className={`${imageIdx === i ? 'active' : ''}`}
                           style={{
-                            border: `${
-                              imageIdx === i ? '1px solid #857250' : ''
-                            }`,
+                            border: `${imageIdx === i ? '1px solid #857250' : ''
+                              }`,
                             width: '70px',
                             height: '75px',
                             objectFit: 'cover',
@@ -646,9 +665,8 @@ else{
                             src={image.thumbnail}
                             className={`${imageIdx === i ? 'active' : ''}`}
                             style={{
-                              border: `${
-                                imageIdx === i ? '2px solid #857250' : ''
-                              }`,
+                              border: `${imageIdx === i ? '2px solid #857250' : ''
+                                }`,
                               width: '56.59px',
                               height: '61.44px',
                               objectFit: 'cover',
@@ -681,7 +699,7 @@ else{
                       color='default'
                       className={styles.checkBtn}
 
-                      // onClick={() => history.push('/product-breakdown')}
+                    // onClick={() => history.push('/product-breakdown')}
                     >
                       Check
                     </Button>
@@ -910,7 +928,7 @@ else{
                       <div
                         style={{
                           fontWeight: 'bolder',
-                          marginTop: 5,
+
                           marginBottom: -10,
                         }}
                       >
@@ -1364,7 +1382,6 @@ else{
                           // setAnimate(animate => !animate);
                         }}
                         variant='outlined'
-                        color='default'
                         // startIcon={}
                         fullWidth
                         // className={
@@ -1431,7 +1448,7 @@ else{
                           color='default'
                           className={styles.checkBtn}
 
-                          // onClick={() => history.push('/product-breakdown')}
+                        // onClick={() => history.push('/product-breakdown')}
                         >
                           Check
                         </Button>
@@ -1461,7 +1478,7 @@ else{
                           color='default'
                           className={styles.checkBtn}
 
-                          // onClick={() => history.push('/product-breakdown')}
+                        // onClick={() => history.push('/product-breakdown')}
                         >
                           Check
                         </Button>
@@ -1472,7 +1489,7 @@ else{
                   <></>
                 )}
                 <div>
-                  <DetailTabs product={details} type={ProductType} />
+                  <DetailTabs product={details} type={ProductType} reviews={reviews} />
                 </div>
               </div>
             </div>

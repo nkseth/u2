@@ -1,61 +1,79 @@
-.heading{
-    font-family:"DM Serif Display";
-    font-size:54px;
-    line-height:64px;
-    display: flex;
-    justify-content: center;
-}
-.subHeading{
-    font-family:"DM Sans";
-    font-size:18px;
-    line-height:174%;
+.heading {
+    font-family: "DM Serif Display";
+    font-size: 54px;
+    line-height: 64px;
     text-align: center;
-    margin-top: 17px;
-    color: #3B3B3B;
 }
-.headingMobile{
-    font-family:"DM Serif Display";
-    font-size:25px;
-    line-height:64px;
-    display: flex;
-    justify-content: center;
+.section{
+    margin-bottom: 107px;
 }
-.subHeadingMobile{
-    font-family:"DM Sans";
-    font-size:16px;
-    line-height:174%;
+.subHeading {
+    font-family: "DM Sans";
+    font-size: 18px;
+    line-height: 174%;
     text-align: center;
     color: #3B3B3B;
 }
-.cardGroup{
+
+.cardGroup {
     padding-right: 5%;
-    margin-top:140px;
-    display:flex;
-    background-color:rgba(133, 114, 80, 0.25)
+    margin-top: 140px;
+    display: flex;
+    background-color: rgba(133, 114, 80, 0.25)
 }
-.compo{
-    padding-left:5%;
-    padding-right:5%;
-    margin-top:110px;
-    background-color:#E7E6E2;
-    padding-top:88px;
-    padding-bottom:62px;
+
+.compo {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 110px;
+    background-color: #E7E6E2;
+    padding-top: 88px;
+    padding-bottom: 62px;
 }
-.compotab{
-    background-color:#E7E6E2;
+
+.compotab {
+    background-color: #E7E6E2;
     margin-top: 100px;
     padding: 20px 24px 20px 24px;
 }
-.compomobile{
-    background-color:#E7E6E2;
-    padding-bottom:20px;
+
+.compomobile {
+    background-color: #E7E6E2;
+    padding-bottom: 20px;
     margin-top: 60px;
     padding-left: 16px;
     padding-right: 16px;
 }
-.cardGroupTab{
-    margin-top:110px;
-    display:flex;
-    flex-direction:column;
-    background-color:rgba(133, 114, 80, 0.25);
+.group1{
+    padding-bottom: 107px;
+}
+
+
+@media screen and (max-width:550px) {
+    .heading {
+        font-size: 25px;
+        line-height: 64px;
+        text-align: center;
+    }
+    .subHeading {
+        font-size: 16px;
+    }
+    .compogroup{
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .cardGroup{
+        margin-top: 110px;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(133, 114, 80, 0.25);
+    }
+    .section{
+        margin-bottom: 50px;
+    }
+    .compogroup{
+        margin-bottom: 94px;
+    }
 }

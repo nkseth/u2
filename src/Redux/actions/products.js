@@ -20,7 +20,7 @@ export const getProducts = (type, filter) => async dispatch => {
     if (type) url = `/getCategoryByProduct/${type}`;
     else url = `/getCategoryByProduct`;
     const { data } = await common_axios.post(url, filter);
-    console.log('🚀 ~ file: products.js ~ line 23 ~ data', data);
+
     if (data.data) {
       dispatch({
         type: GET_PRODUCTS_SUCCESS,
@@ -41,10 +41,12 @@ export const getDesignerProducts = (designerId, filter) => async dispatch => {
       `/getProductByDesigner/${designerId}`,
       filter
     );
+    console.log('🚀 ~ file: products.js ~ line 44 ~ data', data);
+
     if (data.data) {
       dispatch({
         type: GET_PRODUCTS_SUCCESS,
-        payload: { data: data.data, sorted: false },
+        payload: { data: data.data, count: data.count, sorted: false },
       });
     }
   } catch (err) {
@@ -92,6 +94,37 @@ export const getSimilarProducts = tags => async dispatch => {
 
 export const getSortedProduct =
   (slug, group, type, products) => async dispatch => {
+    const new_products = [];
+    products.forEach(element => {
+      if (element.isCustomise === 'on') {
+        if (element.custom_offer_price > 0) {
+          new_products.push({
+            ...element,
+            main_price: element.custom_offer_price,
+          });
+        } else if (element.has_variant) {
+          new_products.push({
+            ...element,
+            main_price: element.readymade_offer_price,
+          });
+        } else {
+          new_products.push({ ...element, main_price: element.custom_price });
+        }
+        //new_products.push({...element, main_price:element.custom_price})
+      } else {
+        if (element.readymade_offer_price > 0) {
+          new_products.push({
+            ...element,
+            main_price: element.readymade_offer_price,
+          });
+        } else {
+          new_products.push({
+            ...element,
+            main_price: element.readymade_price,
+          });
+        }
+      }
+    });
     // try {
     //   dispatch({ type: GET_PRODUCTS_REQUEST });
     //   console.log("Filter Data", slug, group, type);
@@ -127,8 +160,8 @@ export const getSortedProduct =
     }
 
     if (type === 'lowToHeigh') {
-      const new_prods = products.sort(function (a, b) {
-        return a.readymade_price - b.readymade_price;
+      const new_prods = new_products.sort(function (a, b) {
+        return a.main_price - b.main_price;
       });
       dispatch({
         type: GET_PRODUCTS_SUCCESS,
@@ -138,8 +171,8 @@ export const getSortedProduct =
     }
 
     if (type === 'heighTolow') {
-      const new_prods = products.sort(function (a, b) {
-        return b.readymade_price - a.readymade_price;
+      const new_prods = new_products.sort(function (a, b) {
+        return b.main_price - a.main_price;
       });
       dispatch({
         type: GET_PRODUCTS_SUCCESS,

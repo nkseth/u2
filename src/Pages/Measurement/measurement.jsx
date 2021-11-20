@@ -12,7 +12,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import img from './body.png';
 import { useDispatch, useSelector } from 'react-redux';
 import common_axios from '../../utils/axios.config';
-import { SuccessPopUp } from '../Payment/payment';
+
 import {
   Customer_Name,
   Customer_Name_Change,
@@ -45,12 +45,13 @@ import {
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { SuccessPopUp } from '../../utils/Popups/SuccessPopup';
 
 // Import Swiper styles
 // import 'swiper/css';
 // import 'swiper/css/navigation';
 // import 'swiper/css/pagination';
-
+import success from './success.gif';
 export default function Measurement({
   match: {
     params: { id },
@@ -67,8 +68,10 @@ export default function Measurement({
 
   const { user } = useSelector(state => state.root.auth);
   const { measurement } = useSelector(state => state.root.measurement);
-
-  console.log(measurement);
+  console.log(
+    '🚀 ~ file: measurement.jsx ~ line 70 ~ measurement',
+    measurement
+  );
 
   const { neck, chest, wrist, shoulder, arm_hole, sleeve } = upper_body;
   const { waist, hip_round, full_length, inseam, thigh, calf, ankle } =
@@ -151,10 +154,15 @@ export default function Measurement({
   return (
     <Container bottomDivider footerOnTabMob>
       {OrderDone ? (
-        <SuccessPopUp
-          toggle={toggle}
-          title={'Your measurement added successfully and your order is placed'}
-        />
+        <SuccessPopUp toggle={toggle}>
+          <div className={styles.SuccessPopUp}>
+            <img src={success} alt='' />
+            <h2>Your measurement added successfully</h2>
+            <h1>Happy Shopping!</h1>
+
+            <Button onClick={toggle}>Browse products</Button>
+          </div>
+        </SuccessPopUp>
       ) : (
         <></>
       )}
@@ -192,9 +200,9 @@ export default function Measurement({
                 showArrows={true}
                 showThumbs={false}
               >
-                <img src={img} alt='all body details' />
+                <img src={measurement?.front_image} alt='all body details' />
 
-                <img src={img} alt='all body details' />
+                <img src={measurement?.back_image} alt='all body details' />
               </Carousel>
             </div>
           </Grid>

@@ -4,7 +4,15 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import styles from "./MyAddresses.module.scss";
 import { useHistory } from "react-router-dom";
 import common_axios from "../../utils/axios.config";
+import Geocode from "react-geocode";
+
+
 const AddNewAddress = () => {
+
+  Geocode.setApiKey("AIzaSyA_nmZVriBFLHl4ZdmN7d_WVr9PEH2sZa4");
+  Geocode.setLanguage("en");
+  Geocode.setRegion("es");
+  Geocode.setLocationType("ROOFTOP");
 
   const { push } = useHistory();
 
@@ -96,7 +104,34 @@ const AddNewAddress = () => {
 
     if (location) {
       location.getCurrentPosition((position) => {
-        console.log(position)
+        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+          (response) => {
+            console.log(response.status)
+            if (response.status == 'OK') {
+              setStreet(response.results[0].formatted_address)
+              const letVar = response.results[0].address_components
+              letVar.forEach((item) => {
+                item.types.forEach((qr) => {
+                  if (qr === 'locality') {
+                    setLocality(item.long_name)
+                  }
+                  if (qr === 'administrative_area_level_2') {
+                    setCity(item.long_name)
+                  }
+                  if (qr === 'administrative_area_level_1') {
+                    setState(item.long_name)
+                  }
+                  if (qr === 'postal_code') {
+                    setPin(item.long_name)
+                  }
+                })
+              })
+            }
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
       }, (error) => {
         console.log(error)
         //this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
@@ -112,24 +147,24 @@ const AddNewAddress = () => {
           <label>Add new address</label>
           <Button onClick={getLocation}>
             <LocationOnIcon />
-            <span>Use current loacation</span>
+            <span>Use current location</span>
           </Button>
         </div>
         <div className={styles.AddNewAddress_Inputs}>
           <Inputs onChange={(e) => setName(e.target.value)} label="Name" placeholder="Input" />
           <Inputs onChange={(e) => setPhone(e.target.value)} label="Mobile" placeholder="Input" />
-          <Inputs onChange={(e) => setPin(e.target.value)} label="Pincode" placeholder="Input" />
-          <Inputs onChange={(e) => setLocality(e.target.value)} label="Locality" placeholder="Input" />
+          <Inputs value={pin} onChange={(e) => setPin(e.target.value)} label="Pincode" placeholder="Input" />
+          <Inputs value={locality} onChange={(e) => setLocality(e.target.value)} label="Locality" placeholder="Input" />
         </div>
         <div className={styles.AddNewAddress_textarea}>
           <label>Address area and street</label>
-          <textarea onChange={(e) => setStreet(e.target.value)} placeholder={"input"}></textarea>
+          <textarea value={street} onChange={(e) => setStreet(e.target.value)} placeholder={"input"}></textarea>
         </div>
         <div className={styles.AddNewAddress_Inputs}>
-          <Inputs onChange={(e) => setCity(e.target.value)} label="City / Disrict / Town" placeholder="Input" />
-          <Select onChange={(e) => setState(e.target.value)} label="State" />
-          <Inputs onChange={(e) => setLandmark(e.target.value)} label="Landmark (optional)" placeholder="Input" />
-          <Inputs onChange={(e) => setAlternate_phone(e.target.value)} label="Alternate Phone (optional)" placeholder="Input" />
+          <Inputs value={city} onChange={(e) => setCity(e.target.value)} label="City / Disrict / Town" placeholder="Input" />
+          <Select value={state} onChange={(e) => setState(e.target.value)} label="State" />
+          <Inputs value={Landmark} onChange={(e) => setLandmark(e.target.value)} label="Landmark (optional)" placeholder="Input" />
+          <Inputs value={alternate_phone} onChange={(e) => setAlternate_phone(e.target.value)} label="Alternate Phone (optional)" placeholder="Input" />
         </div>
 
         <div className={styles.AddNewAddress_Type}>
@@ -170,21 +205,21 @@ const AddNewAddress = () => {
 export default AddNewAddress;
 
 //Here Custom Components
-const Inputs = ({ label, placeholder, onChange }) => {
+const Inputs = ({ label, placeholder, onChange, value }) => {
   return (
     <div>
       <label>{label}</label>
-      <input type="text" placeholder={placeholder} onChange={onChange} />
+      <input value={value} type="text" placeholder={placeholder} onChange={onChange} />
     </div>
   );
 };
 
 
-const Select = ({ label, placeholder, onChange }) => {
+const Select = ({ label, placeholder, onChange, value }) => {
   return (
     <div>
       <label>{label}</label>
-      <select onChange={onChange}>
+      <select value={value} onChange={onChange}>
         {states.map((item) => {
           return (
             <option value={item}>{item}</option>

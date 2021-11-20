@@ -1,0 +1,219 @@
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  max-height: 100%;
+}
+.topnavigation{
+    display: flex;
+    justify-content:space-between ;
+    align-items: center;
+    padding: 10px 19px;
+
+    >p:nth-child(2){
+        font-family: DM Serif Display;
+        font-size: 20px;
+        line-height: 28px;
+        color: #857250;
+        margin: 0;
+    }
+    >p:last-child{
+        font-family: DM Sans;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 20px;
+        text-align: right;
+        color: #857250;
+        margin: 0;
+    }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.3rem 1rem;
+  border-top: 2px solid rgb(236, 236, 236) !important;
+  user-select: none;
+
+  > span:first-child {
+    font-family: DM Serif Display;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    color: #000;
+  }
+
+  > span:last-child {
+    a {
+      font-size: 14px;
+      font-family: DM Sans !important;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 0.1599999964237213px;
+      color: #857250 !important;
+      cursor: pointer;
+    }
+  }
+}
+
+.accordion {
+  box-shadow: none !important;
+  // border-top: 1px solid rgb(236, 236, 236) !important;
+  // margin: 0 !important;
+  border-radius: 0 !important;
+  //   border-top: 1px solid rgb(206, 206, 206);
+}
+
+.accordionSummary {
+  border-top: 1px solid rgb(236, 236, 236) !important;
+  background: #fffffff2 !important;
+  //   padding: 0 !important;
+  //   margin: 0 !important;
+  //   width: 150px !important;
+  //   box-shadow: none !important;
+  //   border-radius: 0 !important;
+  .accordionSummaryInnerDiv {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    font-family: Inter;
+    gap: 4px;
+    > span:first-child {
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 20px;
+        color: #0A0A0A;
+    }
+    > span:last-child {
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0.16px;
+        color: #6C6C6C;
+        
+    }
+  }
+}
+.range{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    color: #6C6C6C;
+    margin: 0;
+}
+.accordionDetials {
+  background: #fffffff2 !important;
+  display: flex;
+  padding-left: 16px !important;
+  padding-right: 30px !important;
+  flex-direction: column !important;
+  //   padding: 0 !important;
+  //   box-shadow: none !important;
+  //   border-radius: 0 !important;
+}
+.selectprice{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    color: #737373;
+    margin: 0;
+}
+.radioBtnsLabels {
+  font-family: DM Sans;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.0075em;
+  margin: 0;
+  color: #3B3B3B;
+  span {
+    color: grey;
+  }
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  margin-top: -1rem;
+
+  input {
+    width: 100%;
+    height: 40px;
+    padding: 0.2rem;
+    padding-left: 14px;
+    font-size: 14px;
+    border: 1px solid #857250;
+    border-radius: 5px;
+  }
+  span {
+    display: inline-block;
+    position: absolute;
+    top: 39px;
+    left: 8px;
+  }
+}
+
+.colorsLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+  p {
+    text-transform: capitalize;
+  }
+}
+
+.applybtn{
+    width: 100%;
+    height: 48px !important;
+    text-transform: unset !important;
+    font-family: DM Sans !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    background: #857250 !important;
+    border-radius: 0px !important;
+    padding: 16px !important;
+    color: white !important;
+}
+
+.more{
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  color: #6C6C6C;
+  padding-left: 73px;
+}
+.clearall{
+  position: absolute;
+  right: 16px;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: 0.16px;
+  color: #857250;
+}

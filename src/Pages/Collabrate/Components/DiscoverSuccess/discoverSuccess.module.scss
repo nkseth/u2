@@ -25,28 +25,25 @@
   line-height: 174%;
   margin-left: 25px;
 }
-.headingMobile {
-  font-family: DM Serif Display;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 25px;
-  line-height: 32px;
-  display: flex;
+.compogroup{
+  margin-bottom: 107px;
 }
-.subHeadingMobile {
-  font-family: DM Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 174%;
-  color: #3b3b3b;
-  margin-top: 15px;
-}
-.textMobile {
-  font-family: DM Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 174%;
-  margin-left: 25px;
+
+
+@media screen and (max-width:550px) {
+  .check{
+    width: 15px;
+  }
+  .text{
+    font-size: 18px;
+    margin-left: 11px;
+  }
+  .heading {
+    font-size: 25px;
+    line-height: 32px;
+  }
+  .subHeadingMobile {
+    font-size: 18px;
+    margin-top: 15px;
+  }
 }

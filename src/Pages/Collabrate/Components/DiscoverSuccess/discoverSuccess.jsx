@@ -13,7 +13,7 @@ export default function DiscoverSucess() {
   return (
     <div>
       {!tabViewPro ? (
-        <Box display='flex' justifyContent='center'>
+        <Box style={{margin: '107px 0'}} display='flex' justifyContent='center'>
           <Box style={{ marginTop: '83px' }}>
             <p className={styles.heading}>Discover business success using U2</p>
             <p className={styles.subHeading}>
@@ -22,35 +22,29 @@ export default function DiscoverSucess() {
 
             <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
                 marginTop: '31px',
               }}
             >
-              <img src={check} alt='check' />
-              <p className={styles.text}>Launch new products</p>
+              <img src={check}  alt='check' />
+              <span className={styles.text}>Launch new products</span>
             </div>
 
             <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
                 marginTop: '31px',
               }}
             >
-              <img src={check} alt='check' />
-              <p className={styles.text}>Reaching More Customers</p>
+              <img src={check}  alt='check' />
+              <span className={styles.text}>Reaching More Customers</span>
             </div>
 
             <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
                 marginTop: '31px',
               }}
             >
-              <img src={check} alt='check' />
-              <p className={styles.text}>Promoting Artisans/Designers</p>
+              <img src={check}  alt='check' />
+              <span className={styles.text}>Promoting Artisans/Designers</span>
             </div>
           </Box>
 
@@ -69,16 +63,12 @@ export default function DiscoverSucess() {
           </Box>
         </Box>
       ) : (
-        <Grid>
+        <Grid style={{margin:mobileView?'50px 0' : '94px 0'}}>
           <Grid>
-            <p className={mobileView ? styles.headingMobile : styles.heading}>
+            <p className={styles.heading}>
               Discover business success using U2
             </p>
-            <p
-              className={
-                mobileView ? styles.subHeadingMobile : styles.subHeading
-              }
-            >
+            <p className={styles.subHeading}>
               See how big brands and small businesses drive results with U2
             </p>
           </Grid>
@@ -96,41 +86,35 @@ export default function DiscoverSucess() {
           <Box>
             <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
                 marginTop: mobileView ? '15px' : '31px',
               }}
             >
-              <img src={check} alt='check' />
-              <p className={mobileView ? styles.textMobile : styles.text}>
+              <img src={check} className={styles.check} alt='check' />
+              <span className={styles.text}>
                 Launch new products
-              </p>
+              </span>
             </div>
 
             <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
                 marginTop: mobileView ? '15px' : '31px',
               }}
             >
-              <img src={check} alt='check' />
-              <p className={mobileView ? styles.textMobile : styles.text}>
+              <img src={check} className={styles.check} alt='check' />
+              <span className={styles.text}>
                 Reaching More Customers
-              </p>
+              </span>
             </div>
 
             <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
                 marginTop: mobileView ? '15px' : '31px',
               }}
             >
-              <img src={check} alt='check' />
-              <p className={mobileView ? styles.textMobile : styles.text}>
+              <img src={check} className={styles.check} alt='check' />
+              <span className={styles.text}>
                 Promoting Artisans/Designers
-              </p>
+              </span>
             </div>
           </Box>
         </Grid>

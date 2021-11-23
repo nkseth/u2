@@ -102,7 +102,7 @@ const ProductsByDesigner = ({ match }) => {
            <Breadcrumb
           style={{ paddingTop: tabView && "2rem 0" }}
           crum={[{label:'Home',path:'/'},
-          {label:'Designer' ,path:'Designer'}]}
+          {label:'Designer' ,path:''}]}
         />
                 </div>
               )}

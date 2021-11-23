@@ -521,15 +521,12 @@ else{
   return (
 <>
 <MetaTags>
-  <title>Website - Articles - How to SEO</title>
-  <meta name="description" content="Want to learn SEO with React? Look no further!"/>
+  <title>{details?.product?.slug}</title>
+  <meta name="description" content="Grab it now"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:title" content="How to SEO"/>
-  <meta property="og:image" content="https://www.example.com/how-to-seo.jpg"/>
-  <meta property="og:article:author" content="Jessy"/>
-  <meta property="og:article:tag" content="react"/>
-  <meta property="og:article:tag" content="seo"/>
-  <meta property="og:article:published_time" content="2020-12-31"/>
+  <meta property="og:title" content={details?.product?.slug}/>
+  <meta property="og:image" content={details?.feature_image}/>
+ 
   </MetaTags>
 
     <Container bottomDivider footerOnTabMob style={{backgroud:'red'}}>
@@ -541,7 +538,7 @@ else{
            <Breadcrumb
           style={{ paddingTop: tabView && "2rem 0" }}
           crum={[{label:'Home',path:'/'},
-          {label: details?.brand ,path:`/${details?.brand}`},
+          {label: details?.brand ,path:`/designer-products/${details?.brand_id}`},
 
          {label:details?.title ,path:''},
 
@@ -917,7 +914,7 @@ else{
 </FacebookShareButton>
 </div>
 <div>
-<WhatsappShareButton  url={window.location.href} title="seemsdlfm"  separator=":: ">
+<WhatsappShareButton  url={window.location.href} >
   <WhatsappIcon  size={"4rem"} round  />
 </WhatsappShareButton>
 </div>
@@ -1113,10 +1110,26 @@ else{
                                 <FavoriteBorderIcon />
                               </IconButton>
                               <IconButton>
-                                <Share
+                                <Share onClick={() =>setsharedisplay(!sharedisplay)}
                                   style={{ width: '24px', height: '24px' }}
                                 />
                               </IconButton>
+                              <div style={{minHeight:'50vh',minWidth:'7vw',display:sharedisplay?'flex':'none',
+                       flexDirection:'column',position:'absolute', right:'5vw',top:'8vh',zIndex:'1000',
+                       boxShadow:'0px 0px 35px lightgray',backgroundColor:'white',
+                       transition:'5s',alignItems:'center',padding:'5px',borderRadius:'15px'
+                        }}>
+<div style={{borderRadius:'50%'}}>
+<FacebookShareButton url={window.location.href}>
+<FacebookIcon size={"4rem"} round />
+</FacebookShareButton>
+</div>
+<div>
+<WhatsappShareButton  url={window.location.href} >
+  <WhatsappIcon  size={"4rem"} round  />
+</WhatsappShareButton>
+</div>
+                        </div>
                             </div>
                           )}
                         </>
@@ -1136,7 +1149,7 @@ else{
                       <br />
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                       <Select
-                          style={{ width: '80%',backgroundColor: 'red'}}
+                          style={{ width: '80%'}}
                           input={<BootstrapInput />}
                           value={ProductType}
                           onOpen={() => setProductDrop(true)}

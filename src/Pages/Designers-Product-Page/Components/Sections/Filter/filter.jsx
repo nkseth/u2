@@ -216,6 +216,7 @@ export default function Filter(props) {
       if (attributeValue_id.length > 0 && attribute_id.length > 0) {
         if (product_type === 'all')
           filterProduct({
+            product_type,
             discount,
             range,
             attributeValue_id: attributeValue_id.toString(),
@@ -233,6 +234,7 @@ export default function Filter(props) {
         if (product_type === 'all')
           filterProduct({
             discount,
+            product_type,
             range,
           });
         else

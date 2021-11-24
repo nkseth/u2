@@ -124,9 +124,9 @@ export default function ProductCard(props) {
       <div style={{ display: 'flex' }}>
         <div className={styles.productDetails}>
           <Link to={{ pathname: `/product-description/${product?.slug}` }}>
-            <span className={styles.productName}>{product?.brand}</span>
+            <span className={styles.productName}>{product?.title}</span>
           </Link>
-          <span className={styles.productDesc}>{product?.title}</span>
+          <span className={styles.productDesc}>{product?.brand}</span>
           {product.isCustomise === 'on' ? (
             product.custom_offer_price > 0 ? (
               <p className={styles.productPrice}>

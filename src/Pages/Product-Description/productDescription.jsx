@@ -15,6 +15,7 @@ import {
   useMediaQuery,
   Tooltip,
 } from '@material-ui/core';
+import moment from 'moment'
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 import CustomSection from '../../utils/Custom Section/section';
@@ -735,7 +736,7 @@ else{
                       <IconButton onClick={() =>alert("wow")}>
                         <Share style={{ width: '37px', height: '37px' }} />
                       </IconButton>
-                      {details.stock_quantity < 10 ? (
+                      {selectedvarient?.stock_quantity < 10 ? (
                         <div className={styles.alert}>
                           <img src={clockIcon} alt='clock' />
                           <span
@@ -745,9 +746,9 @@ else{
                               marginRight: 0,
                             }}
                           >
-                            Hurry up! Only 5 left in stock
+                            Hurry up! Only {selectedvarient?.stock_quantity} left in stock
                           </span>
-                          <div>58:00</div>
+                          <div>{moment(moment(selectedvarient?.offer_end).format('MMMM Do YYYY, h:mm:ss a')).diff(selectedvarient?.offer_start,"minutes")}</div>
                         </div>
                       ) : null}
                     </div>
@@ -1267,13 +1268,13 @@ else{
 
                 {!customView && (
                   <div>
-                    {details.stock_quantity < 10 ? (
+                    {selectedvarient?.stock_quantity < 10 ? (
                       <div className={styles.alert}>
                         <img src={clockIcon} alt='clock' />
                         <span>
-                          Hurry up! Only {details.stock_quantity} left in stock
-                        </span>
-                        <div>50:00</div>
+                        Hurry up! Only {selectedvarient?.stock_quantity} left in stock
+                          </span>
+                          <div>{moment(selectedvarient?.offer_end).diff(selectedvarient?.offer_start,"minutes")}</div>
                       </div>
                     ) : null}
 
@@ -1290,13 +1291,13 @@ else{
 
                 {mobileView && (
                   <div>
-                    {details.stock_quantity < 10 ? (
+                    {selectedvarient?.stock_quantity < 10 ? (
                       <div className={styles.alert}>
                         <img src={clockIcon} alt='clock' />
                         <span>
-                          Hurry up! Only {details.stock_quantity} left in stock
-                        </span>
-                        <div>50:00</div>
+                        Hurry up! Only {selectedvarient?.stock_quantity} left in stock
+                          </span>
+                          <div>{moment(selectedvarient?.offer_end).diff(selectedvarient?.offer_start,"minutes")}</div>
                       </div>
                     ) : null}
                     {ProductType === 'readymade' ? (
